@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche Medibox - Grands principes en santé numérique</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Grands principes en santé numérique</h1>
+            <div class="meta">
+                <span>📚 UE3 - Informatique Médicale</span>
+                <span>⏱️ 60 min</span>
+                <span>⭐ Difficulté: Facile</span>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Objectifs obligatoires -->
+            <div class="objectifs">
+                <h2>🎯 Objectifs d'apprentissage</h2>
+                <ul>
+                    <li>Comprendre l'évolution du système de santé français et les facteurs qui augmentent la consommation de soins</li>
+                    <li>Maîtriser les deux feuilles de route du numérique en santé (2019-2022 et 2023-2027)</li>
+                    <li>Identifier les 4 axes prioritaires et leurs actions clés de la stratégie actuelle</li>
+                    <li>Distinguer les 3 grands domaines de l'informatique médicale et leurs spécificités</li>
+                    <li>Retenir les dates et chiffres clés essentiels pour les examens</li>
+                </ul>
+            </div>
+
+            <!-- Section 1 : Évolution système de santé -->
+            <div class="section">
+                <h2>1. Évolution du système de santé en France</h2>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Augmentation de la consommation de soins</h3>
+                    <p><strong>Facteurs principaux :</strong></p>
+                    <ul>
+                        <li><strong>Allongement de l'espérance de vie</strong> → augmentation des maladies chroniques liées à l'âge</li>
+                        <li><strong>Nouveaux facteurs de risque</strong> : obésité, tabac, alcool, pollution, stress</li>
+                        <li><strong>Maladies chroniques de civilisation</strong> : maladies cardiovasculaires, cancer, diabète</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card warning" style="margin-bottom: 25px;">
+                    <h3>⚠️ Augmentation de la complexité des prises en charge</h3>
+                    <p><strong>Trois phénomènes majeurs :</strong></p>
+                    <ol>
+                        <li><strong>Vieillissement de la population</strong> → augmentation des patients en ALD (Affections Longue Durée)
+                            <ul>
+                                <li>💡 La Martinique et la Guadeloupe sont les 2 départements ayant la population la plus âgée de France depuis 2023</li>
+                                <li>Les baby-boomers (1945-1965) auront 85 ans en 2030</li>
+                            </ul>
+                        </li>
+                        <li><strong>Explosion des polypathologies</strong> → plus on vieillit, plus on cumule de maladies</li>
+                        <li><strong>Prises en charge pluriprofessionnelles</strong> → intervention de multiples acteurs (sanitaires + sociaux)</li>
+                    </ol>
+                    <p><span class="badge info">ALD = Affections prises en charge à 100% par la Sécurité sociale</span></p>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h3>🔄 Transformation numérique</h3>
+                    <p><strong>Manifestations principales :</strong></p>
+                    <ul>
+                        <li><strong>Objets connectés</strong> : développement massif (ex: suivi glycémie pour diabétiques)</li>
+                        <li><strong>Investissement des GAFAM</strong> : Google, Apple, Facebook, Amazon, Microsoft dans la santé</li>
+                        <li><strong>Montée du e-patient</strong> : patient acteur qui cherche des informations sur Internet
+                            <ul>
+                                <li>✅ Avantage : patient plus acteur de sa santé</li>
+                                <li>⚠️ Risque : informations plus ou moins justes selon les sources</li>
+                                <li>📊 Impact : évolution de la relation patient-soignant (de verticale à horizontale)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>💡 Transformation du parcours patient</h3>
+                    <p><strong>Évolution : du "parcours de soins" au "parcours de santé"</strong></p>
+                    <div class="two-columns">
+                        <div>
+                            <h4>Parcours de soins (ancien)</h4>
+                            <ul>
+                                <li>Uniquement sanitaire</li>
+                                <li>Médecin, infirmier, kiné</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Parcours de santé (actuel)</h4>
+                            <ul>
+                                <li>Sanitaire + social</li>
+                                <li>Intervenants multiples</li>
+                                <li>Coordination complexe</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p><strong>Le numérique comme levier d'efficience :</strong></p>
+                    <ul>
+                        <li><span class="badge success">Efficience = efficacité pour le moindre coût</span></li>
+                        <li>Amélioration de la communication entre acteurs</li>
+                        <li>Meilleure interconnexion ville-hôpital et entre établissements</li>
+                        <li>Innovation : robots chirurgicaux, intelligence artificielle</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 2 : Stratégie nationale e-santé -->
+            <div class="section">
+                <h2>2. Stratégie nationale e-santé</h2>
+
+                <div class="info-box" style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); margin-bottom: 30px;">
+                    <h3 style="color: #1a365d; margin-top: 0;">FEUILLE DE ROUTE 1 : "Accélérer le virage numérique" (2019-2022)</h3>
+                </div>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Contexte et création</h3>
+                    <ul>
+                        <li><strong>Date de création :</strong> <span class="badge danger">26 juillet 2019</span> (à retenir !)</li>
+                        <li><strong>Cadre :</strong> Réforme "Ma santé 2022, un engagement collectif"</li>
+                        <li><strong>Porteur :</strong> Demande du président Macron</li>
+                    </ul>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="info">
+                            <tr>
+                                <th>N°</th>
+                                <th>Orientation</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Gouvernance</td>
+                                <td>Renforcer la gouvernance du numérique en santé</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Sécurité & Interopérabilité</td>
+                                <td>Intensifier la sécurité et l'interopérabilité des SI</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Services socles</td>
+                                <td>Accélérer le déploiement des services numériques socles</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Plateformes nationales</td>
+                                <td>Déployer des plateformes numériques de santé au niveau national</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Innovation</td>
+                                <td>Soutenir l'innovation et favoriser l'engagement des acteurs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>💡 La "Maison du numérique en santé"</h3>
+                    <p>Cette feuille de route est souvent résumée par cette métaphore :</p>
+                    <ul>
+                        <li><strong>Fondations :</strong> Orientations 2 et 3 (sécurité et services socles)</li>
+                        <li><strong>Structure :</strong> Orientations 4 et 5 (plateformes et innovation)</li>
+                        <li><strong>Gouvernance :</strong> Orientation 1 (pilotage général)</li>
+                    </ul>
+                </div>
+
+                <div style="text-align: center; margin: 50px 0; font-size: 2em; color: #1a365d;">
+                    <p>⬇️ ⬇️ ⬇️</p>
+                    <p style="font-size: 0.5em; color: #64748b;">Fin juin 2023 → Nouvelle feuille de route</p>
+                </div>
+
+                <div class="info-box" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); margin-bottom: 30px;">
+                    <h3 style="color: #1a365d; margin-top: 0;">FEUILLE DE ROUTE 2 : "2023-2027" (actuelle)</h3>
+                </div>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Objectif central</h3>
+                    <p><strong>Mettre le numérique au service de la santé</strong></p>
+                    <p>Cette nouvelle feuille de route fixe les chantiers prioritaires avec :</p>
+                    <ul>
+                        <li><span class="badge danger">4 axes prioritaires</span> (à ne pas confondre avec les 5 orientations de l'ancienne !)</li>
+                        <li>18 priorités</li>
+                        <li>65 objectifs</li>
+                    </ul>
+                    <p><span class="badge warning">⚠️ Piège fréquent aux examens : confondre les chiffres des deux feuilles de route !</span></p>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="success">
+                            <tr>
+                                <th>Axe</th>
+                                <th>Intitulé</th>
+                                <th>Objectif principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1</strong></td>
+                                <td>Prévention</td>
+                                <td>Développer la prévention et rendre chacun acteur de sa santé</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2</strong></td>
+                                <td>Prise en charge</td>
+                                <td>Redonner du temps aux professionnels et améliorer la prise en charge</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3</strong></td>
+                                <td>Accès à la santé</td>
+                                <td>Améliorer l'accès pour les personnes et professionnels</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4</strong></td>
+                                <td>Cadre propice</td>
+                                <td>Déployer un cadre favorable au développement numérique</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section 3 : Actions par axe -->
+            <div class="section">
+                <h2>3. Actions prioritaires par axe</h2>
+
+                <div class="concept-card process" style="margin-bottom: 25px; border-left: 5px solid #10b981;">
+                    <h3>🔄 AXE 1 : Prévention</h3>
+                    <p><strong>Actions clés :</strong></p>
+                    <div class="checklist">
+                        <ul>
+                            <li><strong>Utiliser Mon espace santé au quotidien</strong> pour gérer sa santé
+                                <ul>
+                                    <li>Carnet de santé numérique</li>
+                                    <li>Dépôt de documents par soignants ET patients</li>
+                                </ul>
+                            </li>
+                            <li><strong>Développer une prévention personnalisée</strong> via Mon espace santé
+                                <ul>
+                                    <li>Adapter les recommandations selon le profil</li>
+                                    <li>Ex : patient diabétique, hypertendu...</li>
+                                </ul>
+                            </li>
+                            <li><strong>Rendre chacun acteur et maître de ses données</strong>
+                                <ul>
+                                    <li>✅ Le patient est propriétaire exclusif de son espace</li>
+                                    <li>✅ Il choisit ce qu'il partage ou non</li>
+                                </ul>
+                            </li>
+                            <li><strong>Accompagner tous les citoyens</strong> dans l'appropriation du numérique
+                                <ul>
+                                    <li>Lutter contre la fracture numérique</li>
+                                    <li>Personnes âgées, handicapées, sans domicile</li>
+                                    <li>Déploiement de la fibre aux Antilles-Guyane</li>
+                                </ul>
+                            </li>
+                            <li><strong>Faire bénéficier à tous des innovations</strong>
+                                <ul>
+                                    <li>Ne pas limiter l'innovation aux grandes villes</li>
+                                    <li>Diffusion sur tout le territoire</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px; border-left: 5px solid #3b82f6;">
+                    <h3>🔄 AXE 2 : Prise en charge</h3>
+                    <p><strong>Actions clés :</strong></p>
+                    <div class="checklist">
+                        <ul>
+                            <li><strong>Accès à l'historique de santé</strong> pour les professionnels
+                                <ul>
+                                    <li>Via Mon espace santé</li>
+                                </ul>
+                            </li>
+                            <li><strong>Améliorer l'intégration et l'ergonomie</strong> des services socles
+                                <ul>
+                                    <li>⚠️ Problème actuel : outils trop nombreux, mal adaptés</li>
+                                    <li>✅ Objectif : réconcilier technologie et pratique terrain</li>
+                                    <li>Gagner du temps au lieu d'en perdre</li>
+                                </ul>
+                            </li>
+                            <li><strong>Déployer le bouquet de services</strong> aux professionnels
+                                <ul>
+                                    <li>Ordonnance numérique</li>
+                                    <li>Identification sécurisée</li>
+                                    <li>Services communs pour tous, fonctionnels et abordables</li>
+                                </ul>
+                            </li>
+                            <li><strong>Simplifier la coordination locale</strong> des parcours de santé
+                                <ul>
+                                    <li>Faciliter le dialogue entre tous les acteurs</li>
+                                    <li>Ville ↔ Hôpital</li>
+                                    <li>Clinique ↔ Hôpital public</li>
+                                    <li>Médecins ↔ Infirmiers ↔ Kinés</li>
+                                </ul>
+                            </li>
+                            <li><strong>Renforcer la formation</strong> au numérique
+                                <ul>
+                                    <li>Professionnels de santé, médico-social, social</li>
+                                    <li>Accompagnement indispensable pour la réussite</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px; border-left: 5px solid #f59e0b;">
+                    <h3>🔄 AXE 3 : Accès à la santé</h3>
+                    <p><strong>Contexte :</strong> Désertification médicale en France (pic jusqu'en 2030)</p>
+                    <p><strong>Actions clés :</strong></p>
+                    <div class="checklist">
+                        <ul>
+                            <li><strong>Renforcer l'information</strong> sur l'offre de santé
+                                <ul>
+                                    <li>Pour les patients : connaître les médecins disponibles</li>
+                                    <li>Pour les professionnels : recommander des confrères</li>
+                                    <li>Information exhaustive sur le territoire</li>
+                                </ul>
+                            </li>
+                            <li><strong>Développer la télésanté</strong> dans un cadre régulé et éthique
+                                <ul>
+                                    <li>Explosion avec le Covid → besoin d'encadrement</li>
+                                    <li>Réguler les coûts, l'éthique, le stockage des données</li>
+                                </ul>
+                            </li>
+                            <li><strong>Promouvoir les plateformes</strong> de régulation médicale
+                                <ul>
+                                    <li>SAMU (15) ↔ Pompiers ↔ Hôpitaux ↔ Cliniques</li>
+                                    <li>Prise en charge urgente coordonnée</li>
+                                </ul>
+                            </li>
+                            <li><strong>Diffuser l'application carte vitale</strong>
+                                <ul>
+                                    <li>Dématérialisation prévue en 2025</li>
+                                    <li>Identité nationale de santé (numéro unique)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px; border-left: 5px solid #8b5cf6;">
+                    <h3>🔄 AXE 4 : Cadre propice</h3>
+                    <p><strong>Actions clés :</strong></p>
+                    <div class="checklist">
+                        <ul>
+                            <li><strong>Renforcer massivement la cybersécurité</strong>
+                                <ul>
+                                    <li>🎯 Hôpitaux = cibles privilégiées des hackers</li>
+                                    <li>💰 Données de santé = très chères sur le marché noir</li>
+                                    <li>🇫🇷 Souveraineté : hébergement des données en France</li>
+                                    <li>⚠️ Question : données françaises entre mains des GAFAM américains ?</li>
+                                    <li>🛡️ Résilience face aux crises sanitaires (leçon du Covid)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Co-construction de référentiels</strong> par secteur
+                                <ul>
+                                    <li>Conformité des solutions pour tous les acteurs</li>
+                                    <li>Socle commun quelque soit l'éditeur de logiciel</li>
+                                </ul>
+                            </li>
+                            <li><strong>Attirer les talents</strong> du numérique vers la santé
+                                <ul>
+                                    <li>Actuellement : meilleurs profils → finance</li>
+                                    <li>Objectif : attirer vers la santé</li>
+                                </ul>
+                            </li>
+                            <li><strong>Développer la recherche</strong> en santé numérique
+                                <ul>
+                                    <li>Utilisation secondaire des données de santé</li>
+                                    <li>(Cours dédié dans le module)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4 : Les 3 domaines -->
+            <div class="section">
+                <h2>4. Les grands domaines de l'informatique médicale</h2>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Définition générale</h3>
+                    <p><strong>L'informatique médicale</strong> est l'étude de l'utilisation efficace des données, informations et connaissances biomédicales à des fins de :</p>
+                    <ul>
+                        <li>Recherche scientifique</li>
+                        <li>Résolution de problèmes</li>
+                        <li>Prise de décision</li>
+                        <li>Amélioration de la santé humaine</li>
+                    </ul>
+                    <p><span class="badge danger">Il existe 3 grands domaines (pas 4 !)</span></p>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="info">
+                            <tr>
+                                <th>Domaine</th>
+                                <th>Niveau d'action</th>
+                                <th>Définition</th>
+                                <th>Exemples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1. Bioinformatique</strong></td>
+                                <td>Molécules<br>Cellules<br>Organes</td>
+                                <td>Étude des processus d'information dans les systèmes biologiques<br>Application de la statistique et informatique à la biologie</td>
+                                <td>• Analyse séquences ADN<br>• Programmation avec bactéries<br>• Données génétiques</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2. Informatique clinique</strong></td>
+                                <td>Organes<br>Fonctions<br>Citoyens<br>Patients</td>
+                                <td>Management des données et connaissances dans le soin, la recherche clinique et les études épidémiologiques</td>
+                                <td>• Dossier Patient Informatisé<br>• E-santé<br>• Systèmes d'information<br>• Objets connectés<br>• Télémédecine</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3. Informatique de santé publique</strong></td>
+                                <td>Citoyens<br>Patients<br>Populations</td>
+                                <td>Utilisation des résultats de l'informatique clinique pour améliorer l'information des patients, institutions et décideurs</td>
+                                <td>• Algorithmes prédictifs d'épidémies<br>• Politique de santé publique<br>• ARS, État, Préfets</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="concept-card warning" style="margin-bottom: 25px;">
+                    <h3>⚠️ Pièges fréquents aux examens</h3>
+                    <div class="danger-box">
+                        <h4>❌ Confusions classiques :</h4>
+                        <ul>
+                            <li><strong>FAUX :</strong> "L'informatique de santé publique s'intéresse aux molécules et cellules"
+                                <ul>
+                                    <li>✅ VRAI : C'est la <strong>bioinformatique</strong></li>
+                                </ul>
+                            </li>
+                            <li><strong>FAUX :</strong> "La bioinformatique s'intéresse aux citoyens et patients"
+                                <ul>
+                                    <li>✅ VRAI : C'est l'<strong>informatique clinique</strong></li>
+                                </ul>
+                            </li>
+                            <li><strong>FAUX :</strong> "Il existe 4 grands domaines"
+                                <ul>
+                                    <li>✅ VRAI : Il existe <strong>3 domaines</strong></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>💡 Exemple : Prédiction des épidémies (informatique de santé publique)</h3>
+                    <p><strong>Difficulté de validation :</strong></p>
+                    <div class="schema">
+                        <div class="schema-title">Le paradoxe de la prédiction efficace</div>
+                        <div class="schema-content">
+                            <div class="schema-box" style="background: #dbeafe;">Algorithme prédit un risque d'épidémie</div>
+                            <div class="schema-arrow">→</div>
+                            <div class="schema-box" style="background: #fef3c7;">Décideur prend des mesures préventives</div>
+                            <div class="schema-arrow">→</div>
+                            <div class="schema-box" style="background: #dcfce7;">L'épidémie n'arrive PAS (évitée grâce à la prédiction)</div>
+                            <div class="schema-arrow">→</div>
+                            <div class="schema-box" style="background: #fee2e2;">Population pense que la prédiction était fausse ❌</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px;"><strong>Conclusion :</strong> Difficulté de communication au grand public car un algorithme efficace empêche ce qu'il prédit !</p>
+                </div>
+            </div>
+
+            <!-- Section 5 : Tableau récapitulatif -->
+            <div class="section">
+                <h2>5. Tableau récapitulatif des chiffres clés</h2>
+
+                <div class="success-box" style="margin-bottom: 25px;">
+                    <h3>📊 Les chiffres à retenir absolument</h3>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="danger">
+                            <tr>
+                                <th>Élément</th>
+                                <th>Chiffre / Date</th>
+                                <th>À ne pas confondre avec</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Loi "Accélérer le virage numérique"</td>
+                                <td><strong>26 juillet 2019</strong></td>
+                                <td>❌ Pas le 26 juillet 2013</td>
+                            </tr>
+                            <tr>
+                                <td>Orientations feuille de route 2019-2022</td>
+                                <td><strong>5 orientations</strong></td>
+                                <td>❌ Pas 4 axes</td>
+                            </tr>
+                            <tr>
+                                <td>Axes feuille de route 2023-2027</td>
+                                <td><strong>4 axes prioritaires</strong></td>
+                                <td>❌ Pas 5 orientations</td>
+                            </tr>
+                            <tr>
+                                <td>Domaines informatique médicale</td>
+                                <td><strong>3 domaines</strong></td>
+                                <td>❌ Pas 4 domaines</td>
+                            </tr>
+                            <tr>
+                                <td>Baby-boomers</td>
+                                <td><strong>85 ans en 2030</strong></td>
+                                <td>Nés entre 1945-1965</td>
+                            </tr>
+                            <tr>
+                                <td>Départements les plus âgés</td>
+                                <td><strong>Martinique & Guadeloupe depuis 2023</strong></td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="concept-card warning" style="margin-bottom: 25px;">
+                    <h3>⚠️ Stratégie pour les examens (basée sur l'analyse des annales)</h3>
+                    <p><strong>Répartition VRAI/FAUX dans les annales :</strong></p>
+                    <ul>
+                        <li>Thème "Actions spécifiques" : <span class="badge success">100% de vrais</span> → thème le plus sûr</li>
+                        <li>Thème "Feuille de route virage numérique" : <span class="badge success">83% de vrais</span> → attention aux dates</li>
+                        <li>Thème "Feuille de route 2023-2027" : <span class="badge warning">71% de vrais</span> → pièges sur les chiffres</li>
+                        <li>Thème "Domaines informatique" : <span class="badge danger">44% de vrais</span> → ZONE DE DANGER ! Nombreux pièges</li>
+                    </ul>
+                    <p><strong>Item piège récurrent :</strong> "Tout est faux" apparaît souvent et n'est <strong>JAMAIS vrai</strong> dans les annales</p>
+                </div>
+            </div>
+
+            <!-- Points clés obligatoires -->
+            <div class="key-points">
+                <h2>🎯 Points clés à retenir</h2>
+                <ul>
+                    <li><strong>Évolution système de santé :</strong> allongement espérance de vie → maladies chroniques → polypathologies → prises en charge pluriprofessionnelles</li>
+                    <li><strong>E-patient :</strong> patient acteur qui cherche sur Internet → évolution relation patient-soignant (de verticale à horizontale)</li>
+                    <li><strong>Feuille de route 2019-2022 :</strong> loi du <strong>26 juillet 2019</strong>, <strong>5 orientations</strong>, dans la réforme "Ma santé 2022"</li>
+                    <li><strong>Feuille de route 2023-2027 :</strong> <strong>4 axes prioritaires</strong> (Prévention / Prise en charge / Accès / Cadre propice), 18 priorités, 65 objectifs</li>
+                    <li><strong>Mon espace santé :</strong> carnet de santé numérique, appartient EXCLUSIVEMENT au patient, patient maître de ses données</li>
+                    <li><strong>Cybersécurité :</strong> hôpitaux = cibles privilégiées, données de santé chères, souveraineté = hébergement en France</li>
+                    <li><strong>3 domaines informatique médicale :</strong> Bioinformatique (molécules/cellules) / Informatique clinique (patients/soin) / Informatique santé publique (populations/décideurs)</li>
+                    <li><strong>Pièges examens :</strong> confondre 4 axes (nouvelle) vs 5 orientations (ancienne), confondre les niveaux des 3 domaines, dates (2019 vs 2013)</li>
+                    <li><strong>Martinique & Guadeloupe :</strong> départements les plus âgés de France depuis 2023, baby-boomers auront 85 ans en 2030</li>
+                    <li><strong>Désertification médicale :</strong> pic jusqu'en 2030, télésanté et numérique comme solutions pour améliorer l'accès</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+    </div>
+</body>
+</html>
