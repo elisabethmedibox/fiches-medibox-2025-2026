@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche Medibox - Réglementation en santé numérique</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Réglementation en santé numérique</h1>
+            <div class="meta">
+                <span>📚 UE3 - Informatique Médicale</span>
+                <span>⏱️ 90 min</span>
+                <span>⭐⭐⭐ Difficulté: Intermédiaire</span>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Objectifs obligatoires -->
+            <div class="objectifs">
+                <h2>🎯 Objectifs d'apprentissage</h2>
+                <ul>
+                    <li>Comprendre le contexte et les objectifs du Règlement Général sur la Protection des Données (RGPD)</li>
+                    <li>Maîtriser la définition d'une donnée personnelle et identifier les différents types d'identification</li>
+                    <li>Connaître les 8 grands principes du traitement des données à caractère personnel</li>
+                    <li>Comprendre la notion de responsabilité des acteurs (accountability) et le privacy by design</li>
+                    <li>Identifier les rôles et missions des institutions : CNIL, CESREES, DPO</li>
+                    <li>Retenir les dates et chiffres clés de la réglementation en santé numérique</li>
+                </ul>
+            </div>
+
+            <!-- Section 1 : Le RGPD - Cadre général -->
+            <div class="section">
+                <h2>1. Le RGPD - Cadre général</h2>
+
+                <div class="info-box" style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); margin-bottom: 30px;">
+                    <h3 style="color: #1a365d; margin-top: 0;">Contexte historique</h3>
+                    <p>Le Règlement Général sur la Protection des Données est entré en application le <span class="badge danger">27 avril 2016</span>. En France, les dispositions du RGPD ont été inscrites dans la loi Informatique et Libertés depuis le <span class="badge danger">1er juin 2019</span>.</p>
+                </div>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Qui est concerné par le RGPD ?</h3>
+                    <p>Le règlement concerne <strong>toutes les entreprises et les établissements qui opèrent un traitement de données à caractère personnel</strong> sur des résidents européens ou ciblant les citoyens européens.</p>
+                    <p>Cela inclut également tous les sous-traitants qui sont en lien avec ces entreprises, même s'ils ne sont pas européens.</p>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h3>🔄 Les 3 objectifs du RGPD</h3>
+                    <ul>
+                        <li><strong>Renforcer le droit des personnes</strong> : contrôle par les citoyens de leurs données</li>
+                        <li><strong>Responsabiliser les acteurs</strong> traitant des données et prévenir certains risques (cyberattaques, détournements de données). Création d'une obligation d'autocontrôle</li>
+                        <li><strong>Uniformiser la réglementation</strong> sur la protection des données au niveau européen</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Définition : Donnée personnelle</h3>
+                    <p><strong>Une donnée personnelle est toute information qui se rapporte à une personne physique, identifiée ou identifiable.</strong></p>
+                    
+                    <h4 style="margin-top: 20px;">Deux types d'identification :</h4>
+                    
+                    <div class="two-columns" style="margin-top: 15px;">
+                        <div>
+                            <h5 style="color: #10b981;">🔍 Identification directe</h5>
+                            <p>Le nom, le prénom</p>
+                        </div>
+                        <div>
+                            <h5 style="color: #3b82f6;">🔍 Identification indirecte</h5>
+                            <p>Numéro client, numéro de téléphone, la voix, données biométriques</p>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top: 20px;">Deux possibilités d'identification :</h4>
+                    <ul>
+                        <li><strong>À partir d'une seule donnée</strong> : le numéro de sécurité sociale (unique à chaque personne)</li>
+                        <li><strong>À partir du croisement de plusieurs données</strong> : en recoupant différentes informations provenant de sources multiples</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Traitement de données à caractère personnel</h3>
+                    <p><strong>C'est l'opération ou un ensemble d'opérations automatisées ou non (traitement informatique ou archives papier) qui portent sur les données personnelles.</strong></p>
+                    <p>Il y a toujours une notion d'objectif et de finalité dans le traitement. Il est interdit de collecter des données "au cas où".</p>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h3>🔄 Périmètres d'application du RGPD</h3>
+                    <p>Presque toutes les organisations, qu'elles soient <strong>publiques ou privées</strong>, sont soumises au règlement sous 2 conditions :</p>
+                    <ul>
+                        <li>Elle est <strong>établie sur le territoire de l'Union Européenne</strong></li>
+                        <li>OU elle a une <strong>activité qui cible directement des résidents européens</strong></li>
+                    </ul>
+                    <p style="margin-top: 15px;"><span class="badge warning">⚠️ Important</span> Cela concerne également tous les sous-traitants, même s'ils ne sont pas européens.</p>
+                </div>
+            </div>
+
+            <!-- Section 2 : Les 8 grands principes -->
+            <div class="section">
+                <h2>2. Les 8 grands principes du traitement des données</h2>
+
+                <div class="success-box" style="margin-bottom: 30px;">
+                    <h3>📊 Vue d'ensemble des 8 principes</h3>
+                    <p>Le RGPD définit 8 grands principes qui doivent être respectés lors de tout traitement de données personnelles.</p>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 30px;">
+                    <table>
+                        <thead class="info">
+                            <tr>
+                                <th>N°</th>
+                                <th>Principe</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Finalité</td>
+                                <td>Objectif de traitement déterminé à priori</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Licéité</td>
+                                <td>Traitement légal des données</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Minimisation</td>
+                                <td>Uniquement les données strictement nécessaires</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Protection données sensibles</td>
+                                <td>Consentement explicite requis</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Conservation limitée</td>
+                                <td>Durée limitée et cohérente avec l'objectif</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Obligation de sécurité</td>
+                                <td>Niveau adapté aux traitements et risques</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Transparence</td>
+                                <td>Obligation d'information des personnes</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Respect des droits</td>
+                                <td>Droits existants renforcés + droits supplémentaires</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="margin-top: 40px; margin-bottom: 20px;">Détail des 8 principes</h3>
+
+                <div class="concept-card process" style="margin-bottom: 25px; border-left: 5px solid #10b981;">
+                    <h3>🔄 Principe 1 : Finalité</h3>
+                    <p><strong>Il est impossible de collecter des données personnelles "à toutes fins utiles".</strong></p>
+                    <p>Il faut obligatoirement établir un objectif a priori dans la collecte des données, c'est-à-dire avant même de collecter les données.</p>
+                    
+                    <h4 style="margin-top: 15px;">Objectifs légitimes autour de la santé :</h4>
+                    <ul>
+                        <li><strong>Dans la recherche</strong> : essai thérapeutique, étude épidémiologique</li>
+                        <li><strong>En cas d'alerte sanitaire</strong> : collecte de données pour gérer une crise sanitaire</li>
+                        <li><strong>Pour l'intérêt public</strong> : amélioration de la qualité des soins</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px; border-left: 5px solid #3b82f6;">
+                    <h3>🔄 Principe 2 : Licéité</h3>
+                    <p><strong>Le principe de licéité répond à la question : est-ce que le traitement est légal, conforme au droit général ?</strong></p>
+                    
+                    <h4 style="margin-top: 15px;">6 conditions possibles de traitement légal :</h4>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="success">
+                            <tr>
+                                <th>N°</th>
+                                <th>Condition</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Consentement</td>
+                                <td>La personne concernée a donné son consentement au traitement</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Exécution de contrat</td>
+                                <td>Le traitement est nécessaire à l'exécution d'un contrat concernant la personne</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Obligation légale</td>
+                                <td>Le traitement est nécessaire au respect d'une obligation légale (ex: maladies à déclaration obligatoire)</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Sauvegarde intérêts vitaux</td>
+                                <td>Le traitement est nécessaire à la sauvegarde des intérêts vitaux (ex: prise en charge hospitalière)</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Mission d'intérêt public</td>
+                                <td>Le traitement est nécessaire à l'exécution d'une mission d'intérêt public</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Intérêts légitimes</td>
+                                <td>Le traitement est nécessaire aux fins des intérêts légitimes poursuivis par le responsable de traitement</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px; border-left: 5px solid #f59e0b;">
+                    <h3>🔄 Principe 3 : Minimisation des données</h3>
+                    <p><strong>On ne collecte que les données dont on a strictement besoin pour l'objectif défini.</strong></p>
+                    <p>On ne peut collecter que les <strong>données pertinentes</strong>, c'est-à-dire les données qui sont en lien direct avec la finalité de traitement.</p>
+                    
+                    <h4 style="margin-top: 15px;">Distinction importante :</h4>
+                    <ul>
+                        <li><strong>Données obligatoires</strong> : indispensables pour répondre à l'objectif</li>
+                        <li><strong>Données facultatives</strong> : pertinentes mais pas indispensables (principe de proportionnalité)</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px; border-left: 5px solid #8b5cf6;">
+                    <h3>🔄 Principe 4 : Protection particulière des données sensibles</h3>
+                    <p>Les données personnelles sont sensibles car elles peuvent entraîner une atteinte possible à la liberté et aux droits fondamentaux des individus.</p>
+                    
+                    <h4 style="margin-top: 15px;">Types de données sensibles :</h4>
+                    <ul>
+                        <li><strong>Données en santé</strong> : diagnostics, antécédents médicaux, traitements</li>
+                        <li><strong>Données judiciaires</strong> : liées aux arrestations</li>
+                        <li><strong>Numéro de sécurité sociale</strong> : risque de vol d'identité</li>
+                    </ul>
+
+                    <h4 style="margin-top: 20px;">Le consentement requis doit être :</h4>
+                    <div class="schema" style="margin-top: 15px;">
+                        <div class="schema-content" style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                            <div style="background: #dcfce7; padding: 15px; border-radius: 8px; flex: 1; min-width: 200px;">
+                                <strong style="color: #10b981;">Libre</strong>
+                                <p style="margin: 5px 0 0 0; font-size: 0.9em;">Sans contrainte</p>
+                            </div>
+                            <div style="background: #fef3c7; padding: 15px; border-radius: 8px; flex: 1; min-width: 200px;">
+                                <strong style="color: #f59e0b;">Explicite</strong>
+                                <p style="margin: 5px 0 0 0; font-size: 0.9em;">Écrit si possible</p>
+                            </div>
+                            <div style="background: #dbeafe; padding: 15px; border-radius: 8px; flex: 1; min-width: 200px;">
+                                <strong style="color: #3b82f6;">Spécifique</strong>
+                                <p style="margin: 5px 0 0 0; font-size: 0.9em;">Pour un usage déterminé</p>
+                            </div>
+                            <div style="background: #fae8ff; padding: 15px; border-radius: 8px; flex: 1; min-width: 200px;">
+                                <strong style="color: #8b5cf6;">Éclairé</strong>
+                                <p style="margin: 5px 0 0 0; font-size: 0.9em;">Bien expliqué</p>
+                            </div>
+                            <div style="background: #e0e7ff; padding: 15px; border-radius: 8px; flex: 1; min-width: 200px;">
+                                <strong style="color: #1a365d;">Univoque</strong>
+                                <p style="margin: 5px 0 0 0; font-size: 0.9em;">Non ambigu</p>
+                            </div>
+                            <div style="background: #fee2e2; padding: 15px; border-radius: 8px; flex: 1; min-width: 200px;">
+                                <strong style="color: #ef4444;">Révocable</strong>
+                                <p style="margin: 5px 0 0 0; font-size: 0.9em;">À tout moment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px; border-left: 5px solid #64748b;">
+                    <h3>🔄 Principe 5 : Conservation limitée des données</h3>
+                    <p><strong>Les données collectées, traitées, exploitées ne peuvent pas être traitées à l'infini. C'est le droit à l'oubli.</strong></p>
+                    <p>Les données doivent être traitées pendant une <strong>durée limitée et cohérente avec l'objectif suivi</strong>.</p>
+                    
+                    <h4 style="margin-top: 15px;">Cette durée varie en fonction :</h4>
+                    <ul>
+                        <li>Des objectifs de traitement</li>
+                        <li>Des obligations légales</li>
+                        <li>Des recommandations de la CNIL</li>
+                    </ul>
+
+                    <div class="info-box" style="margin-top: 15px;">
+                        <h4>En médecine :</h4>
+                        <p><strong>Dossiers patients adultes</strong> : conservés <span class="badge info">20 ans</span></p>
+                        <p><strong>Dossiers patients mineurs</strong> : conservés jusqu'à <span class="badge info">28 ans</span> (10 ans après la majorité)</p>
+                    </div>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px; border-left: 5px solid #ef4444;">
+                    <h3>🔄 Principe 6 : Obligation de sécurité</h3>
+                    <p><strong>Le niveau de sécurité doit être adapté non seulement aux traitements en question, mais aussi aux risques et aux particularités des traitements.</strong></p>
+                    
+                    <h4 style="margin-top: 15px;">3 principes de sécurité :</h4>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="danger">
+                            <tr>
+                                <th>Principe</th>
+                                <th>Description</th>
+                                <th>Objectif</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Confidentialité</strong></td>
+                                <td>Les données ne sont pas accessibles à tout le monde</td>
+                                <td>Uniquement les personnes qualifiées et habilitées peuvent accéder aux données</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Intégrité</strong></td>
+                                <td>Les données ne doivent pas être altérées ou modifiées</td>
+                                <td>Tracer toute modification : qui a modifié quoi et quand</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Disponibilité</strong></td>
+                                <td>Les données doivent être accessibles en permanence</td>
+                                <td>Accessibles par les personnes autorisées quand nécessaire</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning-box" style="margin-bottom: 25px;">
+                    <h4>⚠️ Types de risques</h4>
+                    <div class="two-columns" style="margin-top: 10px;">
+                        <div>
+                            <strong>Risques internes vs externes</strong>
+                            <ul>
+                                <li>Interne : employé non autorisé accède aux données</li>
+                                <li>Externe : visiteur accède aux données</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong>Risques accidentels vs délibérés</strong>
+                            <ul>
+                                <li>Accidentel : panne des serveurs</li>
+                                <li>Délibéré : cyberattaque, malveillance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px; border-left: 5px solid #3b82f6;">
+                    <h3>🔄 Principe 7 : Transparence</h3>
+                    <p><strong>Obligation d'informer les personnes concernées.</strong></p>
+                    <p>Il faut justifier pourquoi on collecte les données, expliquer comment elles sont traitées, et montrer qu'on a la maîtrise des données de bout en bout.</p>
+                    
+                    <h4 style="margin-top: 15px;">Les 4 formes de l'information :</h4>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="info">
+                            <tr>
+                                <th>Forme</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Compréhensible</strong></td>
+                                <td>Phrases courtes, vocabulaire adapté au public non spécialiste</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Lisible</strong></td>
+                                <td>Concise, mise en avant des informations essentielles</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Accessible</strong></td>
+                                <td>On ne doit pas chercher l'information, elle est directement disponible</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vision globale</strong></td>
+                                <td>Vue d'ensemble sur l'ensemble du traitement des données</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px; border-left: 5px solid #10b981;">
+                    <h3>🔄 Principe 8 : Respect des droits des personnes</h3>
+                    <p>Le RGPD renforce les droits existants et ajoute des droits supplémentaires.</p>
+                    
+                    <h4 style="margin-top: 15px;">Droits renforcés :</h4>
+                    <ul>
+                        <li><strong>Droit d'accès aux données</strong> : les données appartiennent à la personne, pas à l'organisme</li>
+                        <li><strong>Droit de rectification</strong> : corriger ou compléter une information incorrecte ou incomplète</li>
+                        <li><strong>Droit d'opposition au traitement</strong> : refuser l'utilisation de ses données sans justification</li>
+                    </ul>
+
+                    <h4 style="margin-top: 15px;">Droits supplémentaires ajoutés avec le RGPD :</h4>
+                    <ul>
+                        <li><strong>Droit à l'effacement (droit à l'oubli)</strong> : demander la suppression de données, sauf opposition légale</li>
+                        <li><strong>Droit à la portabilité des données</strong> : récupérer ses données et les exporter</li>
+                        <li><strong>Droit à la limitation du traitement</strong> : traitement limité aux données pertinentes par rapport à l'objectif</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 3 : Responsabilité des acteurs -->
+            <div class="section">
+                <h2>3. Responsabilité des acteurs</h2>
+
+                <div class="concept-card warning" style="margin-bottom: 25px;">
+                    <h3>⚠️ L'accountability : responsabilité de l'organisme</h3>
+                    <p><strong>C'est l'organisme qui devient responsable de sa conformité au RGPD.</strong></p>
+                    <p>Il y a une notion d'obligation qui est déplacée vers l'organisme, qui doit non seulement être conforme mais doit aussi <strong>prouver cette conformité à tout moment</strong>. Il doit avoir documenté sa mise en conformité.</p>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h3>🔄 Privacy by design</h3>
+                    <p><strong>Dès la conception, il faut réfléchir à la conformité au RGPD.</strong></p>
+                    
+                    <h4 style="margin-top: 15px;">Questions à se poser avant la collecte :</h4>
+                    <ul>
+                        <li>Quelles données seront collectées ?</li>
+                        <li>Qu'est-ce qu'on va en faire ?</li>
+                        <li>Où va-t-on les stocker ?</li>
+                        <li>Comment seront-elles sécurisées ?</li>
+                        <li>Qui y aura accès ?</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card error" style="margin-bottom: 25px;">
+                    <h3>❌ Sanctions en cas de non-conformité</h3>
+                    <p>Les sanctions sont beaucoup plus sévères qu'avant le RGPD.</p>
+                    <p>Lors de contrôles, si l'organisme est incapable de prouver sa conformité, des amendes sont appliquées.</p>
+                    <p><span class="badge danger">Pour un établissement public</span> : amende de 3% de sa masse salariale</p>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h3>🔄 Sous-traitance et coresponsabilité</h3>
+                    <p>On peut sous-traiter la collecte, la gestion ou le stockage des données personnelles à un sous-traitant.</p>
+                    
+                    <h4 style="margin-top: 15px;">Deux options :</h4>
+                    <ul>
+                        <li><strong>Responsabilité de l'organisme</strong> : en cas de faille du sous-traitant, c'est l'organisme qui est responsable</li>
+                        <li><strong>Coresponsabilité</strong> : convention entre organisme et sous-traitant définissant les responsabilités de chacun. Si le sous-traitant a une faille, il est responsable si cela était prévu dans la convention</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 4 : Institutions et acteurs -->
+            <div class="section">
+                <h2>4. Institutions et acteurs</h2>
+
+                <div class="concept-card definition" style="margin-bottom: 25px; border: 3px solid #3b82f6;">
+                    <h3>📖 La CNIL : Commission Nationale Informatique et Libertés</h3>
+                    
+                    <div style="background: #dbeafe; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                        <p><strong>Création :</strong> <span class="badge danger">1978</span> par la loi Informatique et Libertés</p>
+                        <p><strong>Statut :</strong> Autorité administrative indépendante</p>
+                        <p><strong>Rôle :</strong> Régulateur des données personnelles</p>
+                    </div>
+
+                    <h4>Les 3 missions principales (depuis 2020) :</h4>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="info">
+                            <tr>
+                                <th>N°</th>
+                                <th>Mission</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><strong>Informer et protéger</strong></td>
+                                <td>Informations accessibles au grand public sur le site de la CNIL concernant les droits des citoyens et des professionnels</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><strong>Accompagner et conseiller</strong></td>
+                                <td>Guichets d'information spécialisés (santé, PME...), hotlines pour questions sur la mise en conformité</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><strong>Contrôler et sanctionner</strong></td>
+                                <td>Contrôles renforcés depuis le RGPD, panel de sanctions plus important qu'avant</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="concept-card definition" style="margin-bottom: 25px; border: 3px solid #10b981;">
+                    <h3>📖 Le CESREES : Comité d'Éthique Scientifique</h3>
+                    
+                    <div style="background: #dcfce7; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                        <p><strong>Nom complet :</strong> Comité d'Éthique Scientifique pour les Recherches, les Études et les Évaluations dans le domaine de la Santé</p>
+                        <p><strong>Création :</strong> <span class="badge danger">2020</span> suite à la mise à jour de la loi Informatique et Libertés</p>
+                        <p><strong>Spécificité :</strong> Spécifique à la recherche en santé</p>
+                    </div>
+
+                    <h4>Rôle du CESREES :</h4>
+                    <p><strong>Donner son avis sur toutes les études portant sur les données de santé.</strong></p>
+                    <p>Il ne concerne que les études qui ne vont pas avoir de contact avec le patient, qui vont juste réutiliser les bases de données de santé.</p>
+
+                    <h4 style="margin-top: 15px;">Composition :</h4>
+                    <ul>
+                        <li>Représentants des associations de patients</li>
+                        <li>Médecins</li>
+                        <li>Scientifiques</li>
+                    </ul>
+
+                    <h4 style="margin-top: 15px;">Mission :</h4>
+                    <p>Faciliter l'instruction du dossier par la CNIL en évaluant :</p>
+                    <ul>
+                        <li>La qualité méthodologique et scientifique</li>
+                        <li>Le respect de la pertinence des données</li>
+                        <li>Le respect de la minimisation des données collectées</li>
+                        <li>La conformité à tous les principes du RGPD appliqué à la santé</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card definition" style="margin-bottom: 25px; border: 3px solid #8b5cf6;">
+                    <h3>📖 Le DPO : Data Protection Officer</h3>
+                    
+                    <div style="background: #faf5ff; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                        <p><strong>Nom français :</strong> Délégué à la Protection des Données</p>
+                        <p><strong>Création :</strong> Rôle créé avec le RGPD</p>
+                        <p><strong>Présence :</strong> Dans tous les pays de l'Union Européenne appliquant le RGPD</p>
+                    </div>
+
+                    <h4>Rôle du DPO :</h4>
+                    <p><strong>Coordonner la mise en conformité au RGPD au niveau de l'organisme.</strong></p>
+                    <p>Il a une interaction privilégiée avec la CNIL et les autorités réglementaires.</p>
+
+                    <h4 style="margin-top: 15px;">Désignation :</h4>
+                    <div class="two-columns" style="margin-top: 10px;">
+                        <div>
+                            <strong>PME/TPE</strong>
+                            <p>Peuvent faire appel à des entreprises de DPO. Un DPO peut être responsable de plusieurs PME.</p>
+                        </div>
+                        <div>
+                            <strong>Établissements publics de santé</strong>
+                            <p><span class="badge danger">Obligation légale</span> de déclarer un DPO qui lui est propre. 1 DPO pour 1 hôpital.</p>
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top: 15px;">Missions dans un établissement de santé :</h4>
+                    <ul>
+                        <li>Vérifier la conformité réglementaire des études avant soumission au niveau national</li>
+                        <li>Accompagner les médecins dans leurs démarches</li>
+                        <li>Vérifier que la sécurité de l'établissement est conforme aux exigences réglementaires</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 5 : Tableau récapitulatif -->
+            <div class="section">
+                <h2>5. Tableau récapitulatif des dates et chiffres clés</h2>
+
+                <div class="success-box" style="margin-bottom: 25px;">
+                    <h3>📊 Les dates et chiffres à retenir absolument</h3>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="danger">
+                            <tr>
+                                <th>Élément</th>
+                                <th>Date / Chiffre</th>
+                                <th>Détails</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Entrée en application du RGPD</td>
+                                <td><strong>27 avril 2016</strong></td>
+                                <td>Règlement européen</td>
+                            </tr>
+                            <tr>
+                                <td>Loi Informatique et Libertés (France)</td>
+                                <td><strong>1er juin 2019</strong></td>
+                                <td>Intégration du RGPD en droit français</td>
+                            </tr>
+                            <tr>
+                                <td>Création de la CNIL</td>
+                                <td><strong>1978</strong></td>
+                                <td>Loi Informatique et Libertés</td>
+                            </tr>
+                            <tr>
+                                <td>Création du CESREES</td>
+                                <td><strong>2020</strong></td>
+                                <td>Suite à mise à jour loi Informatique et Libertés</td>
+                            </tr>
+                            <tr>
+                                <td>Missions de la CNIL</td>
+                                <td><strong>3 missions</strong> (depuis 2020)</td>
+                                <td>Informer, Accompagner, Contrôler</td>
+                            </tr>
+                            <tr>
+                                <td>Objectifs du RGPD</td>
+                                <td><strong>3 objectifs</strong></td>
+                                <td>Renforcer droits, Responsabiliser acteurs, Uniformiser</td>
+                            </tr>
+                            <tr>
+                                <td>Grands principes du RGPD</td>
+                                <td><strong>8 principes</strong></td>
+                                <td>De Finalité à Respect des droits</td>
+                            </tr>
+                            <tr>
+                                <td>Conditions de licéité</td>
+                                <td><strong>6 conditions</strong></td>
+                                <td>Consentement, Contrat, Obligation légale, etc.</td>
+                            </tr>
+                            <tr>
+                                <td>Principes de sécurité</td>
+                                <td><strong>3 principes</strong></td>
+                                <td>Confidentialité, Intégrité, Disponibilité</td>
+                            </tr>
+                            <tr>
+                                <td>Conservation dossier patient adulte</td>
+                                <td><strong>20 ans</strong></td>
+                                <td>Obligation légale en médecine</td>
+                            </tr>
+                            <tr>
+                                <td>Conservation dossier patient mineur</td>
+                                <td><strong>Jusqu'à 28 ans</strong></td>
+                                <td>10 ans après majorité</td>
+                            </tr>
+                            <tr>
+                                <td>Amende établissement public</td>
+                                <td><strong>3% masse salariale</strong></td>
+                                <td>En cas de non-conformité</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Points clés obligatoires -->
+            <div class="key-points">
+                <h2>🎯 Points clés à retenir</h2>
+                <ul>
+                    <li><strong>RGPD :</strong> entré en application le 27 avril 2016, intégré en France le 1er juin 2019 dans la loi Informatique et Libertés. Concerne toutes les organisations traitant des données de résidents européens</li>
+                    <li><strong>Donnée personnelle :</strong> toute information rapportée à une personne physique identifiée ou identifiable (identification directe ou indirecte, à partir d'une seule donnée ou par croisement)</li>
+                    <li><strong>3 objectifs du RGPD :</strong> renforcer les droits des personnes, responsabiliser les acteurs traitant des données, uniformiser la réglementation européenne</li>
+                    <li><strong>8 grands principes :</strong> Finalité (objectif à priori), Licéité (6 conditions), Minimisation (données strictement nécessaires), Protection données sensibles (consentement), Conservation limitée (droit à l'oubli), Obligation de sécurité (3 principes : confidentialité, intégrité, disponibilité), Transparence (4 formes : compréhensible, lisible, accessible, vision globale), Respect des droits (renforcés + supplémentaires)</li>
+                    <li><strong>Consentement pour données sensibles :</strong> doit être Libre, Explicite, Spécifique, Éclairé, Univoque et Révocable</li>
+                    <li><strong>Accountability :</strong> l'organisme est responsable de sa conformité et doit pouvoir la prouver à tout moment. Privacy by design dès la conception</li>
+                    <li><strong>CNIL :</strong> créée en 1978, autorité administrative indépendante, régulateur des données personnelles. 3 missions depuis 2020 : informer/protéger, accompagner/conseiller, contrôler/sanctionner</li>
+                    <li><strong>CESREES :</strong> créé en 2020, spécifique à la recherche en santé, donne son avis sur toutes les études portant sur les données de santé</li>
+                    <li><strong>DPO :</strong> Data Protection Officer, rôle créé avec le RGPD, obligatoire pour les établissements publics de santé. Coordonne la mise en conformité au RGPD</li>
+                    <li><strong>Conservation des dossiers :</strong> patients adultes 20 ans, patients mineurs jusqu'à 28 ans (10 ans après majorité)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+    </div>
+</body>
+</html>
