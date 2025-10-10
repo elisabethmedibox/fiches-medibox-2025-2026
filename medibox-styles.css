@@ -616,6 +616,23 @@ thead.info {
     background: #f0f9ff;
 }
 
+/* Tableaux responsive - scroll horizontal sur mobile */
+@media (max-width: 767px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+}
+
+@media (min-width: 768px) {
+    table {
+        display: table;
+        overflow-x: visible;
+    }
+}
+
 /* ============================================
    POINTS CLÉS (Mise en avant)
    ============================================ */
