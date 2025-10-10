@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche Medibox - Vocabulaire en santé (FC3)</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Représentation des données en santé - Vocabulaire médical</h1>
+            <div class="meta">
+                <span>📚 UE3 - Informatique Médicale - FC3</span>
+                <span>⏱️ 90 min</span>
+                <span>⭐ Difficulté: Moyenne</span>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Objectifs obligatoires -->
+            <div class="objectifs">
+                <h2>🎯 Objectifs d'apprentissage</h2>
+                <ul>
+                    <li>Comprendre la construction et les propriétés du vocabulaire médical (radical, préfixe, suffixe)</li>
+                    <li>Maîtriser les principaux préfixes médicaux par catégorie</li>
+                    <li>Identifier la nécessité de normaliser les concepts médicaux pour les systèmes d'information</li>
+                    <li>Connaître le Triangle d'Ogden-Richard et la définition d'un concept</li>
+                    <li>Distinguer les 4 types de systèmes terminologiques (concept, classification, nomenclature, vocabulaire contrôlé)</li>
+                    <li>Maîtriser les caractéristiques de la CIM-10 et du MeSH</li>
+                    <li>Comprendre le principe d'alignement des terminologies</li>
+                </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <div class="section">
+                <h2>1. Vocabulaire médical et normalisation des concepts médicaux</h2>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Contexte historique</h3>
+                    <p><strong>Le vocabulaire médical est extrêmement riche</strong></p>
+                    <p>Il a été marqué par l'évolution historique de la médecine et de la chirurgie :</p>
+                    <ul>
+                        <li><strong>Les Grecs</strong> : premiers termes médicaux retrouvés en Europe</li>
+                        <li><strong>Le monde arabe</strong> : influence importante</li>
+                        <li><strong>Le latin</strong> : langue de référence pendant longtemps</li>
+                        <li><strong>La langue moderne</strong> : termes actuels avec étymologies anciennes</li>
+                    </ul>
+                    <p><span class="badge info">Toute cette évolution se traduit dans les termes médicaux actuels qui ont des étymologies en rapport avec ces langues anciennes</span></p>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h3>🔧 Construction des termes médicaux</h3>
+                    <p><strong>Les termes médicaux sont construits toujours de la même façon :</strong></p>
+                    <div class="two-columns" style="margin: 20px 0;">
+                        <div style="background: #fef3c7; padding: 15px; border-radius: 8px;">
+                            <h4 style="margin-top: 0;">Un RADICAL</h4>
+                            <p style="margin-bottom: 0;"><strong>pharma</strong>cie, <strong>pharma</strong>cologie</p>
+                            <p style="font-size: 0.9em; color: #666; margin-top: 5px;">→ "pharma" vient du grec</p>
+                        </div>
+                        <div style="background: #dbeafe; padding: 15px; border-radius: 8px;">
+                            <h4 style="margin-top: 0;">Et/ou un PRÉFIXE</h4>
+                            <p style="margin-bottom: 0;"><strong>a</strong>mnésie</p>
+                        </div>
+                    </div>
+                    <div style="background: #ddd6fe; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                        <h4 style="margin-top: 0;">Et/ou un SUFFIXE</h4>
+                        <p style="margin-bottom: 0;">arthr<strong>ite</strong></p>
+                    </div>
+                </div>
+
+                <div class="info-box" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); margin-bottom: 25px;">
+                    <p style="margin: 0;"><strong>⚠️ Particularité importante :</strong> Le vocabulaire médical utilise <strong>beaucoup d'acronymes et d'abréviations</strong> dans la pratique courante</p>
+                    <p style="margin: 10px 0 0 0; font-size: 0.95em;">Exemples : AINS (anti-inflammatoires non stéroïdiens), HTA (hypertension artérielle)</p>
+                    <p style="margin: 5px 0 0 0; font-size: 0.9em; font-style: italic;">C'est commun en français mais également dans les autres langues</p>
+                </div>
+
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>📋 Les préfixes médicaux par catégorie</h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                        <div style="background: #f9fafb; padding: 15px; border-left: 4px solid #f59e0b; border-radius: 4px;">
+                            <h4 style="color: #f59e0b; margin-top: 0;">Absence, privation</h4>
+                            <ul style="margin: 0; padding-left: 20px;">
+                                <li>a- (<em>a</em>pyrétique)</li>
+                                <li>an- (<em>an</em>osmie)</li>
+                                <li>ab- (<em>ab</em>lation)</li>
+                                <li>in- (<em>in</em>somnie)</li>
+                                <li>im- (<em>im</em>maturité)</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: #f9fafb; padding: 15px; border-left: 4px solid #10b981; border-radius: 4px;">
+                            <h4 style="color: #10b981; margin-top: 0;">Nombre</h4>
+                            <ul style="margin: 0; padding-left: 20px;">
+                                <li>0, nulli- (<em>nulli</em>pare)</li>
+                                <li>1, primi- (<em>primi</em>pare)</li>
+                                <li>n, multi- (<em>multi</em>pare)</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: #f9fafb; padding: 15px; border-left: 4px solid #3b82f6; border-radius: 4px;">
+                            <h4 style="color: #3b82f6; margin-top: 0;">Quantité</h4>
+                            <ul style="margin: 0; padding-left: 20px;">
+                                <li>beaucoup, poly- (<em>poly</em>arthrite)</li>
+                                <li>peu, oligo- (<em>oligo</em>arthrite)</li>
+                                <li>peu, pauci- (<em>pauci</em>symptomatique)</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: #f9fafb; padding: 15px; border-left: 4px solid #8b5cf6; border-radius: 4px;">
+                            <h4 style="color: #8b5cf6; margin-top: 0;">Fréquence</h4>
+                            <ul style="margin: 0; padding-left: 20px;">
+                                <li>rapide, tachy- (<em>tachy</em>pnée)</li>
+                                <li>lent, brady- (<em>brady</em>pnée)</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: #f9fafb; padding: 15px; border-left: 4px solid #06b6d4; border-radius: 4px;">
+                            <h4 style="color: #06b6d4; margin-top: 0;">Lieu</h4>
+                            <ul style="margin: 0; padding-left: 20px;">
+                                <li>devant, anté- (<em>anté</em>version)</li>
+                                <li>derrière, rétro- (<em>rétro</em>version)</li>
+                                <li>dessus, sus- (<em>sus</em>hépatique)</li>
+                                <li>dessous, hypo- (<em>hypo</em>gastrique)</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: #f9fafb; padding: 15px; border-left: 4px solid #ec4899; border-radius: 4px;">
+                            <h4 style="color: #ec4899; margin-top: 0;">Ressemblance</h4>
+                            <ul style="margin: 0; padding-left: 20px;">
+                                <li>le soi, auto- (<em>auto</em>greffe)</li>
+                                <li>le semblable, homo- (<em>homo</em>zygote)</li>
+                                <li>le différent, hétéro- (<em>hétéro</em>zygote)</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: #f9fafb; padding: 15px; border-left: 4px solid #ef4444; border-radius: 4px; grid-column: 1 / -1;">
+                            <h4 style="color: #ef4444; margin-top: 0;">Fonctionnement</h4>
+                            <ul style="margin: 0; padding-left: 20px;">
+                                <li>anormal, dys- (<em>dys</em>ménorrhée)</li>
+                                <li>augmenté, hyper- (<em>hyper</em>tension)</li>
+                                <li>diminué, hypo- (<em>hypo</em>tension)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="background: #e0f2fe; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                        <p style="margin: 0; font-weight: bold; color: #0369a1;">Exemples de termes construits :</p>
+                        <ul style="margin: 10px 0 0 0;">
+                            <li><strong>Nullipare</strong> = sans enfant, <strong>Primipare</strong> = 1 enfant</li>
+                            <li><strong>Polyarthrite</strong> = arthrite qui touche beaucoup d'articulations</li>
+                            <li><strong>Paucisymptomatique</strong> = qui a peu de symptômes</li>
+                            <li><strong>Tachypnée</strong> = fréquence cardiaque rapide</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card warning" style="margin-bottom: 25px;">
+                    <h3>⚠️ Propriétés du vocabulaire médical</h3>
+                    <p><strong>Le vocabulaire médical présente plusieurs caractéristiques complexes :</strong></p>
+                    <ol>
+                        <li><strong>Le vocabulaire médical est AMBIGU</strong>
+                            <ul>
+                                <li>La polysémie : un même terme peut avoir plusieurs sens</li>
+                            </ul>
+                        </li>
+                        <li><strong>Le vocabulaire médical repose sur beaucoup d'IMPLICITE</strong>
+                            <ul>
+                                <li>Le contexte est nécessaire pour comprendre le sens</li>
+                            </ul>
+                        </li>
+                        <li><strong>Le vocabulaire médical n'est PAS facile à automatiser</strong>
+                            <ul>
+                                <li>En raison de son ambiguïté et de son implicite</li>
+                            </ul>
+                        </li>
+                        <li><strong>Le vocabulaire médical n'est PAS toujours précis</strong>
+                            <ul>
+                                <li>Malgré son caractère technique</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px; border-left: 5px solid #8b5cf6;">
+                    <h3>🔄 Nécessité de normaliser les concepts médicaux</h3>
+                    
+                    <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                        <p style="margin: 0; font-weight: bold;">Pourquoi normaliser ?</p>
+                        <p style="margin: 10px 0 0 0;">Un système d'information doit être capable de :</p>
+                        <ul style="margin: 10px 0 0 0;">
+                            <li><strong>Utiliser le sens de l'information</strong> (pas juste du texte brut)</li>
+                            <li>Gérer la <strong>synonymie</strong> (différents mots pour un même concept)</li>
+                            <li>Gérer la <strong>polysémie</strong> (un même mot avec plusieurs sens)</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #dbeafe; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                        <p style="margin: 0; font-weight: bold; color: #1e40af;">Objectifs de la normalisation :</p>
+                        <ul style="margin: 10px 0 0 0;">
+                            <li>Permettre à des systèmes d'information <strong>indépendants</strong> d'échanger des données cliniques <strong>sans intervention humaine</strong></li>
+                            <li><strong>Agréger des données similaires</strong> provenant de plusieurs systèmes d'information indépendants</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #e0e7ff; padding: 15px; border-radius: 8px;">
+                        <p style="margin: 0; font-weight: bold; color: #4338ca;">Les ressources fournies par la normalisation :</p>
+                        <p style="margin: 10px 0 0 0;">Ces ressources terminologiques vont permettre aux machines de gérer le vocabulaire médical de manière standardisée.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="section">
+                <h2>2. Terminologies en santé</h2>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Introduction - Le concept</h3>
+                    
+                    <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="margin: 0; font-weight: bold; font-size: 1.1em;">Définition fondamentale :</p>
+                        <p style="margin: 10px 0 0 0; font-size: 1.05em;">Une <strong>terminologie</strong> est une liste de termes qui se réfère à des <strong>concepts</strong> dans un domaine particulier.</p>
+                    </div>
+
+                    <div style="background: #e0f2fe; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="margin: 0; font-weight: bold; color: #0369a1;">Qu'est-ce qu'un concept ?</p>
+                        <p style="margin: 10px 0 0 0;">Un concept est une <strong>unité de connaissances</strong> qui est créée par une <strong>combinaison unique de caractères</strong>.</p>
+                    </div>
+
+                    <div class="info-box" style="background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); margin-bottom: 20px;">
+                        <p style="margin: 0; font-weight: bold; color: #9f1239; font-size: 1.1em;">⭐ Triangle d'Ogden-Richard (TRÈS IMPORTANT)</p>
+                        <p style="margin: 10px 0;">Le concept représente ce qui se passe dans notre cerveau lorsqu'on nous montre un objet :</p>
+                        
+                        <div style="background: white; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                            <div style="text-align: center; margin-bottom: 20px;">
+                                <div style="background: #dbeafe; padding: 15px; border-radius: 8px; display: inline-block; margin-bottom: 15px;">
+                                    <strong style="font-size: 1.2em;">CONCEPT</strong>
+                                    <p style="margin: 5px 0 0 0; font-size: 0.9em;">(Abstraction dans le cerveau)</p>
+                                    <p style="margin: 5px 0 0 0; font-style: italic;">L'idée de cœur</p>
+                                </div>
+                            </div>
+                            
+                            <div style="display: flex; justify-content: space-around; align-items: center;">
+                                <div style="background: #fef3c7; padding: 15px; border-radius: 8px; text-align: center; flex: 1; margin: 0 10px;">
+                                    <strong>TERME</strong>
+                                    <p style="margin: 5px 0 0 0; font-size: 0.9em;">(Mot)</p>
+                                    <p style="margin: 5px 0 0 0; font-style: italic;">"heart" ou "cœur"</p>
+                                </div>
+                                
+                                <div style="background: #e0e7ff; padding: 15px; border-radius: 8px; text-align: center; flex: 1; margin: 0 10px;">
+                                    <strong>OBJET</strong>
+                                    <p style="margin: 5px 0 0 0; font-size: 0.9em;">(Réalité physique)</p>
+                                    <p style="margin: 5px 0 0 0; font-style: italic;">Un cœur réel</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: #f0fdfa; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <p style="margin: 0; font-weight: bold; color: #065f46;">Relations du triangle :</p>
+                            <ul style="margin: 10px 0 0 0;">
+                                <li>Le terme <strong>symbolise</strong> le concept</li>
+                                <li>Le concept <strong>se réfère à</strong> l'objet</li>
+                                <li>Le terme <strong>représente</strong> l'objet (relation indirecte)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box" style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);">
+                        <p style="margin: 0; font-weight: bold; color: #991b1b;">⚠️ Principes fondamentaux :</p>
+                        <ul style="margin: 10px 0 0 0;">
+                            <li>Dans une terminologie, le <strong>sens du concept ne peut être ni changé, ni supprimé</strong></li>
+                            <li>Une fois qu'on a fixé quel est le concept, il ne peut pas changer en cours de route</li>
+                            <li><strong>Chaque concept a une définition formelle</strong> : il faut pouvoir dire à la machine, quand on parle d'un foie, que le foie est une glande</li>
+                            <li>La machine ne comprend pas le sens de façon subconsciente comme l'être humain</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>📊 Les 4 types de systèmes terminologiques</h3>
+                    <p style="font-weight: bold; color: #0369a1;">Il existe 4 grands types de systèmes terminologiques :</p>
+
+                    <div style="display: grid; gap: 20px; margin-top: 20px;">
+                        <div style="background: #f0fdfa; padding: 20px; border-left: 5px solid #14b8a6; border-radius: 8px;">
+                            <h4 style="color: #0f766e; margin-top: 0;">A. Le CONCEPT</h4>
+                            <p style="margin: 10px 0;"><strong>Définition :</strong></p>
+                            <p style="margin: 0;">Un concept correspond à l'<strong>idée créée dans un cerveau</strong> quand on nous présente un objet.</p>
+                        </div>
+
+                        <div style="background: #fef3c7; padding: 20px; border-left: 5px solid #f59e0b; border-radius: 8px;">
+                            <h4 style="color: #d97706; margin-top: 0;">B. La CLASSIFICATION</h4>
+                            <p style="margin: 10px 0;"><strong>Définition :</strong></p>
+                            <p style="margin: 0 0 15px 0;">Une classification est un <strong>ensemble de concepts organisés et hiérarchisés en classes et sous-classes</strong>.</p>
+                            
+                            <p style="margin: 15px 0 5px 0; font-weight: bold;">Caractéristiques :</p>
+                            <ul style="margin: 5px 0 0 0;">
+                                <li><strong>Hiérarchique</strong> : organisation du plus générique au plus spécifique</li>
+                                <li><strong>Mono-axiale</strong> ou <strong>poly-axiale</strong></li>
+                                <li>Utilisée pour des besoins <strong>statistiques</strong></li>
+                            </ul>
+                        </div>
+
+                        <div style="background: #dbeafe; padding: 20px; border-left: 5px solid #3b82f6; border-radius: 8px;">
+                            <h4 style="color: #1e40af; margin-top: 0;">C. La NOMENCLATURE</h4>
+                            <p style="margin: 10px 0;"><strong>Définition :</strong></p>
+                            <p style="margin: 0 0 15px 0;">Une nomenclature est un <strong>ensemble de termes composés selon des règles de composition préétablies</strong>.</p>
+                            
+                            <p style="margin: 15px 0 5px 0; font-weight: bold;">Caractéristiques :</p>
+                            <ul style="margin: 5px 0 0 0;">
+                                <li>Termes organisés selon des règles strictes</li>
+                                <li>Permet de construire des termes de façon systématique</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: #e0e7ff; padding: 20px; border-left: 5px solid #8b5cf6; border-radius: 8px;">
+                            <h4 style="color: #6d28d9; margin-top: 0;">D. Le VOCABULAIRE CONTRÔLÉ / THÉSAURUS</h4>
+                            
+                            <p style="margin: 10px 0 5px 0;"><strong>Vocabulaire contrôlé :</strong></p>
+                            <p style="margin: 0 0 15px 0;">Un ensemble de termes <strong>organisés de façon logique</strong> et <strong>accompagnés de leur définition</strong>.</p>
+                            
+                            <p style="margin: 15px 0 5px 0;"><strong>Thésaurus :</strong></p>
+                            <p style="margin: 0 0 15px 0;">Un <strong>ensemble structuré de termes</strong> d'un vocabulaire.</p>
+                            
+                            <p style="margin: 15px 0 5px 0; font-weight: bold;">Utilisation :</p>
+                            <p style="margin: 0;">Ces systèmes sont utilisés pour l'<strong>indexation des documents</strong> (besoin documentaire).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="section">
+                <h2>3. Contexte d'usage des terminologies</h2>
+
+                <div class="concept-card definition" style="margin-bottom: 25px; border-left: 5px solid #ef4444;">
+                    <h3>🏥 Classification Internationale des Maladies (CIM-10)</h3>
+                    
+                    <div style="background: #fef2f2; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="margin: 0; font-weight: bold; color: #991b1b; font-size: 1.05em;">Identité :</p>
+                        <ul style="margin: 10px 0 0 0;">
+                            <li>Nom complet : <strong>Classification Internationale des Maladies, 10ème révision</strong></li>
+                            <li>Sigle : <strong>CIM-10</strong> (en français) ou <strong>ICD-10</strong> (en anglais - International Classification of Diseases)</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #dbeafe; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="margin: 0; font-weight: bold; color: #1e40af;">Organisme responsable :</p>
+                        <ul style="margin: 10px 0 0 0;">
+                            <li>Maintenue par l'<strong>Organisation Mondiale de la Santé (OMS)</strong> / WHO en anglais</li>
+                            <li>Utilisée au <strong>niveau international</strong></li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="margin: 0; font-weight: bold; color: #92400e;">Nature :</p>
+                        <ul style="margin: 10px 0 0 0;">
+                            <li>C'est une <strong>classification statistique</strong></li>
+                            <li>Classification <strong>hiérarchique</strong></li>
+                            <li>Classification <strong>mono-axiale</strong></li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #f0fdf4; padding: 15px; border-radius: 8px;">
+                        <p style="margin: 0; font-weight: bold; color: #166534;">Objectif et utilisation :</p>
+                        <ul style="margin: 10px 0 0 0;">
+                            <li>Utilisée pour classifier les <strong>causes de morbidité et mortalité</strong></li>
+                            <li>Utilisée dans les hôpitaux pour le codage du <strong>Programme de Médicalisation du Système d'Information (PMSI)</strong></li>
+                            <li><span class="badge danger">Ne répond PAS au besoin d'indexation des documents</span></li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-top: 20px; padding: 15px; background: #f9fafb; border-radius: 8px;">
+                        <p style="margin: 0; font-weight: bold;">Structure :</p>
+                        <p style="margin: 10px 0 0 0;">Organisation hiérarchique avec des niveaux de spécificité croissants.</p>
+                    </div>
+                </div>
+
+                <div class="concept-card definition" style="margin-bottom: 25px; border-left: 5px solid #10b981;">
+                    <h3>📚 Medical Subject Headings (MeSH)</h3>
+                    
+                    <div style="background: #ecfdf5; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="margin: 0; font-weight: bold; color: #065f46; font-size: 1.05em;">Identité :</p>
+                        <ul style="margin: 10px 0 0 0;">
+                            <li><strong>MeSH</strong> = Medical Subject Headings</li>
+                            <li>Créé par la <strong>National Library of Medicine</strong> (NLM) américaine</li>
+                            <li><span class="badge danger">PAS créé par l'OMS</span></li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #dbeafe; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="margin: 0; font-weight: bold; color: #1e40af;">Objectif principal :</p>
+                        <p style="margin: 10px 0 0 0;">Le MeSH permet l'<strong>indexation des articles scientifiques</strong> dans la base de données <strong>MEDLINE</strong>.</p>
+                    </div>
+
+                    <div style="background: #fef3c7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="margin: 0; font-weight: bold; color: #92400e;">Structure :</p>
+                        <ul style="margin: 10px 0 0 0;">
+                            <li>Structure <strong>poly-hiérarchique</strong> (un même terme peut apparaître à plusieurs endroits de la hiérarchie)</li>
+                            <li>Possède des <strong>qualificatifs</strong> (descripteurs secondaires)</li>
+                            <li>Les qualificatifs sont organisés du <strong>plus générique au plus précis</strong></li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #fee2e2; padding: 15px; border-radius: 8px;">
+                        <p style="margin: 0; font-weight: bold; color: #991b1b;">Utilisation :</p>
+                        <ul style="margin: 10px 0 0 0;">
+                            <li><span class="badge danger">N'est PAS utilisé dans les hôpitaux pour le codage du PMSI</span></li>
+                            <li>Spécifique à l'indexation documentaire scientifique</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box" style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);">
+                    <h3 style="color: #0c4a6e; margin-top: 0;">📊 Comparaison CIM-10 vs MeSH</h3>
+                    <div class="two-columns" style="margin-top: 15px;">
+                        <div>
+                            <h4 style="color: #ef4444;">CIM-10</h4>
+                            <ul>
+                                <li>Organisation Mondiale de la Santé</li>
+                                <li>Classification statistique</li>
+                                <li>Mono-axiale, hiérarchique</li>
+                                <li>Morbidité/Mortalité</li>
+                                <li>Codage PMSI</li>
+                                <li>Niveau international</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: #10b981;">MeSH</h4>
+                            <ul>
+                                <li>National Library of Medicine (USA)</li>
+                                <li>Thésaurus documentaire</li>
+                                <li>Poly-hiérarchique</li>
+                                <li>Indexation scientifique</li>
+                                <li>Base MEDLINE</li>
+                                <li>PAS pour le PMSI</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="section">
+                <h2>4. Alignement et sources de terminologies</h2>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h3>🔄 Principe de l'alignement</h3>
+                    <p>Les terminologies médicales sont nombreuses et ont des usages différents. L'<strong>alignement</strong> consiste à établir des <strong>correspondances</strong> entre les concepts de différentes terminologies.</p>
+                    
+                    <div style="background: #dbeafe; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                        <p style="margin: 0; font-weight: bold; color: #1e40af;">Objectifs de l'alignement :</p>
+                        <ul style="margin: 10px 0 0 0;">
+                            <li>Permettre l'<strong>interopérabilité</strong> entre systèmes utilisant des terminologies différentes</li>
+                            <li>Faciliter la <strong>traduction</strong> d'une terminologie à une autre</li>
+                            <li>Garantir la <strong>cohérence sémantique</strong> entre ressources</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>📚 Sources de terminologies</h3>
+                    <p>Il existe de <strong>nombreuses terminologies médicales</strong> en fonction :</p>
+                    <ul>
+                        <li>Du <strong>domaine</strong> (cardiologie, oncologie, etc.)</li>
+                        <li>De l'<strong>usage</strong> (statistique, indexation, codage PMSI, etc.)</li>
+                        <li>Du <strong>niveau de granularité</strong> (très détaillé vs. général)</li>
+                    </ul>
+
+                    <div class="info-box" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); margin-top: 20px;">
+                        <p style="margin: 0; font-weight: bold; color: #92400e;">⚠️ Enjeu majeur :</p>
+                        <p style="margin: 10px 0 0 0;">Les systèmes d'information doivent pouvoir <strong>utiliser plusieurs terminologies</strong> en même temps et établir des <strong>ponts</strong> entre elles pour assurer l'échange et l'agrégation des données.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Récapitulatif final -->
+            <div class="section">
+                <h2>🎯 Points clés à retenir</h2>
+
+                <div class="concept-card definition">
+                    <h3>Vocabulaire médical</h3>
+                    <ul>
+                        <li>Construction : <strong>radical + préfixe/suffixe</strong></li>
+                        <li>Ambigu, beaucoup d'implicite</li>
+                        <li>Nombreux acronymes et abréviations</li>
+                        <li>Pas facile à automatiser</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card process">
+                    <h3>Normalisation</h3>
+                    <ul>
+                        <li>Nécessaire pour que les machines comprennent</li>
+                        <li>Gère <strong>synonymie</strong> et <strong>polysémie</strong></li>
+                        <li>Permet échange automatique entre systèmes indépendants</li>
+                        <li>Agrégation de données similaires</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card warning">
+                    <h3>Le concept (Triangle d'Ogden-Richard)</h3>
+                    <ul>
+                        <li><strong>Objet</strong> (réalité) ↔ <strong>Concept</strong> (cerveau) ↔ <strong>Terme</strong> (mot)</li>
+                        <li>Le sens du concept <strong>ne peut être changé ni supprimé</strong></li>
+                        <li>Chaque concept a une <strong>définition formelle</strong></li>
+                    </ul>
+                </div>
+
+                <div class="concept-card example">
+                    <h3>4 types de systèmes terminologiques</h3>
+                    <ol>
+                        <li><strong>Concept</strong> = idée dans le cerveau</li>
+                        <li><strong>Classification</strong> = concepts hiérarchisés en classes (usage statistique)</li>
+                        <li><strong>Nomenclature</strong> = termes avec règles de composition</li>
+                        <li><strong>Vocabulaire contrôlé/Thésaurus</strong> = termes structurés (indexation documents)</li>
+                    </ol>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                    <div class="concept-card definition" style="border-left: 5px solid #ef4444;">
+                        <h3>CIM-10</h3>
+                        <ul style="margin: 10px 0 0 0; font-size: 0.95em;">
+                            <li><span class="badge danger">OMS</span></li>
+                            <li>Classification statistique</li>
+                            <li>Hiérarchique et mono-axiale</li>
+                            <li>Morbidité/mortalité et PMSI</li>
+                            <li>Niveau international</li>
+                        </ul>
+                    </div>
+
+                    <div class="concept-card definition" style="border-left: 5px solid #10b981;">
+                        <h3>MeSH</h3>
+                        <ul style="margin: 10px 0 0 0; font-size: 0.95em;">
+                            <li><span class="badge success">NLM (USA)</span> - pas OMS</li>
+                            <li>Indexation articles MEDLINE</li>
+                            <li>Structure poly-hiérarchique</li>
+                            <li>Pas pour le PMSI</li>
+                            <li>Scientifique/documentaire</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept-card process">
+                    <h3>Alignement</h3>
+                    <ul>
+                        <li>Correspondances entre terminologies différentes</li>
+                        <li>Pour interopérabilité et traduction</li>
+                        <li>Enjeu majeur des systèmes d'information en santé</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+    </div>
+</body>
+</html>
