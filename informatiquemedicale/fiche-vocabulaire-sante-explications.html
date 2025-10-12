@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours Medibox - Vocabulaire médical : comprendre les problématiques</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Vocabulaire et données en santé</h1>
+            <h2 style="color: #ff6b7a; font-size: 1.3em; margin-top: 10px;">Explications des problématiques rencontrées dans ce chapitre</h2>
+            <div class="meta">
+                <span>📚 Informatique Médicale</span>
+                <span>⏱️ 30 min</span>
+                <span>⭐⭐ Difficulté: Modérée</span>
+            </div>
+        </div>
+        
+        <div class="content">
+            
+            <!-- Section Introduction -->
+            <div class="section">
+                <h2>Introduction : Le problème fondamental</h2>
+                
+                <p>Imaginez un médecin qui écrit dans un dossier patient : "Le patient présente une HTA". Un autre médecin écrit "hypertension artérielle", un troisième note "tension élevée", et un quatrième inscrit "pression artérielle augmentée". Pour un humain, c'est évident : ces quatre expressions parlent de la même chose. Mais pour un ordinateur ? Ce sont quatre chaînes de caractères complètement différentes, sans aucun lien entre elles.</p>
+                
+                <div class="concept-card warning" style="margin-bottom: 25px; margin-top: 25px;">
+                    <h3>⚠️ Le cœur du problème</h3>
+                    <p style="font-size: 1.1em; font-weight: bold;">Comment faire comprendre à une machine le sens des mots médicaux ?</p>
+                    <p>C'est la question centrale que ce cours cherche à résoudre.</p>
+                </div>
+            </div>
+
+            <!-- Section Pourquoi ce cours existe -->
+            <div class="section">
+                <h2>Pourquoi ce cours existe-t-il ?</h2>
+                
+                <h3>Le contexte : L'informatisation de la santé</h3>
+                
+                <p>Depuis les années 2000, la santé s'est massivement informatisée. Les dossiers papier ont laissé place aux Dossiers Patients Informatisés (DPI). Les hôpitaux utilisent des systèmes d'information complexes. Les données de santé sont devenues numériques.</p>
+                
+                <div class="concept-card definition" style="margin-bottom: 25px; margin-top: 25px;">
+                    <h3>📖 Le problème de l'exploitation des données</h3>
+                    <p>Une fois que tout est informatisé, on veut pouvoir EXPLOITER ces données. On veut :</p>
+                    <ul>
+                        <li>Faire des statistiques (combien de patients diabétiques en France ?)</li>
+                        <li>Échanger des informations entre hôpitaux</li>
+                        <li>Aider les médecins avec des alertes automatiques</li>
+                        <li>Faire de la recherche médicale sur des millions de dossiers</li>
+                    </ul>
+                </div>
+                
+                <div class="concept-card error" style="margin-bottom: 25px;">
+                    <h3>❌ Mais voilà le problème...</h3>
+                    <p>Si chaque médecin écrit à sa façon, dans son propre "langage", l'ordinateur ne peut rien faire de ces données. C'est comme si on avait une bibliothèque immense mais sans aucun système de classement.</p>
+                </div>
+            </div>
+
+            <!-- Section Paradoxe -->
+            <div class="section">
+                <h2>Le paradoxe du vocabulaire médical</h2>
+                
+                <h3>Un langage fait POUR les humains, mais PAS pour les machines</h3>
+                
+                <p>Le vocabulaire médical a été construit par des humains, pour des humains. Il fonctionne sur des bases que nous maîtrisons naturellement :</p>
+                
+                <div class="concept-card example" style="margin-bottom: 25px; margin-top: 25px;">
+                    <h3>💡 1. Nous comprenons les synonymes</h3>
+                    <p>Quand quelqu'un dit "IDM", "infarctus", "crise cardiaque" ou "stat", notre cerveau fait instantanément le lien. L'ordinateur, lui, voit 4 mots différents. Comment lui dire que c'est la même chose ?</p>
+                </div>
+                
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>💡 2. Nous gérons la polysémie par le contexte</h3>
+                    <p>Le mot "genou" peut désigner l'articulation ou une partie de l'artère coronaire. Nous savons lequel selon le contexte. Mais comment expliquer le "contexte" à une machine ?</p>
+                </div>
+                
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>💡 3. Nous complétons l'implicite</h3>
+                    <p>Entre professionnels de santé formés ensemble, beaucoup de choses sont sous-entendues. On dit "infarctus" et tout le monde comprend "infarctus du myocarde" dans 99% des cas. Mais pour la machine, si ce n'est pas écrit, ça n'existe pas.</p>
+                </div>
+                
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>💡 4. Nous tolérons l'imprécision</h3>
+                    <p>Un médecin peut écrire des notes approximatives et un collègue comprendra quand même. La machine, elle, a besoin de précision absolue.</p>
+                </div>
+                
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>💡 5. Nous naviguons dans l'ambiguïté</h3>
+                    <p>Notre cerveau résout en temps réel des milliers d'ambiguïtés linguistiques. L'ordinateur ne peut pas deviner.</p>
+                </div>
+                
+                <div class="info-box" style="margin-bottom: 25px; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);">
+                    <h3 style="color: #ef4444; margin-top: 0;">→ Résultat</h3>
+                    <p style="font-size: 1.1em;"><strong>Le vocabulaire médical est PARFAIT pour la communication humaine, mais CATASTROPHIQUE pour l'informatique.</strong></p>
+                </div>
+            </div>
+
+            <!-- Section Solution -->
+            <div class="section">
+                <h2>La solution : La normalisation</h2>
+                
+                <h3>Qu'est-ce que normaliser ?</h3>
+                
+                <p>Normaliser, c'est créer des <strong>règles communes</strong> que tout le monde respecte. C'est comme décider qu'on va tous parler la même langue, avec le même dictionnaire.</p>
+                
+                <div class="concept-card definition" style="margin-bottom: 25px; margin-top: 25px;">
+                    <h3>📖 En informatique médicale, normaliser signifie :</h3>
+                    <ol>
+                        <li><strong>Créer des listes officielles de termes</strong> (terminologies)</li>
+                        <li><strong>Donner à chaque concept UN code unique</strong></li>
+                        <li><strong>Organiser ces codes de manière logique</strong> (hiérarchies, relations)</li>
+                        <li><strong>Imposer l'utilisation de ces codes</strong> dans les systèmes informatiques</li>
+                    </ol>
+                </div>
+                
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h3>🔄 Exemple concret</h3>
+                    <p><strong>Avant normalisation :</strong></p>
+                    <ul>
+                        <li>Chaque médecin écrit "diabète" à sa façon en texte libre</li>
+                        <li>Variantes : "diabète", "diabétique", "DT2", "diabète sucré"...</li>
+                        <li>L'ordinateur ne peut pas traiter ces données</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Après normalisation :</strong></p>
+                    <ul>
+                        <li>On utilise un code : <strong>E11.9</strong> (code CIM-10 pour le diabète)</li>
+                        <li>Peu importe qui saisit, où, comment → le code est toujours le même</li>
+                        <li>L'ordinateur peut maintenant COMPTER, COMPARER, ANALYSER</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section Différentes solutions -->
+            <div class="section">
+                <h2>Les différentes solutions au problème</h2>
+                
+                <h3>Pourquoi 4 types de terminologies différentes ?</h3>
+                
+                <p>Parce qu'il n'y a pas UN seul problème, mais PLUSIEURS problèmes différents qui nécessitent des solutions adaptées.</p>
+                
+                <div class="concept-card definition" style="margin-bottom: 25px; margin-top: 25px;">
+                    <h3>📖 1. Le vocabulaire contrôlé : la base</h3>
+                    <p><strong>Le problème le plus simple :</strong> "Donnons une définition officielle à chaque terme médical"</p>
+                    <p><strong>Solution :</strong> Un dictionnaire. Rien de plus.</p>
+                    <p><strong>Limite :</strong> Pas de structure, pas de relations. C'est mieux que rien, mais insuffisant.</p>
+                </div>
+                
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 2. Le thésaurus : pour retrouver l'information</h3>
+                    <p><strong>Le problème :</strong> "J'ai 10 millions d'articles scientifiques. Comment retrouver ceux qui parlent de tel sujet ?"</p>
+                    <p><strong>Solution :</strong> Créer un système d'INDEX avec des mots-clés organisés (le MeSH)</p>
+                    <p><strong>Avantage :</strong> Si je cherche "pneumonie", le système sait me proposer aussi "infection pulmonaire", "maladie respiratoire", etc.</p>
+                    <p><strong>Usage :</strong> PubMed utilise le MeSH pour indexer toute la littérature médicale mondiale.</p>
+                </div>
+                
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 3. La classification : pour faire des statistiques</h3>
+                    <p><strong>Le problème :</strong> "Comment compter combien de gens meurent de quoi dans le monde ?"</p>
+                    <p><strong>Solution :</strong> Créer des CATÉGORIES mutuellement exclusives où chaque maladie a SA place et UNE seule (la CIM-10)</p>
+                    <p><strong>Principe :</strong> Chaque décès = 1 code. On additionne les codes. On a des statistiques mondiales.</p>
+                    <p><strong>Usage :</strong> Tous les certificats de décès utilisent la CIM-10. C'est grâce à ça qu'on peut dire "les maladies cardiovasculaires sont la 1ère cause de mortalité mondiale".</p>
+                </div>
+                
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 4. La nomenclature : pour reproduire la complexité réelle</h3>
+                    <p><strong>Le problème :</strong> "La réalité médicale est COMPLEXE. Le diabète n'est pas qu'un diagnostic, c'est aussi des symptômes, des valeurs biologiques, des traitements..."</p>
+                    <p><strong>Solution :</strong> Créer un système MULTI-AXES qui permet de COMBINER des concepts (la SNOMED-CT)</p>
+                    <p><strong>Avantage :</strong> On se rapproche de la vraie pratique médicale, où tout est lié.</p>
+                    <p><strong>Usage :</strong> Dans les logiciels pour aider les médecins à saisir rapidement leurs observations.</p>
+                </div>
+            </div>
+
+            <!-- Section Importance -->
+            <div class="section">
+                <h2>Pourquoi c'est si important ?</h2>
+                
+                <h3>Les enjeux concrets de la normalisation</h3>
+                
+                <div class="concept-card example" style="margin-bottom: 25px; margin-top: 25px;">
+                    <h3>💡 1. Sauver des vies</h3>
+                    <p>Un système informatique qui détecte automatiquement qu'un patient allergique à la pénicilline se voit prescrire de l'amoxicilline (qui contient de la pénicilline) peut BLOQUER l'ordonnance.</p>
+                    <p><strong>→ Mais seulement si les médicaments sont CODÉS et que le système "comprend" les liens entre substances.</strong></p>
+                </div>
+                
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>💡 2. Améliorer les soins</h3>
+                    <p>Des alertes automatiques peuvent signaler des interactions médicamenteuses dangereuses, des dosages anormaux, des examens manquants.</p>
+                    <p><strong>→ Mais seulement si tout est structuré et codé.</strong></p>
+                </div>
+                
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>💡 3. Faire de la recherche</h3>
+                    <p>On peut étudier l'efficacité d'un traitement sur des millions de patients en quelques minutes.</p>
+                    <p><strong>→ Mais seulement si les données sont comparables (même codage partout).</strong></p>
+                </div>
+                
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>💡 4. Gérer les épidémies</h3>
+                    <p>Pendant le Covid, comment savait-on combien de cas il y avait dans chaque pays ? Parce que tous les pays utilisaient le même code (ajouté d'urgence à la CIM-10).</p>
+                    <p><strong>→ Sans normalisation, impossible de comparer les pays.</strong></p>
+                </div>
+                
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>💡 5. Économiser l'argent public</h3>
+                    <p>En France, les hôpitaux sont payés selon les actes qu'ils réalisent (codés via le PMSI avec la CIM-10).</p>
+                    <p><strong>→ Sans codage standardisé, impossible de facturer correctement.</strong></p>
+                </div>
+            </div>
+
+            <!-- Section Logique du cours -->
+            <div class="section">
+                <h2>La logique du cours expliquée simplement</h2>
+                
+                <div class="info-box" style="margin-bottom: 25px; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);">
+                    <h3 style="color: #1a365d; margin-top: 0;">Étape 1 : Comprendre le problème</h3>
+                    <p><strong>"Pourquoi l'ordinateur ne comprend pas le vocabulaire médical ?"</strong></p>
+                    <p>→ Les 5 propriétés problématiques (synonymie, polysémie, imprécision, ambiguïté, implicite)</p>
+                </div>
+                
+                <div class="info-box" style="margin-bottom: 25px; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);">
+                    <h3 style="color: #1a365d; margin-top: 0;">Étape 2 : Comprendre la solution générale</h3>
+                    <p><strong>"Comment fait-on pour que l'ordinateur 'comprenne' ?"</strong></p>
+                    <p>→ La normalisation : créer des ressources terminologiques</p>
+                </div>
+                
+                <div class="info-box" style="margin-bottom: 25px; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);">
+                    <h3 style="color: #1a365d; margin-top: 0;">Étape 3 : Comprendre qu'il y a plusieurs solutions</h3>
+                    <p><strong>"Pourquoi plusieurs types de terminologies ?"</strong></p>
+                    <p>→ Parce qu'il y a plusieurs problèmes différents (indexer ≠ compter ≠ saisir)</p>
+                </div>
+                
+                <div class="info-box" style="margin-bottom: 25px; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);">
+                    <h3 style="color: #1a365d; margin-top: 0;">Étape 4 : Connaître les outils concrets</h3>
+                    <p><strong>"Quelles sont les terminologies utilisées en vrai ?"</strong></p>
+                    <p>→ CIM-10 (statistiques), MeSH (indexation), SNOMED-CT (saisie), etc.</p>
+                </div>
+                
+                <div class="info-box" style="margin-bottom: 25px; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);">
+                    <h3 style="color: #1a365d; margin-top: 0;">Étape 5 : Comprendre les limites</h3>
+                    <p><strong>"Pourquoi c'est compliqué même avec des terminologies ?"</strong></p>
+                    <p>→ Parce qu'il y a PLEIN de terminologies différentes qui doivent communiquer entre elles (alignement, UMLS)</p>
+                </div>
+            </div>
+
+            <!-- Section Message final -->
+            <div class="section">
+                <h2>Le message à retenir</h2>
+                
+                <div class="key-points">
+                    <h3 style="font-size: 1.5em; text-align: center; margin-bottom: 20px;">Sans normalisation du vocabulaire médical, l'informatique médicale ne peut pas fonctionner.</h3>
+                    
+                    <p style="font-size: 1.1em; line-height: 1.8;">C'est aussi simple que ça. Tous les systèmes d'information de santé, toutes les bases de données médicales, toutes les statistiques mondiales, toute l'aide à la décision clinique... tout repose sur cette base : <strong>avoir un langage commun que les machines peuvent traiter</strong>.</p>
+                    
+                    <p style="font-size: 1.1em; line-height: 1.8; margin-top: 20px;">Ce cours n'est pas juste de la théorie abstraite. C'est le <strong>FONDEMENT</strong> de toute l'informatique médicale moderne. Sans cette base, rien ne marche.</p>
+                    
+                    <div class="concept-card warning" style="margin-top: 25px; margin-bottom: 25px;">
+                        <h3>⚠️ L'analogie qui résume tout</h3>
+                        <p style="font-size: 1.1em;">Les terminologies (CIM-10, MeSH, SNOMED-CT...) sont aux systèmes de santé ce que le code de la route est à la circulation : <strong>des règles communes qui permettent à tout le monde de se comprendre et d'éviter les accidents</strong>.</p>
+                    </div>
+                    
+                    <p style="font-size: 1.1em; line-height: 1.8;">Sans code de la route, c'est l'anarchie et les accidents. Sans terminologies médicales normalisées, c'est l'anarchie informatique et les erreurs médicales.</p>
+                </div>
+            </div>
+
+            <!-- Section Conclusion -->
+            <div class="section">
+                <div class="info-box" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-left: 4px solid #10b981;">
+                    <h3 style="color: #10b981; margin-top: 0;">✅ En résumé</h3>
+                    <ul style="line-height: 2;">
+                        <li>Le vocabulaire médical n'est pas adapté aux machines</li>
+                        <li>La normalisation est LA solution à ce problème</li>
+                        <li>Différents problèmes nécessitent différentes terminologies</li>
+                        <li>Ces terminologies sauvent des vies concrètement</li>
+                        <li>Tout le système de santé moderne repose sur elles</li>
+                    </ul>
+                    <p style="margin-top: 20px; font-weight: bold; font-size: 1.1em;">Maintenant que vous comprenez POURQUOI ce système existe, vous pouvez étudier COMMENT il fonctionne dans le détail !</p>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+    </div>
+</body>
+</html>
