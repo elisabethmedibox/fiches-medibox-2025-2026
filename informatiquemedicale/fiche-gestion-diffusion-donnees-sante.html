@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche Medibox - FC7 : Gestion et diffusion des données en santé</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC7 : Gestion et diffusion des données en santé</h1>
+            <div class="meta">
+                <span>📚 Informatique Médicale et Communication</span>
+                <span>⏱️ 45 min</span>
+                <span>⭐⭐ Difficulté : modérée</span>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Objectifs obligatoires -->
+            <div class="objectifs">
+                <h2>🎯 Objectifs d'apprentissage</h2>
+                <ul>
+                    <li>Connaître les différents types de documents et ressources en santé et leur utilité spécifique</li>
+                    <li>Maîtriser les bases de données bibliographiques principales (PubMed/MEDline, CISMeF)</li>
+                    <li>Savoir formuler une équation de recherche efficace</li>
+                    <li>Comprendre la bibliométrie et l'impact factor</li>
+                    <li>Connaître l'utilité des logiciels de gestion bibliographique</li>
+                </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <div class="section">
+                <h2>1. Documents et ressources en santé</h2>
+
+                <h3>Articles scientifiques</h3>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h4>📖 But</h4>
+                    <p>Présenter les résultats des nouvelles recherches à la communauté scientifique</p>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h4>🔄 Caractéristiques</h4>
+                    <ul>
+                        <li>Publiés dans des journaux spécialisés réservés à la communauté scientifique</li>
+                        <li>Très grande majorité en <strong>anglais</strong> (langue de facto de la recherche)</li>
+                        <li>Même équipes françaises publient en anglais sur demande des journaux</li>
+                        <li>Livres de référence en français = traductions d'éditions originales en anglais</li>
+                    </ul>
+                </div>
+
+                <p><strong>2 grandes catégories de revues :</strong></p>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="info">
+                            <tr>
+                                <th>Type de revue</th>
+                                <th>Caractéristiques</th>
+                                <th>Exemples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Revues généralistes</strong></td>
+                                <td>
+                                    • Couvrent presque l'intégralité des domaines du monde biomédical<br>
+                                    • Recherche fondamentale, clinique, santé publique, éditoriaux<br>
+                                    • Être publié = signe de prestige (beaucoup de concurrence)
+                                </td>
+                                <td>Nature, The Lancet, New England Journal of Medicine</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Revues spécialisées</strong></td>
+                                <td>
+                                    • S'intéressent à un organe, une technique thérapeutique, une approche disciplinaire<br>
+                                    • Sujets plus restreints et techniques
+                                </td>
+                                <td>Brain (neurologie), revues de chirurgie</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="concept-card warning" style="margin-bottom: 25px;">
+                    <h4>⚠️ Accès aux revues</h4>
+                    <p><strong>Historique :</strong> payant (format papier)</p>
+                    <p><strong>Aujourd'hui :</strong> entièrement dématérialisé</p>
+                    <ul>
+                        <li>Accès en général payant (abonnements très onéreux)</li>
+                        <li>Souvent hôpitaux/universités prennent abonnements pour leurs scientifiques</li>
+                        <li>Problème de l'accès financier à la recherche scientifique de qualité</li>
+                    </ul>
+                    <p><strong>Open Access :</strong> accès gratuit aux publications MAIS université/établissement paie la revue pour rendre l'article accessible</p>
+                    <p>Chercheurs paient aussi pour soumettre leurs articles. Système décrié mais dominant.</p>
+                </div>
+
+                <h3>Revues de la littérature</h3>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h4>📖 Définition</h4>
+                    <p>Synthèse méthodique de tous les articles publiés sur un domaine/sujet particulier</p>
+                    <p><em>Prend plusieurs articles sur un même sujet ≠ 1 seul article scientifique</em></p>
+                </div>
+
+                <div class="success-box" style="margin-bottom: 25px;">
+                    <h4>✅ Collaboration Cochrane</h4>
+                    <p>Fondée en <strong>1993</strong> - organisme international présent dans une centaine de pays</p>
+                    <p>Ne fait QUE des revues de la littérature</p>
+                    <p>Journal : <strong>Cochrane</strong></p>
+                    <p>Synthèses de littérature régulièrement mises à jour avec les avancées scientifiques</p>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h4>🔄 Méthodologie d'une revue de littérature</h4>
+                    <ol>
+                        <li><strong>Poser une question précise</strong> (ex : la chloroquine est-elle efficace dans le traitement de la Covid ?)</li>
+                        <li><strong>Identifier tous les articles</strong> publiés sur cette question</li>
+                        <li><strong>Comparer les méthodologies</strong> (ont-ils cherché à répondre de la même manière ?)</li>
+                        <li><strong>Regarder les conclusions</strong> (sont-ils arrivés à la même conclusion ?)</li>
+                        <li><strong>Vérifier le consensus</strong></li>
+                    </ol>
+                    <p><strong>Idée principale :</strong> obtenir un consensus car la <strong>reproductibilité</strong> est essentielle</p>
+                    <p>Plus une étude est reproductible (pays différents, populations différentes, même résultat), plus l'hypothèse scientifique de départ est forte</p>
+                </div>
+
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h4>💡 Utilité</h4>
+                    <p>Permet aux scientifiques de connaître les consensus sans éplucher tous les articles eux-mêmes</p>
+                    <p>Synthèse destinée à répondre ou non à la question posée</p>
+                </div>
+
+                <h3>Guides de bonnes pratiques cliniques</h3>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h4>📖 Définition</h4>
+                    <p>Suite de la revue de littérature avec un <strong>niveau de synthèse PLUS ÉLEVÉ</strong></p>
+                    <p><span class="badge warning">⚠️ PIÈGE QCM</span> Guides bonnes pratiques > Revues littérature (niveau de synthèse)</p>
+                    <p>Revues de littérature (souvent systématisées avec méta-analyses) + <strong>avis d'experts reconnus</strong></p>
+                </div>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h4>📖 Objectif</h4>
+                    <p><strong>Homogénéiser les pratiques médicales</strong></p>
+                    <p>Même prise en charge à Bordeaux, Pointe-à-Pitre ou Rome (mêmes recommandations médicales)</p>
+                    <p>Aide les médecins confrontés à une pathologie qu'ils traitent peu</p>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="success">
+                            <tr>
+                                <th>Organisme</th>
+                                <th>Rôle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Sociétés savantes</strong></td>
+                                <td>Produisent les guides de bonnes pratiques</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Organismes de santé</strong></td>
+                                <td>Produisent les guides de bonnes pratiques</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HAS</strong> (Haute Autorité de Santé)</td>
+                                <td>En France : publie majoritairement les guides de bonnes pratiques</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ANSM</strong> (Agence Nationale de Sécurité du Médicament)</td>
+                                <td>En France : guides de bonnes pratiques sur l'axe thérapeutique et médicamenteux</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="concept-card warning" style="margin-bottom: 25px;">
+                    <h4>⚠️ Variations entre pays</h4>
+                    <p>Guides peuvent varier légèrement d'un pays à l'autre (légères variations avec sociétés savantes américaines)</p>
+                    <p>Recommandations européennes plutôt harmonisées</p>
+                    <p>Médecin européen privilégie recommandations européennes mais peut suivre recommandations américaines si apportent quelque chose de plus</p>
+                </div>
+
+                <h3>Bases de médicaments</h3>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h4>📖 Objectif</h4>
+                    <p><strong>Aider un médecin à prescrire correctement un médicament</strong></p>
+                    <p><span class="badge success">Aide à la décision thérapeutique</span></p>
+                    <p>Milliers de médicaments différents + dizaines de formes galéniques pour un même principe actif</p>
+                    <p>Posologie différente selon poids, âge → impossible de tout connaître</p>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h4>🔄 Contenu des bases</h4>
+                    <ul>
+                        <li>Posologie (2 fois/jour, matin et soir, pendant repas...)</li>
+                        <li>Allergies</li>
+                        <li>Contre-indications</li>
+                        <li>Interactions médicamenteuses</li>
+                    </ul>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="info">
+                            <tr>
+                                <th>Caractéristique</th>
+                                <th>Détails</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Certification</strong></td>
+                                <td>Certifiées par le ministère de la Santé (bases vérifiées)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Avant</strong></td>
+                                <td>Dictionnaire Vidal (papier)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Aujourd'hui</strong></td>
+                                <td>Logiciels de prescription, applications smartphone</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Intégration</strong></td>
+                                <td>Outils d'aide à la décision intégrés dans logiciels hôpitaux/cabinets</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Standardisation</strong></td>
+                                <td>Extrêmement standardisées et réglementées mais peuvent varier d'un pays à l'autre (Agence Française du Médicament ≠ FDA américaine)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Accès</strong></td>
+                                <td>Majoritairement payantes (permet mises à jour)<br>Certaines en accès libre après justification</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Exemple</strong></td>
+                                <td>Base Thériaque (la plus connue)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Bases de maladies</h3>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h4>📖 Objectif</h4>
+                    <p>Regrouper les connaissances sur un ensemble de maladies avec des caractéristiques communes</p>
+                    <p>En général pour des <strong>maladies RARES</strong> (plus difficile d'avoir des experts de la mucoviscidose que de l'infarctus)</p>
+                </div>
+
+                <div class="success-box" style="margin-bottom: 25px;">
+                    <h4>✅ ORPHANET</h4>
+                    <p><span class="badge danger">⚠️ PIÈGE QCM</span> Base de données sur les <strong>MALADIES RARES</strong> (PAS base de médicaments !)</p>
+                    <p>Base européenne existant en <strong>6 langues</strong> : anglais, français, italien, espagnol, allemand, portugais</p>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h4>🔄 Contenu d'Orphanet</h4>
+                    <p><strong>Pour chaque maladie :</strong></p>
+                    <ul>
+                        <li><strong>Articles de synthèse</strong> écrits par des experts (pas très longs = minimum à savoir)</li>
+                        <li><strong>Références bibliographiques</strong> pour approfondir</li>
+                        <li><strong>Associations de patients</strong> pour maladies rares</li>
+                        <li><strong>Centres de référence</strong> associés à ces maladies</li>
+                    </ul>
+                    <p>Médecin peut contacter directement associations/centres ou diriger le patient vers eux</p>
+                    <p>Associations = soutien psychologique très important pour les malades</p>
+                </div>
+
+                <h3>Documents pédagogiques</h3>
+
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h4>💡 Types</h4>
+                    <ul>
+                        <li>Cours</li>
+                        <li>Cas cliniques</li>
+                        <li>QCM</li>
+                        <li>Vidéos</li>
+                    </ul>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="info">
+                            <tr>
+                                <th>Plateforme/Niveau</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Moodle</strong></td>
+                                <td>Plateforme spécialisée</td>
+                            </tr>
+                            <tr>
+                                <td><strong>UNESS</strong><br>(anciennement SIDES)</td>
+                                <td>Plateforme nationale utilisée pendant les études de médecine<br>Regroupe beaucoup d'éléments pédagogiques</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Niveau individuel</strong></td>
+                                <td>Chaque faculté a ses propres cours, son propre enseignement</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Collèges d'enseignants</strong></td>
+                                <td>Référentiels nationaux par matière (cardiologie, urologie...)<br>Même référentiel et cours pour tous les étudiants (pour concours ECN)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Ressources grand public</h3>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h4>📖 Caractéristiques</h4>
+                    <p>Informations sur maladies et médicaments avec langage compréhensible pour non-médecins</p>
+                    <p>Accessible : internet, blogs, journaux grands publics</p>
+                </div>
+
+                <div class="concept-card warning" style="margin-bottom: 25px;">
+                    <h4>⚠️ Attention à la qualité</h4>
+                    <p>Différents niveaux de qualité de l'information :</p>
+                    <ul>
+                        <li>✅ Bien traduite par journaliste scientifique</li>
+                        <li>⚠️ Très vulgarisée, détournée, amplifiée</li>
+                        <li>❌ Carrément mensongère (fake-news)</li>
+                    </ul>
+                    <p><strong>Avoir un œil critique - Toujours revenir à la source</strong></p>
+                    <p>Certaines certifications garantissent la fiabilité de l'information</p>
+                </div>
+
+                <h3>Littérature scientifique</h3>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="success">
+                            <tr>
+                                <th>Type</th>
+                                <th>Description</th>
+                                <th>Utilisation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Littérature blanche</strong></td>
+                                <td>Articles scientifiques publiés dans journaux référencés dans une base de données bibliographique<br>Recherches par thèmes (MedLine par exemple)</td>
+                                <td>Utilisée en général pour les recherches</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Littérature grise</strong></td>
+                                <td>Toutes les autres sources : internet, mémoire de master, congrès, thèse non publiée, rapport de commissions gouvernementales, Wikipedia</td>
+                                <td>Pas toujours utilisée<br>Utile pour vision exhaustive et complète d'un domaine<br>Accès à informations de qualité même si non publiées (thèses)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="section">
+                <h2>2. Modalités d'accès aux connaissances en santé</h2>
+
+                <h3>Indexation des ressources</h3>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h4>📖 Index</h4>
+                    <p>Substitut utilisé pour représenter le contenu d'un document</p>
+                    <p>Résume le document sous plusieurs formes possibles (mot simple, thésaurus)</p>
+                    <p>Plus simple : <strong>mots clefs</strong> (permettent de se faire une idée du contenu)</p>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h4>🔄 Contenu et contenant</h4>
+                    <p>Index peut représenter le <strong>contenu</strong> ET le <strong>contenant</strong> d'un document</p>
+                    <p>Exemple de contenant : image → métadonnées</p>
+                </div>
+
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h4>💡 Exemple : MeSH</h4>
+                    <p>Thésaurus : cherche aussi tous les synonymes associés</p>
+                    <p>Exemples : HIV, Covid 19</p>
+                    <p><strong>Avantages :</strong></p>
+                    <ul>
+                        <li>Si indexation bien faite : résultats <strong>exhaustifs</strong> (synonymes, termes associés)</li>
+                        <li>Permet de <strong>rétrécir les champs de recherches</strong></li>
+                    </ul>
+                </div>
+
+                <h3>Les bases de données bibliographiques</h3>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h4>📖 Définition</h4>
+                    <p>Bases de données spécialisées contenant des articles scientifiques (portail spécialisé)</p>
+                    <p>Index utilisés le plus souvent dans ces bases</p>
+                </div>
+
+                <div class="concept-card warning" style="margin-bottom: 25px;">
+                    <h4>⚠️ Accessibilité</h4>
+                    <p>Articles scientifiques <strong>non référencés</strong> sur moteurs de recherche grands publics (Google)</p>
+                    <p>Nécessite accès aux bases de données scientifiques</p>
+                </div>
+
+                <p><strong>Critères de jugement de qualité :</strong></p>
+
+                <div class="info-box" style="margin-bottom: 25px;">
+                    <h4>Couverture de la base</h4>
+                    <ul>
+                        <li><strong>Domaine :</strong> base exhaustive couvrant tout le domaine étudié ?</li>
+                        <li><strong>Zone géographique :</strong> articles sur toutes les zones du monde ou bases spécialisées ?</li>
+                        <li><strong>Type de publication :</strong> articles + publications de congrès médicaux, rapports, etc. ?</li>
+                        <li><strong>Langue :</strong> anglais (usage) mais publications en langues natives importantes (articles pertinents pour région donnée)</li>
+                    </ul>
+                </div>
+
+                <div class="info-box" style="margin-bottom: 25px;">
+                    <h4>Forme et organisation de l'information</h4>
+                    <ul>
+                        <li><strong>Forme de l'indexation :</strong> bien faite ? résultats exhaustifs avec recherche de synonymes ?</li>
+                        <li><strong>Champs :</strong> recherche avancée possible (auteur, période, type d'article) ? Plus de champs = meilleure qualité de recherche</li>
+                    </ul>
+                </div>
+
+                <div class="success-box" style="margin-bottom: 25px;">
+                    <h4>✅ Principales bases en médecine et biologie</h4>
+                    <p><strong>PubMed/Medline</strong> → <span class="badge danger">LA référence</span></p>
+                    <p>Autres : Science Direct, Scopus, Embase, Web of Science</p>
+                </div>
+
+                <h3>PubMed et MEDline</h3>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h4>📖 MEDline</h4>
+                    <p><strong>MED</strong>ical <strong>L</strong>iterature <strong>A</strong>nalysis and <strong>R</strong>etrieval System on<strong>LINE</strong></p>
+                    <p>Base biomédicale en ligne <strong>très exhaustive</strong></p>
+                    <p>Couvre <strong>toutes les disciplines</strong> du domaine biomédical : médecine, pharmacie, biologie, santé publique</p>
+                    <p><span class="badge success">C'est LA référence</span></p>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="info">
+                            <tr>
+                                <th>Caractéristique</th>
+                                <th>Détails</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Production</strong></td>
+                                <td>National Library of Medicine (NLM) - même équipe que MeSH</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Volume</strong></td>
+                                <td>Plus de 26 millions de références bibliographiques</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Langues</strong></td>
+                                <td>Le plus souvent en anglais mais revues dans toutes les langues</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Accès</strong></td>
+                                <td>Divers sous-accès mais 99% des gens passent par PubMed<br>PubMed est interface bien plus large que MedLine</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h4>🔄 Indexation par MeSH</h4>
+                    <p>Environ 50 indexeurs travaillent manuellement</p>
+                    <p><strong>Pour 1 article :</strong> environ 15 descripteurs MeSH</p>
+                    <p>Recherche dans : titre, abstract, mots clefs</p>
+                    <p><strong>2 niveaux d'indexation :</strong></p>
+                    <ul>
+                        <li><strong>Majeure :</strong> article parle essentiellement d'un sujet</li>
+                        <li><strong>Mineure :</strong> article passe de cette thématique mais ce n'est pas le centre du propos</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h4>💡 Langage d'interrogation</h4>
+                    <p>Crochets et opérateurs booléens</p>
+                    <p>Recherche par défaut dans MedLine si recherche par mot clef</p>
+                    <p>Recherche par <strong>mots clefs</strong> OU par <strong>mot MeSH</strong></p>
+                </div>
+
+                <h3>CISMeF</h3>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h4>📖 Définition</h4>
+                    <p><strong>C</strong>atalogue et <strong>I</strong>ndex des <strong>S</strong>ites <strong>M</strong>édicaux de langue <strong>F</strong>rançaise</p>
+                    <p>Rare ressource en français</p>
+                    <p>Créée en <strong>1995</strong> par le <strong>CHU de Rouen</strong></p>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h4>🔄 Contenu</h4>
+                    <p>Principaux sites et documents médicaux provenant de sources publiques ou associatives</p>
+                </div>
+
+                <div class="success-box" style="margin-bottom: 25px;">
+                    <h4>✅ Intérêt principal</h4>
+                    <p>Indexation par MeSH en <strong>version française</strong> fournie par l'INSERM</p>
+                    <p>Très pratique pour trouver l'équivalent anglais MeSH d'un terme en français</p>
+                    <p>Indexation majoritairement manuelle avec certaine automatisation</p>
+                </div>
+
+                <h3>Place de la bibliographie dans une étude</h3>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="success">
+                            <tr>
+                                <th>Moment</th>
+                                <th>Objectifs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>AVANT la réalisation de l'étude</strong></td>
+                                <td>
+                                    • Regarder ce qui a déjà été fait<br>
+                                    • Valider la pertinence du sujet<br>
+                                    • Mettre en évidence des erreurs commises avant<br>
+                                    • Éviter de faire fausse route<br>
+                                    <strong>= État de l'art</strong> (recherche des méthodes et résultats déjà connus)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>À la rédaction de l'article</strong></td>
+                                <td>Comparer ses résultats avec les études existantes<br>Vérifier si on trouve la même chose ou non</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Formuler une équation de recherche</h3>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h4>🔄 3 étapes</h4>
+                    <ol>
+                        <li>Identifier les concepts</li>
+                        <li>Formuler les concepts</li>
+                        <li>Combiner les concepts</li>
+                    </ol>
+                </div>
+
+                <p><strong>2 façons de formuler les concepts :</strong></p>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 25px;">
+                    <table>
+                        <thead class="info">
+                            <tr>
+                                <th>Type de langage</th>
+                                <th>Description</th>
+                                <th>Avantages</th>
+                                <th>Inconvénients</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Langage naturel</strong></td>
+                                <td>Mots clés<br>Utilisable peu importe la base (Pubmed, etc.)</td>
+                                <td>Simple d'utilisation</td>
+                                <td>Problème d'exhaustivité : difficile de penser à toutes variations possibles (synonymes, formes grammaticales, orthographe)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Langage contrôlé</strong></td>
+                                <td>Descripteurs<br>Varient selon les sources<br>Medline/PubMed : MeSH</td>
+                                <td>Exhaustivité si bonne indexation</td>
+                                <td>Concepts n'existent pas toujours (indexation manuelle, concept rare peut ne pas être retenu)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="success-box" style="margin-bottom: 25px;">
+                    <h4>✅ En pratique</h4>
+                    <p>On utilise les <strong>2 types de recherches</strong> (langage naturel ET langage contrôlé)</p>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="section">
+                <h2>3. La bibliométrie</h2>
+
+                <h3>Définition</h3>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h4>📖 Qu'est-ce que c'est ?</h4>
+                    <p><strong>Exploitation statistique des publications scientifiques</strong></p>
+                    <p>Utilisée pour rendre compte de l'activité des <strong>producteurs</strong> (chercheurs, laboratoires) ou des <strong>diffuseurs</strong> (journal scientifique)</p>
+                    <p>Permet de se rendre compte des plus gros contributeurs à la recherche scientifique</p>
+                    <p><em>(pensez à "mètre" = mesurer)</em></p>
+                    <p>Analyse <strong>quantitative</strong> ET <strong>qualitative</strong> : est-ce que les articles sont de bonne qualité ?</p>
+                </div>
+
+                <h3>Applications</h3>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h4>🔄 La bibliométrie permet de</h4>
+                    <ul>
+                        <li>Définir les <strong>domaines de compétences</strong> d'un chercheur, d'une institution à partir de leurs publications</li>
+                        <li>Évaluer les <strong>fonds de périodiques</strong> d'une bibliothèque</li>
+                        <li>Suivre l'<strong>évolution d'une thématique</strong> (notamment découvertes récentes)</li>
+                        <li>Apprécier l'<strong>impact d'un article</strong> (a-t-il intéressé beaucoup de gens ? fait-il office de référence ? ou jamais cité ni repris ?)</li>
+                        <li>Évaluer la <strong>qualité d'une revue scientifique</strong></li>
+                    </ul>
+                </div>
+
+                <h3>Les moyens utilisés</h3>
+
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h4>💡 Contexte</h4>
+                    <p>Publications référencées dans des bases de données bibliographiques informatisées</p>
+                    <p><strong>Depuis années 80 :</strong> tout numérisé</p>
+                    <p>Recherches rapides selon critères multiples sur importants volumes d'articles (résultats PubMed en millisecondes)</p>
+                    <p>Dépend de la source bibliographique : ne pas négliger les autres bases</p>
+                    <p>En cas d'analyse avancée : obligation de logiciels spécialisés et bases de données spécialisées dédiées à la bibliométrie (Web of Science, Journal Citation Report)</p>
+                </div>
+
+                <div class="success-box" style="margin-bottom: 25px;">
+                    <h4>✅ JCR : Journal Citation Report et Impact Factor</h4>
+                    
+                    <p><strong>Permet de comparer et évaluer des journaux scientifiques :</strong></p>
+                    <ul>
+                        <li>Journaux ayant le plus de citations dans un domaine</li>
+                        <li>Journaux avec l'Impact Factor le plus élevé</li>
+                        <li>Journaux leaders dans un domaine</li>
+                        <li>Type d'articles les plus fréquemment publiés dans un domaine</li>
+                    </ul>
+
+                    <p style="margin-top: 20px;"><strong>Impact Factor :</strong></p>
+                    <ul>
+                        <li>Mesure chiffrée de l'importance d'un journal</li>
+                        <li>Plus l'IF est élevé, plus difficile de publier dans ce journal</li>
+                        <li>Dépend du nombre de citations retrouvées au cours des <strong>2 années précédentes</strong> pour les articles publiés durant ces mêmes années</li>
+                        <li>Mesure l'influence d'un journal sur les publications secondaires</li>
+                        <li>Utilisé pour classer et évaluer les journaux</li>
+                        <li>Chercheur regarde l'IF lorsqu'il veut publier</li>
+                        <li>Très utilisé dans le monde académique pour carrières de chercheurs (carrière hospitalo-universitaire nécessite publications dans journaux IF élevé)</li>
+                    </ul>
+
+                    <p style="margin-top: 20px;"><strong>Exemples d'Impact Factor :</strong></p>
+                    <ul>
+                        <li>Majors : IF autour de 40</li>
+                        <li>Bons journaux de spécialités : autour de 14/15 en neurologie</li>
+                        <li>Bonnes revues d'informatique médicale : IF autour de 5 (communauté plus restreinte)</li>
+                    </ul>
+                </div>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h4>📖 Différence entre citations et références</h4>
+                    <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+                        <table>
+                            <thead class="warning">
+                                <tr>
+                                    <th>Terme</th>
+                                    <th>Définition</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Citations</strong></td>
+                                    <td>Nombre de fois où l'article est cité dans un autre article<br>Plus un article est cité, plus l'étude acquiert de l'importance<br>Notifications possibles à chaque citation</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Références</strong></td>
+                                    <td>Ensemble des articles cités par l'article</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="section">
+                <h2>4. Logiciels de gestion bibliographique</h2>
+
+                <h3>Définition</h3>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h4>📖 Qu'est-ce que c'est ?</h4>
+                    <p>Logiciel destiné à <strong>établir, trier et utiliser des listes de références bibliographiques</strong></p>
+                    <p>Impossible de les gérer correctement de façon manuelle au-delà d'un certain nombre de références</p>
+                    <p>Peut s'agir d'articles, de livres, de sites web</p>
+                    <p>Sur études poussées : nombre de références peut dépasser largement la centaine</p>
+                    <p>Reposent sur des bases de données qu'on peut alimenter de différentes façons</p>
+                    <p>Capacités d'importation et d'exportation des formats standardisés de références (pas besoin d'écrire citations et références à la main)</p>
+                </div>
+
+                <h3>Pourquoi les utiliser ?</h3>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h4>🔄 Avantages</h4>
+                    <ul>
+                        <li>Capables de <strong>sauvegarder automatiquement</strong> des lots de références résultant de recherches sur des bases comme PubMed</li>
+                        <li><strong>Exploiter facilement</strong> des gros corpus de références</li>
+                        <li><strong>Récupérer des références</strong> pour l'écriture d'un article et la rédaction de la bibliographie (articles déjà enregistrés en format normé extractible)</li>
+                        <li><strong>Formater automatiquement</strong> les références selon les normes d'écriture et conventions formelles (ex : norme de Vancouver) - normes différentes, certaines plus utilisées</li>
+                        <li><strong>Saisie unique des données</strong> (souvent système connexion/compte) : sur cloud permettant d'utiliser références en travaillant sur supports différents (ordi bureau + ordi portable)</li>
+                        <li><strong>Faciliter le partage</strong> de références/articles entre collaborateurs</li>
+                        <li><strong>Faire une veille bibliographique</strong> en cas de modification</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Points clés obligatoires -->
+            <div class="key-points">
+                <h2>🎯 Points clefs à retenir</h2>
+                <ul>
+                    <li>articles scientifiques : publiés en anglais dans revues généralistes (Nature, Lancet, NEJM) ou spécialisées - présenter résultats nouvelles recherches - accès souvent payant (abonnements hôpitaux/universités) ou Open Access</li>
+                    
+                    <li>revues de la littérature : synthèse méthodique d'articles sur un sujet - Collaboration Cochrane (fondée 1993, organisme international) - objectif = vérifier consensus et reproductibilité - plus une étude est reproductible, plus l'hypothèse scientifique est forte</li>
+                    
+                    <li>guides de bonnes pratiques : niveau de synthèse SUPÉRIEUR aux revues de littérature - revues de littérature + avis d'experts - objectif = homogénéiser pratiques médicales - produits par sociétés savantes et organismes de santé (HAS, ANSM en France)</li>
+                    
+                    <li>bases de médicaments : aide à la décision thérapeutique - aide à prescrire correctement (posologie, contre-indications, interactions) - certifiées par ministère de la Santé - outils intégrés dans logiciels hôpitaux/cabinets - ex : Thériaque</li>
+                    
+                    <li>ORPHANET : base européenne sur maladies RARES (PAS base de médicaments) - articles de synthèse par experts, associations patients, centres de référence - 6 langues - soutien psychologique important</li>
+                    
+                    <li>documents pédagogiques : cours, QCM, cas cliniques, vidéos - plateformes : Moodle, UNESS (anciennement SIDES) - utilisée pendant les études de médecine - collèges d'enseignants : référentiels nationaux pour ECN</li>
+                    
+                    <li>ressources grand public : attention aux différents niveaux de qualité - avoir œil critique - toujours revenir à la source (lutte contre fake-news) - certifications garantissent fiabilité</li>
+                    
+                    <li>littérature blanche vs grise : blanche = articles dans journaux référencés dans bases bibliographiques - grise = autres sources (thèses, congrès, rapports, Wikipedia) - grise utile pour vision exhaustive</li>
+                    
+                    <li>index : substitut représentant contenu d'un document - ex : MeSH (thésaurus cherchant synonymes) - si bonne indexation = résultats exhaustifs - permet de rétrécir champs de recherches</li>
+                    
+                    <li>bases de données bibliographiques : bases spécialisées contenant articles scientifiques - non référencées sur Google - critères qualité : couverture (domaine, zone géographique, type publication, langue) + forme et organisation de l'information</li>
+                    
+                    <li>PubMed/MEDline : LA référence - plus de 26 millions de références - couvre toutes disciplines biomédicales (médecine, pharmacie, biologie, santé publique) - indexation par MeSH (environ 15 descripteurs/article, 2 niveaux : majeure et mineure) - produite par National Library of Medicine - 99% passent par PubMed</li>
+                    
+                    <li>CISMeF : Catalogue et Index des Sites Médicaux de langue Française - CHU Rouen 1995 - rare ressource en français - indexation MeSH en français par INSERM - trouver équivalent anglais MeSH d'un terme français</li>
+                    
+                    <li>bibliographie dans étude : avant = état de l'art (ce qui a été fait, valider pertinence, éviter erreurs) - à la rédaction = comparer ses résultats avec études existantes</li>
+                    
+                    <li>équation de recherche : 3 étapes (identifier concepts, formuler concepts, combiner concepts) - 2 façons de formuler : langage naturel (mots clés, simple mais problème exhaustivité) OU langage contrôlé (descripteurs MeSH, exhaustif mais concepts n'existent pas toujours) - en pratique on utilise les 2</li>
+                    
+                    <li>bibliométrie : exploitation statistique des publications scientifiques - mesure activité producteurs (chercheurs, laboratoires) et diffuseurs (journaux) - analyse quantitative et qualitative - depuis années 80 tout numérisé</li>
+                    
+                    <li>JCR (Journal Citation Report) : compare et évalue journaux scientifiques - journaux plus cités, IF le plus élevé, leaders dans domaine, type d'articles publiés</li>
+                    
+                    <li>Impact Factor : mesure chiffrée de l'importance d'un journal - plus IF élevé, plus difficile de publier - dépend nombre de citations sur 2 années précédentes pour articles publiés durant ces années - mesure influence d'un journal - utilisé pour classer journaux et carrières chercheurs - exemples IF : Majors ~40, spécialités ~14/15, informatique médicale ~5</li>
+                    
+                    <li>citations vs références : citations = nombre de fois article cité par autres articles (plus article cité, plus étude acquiert importance) - références = ensemble des articles cités par l'article</li>
+                    
+                    <li>logiciels de gestion bibliographique : établir, trier et utiliser listes de références bibliographiques - impossible de gérer manuellement au-delà d'un certain nombre - sauvegarder automatiquement lots de références, formater automatiquement selon normes (ex : Vancouver), saisie unique sur cloud, partage entre collaborateurs, veille bibliographique</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+    </div>
+</body>
+</html>
