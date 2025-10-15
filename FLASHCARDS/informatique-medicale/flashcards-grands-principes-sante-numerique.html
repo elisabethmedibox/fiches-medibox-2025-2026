@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards - Grands principes en Santé Numérique | Medibox</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/flashcards-style.css">
+</head>
+<body>
+    <div class="container">
+        
+        <!-- ÉCRAN DE DÉMARRAGE -->
+        <div class="start-screen" id="startScreen">
+            <h1>🎴 Flashcards Interactives</h1>
+            <p class="subtitle">Grands principes en Santé Numérique</p>
+            
+            <div class="global-stats">
+                <h3>📊 Statistiques</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number mastered" id="masteredCount">0</span>
+                        <span class="stat-label">Maîtrisées</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number review" id="reviewCount">25</span>
+                        <span class="stat-label">À réviser</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number total">25</span>
+                        <span class="stat-label">Total</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mode-selection">
+                <button class="mode-btn primary" onclick="startSession('all')">
+                    <span class="icon">🎯</span>
+                    <span>Réviser toutes les cartes</span>
+                </button>
+                <button class="mode-btn" onclick="startSession('review')" id="reviewModeBtn">
+                    <span class="icon">🔄</span>
+                    <span>Réviser les cartes non maîtrisées</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ZONE DE RÉVISION -->
+        <div class="flashcard-area" id="flashcardArea">
+            
+            <!-- En-tête -->
+            <div class="header">
+                <h2>Grands principes en Santé Numérique</h2>
+                <div class="card-counter">
+                    <span class="current" id="currentCard">1</span> / <span id="totalCards">25</span>
+                </div>
+            </div>
+
+            <!-- Barre de progression -->
+            <div class="progress-bar">
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Carte -->
+            <div class="card-container">
+                <div class="card" id="flashcard" onclick="flipCard()">
+                    <div class="card-face card-front">
+                        <span class="card-label">Question</span>
+                        <div class="card-content">
+                            <p class="card-question" id="question"></p>
+                        </div>
+                        <p class="flip-hint">👆 Cliquez pour voir la réponse</p>
+                    </div>
+                    <div class="card-face card-back">
+                        <span class="card-label">Réponse</span>
+                        <div class="card-content">
+                            <p class="card-answer" id="answer"></p>
+                        </div>
+                        <p class="flip-hint">👆 Cliquez pour revenir</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Boutons d'action -->
+            <div class="actions">
+                <button class="action-btn dont-know" onclick="answerCard(false)">
+                    <span class="icon">❌</span>
+                    <span>Je ne sais pas</span>
+                </button>
+                <button class="action-btn know" onclick="answerCard(true)">
+                    <span class="icon">✅</span>
+                    <span>Je sais</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ÉCRAN DE FIN -->
+        <div class="end-screen" id="endScreen">
+            <h2>🎉 Session terminée !</h2>
+            <p class="message">Excellent travail ! Voici vos résultats :</p>
+            
+            <div class="final-results">
+                <div class="results-grid">
+                    <div class="result-item">
+                        <span class="result-number success" id="finalKnow">0</span>
+                        <span class="result-label">Cartes maîtrisées</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number fail" id="finalDontKnow">0</span>
+                        <span class="result-label">À revoir</span>
+                    </div>
+                </div>
+                
+                <div class="score-display">
+                    <div class="score-percentage" id="scorePercentage">0%</div>
+                    <div class="score-label">Taux de réussite</div>
+                </div>
+            </div>
+            
+            <div class="performance-message" id="performanceMessage"></div>
+            
+            <div class="end-actions">
+                <button class="end-btn" onclick="restartSession()">
+                    <span class="icon">🔄</span>
+                    <span>Recommencer</span>
+                </button>
+                <button class="end-btn secondary" onclick="reviewErrors()" id="reviewErrorsBtn">
+                    <span class="icon">📚</span>
+                    <span>Réviser les erreurs</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================
+        // DONNÉES DES FLASHCARDS
+        // ============================================
+        
+        const flashcardsData = [
+            {
+                question: "Quelle loi a établi la feuille de route « Accélérer le virage numérique » ?",
+                answer: "La loi du 26 juillet 2019, dans le cadre de la réforme « Ma santé 2022, un engagement collectif »"
+            },
+            {
+                question: "Combien d'orientations et d'actions contient la feuille de route 2019-2022 ?",
+                answer: "5 orientations et 26 actions"
+            },
+            {
+                question: "Combien d'axes, de priorités et d'objectifs contient la feuille de route 2023-2027 ?",
+                answer: "4 axes, 18 priorités et 65 objectifs"
+            },
+            {
+                question: "Citez les 4 axes prioritaires de la stratégie 2023-2027",
+                answer: "1. Développer la prévention\n2. Redonner du temps aux professionnels\n3. Améliorer l'accès à la santé\n4. Déployer un cadre propice pour l'innovation"
+            },
+            {
+                question: "Que signifie l'acronyme GAFAM ?",
+                answer: "Google, Apple, Facebook, Amazon, Microsoft"
+            },
+            {
+                question: "Que signifie l'acronyme ALD ?",
+                answer: "Affection Longue Durée"
+            },
+            {
+                question: "Que signifie l'acronyme INS ?",
+                answer: "Identité Nationale de Santé"
+            },
+            {
+                question: "Quels sont les 3 grands domaines de l'informatique médicale ?",
+                answer: "1. Bioinformatique\n2. Informatique clinique\n3. Informatique de santé publique"
+            },
+            {
+                question: "À quel niveau agit la bioinformatique ?",
+                answer: "Au niveau des molécules et cellules (analyse des séquences d'ADN)"
+            },
+            {
+                question: "À quel niveau agit l'informatique clinique ?",
+                answer: "Au niveau des organes, fonctions, citoyens et patients (dossier patient informatisé)"
+            },
+            {
+                question: "À quel niveau agit l'informatique de santé publique ?",
+                answer: "Au niveau des populations (prédiction des risques d'épidémies par IA)"
+            },
+            {
+                question: "Donnez un exemple d'application de la bioinformatique",
+                answer: "Analyse des séquences de l'ADN"
+            },
+            {
+                question: "Donnez un exemple d'application de l'informatique clinique",
+                answer: "Prise en charge coordonnée du patient grâce au dossier patient informatisé"
+            },
+            {
+                question: "Donnez un exemple d'application de l'informatique de santé publique",
+                answer: "Prédiction des risques d'épidémies à partir des algorithmes d'intelligence artificielle"
+            },
+            {
+                question: "Quels sont les facteurs augmentant la consommation de soins en France ?",
+                answer: "Allongement de l'espérance de vie, augmentation des maladies chroniques, nouveaux facteurs de risques (obésité, tabac, alcool, pollution, stress)"
+            },
+            {
+                question: "Qu'est-ce que le « e-patient » ?",
+                answer: "Un patient de plus en plus acteur de sa santé, utilisant les outils numériques et transformant la relation patient/soignant"
+            },
+            {
+                question: "Citez 2 orientations de la feuille de route 2019-2022",
+                answer: "1. Renforcer la gouvernance du numérique en santé\n2. Intensifier la sécurité et l'interopérabilité des systèmes d'information"
+            },
+            {
+                question: "Que vise l'AXE 1 (Prévention) de la stratégie 2023-2027 ?",
+                answer: "Utiliser Mon espace santé au quotidien, développer une prévention personnalisée, rendre chacun acteur de sa santé et maître de ses données"
+            },
+            {
+                question: "Que vise l'AXE 2 (Prise en charge) de la stratégie 2023-2027 ?",
+                answer: "Permettre l'accès à l'historique patient, améliorer l'ergonomie des services, déployer l'ordonnance numérique, simplifier la coordination"
+            },
+            {
+                question: "Que vise l'AXE 3 (Accès à la santé) de la stratégie 2023-2027 ?",
+                answer: "Renforcer l'information sur l'offre de santé, développer la télésanté, promouvoir les plateformes de régulation, diffuser la carte Vitale numérique"
+            },
+            {
+                question: "Que vise l'AXE 4 (Cadre propice) de la stratégie 2023-2027 ?",
+                answer: "Renforcer la cybersécurité, sécuriser la conformité des solutions, attirer des talents, développer la recherche en santé numérique"
+            },
+            {
+                question: "Quelle est la définition générale de l'informatique médicale ?",
+                answer: "Étude de l'utilisation efficace des données, informations et connaissances biomédicales pour la recherche, la résolution de problèmes et la prise de décision, afin d'améliorer la santé humaine"
+            },
+            {
+                question: "Quels sont les 3 facteurs de transformation du système de santé ?",
+                answer: "1. Augmentation de la consommation de soins\n2. Augmentation de la complexité des prises en charge\n3. Transformation numérique"
+            },
+            {
+                question: "Qu'est-ce qu'une polypathologie ?",
+                answer: "L'explosion du nombre de patients présentant plusieurs pathologies simultanées, nécessitant des prises en charge plurielles et pluri-professionnelles (sanitaire ET sociale)"
+            },
+            {
+                question: "Quel est l'objectif principal de la feuille de route 2023-2027 ?",
+                answer: "Mettre le numérique au service de la santé en fixant les chantiers prioritaires pour le numérique en santé"
+            }
+        ];
+
+        // ============================================
+        // VARIABLES GLOBALES
+        // ============================================
+        
+        let currentSession = [];
+        let currentIndex = 0;
+        let isFlipped = false;
+        let stats = {
+            know: 0,
+            dontKnow: 0
+        };
+        
+        // Récupération du localStorage
+        let masteredCards = JSON.parse(localStorage.getItem('masteredCards')) || [];
+
+        // ============================================
+        // INITIALISATION
+        // ============================================
+        
+        function init() {
+            updateStartScreenStats();
+            updateReviewButton();
+        }
+
+        function updateStartScreenStats() {
+            const reviewCount = flashcardsData.length - masteredCards.length;
+            document.getElementById('masteredCount').textContent = masteredCards.length;
+            document.getElementById('reviewCount').textContent = reviewCount;
+        }
+
+        function updateReviewButton() {
+            const reviewBtn = document.getElementById('reviewModeBtn');
+            const reviewCount = flashcardsData.length - masteredCards.length;
+            
+            if (reviewCount === 0) {
+                reviewBtn.disabled = true;
+                reviewBtn.style.opacity = '0.5';
+                reviewBtn.style.cursor = 'not-allowed';
+            }
+        }
+
+        // ============================================
+        // DÉMARRAGE SESSION
+        // ============================================
+        
+        function startSession(mode) {
+            // Réinitialisation
+            stats = { know: 0, dontKnow: 0 };
+            currentIndex = 0;
+            
+            // Sélection des cartes selon le mode
+            if (mode === 'all') {
+                currentSession = [...flashcardsData];
+            } else {
+                // Mode révision : uniquement les cartes non maîtrisées
+                currentSession = flashcardsData.filter((card, index) => 
+                    !masteredCards.includes(index)
+                );
+            }
+            
+            // Mélange des cartes
+            currentSession = shuffle(currentSession);
+            
+            // Affichage
+            document.getElementById('startScreen').classList.add('hidden');
+            document.getElementById('flashcardArea').classList.add('active');
+            
+            // Mise à jour compteur
+            document.getElementById('totalCards').textContent = currentSession.length;
+            
+            // Affichage première carte
+            showCard();
+        }
+
+        // ============================================
+        // AFFICHAGE CARTE
+        // ============================================
+        
+        function showCard() {
+            if (currentIndex >= currentSession.length) {
+                endSession();
+                return;
+            }
+            
+            const card = currentSession[currentIndex];
+            
+            // Mise à jour contenu
+            document.getElementById('question').textContent = card.question;
+            document.getElementById('answer').textContent = card.answer;
+            
+            // Mise à jour compteur
+            document.getElementById('currentCard').textContent = currentIndex + 1;
+            
+            // Mise à jour progression
+            const progress = ((currentIndex) / currentSession.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            
+            // Reset flip
+            if (isFlipped) {
+                flipCard();
+            }
+        }
+
+        // ============================================
+        // FLIP CARTE
+        // ============================================
+        
+        function flipCard() {
+            const card = document.getElementById('flashcard');
+            card.classList.toggle('flipped');
+            isFlipped = !isFlipped;
+        }
+
+        // ============================================
+        // RÉPONSE UTILISATEUR
+        // ============================================
+        
+        function answerCard(knows) {
+            if (knows) {
+                stats.know++;
+                
+                // Marquer comme maîtrisée
+                const originalIndex = flashcardsData.indexOf(currentSession[currentIndex]);
+                if (!masteredCards.includes(originalIndex)) {
+                    masteredCards.push(originalIndex);
+                    localStorage.setItem('masteredCards', JSON.stringify(masteredCards));
+                }
+            } else {
+                stats.dontKnow++;
+            }
+            
+            // Carte suivante
+            currentIndex++;
+            showCard();
+        }
+
+        // ============================================
+        // FIN DE SESSION
+        // ============================================
+        
+        function endSession() {
+            // Calcul score
+            const total = stats.know + stats.dontKnow;
+            const percentage = Math.round((stats.know / total) * 100);
+            
+            // Affichage écran de fin
+            document.getElementById('flashcardArea').classList.remove('active');
+            document.getElementById('endScreen').classList.add('active');
+            
+            // Mise à jour résultats
+            document.getElementById('finalKnow').textContent = stats.know;
+            document.getElementById('finalDontKnow').textContent = stats.dontKnow;
+            document.getElementById('scorePercentage').textContent = percentage + '%';
+            
+            // Message de performance
+            const messageEl = document.getElementById('performanceMessage');
+            if (percentage >= 90) {
+                messageEl.textContent = '🏆 Excellent ! Vous maîtrisez parfaitement le sujet !';
+                messageEl.className = 'performance-message excellent';
+            } else if (percentage >= 70) {
+                messageEl.textContent = '👍 Très bien ! Encore quelques révisions et ce sera parfait !';
+                messageEl.className = 'performance-message good';
+            } else if (percentage >= 50) {
+                messageEl.textContent = '💪 Pas mal ! Continuez à réviser pour progresser !';
+                messageEl.className = 'performance-message need-work';
+            } else {
+                messageEl.textContent = '📚 Courage ! Il est temps de revoir vos cours !';
+                messageEl.className = 'performance-message need-work';
+            }
+            
+            // Bouton révision erreurs
+            const reviewBtn = document.getElementById('reviewErrorsBtn');
+            if (stats.dontKnow === 0) {
+                reviewBtn.style.display = 'none';
+            } else {
+                reviewBtn.style.display = 'flex';
+            }
+        }
+
+        // ============================================
+        // ACTIONS DE FIN
+        // ============================================
+        
+        function restartSession() {
+            document.getElementById('endScreen').classList.remove('active');
+            document.getElementById('startScreen').classList.remove('hidden');
+            updateStartScreenStats();
+            updateReviewButton();
+        }
+
+        function reviewErrors() {
+            // Créer session avec uniquement les erreurs
+            currentSession = currentSession.filter((card, index) => {
+                // Les cartes où l'utilisateur a répondu "Je ne sais pas"
+                return index < currentIndex && !masteredCards.includes(flashcardsData.indexOf(card));
+            });
+            
+            if (currentSession.length === 0) {
+                alert('Aucune erreur à réviser !');
+                return;
+            }
+            
+            currentIndex = 0;
+            stats = { know: 0, dontKnow: 0 };
+            
+            document.getElementById('endScreen').classList.remove('active');
+            document.getElementById('flashcardArea').classList.add('active');
+            document.getElementById('totalCards').textContent = currentSession.length;
+            
+            showCard();
+        }
+
+        // ============================================
+        // UTILITAIRES
+        // ============================================
+        
+        function shuffle(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        // ============================================
+        // LANCEMENT
+        // ============================================
+        
+        init();
+    </script>
+</body>
+</html>
