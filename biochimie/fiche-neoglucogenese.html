@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Néoglucogenèse - Fiche de Révision</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        .key-points-final {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border-left: 6px solid #ef4444;
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 8px;
+        }
+        
+        .key-points-final h2 {
+            color: #991b1b;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+        
+        .key-points-final h3 {
+            color: #dc2626;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-top">
+                <div class="logo">
+                    <svg viewBox="0 0 100 100" width="40" height="40">
+                        <defs>
+                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ff6b7a"/>
+                                <stop offset="100%" style="stop-color:#ff8a94"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="50" cy="50" r="45" fill="url(#logoGradient)"/>
+                        <text x="50" y="65" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">M</text>
+                    </svg>
+                </div>
+                <div class="header-text">
+                    <div class="course-info">PRÉPARATION 1ÈRE ANNÉE MMOPK • UE5 BIOCHIMIE • FICHE DE RÉVISION</div>
+                    <h1>La Néoglucogenèse</h1>
+                </div>
+            </div>
+            <div class="metadata">
+                <span class="difficulty">⭐⭐⭐⭐⭐ Très difficile</span>
+                <span class="duration">⏱️ 90 min</span>
+                <span class="version">📌 Version complète</span>
+            </div>
+        </div>
+
+        <!-- OBJECTIFS -->
+        <div class="objectifs">
+            <h2>📋 Objectifs d'apprentissage</h2>
+            <p>À la fin de cette fiche, vous devez être capable de :</p>
+            <ul>
+                <li>Expliquer le rôle physiologique de la néoglucogenèse et identifier les tissus glucose-dépendants</li>
+                <li>Décrire les 4 réactions de contournement avec leurs enzymes et cofacteurs spécifiques</li>
+                <li>Comprendre le problème des navettes mitochondriales (malate/aspartate)</li>
+                <li>Identifier les précurseurs glucoformateurs et leurs points d'entrée dans la voie</li>
+                <li>Expliquer le cycle de Cori et le cycle de l'alanine</li>
+                <li>Calculer le bilan énergétique complet (4 ATP + 2 GTP + 2 NADH,H⁺)</li>
+                <li>Maîtriser la régulation coordonnée (Fr-2,6-BP, insuline, glucagon, cortisol)</li>
+                <li>Différencier néoglucogenèse, glycolyse et glycogénogenèse</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 1 : INTRODUCTION -->
+        <h2 class="section-title">🎯 1. Introduction - Rôle et contexte physiologique</h2>
+
+        <div class="concept-card definition">
+            <h3>📖 Qu'est-ce que la néoglucogenèse ?</h3>
+            <p>La néoglucogenèse (NGG) est la <strong>voie de biosynthèse du glucose à partir de précurseurs non glucidiques</strong>. C'est l'inverse de la glycolyse, mais avec 4 réactions différentes pour contourner les étapes irréversibles.</p>
+            <p><strong>⚠️ Attention - piège fréquent :</strong></p>
+            <ul>
+                <li>Néoglucogenèse → produit du <strong>GLUCOSE</strong> (pas du glycogène, pas du pyruvate)</li>
+                <li>Elle <strong>COÛTE</strong> de l'énergie (ne produit pas d'ATP)</li>
+            </ul>
+        </div>
+
+        <div class="concept-card process">
+            <h3>🔄 Pourquoi la néoglucogenèse est-elle vitale ?</h3>
+            <p>Certains tissus sont <strong>glucose-dépendants</strong> et ne peuvent utiliser que le glucose comme source d'énergie :</p>
+            <ol>
+                <li><strong>Le cerveau</strong> (consomme ~120g de glucose/jour)</li>
+                <li><strong>Les globules rouges</strong> (pas de mitochondries → glycolyse uniquement)</li>
+            </ol>
+            <p><strong>Situation critique :</strong> en période de jeûne ou entre les repas, les réserves de glycogène s'épuisent en 12-18h. Sans néoglucogenèse, la glycémie chuterait dangereusement.</p>
+        </div>
+
+        <div class="concept-card example">
+            <h3>💡 Où se déroule la néoglucogenèse ?</h3>
+            <p><strong>Principalement dans le foie (90%)</strong>, et dans une moindre mesure :</p>
+            <ul>
+                <li>Les reins (9%)</li>
+                <li>L'intestin (1%)</li>
+            </ul>
+            <p><strong>⚠️ Point crucial :</strong> le muscle ne peut PAS faire de néoglucogenèse car il lui manque la <strong>glucose-6-phosphatase</strong>.</p>
+        </div>
+
+        <div class="concept-card process">
+            <h3>🔄 Quand a-t-on besoin de la néoglucogenèse ?</h3>
+            <ul>
+                <li><strong>Jeûne prolongé</strong> (> 12-18h)</li>
+                <li><strong>Entre les repas</strong> (période post-absorptive)</li>
+                <li><strong>Pendant la nuit</strong> (maintien de la glycémie nocturne)</li>
+                <li><strong>Exercice physique intense et prolongé</strong></li>
+            </ul>
+        </div>
+
+        <div class="concept-card warning">
+            <h3>⚠️ Les 3 éléments indispensables</h3>
+            <p>Pour que la néoglucogenèse fonctionne, il faut :</p>
+            <ol>
+                <li><strong>Des précurseurs glucoformateurs</strong> (lactate, alanine, glycérol)</li>
+                <li><strong>De l'énergie</strong> (ATP et GTP)</li>
+                <li><strong>Des équivalents réduits</strong> (NADH,H⁺)</li>
+            </ol>
+        </div>
+
+        <!-- SECTION 2 : VUE D'ENSEMBLE -->
+        <h2 class="section-title">🔄 2. Vue d'ensemble : 11 réactions totales</h2>
+
+        <div class="concept-card process">
+            <h3>🔄 Structure générale</h3>
+            <p>La néoglucogenèse comprend :</p>
+            <ul>
+                <li><strong>7 réactions réversibles</strong> de la glycolyse (utilisées dans le sens inverse)</li>
+                <li><strong>+ 4 réactions de contournement</strong> (pour contourner les 3 étapes irréversibles de la glycolyse)</li>
+            </ul>
+        </div>
+
+        <div class="concept-card example">
+            <h3>💡 Pourquoi 4 réactions pour 3 étapes irréversibles ?</h3>
+            <p>Parce que la première étape irréversible (pyruvate → PEP) nécessite <strong>2 réactions</strong> pour être contournée :</p>
+            <ul>
+                <li>Réaction 1 : pyruvate → oxaloacétate</li>
+                <li>Réaction 2 : oxaloacétate → PEP</li>
+            </ul>
+        </div>
+
+        <h3>Tableau comparatif : glycolyse vs néoglucogenèse</h3>
+        <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Glycolyse</th>
+                        <th>Néoglucogenèse</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Direction</strong></td>
+                        <td>Glucose → Pyruvate</td>
+                        <td>Pyruvate → Glucose</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lieu principal</strong></td>
+                        <td>Tous les tissus</td>
+                        <td>Foie (90%)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bilan énergétique</strong></td>
+                        <td>Produit 2 ATP nets</td>
+                        <td>Consomme 4 ATP + 2 GTP</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Réactions totales</strong></td>
+                        <td>10 réactions</td>
+                        <td>11 réactions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3 étapes irréversibles</strong></td>
+                        <td>GK, PFK1, PK</td>
+                        <td>Contournées par 4 réactions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rôle</strong></td>
+                        <td>Produire énergie</td>
+                        <td>Maintenir glycémie</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="concept-card warning">
+            <h3>⚠️ Les 3 étapes irréversibles de la glycolyse à contourner</h3>
+            <ol>
+                <li><strong>Glucokinase/Hexokinase :</strong> glucose → glucose-6-P</li>
+                <li><strong>PFK1 (Phosphofructokinase-1) :</strong> fructose-6-P → fructose-1,6-BP</li>
+                <li><strong>Pyruvate Kinase :</strong> PEP → pyruvate</li>
+            </ol>
+        </div>
+
+        <!-- SECTION 3 : LES 4 CONTOURNEMENTS -->
+        <h2 class="section-title">🔴 3. Les 4 réactions de contournement (cœur du cours)</h2>
+
+        <h3>📊 Tableau récapitulatif des 4 enzymes clés</h3>
+        <div style="overflow-x: auto;">
+            <table>
+                <thead class="info">
+                    <tr>
+                        <th>Contournement</th>
+                        <th>Réaction</th>
+                        <th>Enzyme</th>
+                        <th>Cofacteur</th>
+                        <th>Lieu</th>
+                        <th>Coût énergétique</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1</strong></td>
+                        <td>Pyruvate → Oxaloacétate</td>
+                        <td>Pyruvate carboxylase</td>
+                        <td><strong>ATP + Biotine + CO₂</strong></td>
+                        <td>Mitochondrie</td>
+                        <td>1 ATP</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2</strong></td>
+                        <td>Oxaloacétate → PEP</td>
+                        <td>PEPCK</td>
+                        <td><strong>GTP</strong></td>
+                        <td>Cytosol</td>
+                        <td>1 GTP</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3</strong></td>
+                        <td>Fructose-1,6-BP → Fructose-6-P</td>
+                        <td>Fructose-1,6-bisphosphatase</td>
+                        <td>H₂O (hydrolyse)</td>
+                        <td>Cytosol</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4</strong></td>
+                        <td>Glucose-6-P → Glucose</td>
+                        <td>Glucose-6-phosphatase</td>
+                        <td>H₂O (hydrolyse)</td>
+                        <td>RE (foie/rein)</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- CONTOURNEMENT 1 -->
+        <div class="concept-card error">
+            <h3>🔴 Contournement 1 : pyruvate → oxaloacétate</h3>
+            <p><strong>Enzyme :</strong> pyruvate carboxylase<br>
+            <strong>Cofacteurs :</strong> ATP + CO₂ + H₂O + biotine<br>
+            <strong>Lieu :</strong> matrice mitochondriale</p>
+            
+            <div class="reaction">
+                Pyruvate + CO₂ + ATP + H₂O → Oxaloacétate + ADP + P<sub>i</sub> + 2H⁺
+            </div>
+
+            <p><strong>Points clés :</strong></p>
+            <ul>
+                <li>✅ Le pyruvate passe du cytosol à la mitochondrie</li>
+                <li>✅ Cette réaction <strong>consomme 1 ATP</strong></li>
+                <li>✅ Elle ajoute un CO₂ au pyruvate (carboxylation)</li>
+                <li>✅ La biotine est indispensable (cofacteur prothétique)</li>
+            </ul>
+
+            <p><strong>⚠️ PROBLÈME MAJEUR :</strong> l'oxaloacétate (OA) <strong>ne peut PAS traverser</strong> la membrane mitochondriale interne → il faut des stratégies de sortie (voir section navettes)</p>
+        </div>
+
+        <!-- CONTOURNEMENT 2 -->
+        <div class="concept-card error">
+            <h3>🔴 Contournement 2 : oxaloacétate → PEP</h3>
+            <p><strong>Enzyme :</strong> PEPCK (Phosphoénolpyruvate carboxykinase)<br>
+            <strong>Cofacteurs :</strong> GTP<br>
+            <strong>Lieu :</strong> cytosol (après sortie de la mitochondrie)</p>
+            
+            <div class="reaction">
+                Oxaloacétate + GTP → PEP + GDP + CO₂
+            </div>
+
+            <p><strong>Mécanisme :</strong></p>
+            <p>Cette réaction réalise <strong>simultanément</strong> :</p>
+            <ol>
+                <li><strong>Décarboxylation :</strong> perte du CO₂ ajouté par la pyruvate carboxylase</li>
+                <li><strong>Phosphorylation :</strong> transfert du phosphate du GTP sur le C2</li>
+            </ol>
+
+            <p><strong>Points clés :</strong></p>
+            <ul>
+                <li>✅ Utilise du <strong>GTP</strong> (pas ATP !) → piège fréquent</li>
+                <li>✅ Libère le CO₂ ajouté lors du contournement 1</li>
+                <li>✅ Cette réaction <strong>consomme 1 GTP</strong></li>
+                <li>✅ Se fait dans le cytosol (après sortie de l'OA de la mitochondrie)</li>
+            </ul>
+
+            <p><strong>⚠️ Notion importante :</strong> cette réaction fait aussi partie des réactions <strong>anaplérotiques</strong> du cycle de Krebs (réactions qui réapprovisionnent le cycle).</p>
+        </div>
+
+        <!-- LE PROBLÈME DES NAVETTES -->
+        <div class="concept-card warning">
+            <h3>🟡 Le problème des navettes (point très difficile)</h3>
+            
+            <p><strong>Pourquoi c'est compliqué ?</strong></p>
+            <p>L'oxaloacétate produit dans la mitochondrie <strong>NE PEUT PAS</strong> traverser la membrane mitochondriale interne. Or, la PEPCK qui le transforme en PEP est <strong>dans le cytosol</strong>.</p>
+            
+            <p><strong>Solution :</strong> on doit transformer l'OA en une molécule capable de sortir, puis le reconstituer dans le cytosol.</p>
+
+            <h4>Navette 1 : la navette MALATE</h4>
+            
+            <p><strong>Étape 1 - dans la mitochondrie :</strong></p>
+            <div class="reaction">
+                Oxaloacétate + NADH,H⁺ → Malate + NAD⁺
+            </div>
+            <p><em>Enzyme : malate déshydrogénase mitochondriale</em></p>
+
+            <p><strong>Étape 2 - le malate sort de la mitochondrie</strong><br>
+            Le malate traverse librement la membrane via un transporteur</p>
+
+            <p><strong>Étape 3 - dans le cytosol :</strong></p>
+            <div class="reaction">
+                Malate + NAD⁺ → Oxaloacétate + NADH,H⁺
+            </div>
+            <p><em>Enzyme : malate déshydrogénase cytosolique</em></p>
+
+            <p><strong>Bilan :</strong> l'OA est sorti sous forme de malate, puis reconstitué dans le cytosol.</p>
+
+            <h4>Navette 2 : la navette ASPARTATE</h4>
+            
+            <p><strong>Étape 1 - dans la mitochondrie :</strong></p>
+            <div class="reaction">
+                Oxaloacétate + Glutamate → Aspartate + α-cétoglutarate
+            </div>
+            <p><em>Enzyme : ASAT (Aspartate aminotransférase) mitochondriale</em></p>
+
+            <p><strong>Étape 2 - l'aspartate sort de la mitochondrie</strong><br>
+            Via le transporteur Glutamate/Aspartate</p>
+
+            <p><strong>Étape 3 - dans le cytosol :</strong></p>
+            <div class="reaction">
+                Aspartate + α-cétoglutarate → Oxaloacétate + Glutamate
+            </div>
+            <p><em>Enzyme : ASAT cytosolique</em></p>
+
+            <p><strong>Bilan :</strong> l'OA est sorti sous forme d'aspartate, puis reconstitué dans le cytosol.</p>
+
+            <p><strong>⚠️ Pourquoi deux navettes ?</strong> Les deux coexistent et permettent de réguler finement les équilibres NADH/NAD⁺ entre compartiments.</p>
+        </div>
+
+        <!-- CONTOURNEMENT 3 -->
+        <div class="concept-card error">
+            <h3>🔴 Contournement 3 : fructose-1,6-BP → fructose-6-P</h3>
+            <p><strong>Enzyme :</strong> fructose-1,6-bisphosphatase (FR-1,6-BPase)<br>
+            <strong>Cofacteur :</strong> H₂O (simple hydrolyse)<br>
+            <strong>Lieu :</strong> cytosol</p>
+            
+            <div class="reaction">
+                Fructose-1,6-bisphosphate + H₂O → Fructose-6-phosphate + P<sub>i</sub>
+            </div>
+
+            <p><strong>Mécanisme :</strong></p>
+            <p>C'est une <strong>simple hydrolyse</strong> : l'enzyme enlève le phosphate en position 1 du fructose-1,6-BP.</p>
+
+            <p><strong>Points clés :</strong></p>
+            <ul>
+                <li>✅ Réaction très simple comparée aux deux premières</li>
+                <li>✅ <strong>Pas de coût énergétique</strong> (hydrolyse)</li>
+                <li>✅ Libère un phosphate inorganique (P<sub>i</sub>)</li>
+                <li>✅ C'est l'inverse de la réaction catalysée par PFK1 dans la glycolyse</li>
+            </ul>
+
+            <p><strong>⚠️ Point crucial pour la régulation :</strong> cette enzyme est le <strong>point de contrôle majeur</strong> de la néoglucogenèse, régulée par le fructose-2,6-bisphosphate (voir section régulation).</p>
+        </div>
+
+        <!-- CONTOURNEMENT 4 -->
+        <div class="concept-card error">
+            <h3>🔴 Contournement 4 : glucose-6-P → glucose</h3>
+            <p><strong>Enzyme :</strong> glucose-6-phosphatase (G-6-Pase)<br>
+            <strong>Cofacteur :</strong> H₂O (simple hydrolyse)<br>
+            <strong>Lieu :</strong> membrane du réticulum endoplasmique (foie et rein UNIQUEMENT)</p>
+            
+            <div class="reaction">
+                Glucose-6-phosphate + H₂O → Glucose + P<sub>i</sub>
+            </div>
+
+            <p><strong>Mécanisme :</strong></p>
+            <p>Le glucose-6-phosphate entre dans le réticulum endoplasmique, y est hydrolysé, puis le glucose et le P<sub>i</sub> ressortent dans le cytosol avant d'être exportés par GLUT2 vers la circulation sanguine.</p>
+
+            <p><strong>Points clés :</strong></p>
+            <ul>
+                <li>✅ <strong>Simple hydrolyse</strong> (pas de coût énergétique)</li>
+                <li>✅ Enzyme présente <strong>UNIQUEMENT dans le foie et le rein</strong> → c'est pourquoi seuls ces organes peuvent libérer du glucose dans le sang</li>
+                <li>✅ Localisée dans la <strong>membrane du RE</strong></li>
+                <li>✅ Le glucose produit sort par GLUT2 vers le sang</li>
+            </ul>
+
+            <p><strong>⚠️ PIÈGE MAJEUR :</strong> le muscle n'a pas cette enzyme → il ne peut PAS faire de néoglucogenèse et ne peut PAS libérer du glucose dans le sang (même à partir de son glycogène).</p>
+        </div>
+
+        <!-- SECTION 4 : BILAN ÉNERGÉTIQUE -->
+        <h2 class="section-title">🔢 4. Bilan énergétique complet</h2>
+
+        <div class="concept-card process">
+            <h3>🔄 Pour synthétiser 1 glucose à partir de 2 pyruvates</h3>
+            
+            <p><strong>Contournement 1 (× 2 car 2 pyruvates) :</strong></p>
+            <p>Pyruvate → Oxaloacétate : <strong>2 ATP</strong></p>
+
+            <p><strong>Contournement 2 (× 2) :</strong></p>
+            <p>Oxaloacétate → PEP : <strong>2 GTP</strong></p>
+
+            <p><strong>Réaction GAP → 1,3-BPG (× 2) :</strong></p>
+            <p>Besoin de <strong>2 NADH,H⁺</strong> (réaction réversible de la glycolyse)</p>
+
+            <p><strong>Contournements 3 et 4 :</strong></p>
+            <p>Pas de coût (hydrolyses)</p>
+        </div>
+
+        <div class="concept-card definition">
+            <h3>📊 Bilan total</h3>
+            <div class="formula">
+                2 Pyruvates + 4 ATP + 2 GTP + 2 NADH,H⁺ + 2 H₂O → 1 Glucose + 4 ADP + 2 GDP + 6 P<sub>i</sub> + 2 NAD⁺
+            </div>
+            <p><strong>Coût énergétique :</strong> 4 ATP + 2 GTP + 2 NADH,H⁺</p>
+            <p><strong>⚠️ Point crucial :</strong> la néoglucogenèse <strong>CONSOMME</strong> de l'énergie (elle ne produit pas d'ATP). C'est une voie <strong>endergonique</strong>.</p>
+        </div>
+
+        <h3>Comparaison avec la glycolyse</h3>
+        <div style="overflow-x: auto;">
+            <table>
+                <thead class="info">
+                    <tr>
+                        <th></th>
+                        <th>Glycolyse</th>
+                        <th>Néoglucogenèse</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Bilan ATP</strong></td>
+                        <td>+2 ATP produits</td>
+                        <td>-4 ATP consommés</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bilan GTP</strong></td>
+                        <td>0</td>
+                        <td>-2 GTP consommés</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bilan NADH</strong></td>
+                        <td>+2 NADH produits</td>
+                        <td>-2 NADH consommés</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sens thermodynamique</strong></td>
+                        <td>Spontané (exergonique)</td>
+                        <td>Non spontané (endergonique)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 5 : PRÉCURSEURS GLUCOFORMATEURS -->
+        <h2 class="section-title">🔄 5. Les précurseurs glucoformateurs</h2>
+
+        <div class="concept-card definition">
+            <h3>📖 Quels substrats peuvent donner du glucose ?</h3>
+        </div>
+
+        <h3>✅ Glucoformateurs</h3>
+
+        <div class="concept-card process">
+            <h4>1. Le LACTATE</h4>
+            <ul>
+                <li>Produit par la glycolyse anaérobie (muscles, globules rouges)</li>
+                <li><strong>Point d'entrée :</strong> transformé en <strong>pyruvate</strong> par la lactate déshydrogénase</li>
+                <li>Cycle de Cori (voir section suivante)</li>
+            </ul>
+        </div>
+
+        <div class="concept-card process">
+            <h4>2. L'ALANINE</h4>
+            <ul>
+                <li>Acide aminé provenant du catabolisme protéique musculaire</li>
+                <li><strong>Point d'entrée :</strong> transformée en <strong>pyruvate</strong> par transamination (ALAT)</li>
+                <li>Cycle de l'alanine (voir section suivante)</li>
+            </ul>
+        </div>
+
+        <div class="concept-card process">
+            <h4>3. Le GLYCÉROL</h4>
+            <ul>
+                <li>Provient de la lipolyse des triglycérides (tissu adipeux)</li>
+                <li><strong>Point d'entrée :</strong> transformé en <strong>DHAP</strong> (pas pyruvate !)</li>
+                <li>⚠️ Le glycérol n'entre PAS par le pyruvate</li>
+            </ul>
+
+            <p><strong>Réaction du glycérol :</strong></p>
+            <div class="reaction">
+                Glycérol → Glycérol-3-phosphate → DHAP
+            </div>
+
+            <!-- Encart sur les NON GLUCOFORMATEURS -->
+            <div class="concept-card error" style="margin-top: 20px;">
+                <h4>❌ Les acides gras ne sont PAS glucoformateurs</h4>
+                <p><strong>Les ACIDES GRAS :</strong></p>
+                <ul>
+                    <li>❌ <strong>NE PEUVENT PAS</strong> donner du glucose chez l'homme</li>
+                    <li>⚠️ <strong>PIÈGE TRÈS FRÉQUENT À L'EXAMEN</strong></li>
+                </ul>
+                
+                <p><strong>Pourquoi ?</strong></p>
+                <ul>
+                    <li>Les acides gras donnent de l'acétyl-CoA</li>
+                    <li>L'acétyl-CoA entre dans le cycle de Krebs</li>
+                    <li>Mais le bilan du cycle de Krebs est : 2 CO₂ perdus pour 1 acétyl-CoA entré</li>
+                    <li>→ Impossible de refaire du glucose</li>
+                </ul>
+
+                <p><strong>Exception :</strong> les acides gras à nombre <strong>impair</strong> de carbones donnent 1 propionyl-CoA qui peut être glucoformateur (mais très rare).</p>
+            </div>
+        </div>
+
+        <!-- SECTION 6 : LES CYCLES MÉTABOLIQUES -->
+        <h2 class="section-title">🔄 6. Les cycles métaboliques</h2>
+
+        <div class="concept-card process">
+            <h3>📍 Le Cycle de CORI</h3>
+            
+            <p><strong>Définition :</strong> recyclage du lactate musculaire en glucose hépatique.</p>
+            
+            <p><strong>Situation :</strong> exercice musculaire intense en conditions anaérobies</p>
+
+            <p><strong>Schéma du cycle :</strong></p>
+            <div class="formula" style="text-align: left; font-family: monospace; line-height: 1.8;">
+MUSCLE (anaérobie)<br>
+Glucose → Glycolyse → Pyruvate → Lactate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(circulation sanguine)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOIE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lactate → Pyruvate → Néoglucogenèse → Glucose<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(circulation sanguine)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MUSCLE
+            </div>
+
+            <h4>Étapes détaillées :</h4>
+            
+            <p><strong>Dans le muscle :</strong></p>
+            <ol>
+                <li>Glycolyse anaérobie : glucose → pyruvate (+ 2 ATP)</li>
+                <li>Réduction : pyruvate + NADH,H⁺ → lactate + NAD⁺ (permet de régénérer NAD⁺)</li>
+                <li>Le lactate sort dans le sang</li>
+            </ol>
+
+            <p><strong>Dans le foie :</strong></p>
+            <ol start="4">
+                <li>Le lactate entre dans les hépatocytes</li>
+                <li>Oxydation : lactate + NAD⁺ → pyruvate + NADH,H⁺</li>
+                <li>Néoglucogenèse : pyruvate → glucose (coûte 4 ATP + 2 GTP)</li>
+                <li>Le glucose retourne dans le sang</li>
+            </ol>
+
+            <p><strong>Dans le muscle :</strong></p>
+            <ol start="8">
+                <li>Le glucose peut être réutilisé pour la glycolyse</li>
+            </ol>
+
+            <p><strong>Bilan énergétique du cycle complet :</strong></p>
+            <ul>
+                <li>Muscle : produit 2 ATP (glycolyse)</li>
+                <li>Foie : consomme 4 ATP + 2 GTP (néoglucogenèse)</li>
+                <li><strong>Bilan net :</strong> coûte 2 ATP + 2 GTP au total</li>
+            </ul>
+
+            <p><strong>⚠️ Points critiques :</strong></p>
+            <ul>
+                <li>La néoglucogenèse se fait dans le <strong>FOIE</strong> (pas le muscle)</li>
+                <li>Le cycle permet d'éviter l'acidose lactique</li>
+                <li>C'est un moyen de "déplacer" la dette énergétique du muscle vers le foie</li>
+            </ul>
+        </div>
+
+        <div class="concept-card process">
+            <h3>📍 Le Cycle de l'ALANINE</h3>
+            
+            <p><strong>Définition :</strong> recyclage de l'alanine musculaire en glucose hépatique + transport de l'azote.</p>
+            
+            <p><strong>Situation :</strong> jeûne prolongé, catabolisme protéique musculaire</p>
+
+            <p><strong>Schéma du cycle :</strong></p>
+            <div class="formula" style="text-align: left; font-family: monospace; line-height: 1.8;">
+MUSCLE<br>
+Protéines → Acides aminés → Pyruvate + NH₃<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ (ALAT + Glutamate)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alanine<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(circulation sanguine)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FOIE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alanine<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ (ALAT + α-cétoglutarate)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pyruvate + NH₃<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Néoglucogenèse → Glucose<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NH₃ → Urée (cycle de l'urée)
+            </div>
+
+            <p><strong>Points clés :</strong></p>
+            <ul>
+                <li>✅ L'alanine sert à <strong>transporter l'azote</strong> du muscle vers le foie</li>
+                <li>✅ Dans le foie, l'azote entre dans le cycle de l'urée</li>
+                <li>✅ Le pyruvate entre dans la néoglucogenèse</li>
+                <li>✅ Double rôle : maintien glycémie + détoxification de l'azote</li>
+            </ul>
+
+            <p><strong>Différence avec le cycle de Cori :</strong></p>
+            <ul>
+                <li>Cori : transport du lactate (carbone uniquement)</li>
+                <li>Alanine : transport du carbone + azote</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 7 : RÉGULATION -->
+        <h2 class="section-title">⚙️ 7. Régulation de la néoglucogenèse</h2>
+
+        <div class="concept-card warning">
+            <h3>⚠️ Pourquoi réguler ?</h3>
+            <p>La néoglucogenèse et la glycolyse sont des voies opposées. Si elles fonctionnaient en même temps, on aurait un <strong>cycle futile</strong> :</p>
+            <div class="formula" style="text-align: left;">
+Glucose → Pyruvate (glycolyse : produit 2 ATP)<br>
+Pyruvate → Glucose (néoglucogenèse : consomme 4 ATP + 2 GTP)<br>
+Bilan net : perte d'énergie sans aucun bénéfice
+            </div>
+            <p><strong>→ Il faut une régulation coordonnée pour que les deux voies ne fonctionnent JAMAIS simultanément.</strong></p>
+        </div>
+
+        <div class="concept-card process">
+            <h3>🎯 Point de contrôle majeur : PFK1 / FR-1,6-BPase</h3>
+            
+            <p>Ces deux enzymes catalysent des réactions opposées :</p>
+
+            <p><strong>PFK1 (glycolyse) :</strong></p>
+            <div class="reaction">
+                Fructose-6-P + ATP → Fructose-1,6-BP + ADP
+            </div>
+
+            <p><strong>FR-1,6-BPase (néoglucogenèse) :</strong></p>
+            <div class="reaction">
+                Fructose-1,6-BP + H₂O → Fructose-6-P + P<sub>i</sub>
+            </div>
+
+            <h4>Régulation par l'état énergétique cellulaire :</h4>
+        </div>
+
+        <div style="overflow-x: auto;">
+            <table>
+                <thead class="info">
+                    <tr>
+                        <th>Métabolite</th>
+                        <th>Signification</th>
+                        <th>Effet sur PFK1</th>
+                        <th>Effet sur FR-1,6-BPase</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>AMP ⬆</strong></td>
+                        <td>Faible charge énergétique</td>
+                        <td>✅ ACTIVE</td>
+                        <td>❌ INHIBE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ATP ⬆</strong></td>
+                        <td>Charge énergétique élevée</td>
+                        <td>❌ INHIBE</td>
+                        <td>✅ ACTIVE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Citrate ⬆</strong></td>
+                        <td>Charge énergétique élevée</td>
+                        <td>❌ INHIBE</td>
+                        <td>✅ ACTIVE</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="concept-card example">
+            <h4>💡 Logique :</h4>
+            <ul>
+                <li><strong>AMP élevé</strong> = cellule manque d'énergie → besoin de glycolyse (produire ATP) → inhiber néoglucogenèse</li>
+                <li><strong>ATP/Citrate élevés</strong> = cellule a assez d'énergie → pas besoin de glycolyse → favoriser néoglucogenèse (stocker énergie sous forme de glucose)</li>
+            </ul>
+        </div>
+
+        <div class="concept-card definition">
+            <h3>🔑 Le fructose-2,6-bisphosphate (Fr-2,6-BP)</h3>
+            
+            <p><strong>Le relais hormonal majeur</strong></p>
+
+            <p>Le Fr-2,6-BP est un <strong>régulateur allostérique puissant</strong> :</p>
+
+            <p><strong>Effets du Fr-2,6-BP :</strong></p>
+            <ul>
+                <li><strong>ACTIVE</strong> PFK1 (glycolyse) +++</li>
+                <li><strong>INHIBE</strong> FR-1,6-BPase (néoglucogenèse) +++</li>
+            </ul>
+
+            <p><strong>⚠️ Concentration élevée de Fr-2,6-BP = glycolyse ON, néoglucogenèse OFF</strong><br>
+            <strong>⚠️ Concentration faible de Fr-2,6-BP = glycolyse OFF, néoglucogenèse ON</strong></p>
+
+            <h4>Comment est régulé le Fr-2,6-BP ?</h4>
+            
+            <p>Il est produit et dégradé par une <strong>enzyme bifonctionnelle</strong> :</p>
+
+            <p><strong>PFK2/FBPase2 (enzyme bifonctionnelle) :</strong></p>
+            <ul>
+                <li><strong>Domaine kinase (PFK2) :</strong> fructose-6-P + ATP → fructose-2,6-BP + ADP</li>
+                <li><strong>Domaine phosphatase (FBPase2) :</strong> fructose-2,6-BP + H₂O → fructose-6-P + P<sub>i</sub></li>
+            </ul>
+
+            <p><strong>⚠️ DIFFÉRENCIER :</strong></p>
+            <ul>
+                <li><strong>PFK1</strong> = enzyme de la glycolyse (F-6-P → F-1,6-BP)</li>
+                <li><strong>PFK2</strong> = enzyme de régulation (F-6-P → F-2,6-BP)</li>
+            </ul>
+
+            <h4>Régulation de l'enzyme bifonctionnelle :</h4>
+        </div>
+
+        <div style="overflow-x: auto;">
+            <table>
+                <thead class="info">
+                    <tr>
+                        <th>État de phosphorylation</th>
+                        <th>Domaine actif</th>
+                        <th>[Fr-2,6-BP]</th>
+                        <th>Voie favorisée</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Déphosphorylée</strong></td>
+                        <td>Kinase (PFK2)</td>
+                        <td>⬆ Élevée</td>
+                        <td>Glycolyse</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phosphorylée</strong></td>
+                        <td>Phosphatase (FBPase2)</td>
+                        <td>⬇ Faible</td>
+                        <td>Néoglucogenèse</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="concept-card error">
+            <h3>🔴 Régulation hormonale : le GLUCAGON</h3>
+            
+            <p><strong>Situation :</strong> jeûne, hypoglycémie, entre les repas</p>
+            
+            <p><strong>Signal :</strong> glucagon sécrété par les cellules α du pancréas</p>
+            
+            <p><strong>Objectif :</strong> ⬆ glycémie → <strong>ACTIVER la néoglucogenèse</strong> et <strong>INHIBER la glycolyse</strong></p>
+
+            <p><strong>Mécanisme (action rapide - minutes) :</strong></p>
+            <ol>
+                <li>Glucagon se fixe sur son récepteur hépatique</li>
+                <li>Activation de l'adénylate cyclase</li>
+                <li>⬆ [AMPc] cytoplasmique</li>
+                <li>Activation de la <strong>Protéine Kinase A (PKA)</strong></li>
+                <li>PKA <strong>phosphoryle</strong> l'enzyme bifonctionnelle PFK2/FBPase2</li>
+                <li>Enzyme bifonctionnelle active son domaine <strong>phosphatase (FBPase2)</strong></li>
+                <li>Fructose-2,6-BP → Fructose-6-P</li>
+                <li>⬇ [Fr-2,6-BP]</li>
+            </ol>
+
+            <p><strong>Conséquences :</strong></p>
+            <ul>
+                <li>❌ PFK1 <strong>inhibée</strong> (pas de Fr-2,6-BP activateur) → glycolyse OFF</li>
+                <li>✅ FR-1,6-BPase <strong>activée</strong> (pas de Fr-2,6-BP inhibiteur) → néoglucogenèse ON</li>
+            </ul>
+
+            <p><strong>Schéma simplifié :</strong></p>
+            <div class="formula" style="text-align: left;">
+Glucagon → AMPc ⬆ → PKA active → Phosphorylation enzyme bifonctionnelle<br>
+→ Domaine phosphatase actif → Fr-2,6-BP ⬇<br>
+→ Glycolyse OFF / Néoglucogenèse ON
+            </div>
+        </div>
+
+        <div class="concept-card definition">
+            <h3>🟢 Régulation hormonale : l'INSULINE</h3>
+            
+            <p><strong>Situation :</strong> repas, hyperglycémie, état nourri</p>
+            
+            <p><strong>Signal :</strong> insuline sécrétée par les cellules β du pancréas</p>
+            
+            <p><strong>Objectif :</strong> ⬇ glycémie → <strong>INHIBER la néoglucogenèse</strong> et <strong>ACTIVER la glycolyse</strong></p>
+
+            <p><strong>Mécanisme (action rapide - minutes) :</strong></p>
+            <ol>
+                <li>Insuline se fixe sur son récepteur hépatique</li>
+                <li>Activation de la <strong>Protéine Phosphatase 2A (PP2A)</strong></li>
+                <li>PP2A <strong>déphosphoryle</strong> l'enzyme bifonctionnelle PFK2/FBPase2</li>
+                <li>Enzyme bifonctionnelle active son domaine <strong>kinase (PFK2)</strong></li>
+                <li>Fructose-6-P + ATP → Fructose-2,6-BP + ADP</li>
+                <li>⬆ [Fr-2,6-BP]</li>
+            </ol>
+
+            <p><strong>Conséquences :</strong></p>
+            <ul>
+                <li>✅ PFK1 <strong>activée</strong> (Fr-2,6-BP activateur présent) → glycolyse ON</li>
+                <li>❌ FR-1,6-BPase <strong>inhibée</strong> (Fr-2,6-BP inhibiteur présent) → néoglucogenèse OFF</li>
+            </ul>
+
+            <p><strong>Schéma simplifié :</strong></p>
+            <div class="formula" style="text-align: left;">
+Insuline → PP2A active → Déphosphorylation enzyme bifonctionnelle<br>
+→ Domaine kinase actif → Fr-2,6-BP ⬆<br>
+→ Glycolyse ON / Néoglucogenèse OFF
+            </div>
+        </div>
+
+        <div class="concept-card warning">
+            <h3>🟡 Régulation hormonale : le CORTISOL</h3>
+            
+            <p><strong>Situation :</strong> jeûne prolongé, fin de nuit, stress chronique</p>
+            
+            <p><strong>Signal :</strong> cortisol (glucocorticoïde) sécrété par les glandes surrénales</p>
+            
+            <p><strong>Objectif :</strong> <strong>ACTIVER la néoglucogenèse</strong> sur le long terme</p>
+
+            <p><strong>⚠️ DIFFÉRENCE MAJEURE avec le glucagon :</strong></p>
+            <ul>
+                <li><strong>Glucagon :</strong> action rapide (minutes), modifie l'activité des enzymes existantes</li>
+                <li><strong>Cortisol :</strong> action lente (heures), augmente la quantité d'enzymes produites</li>
+            </ul>
+
+            <p><strong>Mécanisme (action lente - heures) :</strong></p>
+            <ol>
+                <li>Cortisol traverse la membrane cellulaire (hormone stéroïde lipophile)</li>
+                <li><strong>Activation de la transcription</strong> des gènes codant pour :
+                    <ul>
+                        <li>Pyruvate carboxylase</li>
+                        <li>PEPCK</li>
+                        <li>Fructose-1,6-bisphosphatase</li>
+                        <li>Glucose-6-phosphatase</li>
+                    </ul>
+                </li>
+                <li>⬆ Capacité de néoglucogenèse</li>
+            </ol>
+
+            <p><strong>Contexte physiologique :</strong></p>
+            <p>Le cortisol est produit surtout en <strong>fin de nuit</strong> :</p>
+            <ul>
+                <li>Prépare le corps au réveil après plusieurs heures de jeûne nocturne</li>
+                <li>Assure le maintien de la glycémie au réveil</li>
+                <li>Action prolongée (plusieurs heures)</li>
+            </ul>
+        </div>
+
+        <h3>📊 Tableau récapitulatif de la régulation hormonale</h3>
+        <div style="overflow-x: auto;">
+            <table>
+                <thead class="info">
+                    <tr>
+                        <th>Hormone</th>
+                        <th>Situation</th>
+                        <th>Vitesse d'action</th>
+                        <th>Mécanisme</th>
+                        <th>Effet sur Fr-2,6-BP</th>
+                        <th>Effet sur NGG</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Glucagon</strong></td>
+                        <td>Jeûne</td>
+                        <td>Rapide (min)</td>
+                        <td>Phosphorylation (PKA)</td>
+                        <td>⬇ Diminue</td>
+                        <td>✅ ACTIVE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Insuline</strong></td>
+                        <td>Repas</td>
+                        <td>Rapide (min)</td>
+                        <td>Déphosphorylation (PP2A)</td>
+                        <td>⬆ Augmente</td>
+                        <td>❌ INHIBE</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cortisol</strong></td>
+                        <td>Jeûne prolongé</td>
+                        <td>Lente (heures)</td>
+                        <td>Transcription génique</td>
+                        <td>Pas d'effet direct</td>
+                        <td>✅ ACTIVE</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="concept-card example">
+            <h3>🎯 Bilan de la régulation coordonnée</h3>
+            
+            <p><strong>En période de jeûne / hypoglycémie :</strong></p>
+            <ul>
+                <li>⬆ Glucagon + Cortisol</li>
+                <li>⬇ Insuline</li>
+                <li>→ <strong>Néoglucogenèse ON</strong> / Glycolyse OFF</li>
+                <li>→ Maintien de la glycémie pour les tissus glucose-dépendants</li>
+            </ul>
+
+            <p><strong>En période post-prandiale / hyperglycémie :</strong></p>
+            <ul>
+                <li>⬆ Insuline</li>
+                <li>⬇ Glucagon + Cortisol</li>
+                <li>→ <strong>Glycolyse ON</strong> / Néoglucogenèse OFF</li>
+                <li>→ Utilisation et stockage du glucose (glycogène, lipides)</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 8 : POINTS CLÉS À RETENIR -->
+        <div class="key-points-final">
+            <h2>🎯 Points clés à retenir</h2>
+
+            <h3>1. Généralités</h3>
+            <ul>
+                <li>✅ Néoglucogenèse = synthèse de GLUCOSE (pas glycogène, pas pyruvate)</li>
+                <li>✅ Organes : foie (90%), rein (9%), intestin (1%)</li>
+                <li>✅ Muscle ne peut PAS faire de NGG (pas de G-6-Pase)</li>
+                <li>✅ Rôle vital : maintenir glycémie pour cerveau, GR</li>
+            </ul>
+
+            <h3>2. Structure de la voie</h3>
+            <ul>
+                <li>✅ 11 réactions totales = 7 réversibles (glycolyse inversée) + 4 contournements</li>
+                <li>✅ Consomme de l'énergie (endergonique) : 4 ATP + 2 GTP + 2 NADH,H⁺ pour 1 glucose</li>
+            </ul>
+
+            <h3>3. Les 4 contournements - à connaître PAR CŒUR</h3>
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Contournement</th>
+                            <th>Enzyme</th>
+                            <th>Cofacteur</th>
+                            <th>Lieu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Pyruvate carboxylase</td>
+                            <td><strong>ATP</strong> + biotine + CO₂</td>
+                            <td>Mitochondrie</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>PEPCK</td>
+                            <td><strong>GTP</strong></td>
+                            <td>Cytosol</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Fructose-1,6-BPase</td>
+                            <td>H₂O</td>
+                            <td>Cytosol</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Glucose-6-Pase</td>
+                            <td>H₂O</td>
+                            <td>RE (foie/rein)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><strong>⚠️ Pièges :</strong> PC utilise ATP (pas GTP) / PEPCK utilise GTP (pas ATP)</p>
+
+            <h3>4. Les navettes mitochondriales</h3>
+            <ul>
+                <li>✅ L'oxaloacétate ne peut PAS sortir de la mitochondrie</li>
+                <li>✅ Navette malate : OA → Malate (sort) → OA</li>
+                <li>✅ Navette aspartate : OA → Aspartate (sort) → OA</li>
+            </ul>
+
+            <h3>5. Précurseurs glucoformateurs</h3>
+            <p><strong>✅ GLUCOFORMATEURS :</strong></p>
+            <ul>
+                <li>Lactate → Pyruvate</li>
+                <li>Alanine → Pyruvate</li>
+                <li>Glycérol → <strong>DHAP</strong> (pas pyruvate !)</li>
+            </ul>
+            <p><strong>❌ NON GLUCOFORMATEURS :</strong></p>
+            <ul>
+                <li>Acides gras (sauf nombre impair de C, très rare)</li>
+            </ul>
+
+            <h3>6. Cycles métaboliques</h3>
+            <ul>
+                <li>✅ <strong>Cycle de Cori :</strong> muscle (lactate) → foie (néoglucogenèse) → muscle (glucose)</li>
+                <li>✅ <strong>Cycle de l'alanine :</strong> muscle (alanine + NH₃) → foie (NGG + urée) → muscle (glucose)</li>
+                <li>✅ NGG se fait dans le FOIE (pas le muscle) dans ces cycles</li>
+            </ul>
+
+            <h3>7. Régulation - le cœur du cours</h3>
+            <p><strong>Point de contrôle majeur : PFK1 / FR-1,6-BPase</strong></p>
+
+            <p><strong>Régulation métabolique :</strong></p>
+            <ul>
+                <li>AMP ⬆ → glycolyse ON / NGG OFF</li>
+                <li>ATP + Citrate ⬆ → glycolyse OFF / NGG ON</li>
+            </ul>
+
+            <p><strong>Le Fr-2,6-BP (relais hormonal) :</strong></p>
+            <ul>
+                <li>Fr-2,6-BP ⬆ → glycolyse ON / NGG OFF</li>
+                <li>Fr-2,6-BP ⬇ → glycolyse OFF / NGG ON</li>
+            </ul>
+
+            <p><strong>Régulation hormonale :</strong></p>
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hormone</th>
+                            <th>Vitesse</th>
+                            <th>Mécanisme</th>
+                            <th>Fr-2,6-BP</th>
+                            <th>NGG</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Glucagon</strong></td>
+                            <td>Rapide</td>
+                            <td>Phosphorylation (PKA)</td>
+                            <td>⬇</td>
+                            <td>✅ ON</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Insuline</strong></td>
+                            <td>Rapide</td>
+                            <td>Déphosphorylation (PP2A)</td>
+                            <td>⬆</td>
+                            <td>❌ OFF</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cortisol</strong></td>
+                            <td>Lente</td>
+                            <td>Transcription génique</td>
+                            <td>-</td>
+                            <td>✅ ON</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p><strong>⚠️ Différencier :</strong></p>
+            <ul>
+                <li><strong>PFK1</strong> = enzyme de la glycolyse</li>
+                <li><strong>PFK2</strong> = enzyme de régulation (produit Fr-2,6-BP)</li>
+            </ul>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p><strong>MEDIBOX</strong> | Préparation 1ère année MMOPK | UE5 Biochimie</p>
+            <p>© 2025-2026 | Document pédagogique • Tous droits réservés</p>
+        </div>
+    </div>
+</body>
+</html>
