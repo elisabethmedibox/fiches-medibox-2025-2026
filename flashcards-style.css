@@ -214,12 +214,16 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .header h2 {
     color: var(--color-primary);
     font-size: 20px;
     font-weight: 700;
+    flex: 1;
+    min-width: 200px;
 }
 
 .card-counter {
@@ -232,6 +236,33 @@ body {
     color: var(--color-coral);
     font-size: 18px;
     font-weight: 700;
+}
+
+/* Bouton Arrêter la session */
+.stop-session-btn {
+    background: var(--color-red);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: var(--shadow-sm);
+}
+
+.stop-session-btn:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.stop-session-btn .icon {
+    font-size: 14px;
 }
 
 /* Barre de progression */
@@ -655,8 +686,17 @@ body {
 
     .header {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
         text-align: center;
+    }
+    
+    .header h2 {
+        font-size: 18px;
+    }
+    
+    .stop-session-btn {
+        width: 100%;
+        justify-content: center;
     }
 }
 
