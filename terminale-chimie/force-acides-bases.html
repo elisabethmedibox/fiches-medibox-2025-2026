@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche Medibox - Force des Acides et Bases</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Les bases de la chimie</h1>
+            <h2 style="color: #ff6b7a; margin-top: 10px;">Force des Acides et Bases</h2>
+            <div class="meta">
+                <span>📚 Chimie</span>
+                <span>⏱️ 45-60 min</span>
+                <span>⭐⭐⭐ Difficulté: Intermédiaire</span>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Objectifs obligatoires -->
+            <div class="objectifs">
+                <h2>🎯 Objectifs d'apprentissage</h2>
+                <ul>
+                    <li>Distinguer une réaction totale d'une réaction non totale (taux d'avancement)</li>
+                    <li>Différencier les acides/bases forts des acides/bases faibles</li>
+                    <li>Maîtriser la constante d'acidité K<sub>a</sub> et le pK<sub>a</sub></li>
+                    <li>Utiliser les diagrammes de prédominance et de distribution</li>
+                    <li>Connaître les principaux acides et bases forts/faibles</li>
+                </ul>
+            </div>
+            
+            <!-- Section I -->
+            <div class="section">
+                <h2>I. Rappel : Réaction totale vs Réaction non totale</h2>
+                
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Taux d'avancement</h3>
+                    <p>Pour savoir si une transformation chimique est totale ou non totale, on calcule le <strong>taux d'avancement τ</strong> :</p>
+                    <div class="formula">
+                        <p><strong>τ = x<sub>f</sub> / x<sub>max</sub></strong></p>
+                    </div>
+                    <p style="margin-top: 15px;"><strong>Avec :</strong></p>
+                    <ul>
+                        <li><strong>x<sub>f</sub></strong> : avancement final (valeur expérimentale réelle)</li>
+                        <li><strong>x<sub>max</sub></strong> : avancement maximal (valeur théorique basée sur le réactif limitant)</li>
+                    </ul>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+                    <table>
+                        <thead class="info">
+                            <tr>
+                                <th>Condition</th>
+                                <th>Type de réaction</th>
+                                <th>Symbole</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>τ = 1</strong><br>(x<sub>f</sub> = x<sub>max</sub>)</td>
+                                <td><span class="badge success">Réaction totale</span></td>
+                                <td style="font-size: 1.5em;">→</td>
+                            </tr>
+                            <tr>
+                                <td><strong>τ &lt; 1</strong><br>(x<sub>f</sub> &lt; x<sub>max</sub>)</td>
+                                <td><span class="badge warning">Réaction non totale</span></td>
+                                <td style="font-size: 1.5em;">⇌</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section II -->
+            <div class="section">
+                <h2>II. Acide fort</h2>
+                
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Définition</h3>
+                    <p>Un <strong>acide fort</strong> est un acide qui <strong>réagit totalement avec l'eau</strong>.</p>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h3>🔄 Équation de réaction</h3>
+                    <div class="reaction">
+                        <p><strong>AH + H<sub>2</sub>O → A<sup>-</sup> + H<sub>3</sub>O<sup>+</sup></strong></p>
+                    </div>
+                    <p style="margin-top: 15px;">La réaction est <strong>totale</strong> (flèche simple →)</p>
+                </div>
+
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>💡 Calcul du pH</h3>
+                    <p>Puisque l'acide a été <strong>entièrement consommé</strong>, la concentration de l'acide à l'état initial est égale à celle de H<sub>3</sub>O<sup>+</sup> à l'état final :</p>
+                    <div class="formula">
+                        <p><strong>pH = -log[AH]</strong></p>
+                    </div>
+                    <p style="margin-top: 10px;">où [AH] est la concentration initiale de l'acide</p>
+                </div>
+
+                <div class="info-box">
+                    <h4>⚗️ Exemples d'acides forts</h4>
+                    <ul>
+                        <li><strong>HCl</strong> (acide chlorhydrique) : HCl + H<sub>2</sub>O → Cl<sup>-</sup> + H<sub>3</sub>O<sup>+</sup></li>
+                        <li><strong>HNO<sub>3</sub></strong> (acide nitrique) : HNO<sub>3</sub> + H<sub>2</sub>O → NO<sub>3</sub><sup>-</sup> + H<sub>3</sub>O<sup>+</sup></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section III -->
+            <div class="section">
+                <h2>III. Base forte</h2>
+                
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Définition</h3>
+                    <p>Une <strong>base forte</strong> est une base qui <strong>réagit totalement avec l'eau</strong>.</p>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h3>🔄 Équation de réaction</h3>
+                    <div class="reaction">
+                        <p><strong>A<sup>-</sup> + H<sub>2</sub>O → AH + HO<sup>-</sup></strong></p>
+                    </div>
+                    <p style="margin-top: 15px;">La réaction est <strong>totale</strong> (flèche simple →)</p>
+                </div>
+
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>💡 Calcul du pH</h3>
+                    <p>On n'a pas directement [H<sub>3</sub>O<sup>+</sup>], mais on utilise le produit ionique de l'eau :</p>
+                    <div class="formula">
+                        <p><strong>K<sub>e</sub> = [HO<sup>-</sup>] × [H<sub>3</sub>O<sup>+</sup>]</strong></p>
+                    </div>
+                    <p style="margin-top: 15px;">Pour une base forte, puisque la réaction est totale, [A<sup>-</sup>]<sub>initial</sub> = [HO<sup>-</sup>]<sub>final</sub></p>
+                    <p style="margin-top: 10px;">On obtient la relation :</p>
+                    <div class="formula">
+                        <p><strong>pH = pK<sub>e</sub> + log[A<sup>-</sup>]</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section IV -->
+            <div class="section">
+                <h2>IV. Acide faible</h2>
+                
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Définition</h3>
+                    <p>Un <strong>acide faible</strong> est un acide qui <strong>réagit partiellement avec l'eau</strong>.</p>
+                    <p style="margin-top: 10px;">Il existe un <strong>équilibre chimique</strong> entre les réactifs et les produits.</p>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h3>🔄 Équation de réaction</h3>
+                    <div class="reaction">
+                        <p><strong>AH + H<sub>2</sub>O ⇌ A<sup>-</sup> + H<sub>3</sub>O<sup>+</sup></strong></p>
+                    </div>
+                    <p style="margin-top: 15px;">La réaction est <strong>non totale</strong> (double flèche ⇌)</p>
+                </div>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Constante d'acidité K<sub>a</sub></h3>
+                    <p>Comme pour l'autoprotolyse de l'eau, on définit une <strong>constante thermodynamique</strong> appelée <strong>constante d'acidité K<sub>a</sub></strong> :</p>
+                    <div class="formula">
+                        <p><strong>K<sub>a</sub> = ([A<sup>-</sup>]<sub>eq</sub> × [H<sub>3</sub>O<sup>+</sup>]<sub>eq</sub>) / [AH]<sub>eq</sub></strong></p>
+                    </div>
+                    <p style="margin-top: 15px;"><em>Note : K<sub>a</sub> est sans unité et les concentrations sont prises à l'équilibre (indice "eq")</em></p>
+                </div>
+
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Le pK<sub>a</sub></h3>
+                    <p>On définit le <strong>pK<sub>a</sub></strong> par analogie avec le pH :</p>
+                    <div class="formula">
+                        <p><strong>pK<sub>a</sub> = -log(K<sub>a</sub>)</strong></p>
+                    </div>
+                </div>
+
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>💡 Relation fondamentale pH - pK<sub>a</sub></h3>
+                    <p>En partant de l'expression de K<sub>a</sub> et en utilisant les propriétés des logarithmes :</p>
+                    <p style="margin-top: 10px;"><strong>Rappel mathématique :</strong></p>
+                    <ul>
+                        <li>log(A×B) = log(A) + log(B)</li>
+                        <li>log(A/B) = log(A) - log(B)</li>
+                        <li>log(1) = 0</li>
+                    </ul>
+                    
+                    <p style="margin-top: 15px;">On obtient :</p>
+                    <div class="formula">
+                        <p style="font-size: 1.2em; color: #1a365d;"><strong>pH = pK<sub>a</sub> + log([A<sup>-</sup>]/[AH])</strong></p>
+                    </div>
+                    <p style="margin-top: 15px;"><em>Cette formule est fondamentale pour l'étude des équilibres acido-basiques !</em></p>
+                </div>
+
+                <div class="info-box">
+                    <h4>⚗️ Exemples d'acides faibles</h4>
+                    <p><strong>Les acides carboxyliques</strong> sont des acides faibles.</p>
+                    <p style="margin-top: 10px;">Exemple : acide acétique (CH<sub>3</sub>COOH), acide formique (HCOOH), etc.</p>
+                </div>
+            </div>
+
+            <!-- Section V -->
+            <div class="section">
+                <h2>V. Base faible</h2>
+                
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Définition</h3>
+                    <p>Une <strong>base faible</strong> est une base qui <strong>réagit partiellement avec l'eau</strong>.</p>
+                </div>
+
+                <div class="info-box">
+                    <h4>⚗️ Exemples de bases faibles</h4>
+                    <p><strong>Les fonctions amines</strong> sont des bases faibles.</p>
+                    <p style="margin-top: 10px;">Exemple : NH<sub>3</sub> (ammoniac), amines organiques (RNH<sub>2</sub>), etc.</p>
+                </div>
+            </div>
+
+            <!-- Section VI -->
+            <div class="section">
+                <h2>VI. Diagramme de prédominance</h2>
+                
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Principe</h3>
+                    <p>Le diagramme de prédominance permet de déterminer quelle forme (acide AH ou base A<sup>-</sup>) <strong>prédomine</strong> en fonction du pH.</p>
+                    <p style="margin-top: 10px;">On utilise la relation : <strong>pH = pK<sub>a</sub> + log([A<sup>-</sup>]/[AH])</strong></p>
+                </div>
+
+                <div class="concept-card process" style="margin-bottom: 25px;">
+                    <h3>🔄 Analyse selon le pH</h3>
+                    
+                    <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 20px;">
+                        <table>
+                            <thead class="info">
+                                <tr>
+                                    <th>Condition</th>
+                                    <th>Relation pH/pK<sub>a</sub></th>
+                                    <th>Espèce prédominante</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>[AH] &gt; [A<sup>-</sup>]</td>
+                                    <td><strong>pH &lt; pK<sub>a</sub></strong></td>
+                                    <td><span class="badge danger">AH (forme acide)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>[AH] = [A<sup>-</sup>]</td>
+                                    <td><strong>pH = pK<sub>a</sub></strong></td>
+                                    <td><span class="badge warning">Aucune prédominance (50/50)</span></td>
+                                </tr>
+                                <tr>
+                                    <td>[A<sup>-</sup>] &gt; [AH]</td>
+                                    <td><strong>pH &gt; pK<sub>a</sub></strong></td>
+                                    <td><span class="badge success">A<sup>-</sup> (forme basique)</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p style="margin-top: 20px;"><strong>Explication :</strong></p>
+                    <ul>
+                        <li>Si [A<sup>-</sup>] &gt; [AH], alors log([A<sup>-</sup>]/[AH]) &gt; 0, donc <strong>pH &gt; pK<sub>a</sub></strong></li>
+                        <li>Si [A<sup>-</sup>] = [AH], alors log([A<sup>-</sup>]/[AH]) = log(1) = 0, donc <strong>pH = pK<sub>a</sub></strong></li>
+                        <li>Si [AH] &gt; [A<sup>-</sup>], alors log([A<sup>-</sup>]/[AH]) &lt; 0, donc <strong>pH &lt; pK<sub>a</sub></strong></li>
+                    </ul>
+                </div>
+
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>💡 Représentation du diagramme</h3>
+                    <p>On trace un axe de pH avec la valeur du pK<sub>a</sub> :</p>
+                    
+                    <div style="background: #f8fafc; padding: 30px; border-radius: 12px; margin: 20px 0; text-align: center;">
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 150px; padding: 15px; background: #fef2f2; border: 2px solid #ef4444; border-radius: 8px;">
+                                <strong style="color: #ef4444;">AH prédomine</strong>
+                                <p style="margin: 5px 0; font-size: 0.9em;">(forme acide)</p>
+                            </div>
+                            <div style="padding: 15px; background: #fff7ed; border: 3px solid #f59e0b; border-radius: 8px;">
+                                <strong style="color: #f59e0b; font-size: 1.2em;">pH = pK<sub>a</sub></strong>
+                                <p style="margin: 5px 0; font-size: 0.9em;">(50% / 50%)</p>
+                            </div>
+                            <div style="flex: 1; min-width: 150px; padding: 15px; background: #f0fdf4; border: 2px solid #10b981; border-radius: 8px;">
+                                <strong style="color: #10b981;">A<sup>-</sup> prédomine</strong>
+                                <p style="margin: 5px 0; font-size: 0.9em;">(forme basique)</p>
+                            </div>
+                        </div>
+                        <div style="margin-top: 20px; display: flex; align-items: center; justify-content: center;">
+                            <div style="height: 3px; width: 100%; background: linear-gradient(to right, #ef4444, #f59e0b, #10b981); border-radius: 2px;"></div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 0.9em; color: #64748b;">
+                            <span>← pH croissant →</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-card warning" style="margin-bottom: 25px;">
+                    <h3>⚠️ Cas des espèces amphotères</h3>
+                    <p>Pour une espèce amphotère (qui possède 2 pK<sub>a</sub>), le diagramme comporte <strong>deux valeurs de pK<sub>a</sub></strong> :</p>
+                    <ul style="margin-top: 10px;">
+                        <li><strong>À gauche (pH &lt; pK<sub>a1</sub>)</strong> : espèce la plus acide</li>
+                        <li><strong>Au centre (pK<sub>a1</sub> &lt; pH &lt; pK<sub>a2</sub>)</strong> : espèce amphotère (forme intermédiaire)</li>
+                        <li><strong>À droite (pH &gt; pK<sub>a2</sub>)</strong> : espèce la plus basique</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section VII -->
+            <div class="section">
+                <h2>VII. Diagramme de distribution</h2>
+                
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Principe</h3>
+                    <p>Le diagramme de distribution permet de visualiser le <strong>pourcentage de présence</strong> de chaque espèce (AH et A<sup>-</sup>) en fonction du pH.</p>
+                    <p style="margin-top: 10px;">Il permet également de déterminer la <strong>contribution</strong> de chaque espèce à la concentration totale.</p>
+                </div>
+
+                <div class="concept-card example" style="margin-bottom: 25px;">
+                    <h3>💡 Lecture du diagramme</h3>
+                    
+                    <div class="external-image">
+                        <img src="https://cdn.prod.website-files.com/673b1af971bcc8773411603c/68f89c98c7b56a76ac896225_Capture%20d%E2%80%99e%CC%81cran%202025-10-22%20a%CC%80%2010.57.31.png" alt="Diagramme de distribution - Courbes de AH et A- en fonction du pH">
+                        <span class="image-caption">Diagramme de distribution : pourcentage de AH (acide) et A<sup>-</sup> (base) en fonction du pH</span>
+                    </div>
+                    
+                    <div style="margin-top: 25px; padding: 15px; background: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 4px;">
+                        <p><strong>Lecture graphique :</strong></p>
+                        <ul style="margin-top: 10px;">
+                            <li>À <strong>pH faible</strong> : 100% de AH (courbe violette), 0% de A<sup>-</sup></li>
+                            <li>À l'<strong>intersection des deux courbes</strong> (50% / 50%) : <strong>pH = pK<sub>a</sub></strong> (ligne verte horizontale)</li>
+                            <li>Quand <strong>pH augmente</strong> : le % de A<sup>-</sup> (courbe orange) augmente, le % de AH diminue</li>
+                            <li>À <strong>pH élevé</strong> : 100% de A<sup>-</sup>, 0% de AH</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <h4>✅ Méthode pour trouver le pK<sub>a</sub> graphiquement</h4>
+                    <p>Sur un diagramme de distribution, on peut déterminer la valeur du pK<sub>a</sub> en lisant la valeur de pH à l'intersection des deux courbes (là où chaque espèce représente 50%).</p>
+                    <div class="formula" style="margin-top: 15px;">
+                        <p><strong>À l'intersection (50% / 50%) → pH = pK<sub>a</sub></strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section VIII -->
+            <div class="section">
+                <h2>VIII. Relations importantes : pK<sub>a</sub>, K<sub>a</sub> et force</h2>
+                
+                <div class="concept-card warning" style="margin-bottom: 25px;">
+                    <h3>⚠️ Points clés à retenir</h3>
+                    
+                    <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 20px;">
+                        <table>
+                            <thead class="warning">
+                                <tr>
+                                    <th>Si le pK<sub>a</sub> est...</th>
+                                    <th>Alors K<sub>a</sub> est...</th>
+                                    <th>L'acide AH est...</th>
+                                    <th>La base A<sup>-</sup> est...</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Élevé</strong> (grand)</td>
+                                    <td><span class="badge warning">Faible (petit)</span></td>
+                                    <td><span class="badge success">FAIBLE</span></td>
+                                    <td><span class="badge danger">FORTE</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Faible</strong> (petit)</td>
+                                    <td><span class="badge danger">Élevé (grand)</span></td>
+                                    <td><span class="badge danger">FORT</span></td>
+                                    <td><span class="badge success">FAIBLE</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="margin-top: 25px; padding: 20px; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-radius: 12px; border: 2px solid #ef4444;">
+                        <h4 style="color: #ef4444; margin-top: 0;">🔑 Règle d'or</h4>
+                        <p style="font-size: 1.1em;"><strong>Plus le pK<sub>a</sub> est élevé :</strong></p>
+                        <ul style="margin-top: 10px;">
+                            <li>→ Plus le K<sub>a</sub> est faible (car pK<sub>a</sub> = -log(K<sub>a</sub>))</li>
+                            <li>→ Plus l'acide est faible</li>
+                            <li>→ Plus la base conjuguée est forte</li>
+                        </ul>
+                        
+                        <p style="font-size: 1.1em; margin-top: 20px;"><strong>Inversement, plus le pK<sub>a</sub> est faible :</strong></p>
+                        <ul style="margin-top: 10px;">
+                            <li>→ Plus le K<sub>a</sub> est élevé</li>
+                            <li>→ Plus l'acide est fort</li>
+                            <li>→ Plus la base conjuguée est faible</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section IX -->
+            <div class="section">
+                <h2>IX. Récapitulatif : Acides et bases forts/faibles</h2>
+                
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+                    <table>
+                        <thead class="danger">
+                            <tr>
+                                <th colspan="2">ACIDES FORTS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>HCl</strong></td>
+                                <td>Acide chlorhydrique</td>
+                            </tr>
+                            <tr>
+                                <td><strong>HNO<sub>3</sub></strong></td>
+                                <td>Acide nitrique</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><em>Réaction totale avec l'eau (→)</em></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 20px;">
+                    <table>
+                        <thead class="success">
+                            <tr>
+                                <th colspan="2">ACIDES FAIBLES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Acides carboxyliques</strong></td>
+                                <td>R-COOH (acide acétique, formique, etc.)</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><em>Réaction partielle avec l'eau (⇌)</em></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 20px;">
+                    <table>
+                        <thead class="info">
+                            <tr>
+                                <th colspan="2">BASES FAIBLES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Fonctions amines</strong></td>
+                                <td>NH<sub>3</sub>, R-NH<sub>2</sub>, etc.</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><em>Réaction partielle avec l'eau (⇌)</em></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section X -->
+            <div class="section">
+                <h2>X. Solution tampon (notion)</h2>
+                
+                <div class="concept-card definition" style="margin-bottom: 25px;">
+                    <h3>📖 Définition</h3>
+                    <p>Une <strong>solution tampon</strong> est une solution dont <strong>le pH ne varie pas</strong> (ou varie très peu) lors de l'ajout d'un acide ou d'une base en petite quantité.</p>
+                    <p style="margin-top: 15px;"><em>Cette notion sera développée plus en détail dans un chapitre ultérieur.</em></p>
+                </div>
+
+                <div class="info-box">
+                    <h4>ℹ️ Composition d'une solution tampon</h4>
+                    <p>Une solution tampon contient généralement :</p>
+                    <ul style="margin-top: 10px;">
+                        <li>Un acide faible (AH) et sa base conjuguée (A<sup>-</sup>)</li>
+                        <li>Ou une base faible et son acide conjugué</li>
+                    </ul>
+                    <p style="margin-top: 10px;">Le pH de la solution tampon est proche du pK<sub>a</sub> du couple acide/base utilisé.</p>
+                </div>
+            </div>
+
+            <!-- Points clés obligatoires -->
+            <div class="key-points">
+                <h2>🎯 Points clés à retenir</h2>
+                <ul>
+                    <li><strong>Réaction totale (τ = 1)</strong> : symbolisée par → | <strong>Réaction non totale (τ &lt; 1)</strong> : symbolisée par ⇌</li>
+                    <li><strong>Acide fort</strong> : réagit totalement avec l'eau → pH = -log[AH] | Exemples : HCl, HNO<sub>3</sub></li>
+                    <li><strong>Base forte</strong> : réagit totalement avec l'eau → pH = pK<sub>e</sub> + log[A<sup>-</sup>]</li>
+                    <li><strong>Acide faible</strong> : réagit partiellement avec l'eau (équilibre ⇌) | Exemples : acides carboxyliques</li>
+                    <li><strong>Base faible</strong> : réagit partiellement avec l'eau | Exemples : fonctions amines</li>
+                    <li><strong>Constante d'acidité</strong> : K<sub>a</sub> = ([A<sup>-</sup>]<sub>eq</sub> × [H<sub>3</sub>O<sup>+</sup>]<sub>eq</sub>) / [AH]<sub>eq</sub></li>
+                    <li><strong>Relation fondamentale</strong> : pH = pK<sub>a</sub> + log([A<sup>-</sup>]/[AH])</li>
+                    <li><strong>Diagramme de prédominance</strong> : Si pH &lt; pK<sub>a</sub> → AH prédomine | Si pH = pK<sub>a</sub> → 50/50 | Si pH &gt; pK<sub>a</sub> → A<sup>-</sup> prédomine</li>
+                    <li><strong>Diagramme de distribution</strong> : À l'intersection des courbes (50%/50%) → pH = pK<sub>a</sub></li>
+                    <li><strong>pK<sub>a</sub> élevé</strong> → K<sub>a</sub> faible → acide faible et base conjuguée forte</li>
+                    <li><strong>pK<sub>a</sub> faible</strong> → K<sub>a</sub> élevé → acide fort et base conjuguée faible</li>
+                    <li><strong>Solution tampon</strong> : solution dont le pH ne varie pas (sera développé ultérieurement)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+    </div>
+</body>
+</html>
