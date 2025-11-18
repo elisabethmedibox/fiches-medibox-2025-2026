@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dossier d'Inscription 2025-2026 - Medibox Antilles-Guyane</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @page {
+            size: A4;
+            margin: 10mm;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: white;
+            color: #333;
+            line-height: 1.5;
+            padding: 15px;
+            zoom: 0.7;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        /* ===== HEADER STANDARD UNIFORME ===== */
+        .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            break-inside: avoid;
+            page-break-inside: avoid;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 40px;
+            background: linear-gradient(45deg, #ff6b7a, #ff8a94);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .brand-text {
+            color: #ff6b7a;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+        }
+        
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            color: white;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+        
+        .separator {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 8px;
+            opacity: 0.7;
+        }
+
+        /* ===== SECTIONS DE COURS ===== */
+        .course-section {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        
+        .course-section h2 {
+            color: #1a365d;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+        }
+        
+        .course-section h3 {
+            color: #ff6b7a;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            margin-top: 15px;
+        }
+        
+        .course-section p {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        /* ===== FORMULAIRE ===== */
+        .form-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #1a365d;
+        }
+        
+        .form-input {
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 10px;
+            min-height: 40px;
+            background: white;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            font-size: 1em;
+            color: #333;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #ff6b7a;
+            box-shadow: 0 0 0 3px rgba(255, 107, 122, 0.1);
+        }
+        
+        textarea.form-input {
+            resize: vertical;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+        
+        .form-select {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .checkbox-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #1a365d;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+        }
+        
+        .checkbox-box.checked {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .checkbox-box.checked::after {
+            content: "✓";
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        @media print {
+            .form-input {
+                border: 1px solid #333 !important;
+            }
+        }
+
+        /* ===== ENCADRÉS COLORÉS ===== */
+        .formula-box {
+            background: linear-gradient(135deg, #e6fffa 0%, #f0fff4 100%);
+            border: 3px solid #48bb78;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        
+        .formula-box h3 {
+            color: #1a365d;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .semester-box {
+            background: linear-gradient(135deg, #fef5e7 0%, #fff9e6 100%);
+            border: 3px solid #f59e0b;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        
+        .semester-box h3 {
+            color: #1a365d;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .payment-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border: 3px solid #3b82f6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        /* ===== POINTS IMPORTANTS ===== */
+        .important-note {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            border: 2px solid #ff6b7a;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+        
+        .important-note h4 {
+            color: #1a365d;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .data-highlight {
+            background: rgba(254,202,87,0.2);
+            border-left: 4px solid #feca57;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 6px;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        /* ===== TABLEAUX ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+        }
+        
+        table th {
+            background: #1a365d;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        /* ===== LISTES ===== */
+        .course-section ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .course-section li {
+            margin-bottom: 8px;
+        }
+        
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .checklist li:before {
+            content: "☐ ";
+            font-size: 1.3em;
+            margin-right: 10px;
+            color: #1a365d;
+        }
+        
+        .clickable-checklist li {
+            cursor: pointer;
+            transition: background 0.2s;
+            padding: 8px;
+            border-radius: 6px;
+            user-select: none;
+        }
+        
+        .clickable-checklist li:hover {
+            background: rgba(26, 54, 93, 0.05);
+        }
+        
+        .clickable-checklist li[data-check="true"]:before {
+            content: "☑ ";
+            color: #10b981;
+        }
+        
+        /* ===== LIENS ===== */
+        a {
+            color: #1a365d;
+            text-decoration: underline;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        
+        a:hover {
+            color: #ff6b7a;
+        }
+        
+        @media print {
+            a {
+                color: #1a365d !important;
+                text-decoration: underline !important;
+            }
+        }
+
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+            
+            .header {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+            
+            .course-section {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+            
+            button {
+                display: none !important;
+            }
+        }
+    </style>
+    <script>
+        // Fonction pour rendre tous les champs remplissables
+        document.addEventListener('DOMContentLoaded', function() {
+            // Transformer tous les div.form-input en input ou textarea
+            document.querySelectorAll('.form-input').forEach(function(div) {
+                let input;
+                if (div.style.minHeight === '80px') {
+                    // Créer un textarea pour les champs d'adresse
+                    input = document.createElement('textarea');
+                    input.rows = 3;
+                } else {
+                    // Créer un input standard
+                    input = document.createElement('input');
+                    input.type = 'text';
+                }
+                
+                input.className = 'form-input';
+                input.style.width = '100%';
+                if (div.style.minHeight) {
+                    input.style.minHeight = div.style.minHeight;
+                }
+                
+                // Remplacer le div par l'input
+                div.parentNode.replaceChild(input, div);
+            });
+            
+            // Rendre les checkbox cliquables
+            document.querySelectorAll('.checkbox-option').forEach(function(option) {
+                const checkbox = option.querySelector('.checkbox-box');
+                
+                option.addEventListener('click', function(e) {
+                    // Ne pas propager si on clique sur le checkbox directement
+                    if (e.target === checkbox) return;
+                    
+                    checkbox.classList.toggle('checked');
+                });
+                
+                checkbox.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                });
+            });
+            
+            // Rendre les checkbox du tableau LAS cliquables
+            document.querySelectorAll('.table-checkbox').forEach(function(checkbox) {
+                checkbox.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                });
+            });
+            
+            // Rendre les items de la checklist cliquables
+            document.querySelectorAll('.clickable-checklist li').forEach(function(item) {
+                item.addEventListener('click', function() {
+                    const isChecked = this.getAttribute('data-check') === 'true';
+                    this.setAttribute('data-check', isChecked ? 'false' : 'true');
+                });
+            });
+            
+            // Ajouter un bouton d'impression
+            const printButton = document.createElement('button');
+            printButton.textContent = '🖨️ Imprimer le dossier';
+            printButton.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+                color: white;
+                border: none;
+                padding: 15px 30px;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                z-index: 1000;
+                transition: all 0.3s;
+            `;
+            
+            printButton.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 6px 16px rgba(0,0,0,0.3)';
+            });
+            
+            printButton.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+            });
+            
+            printButton.addEventListener('click', function() {
+                window.print();
+            });
+            
+            document.body.appendChild(printButton);
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- ===== HEADER STANDARD ===== -->
+        <div class="header">
+            <div class="brand">
+                <div class="logo">MB</div>
+                <div class="brand-text">MEDIBOX ANTILLES-GUYANE</div>
+            </div>
+            <h1>DOSSIER D'INSCRIPTION</h1>
+            <p>ANNÉE UNIVERSITAIRE 2025-2026 <span class="separator"></span> PASS / LAS1 / LAS2 / LAS3</p>
+        </div>
+
+        <!-- ===== FRAIS D'INSCRIPTION ===== -->
+        <div class="course-section">
+            <div class="important-note">
+                <h4>💳 Frais d'inscription obligatoires</h4>
+                <p><strong>140 € (paiement par CB uniquement)</strong></p>
+                <p>Ces frais sont à régler en plus de la formule choisie, directement sur le site <strong>www.laspasscaraibes.com</strong></p>
+            </div>
+        </div>
+
+        <!-- ===== IDENTIFICATION ÉTUDIANT ===== -->
+        <div class="course-section">
+            <h2>👤 Identification de l'étudiant</h2>
+            
+            <div class="form-row">
+                <div class="form-label">Nom :</div>
+                <div class="form-input"></div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-label">Prénom :</div>
+                <div class="form-input"></div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-label">Adresse postale :</div>
+                <div class="form-input" style="min-height: 80px;"></div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-label">Email :</div>
+                <div class="form-input"></div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-label">Téléphone :</div>
+                <div class="form-input"></div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-label">Département :</div>
+                <div class="form-select">
+                    <div class="checkbox-option">
+                        <span class="checkbox-box"></span>
+                        <span>Martinique</span>
+                    </div>
+                    <div class="checkbox-option">
+                        <span class="checkbox-box"></span>
+                        <span>Guadeloupe</span>
+                    </div>
+                    <div class="checkbox-option">
+                        <span class="checkbox-box"></span>
+                        <span>Guyane</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== IDENTIFICATION PARENT 1 ===== -->
+        <div class="course-section">
+            <h2>👥 Identification Parent 1</h2>
+            
+            <div class="form-row">
+                <div class="form-label">Nom :</div>
+                <div class="form-input"></div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-label">Prénom :</div>
+                <div class="form-input"></div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-label">Adresse postale :</div>
+                <div class="form-input" style="min-height: 80px;"></div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-label">Téléphone :</div>
+                <div class="form-input"></div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-label">Email :</div>
+                <div class="form-input"></div>
+            </div>
+        </div>
+
+        <!-- ===== IDENTIFICATION PARENT 2 ===== -->
+        <div class="course-section">
+            <h2>👥 Identification Parent 2</h2>
+            
+            <div class="form-row">
+                <div class="form-label">Nom :</div>
+                <div class="form-input"></div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-label">Prénom :</div>
+                <div class="form-input"></div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-label">Adresse postale :</div>
+                <div class="form-input" style="min-height: 80px;"></div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-label">Téléphone :</div>
+                <div class="form-input"></div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-label">Email :</div>
+                <div class="form-input"></div>
+            </div>
+        </div>
+
+        <!-- ===== FORMULES ANNÉE COMPLÈTE ===== -->
+        <div class="course-section">
+            <h2>📚 Formule choisie - ANNÉE COMPLÈTE</h2>
+            
+            <div class="formula-box">
+                <h3>🎯 Accompagnement MediPASS</h3>
+                <p><strong>Accompagnement complet avec Module 40, QCM, cours, tutorat et suivi personnalisé</strong></p>
+                
+                <div class="form-select" style="margin-top: 15px;">
+                    <div class="checkbox-option">
+                        <span class="checkbox-box"></span>
+                        <span><strong>Paiement comptant : 3 400 €</strong></span>
+                    </div>
+                    <div class="checkbox-option">
+                        <span class="checkbox-box"></span>
+                        <span><strong>Paiement en plusieurs fois : 3 550 €</strong></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="formula-box">
+                <h3>📖 Accompagnement MediFLEX</h3>
+                <p><strong>Accès aux cours, QCM et archives d'examens</strong></p>
+                
+                <div class="form-select" style="margin-top: 15px;">
+                    <div class="checkbox-option">
+                        <span class="checkbox-box"></span>
+                        <span><strong>Paiement comptant : 2 000 €</strong></span>
+                    </div>
+                    <div class="checkbox-option">
+                        <span class="checkbox-box"></span>
+                        <span><strong>Paiement en plusieurs fois : 2 200 €</strong></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="formula-box">
+                <h3>🎓 Accompagnement MediLAS+</h3>
+                <p><strong>Formule à la carte pour LAS2/LAS3</strong></p>
+                
+                <div class="form-select" style="margin-top: 15px; flex-direction: column; align-items: flex-start; gap: 10px;">
+                    <div class="checkbox-option">
+                        <span class="checkbox-box"></span>
+                        <span><strong>140 €/UE (paiement comptant uniquement)</strong></span>
+                    </div>
+                    <div class="checkbox-option">
+                        <span class="checkbox-box"></span>
+                        <span><strong>Achat cours imprimés (voir section LAS2-LAS3)</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== FORMULES SEMESTRE 2 ===== -->
+        <div class="course-section">
+            <h2>⚠️ Formule SEMESTRE 2 uniquement</h2>
+            
+            <div class="important-note">
+                <h4>ℹ️ Information importante</h4>
+                <p>Pour les inscriptions au semestre 2 uniquement, les modalités de paiement sont simplifiées : paiement comptant OU paiement en 2 fois (uniquement par chèque ou carte bleue).</p>
+            </div>
+            
+            <div class="semester-box">
+                <h3>🎯 MediPASS - Semestre 2</h3>
+                
+                <div class="form-select" style="margin-top: 15px;">
+                    <div class="checkbox-option">
+                        <span class="checkbox-box"></span>
+                        <span><strong>Paiement comptant : 1 700 €</strong></span>
+                    </div>
+                    <div class="checkbox-option">
+                        <span class="checkbox-box"></span>
+                        <span><strong>Paiement en 2 fois : 2 × 850 €</strong></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="semester-box">
+                <h3>📖 MediFLEX - Semestre 2</h3>
+                
+                <div class="form-select" style="margin-top: 15px;">
+                    <div class="checkbox-option">
+                        <span class="checkbox-box"></span>
+                        <span><strong>Paiement comptant : 1 000 €</strong></span>
+                    </div>
+                    <div class="checkbox-option">
+                        <span class="checkbox-box"></span>
+                        <span><strong>Paiement en 2 fois : 2 × 500 €</strong></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="semester-box">
+                <h3>🎤 Préparation aux Oraux</h3>
+                
+                <div class="form-select" style="margin-top: 15px;">
+                    <div class="checkbox-option">
+                        <span class="checkbox-box"></span>
+                        <span><strong>Paiement comptant : 650 €</strong></span>
+                    </div>
+                    <div class="checkbox-option">
+                        <span class="checkbox-box"></span>
+                        <span><strong>Paiement en 2 fois : 2 × 325 €</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== MODALITÉS DE PAIEMENT ===== -->
+        <div class="course-section">
+            <h2>💳 Modalités de paiement</h2>
+            
+            <h3>Mode de paiement choisi :</h3>
+            <div class="form-select" style="margin-bottom: 20px;">
+                <div class="checkbox-option">
+                    <span class="checkbox-box"></span>
+                    <span>Chèque</span>
+                </div>
+                <div class="checkbox-option">
+                    <span class="checkbox-box"></span>
+                    <span>Carte bleue (CB)</span>
+                </div>
+                <div class="checkbox-option">
+                    <span class="checkbox-box"></span>
+                    <span>Virement bancaire</span>
+                </div>
+            </div>
+            
+            <div class="payment-box">
+                <h3>💰 Paiement par CHÈQUE</h3>
+                <p><strong>Chèques à libeller à l'ordre de :</strong> MEDIBOX ANTILLES-GUYANE</p>
+                <p>• Inscrire le nom de l'étudiant au dos de chaque chèque</p>
+                <p>• Agrafer les chèques au dossier d'inscription</p>
+                <p>• Maximum 10 chèques pour les paiements échelonnés</p>
+            </div>
+            
+            <div class="payment-box">
+                <h3>💳 Paiement par CARTE BLEUE</h3>
+                <p>Le paiement par carte bleue s'effectue directement sur le site de formation :</p>
+                <p><strong>www.laspasscaraibes.com</strong></p>
+                <p>• À partir de juin 2025 pour les inscriptions annuelles</p>
+                <p>• À partir de septembre 2025 pour MediFLEX</p>
+            </div>
+            
+            <div class="payment-box">
+                <h3>🏦 Paiement par VIREMENT</h3>
+                <p><strong>RIB : FR76 1695 8000 0167 0398 8497 797</strong></p>
+                <p><strong>⚠️ IMPORTANT :</strong> Indiquer impérativement en référence du virement :</p>
+                <p>• Nom et prénom de l'étudiant</p>
+                <p>• Pour LAS2/LAS3 : ajouter la mention "LAS2" ou "LAS3"</p>
+            </div>
+            
+            <div class="important-note">
+                <h4>⚠️ Chèques de caution obligatoires (sauf pour les inscriptions du semestre 2)</h4>
+                <p>Pour tout paiement en plusieurs fois (année complète) par carte bleue ou virement, vous devez joindre au dossier d'inscription :</p>
+                <p><strong>2 chèques de caution de 1 000 € chacun</strong></p>
+                <p>Ces chèques ne seront pas débités. Ils garantissent que l'étudiant ne stoppera pas son abonnement en cours d'année.</p>
+            </div>
+            
+            <div class="data-highlight">
+                <p><strong>📌 Précision juridique importante :</strong></p>
+                <p>Le paiement en plusieurs fois est une <strong>facilité de paiement</strong> et non un abonnement. Par conséquent, les résiliations en cours d'année ne sont pas possibles, sauf cas prévus dans les <a href="https://www.laspasscaraibes.com/utility-pages/conditions-generales-de-vente" target="_blank" style="color: #1a365d; text-decoration: underline; font-weight: 600;">conditions générales de vente</a>.</p>
+            </div>
+        </div>
+
+        <!-- ===== PIÈCES À JOINDRE ===== -->
+        <div class="course-section">
+            <h2>📋 Pièces à joindre au dossier d'inscription</h2>
+            
+            <ul class="checklist clickable-checklist">
+                <li data-check="false">Copie de la carte d'identité de l'étudiant</li>
+                <li data-check="false">Copie de tous les bulletins de Terminale</li>
+                <li data-check="false">1 photo d'identité</li>
+                <li data-check="false">La fiche d'inscription complétée et signée</li>
+                <li data-check="false">Chèques de caution si paiement en plusieurs fois par CB ou virement (2 × 1000€)</li>
+                <li data-check="false"><strong>Pour les étudiants LAS2 et LAS3 :</strong> Copie des notes de PASS</li>
+                <li data-check="false">Fournir une enveloppe timbrée à votre nom et adresse pour le retour des chèques de caution</li>
+            </ul>
+            
+            <div class="important-note">
+                <h4>📬 Envoi du dossier</h4>
+                <p><strong>Le dossier d'inscription complet doit être retourné par courrier suivi</strong></p>
+                <p>(PAS de lettre recommandée)</p>
+                <p style="margin-top: 10px; font-size: 1.1em;">
+                    <strong>MEDIBOX ANTILLES-GUYANE<br>
+                    Service Logistique et Admission<br>
+                    34 rue Georges Sand<br>
+                    79230 AIFFRES</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- ===== FORMULAIRE LAS2/LAS3 ===== -->
+        <div class="course-section">
+            <h2>📚 Choix des UE - Spécial LAS2 / LAS3</h2>
+            
+            <div class="info-box">
+                <p><strong>⚠️ Cette section concerne uniquement les étudiants en LAS2 et LAS3</strong></p>
+                <p>Cochez les UE que vous souhaitez suivre. Tarif unique : 140€ par UE</p>
+            </div>
+            
+            <div style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 80px;">Choix</th>
+                            <th>Nom de l'UE</th>
+                            <th style="width: 120px;">Tarif UE</th>
+                            <th style="width: 150px;">Impression<br>(uniquement si stock disponible)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center;"><span class="checkbox-box table-checkbox"></span></td>
+                            <td><strong>UE2</strong></td>
+                            <td><strong>140 €</strong></td>
+                            <td><strong>63 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><span class="checkbox-box table-checkbox"></span></td>
+                            <td><strong>UE4</strong></td>
+                            <td><strong>140 €</strong></td>
+                            <td><strong>51 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><span class="checkbox-box table-checkbox"></span></td>
+                            <td><strong>UE5</strong></td>
+                            <td><strong>140 €</strong></td>
+                            <td><strong>74 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><span class="checkbox-box table-checkbox"></span></td>
+                            <td><strong>UE6</strong></td>
+                            <td><strong>140 €</strong></td>
+                            <td><strong>72 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><span class="checkbox-box table-checkbox"></span></td>
+                            <td><strong>UE7</strong></td>
+                            <td><strong>140 €</strong></td>
+                            <td><strong>-</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><span class="checkbox-box table-checkbox"></span></td>
+                            <td><strong>UE8</strong></td>
+                            <td><strong>140 €</strong></td>
+                            <td><strong>130 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><span class="checkbox-box table-checkbox"></span></td>
+                            <td><strong>UE9</strong></td>
+                            <td><strong>140 €</strong></td>
+                            <td><strong>36 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><span class="checkbox-box table-checkbox"></span></td>
+                            <td><strong>UE11</strong></td>
+                            <td><strong>140 €</strong></td>
+                            <td><strong>63 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><span class="checkbox-box table-checkbox"></span></td>
+                            <td><strong>UE13</strong></td>
+                            <td><strong>140 €</strong></td>
+                            <td><strong>74 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><span class="checkbox-box table-checkbox"></span></td>
+                            <td><strong>UE14</strong></td>
+                            <td><strong>140 €</strong></td>
+                            <td><strong>130 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><span class="checkbox-box table-checkbox"></span></td>
+                            <td><strong>UE15</strong></td>
+                            <td><strong>140 €</strong></td>
+                            <td><strong>36 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><span class="checkbox-box table-checkbox"></span></td>
+                            <td><strong>UE16</strong></td>
+                            <td><strong>140 €</strong></td>
+                            <td><strong>63 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><span class="checkbox-box table-checkbox"></span></td>
+                            <td><strong>UE18</strong></td>
+                            <td><strong>140 €</strong></td>
+                            <td><strong>63 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><span class="checkbox-box table-checkbox"></span></td>
+                            <td><strong>UE19</strong></td>
+                            <td><strong>140 €</strong></td>
+                            <td><strong>74 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;"><span class="checkbox-box table-checkbox"></span></td>
+                            <td><strong>UE20</strong></td>
+                            <td><strong>140 €</strong></td>
+                            <td><strong>74 €</strong></td>
+                        </tr>
+                        <tr style="background: #e0f2fe; font-weight: bold;">
+                            <td colspan="2" style="text-align: right; padding-right: 20px;">TOTAL À PAYER :</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="data-highlight" style="margin-top: 20px;">
+                <p><strong>📌 Modalités de paiement LAS2/LAS3 :</strong></p>
+                <p>• Paiement comptant par chèque, CB ou virement</p>
+                <p>• Paiement en plusieurs fois possible par chèque uniquement</p>
+            </div>
+        </div>
+
+        <!-- ===== INFORMATIONS LÉGALES ===== -->
+        <div class="course-section">
+            <h2>ℹ️ Informations importantes</h2>
+            
+            <div class="info-box">
+                <p><strong>Votre compte étudiant risque d'être bloqué si vous ne transmettez pas rapidement vos documents complets.</strong></p>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <p><strong>MEDIBOX ANTILLES-GUYANE</strong></p>
+                <p>SARL - SIREN : 979 229 655 RCS Pointe-à-Pitre</p>
+                <p>Site officiel : <strong>www.laspasscaraibes.com</strong></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
