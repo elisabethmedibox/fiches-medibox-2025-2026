@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arbre Décisionnel - Gérer son retard</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        .decision-tree {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .question-container {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .question-container.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .question-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border: 3px solid #1a365d;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .question-box h2 {
+            color: #1a365d;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .question-box p {
+            color: #2d3748;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .option-btn {
+            background: white;
+            border: 3px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            color: #2d3748;
+            font-weight: 500;
+        }
+        
+        .option-btn:hover {
+            border-color: #ff6b7a;
+            background: #fff5f7;
+            transform: translateX(10px);
+        }
+        
+        .result-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 4px solid #10b981;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .result-box.niveau1 {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-color: #f59e0b;
+        }
+        
+        .result-box.niveau2 {
+            background: linear-gradient(135deg, #ddd6fe 0%, #c4b5fd 100%);
+            border-color: #8b5cf6;
+        }
+        
+        .result-box.niveau3 {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border-color: #10b981;
+        }
+        
+        .result-box.sacrifier {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border-color: #ef4444;
+        }
+        
+        .result-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1a365d;
+        }
+        
+        .result-time {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff6b7a;
+            margin-bottom: 20px;
+        }
+        
+        .result-description {
+            font-size: 1.2rem;
+            color: #2d3748;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .restart-btn {
+            background: #1a365d;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .restart-btn:hover {
+            background: #ff6b7a;
+            transform: scale(1.05);
+        }
+        
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            width: 100%;
+            max-width: 900px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .float-btn {
+            pointer-events: all;
+            background: #1a365d;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(26, 54, 93, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .float-btn:hover {
+            background: #ff6b7a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 107, 122, 0.4);
+        }
+        
+        .float-btn.hidden {
+            display: none;
+        }
+        
+        .progress-bar {
+            background: #e2e8f0;
+            height: 8px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #ff6b7a 0%, #1a365d 100%);
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+        
+        /* Popup conseils */
+        .conseil-section {
+            margin-top: 30px;
+            padding: 25px;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+        }
+        
+        .conseil-select {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            border: 2px solid #1a365d;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        
+        .show-conseil-btn {
+            background: #8b5cf6;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .show-conseil-btn:hover {
+            background: #7c3aed;
+            transform: translateY(-2px);
+        }
+        
+        .show-conseil-btn:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .popup-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .popup-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .popup-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #ff6b7a;
+        }
+        
+        .popup-header h3 {
+            color: #1a365d;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        
+        .conseil-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border-left: 4px solid #1a365d;
+        }
+        
+        .conseil-block h4 {
+            color: #1a365d;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .conseil-block ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .conseil-block li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        .conseil-block li:before {
+            content: "•";
+            position: absolute;
+            left: 10px;
+            color: #ff6b7a;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .close-popup-btn {
+            background: #1a365d;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .close-popup-btn:hover {
+            background: #ff6b7a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌳 Arbre Décisionnel</h1>
+            <div class="meta">
+                <span>📚 Module 40 - Gérer son retard</span>
+                <span>⏱️ 5 min</span>
+                <span>⭐⭐ Difficulté: Modéré</span>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="objectifs">
+                <h2>🎯 Objectif de cet outil</h2>
+                <p>Cet arbre décisionnel t'aide à prendre une décision <strong>rationnelle et déculpabilisée</strong> sur chaque chapitre en retard : faut-il le garder en version complète, le condenser, ou le sacrifier ?</p>
+                <p><strong>Instructions :</strong> Réponds honnêtement aux questions en te basant sur les données de ton cours (archives d'examens, matrices tuteurs). À la fin, tu obtiendras une recommandation claire avec le temps à investir.</p>
+            </div>
+            
+            <div class="decision-tree">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+                </div>
+                
+                <!-- Q1 : FRÉQUENCE -->
+                <div class="question-container active" id="q1">
+                    <div class="question-box">
+                        <h2>📊 Question 1</h2>
+                        <p><strong>À quelle fréquence ce chapitre tombe-t-il aux examens ?</strong></p>
+                        <p style="font-size: 0.95rem; color: #64748b;">(Consulte les archives des 5 dernières années)</p>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" onclick="goToQuestion('q4')">💯 Tombe chaque année</button>
+                        <button class="option-btn" onclick="goToQuestion('q3')">✅ Revient souvent (3-4 fois sur 5 ans)</button>
+                        <button class="option-btn" onclick="goToQuestion('q2')">⚠️ Tombe rarement (1-2 fois sur 5 ans)</button>
+                        <button class="option-btn" onclick="showResult('sacrifier', 'Ce chapitre n\'est jamais tombé aux examens. Sacrifie-le sans culpabilité pour te concentrer sur des chapitres plus rentables.')">❌ Jamais tombé</button>
+                    </div>
+                </div>
+                
+                <!-- Q2 : FORMAT QCM (Tombe rarement) -->
+                <div class="question-container" id="q2">
+                    <div class="question-box">
+                        <h2>📝 Question 2</h2>
+                        <p><strong>Comment sont les QCM sur ce chapitre ?</strong></p>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" onclick="goToQuestion('q5')">📖 Les QCM portent sur TOUT le cours → pas d'impasse possible</button>
+                        <button class="option-btn" onclick="showResult('niveau2', 'Concentre-toi sur les parties précises du cours qui tombent régulièrement. Analyse les annales pour identifier ces zones stratégiques.')">🎯 QCM sur parties ciblées du cours → impasses possibles</button>
+                        <button class="option-btn" onclick="showResult('niveau1', 'Les QCM reprennent des items récurrents et prévisibles. Mémorise uniquement ces items en travaillant les annales de manière ciblée.')">🔄 QCM avec items récurrents prévisibles</button>
+                    </div>
+                </div>
+                
+                <!-- Q3 : NIVEAU DE DÉPENDANCE (Revient souvent) -->
+                <div class="question-container" id="q3">
+                    <div class="question-box">
+                        <h2>🔗 Question 3</h2>
+                        <p><strong>Quel est le niveau de dépendance de ce chapitre ?</strong></p>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" onclick="goToQuestion('q6')">📌 Ce chapitre est indispensable pour comprendre les suivants</button>
+                        <button class="option-btn" onclick="goToQuestion('q7')">🔗 Ce chapitre dépend des précédents (si tu n'as pas compris ceux d'avant, inutile de t'acharner)</button>
+                        <button class="option-btn" onclick="goToQuestion('q8')">🆓 Ce chapitre est indépendant des autres</button>
+                    </div>
+                </div>
+                
+                <!-- Q4 : FORMAT QCM (Tombe chaque année) -->
+                <div class="question-container" id="q4">
+                    <div class="question-box">
+                        <h2>📝 Question 4</h2>
+                        <p><strong>Comment sont les QCM sur ce chapitre ?</strong></p>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" onclick="goToQuestion('q9')">📖 Les QCM portent sur TOUT le cours → pas d'impasse possible</button>
+                        <button class="option-btn" onclick="goToQuestion('q10')">🎯 QCM sur parties ciblées du cours → impasses possibles</button>
+                        <button class="option-btn" onclick="showResult('niveau1', 'Les QCM reprennent des items récurrents et prévisibles. Mémorise uniquement ces items en travaillant les annales de manière ciblée.')">🔄 QCM avec items récurrents prévisibles</button>
+                    </div>
+                </div>
+                
+                <!-- Q5 : NB DE QCM (Tombe rarement + tout le cours) -->
+                <div class="question-container" id="q5">
+                    <div class="question-box">
+                        <h2>🔢 Question 5</h2>
+                        <p><strong>Combien de QCM en moyenne sur ce chapitre ?</strong></p>
+                        <p style="font-size: 0.95rem; color: #64748b;">(Rappel : il y a 20 questions par matière à l'examen)</p>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" onclick="goToQuestion('q11')">🔥 3 QCM ou plus → poids ÉNORME</button>
+                        <button class="option-btn" onclick="showResult('niveau2', 'Identifie les thèmes clés qui tombent souvent et concentre-toi dessus. Laisse tomber les détails secondaires.')">⚖️ 2 QCM → poids moyen</button>
+                        <button class="option-btn" onclick="showResult('sacrifier', 'Ce chapitre tombe rarement et ne représente qu\'1 QCM maximum. Sacrifie-le pour investir ton temps ailleurs.')">💨 0-1 QCM → poids faible</button>
+                    </div>
+                </div>
+                
+                <!-- Q6 : FORMAT QCM (Revient souvent + Pré-requis absolu) -->
+                <div class="question-container" id="q6">
+                    <div class="question-box">
+                        <h2>📝 Question 6</h2>
+                        <p><strong>Comment sont les QCM sur ce chapitre ?</strong></p>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" onclick="showResult('niveau3', 'Ce chapitre est un pré-requis absolu pour la suite. Tu DOIS le maîtriser complètement, même si ça prend du temps.')">📖 Les QCM portent sur TOUT le cours → pas d'impasse possible</button>
+                        <button class="option-btn" onclick="showResult('niveau2', 'Concentre-toi sur les parties clés + les fondations indispensables pour comprendre les chapitres suivants.')">🎯 QCM sur parties ciblées du cours → impasses possibles</button>
+                        <button class="option-btn" onclick="showResult('niveau1', 'Mémorise les items récurrents + les fondations essentielles pour ne pas bloquer sur les chapitres suivants.')">🔄 QCM avec items récurrents prévisibles</button>
+                    </div>
+                </div>
+                
+                <!-- Q7 : PRÉREQUIS COMPRIS ? (Revient souvent + Séquence logique) -->
+                <div class="question-container" id="q7">
+                    <div class="question-box">
+                        <h2>❓ Question 7</h2>
+                        <p><strong>As-tu bien compris les chapitres précédents ?</strong></p>
+                        <p style="font-size: 0.95rem; color: #64748b;">(Si NON, inutile de t'acharner sur celui-ci)</p>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" onclick="goToQuestion('q12')">✅ OUI → je peux continuer sur ce chapitre</button>
+                        <button class="option-btn" onclick="showResult('sacrifier', 'Tu n\'as pas compris les chapitres précédents. S\'acharner sur celui-ci serait du temps perdu. Sacrifie-le et concentre-toi sur les fondations.')">❌ NON → je n'ai pas compris les chapitres d'avant</button>
+                    </div>
+                </div>
+                
+                <!-- Q8 : FORMAT QCM (Revient souvent + Indépendant) -->
+                <div class="question-container" id="q8">
+                    <div class="question-box">
+                        <h2>📝 Question 8</h2>
+                        <p><strong>Comment sont les QCM sur ce chapitre ?</strong></p>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" onclick="showResult('niveau3', 'Ce chapitre revient souvent et les QCM portent sur tout. Investis le temps nécessaire pour une maîtrise complète.')">📖 Les QCM portent sur TOUT le cours → pas d'impasse possible</button>
+                        <button class="option-btn" onclick="showResult('niveau2', 'Identifie les parties précises qui tombent et concentre-toi dessus. Pas besoin de tout maîtriser.')">🎯 QCM sur parties ciblées du cours → impasses possibles</button>
+                        <button class="option-btn" onclick="showResult('niveau1', 'Les QCM reprennent des items récurrents et prévisibles. Mémorise uniquement ces items via les annales.')">🔄 QCM avec items récurrents prévisibles</button>
+                    </div>
+                </div>
+                
+                <!-- Q9 : NIVEAU DE DÉPENDANCE (Chaque année + tout le cours) -->
+                <div class="question-container" id="q9">
+                    <div class="question-box">
+                        <h2>🔗 Question 9</h2>
+                        <p><strong>Quel est le niveau de dépendance de ce chapitre ?</strong></p>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" onclick="showResult('niveau3', 'Ce chapitre tombe chaque année, porte sur tout le cours ET est indispensable pour la suite. NON NÉGOCIABLE : maîtrise complète obligatoire.')">📌 Ce chapitre est indispensable pour comprendre les suivants</button>
+                        <button class="option-btn" onclick="goToQuestion('q13')">🔗 Ce chapitre dépend des précédents : ce chapitre est donc la suite logique du ou des chapitres précédents</button>
+                        <button class="option-btn" onclick="goToQuestion('q14')">🆓 Ce chapitre est indépendant des autres</button>
+                    </div>
+                </div>
+                
+                <!-- Q10 : NB DE QCM (Chaque année + parties ciblées) -->
+                <div class="question-container" id="q10">
+                    <div class="question-box">
+                        <h2>🔢 Question 10</h2>
+                        <p><strong>Combien de QCM en moyenne sur ce chapitre ?</strong></p>
+                        <p style="font-size: 0.95rem; color: #64748b;">(Rappel : il y a 20 questions par matière à l'examen)</p>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" onclick="showResult('niveau3', 'Ce chapitre tombe chaque année avec 3+ QCM : poids ÉNORME. Investis le temps nécessaire pour une maîtrise complète.')">🔥 3 QCM ou plus → poids ÉNORME</button>
+                        <button class="option-btn" onclick="showResult('niveau2', 'Concentre-toi sur les parties précises du cours qui tombent. Analyse les annales pour cibler les thèmes récurrents.')">⚖️ 2 QCM → poids moyen</button>
+                        <button class="option-btn" onclick="showResult('niveau1', 'Travaille uniquement les annales pour identifier les questions types et les mémoriser.')">💨 0-1 QCM → poids faible</button>
+                    </div>
+                </div>
+                
+                <!-- Q11 : AVIS TUTEUR (Tombe rarement + 3+ QCM) -->
+                <div class="question-container" id="q11">
+                    <div class="question-box">
+                        <h2>👨‍🏫 Question 11</h2>
+                        <p><strong>Le tuteur considère ce chapitre comme :</strong></p>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" onclick="showResult('niveau3', 'Ton tuteur considère ce chapitre comme non négociable malgré sa faible fréquence. Fais-lui confiance : maîtrise complète.')">🚫 Non négociable</button>
+                        <button class="option-btn" onclick="showResult('niveau2', 'Concentre-toi sur les thèmes clés identifiés par ton tuteur. Pas besoin de tout maîtriser.')">⚠️ Négociable si retard majeur</button>
+                        <button class="option-btn" onclick="showResult('niveau1', 'Travaille uniquement les annales pour sécuriser 1-2 points si tu as le temps.')">✂️ Zappable</button>
+                    </div>
+                </div>
+                
+                <!-- Q12 : FORMAT QCM (Revient + séquence OK) -->
+                <div class="question-container" id="q12">
+                    <div class="question-box">
+                        <h2>📝 Question 12</h2>
+                        <p><strong>Comment sont les QCM sur ce chapitre ?</strong></p>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" onclick="showResult('niveau3', 'Tu as compris les prérequis et ce chapitre revient souvent avec des QCM sur tout. Investis le temps pour une maîtrise complète.')">📖 Les QCM portent sur TOUT le cours → pas d'impasse possible</button>
+                        <button class="option-btn" onclick="showResult('niveau2', 'Concentre-toi sur les parties précises qui tombent. Pas besoin de tout maîtriser.')">🎯 QCM sur parties ciblées du cours → impasses possibles</button>
+                        <button class="option-btn" onclick="showResult('niveau1', 'Mémorise uniquement les items récurrents via les annales.')">🔄 QCM avec items récurrents prévisibles</button>
+                    </div>
+                </div>
+                
+                <!-- Q13 : PRÉREQUIS COMPRIS ? (Chaque année + tout + séquence) -->
+                <div class="question-container" id="q13">
+                    <div class="question-box">
+                        <h2>❓ Question 13</h2>
+                        <p><strong>As-tu bien compris les chapitres précédents ?</strong></p>
+                        <p style="font-size: 0.95rem; color: #64748b;">(Si NON, inutile de t'acharner sur celui-ci)</p>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" onclick="showResult('niveau3', 'Tu as les prérequis et ce chapitre tombe chaque année. Maîtrise complète obligatoire.')">✅ OUI → je peux continuer</button>
+                        <button class="option-btn" onclick="showResult('sacrifier', 'Sans les prérequis, tu vas perdre du temps. Sacrifie ce chapitre et concentre-toi sur les fondations.')">❌ NON → je n'ai pas compris les chapitres d'avant</button>
+                    </div>
+                </div>
+                
+                <!-- Q14 : NB DE QCM (Chaque année + tout + indépendant) -->
+                <div class="question-container" id="q14">
+                    <div class="question-box">
+                        <h2>🔢 Question 14</h2>
+                        <p><strong>Combien de QCM en moyenne sur ce chapitre ?</strong></p>
+                        <p style="font-size: 0.95rem; color: #64748b;">(Rappel : il y a 20 questions par matière à l'examen)</p>
+                    </div>
+                    <div class="options">
+                        <button class="option-btn" onclick="showResult('niveau3', 'Ce chapitre tombe chaque année avec 3+ QCM : poids ÉNORME. Maîtrise complète obligatoire.')">🔥 3 QCM ou plus → poids ÉNORME</button>
+                        <button class="option-btn" onclick="showResult('niveau2', 'Concentre-toi sur les thèmes clés qui tombent régulièrement.')">⚖️ 2 QCM → poids moyen</button>
+                        <button class="option-btn" onclick="showResult('niveau1', 'Travaille les annales pour sécuriser 1-2 points.')">💨 0-1 QCM → poids faible</button>
+                    </div>
+                </div>
+                
+                <!-- RÉSULTAT -->
+                <div class="question-container" id="result">
+                    <div class="result-box" id="resultBox">
+                        <div class="result-title" id="resultTitle"></div>
+                        <div class="result-time" id="resultTime"></div>
+                        <div class="result-description" id="resultDescription"></div>
+                        
+                        <!-- Section conseils (uniquement Niveau 1 et 2) -->
+                        <div class="conseil-section" id="conseilSection" style="display: none;">
+                            <h3 style="color: #1a365d; text-align: center; margin-bottom: 20px;">📚 Besoin de conseils ciblés ?</h3>
+                            <p style="text-align: center; margin-bottom: 20px; color: #64748b;">Sélectionne ton chapitre pour voir les thèmes récurrents, pièges classiques et astuces du tuteur</p>
+                            <select class="conseil-select" id="chapitreSelect">
+                                <option value="">-- Sélectionne ton chapitre --</option>
+                                <option value="chap1">Grands principes en santé numérique</option>
+                                <option value="chap2">Réglementation en santé numérique</option>
+                                <option value="chap3">Représentation des données en santé</option>
+                            </select>
+                            <button class="show-conseil-btn" id="showConseilBtn" onclick="showConseilPopup()" disabled>Voir les conseils de révision</button>
+                        </div>
+                        
+                        <button class="restart-btn" onclick="restartTree()">🔄 Analyser un autre chapitre</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Popup conseils -->
+        <div class="popup-overlay" id="popupOverlay" onclick="closePopup()">
+            <div class="popup-content" onclick="event.stopPropagation()">
+                <div class="popup-header">
+                    <h3 id="popupTitle">📚 CONSEILS DE RÉVISION</h3>
+                </div>
+                
+                <div id="popupBody">
+                    <!-- Contenu dynamique -->
+                </div>
+                
+                <button class="close-popup-btn" onclick="closePopup()">Fermer</button>
+            </div>
+        </div>
+        
+        <!-- Boutons flottants -->
+        <div class="floating-buttons">
+            <button class="float-btn hidden" id="backBtn" onclick="goBack()">⬅️ Retour</button>
+            <button class="float-btn" id="restartFloatBtn" onclick="restartTree()">🔄 Recommencer</button>
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+    </div>
+    
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 14;
+        let history = ['q1']; // Historique des questions visitées
+        let currentNiveau = null; // Stocker le niveau du résultat
+        
+        // Données des chapitres UE3
+        const chapitresData = {
+            chap1: {
+                titre: "Grands principes en santé numérique",
+                themes: [
+                    "Feuilles de route (dates et comparaison)",
+                    "Les axes et leurs objectifs",
+                    "Grands domaines de l'info médicale"
+                ],
+                astuces: [
+                    "Se faire un tableau comparatif des 2 feuilles de route"
+                ],
+                pieges: [
+                    "Confondre les 2 feuilles de route",
+                    "Ne pas connaître les dates",
+                    "Attribuer les priorités aux mauvais axes",
+                    "Nb de domaines info médicale et inversion niveaux d'intérêt",
+                    "Confusion national/régional/local"
+                ]
+            },
+            chap2: {
+                titre: "Réglementation en santé numérique",
+                themes: [
+                    "Données personnelles",
+                    "Types d'organismes soumis au RGPD",
+                    "Les principes (souvent licéité)",
+                    "Finalités des traitements déterminés",
+                    "Forme de l'information donnée aux patients"
+                ],
+                astuces: [
+                    "Faire des FC sur les 6 principes de licéité",
+                    "Faire des FC sur les 5 types d'organismes soumis au RGPD"
+                ],
+                pieges: [
+                    "Confusion sur les données personnelles",
+                    "Finalités trop vague",
+                    "Tout ce qui touche à la pub/marketing",
+                    "Les sous-traitants non européens soumis au RGPD"
+                ]
+            },
+            chap3: {
+                titre: "Représentation des données en santé",
+                themes: [
+                    "Types de systèmes terminologiques",
+                    "MeSH",
+                    "CIM 10",
+                    "Propriétés du vocabulaire médical",
+                    "Normalisation des concepts"
+                ],
+                astuces: [
+                    "Faire des mini fiches sur les 4 types de systèmes terminologiques",
+                    "Connaître TOUTES les caractéristiques du MeSH",
+                    "Savoir différencier MeSH / CIM-10",
+                    "Faire des FC courtes sur des mots clefs (ex: CIM10 → OMS + PMSI + Mono-axiale + Morbidité/Mortalité)",
+                    "Pour MeSH → NLM + MEDLINE + Indexation + Poly-hiérarchique"
+                ],
+                pieges: [
+                    "Confondre les définitions des systèmes terminologiques",
+                    "MeSH vs CIM-10 - Qui fait quoi ?",
+                    "Structure de la CIM-10",
+                    "Propriétés du vocabulaire médical"
+                ]
+            }
+        };
+        
+        // Activer le bouton quand un chapitre est sélectionné
+        document.addEventListener('DOMContentLoaded', function() {
+            const select = document.getElementById('chapitreSelect');
+            const btn = document.getElementById('showConseilBtn');
+            
+            if (select && btn) {
+                select.addEventListener('change', function() {
+                    btn.disabled = !this.value;
+                });
+            }
+        });
+        
+        function showConseilPopup() {
+            const selectedChap = document.getElementById('chapitreSelect').value;
+            
+            if (!selectedChap || !chapitresData[selectedChap]) return;
+            
+            const data = chapitresData[selectedChap];
+            const popupBody = document.getElementById('popupBody');
+            const popupTitle = document.getElementById('popupTitle');
+            
+            popupTitle.textContent = `📚 ${data.titre}`;
+            
+            let html = '';
+            
+            // Thèmes récurrents
+            html += `
+                <div class="conseil-block" style="border-left-color: #8b5cf6;">
+                    <h4>🎯 THÈMES RÉCURRENTS</h4>
+                    <ul>
+                        ${data.themes.map(t => `<li>${t}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            
+            // Astuces du tuteur
+            html += `
+                <div class="conseil-block" style="border-left-color: #10b981;">
+                    <h4>💡 ASTUCES DU TUTEUR</h4>
+                    <ul>
+                        ${data.astuces.map(a => `<li>${a}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            
+            // Pièges classiques
+            html += `
+                <div class="conseil-block" style="border-left-color: #ef4444;">
+                    <h4>⚠️ PIÈGES CLASSIQUES</h4>
+                    <ul>
+                        ${data.pieges.map(p => `<li>${p}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            
+            popupBody.innerHTML = html;
+            
+            // Afficher la popup
+            document.getElementById('popupOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closePopup() {
+            document.getElementById('popupOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function goToQuestion(questionId) {
+            // Masquer toutes les questions
+            document.querySelectorAll('.question-container').forEach(q => {
+                q.classList.remove('active');
+            });
+            
+            // Ajouter à l'historique
+            history.push(questionId);
+            
+            // Afficher la question demandée
+            document.getElementById(questionId).classList.add('active');
+            
+            // Mettre à jour la barre de progression
+            currentQuestion++;
+            updateProgress();
+            
+            // Afficher le bouton Retour si on n'est pas à Q1
+            updateBackButton();
+            
+            // Scroll vers le haut
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function goBack() {
+            if (history.length > 1) {
+                // Retirer la question actuelle de l'historique
+                history.pop();
+                
+                // Récupérer la question précédente
+                const previousQuestion = history[history.length - 1];
+                
+                // Masquer toutes les questions
+                document.querySelectorAll('.question-container').forEach(q => {
+                    q.classList.remove('active');
+                });
+                
+                // Afficher la question précédente
+                document.getElementById(previousQuestion).classList.add('active');
+                
+                // Mettre à jour le bouton Retour
+                updateBackButton();
+                
+                // Scroll vers le haut
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+        
+        function updateBackButton() {
+            const backBtn = document.getElementById('backBtn');
+            if (history.length > 1) {
+                backBtn.classList.remove('hidden');
+            } else {
+                backBtn.classList.add('hidden');
+            }
+        }
+        
+        function showResult(niveau, description) {
+            // Masquer toutes les questions
+            document.querySelectorAll('.question-container').forEach(q => {
+                q.classList.remove('active');
+            });
+            
+            // Configuration des résultats
+            const resultBox = document.getElementById('resultBox');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultTime = document.getElementById('resultTime');
+            const resultDescription = document.getElementById('resultDescription');
+            const conseilSection = document.getElementById('conseilSection');
+            
+            // Stocker le niveau
+            currentNiveau = niveau;
+            
+            // Réinitialiser les classes
+            resultBox.className = 'result-box';
+            
+            // Définir le contenu selon le niveau
+            if (niveau === 'niveau1') {
+                resultBox.classList.add('niveau1');
+                resultTitle.textContent = '📚 NIVEAU 1 - Priorité annales';
+                resultTime.textContent = '⏱️ Temps à investir : 2 heures';
+                resultDescription.textContent = description;
+                conseilSection.style.display = 'block'; // Afficher conseils
+            } else if (niveau === 'niveau2') {
+                resultBox.classList.add('niveau2');
+                resultTitle.textContent = '🎯 NIVEAU 2 - Stratégie de contenu';
+                resultTime.textContent = '⏱️ Temps à investir : 4 heures';
+                resultDescription.textContent = description;
+                conseilSection.style.display = 'block'; // Afficher conseils
+            } else if (niveau === 'niveau3') {
+                resultBox.classList.add('niveau3');
+                resultTitle.textContent = '✅ NIVEAU 3 - Maîtrise complète';
+                resultTime.textContent = '⏱️ Temps à investir : 8 heures';
+                resultDescription.textContent = description;
+                conseilSection.style.display = 'none'; // Masquer conseils
+            } else if (niveau === 'sacrifier') {
+                resultBox.classList.add('sacrifier');
+                resultTitle.textContent = '🗑️ SACRIFIER ce chapitre';
+                resultTime.textContent = '⏱️ Temps à investir : 0 heure';
+                resultDescription.textContent = description;
+                conseilSection.style.display = 'none'; // Masquer conseils
+            }
+            
+            // Afficher le résultat
+            document.getElementById('result').classList.add('active');
+            
+            // Barre de progression à 100%
+            document.getElementById('progressBar').style.width = '100%';
+            
+            // Scroll vers le haut
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function updateProgress() {
+            const progress = (currentQuestion / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+        
+        function restartTree() {
+            // Réinitialiser
+            currentQuestion = 1;
+            history = ['q1']; // Réinitialiser l'historique
+            currentNiveau = null;
+            document.getElementById('progressBar').style.width = '0%';
+            
+            // Réinitialiser le select
+            const select = document.getElementById('chapitreSelect');
+            if (select) {
+                select.value = '';
+                document.getElementById('showConseilBtn').disabled = true;
+            }
+            
+            // Masquer toutes les questions
+            document.querySelectorAll('.question-container').forEach(q => {
+                q.classList.remove('active');
+            });
+            
+            // Afficher Q1
+            document.getElementById('q1').classList.add('active');
+            
+            // Cacher le bouton Retour
+            updateBackButton();
+            
+            // Scroll vers le haut
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
