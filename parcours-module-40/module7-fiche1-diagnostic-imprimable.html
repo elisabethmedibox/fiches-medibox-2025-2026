@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche Diagnostic - À remplir et imprimer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+            padding: 20px;
+            color: #1a202c;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Bouton imprimer flottant */
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #1a365d;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .print-button:hover {
+            background: #2d4a7c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+        }
+
+        .print-button:active {
+            transform: translateY(0);
+        }
+
+        /* Masquer le bouton à l'impression */
+        @media print {
+            .print-button {
+                display: none !important;
+            }
+            
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        h1 {
+            color: #1a365d;
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+            text-transform: uppercase;
+            border-bottom: 3px solid #ff6b7a;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #1a365d;
+            font-size: 18px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 4px solid #ff6b7a;
+        }
+
+        h3 {
+            color: #2d3748;
+            font-size: 14px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        /* Tableaux */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 11px;
+        }
+
+        th {
+            background: #1a365d;
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid #0f2342;
+        }
+
+        td {
+            padding: 10px 8px;
+            border: 1px solid #cbd5e0;
+        }
+
+        tr:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        tr:hover {
+            background: #edf2f7;
+        }
+
+        .total-row {
+            background: #fef2f2 !important;
+            font-weight: bold;
+        }
+
+        .total-row td {
+            border-top: 2px solid #ef4444;
+        }
+
+        /* Style pour le tableau de quantification en paysage */
+        .landscape-table {
+            font-size: 9px;
+        }
+
+        .landscape-table th {
+            padding: 8px 5px;
+        }
+
+        .landscape-table td {
+            padding: 8px 5px;
+        }
+
+        /* Lignes de remplissage */
+        .fill-line {
+            display: inline-block;
+            min-width: 80px;
+            border-bottom: 1px solid #000;
+            margin: 0 5px;
+        }
+
+        .fill-line-long {
+            display: inline-block;
+            min-width: 150px;
+            border-bottom: 1px solid #000;
+            margin: 0 5px;
+        }
+
+        /* Box d'instructions */
+        .instructions {
+            background: #e0f2fe;
+            border-left: 4px solid #3b82f6;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            border-radius: 4px;
+        }
+
+        .instructions strong {
+            color: #1a365d;
+        }
+
+        /* Checkboxes personnalisées */
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #1a365d;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        /* Note de bas de page */
+        .footer-note {
+            margin-top: 30px;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 8px;
+            font-size: 11px;
+            text-align: center;
+            color: #4a5568;
+        }
+    </style>
+</head>
+<body>
+    <!-- Bouton imprimer flottant -->
+    <button class="print-button" onclick="window.print()">
+        🖨️ IMPRIMER
+    </button>
+
+    <div class="container">
+        <h1>📋 Fiche Diagnostic du Retard - À remplir</h1>
+        
+        <div class="instructions">
+            <strong>Instructions :</strong> Remplis cette fiche en te référant à la fiche de cours "Diagnostic du Retard". 
+            Une fois terminée, clique sur le bouton "IMPRIMER" en haut à droite pour sauvegarder ou imprimer ta fiche.
+        </div>
+
+        <!-- PARTIE 1 : GRILLE DE QUANTIFICATION -->
+        <h2>1️⃣ GRILLE DE QUANTIFICATION DU RETARD</h2>
+        
+        <table class="landscape-table">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">UE</th>
+                    <th style="width: 15%;">Nombre de chapitres<br>total du semestre</th>
+                    <th style="width: 15%;">Nombre de chapitres<br>déjà faits en J0</th>
+                    <th style="width: 15%;">Nombre de chapitres<br>EN RETARD</th>
+                    <th style="width: 20%;">Heures de travail<br>en retard</th>
+                    <th style="width: 15%;">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>UE1 - Métiers de la santé</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>_____ × 8h = _____ h</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>UE2 - Statistiques et épidémiologie</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>_____ × 8h = _____ h</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>UE3 - Informatique et communication</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>_____ × 8h = _____ h</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>UE4 - Rayonnement et santé</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>_____ × 8h = _____ h</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>UE5 - Biochimie</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>_____ × 8h = _____ h</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>UE6 - Embryologie</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>_____ × 8h = _____ h</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>UE7 - Physiologie</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>_____ × 8h = _____ h</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>UE8 - Anatomie</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>_____ × 8h = _____ h</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>UE9 - Chimie</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>_____ × 8h = _____ h</td>
+                    <td></td>
+                </tr>
+                <tr class="total-row">
+                    <td><strong>TOTAL</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td style="font-size: 14px; color: #ef4444;"></td>
+                    <td style="font-size: 14px; color: #ef4444;"><strong>_____ heures</strong></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>💡 Rappel : 1 chapitre complet = J0 (3h) + J1→J30 (5h) = 8 heures de travail</h3>
+
+        <!-- PARTIE 2 : CALCUL DU TEMPS DISPONIBLE -->
+        <div class="page-break"></div>
+        
+        <h2>2️⃣ CALCUL DU TEMPS DISPONIBLE</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 40%;">Élément</th>
+                    <th style="width: 30%;">Calcul</th>
+                    <th style="width: 30%;">Ton résultat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Date du jour</strong></td>
+                    <td>-</td>
+                    <td><span class="fill-line"></span> / <span class="fill-line"></span> / 2024</td>
+                </tr>
+                <tr>
+                    <td><strong>Date des partiels S1</strong></td>
+                    <td>Fixe</td>
+                    <td>8-9 janvier 2026</td>
+                </tr>
+                <tr>
+                    <td><strong>Nombre de jours restants</strong></td>
+                    <td>Partiels - Aujourd'hui</td>
+                    <td><span class="fill-line-long"></span> jours</td>
+                </tr>
+                <tr>
+                    <td><strong>Jours de repos (24-25-31 déc)</strong></td>
+                    <td>À déduire</td>
+                    <td>- 3 jours</td>
+                </tr>
+                <tr style="background: #f0fdf4;">
+                    <td><strong>Jours de travail effectifs</strong></td>
+                    <td>Total - repos</td>
+                    <td><span class="fill-line-long"></span> jours</td>
+                </tr>
+                <tr style="background: #f0fdf4;">
+                    <td><strong>Heures de travail par jour</strong></td>
+                    <td>Rythme intensif</td>
+                    <td>10h / jour</td>
+                </tr>
+                <tr style="background: #e0f2fe; font-weight: bold;">
+                    <td><strong>Total heures disponibles</strong></td>
+                    <td>Jours × 10h</td>
+                    <td><span class="fill-line-long"></span> heures</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- PARTIE 3 : DÉDUCTIONS -->
+        <h2>3️⃣ DÉDUCTIONS - Ce qui est déjà pris</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50%;">Poste de dépense</th>
+                    <th style="width: 50%;">Heures nécessaires</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Semaine en cours (ex: semaine 14)</strong><br>
+                    <small>Nombre de J0 restants × 8h</small></td>
+                    <td><span class="fill-line"></span> J0 × 8h = <span class="fill-line-long"></span> heures</td>
+                </tr>
+                <tr>
+                    <td><strong>Répétitions S12-S13</strong><br>
+                    <small>Environ 14 chapitres × 2h (J7+J15)</small></td>
+                    <td><span class="fill-line-long"></span> heures</td>
+                </tr>
+                <tr>
+                    <td><strong>QCM quotidiens</strong><br>
+                    <small>Jours effectifs × 1,5h/jour</small></td>
+                    <td><span class="fill-line"></span> jours × 1,5h = <span class="fill-line-long"></span> heures</td>
+                </tr>
+                <tr>
+                    <td><strong>Concours blanc (22-23 décembre)</strong></td>
+                    <td>10 heures</td>
+                </tr>
+                <tr>
+                    <td><strong>Tours de révision globales (OBLIGATOIRE)</strong><br>
+                    <small>2 semaines × 7h/jour = 14 jours × 7h</small></td>
+                    <td>98 heures</td>
+                </tr>
+                <tr>
+                    <td><strong>Imprévus / marge de sécurité (10%)</strong></td>
+                    <td><span class="fill-line-long"></span> heures</td>
+                </tr>
+                <tr style="background: #fef2f2; font-weight: bold;">
+                    <td><strong>TOTAL HEURES PRISES (hors rattrapage)</strong></td>
+                    <td style="font-size: 14px;"><span class="fill-line-long"></span> heures</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- CALCUL FINAL -->
+        <h2>✅ TEMPS DISPONIBLE POUR LE RATTRAPAGE</h2>
+        
+        <table>
+            <tbody>
+                <tr style="background: #e0f2fe; font-weight: bold; font-size: 13px;">
+                    <td style="width: 60%;"><strong>Total heures disponibles</strong></td>
+                    <td><span class="fill-line-long"></span> heures</td>
+                </tr>
+                <tr style="background: #fef2f2; font-weight: bold; font-size: 13px;">
+                    <td><strong>Total heures prises</strong></td>
+                    <td><span class="fill-line-long"></span> heures</td>
+                </tr>
+                <tr style="background: #f0fdf4; font-weight: bold; font-size: 15px;">
+                    <td><strong>= TEMPS RÉEL POUR RATTRAPAGE</strong></td>
+                    <td style="color: #10b981;"><span class="fill-line-long"></span> heures</td>
+                </tr>
+                <tr style="background: #fffbeb;">
+                    <td><strong>Soit environ (÷ 8h)</strong></td>
+                    <td><span class="fill-line-long"></span> chapitres possibles</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- PARTIE 4 : AUTO-ÉVALUATION -->
+        <div class="page-break"></div>
+        
+        <h2>4️⃣ IDENTIFICATION DE TON NIVEAU DE RETARD</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Niveau</th>
+                    <th style="width: 35%;">Critères</th>
+                    <th style="width: 35%;">Stratégie</th>
+                    <th style="width: 10%;">Ton cas ?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background: #f0fdf4;">
+                    <td><strong>🟢 RETARD<br>LÉGER</strong></td>
+                    <td>
+                        • 1-8 chapitres<br>
+                        • 8-64h de travail<br>
+                        • 2-3 UE max
+                    </td>
+                    <td>Rattrapage complet possible en restant dans le système Module 40</td>
+                    <td><span class="checkbox"></span></td>
+                </tr>
+                <tr style="background: #fffbeb;">
+                    <td><strong>🟠 RETARD<br>MOYEN</strong></td>
+                    <td>
+                        • 9-20 chapitres<br>
+                        • 72-160h de travail<br>
+                        • 4-5 UE
+                    </td>
+                    <td>Priorisation obligatoire. Tu devras sacrifier certains chapitres</td>
+                    <td><span class="checkbox"></span></td>
+                </tr>
+                <tr style="background: #fef2f2;">
+                    <td><strong>🔴 RETARD<br>MAJEUR</strong></td>
+                    <td>
+                        • > 20 chapitres<br>
+                        • > 160h de travail<br>
+                        • 6+ UE
+                    </td>
+                    <td>Mode sauvetage : ne garder que le VITAL (chapitres 🔴 CRITIQUE uniquement)</td>
+                    <td><span class="checkbox"></span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 style="text-align: center; margin-top: 30px; padding: 15px; background: #e0f2fe; border-radius: 8px;">
+            <strong>MON NIVEAU DE RETARD :</strong> 
+            <span style="display: inline-block; padding: 10px 30px; background: white; border: 2px solid #1a365d; border-radius: 8px; margin-left: 15px;">
+                <span class="fill-line-long"></span>
+            </span>
+        </h3>
+
+        <!-- NOTES PERSONNELLES -->
+        <h2>📝 MES NOTES PERSONNELLES</h2>
+        
+        <div style="border: 1px solid #cbd5e0; min-height: 150px; padding: 15px; border-radius: 4px; background: #fafafa;">
+            <!-- Espace pour notes manuscrites -->
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-note">
+            <strong>📍 Prochaine étape :</strong> Utilise cette fiche pour consulter la FICHE 2 - DÉCISIONS<br>
+            et remplir ton tableau de priorisation UE par UE<br><br>
+            <strong>Création originale de E. Schaeffer - Medibox Antilles-Guyane</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+    </div>
+</body>
+</html>
