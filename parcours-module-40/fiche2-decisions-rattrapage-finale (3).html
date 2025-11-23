@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche 2 - Décisions de Rattrapage</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        .chapter-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .chapter-card:hover {
+            border-color: #ff6b7a;
+            box-shadow: 0 4px 12px rgba(255, 107, 122, 0.2);
+        }
+        .chapter-card.decided {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+        .chapter-checkbox {
+            margin-right: 10px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        .modal-content {
+            background: white;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 800px;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #94a3b8;
+        }
+        .question-box {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        .option-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            margin: 10px 0;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        .option-btn:hover {
+            border-color: #ff6b7a;
+            background: #fff5f7;
+        }
+        .result-box {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .result-box.niveau1 { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
+        .result-box.niveau2 { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+        .result-box.niveau3 { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .result-box.sacrifier { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
+        .float-btn {
+            position: fixed;
+            bottom: 30px;
+            padding: 15px 25px;
+            background: #1a365d;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 999;
+        }
+        .float-btn.back { left: 30px; }
+        .float-btn.restart { right: 30px; }
+        .summary-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+        .summary-table th, .summary-table td {
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+        .summary-table th {
+            background: #1a365d;
+            color: white;
+        }
+        .level-select {
+            padding: 8px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .time-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 998;
+            min-width: 250px;
+        }
+        .progress-bar-container {
+            width: 100%;
+            height: 30px;
+            background: #e2e8f0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+            transition: all 0.3s;
+        }
+        .progress-bar-fill.warning { background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%); }
+        .progress-bar-fill.danger { background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%); }
+        .input-group {
+            margin: 15px 0;
+        }
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .input-group input, .input-group select {
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+            width: 100%;
+            max-width: 300px;
+        }
+        .ue-time-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .ue-time-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FICHE 2 - DÉCISIONS DE RATTRAPAGE</h1>
+            <div class="meta">
+                <span>📚 Module 40</span>
+                <span>⏱️ 60 min</span>
+                <span>⭐⭐⭐ Difficulté: Intermédiaire</span>
+            </div>
+        </div>
+
+        <!-- NAVIGATION PAR ÉTAPES -->
+        <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px;" id="stepNavigation">
+            <button onclick="goToStepNav(1)" id="navBtn1" style="padding: 12px 20px; background: #1a365d; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                Étape 1: Configuration
+            </button>
+            <button onclick="goToStepNav(2)" id="navBtn2" style="padding: 12px 20px; background: #94a3b8; color: white; border: none; border-radius: 8px; cursor: not-allowed;" disabled>
+                Étape 2: Sélection
+            </button>
+            <button onclick="goToStepNav(3)" id="navBtn3" style="padding: 12px 20px; background: #94a3b8; color: white; border: none; border-radius: 8px; cursor: not-allowed;" disabled>
+                Étape 3: Ajustements
+            </button>
+            <button onclick="goToStepNav(4)" id="navBtn4" style="padding: 12px 20px; background: #94a3b8; color: white; border: none; border-radius: 8px; cursor: not-allowed;" disabled>
+                Étape 4: Tableau final
+            </button>
+        </div>
+
+        <div class="content">
+            <!-- ÉTAPE 1 : CONFIGURATION -->
+            <div class="section" id="step1">
+                <h2>⚙️ ÉTAPE 1 : Configuration initiale</h2>
+                
+                <div class="info-box">
+                    <h3>📋 Données de la Fiche 1</h3>
+                    <p>Reporte ici les données calculées dans ta Fiche 1 - Diagnostic du Retard</p>
+                </div>
+
+                <div class="input-group">
+                    <label>Temps net disponible pour le rattrapage (en heures) :</label>
+                    <input type="number" id="tempsDisponibleInput" placeholder="Ex: 85" min="0">
+                </div>
+
+                <div class="input-group">
+                    <label>Niveau de retard diagnostiqué :</label>
+                    <select id="niveauRetard">
+                        <option value="">-- Sélectionne --</option>
+                        <option value="leger">🟢 Léger</option>
+                        <option value="moyen">🟠 Moyen</option>
+                        <option value="majeur">🔴 Majeur</option>
+                    </select>
+                </div>
+
+                <div class="info-box" style="margin-top: 30px;">
+                    <h3>⏱️ Temps moyen nécessaire par UE</h3>
+                    <p>Pour chaque UE, indique le <strong>temps moyen dont TU as besoin</strong> pour apprendre un chapitre en <strong>Niveau 3 (maîtrise complète = 100%)</strong>.</p>
+                    <p style="margin-top: 10px;"><strong>Les calculs automatiques seront :</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Niveau 3 = 100% du temps saisi (maîtrise complète)</li>
+                        <li>Niveau 2 = 60% du temps saisi (stratégie ciblée)</li>
+                        <li>Niveau 1 = 30% du temps saisi (annales uniquement)</li>
+                        <li>Sacrifié = 0h</li>
+                    </ul>
+                </div>
+
+                <div class="ue-time-grid">
+                    <div class="input-group">
+                        <label>UE1 (heures/chapitre) :</label>
+                        <input type="number" id="timeUE1" placeholder="Ex: 3" min="0" step="0.5">
+                    </div>
+                    <div class="input-group">
+                        <label>UE2 (heures/chapitre) :</label>
+                        <input type="number" id="timeUE2" placeholder="Ex: 4" min="0" step="0.5">
+                    </div>
+                    <div class="input-group">
+                        <label>UE3 (heures/chapitre) :</label>
+                        <input type="number" id="timeUE3" placeholder="Ex: 3" min="0" step="0.5">
+                    </div>
+                    <div class="input-group">
+                        <label>UE4 (heures/chapitre) :</label>
+                        <input type="number" id="timeUE4" placeholder="Ex: 5" min="0" step="0.5">
+                    </div>
+                    <div class="input-group">
+                        <label>UE5 (heures/chapitre) :</label>
+                        <input type="number" id="timeUE5" placeholder="Ex: 4" min="0" step="0.5">
+                    </div>
+                    <div class="input-group">
+                        <label>UE6 (heures/chapitre) :</label>
+                        <input type="number" id="timeUE6" placeholder="Ex: 3.5" min="0" step="0.5">
+                    </div>
+                    <div class="input-group">
+                        <label>UE7 (heures/chapitre) :</label>
+                        <input type="number" id="timeUE7" placeholder="Ex: 5" min="0" step="0.5">
+                    </div>
+                    <div class="input-group">
+                        <label>UE8 (heures/chapitre) :</label>
+                        <input type="number" id="timeUE8" placeholder="Ex: 6" min="0" step="0.5">
+                    </div>
+                    <div class="input-group">
+                        <label>UE9 (heures/chapitre) :</label>
+                        <input type="number" id="timeUE9" placeholder="Ex: 4" min="0" step="0.5">
+                    </div>
+                </div>
+
+                <button onclick="goToStep2()" style="margin-top: 30px; padding: 15px 30px; background: #ff6b7a; color: white; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer;">
+                    Continuer vers l'étape 2 →
+                </button>
+            </div>
+
+            <!-- ÉTAPE 2 : SÉLECTION DES CHAPITRES -->
+            <div class="section" id="step2" style="display: none;">
+                <h2>📋 ÉTAPE 2 : Sélectionne tes chapitres en retard</h2>
+                <p>Pour chaque chapitre coché, tu vas suivre l'arbre décisionnel pour déterminer le niveau d'apprentissage optimal.</p>
+                
+                <div class="info-box" style="margin: 20px 0;">
+                    <p><strong>⚠️ Attention UE2 :</strong> certains chapitres ne doivent pas être travaillés selon nos conseils. Ne les coche pas.</p>
+                </div>
+
+                <div id="chaptersContainer"></div>
+
+                <button onclick="goToSummary()" style="margin-top: 30px; padding: 15px 30px; background: #ff6b7a; color: white; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer;">
+                    Voir le récapitulatif et ajuster →
+                </button>
+            </div>
+
+            <!-- ÉTAPE 3 : RÉCAPITULATIF ET AJUSTEMENTS -->
+            <div class="section" id="step3" style="display: none;">
+                <h2>📊 ÉTAPE 3 : Récapitulatif et ajustements</h2>
+                <div id="summaryContent"></div>
+                
+                <button onclick="goToFinalTable()" style="margin-top: 30px; padding: 15px 30px; background: #10b981; color: white; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer;">
+                    Générer le tableau final imprimable →
+                </button>
+            </div>
+
+            <!-- ÉTAPE 4 : TABLEAU FINAL IMPRIMABLE -->
+            <div class="section" id="step4" style="display: none;">
+                <h2>📋 ÉTAPE 4 : Tableau final de tes décisions</h2>
+                
+                <div class="info-box">
+                    <p><strong>✅ Félicitations !</strong> Tu as terminé ton diagnostic de rattrapage.</p>
+                    <p>Voici le récapitulatif complet de tes décisions. Tu peux l'imprimer pour l'avoir sous les yeux pendant ton travail.</p>
+                </div>
+
+                <button onclick="window.print()" style="margin: 20px 0; padding: 15px 30px; background: #ff6b7a; color: white; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer;">
+                    🖨️ Imprimer ce tableau
+                </button>
+
+                <div id="finalTableContent"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+    </div>
+
+    <!-- MODAL ARBRE DÉCISIONNEL -->
+    <div id="decisionModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- BOUTONS FLOTTANTS PERMANENTS -->
+    <button class="float-btn" id="backBtnPermanent" style="left: 30px; bottom: 30px; display: none;" onclick="goBackStep()">⬅️ Retour</button>
+    <button class="float-btn" id="restartBtnPermanent" style="right: 30px; bottom: 30px; display: none;" onclick="restartAll()">🔄 Recommencer</button>
+
+    <!-- BOUTONS FLOTTANTS POUR ARBRE (masqués par défaut) -->
+    <button class="float-btn back" id="backBtn" style="display: none;" onclick="goBack()">⬅️ Question précédente</button>
+    <button class="float-btn restart" id="restartBtn" style="display: none;" onclick="restartTree()">🔄 Recommencer l'arbre</button>
+
+    <!-- INDICATEUR DE TEMPS -->
+    <div class="time-indicator" id="timeIndicator" style="display: none;">
+        <h3 style="margin-top: 0;">⏱️ Temps disponible</h3>
+        <p><strong id="tempsDisponible">0h</strong></p>
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        <p style="margin-bottom: 0;"><strong>Temps calculé :</strong> <span id="tempsCalcule">0h</span></p>
+        <p style="margin-top: 5px; font-size: 0.9rem; color: #64748b;">Écart : <span id="ecart">+0h</span></p>
+    </div>
+
+    <script>
+        // DONNÉES GLOBALES
+        let selectedChapters = [];
+        let chapterDecisions = {};
+        let currentChapter = null;
+        let questionHistory = [];
+        let tempsDisponible = 0;
+        let ueTimeConfig = {};
+
+        // LISTE COMPLÈTE DES 125 CHAPITRES
+        const allChapters = {
+            "UE1": [
+                "Introduction et santé publique",
+                "Interprofessionnalité",
+                "Éthique en santé",
+                "Professionnalisme",
+                "Les métiers de la santé",
+                "Coordination des soins",
+                "Les 16 fiches métier"
+            ],
+            "UE2": [
+                "Échantillonnage",
+                "Biais",
+                "Cohorte et cas témoin",
+                "Confusion, modification de l'effet",
+                "Mesures d'impact",
+                "Type d'études et niveaux de preuves",
+                "Méthodologie de la recherche",
+                "Probabilité et statistiques : partie 1",
+                "Probabilité et statistiques : partie 2",
+                "Risques et facteurs de risques",
+                "Protection sociale",
+                "Économie de la santé",
+                "Besoins et demandes de santé",
+                "Mesure de l'état de santé - Les grands problèmes de santé",
+                "Prévention, promotion de la santé"
+            ],
+            "UE3": [
+                "Grands principes en santé numérique",
+                "Réglementation en santé numérique - Protection des données",
+                "Représentation (vocabulaire) des données en santé",
+                "Le Dossier Patient Informatisé : DPI",
+                "Le Programme de Médicalisation des Systèmes d'Information : PMSI",
+                "SIH",
+                "Gestion et diffusion des données en santé",
+                "Aide à la décision en santé publique",
+                "Entrepôt des données en santé",
+                "SNDS"
+            ],
+            "UE4": [
+                "Noyau atomique - Stabilité - Instabilité nucléaire",
+                "Transformations radioactives",
+                "Interactions rayonnements - matière",
+                "Les 4 modes de production des radionucléides",
+                "Produits de santé contenant des radionucléides",
+                "Sources d'exposition et risques associés",
+                "Nature des risques et conduite à tenir en cas d'incident",
+                "Effets biologiques des rayonnements ionisants",
+                "Radioprotection : organisation et principes fondamentaux",
+                "Radioprotection des professionnels, des patients, du public et de l'environnement",
+                "Utilisation en imagerie : partie 1",
+                "Utilisation en imagerie : partie 2",
+                "Utilisation en thérapie et en recherche"
+            ],
+            "UE5": [
+                "Les acides aminés 1 - Classification et nomenclature",
+                "Les acides aminés 2 - Propriétés physico-chimiques, chimiques et biologiques",
+                "Les acides aminés 3 - Méthodes d'études",
+                "Les peptides",
+                "Les protéines",
+                "La molécule d'hémoglobine",
+                "Structure des glucides",
+                "Enzymologie",
+                "La glycolyse",
+                "La néoglucogenèse",
+                "La voie des pentoses phosphates",
+                "Glycogénolyse et glycogénogenèse",
+                "Structure des lipides et β-oxydation",
+                "Cycle de Krebs",
+                "Régulation hormonale du métabolisme au repos et durant l'exercice"
+            ],
+            "UE6": [
+                "Gamétogenèse : généralités",
+                "La spermatogenèse",
+                "L'ovogenèse",
+                "Événements précédant la fécondation. Les 2 premiers chapitres de ce cours",
+                "Maîtriser la procréation",
+                "AMP",
+                "Phénomènes cellulaires de la fécondation, conséquences et anomalies",
+                "La 1ère semaine de développement",
+                "La 2ème semaine de développement",
+                "La 3ème semaine de développement",
+                "La 4ème semaine de développement",
+                "Mécanismes moléculaires des étapes du développement embryonnaire et de l'organogenèse",
+                "Organogenèse, histogenèse et cytogenèse du SNC",
+                "Organogenèse de l'intestin primitif",
+                "Organogenèse du système respiratoire",
+                "Organogenèse de la face",
+                "Organogenèse des membres",
+                "Organogenèse du système cardiaque primitif",
+                "Organogenèse de l'appareil génital",
+                "Organogenèse de l'appareil urinaire"
+            ],
+            "UE7": [
+                "Compartiments liquidiens de l'organisme",
+                "Les échanges des liquides corporels entre les compartiments",
+                "Introduction et forces de déplacement",
+                "Les différents canaux",
+                "Transporteurs et pompes",
+                "Potentiel de membrane et potentiel d'action neuro",
+                "Application potentiel d'action cardio : Électrophysiologie cardiaque",
+                "Acides-bases : rappels",
+                "Solutions tampons",
+                "Régulation physiologique",
+                "Statique des fluides : partie 1",
+                "Statique des fluides : partie 2",
+                "Équation de continuité – théorème de Bernoulli",
+                "Fluides réels - viscosité",
+                "Élasticité de la paroi des conduits"
+            ],
+            "UE8": [
+                "Introduction générale",
+                "Étude générale des os",
+                "Étude générale des articulations",
+                "Étude générale des muscles",
+                "Épaule",
+                "Bras",
+                "Avant-bras",
+                "Mains",
+                "Hanche",
+                "Cuisse",
+                "Demi-jambe",
+                "Pieds",
+                "Rachis et station érigée",
+                "Thorax",
+                "Coeur et vaisseaux",
+                "Aorte",
+                "Veine Cave Inférieure",
+                "Appareil respiratoire",
+                "Appareil Digestif",
+                "Appareil Uro-génital",
+                "Les os de la tête",
+                "Myologie de la tête et du cou, viscères et vaisseaux",
+                "Le système nerveux central"
+            ],
+            "UE9": [
+                "Atomistique",
+                "Réactifs et réactions en chimie organique",
+                "Nomenclature",
+                "Étude de quelques fonctions simples",
+                "Molécules possédant plusieurs fonctions",
+                "Isomérie",
+                "Thermodynamique",
+                "Chimie minérale"
+            ]
+        };
+
+        // ARBRE DÉCISIONNEL COMPLET
+        const decisionTree = {
+            q1: {
+                question: "À quelle fréquence ce chapitre tombe-t-il aux examens ?",
+                subtitle: "(Consulte les archives des 5 dernières années)",
+                options: [
+                    { text: "💯 Tombe chaque année", next: "q4" },
+                    { text: "✅ Revient souvent (3-4 fois sur 5 ans)", next: "q3" },
+                    { text: "⚠️ Tombe rarement (1-2 fois sur 5 ans)", next: "q2" },
+                    { text: "❌ Jamais tombé", result: { level: "sacrifier", percent: 0, message: "Ce chapitre n est jamais tombé aux examens. Sacrifie-le sans culpabilité." }}
+                ]
+            },
+            q2: {
+                question: "Comment sont les QCM sur ce chapitre ?",
+                options: [
+                    { text: "📖 Les QCM portent sur TOUT le cours → pas d'impasse possible", next: "q5" },
+                    { text: "🎯 Les QCM portent sur des PARTIES PRÉCISES du cours → impasses possibles", result: { level: "niveau2", percent: 60, message: "Concentre-toi sur les parties précises qui tombent régulièrement." }},
+                    { text: "📚 QCM avec items récurrents prévisibles", result: { level: "niveau1", percent: 30, message: "Mémorise uniquement ces items en travaillant les annales." }}
+                ]
+            },
+            q3: {
+                question: "Quel est le niveau de dépendance de ce chapitre ?",
+                options: [
+                    { text: "🔴 Ce chapitre est indispensable pour comprendre les suivants (pré-requis absolu)", next: "q6" },
+                    { text: "🔗 Ce chapitre dépend des précédents (séquence logique)", next: "q7" },
+                    { text: "✅ Ce chapitre est indépendant", next: "q8" }
+                ]
+            },
+            q4: {
+                question: "Comment sont les QCM sur ce chapitre ?",
+                options: [
+                    { text: "📖 Les QCM portent sur TOUT le cours → pas d'impasse possible", next: "q9" },
+                    { text: "🎯 Les QCM portent sur des PARTIES PRÉCISES du cours → impasses possibles", next: "q10" },
+                    { text: "📚 QCM avec items récurrents prévisibles", result: { level: "niveau1", percent: 30, message: "Mémorise les items récurrents via les annales." }}
+                ]
+            },
+            q5: {
+                question: "Combien de QCM moyens portent sur ce chapitre par examen ?",
+                options: [
+                    { text: "3 QCM ou plus", next: "q11" },
+                    { text: "2 QCM", result: { level: "niveau2", percent: 60, message: "Avec 2 QCM, adopte une stratégie de contenu ciblé." }},
+                    { text: "0-1 QCM", result: { level: "sacrifier", percent: 0, message: "Trop peu de QCM pour justifier l'investissement. Sacrifie ce chapitre." }}
+                ]
+            },
+            q6: {
+                question: "Comment sont les QCM sur ce chapitre ?",
+                options: [
+                    { text: "📖 QCM sur tout le cours", result: { level: "niveau3", percent: 100, message: "Pré-requis absolu avec QCM sur tout le cours : maîtrise complète obligatoire." }},
+                    { text: "🎯 QCM sur parties ciblées", result: { level: "niveau2", percent: 60, message: "Pré-requis absolu : concentre-toi sur les parties clés + fondations." }},
+                    { text: "📚 Items récurrents", result: { level: "niveau1", percent: 30, message: "Pré-requis absolu : mémorise les items + concepts fondamentaux." }}
+                ]
+            },
+            q7: {
+                question: "As-tu compris les chapitres précédents ?",
+                options: [
+                    { text: "✅ OUI → je peux continuer", next: "q12" },
+                    { text: "❌ NON → impossible de continuer", result: { level: "sacrifier", percent: 0, message: "Sans comprendre les chapitres précédents, s acharner est inutile. Sacrifie-le." }}
+                ]
+            },
+            q8: {
+                question: "Comment sont les QCM sur ce chapitre ?",
+                options: [
+                    { text: "📖 QCM sur tout le cours", result: { level: "niveau3", percent: 100, message: "Adopte une stratégie de maîtrise des thèmes principaux." }},
+                    { text: "🎯 QCM sur parties ciblées", result: { level: "niveau2", percent: 60, message: "Concentre-toi sur les parties qui tombent régulièrement." }},
+                    { text: "📚 Items récurrents", result: { level: "niveau1", percent: 30, message: "Mémorise uniquement les items récurrents." }}
+                ]
+            },
+            q9: {
+                question: "Quel est le niveau de dépendance de ce chapitre ?",
+                options: [
+                    { text: "🔴 Pré-requis absolu", result: { level: "niveau3", percent: 100, message: "Pré-requis absolu qui tombe chaque année : maîtrise complète obligatoire." }},
+                    { text: "🔗 Ce chapitre dépend des précédents", next: "q13" },
+                    { text: "✅ Indépendant", next: "q14" }
+                ]
+            },
+            q10: {
+                question: "Combien de QCM moyens portent sur ce chapitre par examen ?",
+                options: [
+                    { text: "3+ QCM", result: { level: "niveau3", percent: 100, message: "3+ QCM = poids énorme. Maîtrise complète nécessaire." }},
+                    { text: "2 QCM", result: { level: "niveau2", percent: 60, message: "Cible les thèmes qui reviennent régulièrement." }},
+                    { text: "0-1 QCM", result: { level: "niveau1", percent: 30, message: "Travaille uniquement les annales." }}
+                ]
+            },
+            q11: {
+                question: "Le tuteur considère ce cours :",
+                options: [
+                    { text: "🔴 Non négociable", result: { level: "niveau3", percent: 100, message: "Cours non négociable. Maîtrise complète nécessaire." }},
+                    { text: "🟠 Négociable si retard majeur", result: { level: "niveau2", percent: 60, message: "Cours négociable : stratégie de contenu ciblé." }},
+                    { text: "🟢 Zappable", result: { level: "niveau1", percent: 30, message: "Cours zappable : concentre-toi sur les annales." }}
+                ]
+            },
+            q12: {
+                question: "Comment sont les QCM sur ce chapitre ?",
+                options: [
+                    { text: "📖 QCM sur tout le cours", result: { level: "niveau3", percent: 100, message: "Stratégie de maîtrise des thèmes principaux." }},
+                    { text: "🎯 QCM sur parties ciblées", result: { level: "niveau2", percent: 60, message: "Concentre-toi sur les parties qui tombent." }},
+                    { text: "📚 Items récurrents", result: { level: "niveau1", percent: 30, message: "Mémorise les items récurrents." }}
+                ]
+            },
+            q13: {
+                question: "As-tu compris les chapitres précédents ?",
+                options: [
+                    { text: "✅ OUI → je peux continuer", result: { level: "niveau3", percent: 100, message: "Maîtrise complète nécessaire." }},
+                    { text: "❌ NON → impossible de continuer", result: { level: "sacrifier", percent: 0, message: "Sacrifie ce chapitre." }}
+                ]
+            },
+            q14: {
+                question: "Combien de QCM moyens portent sur ce chapitre par examen ?",
+                options: [
+                    { text: "3+ QCM", result: { level: "niveau3", percent: 100, message: "Maîtrise complète nécessaire." }},
+                    { text: "2 QCM", result: { level: "niveau2", percent: 60, message: "Stratégie de contenu ciblé." }},
+                    { text: "0-1 QCM", result: { level: "niveau1", percent: 30, message: "Travaille les annales." }}
+                ]
+            }
+        };
+
+        // ÉTAPE 1 → ÉTAPE 2 (avec navigation)
+        function goToStep2() {
+            // Validation
+            const tempsInput = document.getElementById('tempsDisponibleInput').value;
+            const niveau = document.getElementById('niveauRetard').value;
+            
+            if (!tempsInput || !niveau) {
+                alert("Merci de remplir tous les champs obligatoires !");
+                return;
+            }
+            
+            let allTimesSet = true;
+            for (let i = 1; i <= 9; i++) {
+                const time = document.getElementById('timeUE' + i).value;
+                if (!time) {
+                    allTimesSet = false;
+                    break;
+                }
+                ueTimeConfig['UE' + i] = parseFloat(time);
+            }
+            
+            if (!allTimesSet) {
+                alert("Merci de remplir le temps pour TOUTES les UE !");
+                return;
+            }
+            
+            tempsDisponible = parseFloat(tempsInput);
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+            updateNavButtons(2);
+            
+            generateChaptersList();
+        }
+
+        // GÉNÉRER LA LISTE DES CHAPITRES
+        function generateChaptersList() {
+            let html = '';
+            
+            Object.keys(allChapters).forEach(ue => {
+                const chapters = allChapters[ue];
+                html += `
+                    <div class="ue-section" style="margin: 30px 0;">
+                        <h3>${ue} - ${chapters.length} cours</h3>
+                `;
+                
+                chapters.forEach((chapter, index) => {
+                    const id = `${ue}-${index}`;
+                    html += `
+                        <div class="chapter-card" id="card-${id}">
+                            <input type="checkbox" class="chapter-checkbox" id="${id}" data-ue="${ue}" data-chapter="${chapter}">
+                            <label for="${id}">${chapter}</label>
+                        </div>
+                    `;
+                });
+                
+                html += '</div>';
+            });
+            
+            document.getElementById('chaptersContainer').innerHTML = html;
+            
+            // Ajouter les event listeners
+            document.querySelectorAll('.chapter-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const chapter = {
+                        id: this.id,
+                        ue: this.dataset.ue,
+                        name: this.dataset.chapter
+                    };
+                    
+                    if (this.checked) {
+                        selectedChapters.push(chapter);
+                        openDecisionModal(chapter);
+                    } else {
+                        selectedChapters = selectedChapters.filter(c => c.id !== chapter.id);
+                        delete chapterDecisions[chapter.id];
+                        document.getElementById('card-' + chapter.id).classList.remove('decided');
+                    }
+                });
+            });
+        }
+
+        // MODAL ARBRE DÉCISIONNEL
+        function openDecisionModal(chapter) {
+            currentChapter = chapter;
+            questionHistory = [];
+            document.getElementById('decisionModal').style.display = 'block';
+            document.getElementById('backBtn').style.display = 'block';
+            document.getElementById('restartBtn').style.display = 'block';
+            showQuestion('q1');
+        }
+
+        function closeModal() {
+            document.getElementById('decisionModal').style.display = 'none';
+            document.getElementById('backBtn').style.display = 'none';
+            document.getElementById('restartBtn').style.display = 'none';
+        }
+
+        function showQuestion(questionId) {
+            const question = decisionTree[questionId];
+            let html = `
+                <div class="question-box">
+                    <h2>${questionId.toUpperCase()}</h2>
+                    <p><strong>${question.question}</strong></p>
+                    ${question.subtitle ? `<p style="font-size: 0.95rem; opacity: 0.9;">${question.subtitle}</p>` : ''}
+                </div>
+                <div class="options">
+            `;
+            
+            question.options.forEach((option, index) => {
+                if (option.result) {
+                    html += `<button class="option-btn" onclick='showResult(${JSON.stringify(option.result)})'>${option.text}</button>`;
+                } else {
+                    html += `<button class="option-btn" onclick="goToNextQuestion('${option.next}', '${questionId}')">${option.text}</button>`;
+                }
+            });
+            
+            html += '</div>';
+            document.getElementById('modalContent').innerHTML = html;
+        }
+
+        function goToNextQuestion(nextQuestionId, currentQuestionId) {
+            questionHistory.push(currentQuestionId);
+            showQuestion(nextQuestionId);
+        }
+
+        function showResult(result) {
+            const levelText = {
+                'niveau1': 'NIVEAU 1 - Priorité Annales (30%)',
+                'niveau2': 'NIVEAU 2 - Stratégie de Contenu (60%)',
+                'niveau3': 'NIVEAU 3 - Maîtrise Complète (100%)',
+                'sacrifier': 'SACRIFIER (0%)'
+            };
+            
+            const baseTime = ueTimeConfig[currentChapter.ue];
+            const actualTime = (baseTime * result.percent / 100).toFixed(1);
+            
+            chapterDecisions[currentChapter.id] = {
+                level: result.level,
+                percent: result.percent,
+                hours: parseFloat(actualTime),
+                levelText: levelText[result.level],
+                baseTime: baseTime
+            };
+            
+            // MESSAGE CONTEXTUEL selon le niveau de retard
+            const niveauRetard = document.getElementById('niveauRetard').value;
+            let contextMessage = '';
+            let alternativeButtons = '';
+            
+            if (niveauRetard === 'leger') {
+                // RETARD LÉGER - Plus tolérant
+                if (result.level === 'sacrifier') {
+                    contextMessage = `
+                        <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 15px; margin: 20px 0; color: #856404;">
+                            <p style="margin: 0; font-weight: bold;">💡 Conseil avec ton retard léger :</p>
+                            <p style="margin: 5px 0 0 0;">Tu as du temps ! Plutôt que de sacrifier complètement, tu pourrais envisager un <strong>Niveau 1 (${(baseTime * 0.3).toFixed(1)}h)</strong> pour garder quelques notions de base.</p>
+                        </div>
+                    `;
+                    alternativeButtons = `
+                        <button onclick="applyAlternative('${currentChapter.id}', 30, ${baseTime})" style="margin: 10px; padding: 12px 20px; background: #3b82f6; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                            Choisir Niveau 1 (${(baseTime * 0.3).toFixed(1)}h)
+                        </button>
+                    `;
+                } else if (result.level === 'niveau1') {
+                    contextMessage = `
+                        <div style="background: #d1fae5; border: 2px solid #10b981; border-radius: 8px; padding: 15px; margin: 20px 0; color: #065f46;">
+                            <p style="margin: 0; font-weight: bold;">✅ Avec ton retard léger :</p>
+                            <p style="margin: 5px 0 0 0;">Cette décision est cohérente. Si tu as un peu plus de temps, tu pourrais même viser le <strong>Niveau 2 (${(baseTime * 0.6).toFixed(1)}h)</strong> pour approfondir.</p>
+                        </div>
+                    `;
+                }
+            } else if (niveauRetard === 'moyen') {
+                // RETARD MOYEN - Équilibré
+                if (result.level === 'niveau3') {
+                    contextMessage = `
+                        <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 15px; margin: 20px 0; color: #856404;">
+                            <p style="margin: 0; font-weight: bold;">⚠️ Attention avec ton retard moyen :</p>
+                            <p style="margin: 5px 0 0 0;">Le Niveau 3 est exigeant en temps (${baseTime}h). Es-tu sûr de pouvoir te le permettre ? Le <strong>Niveau 2 (${(baseTime * 0.6).toFixed(1)}h)</strong> pourrait suffire.</p>
+                        </div>
+                    `;
+                    alternativeButtons = `
+                        <button onclick="applyAlternative('${currentChapter.id}', 60, ${baseTime})" style="margin: 10px; padding: 12px 20px; background: #f59e0b; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                            Choisir Niveau 2 (${(baseTime * 0.6).toFixed(1)}h)
+                        </button>
+                    `;
+                }
+            } else if (niveauRetard === 'majeur') {
+                // RETARD MAJEUR - Strict et pragmatique
+                if (result.level === 'niveau3') {
+                    contextMessage = `
+                        <div style="background: #fee2e2; border: 2px solid #ef4444; border-radius: 8px; padding: 15px; margin: 20px 0; color: #991b1b;">
+                            <p style="margin: 0; font-weight: bold;">🔴 ALERTE avec ton retard majeur :</p>
+                            <p style="margin: 5px 0 0 0;">Le Niveau 3 (${baseTime}h) est risqué ! Sauf si ce chapitre est VRAIMENT essentiel, considère le <strong>Niveau 2 (${(baseTime * 0.6).toFixed(1)}h)</strong> ou même <strong>Niveau 1 (${(baseTime * 0.3).toFixed(1)}h)</strong>.</p>
+                        </div>
+                    `;
+                    alternativeButtons = `
+                        <button onclick="applyAlternative('${currentChapter.id}', 60, ${baseTime})" style="margin: 10px; padding: 12px 20px; background: #f59e0b; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                            Choisir Niveau 2 (${(baseTime * 0.6).toFixed(1)}h)
+                        </button>
+                        <button onclick="applyAlternative('${currentChapter.id}', 30, ${baseTime})" style="margin: 10px; padding: 12px 20px; background: #3b82f6; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                            Choisir Niveau 1 (${(baseTime * 0.3).toFixed(1)}h)
+                        </button>
+                    `;
+                } else if (result.level === 'niveau2') {
+                    contextMessage = `
+                        <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 15px; margin: 20px 0; color: #856404;">
+                            <p style="margin: 0; font-weight: bold;">⚠️ Avec ton retard majeur :</p>
+                            <p style="margin: 5px 0 0 0;">Le Niveau 2 (${(baseTime * 0.6).toFixed(1)}h) est acceptable. Si tu veux gagner du temps, le <strong>Niveau 1 (${(baseTime * 0.3).toFixed(1)}h)</strong> peut suffire.</p>
+                        </div>
+                    `;
+                    alternativeButtons = `
+                        <button onclick="applyAlternative('${currentChapter.id}', 30, ${baseTime})" style="margin: 10px; padding: 12px 20px; background: #3b82f6; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                            Choisir Niveau 1 (${(baseTime * 0.3).toFixed(1)}h)
+                        </button>
+                    `;
+                }
+            }
+            
+            const html = `
+                <div class="result-box ${result.level}">
+                    <h2 style="margin-top: 0;">✅ DÉCISION</h2>
+                    <h3>${levelText[result.level]}</h3>
+                    <p style="font-size: 1.2rem; margin: 20px 0;"><strong>Temps à investir : ${actualTime}h</strong></p>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">(${result.percent}% de ${baseTime}h)</p>
+                    <p>${result.message}</p>
+                    
+                    ${contextMessage}
+                    
+                    <div style="margin-top: 20px;">
+                        <button onclick="closeModal()" style="padding: 15px 30px; background: white; color: #1a365d; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer;">
+                            Valider cette décision
+                        </button>
+                        ${alternativeButtons}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('modalContent').innerHTML = html;
+            document.getElementById('card-' + currentChapter.id).classList.add('decided');
+        }
+
+        // FONCTION POUR APPLIQUER UNE ALTERNATIVE
+        function applyAlternative(chapterId, newPercent, baseTime) {
+            const newHours = (baseTime * newPercent / 100).toFixed(1);
+            const levelText = {
+                0: 'SACRIFIER (0%)',
+                30: 'NIVEAU 1 - Priorité Annales (30%)',
+                60: 'NIVEAU 2 - Stratégie de Contenu (60%)',
+                100: 'NIVEAU 3 - Maîtrise Complète (100%)'
+            };
+            const levelClass = {
+                0: 'sacrifier',
+                30: 'niveau1',
+                60: 'niveau2',
+                100: 'niveau3'
+            };
+            
+            chapterDecisions[chapterId] = {
+                level: levelClass[newPercent],
+                percent: newPercent,
+                hours: parseFloat(newHours),
+                levelText: levelText[newPercent],
+                baseTime: baseTime
+            };
+            
+            closeModal();
+        }
+
+        function goBack() {
+            if (questionHistory.length > 0) {
+                const previousQuestion = questionHistory.pop();
+                showQuestion(previousQuestion);
+            }
+        }
+
+        function restartTree() {
+            questionHistory = [];
+            showQuestion('q1');
+        }
+
+        // RÉCAPITULATIF (avec navigation)
+        function goToSummary() {
+            if (selectedChapters.length === 0) {
+                alert("Tu n'as sélectionné aucun chapitre en retard !");
+                return;
+            }
+            
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('step3').style.display = 'block';
+            document.getElementById('timeIndicator').style.display = 'block';
+            updateNavButtons(3);
+            
+            generateSummary();
+            calculateTimes();
+        }
+
+        function generateSummary() {
+            let html = '<table class="summary-table"><thead><tr><th>UE</th><th>Chapitre</th><th>Recommandation</th><th>Temps</th><th>Ajuster</th></tr></thead><tbody>';
+            
+            selectedChapters.forEach(chapter => {
+                const decision = chapterDecisions[chapter.id];
+                if (decision) {
+                    const baseTime = decision.baseTime;
+                    html += `
+                        <tr>
+                            <td>${chapter.ue}</td>
+                            <td>${chapter.name}</td>
+                            <td>${decision.levelText}</td>
+                            <td>${decision.hours}h</td>
+                            <td>
+                                <select class="level-select" onchange="updateTime('${chapter.id}', this.value, ${baseTime})">
+                                    <option value="${decision.percent}" selected>${decision.levelText}</option>
+                                    <option value="0">Sacrifier (0h)</option>
+                                    <option value="30">Niveau 1 - ${(baseTime * 0.3).toFixed(1)}h</option>
+                                    <option value="60">Niveau 2 - ${(baseTime * 0.6).toFixed(1)}h</option>
+                                    <option value="100">Niveau 3 - ${baseTime}h</option>
+                                </select>
+                            </td>
+                        </tr>
+                    `;
+                }
+            });
+            
+            html += '</tbody></table>';
+            document.getElementById('summaryContent').innerHTML = html;
+        }
+
+        function updateTime(chapterId, newPercent, baseTime) {
+            const percent = parseInt(newPercent);
+            const newHours = (baseTime * percent / 100).toFixed(1);
+            chapterDecisions[chapterId].percent = percent;
+            chapterDecisions[chapterId].hours = parseFloat(newHours);
+            calculateTimes();
+        }
+
+        function calculateTimes() {
+            let total = 0;
+            Object.values(chapterDecisions).forEach(decision => {
+                total += decision.hours;
+            });
+            
+            total = Math.round(total * 10) / 10;
+            
+            document.getElementById('tempsCalcule').textContent = total + 'h';
+            document.getElementById('tempsDisponible').textContent = tempsDisponible + 'h';
+            
+            const ecart = Math.round((tempsDisponible - total) * 10) / 10;
+            document.getElementById('ecart').textContent = (ecart >= 0 ? '+' : '') + ecart + 'h';
+            
+            const percentage = Math.min((total / tempsDisponible) * 100, 100);
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = percentage + '%';
+            
+            if (percentage <= 70) {
+                progressBar.className = 'progress-bar-fill';
+            } else if (percentage <= 100) {
+                progressBar.className = 'progress-bar-fill warning';
+            } else {
+                progressBar.className = 'progress-bar-fill danger';
+            }
+        }
+
+        // ÉTAPE 4 : TABLEAU FINAL
+        function goToFinalTable() {
+            document.getElementById('step3').style.display = 'none';
+            document.getElementById('step4').style.display = 'block';
+            document.getElementById('timeIndicator').style.display = 'none';
+            
+            generateFinalTable();
+        }
+
+        function generateFinalTable() {
+            let totalTime = 0;
+            let byUE = {};
+            
+            // Regrouper par UE avec les valeurs AJUSTÉES
+            selectedChapters.forEach(chapter => {
+                const decision = chapterDecisions[chapter.id];
+                if (decision) {
+                    if (!byUE[chapter.ue]) {
+                        byUE[chapter.ue] = [];
+                    }
+                    
+                    // Déterminer le texte du niveau basé sur le pourcentage ACTUEL
+                    let levelTextFinal = '';
+                    if (decision.percent === 0) {
+                        levelTextFinal = 'SACRIFIER (0%)';
+                    } else if (decision.percent === 30) {
+                        levelTextFinal = 'NIVEAU 1 - Priorité Annales (30%)';
+                    } else if (decision.percent === 60) {
+                        levelTextFinal = 'NIVEAU 2 - Stratégie de Contenu (60%)';
+                    } else if (decision.percent === 100) {
+                        levelTextFinal = 'NIVEAU 3 - Maîtrise Complète (100%)';
+                    }
+                    
+                    byUE[chapter.ue].push({
+                        name: chapter.name,
+                        level: levelTextFinal,
+                        hours: decision.hours,
+                        percent: decision.percent
+                    });
+                    totalTime += decision.hours;
+                }
+            });
+            
+            totalTime = Math.round(totalTime * 10) / 10;
+            const ecart = Math.round((tempsDisponible - totalTime) * 10) / 10;
+            
+            let html = `
+                <div style="background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%); color: white; padding: 30px; border-radius: 12px; margin: 20px 0; text-align: center;">
+                    <h3 style="margin: 0 0 15px 0; color: white;">📊 BILAN GLOBAL</h3>
+                    <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
+                        <div>
+                            <p style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 5px;">Chapitres en retard</p>
+                            <p style="font-size: 2rem; font-weight: bold; margin: 0;">${selectedChapters.length}</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 5px;">Temps nécessaire</p>
+                            <p style="font-size: 2rem; font-weight: bold; margin: 0;">${totalTime}h</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 5px;">Temps disponible</p>
+                            <p style="font-size: 2rem; font-weight: bold; margin: 0;">${tempsDisponible}h</p>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 5px;">Écart</p>
+                            <p style="font-size: 2rem; font-weight: bold; margin: 0; color: ${ecart >= 0 ? '#10b981' : '#ef4444'};">${ecart >= 0 ? '+' : ''}${ecart}h</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Tableau par UE
+            Object.keys(byUE).sort().forEach(ue => {
+                const chapters = byUE[ue];
+                const ueTotal = chapters.reduce((sum, ch) => sum + ch.hours, 0).toFixed(1);
+                
+                html += `
+                    <div style="margin: 30px 0;">
+                        <h3 style="background: #1a365d; color: white; padding: 15px; border-radius: 8px 8px 0 0; margin: 0;">
+                            ${ue} - ${chapters.length} chapitre${chapters.length > 1 ? 's' : ''} - ${ueTotal}h
+                        </h3>
+                        <table class="summary-table" style="margin-top: 0;">
+                            <thead>
+                                <tr>
+                                    <th>Chapitre</th>
+                                    <th>Décision</th>
+                                    <th>Temps</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+                
+                chapters.forEach(ch => {
+                    const colorClass = ch.percent === 0 ? '#ef4444' : 
+                                      ch.percent === 30 ? '#3b82f6' : 
+                                      ch.percent === 60 ? '#f59e0b' : '#10b981';
+                    html += `
+                        <tr>
+                            <td>${ch.name}</td>
+                            <td style="color: ${colorClass}; font-weight: bold;">${ch.level}</td>
+                            <td style="font-weight: bold;">${ch.hours}h</td>
+                        </tr>
+                    `;
+                });
+                
+                html += `
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            });
+            
+            // Message final
+            if (ecart >= 0) {
+                html += `
+                    <div class="success-box" style="margin-top: 30px;">
+                        <h3>✅ Planning réalisable !</h3>
+                        <p>Tu as encore <strong>${ecart}h de marge</strong>. Tu peux même envisager de remonter certains chapitres sacrifiés ou en Niveau 1 vers un niveau supérieur si tu te sens à l'aise.</p>
+                    </div>
+                `;
+            } else {
+                html += `
+                    <div class="danger-box" style="margin-top: 30px;">
+                        <h3>⚠️ Planning trop ambitieux</h3>
+                        <p>Il te manque <strong>${Math.abs(ecart)}h</strong>. Tu dois ajuster tes décisions en :</p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Passant certains chapitres de Niveau 3 → Niveau 2</li>
+                            <li>Passant certains chapitres de Niveau 2 → Niveau 1</li>
+                            <li>Sacrifiant certains chapitres moins prioritaires</li>
+                        </ul>
+                        <button onclick="backToStep3()" style="margin-top: 15px; padding: 12px 25px; background: #ff6b7a; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                            ← Retour aux ajustements
+                        </button>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('finalTableContent').innerHTML = html;
+        }
+
+        function goToFinalTable() {
+            document.getElementById('step3').style.display = 'none';
+            document.getElementById('step4').style.display = 'block';
+            document.getElementById('timeIndicator').style.display = 'none';
+            updateNavButtons(4);
+            
+            generateFinalTable();
+        }
+
+        function backToStep3() {
+            document.getElementById('step4').style.display = 'none';
+            document.getElementById('step3').style.display = 'block';
+            document.getElementById('timeIndicator').style.display = 'block';
+            updateNavButtons(3);
+        }
+
+        // NAVIGATION PAR ÉTAPES
+        let currentStepNum = 1;
+
+        function updateNavButtons(stepNum) {
+            currentStepNum = stepNum;
+            
+            // Activer/désactiver les boutons de navigation
+            for (let i = 1; i <= 4; i++) {
+                const btn = document.getElementById('navBtn' + i);
+                if (i <= stepNum) {
+                    btn.disabled = false;
+                    btn.style.background = '#1a365d';
+                    btn.style.cursor = 'pointer';
+                } else {
+                    btn.disabled = true;
+                    btn.style.background = '#94a3b8';
+                    btn.style.cursor = 'not-allowed';
+                }
+                
+                // Mettre en surbrillance l'étape actuelle
+                if (i === stepNum) {
+                    btn.style.background = '#ff6b7a';
+                }
+            }
+            
+            // Gérer les boutons flottants
+            if (stepNum > 1) {
+                document.getElementById('backBtnPermanent').style.display = 'block';
+                document.getElementById('restartBtnPermanent').style.display = 'block';
+            } else {
+                document.getElementById('backBtnPermanent').style.display = 'none';
+                document.getElementById('restartBtnPermanent').style.display = 'none';
+            }
+        }
+
+        function goToStepNav(stepNum) {
+            // Cacher toutes les étapes
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById('step' + i).style.display = 'none';
+            }
+            
+            // Afficher l'étape demandée
+            document.getElementById('step' + stepNum).style.display = 'block';
+            
+            // Gérer l'indicateur de temps
+            if (stepNum === 3) {
+                document.getElementById('timeIndicator').style.display = 'block';
+            } else {
+                document.getElementById('timeIndicator').style.display = 'none';
+            }
+            
+            updateNavButtons(stepNum);
+        }
+
+        function goBackStep() {
+            if (currentStepNum > 1) {
+                goToStepNav(currentStepNum - 1);
+            }
+        }
+
+        function restartAll() {
+            if (confirm('Es-tu sûr de vouloir recommencer depuis le début ? Toutes tes données seront perdues.')) {
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
