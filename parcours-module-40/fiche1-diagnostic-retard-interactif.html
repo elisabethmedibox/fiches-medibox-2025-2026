@@ -476,6 +476,15 @@
                     </div>
                 </div>
                 
+                <h3 style="margin-top: 30px; color: #1a365d;">📚 Tours de révision</h3>
+                <p style="margin-bottom: 20px;">Temps que tu vas consacrer aux tours de révision globales sur tout le programme (hors rattrapage).</p>
+                
+                <div class="form-group">
+                    <label for="toursRevision">Tours de révision (en heures) :</label>
+                    <input type="number" id="toursRevision" min="0" max="200" step="1" value="98" required>
+                    <div class="hint">Recommandation : 98h (2 semaines × 7h/jour). En fonction du résultat de cette simulation, tu pourras revoir à la hausse ou à la baisse ce temps, en faisant attention à ne pas trop le sacrifier car c'est un temps important pour consolider tes connaissances.</div>
+                </div>
+                
                 <button class="btn-primary" onclick="goToStep2()">Suivant : Temps par UE ➡️</button>
             </div>
             
@@ -549,7 +558,7 @@
                 <!-- UE1 -->
                 <div class="ue-section">
                     <div class="ue-header" onclick="toggleUE('ue1')">
-                        <span><strong>UE1 - SANTÉ SOCIÉTÉ</strong> (5 chapitres)</span>
+                        <span><strong>UE1 - SANTÉ SOCIÉTÉ</strong> (7 chapitres)</span>
                         <span id="count-ue1">0 sélectionné(s)</span>
                     </div>
                     <div class="ue-content" id="ue1">
@@ -572,6 +581,14 @@
                         <div class="cours-item">
                             <input type="checkbox" id="ue1-5" onchange="updateCount('ue1')">
                             <label for="ue1-5">Les métiers de la santé</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue1-6" onchange="updateCount('ue1')">
+                            <label for="ue1-6">Coordination des soins</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue1-7" onchange="updateCount('ue1')">
+                            <label for="ue1-7">Fiches 16 métiers</label>
                         </div>
                     </div>
                 </div>
@@ -1195,8 +1212,9 @@
                 const tempsQCM = parseFloat(document.getElementById('tempsQCM').value);
                 const tempsMineureCours = parseFloat(document.getElementById('tempsMineureCours').value);
                 const tempsMineureRevision = parseFloat(document.getElementById('tempsMineureRevision').value);
+                const toursRevision = parseFloat(document.getElementById('toursRevision').value);
                 
-                if (!dateToday || !heuresParJour || isNaN(joursRepos) || !tempsQCM || isNaN(tempsMineureCours) || isNaN(tempsMineureRevision)) {
+                if (!dateToday || !heuresParJour || isNaN(joursRepos) || !tempsQCM || isNaN(tempsMineureCours) || isNaN(tempsMineureRevision) || !toursRevision) {
                     alert('⚠️ Merci de remplir tous les champs de l\'étape 1 !');
                     return;
                 }
@@ -1297,6 +1315,7 @@
             const tempsQCM = parseFloat(document.getElementById('tempsQCM').value);
             const tempsMineureCours = parseFloat(document.getElementById('tempsMineureCours').value);
             const tempsMineureRevision = parseFloat(document.getElementById('tempsMineureRevision').value);
+            const toursRevision = parseFloat(document.getElementById('toursRevision').value);
             
             // Récupération des J0 de la semaine dernière
             const j0Lundi = parseInt(document.getElementById('j0Lundi').value) || 0;
@@ -1326,23 +1345,22 @@
             // Déduction 2: Concours blanc
             const deductionConcours = 10;
             
-            // Déduction 3: Tours de révision
-            const deductionToursRevision = 98; // 2 semaines × 7h/jour
+            // Déduction 3: Tours de révision (maintenant modifiable)
+            const deductionToursRevision = toursRevision;
             
             // Déduction 4: Mineure (jusqu'au 19 décembre)
             const tempsMineureSemaine = tempsMineureCours + tempsMineureRevision;
             const deductionMineure = semainesJusquaNoel * tempsMineureSemaine;
             
             // Déduction 5: Répétitions des J0 de la semaine dernière
-            // Temps restant cette semaine selon le jour du J0
             const tempsRepetitionsJ0 = 
-                (j0Lundi * 1.5) +      // Lundi: reste J7 (1.5h)
-                (j0Mardi * 1.5) +      // Mardi: reste J7 (1.5h)
-                (j0Mercredi * 1.5) +   // Mercredi: reste J7 (1.5h)
-                (j0Jeudi * 4.5) +      // Jeudi: J2 (3h) + J7 (1.5h) = 4.5h
-                (j0Vendredi * 4.5) +   // Vendredi: J2 (3h) + J7 (1.5h) = 4.5h
-                (j0Samedi * 4.5) +     // Samedi: J2 (3h) + J7 (1.5h) = 4.5h
-                (j0Dimanche * 8.5);    // Dimanche: J1 (4h) + J2 (3h) + J7 (1.5h) = 8.5h
+                (j0Lundi * 1.5) +      
+                (j0Mardi * 1.5) +      
+                (j0Mercredi * 1.5) +   
+                (j0Jeudi * 4.5) +      
+                (j0Vendredi * 4.5) +   
+                (j0Samedi * 4.5) +     
+                (j0Dimanche * 8.5);    
             
             // Déduction 6: Imprévus
             const deductionImprevus = tempsDisponibleBrut * 0.1;
@@ -1414,22 +1432,220 @@
             }
             
             // Affichage des résultats
-            let html = `
-                <div class="result-box" style="border-color: ${couleur};">
-                    <h3 style="color: ${couleur};">NIVEAU DE RETARD : ${niveau}</h3>
-                    <p style="font-size: 1.1em; font-weight: 600; margin: 10px 0;">${message}</p>
-                    ${sousTitre ? `<p style="margin-top: 10px;">${sousTitre}</p>` : ''}
-                </div>
+            let html = '';
+            
+            // CAS SPÉCIAL : TEMPS NET NÉGATIF
+            if (tempsNetDisponible < 0) {
+                // Calcul des scénarios de réajustement
+                const deficit = Math.abs(tempsNetDisponible);
                 
-                <div style="text-align: center; margin: 20px 0; padding: 15px; background: #f8fafc; border-radius: 8px;">
-                    <p style="margin: 0; color: #1a365d; font-size: 16px;">
-                        <strong>Critères d'évaluation :</strong><br>
-                        ${nbChapitresTotal} chapitre(s) en retard | 
-                        Ratio besoin/disponible : ${ratioPercent}%
-                    </p>
-                </div>
+                // Scénario A: Augmenter heures/jour
+                const scenarioA_12h = joursEffectifs * (12 - heuresParJour);
+                const scenarioA_14h = joursEffectifs * (14 - heuresParJour);
+                const nouveauTempsA_12h = tempsNetDisponible + scenarioA_12h;
+                const nouveauTempsA_14h = tempsNetDisponible + scenarioA_14h;
                 
-                <h3 style="margin-top: 30px;">📅 Temps disponible</h3>
+                // Scénario B: Réduire tours révision
+                const scenarioB_70h = toursRevision - 70;
+                const scenarioB_49h = toursRevision - 49;
+                const nouveauTempsB_70h = tempsNetDisponible + scenarioB_70h;
+                const nouveauTempsB_49h = tempsNetDisponible + scenarioB_49h;
+                
+                // Scénario C: Réduire QCM
+                const scenarioC_05h = joursEffectifs * (tempsQCM - 0.5);
+                const nouveauTempsC = tempsNetDisponible + scenarioC_05h;
+                
+                // Scénario D: Combinaison
+                const scenarioD_heures = joursEffectifs * (11 - heuresParJour);
+                const scenarioD_tours = toursRevision - 70;
+                const scenarioD_qcm = joursEffectifs * (tempsQCM - 1);
+                const scenarioD_total = scenarioD_heures + scenarioD_tours + scenarioD_qcm;
+                const nouveauTempsD = tempsNetDisponible + scenarioD_total;
+                
+                html = `
+                    <div class="danger-box" style="padding: 25px; margin-bottom: 30px;">
+                        <h3 style="color: #ef4444; margin-top: 0;">🔴 SITUATION CRITIQUE</h3>
+                        <p style="font-size: 1.2em; font-weight: 600; margin: 15px 0;">
+                            ⚠️ Ton temps net disponible est de <span style="color: #ef4444;">${tempsNetDisponible.toFixed(0)}h</span>
+                        </p>
+                        <p style="margin-bottom: 0;">
+                            Cela signifie que les déductions que tu as faites (QCM, tours de révision, mineure, etc.) 
+                            dépassent ton temps disponible <strong>AVANT MÊME</strong> de commencer ton rattrapage.
+                        </p>
+                    </div>
+                    
+                    <h3 style="margin-top: 30px; color: #1a365d;">📊 Options de réajustement</h3>
+                    <p style="margin-bottom: 20px;">Voici quelques <strong>scénarios possibles (non exhaustifs)</strong> pour récupérer du temps. D'autres combinaisons seraient possibles à réfléchir avec la Fiche 2 et éventuellement les conseils de tes coachs et tuteurs.</p>
+                    
+                    <div class="success-box" style="margin-bottom: 20px;">
+                        <h4 style="margin-top: 0;">📈 SCÉNARIO A : Augmenter ton temps de travail</h4>
+                        <p style="margin: 10px 0;">
+                            • Si tu passes de <strong>${heuresParJour}h/jour à 12h/jour</strong><br>
+                            ➡️ Tu récupères : <strong>+${scenarioA_12h.toFixed(0)}h</strong> → Temps net : <strong>${nouveauTempsA_12h.toFixed(0)}h</strong>
+                        </p>
+                        <p style="margin: 10px 0;">
+                            • Si tu passes de <strong>${heuresParJour}h/jour à 14h/jour</strong><br>
+                            ➡️ Tu récupères : <strong>+${scenarioA_14h.toFixed(0)}h</strong> → Temps net : <strong>${nouveauTempsA_14h.toFixed(0)}h</strong>
+                        </p>
+                    </div>
+                    
+                    <div class="warning-box" style="margin-bottom: 20px;">
+                        <h4 style="margin-top: 0;">📉 SCÉNARIO B : Réduire tes tours de révision</h4>
+                        <p style="margin: 10px 0;">
+                            • Si tu passes de <strong>${toursRevision}h à 70h</strong><br>
+                            ➡️ Tu récupères : <strong>+${scenarioB_70h.toFixed(0)}h</strong> → Temps net : <strong>${nouveauTempsB_70h.toFixed(0)}h</strong>
+                        </p>
+                        <p style="margin: 10px 0;">
+                            • Si tu passes de <strong>${toursRevision}h à 49h</strong> (1 semaine × 7h/jour)<br>
+                            ➡️ Tu récupères : <strong>+${scenarioB_49h.toFixed(0)}h</strong> → Temps net : <strong>${nouveauTempsB_49h.toFixed(0)}h</strong>
+                        </p>
+                        <p style="margin: 15px 0 0 0; padding: 10px; background: rgba(245, 158, 11, 0.1); border-radius: 6px;">
+                            <strong>⚠️ ATTENTION :</strong> Ce scénario est risqué ! Les tours de révision sont essentiels pour consolider tes connaissances. Ne descends pas en dessous de 50h si possible.
+                        </p>
+                    </div>
+                    
+                    <div class="danger-box" style="margin-bottom: 20px;">
+                        <h4 style="margin-top: 0;">⚠️ SCÉNARIO C : Réduire drastiquement ton temps QCM</h4>
+                        <p style="margin: 10px 0;">
+                            • Si tu passes de <strong>${tempsQCM}h/jour à 0,5h/jour</strong><br>
+                            ➡️ Tu récupères : <strong>+${scenarioC_05h.toFixed(0)}h</strong> → Temps net : <strong>${nouveauTempsC.toFixed(0)}h</strong>
+                        </p>
+                        <p style="margin: 15px 0 0 0; padding: 10px; background: rgba(239, 68, 68, 0.1); border-radius: 6px;">
+                            <strong>⚠️ ATTENTION : Scénario DANGEREUX !</strong><br>
+                            L'entraînement QCM est crucial pour réussir les partiels. Sacrifier les QCM est fortement déconseillé par Medibox.
+                        </p>
+                    </div>
+                    
+                    <div class="info-box" style="margin-bottom: 20px;">
+                        <h4 style="margin-top: 0;">🔀 SCÉNARIO D : Combinaison optimale</h4>
+                        <p style="margin: 10px 0;">
+                            • <strong>11h/jour</strong> (au lieu de ${heuresParJour}h)<br>
+                            • <strong>70h</strong> tours révision (au lieu de ${toursRevision}h)<br>
+                            • <strong>1h/jour</strong> QCM (au lieu de ${tempsQCM}h)
+                        </p>
+                        <p style="margin: 10px 0;">
+                            ➡️ Tu récupères : <strong>+${scenarioD_total.toFixed(0)}h</strong> → Temps net : <strong>${nouveauTempsD.toFixed(0)}h</strong>
+                        </p>
+                    </div>
+                    
+                    <div class="concept-card warning" style="margin-bottom: 20px;">
+                        <h4 style="margin-top: 0;">❌ SCÉNARIO E : Sacrifier massivement des cours</h4>
+                        <p>
+                            Tu gardes toutes tes déductions obligatoires (QCM, tours révision, mineure...) 
+                            mais tu acceptes de <strong>sacrifier un grand nombre de chapitres</strong>.
+                        </p>
+                        <p style="margin-top: 10px;">
+                            ➡️ Dans la <strong>FICHE 2 - DÉCISIONS</strong>, tu devras choisir quels chapitres 
+                            sacrifier totalement pour libérer du temps.
+                        </p>
+                    </div>
+                    
+                    <div style="text-align: center; padding: 20px; background: #f8fafc; border-radius: 8px; margin: 30px 0;">
+                        <p style="color: #1a365d; margin: 0;">
+                            💡 <strong>CONSEIL :</strong> Teste plusieurs combinaisons en retournant à l'Étape 1 
+                            pour trouver l'équilibre qui te convient. Ces scénarios sont des exemples, 
+                            d'autres combinaisons sont possibles à discuter avec tes tuteurs.
+                        </p>
+                    </div>
+                `;
+                
+                // Affichage des tableaux de déductions quand même (pour comprendre)
+                html += `
+                    <h3 style="margin-top: 30px;">📅 Détail de ton temps disponible</h3>
+                    <table class="summary-table">
+                        <tr>
+                            <th>Élément</th>
+                            <th>Valeur</th>
+                        </tr>
+                        <tr>
+                            <td>Jours restants jusqu'au 8 janvier 2026</td>
+                            <td>${joursRestants} jours</td>
+                        </tr>
+                        <tr>
+                            <td>Jours de repos prévus</td>
+                            <td>${joursRepos} jours</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jours effectifs de travail</strong></td>
+                            <td><strong>${joursEffectifs} jours</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Heures de travail par jour</td>
+                            <td>${heuresParJour}h/jour</td>
+                        </tr>
+                        <tr style="background: #e0f2fe;">
+                            <td><strong>Temps disponible BRUT</strong></td>
+                            <td><strong>${tempsDisponibleBrut.toFixed(0)}h</strong></td>
+                        </tr>
+                    </table>
+                    
+                    <h3 style="margin-top: 30px;">➖ Déductions obligatoires</h3>
+                    <table class="summary-table">
+                        <tr>
+                            <th>Poste</th>
+                            <th>Temps</th>
+                        </tr>
+                        <tr>
+                            <td>QCM quotidiens (${tempsQCM}h × ${joursEffectifs} jours)</td>
+                            <td>${deductionQCM.toFixed(0)}h</td>
+                        </tr>
+                        <tr>
+                            <td>Concours blanc</td>
+                            <td>${deductionConcours}h</td>
+                        </tr>
+                        <tr>
+                            <td>Tours de révision</td>
+                            <td>${deductionToursRevision.toFixed(0)}h</td>
+                        </tr>
+                        <tr>
+                            <td>Mineure (${semainesJusquaNoel} semaines jusqu'au 19 déc × ${tempsMineureSemaine.toFixed(1)}h/semaine)</td>
+                            <td>${deductionMineure.toFixed(0)}h</td>
+                        </tr>
+                        <tr>
+                            <td>Répétitions J0 semaine dernière (${(j0Lundi + j0Mardi + j0Mercredi + j0Jeudi + j0Vendredi + j0Samedi + j0Dimanche)} J0)</td>
+                            <td>${tempsRepetitionsJ0.toFixed(0)}h</td>
+                        </tr>
+                        <tr>
+                            <td>Imprévus (10%)</td>
+                            <td>${deductionImprevus.toFixed(0)}h</td>
+                        </tr>
+                        <tr style="background: #fee2e2;">
+                            <td><strong>TOTAL DÉDUCTIONS</strong></td>
+                            <td><strong>${totalDeductions.toFixed(0)}h</strong></td>
+                        </tr>
+                    </table>
+                    
+                    <h3 style="margin-top: 30px;">⚖️ Bilan</h3>
+                    <table class="summary-table">
+                        <tr style="background: #fee2e2;">
+                            <td><strong>Temps NET disponible pour rattrapage</strong></td>
+                            <td><strong style="color: #ef4444;">${tempsNetDisponible.toFixed(0)}h</strong></td>
+                        </tr>
+                    </table>
+                `;
+                
+            } else {
+                // CAS NORMAL : TEMPS NET POSITIF
+                html = `
+                    <div class="result-box" style="border-color: ${couleur};">
+                        <h3 style="color: ${couleur};">NIVEAU DE RETARD : ${niveau}</h3>
+                        <p style="font-size: 1.1em; font-weight: 600; margin: 10px 0;">${message}</p>
+                        ${sousTitre ? `<p style="margin-top: 10px;">${sousTitre}</p>` : ''}
+                    </div>
+                    
+                    <div style="text-align: center; margin: 20px 0; padding: 15px; background: #f8fafc; border-radius: 8px;">
+                        <p style="margin: 0; color: #1a365d; font-size: 16px;">
+                            <strong>Critères d'évaluation :</strong><br>
+                            ${nbChapitresTotal} chapitre(s) en retard | 
+                            Ratio besoin/disponible : ${ratioPercent}%
+                        </p>
+                    </div>
+                    
+                    <h3 style="margin-top: 30px;">📅 Temps disponible</h3>
+                `;
+                
+                // Suite de l'affichage normal (tableaux pour cas positif)
+                html += `
                 <table class="summary-table">
                     <tr>
                         <th>Élément</th>
@@ -1472,8 +1688,8 @@
                         <td>${deductionConcours}h</td>
                     </tr>
                     <tr>
-                        <td>Tours de révision (2 semaines × 7h/jour)</td>
-                        <td>${deductionToursRevision}h</td>
+                        <td>Tours de révision</td>
+                        <td>${deductionToursRevision.toFixed(0)}h</td>
                     </tr>
                     <tr>
                         <td>Mineure (${semainesJusquaNoel} semaines jusqu'au 19 déc × ${tempsMineureSemaine.toFixed(1)}h/semaine)</td>
@@ -1570,6 +1786,8 @@
                     </div>
                 `;
             }
+            
+            } // Fin du else (cas temps positif)
             
             document.getElementById('results').innerHTML = html;
             
