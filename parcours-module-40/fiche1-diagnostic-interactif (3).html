@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche 1 - Diagnostic du Retard (Interactif)</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Styles supplémentaires pour l'interactivité */
+        .form-section {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .form-group input[type="number"],
+        .form-group input[type="date"],
+        .form-group input[type="text"] {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #ff6b7a;
+        }
+        
+        .hint {
+            font-size: 14px;
+            color: #718096;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        .ue-section {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .ue-header {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .ue-header:hover {
+            opacity: 0.9;
+        }
+        
+        .ue-content {
+            display: none;
+            padding: 15px;
+        }
+        
+        .ue-content.active {
+            display: block;
+        }
+        
+        .cours-item {
+            padding: 10px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .cours-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cours-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+        
+        .cours-item label {
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .result-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            border: 3px solid #ff6b7a;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .result-box h3 {
+            color: #1a365d;
+            margin-bottom: 15px;
+        }
+        
+        .result-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #ff6b7a;
+            margin: 10px 0;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 122, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 54, 93, 0.3);
+        }
+        
+        /* Pop-up styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border: 3px solid #1a365d;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 20px;
+            margin: -30px -30px 20px -30px;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .close {
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+        
+        .close:hover {
+            opacity: 0.7;
+        }
+        
+        .data-to-copy {
+            background: #f8fafc;
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .progress-indicator {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+            color: #1a365d;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            padding: 0 20px;
+        }
+        
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            background: #e2e8f0;
+            margin: 0 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .step.active {
+            background: #ff6b7a;
+            color: white;
+        }
+        
+        .step.completed {
+            background: #10b981;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .step.completed:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+        }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .summary-table th,
+        .summary-table td {
+            border: 1px solid #cbd5e0;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .summary-table th {
+            background: #1a365d;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .summary-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        .warning-box {
+            background: #fff5e6;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .success-box {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .danger-box {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        /* Styles d'impression */
+        @media print {
+            /* Cacher tout sauf le modal lors de l'impression */
+            body * {
+                visibility: hidden;
+            }
+            
+            #dataModal, #dataModal * {
+                visibility: visible;
+            }
+            
+            #dataModal {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: auto;
+                background: white;
+            }
+            
+            .modal-content {
+                max-height: none !important;
+                overflow: visible !important;
+                box-shadow: none;
+                border: none;
+                margin: 0;
+                padding: 20px;
+            }
+            
+            .data-to-copy {
+                max-height: none !important;
+                overflow: visible !important;
+                page-break-inside: avoid;
+            }
+            
+            .close {
+                display: none;
+            }
+            
+            button {
+                display: none;
+            }
+            
+            /* Forcer l'affichage de tout le contenu */
+            * {
+                overflow: visible !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 FICHE 1 : DIAGNOSTIC DU RETARD</h1>
+            <div class="meta">
+                <span>📚 Module 40</span>
+                <span>⏱️ 20-30 min</span>
+                <span>⭐⭐ Difficulté: modérée</span>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Indicateur de progression -->
+            <div class="step-indicator">
+                <div class="step active" id="step1-indicator" onclick="goToStepIfCompleted(1)">ÉTAPE 1<br>Configuration</div>
+                <div class="step" id="step2-indicator" onclick="goToStepIfCompleted(2)">ÉTAPE 2<br>Temps par UE</div>
+                <div class="step" id="step3-indicator" onclick="goToStepIfCompleted(3)">ÉTAPE 3<br>Retard</div>
+                <div class="step" id="step4-indicator" onclick="goToStepIfCompleted(4)">ÉTAPE 4<br>Diagnostic</div>
+            </div>
+            
+            <!-- ÉTAPE 1: CONFIGURATION INITIALE -->
+            <div id="step1" class="form-section">
+                <h2>📅 ÉTAPE 1 : Configuration initiale</h2>
+                <p>Commence par renseigner tes informations de base pour calculer ton temps disponible.</p>
+                
+                <div class="form-group">
+                    <label for="dateToday">Date du jour :</label>
+                    <input type="date" id="dateToday" required>
+                    <div class="hint">Par défaut: aujourd'hui</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="heuresParJour">Heures de travail par jour (réalistes) :</label>
+                    <input type="number" id="heuresParJour" min="1" max="18" step="0.5" placeholder="Ex: 10" required>
+                    <div class="hint">Sois honnête ! Combien d'heures peux-tu VRAIMENT travailler par jour ?</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="joursRepos">Jours de repos complet pendant les vacances de Noël :</label>
+                    <input type="number" id="joursRepos" min="0" max="14" placeholder="Ex: 3" required>
+                    <div class="hint">Recommandation: minimum 3 jours (24, 25 et 31 décembre)</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tempsQCM">Temps QCM par jour (en heures) :</label>
+                    <input type="number" id="tempsQCM" min="0" max="5" step="0.5" placeholder="Ex: 1.5" required>
+                    <div class="hint">Recommandation: 1h à 1h30 par jour</div>
+                </div>
+                
+                <h3 style="margin-top: 30px; color: #1a365d;">📚 Ta mineure (double licence)</h3>
+                <p style="margin-bottom: 20px;">Tu dois aussi gérer ta mineure jusqu'aux <strong>vacances de Noël (19 décembre 2025)</strong>. Estime le temps nécessaire par semaine.</p>
+                
+                <div class="form-group">
+                    <label for="tempsMineureCours">Cours en présentiel pour ta mineure (heures/semaine) :</label>
+                    <input type="number" id="tempsMineureCours" min="0" max="20" step="0.5" placeholder="Ex: 3" required>
+                    <div class="hint">Combien d'heures de cours en présentiel par semaine ?</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tempsMineureRevision">Révisions pour ta mineure (heures/semaine) :</label>
+                    <input type="number" id="tempsMineureRevision" min="0" max="20" step="0.5" placeholder="Ex: 2" required>
+                    <div class="hint">Combien d'heures de révisions/travail personnel pour ta mineure par semaine ?</div>
+                </div>
+                
+                <h3 style="margin-top: 30px; color: #1a365d;">🔄 Répétitions des J0 de la semaine dernière</h3>
+                <p style="margin-bottom: 20px;">Les J0 que tu as faits la semaine dernière nécessitent des répétitions (J1, J2, J7). Indique combien de J0 tu as faits <strong>chaque jour de la semaine dernière</strong>. (Mets 0 si aucun)</p>
+                
+                <div class="warning-box" style="margin-bottom: 20px;">
+                    ⚠️ <strong>Astuce:</strong> Si tu ne te souviens plus exactement, estime au mieux. Cette information aide à calculer le temps de répétitions à prévoir.
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="j0Lundi">Lundi dernier :</label>
+                        <input type="number" id="j0Lundi" min="0" max="10" placeholder="0" value="0">
+                        <div class="hint" style="font-size: 12px;">J0 faits</div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="j0Mardi">Mardi dernier :</label>
+                        <input type="number" id="j0Mardi" min="0" max="10" placeholder="0" value="0">
+                        <div class="hint" style="font-size: 12px;">J0 faits</div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="j0Mercredi">Mercredi dernier :</label>
+                        <input type="number" id="j0Mercredi" min="0" max="10" placeholder="0" value="0">
+                        <div class="hint" style="font-size: 12px;">J0 faits</div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="j0Jeudi">Jeudi dernier :</label>
+                        <input type="number" id="j0Jeudi" min="0" max="10" placeholder="0" value="0">
+                        <div class="hint" style="font-size: 12px;">J0 faits</div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="j0Vendredi">Vendredi dernier :</label>
+                        <input type="number" id="j0Vendredi" min="0" max="10" placeholder="0" value="0">
+                        <div class="hint" style="font-size: 12px;">J0 faits</div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="j0Samedi">Samedi dernier :</label>
+                        <input type="number" id="j0Samedi" min="0" max="10" placeholder="0" value="0">
+                        <div class="hint" style="font-size: 12px;">J0 faits</div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="j0Dimanche">Dimanche dernier :</label>
+                        <input type="number" id="j0Dimanche" min="0" max="10" placeholder="0" value="0">
+                        <div class="hint" style="font-size: 12px;">J0 faits</div>
+                    </div>
+                </div>
+                
+                <button class="btn-primary" onclick="goToStep2()">Suivant : Temps par UE ➡️</button>
+            </div>
+            
+            <!-- ÉTAPE 2: TEMPS PAR UE -->
+            <div id="step2" class="form-section" style="display:none;">
+                <h2>⏱️ ÉTAPE 2 : Temps moyen par chapitre pour chaque UE</h2>
+                <p>Pour chaque UE, estime le temps (en heures) que tu passes <strong>en moyenne</strong> pour maîtriser <strong>1 chapitre complet</strong> (J0 + J1 + J2 + J7).</p>
+                
+                <div class="warning-box">
+                    ⚠️ <strong>Important:</strong> Ce temps inclut l'apprentissage initial (J0) + toutes les répétitions (J1, J2, J7). Sois réaliste !
+                </div>
+                
+                <div class="form-group">
+                    <label for="tempsUE1">UE1 - Santé Société (heures/chapitre) :</label>
+                    <input type="number" id="tempsUE1" min="1" max="30" step="0.5" placeholder="Ex: 8" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tempsUE2">UE2 - Biostatistiques (heures/chapitre) :</label>
+                    <input type="number" id="tempsUE2" min="1" max="30" step="0.5" placeholder="Ex: 10" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tempsUE3">UE3 - Informatique & Communication (heures/chapitre) :</label>
+                    <input type="number" id="tempsUE3" min="1" max="30" step="0.5" placeholder="Ex: 6" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tempsUE4">UE4 - Rayonnements & Santé (heures/chapitre) :</label>
+                    <input type="number" id="tempsUE4" min="1" max="30" step="0.5" placeholder="Ex: 9" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tempsUE5">UE5 - Biochimie (heures/chapitre) :</label>
+                    <input type="number" id="tempsUE5" min="1" max="30" step="0.5" placeholder="Ex: 12" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tempsUE6">UE6 - Embryologie (heures/chapitre) :</label>
+                    <input type="number" id="tempsUE6" min="1" max="30" step="0.5" placeholder="Ex: 10" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tempsUE7">UE7 - Physiologie (heures/chapitre) :</label>
+                    <input type="number" id="tempsUE7" min="1" max="30" step="0.5" placeholder="Ex: 11" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tempsUE8">UE8 - Anatomie (heures/chapitre) :</label>
+                    <input type="number" id="tempsUE8" min="1" max="30" step="0.5" placeholder="Ex: 14" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tempsUE9">UE9 - Chimie (heures/chapitre) :</label>
+                    <input type="number" id="tempsUE9" min="1" max="30" step="0.5" placeholder="Ex: 8" required>
+                </div>
+                
+                <button class="btn-secondary" onclick="goToStep1()">⬅️ Retour</button>
+                <button class="btn-primary" onclick="goToStep3()">Suivant : Quantifier le retard ➡️</button>
+            </div>
+            
+            <!-- ÉTAPE 3: QUANTIFICATION DU RETARD -->
+            <div id="step3" class="form-section" style="display:none;">
+                <h2>📚 ÉTAPE 3 : Quantifie ton retard</h2>
+                <p>Pour chaque UE, coche les chapitres que tu n'as <strong>PAS ENCORE COMMENCÉS</strong> ou que tu n'as <strong>PAS TERMINÉS</strong> (J0 non fait ou incomplet).</p>
+                
+                <div class="warning-box">
+                    ⚠️ <strong>Ne coche QUE les chapitres en retard complet</strong> (J0 pas fait ou pas fini). Si tu as fait le J0 mais pas les répétitions, ce n'est pas un "retard" au sens de cette fiche.
+                </div>
+                
+                <!-- UE1 -->
+                <div class="ue-section">
+                    <div class="ue-header" onclick="toggleUE('ue1')">
+                        <span><strong>UE1 - SANTÉ SOCIÉTÉ</strong> (5 chapitres)</span>
+                        <span id="count-ue1">0 sélectionné(s)</span>
+                    </div>
+                    <div class="ue-content" id="ue1">
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue1-1" onchange="updateCount('ue1')">
+                            <label for="ue1-1">Introduction et santé publique</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue1-2" onchange="updateCount('ue1')">
+                            <label for="ue1-2">Interprofessionnalité</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue1-3" onchange="updateCount('ue1')">
+                            <label for="ue1-3">Éthique en santé</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue1-4" onchange="updateCount('ue1')">
+                            <label for="ue1-4">Professionnalisme</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue1-5" onchange="updateCount('ue1')">
+                            <label for="ue1-5">Les métiers de la santé</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- UE2 -->
+                <div class="ue-section">
+                    <div class="ue-header" onclick="toggleUE('ue2')">
+                        <span><strong>UE2 - BIOSTATISTIQUES</strong> (15 chapitres)</span>
+                        <span id="count-ue2">0 sélectionné(s)</span>
+                    </div>
+                    <div class="ue-content" id="ue2">
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue2-1" onchange="updateCount('ue2')">
+                            <label for="ue2-1">Échantillonnage</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue2-2" onchange="updateCount('ue2')">
+                            <label for="ue2-2">Biais</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue2-3" onchange="updateCount('ue2')">
+                            <label for="ue2-3">Cohorte et cas témoin</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue2-4" onchange="updateCount('ue2')">
+                            <label for="ue2-4">Confusion, modification de l'effet</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue2-5" onchange="updateCount('ue2')">
+                            <label for="ue2-5">Mesures d'impact</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue2-6" onchange="updateCount('ue2')">
+                            <label for="ue2-6">Type d'études et niveaux de preuves</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue2-7" onchange="updateCount('ue2')">
+                            <label for="ue2-7">Méthodologie de la recherche</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue2-8" onchange="updateCount('ue2')">
+                            <label for="ue2-8">Probabilité et statistiques : partie 1</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue2-9" onchange="updateCount('ue2')">
+                            <label for="ue2-9">Probabilité et statistiques : partie 2</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue2-10" onchange="updateCount('ue2')">
+                            <label for="ue2-10">Risques et facteurs de risques</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue2-11" onchange="updateCount('ue2')">
+                            <label for="ue2-11">Protection sociale</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue2-12" onchange="updateCount('ue2')">
+                            <label for="ue2-12">Économie de la santé</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue2-13" onchange="updateCount('ue2')">
+                            <label for="ue2-13">Besoins et demandes de santé</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue2-14" onchange="updateCount('ue2')">
+                            <label for="ue2-14">Mesure de l'état de santé - Les grands problèmes de santé</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue2-15" onchange="updateCount('ue2')">
+                            <label for="ue2-15">Prévention, promotion de la santé</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- UE3 -->
+                <div class="ue-section">
+                    <div class="ue-header" onclick="toggleUE('ue3')">
+                        <span><strong>UE3 - INFORMATIQUE & COMMUNICATION</strong> (10 chapitres)</span>
+                        <span id="count-ue3">0 sélectionné(s)</span>
+                    </div>
+                    <div class="ue-content" id="ue3">
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue3-1" onchange="updateCount('ue3')">
+                            <label for="ue3-1">Grands principes en santé numérique</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue3-2" onchange="updateCount('ue3')">
+                            <label for="ue3-2">Réglementation en santé numérique - Protection des données</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue3-3" onchange="updateCount('ue3')">
+                            <label for="ue3-3">Représentation (vocabulaire) des données en santé</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue3-4" onchange="updateCount('ue3')">
+                            <label for="ue3-4">Le Dossier Patient Informatisé : DPI</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue3-5" onchange="updateCount('ue3')">
+                            <label for="ue3-5">Le Programme de Médicalisation des Systèmes d'Information : PMSI</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue3-6" onchange="updateCount('ue3')">
+                            <label for="ue3-6">SIH</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue3-7" onchange="updateCount('ue3')">
+                            <label for="ue3-7">Gestion et diffusion des données en santé</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue3-8" onchange="updateCount('ue3')">
+                            <label for="ue3-8">Aide à la décision en santé publique</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue3-9" onchange="updateCount('ue3')">
+                            <label for="ue3-9">Entrepôt des données en santé</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue3-10" onchange="updateCount('ue3')">
+                            <label for="ue3-10">SNDS</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- UE4 -->
+                <div class="ue-section">
+                    <div class="ue-header" onclick="toggleUE('ue4')">
+                        <span><strong>UE4 - RAYONNEMENTS & SANTÉ</strong> (13 chapitres)</span>
+                        <span id="count-ue4">0 sélectionné(s)</span>
+                    </div>
+                    <div class="ue-content" id="ue4">
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue4-1" onchange="updateCount('ue4')">
+                            <label for="ue4-1">Noyau atomique - Stabilité - Instabilité nucléaire</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue4-2" onchange="updateCount('ue4')">
+                            <label for="ue4-2">Transformations radioactives</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue4-3" onchange="updateCount('ue4')">
+                            <label for="ue4-3">Interactions rayonnements - matière</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue4-4" onchange="updateCount('ue4')">
+                            <label for="ue4-4">Les 4 modes de production des radionucléides</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue4-5" onchange="updateCount('ue4')">
+                            <label for="ue4-5">Produits de santé contenant des radionucléides</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue4-6" onchange="updateCount('ue4')">
+                            <label for="ue4-6">Sources d'exposition et risques associés</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue4-7" onchange="updateCount('ue4')">
+                            <label for="ue4-7">Nature des risques et conduite à tenir en cas d'incident</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue4-8" onchange="updateCount('ue4')">
+                            <label for="ue4-8">Effets biologiques des rayonnements ionisants</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue4-9" onchange="updateCount('ue4')">
+                            <label for="ue4-9">Radioprotection : organisation et principes fondamentaux</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue4-10" onchange="updateCount('ue4')">
+                            <label for="ue4-10">Radioprotection des professionnels, des patients, du public et de l'environnement</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue4-11" onchange="updateCount('ue4')">
+                            <label for="ue4-11">Utilisation en imagerie : partie 1</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue4-12" onchange="updateCount('ue4')">
+                            <label for="ue4-12">Utilisation en imagerie : partie 2</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue4-13" onchange="updateCount('ue4')">
+                            <label for="ue4-13">Utilisation en thérapie et en recherche</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- UE5 -->
+                <div class="ue-section">
+                    <div class="ue-header" onclick="toggleUE('ue5')">
+                        <span><strong>UE5 - BIOCHIMIE</strong> (15 chapitres)</span>
+                        <span id="count-ue5">0 sélectionné(s)</span>
+                    </div>
+                    <div class="ue-content" id="ue5">
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue5-1" onchange="updateCount('ue5')">
+                            <label for="ue5-1">Les acides aminés 1 - Classification et nomenclature</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue5-2" onchange="updateCount('ue5')">
+                            <label for="ue5-2">Les acides aminés 2 - Propriétés physico-chimiques, chimiques et biologiques</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue5-3" onchange="updateCount('ue5')">
+                            <label for="ue5-3">Les acides aminés 3 - Méthodes d'études</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue5-4" onchange="updateCount('ue5')">
+                            <label for="ue5-4">Les peptides</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue5-5" onchange="updateCount('ue5')">
+                            <label for="ue5-5">Les protéines</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue5-6" onchange="updateCount('ue5')">
+                            <label for="ue5-6">La molécule d'hémoglobine</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue5-7" onchange="updateCount('ue5')">
+                            <label for="ue5-7">Structure des glucides</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue5-8" onchange="updateCount('ue5')">
+                            <label for="ue5-8">Enzymologie</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue5-9" onchange="updateCount('ue5')">
+                            <label for="ue5-9">La glycolyse</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue5-10" onchange="updateCount('ue5')">
+                            <label for="ue5-10">La néoglucogenèse</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue5-11" onchange="updateCount('ue5')">
+                            <label for="ue5-11">La voie des pentoses phosphates</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue5-12" onchange="updateCount('ue5')">
+                            <label for="ue5-12">Glycogénolyse et glycogénogenèse</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue5-13" onchange="updateCount('ue5')">
+                            <label for="ue5-13">Structure des lipides et β-oxydation</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue5-14" onchange="updateCount('ue5')">
+                            <label for="ue5-14">Cycle de Krebs</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue5-15" onchange="updateCount('ue5')">
+                            <label for="ue5-15">Régulation hormonale du métabolisme au repos et durant l'exercice</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- UE6 -->
+                <div class="ue-section">
+                    <div class="ue-header" onclick="toggleUE('ue6')">
+                        <span><strong>UE6 - EMBRYOLOGIE</strong> (19 chapitres)</span>
+                        <span id="count-ue6">0 sélectionné(s)</span>
+                    </div>
+                    <div class="ue-content" id="ue6">
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-1" onchange="updateCount('ue6')">
+                            <label for="ue6-1">Gamétogenèse : généralités</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-2" onchange="updateCount('ue6')">
+                            <label for="ue6-2">La spermatogenèse</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-3" onchange="updateCount('ue6')">
+                            <label for="ue6-3">L'ovogenèse</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-4" onchange="updateCount('ue6')">
+                            <label for="ue6-4">Événements précédant la fécondation</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-5" onchange="updateCount('ue6')">
+                            <label for="ue6-5">Maîtriser la procréation</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-6" onchange="updateCount('ue6')">
+                            <label for="ue6-6">AMP</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-7" onchange="updateCount('ue6')">
+                            <label for="ue6-7">Phénomènes cellulaires de la fécondation, conséquences et anomalies</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-8" onchange="updateCount('ue6')">
+                            <label for="ue6-8">La 1ère semaine de développement</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-9" onchange="updateCount('ue6')">
+                            <label for="ue6-9">La 2ème semaine de développement</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-10" onchange="updateCount('ue6')">
+                            <label for="ue6-10">La 3ème semaine de développement</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-11" onchange="updateCount('ue6')">
+                            <label for="ue6-11">La 4ème semaine de développement</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-12" onchange="updateCount('ue6')">
+                            <label for="ue6-12">Mécanismes moléculaires des étapes du développement embryonnaire et de l'organogenèse</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-13" onchange="updateCount('ue6')">
+                            <label for="ue6-13">Organogenèse, histogenèse et cytogenèse du SNC</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-14" onchange="updateCount('ue6')">
+                            <label for="ue6-14">Organogenèse de l'intestin primitif</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-15" onchange="updateCount('ue6')">
+                            <label for="ue6-15">Organogenèse du système respiratoire</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-16" onchange="updateCount('ue6')">
+                            <label for="ue6-16">Organogenèse de la face</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-17" onchange="updateCount('ue6')">
+                            <label for="ue6-17">Organogenèse des membres</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-18" onchange="updateCount('ue6')">
+                            <label for="ue6-18">Organogenèse du système cardiaque primitif</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue6-19" onchange="updateCount('ue6')">
+                            <label for="ue6-19">Organogenèse de l'appareil génital et urinaire</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- UE7 -->
+                <div class="ue-section">
+                    <div class="ue-header" onclick="toggleUE('ue7')">
+                        <span><strong>UE7 - PHYSIOLOGIE</strong> (15 chapitres)</span>
+                        <span id="count-ue7">0 sélectionné(s)</span>
+                    </div>
+                    <div class="ue-content" id="ue7">
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue7-1" onchange="updateCount('ue7')">
+                            <label for="ue7-1">Compartiments liquidiens de l'organisme</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue7-2" onchange="updateCount('ue7')">
+                            <label for="ue7-2">Les échanges des liquides corporels entre les compartiments</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue7-3" onchange="updateCount('ue7')">
+                            <label for="ue7-3">Introduction et forces de déplacement</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue7-4" onchange="updateCount('ue7')">
+                            <label for="ue7-4">Les différents canaux</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue7-5" onchange="updateCount('ue7')">
+                            <label for="ue7-5">Transporteurs et pompes</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue7-6" onchange="updateCount('ue7')">
+                            <label for="ue7-6">Potentiel de membrane et potentiel d'action neuro</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue7-7" onchange="updateCount('ue7')">
+                            <label for="ue7-7">Application: potentiel d'action cardio : Électrophysiologie cardiaque</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue7-8" onchange="updateCount('ue7')">
+                            <label for="ue7-8">Acides-bases : rappels</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue7-9" onchange="updateCount('ue7')">
+                            <label for="ue7-9">Solutions tampons</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue7-10" onchange="updateCount('ue7')">
+                            <label for="ue7-10">Régulation physiologique</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue7-11" onchange="updateCount('ue7')">
+                            <label for="ue7-11">Statique des fluides : partie 1</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue7-12" onchange="updateCount('ue7')">
+                            <label for="ue7-12">Statique des fluides : partie 2</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue7-13" onchange="updateCount('ue7')">
+                            <label for="ue7-13">Équation de continuité – théorème de Bernoulli</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue7-14" onchange="updateCount('ue7')">
+                            <label for="ue7-14">Fluides réels - viscosité</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue7-15" onchange="updateCount('ue7')">
+                            <label for="ue7-15">Élasticité de la paroi des conduits</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- UE8 -->
+                <div class="ue-section">
+                    <div class="ue-header" onclick="toggleUE('ue8')">
+                        <span><strong>UE8 - ANATOMIE</strong> (23 chapitres)</span>
+                        <span id="count-ue8">0 sélectionné(s)</span>
+                    </div>
+                    <div class="ue-content" id="ue8">
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-1" onchange="updateCount('ue8')">
+                            <label for="ue8-1">Introduction générale</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-2" onchange="updateCount('ue8')">
+                            <label for="ue8-2">Étude générale des os</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-3" onchange="updateCount('ue8')">
+                            <label for="ue8-3">Étude générale des articulations</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-4" onchange="updateCount('ue8')">
+                            <label for="ue8-4">Étude générale des muscles</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-5" onchange="updateCount('ue8')">
+                            <label for="ue8-5">Épaule</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-6" onchange="updateCount('ue8')">
+                            <label for="ue8-6">Bras</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-7" onchange="updateCount('ue8')">
+                            <label for="ue8-7">Avant-bras</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-8" onchange="updateCount('ue8')">
+                            <label for="ue8-8">Mains</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-9" onchange="updateCount('ue8')">
+                            <label for="ue8-9">Hanche</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-10" onchange="updateCount('ue8')">
+                            <label for="ue8-10">Cuisse</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-11" onchange="updateCount('ue8')">
+                            <label for="ue8-11">Demi-jambe</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-12" onchange="updateCount('ue8')">
+                            <label for="ue8-12">Pieds</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-13" onchange="updateCount('ue8')">
+                            <label for="ue8-13">Rachis et station érigée</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-14" onchange="updateCount('ue8')">
+                            <label for="ue8-14">Thorax</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-15" onchange="updateCount('ue8')">
+                            <label for="ue8-15">Coeur et vaisseaux</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-16" onchange="updateCount('ue8')">
+                            <label for="ue8-16">Aorte</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-17" onchange="updateCount('ue8')">
+                            <label for="ue8-17">Veine Cave Inférieure</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-18" onchange="updateCount('ue8')">
+                            <label for="ue8-18">Appareil respiratoire</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-19" onchange="updateCount('ue8')">
+                            <label for="ue8-19">Appareil Digestif</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-20" onchange="updateCount('ue8')">
+                            <label for="ue8-20">Appareil Uro-génital</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-21" onchange="updateCount('ue8')">
+                            <label for="ue8-21">Les os de la tête</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-22" onchange="updateCount('ue8')">
+                            <label for="ue8-22">Myologie de la tête et du cou, viscères et vaisseaux</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue8-23" onchange="updateCount('ue8')">
+                            <label for="ue8-23">Le système nerveux central</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- UE9 -->
+                <div class="ue-section">
+                    <div class="ue-header" onclick="toggleUE('ue9')">
+                        <span><strong>UE9 - CHIMIE</strong> (8 chapitres)</span>
+                        <span id="count-ue9">0 sélectionné(s)</span>
+                    </div>
+                    <div class="ue-content" id="ue9">
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue9-1" onchange="updateCount('ue9')">
+                            <label for="ue9-1">Atomistique</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue9-2" onchange="updateCount('ue9')">
+                            <label for="ue9-2">Réactifs et réactions en chimie organique</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue9-3" onchange="updateCount('ue9')">
+                            <label for="ue9-3">Nomenclature</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue9-4" onchange="updateCount('ue9')">
+                            <label for="ue9-4">Étude de quelques fonctions simples</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue9-5" onchange="updateCount('ue9')">
+                            <label for="ue9-5">Molécules possédant plusieurs fonctions</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue9-6" onchange="updateCount('ue9')">
+                            <label for="ue9-6">Isomérie</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue9-7" onchange="updateCount('ue9')">
+                            <label for="ue9-7">Thermodynamique</label>
+                        </div>
+                        <div class="cours-item">
+                            <input type="checkbox" id="ue9-8" onchange="updateCount('ue9')">
+                            <label for="ue9-8">Chimie minérale</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn-secondary" onclick="goToStep2()">⬅️ Retour</button>
+                    <button class="btn-primary" onclick="calculateDiagnostic()">Calculer mon diagnostic ➡️</button>
+                </div>
+            </div>
+            
+            <!-- ÉTAPE 4: RÉSULTATS ET DIAGNOSTIC -->
+            <div id="step4" class="form-section" style="display:none;">
+                <h2>📊 ÉTAPE 4 : Ton diagnostic</h2>
+                
+                <div id="results"></div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn-secondary" onclick="goToStep3()">⬅️ Retour pour modifier</button>
+                    <button class="btn-primary" onclick="showDataModal()">🖨️ Voir les données à reporter</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+    </div>
+    
+    <!-- Modal pour les données à reporter -->
+    <div id="dataModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📋 DONNÉES À REPORTER POUR LA FICHE 2</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <p style="margin-bottom: 15px;">Copie ces données ou imprime cette page. Tu en auras besoin pour remplir la <strong>FICHE 2 - DÉCISIONS</strong>.</p>
+            <div class="data-to-copy" id="dataContent"></div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn-primary" onclick="window.print()">🖨️ IMPRIMER</button>
+                <button class="btn-secondary" onclick="copyToClipboard()">📋 COPIER DANS LE PRESSE-PAPIER</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Initialisation de la date du jour
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('dateToday').value = today;
+        });
+        
+        // Navigation entre les étapes
+        function goToStep1() {
+            document.getElementById('step1').style.display = 'block';
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('step3').style.display = 'none';
+            document.getElementById('step4').style.display = 'none';
+            updateStepIndicator(1);
+            window.scrollTo(0, 0);
+        }
+        
+        function goToStep2(skipValidation = false) {
+            // Validation de l'étape 1 seulement si on avance (pas si on revient en arrière)
+            if (!skipValidation) {
+                const dateToday = document.getElementById('dateToday').value;
+                const heuresParJour = parseFloat(document.getElementById('heuresParJour').value);
+                const joursRepos = parseInt(document.getElementById('joursRepos').value);
+                const tempsQCM = parseFloat(document.getElementById('tempsQCM').value);
+                const tempsMineureCours = parseFloat(document.getElementById('tempsMineureCours').value);
+                const tempsMineureRevision = parseFloat(document.getElementById('tempsMineureRevision').value);
+                
+                if (!dateToday || !heuresParJour || isNaN(joursRepos) || !tempsQCM || isNaN(tempsMineureCours) || isNaN(tempsMineureRevision)) {
+                    alert('⚠️ Merci de remplir tous les champs de l\'étape 1 !');
+                    return;
+                }
+            }
+            
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+            document.getElementById('step3').style.display = 'none';
+            document.getElementById('step4').style.display = 'none';
+            updateStepIndicator(2);
+            window.scrollTo(0, 0);
+        }
+        
+        function goToStep3(skipValidation = false) {
+            // Validation de l'étape 2 seulement si on avance (pas si on revient en arrière)
+            if (!skipValidation) {
+                let allFilled = true;
+                for (let i = 1; i <= 9; i++) {
+                    const val = parseFloat(document.getElementById('tempsUE' + i).value);
+                    if (!val || val <= 0) {
+                        allFilled = false;
+                        break;
+                    }
+                }
+                
+                if (!allFilled) {
+                    alert('⚠️ Merci de remplir le temps pour toutes les UE !');
+                    return;
+                }
+            }
+            
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('step3').style.display = 'block';
+            document.getElementById('step4').style.display = 'none';
+            updateStepIndicator(3);
+            window.scrollTo(0, 0);
+        }
+        
+        function updateStepIndicator(currentStep) {
+            for (let i = 1; i <= 4; i++) {
+                const indicator = document.getElementById('step' + i + '-indicator');
+                indicator.classList.remove('active', 'completed');
+                if (i < currentStep) {
+                    indicator.classList.add('completed');
+                } else if (i === currentStep) {
+                    indicator.classList.add('active');
+                }
+            }
+        }
+        
+        // Fonction pour permettre de cliquer sur les étapes complétées
+        function goToStepIfCompleted(stepNumber) {
+            const indicator = document.getElementById('step' + stepNumber + '-indicator');
+            
+            // Si l'étape est complétée (verte), on peut y retourner
+            if (indicator.classList.contains('completed')) {
+                if (stepNumber === 1) goToStep1();
+                if (stepNumber === 2) goToStep2(true); // true = skip validation
+                if (stepNumber === 3) goToStep3(true);
+            }
+            
+            // Si c'est l'étape 4 et qu'elle existe (diagnostic calculé), on peut y retourner
+            if (stepNumber === 4 && document.getElementById('results').innerHTML !== '') {
+                document.getElementById('step1').style.display = 'none';
+                document.getElementById('step2').style.display = 'none';
+                document.getElementById('step3').style.display = 'none';
+                document.getElementById('step4').style.display = 'block';
+                updateStepIndicator(4);
+                window.scrollTo(0, 0);
+            }
+        }
+        
+        // Gestion des UE (accordéon)
+        function toggleUE(ueId) {
+            const content = document.getElementById(ueId);
+            content.classList.toggle('active');
+        }
+        
+        // Mise à jour du compteur de chapitres sélectionnés
+        function updateCount(ueId) {
+            const checkboxes = document.querySelectorAll('#' + ueId + ' input[type="checkbox"]');
+            let count = 0;
+            checkboxes.forEach(cb => {
+                if (cb.checked) count++;
+            });
+            document.getElementById('count-' + ueId).textContent = count + ' sélectionné(s)';
+        }
+        
+        // Calcul du diagnostic
+        function calculateDiagnostic() {
+            // Collecte des données
+            const dateToday = new Date(document.getElementById('dateToday').value);
+            const datePartiels = new Date('2026-01-08');
+            const dateVacancesNoel = new Date('2025-12-19'); // Fin des cours de mineure
+            const heuresParJour = parseFloat(document.getElementById('heuresParJour').value);
+            const joursRepos = parseInt(document.getElementById('joursRepos').value);
+            const tempsQCM = parseFloat(document.getElementById('tempsQCM').value);
+            const tempsMineureCours = parseFloat(document.getElementById('tempsMineureCours').value);
+            const tempsMineureRevision = parseFloat(document.getElementById('tempsMineureRevision').value);
+            
+            // Récupération des J0 de la semaine dernière
+            const j0Lundi = parseInt(document.getElementById('j0Lundi').value) || 0;
+            const j0Mardi = parseInt(document.getElementById('j0Mardi').value) || 0;
+            const j0Mercredi = parseInt(document.getElementById('j0Mercredi').value) || 0;
+            const j0Jeudi = parseInt(document.getElementById('j0Jeudi').value) || 0;
+            const j0Vendredi = parseInt(document.getElementById('j0Vendredi').value) || 0;
+            const j0Samedi = parseInt(document.getElementById('j0Samedi').value) || 0;
+            const j0Dimanche = parseInt(document.getElementById('j0Dimanche').value) || 0;
+            
+            // Calcul des jours restants
+            const diffTime = datePartiels - dateToday;
+            const joursRestants = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const joursEffectifs = joursRestants - joursRepos;
+            
+            // Calcul du nombre de semaines jusqu'aux vacances de Noël
+            const diffTimeNoel = dateVacancesNoel - dateToday;
+            const joursJusquaNoel = Math.max(0, Math.ceil(diffTimeNoel / (1000 * 60 * 60 * 24)));
+            const semainesJusquaNoel = Math.ceil(joursJusquaNoel / 7);
+            
+            // Calcul du temps disponible brut
+            const tempsDisponibleBrut = joursEffectifs * heuresParJour;
+            
+            // Déduction 1: QCM
+            const deductionQCM = joursEffectifs * tempsQCM;
+            
+            // Déduction 2: Concours blanc
+            const deductionConcours = 10;
+            
+            // Déduction 3: Tours de révision
+            const deductionToursRevision = 98; // 2 semaines × 7h/jour
+            
+            // Déduction 4: Mineure (jusqu'au 19 décembre)
+            const tempsMineureSemaine = tempsMineureCours + tempsMineureRevision;
+            const deductionMineure = semainesJusquaNoel * tempsMineureSemaine;
+            
+            // Déduction 5: Répétitions des J0 de la semaine dernière
+            // Temps restant cette semaine selon le jour du J0
+            const tempsRepetitionsJ0 = 
+                (j0Lundi * 1.5) +      // Lundi: reste J7 (1.5h)
+                (j0Mardi * 1.5) +      // Mardi: reste J7 (1.5h)
+                (j0Mercredi * 1.5) +   // Mercredi: reste J7 (1.5h)
+                (j0Jeudi * 4.5) +      // Jeudi: J2 (3h) + J7 (1.5h) = 4.5h
+                (j0Vendredi * 4.5) +   // Vendredi: J2 (3h) + J7 (1.5h) = 4.5h
+                (j0Samedi * 4.5) +     // Samedi: J2 (3h) + J7 (1.5h) = 4.5h
+                (j0Dimanche * 8.5);    // Dimanche: J1 (4h) + J2 (3h) + J7 (1.5h) = 8.5h
+            
+            // Déduction 6: Imprévus
+            const deductionImprevus = tempsDisponibleBrut * 0.1;
+            
+            const totalDeductions = deductionQCM + deductionConcours + deductionToursRevision + deductionMineure + tempsRepetitionsJ0 + deductionImprevus;
+            const tempsNetDisponible = tempsDisponibleBrut - totalDeductions;
+            
+            // Calcul du retard par UE
+            const ueData = [];
+            let tempsNecessaireTotal = 0;
+            
+            for (let i = 1; i <= 9; i++) {
+                const tempsParChapitre = parseFloat(document.getElementById('tempsUE' + i).value);
+                const checkboxes = document.querySelectorAll('#ue' + i + ' input[type="checkbox"]:checked');
+                const nbChapitresRetard = checkboxes.length;
+                const tempsNecessaire = nbChapitresRetard * tempsParChapitre;
+                
+                if (nbChapitresRetard > 0) {
+                    ueData.push({
+                        num: i,
+                        nom: getUEName(i),
+                        nbChapitres: nbChapitresRetard,
+                        tempsParChapitre: tempsParChapitre,
+                        tempsNecessaire: tempsNecessaire
+                    });
+                    tempsNecessaireTotal += tempsNecessaire;
+                }
+            }
+            
+            // Détermination du niveau de retard
+            const nbChapitresTotal = ueData.reduce((sum, ue) => sum + ue.nbChapitres, 0);
+            const ratioTemps = tempsNetDisponible > 0 ? (tempsNecessaireTotal / tempsNetDisponible) : 999;
+            const ratioPercent = (ratioTemps * 100).toFixed(0);
+            
+            let niveau, couleur, message, sousTitre;
+            
+            if (nbChapitresTotal === 0) {
+                niveau = "🎉 AUCUN RETARD";
+                couleur = "#10b981";
+                message = "Tu es à jour ! Continue comme ça et concentre-toi sur tes répétitions.";
+                sousTitre = "";
+            } else if (nbChapitresTotal < 10 || ratioTemps <= 0.70) {
+                // LÉGER : moins de 10 chapitres OU besoin ≤ 70% du disponible (marge ≥ 30%)
+                niveau = "🟢 LÉGER";
+                couleur = "#10b981";
+                message = "Rattrapage total possible.";
+                sousTitre = "Tu as une marge de sécurité confortable.";
+            } else if (nbChapitresTotal > 25 || ratioTemps > 1.10) {
+                // MAJEUR : plus de 25 chapitres OU besoin > 110% du disponible
+                niveau = "🔴 MAJEUR";
+                couleur = "#ef4444";
+                message = "Mode sauvetage activé.";
+                sousTitre = "Tu dois sacrifier des chapitres. Impossible de tout rattraper même en Niveau 3. Focus sur l'essentiel.";
+            } else {
+                // MOYEN : entre 10 et 25 chapitres ET ratio entre 70% et 110%
+                niveau = "🟠 MOYEN";
+                couleur = "#f59e0b";
+                
+                // Différenciation selon le ratio
+                if (ratioTemps <= 0.90) {
+                    // MOYEN CONFORTABLE : temps suffisant malgré beaucoup de chapitres
+                    message = "Retard moyen mais rattrapable.";
+                    sousTitre = `Malgré un nombre important de chapitres en retard (${nbChapitresTotal} chapitres), tu disposes de suffisamment de temps pour tout rattraper en Niveau 1 si tu respectes bien ton planning et maintiens un rythme régulier.`;
+                } else {
+                    // MOYEN SERRÉ : temps juste
+                    message = "Retard moyen avec temps serré.";
+                    sousTitre = "Tu dois faire des choix stratégiques. Priorisation obligatoire. Tu devras passer certains chapitres en Niveau 2 ou 3 pour tenir dans les délais.";
+                }
+            }
+            
+            // Affichage des résultats
+            let html = `
+                <div class="result-box" style="border-color: ${couleur};">
+                    <h3 style="color: ${couleur};">NIVEAU DE RETARD : ${niveau}</h3>
+                    <p style="font-size: 1.1em; font-weight: 600; margin: 10px 0;">${message}</p>
+                    ${sousTitre ? `<p style="margin-top: 10px;">${sousTitre}</p>` : ''}
+                </div>
+                
+                <div style="text-align: center; margin: 20px 0; padding: 15px; background: #f8fafc; border-radius: 8px;">
+                    <p style="margin: 0; color: #1a365d; font-size: 16px;">
+                        <strong>Critères d'évaluation :</strong><br>
+                        ${nbChapitresTotal} chapitre(s) en retard | 
+                        Ratio besoin/disponible : ${ratioPercent}%
+                    </p>
+                </div>
+                
+                <h3 style="margin-top: 30px;">📅 Temps disponible</h3>
+                <table class="summary-table">
+                    <tr>
+                        <th>Élément</th>
+                        <th>Valeur</th>
+                    </tr>
+                    <tr>
+                        <td>Jours restants jusqu'au 8 janvier 2026</td>
+                        <td>${joursRestants} jours</td>
+                    </tr>
+                    <tr>
+                        <td>Jours de repos prévus</td>
+                        <td>${joursRepos} jours</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Jours effectifs de travail</strong></td>
+                        <td><strong>${joursEffectifs} jours</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Heures de travail par jour</td>
+                        <td>${heuresParJour}h/jour</td>
+                    </tr>
+                    <tr style="background: #e0f2fe;">
+                        <td><strong>Temps disponible BRUT</strong></td>
+                        <td><strong>${tempsDisponibleBrut.toFixed(0)}h</strong></td>
+                    </tr>
+                </table>
+                
+                <h3 style="margin-top: 30px;">➖ Déductions obligatoires</h3>
+                <table class="summary-table">
+                    <tr>
+                        <th>Poste</th>
+                        <th>Temps</th>
+                    </tr>
+                    <tr>
+                        <td>QCM quotidiens (${tempsQCM}h × ${joursEffectifs} jours)</td>
+                        <td>${deductionQCM.toFixed(0)}h</td>
+                    </tr>
+                    <tr>
+                        <td>Concours blanc</td>
+                        <td>${deductionConcours}h</td>
+                    </tr>
+                    <tr>
+                        <td>Tours de révision (2 semaines × 7h/jour)</td>
+                        <td>${deductionToursRevision}h</td>
+                    </tr>
+                    <tr>
+                        <td>Mineure (${semainesJusquaNoel} semaines jusqu'au 19 déc × ${tempsMineureSemaine.toFixed(1)}h/semaine)</td>
+                        <td>${deductionMineure.toFixed(0)}h</td>
+                    </tr>
+                    <tr>
+                        <td>Répétitions J0 semaine dernière (${(j0Lundi + j0Mardi + j0Mercredi + j0Jeudi + j0Vendredi + j0Samedi + j0Dimanche)} J0)</td>
+                        <td>${tempsRepetitionsJ0.toFixed(0)}h</td>
+                    </tr>
+                    <tr>
+                        <td>Imprévus (10%)</td>
+                        <td>${deductionImprevus.toFixed(0)}h</td>
+                    </tr>
+                    <tr style="background: #fee2e2;">
+                        <td><strong>TOTAL DÉDUCTIONS</strong></td>
+                        <td><strong>${totalDeductions.toFixed(0)}h</strong></td>
+                    </tr>
+                </table>
+                
+                <h3 style="margin-top: 30px;">⚖️ Bilan</h3>
+                <table class="summary-table">
+                    <tr style="background: #e0f2fe;">
+                        <td><strong>Temps NET disponible pour rattrapage</strong></td>
+                        <td><strong>${tempsNetDisponible.toFixed(0)}h</strong></td>
+                    </tr>
+                </table>
+            `;
+            
+            if (nbChapitresTotal > 0) {
+                html += `
+                    <h3 style="margin-top: 30px;">📚 Ton retard par UE</h3>
+                    <table class="summary-table">
+                        <tr>
+                            <th>UE</th>
+                            <th>Chapitres en retard</th>
+                            <th>Temps/chapitre</th>
+                            <th>Temps nécessaire</th>
+                        </tr>
+                `;
+                
+                ueData.forEach(ue => {
+                    html += `
+                        <tr>
+                            <td><strong>${ue.nom}</strong></td>
+                            <td>${ue.nbChapitres} chapitre(s)</td>
+                            <td>${ue.tempsParChapitre}h</td>
+                            <td><strong>${ue.tempsNecessaire.toFixed(0)}h</strong></td>
+                        </tr>
+                    `;
+                });
+                
+                html += `
+                        <tr style="background: #fee2e2;">
+                            <td><strong>TOTAL</strong></td>
+                            <td><strong>${nbChapitresTotal} chapitres</strong></td>
+                            <td></td>
+                            <td><strong>${tempsNecessaireTotal.toFixed(0)}h</strong></td>
+                        </tr>
+                    </table>
+                    
+                    <h3 style="margin-top: 30px;">🎯 Verdict</h3>
+                `;
+                
+                const difference = tempsNetDisponible - tempsNecessaireTotal;
+                
+                if (difference >= 0) {
+                    html += `
+                        <div class="success-box">
+                            <h4>✅ RATTRAPAGE TOTAL POSSIBLE !</h4>
+                            <p>Si tu veux tout rattraper à 100% (Niveau 1), tu as besoin de <strong>${tempsNecessaireTotal.toFixed(0)}h</strong>.</p>
+                            <p>Tu disposes de <strong>${tempsNetDisponible.toFixed(0)}h</strong>.</p>
+                            <p><strong>Marge de sécurité : +${difference.toFixed(0)}h</strong></p>
+                            <p>⚠️ Mais cela suppose un travail à 100% d'efficacité. Sois réaliste dans tes choix !</p>
+                        </div>
+                    `;
+                } else {
+                    const chapitresASacrifier = Math.ceil(Math.abs(difference) / 10); // Estimation
+                    html += `
+                        <div class="danger-box">
+                            <h4>❌ DÉFICIT DE TEMPS : ${Math.abs(difference).toFixed(0)}h</h4>
+                            <p>Pour rattraper tout à 100%, tu aurais besoin de <strong>${tempsNecessaireTotal.toFixed(0)}h</strong>.</p>
+                            <p>Mais tu ne disposes que de <strong>${tempsNetDisponible.toFixed(0)}h</strong>.</p>
+                            <p><strong>Tu dois faire des choix stratégiques.</strong></p>
+                            <p>➡️ Passe à la <strong>FICHE 2 - DÉCISIONS</strong> pour choisir quels chapitres garder en Niveau 1, 2, 3 ou sacrifier.</p>
+                        </div>
+                    `;
+                }
+            } else {
+                html += `
+                    <div class="success-box">
+                        <h4>🎉 AUCUN RETARD DÉTECTÉ</h4>
+                        <p>Tu es à jour sur tous tes cours ! Bravo !</p>
+                        <p>Concentre-toi maintenant sur tes répétitions (J1, J2, J7, J15, J30) et tes QCM.</p>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('results').innerHTML = html;
+            
+            // Préparation des données pour le modal
+            const j0Data = {
+                lundi: j0Lundi,
+                mardi: j0Mardi,
+                mercredi: j0Mercredi,
+                jeudi: j0Jeudi,
+                vendredi: j0Vendredi,
+                samedi: j0Samedi,
+                dimanche: j0Dimanche
+            };
+            prepareDataForModal(dateToday, heuresParJour, joursRepos, tempsQCM, tempsMineureCours, tempsMineureRevision, j0Data, tempsNetDisponible, ueData, nbChapitresTotal, tempsNecessaireTotal);
+            
+            // Affichage de l'étape 4
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('step3').style.display = 'none';
+            document.getElementById('step4').style.display = 'block';
+            updateStepIndicator(4);
+            window.scrollTo(0, 0);
+        }
+        
+        function getUEName(num) {
+            const names = {
+                1: 'UE1 - Santé Société',
+                2: 'UE2 - Biostatistiques',
+                3: 'UE3 - Informatique & Communication',
+                4: 'UE4 - Rayonnements & Santé',
+                5: 'UE5 - Biochimie',
+                6: 'UE6 - Embryologie',
+                7: 'UE7 - Physiologie',
+                8: 'UE8 - Anatomie',
+                9: 'UE9 - Chimie'
+            };
+            return names[num] || 'UE' + num;
+        }
+        
+        // Préparation des données pour le modal
+        let modalData = '';
+        
+        function prepareDataForModal(dateToday, heuresParJour, joursRepos, tempsQCM, tempsMineureCours, tempsMineureRevision, j0Data, tempsNetDisponible, ueData, nbChapitres, tempsNecessaire) {
+            const dateStr = dateToday.toLocaleDateString('fr-FR');
+            
+            modalData = `📋 DONNÉES À REPORTER POUR LA FICHE 2 - DÉCISIONS
+
+Date d'évaluation : ${dateStr}
+Heures de travail/jour : ${heuresParJour}h
+Jours de repos Noël : ${joursRepos}
+Temps QCM/jour : ${tempsQCM}h
+Mineure - Cours : ${tempsMineureCours}h/semaine
+Mineure - Révisions : ${tempsMineureRevision}h/semaine
+
+J0 semaine dernière :
+Lundi: ${j0Data.lundi}, Mardi: ${j0Data.mardi}, Mercredi: ${j0Data.mercredi}, Jeudi: ${j0Data.jeudi}, Vendredi: ${j0Data.vendredi}, Samedi: ${j0Data.samedi}, Dimanche: ${j0Data.dimanche}
+
+⏱️ TEMPS NET DISPONIBLE POUR RATTRAPAGE : ${tempsNetDisponible.toFixed(0)}h
+
+📚 RETARD PAR UE :
+
+`;
+            
+            if (ueData.length === 0) {
+                modalData += 'Aucun retard détecté.\n';
+            } else {
+                ueData.forEach(ue => {
+                    modalData += `${ue.nom} : ${ue.tempsParChapitre}h/chapitre, ${ue.nbChapitres} chapitre(s) en retard = ${ue.tempsNecessaire.toFixed(0)}h nécessaires\n`;
+                });
+                
+                modalData += `\nTOTAL : ${nbChapitres} chapitres en retard = ${tempsNecessaire.toFixed(0)}h nécessaires\n`;
+            }
+            
+            modalData += `\n---\n\n⚠️ IMPORTANT : Tu auras besoin de ces données pour remplir la FICHE 2.\nDans la Fiche 2, tu décideras pour chaque chapitre en retard :\n- Niveau 1 (Maîtrise totale = 100% du temps)\n- Niveau 2 (Quelques sacrifices = 60% du temps)\n- Niveau 3 (Survie stratégique = 30% du temps)\n- Sacrifié (0% du temps)`;
+        }
+        
+        // Gestion du modal
+        function showDataModal() {
+            document.getElementById('dataContent').textContent = modalData;
+            document.getElementById('dataModal').style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('dataModal').style.display = 'none';
+        }
+        
+        function copyToClipboard() {
+            navigator.clipboard.writeText(modalData).then(function() {
+                alert('✅ Données copiées dans le presse-papier !');
+            }, function() {
+                alert('❌ Erreur lors de la copie. Sélectionne et copie manuellement le texte.');
+            });
+        }
+        
+        // Fermer le modal si clic en dehors
+        window.onclick = function(event) {
+            const modal = document.getElementById('dataModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
