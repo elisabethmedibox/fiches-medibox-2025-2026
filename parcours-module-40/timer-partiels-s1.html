@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer Partiels S1 - Medibox</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .timer-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 40px;
+            background: linear-gradient(45deg, #ff6b7a, #ff8a94);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .brand-text {
+            color: #1a365d;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .title {
+            color: #1a365d;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            color: #64748b;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+        
+        .countdown-main {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .days-display {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #ff6b7a;
+            line-height: 1;
+            text-shadow: 0 4px 20px rgba(255, 107, 122, 0.4);
+        }
+        
+        .days-label {
+            color: white;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 10px;
+        }
+        
+        .countdown-details {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .time-box {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px 10px;
+            transition: all 0.3s;
+        }
+        
+        .time-box:hover {
+            border-color: #ff6b7a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 122, 0.2);
+        }
+        
+        .time-value {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #1a365d;
+        }
+        
+        .time-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+        
+        .target-date {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 122, 0.4);
+        }
+        
+        .progress-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .progress-title {
+            color: #1a365d;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .progress-bar-container {
+            background: #e2e8f0;
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+            border-radius: 10px;
+            transition: width 1s ease;
+            position: relative;
+        }
+        
+        .progress-bar-fill.warning {
+            background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);
+        }
+        
+        .progress-bar-fill.danger {
+            background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+        }
+        
+        .progress-text {
+            margin-top: 10px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .milestones {
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        .milestone {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+        
+        .milestone.passed {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+        }
+        
+        .milestone.current {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .milestone.upcoming {
+            background: #f8fafc;
+            border-left: 4px solid #e2e8f0;
+        }
+        
+        .milestone-icon {
+            font-size: 1.2rem;
+        }
+        
+        .milestone-text {
+            flex: 1;
+        }
+        
+        .milestone-date {
+            font-weight: bold;
+            color: #1a365d;
+        }
+        
+        .milestone-desc {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+        
+        .motivation-quote {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #faf5ff 0%, #ede9fe 100%);
+            border-radius: 12px;
+            border-left: 4px solid #8b5cf6;
+        }
+        
+        .quote-text {
+            font-style: italic;
+            color: #1a365d;
+            font-size: 1rem;
+        }
+        
+        .quote-author {
+            margin-top: 10px;
+            color: #8b5cf6;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 500px) {
+            .timer-container {
+                padding: 25px;
+            }
+            
+            .days-display {
+                font-size: 3.5rem;
+            }
+            
+            .countdown-details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .time-value {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* Animation pulse pour les jours */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        .countdown-main {
+            animation: pulse 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="timer-container">
+        <!-- Header -->
+        <div class="brand">
+            <div class="logo">M40</div>
+            <div class="brand-text">MEDIBOX</div>
+        </div>
+        
+        <h1 class="title">Partiels Semestre 1</h1>
+        <p class="subtitle">Chaque jour compte. Chaque heure aussi.</p>
+        
+        <!-- Compte à rebours principal -->
+        <div class="countdown-main">
+            <div class="days-display" id="daysLeft">--</div>
+            <div class="days-label">Jours restants</div>
+        </div>
+        
+        <!-- Détail heures/minutes/secondes -->
+        <div class="countdown-details">
+            <div class="time-box">
+                <div class="time-value" id="days">--</div>
+                <div class="time-label">Jours</div>
+            </div>
+            <div class="time-box">
+                <div class="time-value" id="hours">--</div>
+                <div class="time-label">Heures</div>
+            </div>
+            <div class="time-box">
+                <div class="time-value" id="minutes">--</div>
+                <div class="time-label">Minutes</div>
+            </div>
+            <div class="time-box">
+                <div class="time-value" id="seconds">--</div>
+                <div class="time-label">Secondes</div>
+            </div>
+        </div>
+        
+        <!-- Date cible -->
+        <div class="target-date">
+            🎯 Objectif : 8 Janvier 2026
+        </div>
+        
+        <!-- Barre de progression du semestre -->
+        <div class="progress-section">
+            <div class="progress-title">📊 Progression vers les partiels</div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
+            </div>
+            <p class="progress-text" id="progressText">Calcul en cours...</p>
+        </div>
+        
+        <!-- Jalons importants -->
+        <div class="milestones">
+            <div class="milestone" id="milestone1">
+                <span class="milestone-icon">🎯</span>
+                <div class="milestone-text">
+                    <div class="milestone-date">14 décembre 2025</div>
+                    <div class="milestone-desc">Objectif idéal : rattrapage terminé</div>
+                </div>
+            </div>
+            <div class="milestone" id="milestone2">
+                <span class="milestone-icon">⛔</span>
+                <div class="milestone-text">
+                    <div class="milestone-date">21 décembre 2025</div>
+                    <div class="milestone-desc">Deadline absolue rattrapage</div>
+                </div>
+            </div>
+            <div class="milestone" id="milestone3">
+                <span class="milestone-icon">📝</span>
+                <div class="milestone-text">
+                    <div class="milestone-date">22-23 décembre 2025</div>
+                    <div class="milestone-desc">Concours blanc</div>
+                </div>
+            </div>
+            <div class="milestone" id="milestone4">
+                <span class="milestone-icon">🔄</span>
+                <div class="milestone-text">
+                    <div class="milestone-date">29 déc - 4 jan</div>
+                    <div class="milestone-desc">Dernier tour de révision majeur</div>
+                </div>
+            </div>
+            <div class="milestone" id="milestone5">
+                <span class="milestone-icon">🚀</span>
+                <div class="milestone-text">
+                    <div class="milestone-date">5-8 janvier 2026</div>
+                    <div class="milestone-desc">Tour ultra-rapide final</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Citation motivation -->
+        <div class="motivation-quote">
+            <p class="quote-text" id="quoteText">"Le succès n'est pas final, l'échec n'est pas fatal : c'est le courage de continuer qui compte."</p>
+            <p class="quote-author">— Winston Churchill</p>
+        </div>
+    </div>
+
+    <script>
+        // Date cible : 8 janvier 2026 à 8h du matin
+        const targetDate = new Date('2026-01-08T08:00:00');
+        
+        // Date de début du semestre (pour la barre de progression)
+        const semesterStart = new Date('2025-09-02T00:00:00');
+        
+        // Jalons avec leurs dates
+        const milestones = [
+            { id: 'milestone1', date: new Date('2025-12-14T23:59:59') },
+            { id: 'milestone2', date: new Date('2025-12-21T23:59:59') },
+            { id: 'milestone3', date: new Date('2025-12-23T23:59:59') },
+            { id: 'milestone4', date: new Date('2026-01-04T23:59:59') },
+            { id: 'milestone5', date: new Date('2026-01-08T08:00:00') }
+        ];
+        
+        // Citations motivantes
+        const quotes = [
+            { text: "Le succès n'est pas final, l'échec n'est pas fatal : c'est le courage de continuer qui compte.", author: "Winston Churchill" },
+            { text: "La discipline est le pont entre les objectifs et leur réalisation.", author: "Jim Rohn" },
+            { text: "Chaque expert était autrefois un débutant.", author: "Helen Hayes" },
+            { text: "Le seul endroit où le succès vient avant le travail, c'est dans le dictionnaire.", author: "Vidal Sassoon" },
+            { text: "Tu n'as pas besoin d'être parfait pour commencer, mais tu dois commencer pour devenir meilleur.", author: "Zig Ziglar" },
+            { text: "La différence entre l'ordinaire et l'extraordinaire, c'est ce petit extra.", author: "Jimmy Johnson" },
+            { text: "Crois en toi et tout devient possible.", author: "Medibox" }
+        ];
+        
+        function updateCountdown() {
+            const now = new Date();
+            const diff = targetDate - now;
+            
+            if (diff <= 0) {
+                document.getElementById('daysLeft').textContent = '🎉';
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('daysLeft').textContent = 'J-' + days;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            // Mise à jour de la barre de progression
+            updateProgress(now);
+            
+            // Mise à jour des jalons
+            updateMilestones(now);
+        }
+        
+        function updateProgress(now) {
+            const totalDuration = targetDate - semesterStart;
+            const elapsed = now - semesterStart;
+            const progress = Math.min(Math.max((elapsed / totalDuration) * 100, 0), 100);
+            
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = progress.toFixed(1) + '%';
+            
+            // Changer la couleur selon la progression
+            if (progress >= 90) {
+                progressBar.className = 'progress-bar-fill danger';
+            } else if (progress >= 75) {
+                progressBar.className = 'progress-bar-fill warning';
+            } else {
+                progressBar.className = 'progress-bar-fill';
+            }
+            
+            const daysTotal = Math.floor(totalDuration / (1000 * 60 * 60 * 24));
+            const daysElapsed = Math.floor(elapsed / (1000 * 60 * 60 * 24));
+            const daysRemaining = daysTotal - daysElapsed;
+            
+            document.getElementById('progressText').textContent = 
+                `${progress.toFixed(1)}% du semestre écoulé • ${daysRemaining} jours restants`;
+        }
+        
+        function updateMilestones(now) {
+            milestones.forEach(milestone => {
+                const element = document.getElementById(milestone.id);
+                if (now > milestone.date) {
+                    element.className = 'milestone passed';
+                } else if (now > new Date(milestone.date.getTime() - 7 * 24 * 60 * 60 * 1000)) {
+                    element.className = 'milestone current';
+                } else {
+                    element.className = 'milestone upcoming';
+                }
+            });
+        }
+        
+        function setRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const quote = quotes[randomIndex];
+            document.getElementById('quoteText').textContent = `"${quote.text}"`;
+            document.querySelector('.quote-author').textContent = `— ${quote.author}`;
+        }
+        
+        // Initialisation
+        updateCountdown();
+        setRandomQuote();
+        
+        // Mise à jour chaque seconde
+        setInterval(updateCountdown, 1000);
+        
+        // Changer la citation toutes les 30 secondes
+        setInterval(setRandomQuote, 30000);
+    </script>
+</body>
+</html>
