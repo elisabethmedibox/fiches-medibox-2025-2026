@@ -141,6 +141,13 @@
             margin-bottom: 4px;
         }
         
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
         /* Tableau diagnostic compact */
         .diagnostic-table {
             width: 100%;
@@ -165,6 +172,8 @@
         /* Vue d'ensemble */
         .vue-ensemble {
             margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
         .vue-ensemble h4 {
@@ -419,32 +428,32 @@
             
             .qcm-table {
                 min-width: 750px;
-                font-size: 0.75rem;
+                font-size: 0.7rem !important;
             }
             
             .qcm-table th:first-child,
             .qcm-table td:first-child {
                 width: 90px;
-                font-size: 0.7rem;
+                font-size: 0.7rem !important;
             }
             
             .qcm-table td {
-                font-size: 0.75rem;
+                font-size: 0.7rem !important;
             }
             
             .qcm-enonce {
-                font-size: 0.8rem;
-                margin-bottom: 8px;
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
             }
             
             .qcm-items {
-                font-size: 0.75rem;
+                font-size: 0.7rem !important;
             }
             
             .qcm-item {
-                padding: 4px 8px;
-                margin-bottom: 4px;
-                font-size: 0.75rem;
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
             }
             
             .vue-tableau {
@@ -755,20 +764,22 @@
             <details class="main-accordion" open>
                 <summary>📊 Rappel diagnostic</summary>
                 <div class="accordion-content">
-                    <table class="diagnostic-table">
-                        <tr>
-                            <th>Fréquence</th>
-                            <th>Moyenne QCM/an</th>
-                            <th>Format</th>
-                            <th>Dépendance</th>
-                        </tr>
-                        <tr>
-                            <td>Tombe chaque année</td>
-                            <td>2,6 QCM/an</td>
-                            <td>QCM sur tout le cours</td>
-                            <td>Indépendant</td>
-                        </tr>
-                    </table>
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Moyenne QCM/an</th>
+                                <th>Format</th>
+                                <th>Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>Tombe chaque année</td>
+                                <td>2,6 QCM/an</td>
+                                <td>QCM sur tout le cours</td>
+                                <td>Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
 
                     <!-- VUE D'ENSEMBLE - TABLEAU -->
                     <div class="vue-ensemble">
