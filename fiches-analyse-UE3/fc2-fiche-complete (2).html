@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC2 - RGPD - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble - Tableau */
+        .vue-ensemble {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 2px solid #1a365d;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 10px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC2 - Réglementation en santé numérique (RGPD)</h1>
+            <div class="meta">
+                <span>📚 UE3 - Informatique & Communication</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- DONNÉES PERSONNELLES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Données personnelles (4 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">Choisissez les éléments étant considérés comme des données personnelles:</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le numéro de téléphone du secrétariat de Cardiologie au Centre Hospitalier Universitaire de Guadeloupe.</div>
+                                            <div class="qcm-item">B: Une fiche de paie d'interne en médecine.</div>
+                                            <div class="qcm-item">C: L'âge.</div>
+                                            <div class="qcm-item">D: Le numéro de matricule interne à l'hôpital.</div>
+                                            <div class="qcm-item">E: L'adresse du lieu de résidence.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les données personnelles, choisissez le ou les élément(s) étant considérés comme des données personnelles parmi les propositions suivantes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le numéro de téléphone du secrétariat de Cardiologie au CHU.</div>
+                                            <div class="qcm-item">B: La date de naissance d'un médecin exerçant à l'hôpital.</div>
+                                            <div class="qcm-item">C: L'âge.</div>
+                                            <div class="qcm-item">D: Le numéro de sécurité sociale.</div>
+                                            <div class="qcm-item">E: L'adresse du lieu de résidence d'un patient.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les données personnelles, choisissez le ou les élément(s) étant considérés comme données personnelles parmi les propositions suivantes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le sexe</div>
+                                            <div class="qcm-item">B: Le numéro de téléphone d'un patient hospitalisé</div>
+                                            <div class="qcm-item">C: Le numéro de matricule d'une infirmière à l'hôpital</div>
+                                            <div class="qcm-item">D: Le numéro étudiant</div>
+                                            <div class="qcm-item">E: L'adresse de la Direction Générale</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les données personnelles, choisissez le ou les élément(s) étant considérés comme des données personnelles parmi les propositions suivantes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le numéro de téléphone du secrétariat de Cardiologie au CHU</div>
+                                            <div class="qcm-item">B: L'adresse du lieu de résidence d'un patient</div>
+                                            <div class="qcm-item">C: L'âge</div>
+                                            <div class="qcm-item">D: Le numéro de téléphone du standard de l'hôpital</div>
+                                            <div class="qcm-item">E: Le numéro de matricule d'un interne en médecine</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ORGANISMES SOUMIS AU RGPD -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Organismes soumis au RGPD (2 QCM - identiques)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021<br>Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">Choisissez les organismes devant appliquer le Règlement Général de Protection des Données :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les cliniques privées françaises.</div>
+                                            <div class="qcm-item">B: Un logiciel américain de Dossier Patient Informatisé utilisé par les hôpitaux publics français.</div>
+                                            <div class="qcm-item">C: L'entreprise allemande responsable de la maintenance des scanners d'un hôpital français.</div>
+                                            <div class="qcm-item">D: Un cabinet de médecine générale.</div>
+                                            <div class="qcm-item">E: Les Agences Régionales de Santé.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="qcm-identique">
+                                    <td>2024-2025<br>Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les organismes devant appliquer le Règlement Général sur la protection des Données, sélectionnez la ou les proposition(s) exactes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les cliniques privées françaises</div>
+                                            <div class="qcm-item">B: Un logiciel américain de Dossier Patient Informatisé utilisé par les hôpitaux publics français</div>
+                                            <div class="qcm-item">C: L'entreprise allemande responsable de la maintenance des scanners d'un hôpital français</div>
+                                            <div class="qcm-item">D: Un cabinet de médecine générale</div>
+                                            <div class="qcm-item">E: Les Agences Régionales de Santé</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- PRINCIPE DE LICÉITÉ -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Principe de licéité (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">Choisissez les situations pour lesquelles le traitement des données personnelles est légal dans le cadre du Règlement Général de Protection des Données (principe de licéité):</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les données médicales des patients sont utilisées dans le cadre d'un essai thérapeutique pour lequel les patients ont signé un consentement écrit pour l'utilisation de leurs données.</div>
+                                            <div class="qcm-item">B: Le traitement est nécessaire au respect d'une obligation légale à laquelle le responsable de traitement est soumis.</div>
+                                            <div class="qcm-item">C: Les données d'adresses des patients sont utilisées pour repérer les foyers de démoustication, dans le cadre de la surveillance de l'épidémie de dengue par l'Agence Régionale de Santé.</div>
+                                            <div class="qcm-item">D: Le traitement est nécessaire à des fins de publicité.</div>
+                                            <div class="qcm-item">E: Les numéros de téléphone des patients sont utilisés par le médecin généraliste pour leur confirmer leur date de rendez-vous.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le principe de licéité, choisissez la ou les propositions entrant dans le cadre de ce principe :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Seules les données pertinentes sont collectées</div>
+                                            <div class="qcm-item">B: Le traitement est nécessaire au respect d'une obligation légale</div>
+                                            <div class="qcm-item">C: Le traitement est nécessaire à la sauvegarde des intérêts vitaux</div>
+                                            <div class="qcm-item">D: Le traitement est nécessaire aux fins des intérêts légitimes poursuivis par le responsable de traitement</div>
+                                            <div class="qcm-item">E: Le traitement est nécessaire à l'exécution d'une mission d'intérêt public</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- FINALITÉS DÉTERMINÉES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Finalités déterminées (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les finalités de traitement déterminées, choisissez la ou les finalité(s) de traitement déterminée(s) parmi les propositions suivantes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Recueillir les adresses des patients.</div>
+                                            <div class="qcm-item">B: Analyser la navigation internet.</div>
+                                            <div class="qcm-item">C: Faire de la publicité ciblée.</div>
+                                            <div class="qcm-item">D: Recueillir les Relevés d'Identité Bancaire des infirmiers pour la gestion de la paie.</div>
+                                            <div class="qcm-item">E: Tout est vrai</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les finalités de traitement déterminées, choisissez la ou les propositions correspondant à une finalité de traitement déterminée parmi les propositions suivantes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Recueillir les adresses des patients</div>
+                                            <div class="qcm-item">B: Analyser la navigation internet</div>
+                                            <div class="qcm-item">C: Faire de la publicité ciblée</div>
+                                            <div class="qcm-item">D: Recueillir les Relevés d'Identité Bancaire des infirmiers pour la gestion de la paie</div>
+                                            <div class="qcm-item">E: Filmer les infirmiers pendant qu'ils ou elles préparent leurs traitements pour les patients</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- LES 8 GRANDS PRINCIPES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Les 8 grands principes du traitement des données (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le traitement des données personnelles, choisissez le ou les élément(s) étant considérés comme l'un des huit grands principes parmi les propositions suivantes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'évolution du système de santé</div>
+                                            <div class="qcm-item">B: L'obligation de sécurité</div>
+                                            <div class="qcm-item">C: La conservation limitée des données</div>
+                                            <div class="qcm-item">D: La protection particulière des données sensibles</div>
+                                            <div class="qcm-item">E: Le soutien à l'innovation</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- FORME DE L'INFORMATION -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Forme de l'information (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2023-2024<br>Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la forme de l'information des personnes, choisissez la ou les propositions exactes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'information doit être compréhensible</div>
+                                            <div class="qcm-item">B: L'information doit être accessible</div>
+                                            <div class="qcm-item">C: L'information doit être lisible</div>
+                                            <div class="qcm-item">D: L'information doit être concise</div>
+                                            <div class="qcm-item">E: L'information doit apporter une vision globale sur l'ensemble du traitement des données</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- CNIL -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 CNIL (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la Commission Nationale de l'Informatique et des Libertés (CNIL), sélectionnez la ou les proposition(s) exactes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Elle a été créée le 25 mai 2018 avec la mise en application du Règlement Général sur la Protection des Données (RGPD)</div>
+                                            <div class="qcm-item">B: Elle donne son avis sur les études portant sur les données de santé</div>
+                                            <div class="qcm-item">C: C'est une autorité administrative indépendante</div>
+                                            <div class="qcm-item">D: C'est le régulateur des données personnelles</div>
+                                            <div class="qcm-item">E: Elle est présente dans tous les pays appliquant le RGPD</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion" open>
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <table class="diagnostic-table">
+                        <tr>
+                            <th>Fréquence</th>
+                            <th>Moyenne QCM/an</th>
+                            <th>Format</th>
+                            <th>Dépendance</th>
+                        </tr>
+                        <tr>
+                            <td>Tombe chaque année</td>
+                            <td>2,6 QCM/an</td>
+                            <td>QCM sur tout le cours</td>
+                            <td>Indépendant</td>
+                        </tr>
+                    </table>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>13 QCM</strong> sur ce chapitre (moyenne 2,6/an). Ces QCM se regroupent en <strong>7 grandes thématiques</strong> :</p>
+                        
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Données personnelles</td>
+                                    <td class="qcm-cell">Q2</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="qcm-cell">Q5</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q3</td>
+                                </tr>
+                                <tr>
+                                    <td>Organismes soumis au RGPD</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q3</span></td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q5</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Principe de licéité</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Finalités déterminées</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q5</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q4</td>
+                                </tr>
+                                <tr>
+                                    <td>Les 8 grands principes</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Forme de l'information</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q5</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>CNIL</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q6</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>La définition et l'identification des données personnelles</h4>
+                        <p>Savoir distinguer ce qui identifie une personne physique de ce qui identifie une institution.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le champ d'application territorial du RGPD</h4>
+                        <p>Comprendre les critères de soumission : établissement UE OU activité ciblant des résidents UE.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le principe de licéité et ses 6 conditions</h4>
+                        <p>Maîtriser les 6 bases légales permettant un traitement licite.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le principe de finalité déterminée</h4>
+                        <p>Distinguer une finalité précise d'une finalité vague.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les 8 grands principes du traitement des données</h4>
+                        <p>Connaître l'ensemble des principes fondamentaux du RGPD.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les caractéristiques de la forme de l'information</h4>
+                        <p>Connaître les qualités requises pour informer les personnes.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La CNIL : statut, rôle et missions</h4>
+                        <p>Connaître le statut juridique et les missions de la CNIL.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- QCM 1 : Données personnelles -->
+                    <div class="qcm-analyse">
+                        <h4>Données personnelles</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q2 | <strong>2021-2022</strong> Q4 | <strong>2022-2023</strong> Q5 | <strong>2024-2025</strong> Q3</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la capacité à identifier ce qui constitue une donnée personnelle. Les mêmes exemples reviennent avec des variations mineures.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends la liste exacte des exemples tombés aux annales. Identifie le pattern de distinction entre donnée personnelle et donnée institutionnelle.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>Une donnée personnelle identifie une <strong>PERSONNE PHYSIQUE</strong> (directement ou indirectement).</p>
+                                <p>Si la donnée identifie un <strong>SERVICE</strong> ou une <strong>INSTITUTION</strong> (secrétariat, standard, direction générale), ce n'est PAS une donnée personnelle.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Organismes soumis au RGPD -->
+                    <div class="qcm-analyse">
+                        <h4>Organismes soumis au RGPD</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q3 | <strong>2024-2025</strong> Q5</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Cette question teste les critères d'application territoriale du RGPD. La question 2024-2025 est identique à celle de 2020-2021.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends la liste des 5 exemples d'organismes testés aux annales et comprends pourquoi chacun est soumis ou non au RGPD.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>Le RGPD s'applique si <strong>AU MOINS UNE</strong> de ces conditions est remplie :</p>
+                                <ul>
+                                    <li>L'organisme est établi dans l'UE</li>
+                                    <li>L'activité cible des résidents européens</li>
+                                </ul>
+                                <p>→ La nationalité de l'organisme n'a aucune importance si l'activité concerne des Européens.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Principe de licéité -->
+                    <div class="qcm-analyse">
+                        <h4>Principe de licéité</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q4 | <strong>2023-2024</strong> Q4</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la connaissance des 6 conditions de licéité. Deux formats existent : situations concrètes (2020-2021) ou conditions abstraites (2023-2024).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les 6 conditions de licéité ET sache les reconnaître dans des situations concrètes.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>Les 6 conditions sont : consentement, contrat, obligation légale, intérêts vitaux, mission d'intérêt public, intérêts légitimes.</p>
+                                <p><strong>Attention :</strong> "publicité" sans consentement explicite est toujours problématique.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Finalités déterminées -->
+                    <div class="qcm-analyse">
+                        <h4>Finalités déterminées</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q5 | <strong>2024-2025</strong> Q4</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la distinction entre finalité précise et finalité vague. Les exemples reviennent avec de légères variations.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les exemples tombés aux annales et comprends la logique de distinction.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>Une finalité est déterminée si elle répond à la question <strong>"POUR QUOI FAIRE précisément ?"</strong></p>
+                                <ul>
+                                    <li>"Recueillir les RIB POUR la gestion de la paie" = finalité précise</li>
+                                    <li>"Recueillir les adresses" (sans dire pourquoi) = finalité vague</li>
+                                    <li>Actions trop générales ("analyser la navigation", "publicité ciblée") = finalités vagues</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 5 : Les 8 grands principes -->
+                    <div class="qcm-analyse">
+                        <h4>Les 8 grands principes du traitement des données</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q4</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la connaissance des 8 principes fondamentaux du RGPD parmi des propositions dont certaines n'en font pas partie.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les 8 principes du cours et les pièges tombés (évolution du système de santé, soutien à l'innovation).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Il faut distinguer ce qui relève des principes RGPD de ce qui relève d'objectifs de politique publique générale.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 6 : Forme de l'information -->
+                    <div class="qcm-analyse">
+                        <h4>Forme de l'information</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q5</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste les caractéristiques requises pour l'information aux personnes concernées.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les caractéristiques listées dans le cours.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Il faut connaître les caractéristiques : compréhensible, accessible, lisible, concise + vision globale.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 7 : CNIL -->
+                    <div class="qcm-analyse">
+                        <h4>CNIL</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q6</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la connaissance du statut juridique, du rôle et de la portée de la CNIL.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les éléments factuels sur la CNIL : date de création, statut, rôle, et distingue-la du CESREES.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>La CNIL est l'autorité française créée en 1978.</p>
+                                <p><strong>Attention aux confusions :</strong> elle n'a pas été créée avec le RGPD (2018) et elle n'existe qu'en France (chaque pays UE a sa propre autorité).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion donnée personnelle / donnée institutionnelle</h4>
+                        <p>Le numéro de téléphone du secrétariat, du standard, ou l'adresse de la Direction Générale ne sont PAS des données personnelles car ils identifient des SERVICES, pas des personnes physiques. En revanche, le numéro de matricule, la fiche de paie, l'âge, le sexe, la date de naissance identifient bien une personne.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion finalité déterminée / finalité vague</h4>
+                        <p>"Recueillir les adresses" ou "Analyser la navigation internet" sans préciser POURQUOI = finalité vague. Il faut que l'objectif soit explicite et précis ("pour la gestion de la paie").</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le mot "publicité" sans consentement</h4>
+                        <p>Les items contenant "publicité" ou "marketing" sans mention de consentement explicite sont problématiques dans les questions sur la licéité ou les finalités.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion licéité / minimisation</h4>
+                        <p>"Seules les données pertinentes sont collectées" = principe de MINIMISATION, pas de licéité. Si cette proposition apparaît dans une question sur la licéité, elle est hors sujet.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège des sous-traitants non-européens</h4>
+                        <p>Un logiciel américain ou une entreprise allemande travaillant pour un hôpital français = soumis au RGPD car l'activité cible des Européens. La nationalité de l'entreprise n'a aucune importance.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion CNIL / RGPD sur les dates</h4>
+                        <p>La CNIL a été créée en 1978, pas en 2018. Le RGPD date de 2018. Ne pas confondre l'ancienne institution française avec la nouvelle réglementation européenne.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion CNIL / CESREES sur les avis</h4>
+                        <p>Attention à bien distinguer qui donne son avis sur quoi : la CNIL pour la conformité réglementaire, le CESREES pour l'avis scientifique sur les études de données de santé.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Sur ce chapitre, le prof fait tourner les thématiques plutôt que de tout retester chaque année. Seules les données personnelles tombent vraiment régulièrement. Les autres thèmes reviennent tous les 2-4 ans, avec l'introduction de nouveaux thèmes.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Ne faites aucune impasse sur ce chapitre. On remarque que le professeur introduit régulièrement de nouveaux concepts dans ses questions. Soyez particulièrement attentifs au contexte comme le CESREES, le DPO, ou encore d'autres formes de traitement des données.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Ciblez toutes les parties qui sont déjà tombées. Pour les thèmes qui ne sont pas encore tombés, apprenez uniquement sur le diaporama du prof, vous gagnerez beaucoup de temps.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Un point est quasiment assuré avec le traitement des données personnelles, qui a de fortes probabilités de retomber. Apprenez par cœur tous les QCM déjà tombés : il est arrivé que le professeur redonne le même QCM (Organismes soumis au RGPD en 2020-2021 et 2024-2025), et même si ce n'est arrivé qu'une fois, c'est une probabilité qu'on ne peut pas exclure.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+    </div>
+</body>
+</html>
