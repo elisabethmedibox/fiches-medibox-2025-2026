@@ -83,7 +83,6 @@
             font-size: 0.85rem;
             background: white;
             border-radius: 8px;
-            overflow: hidden;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
@@ -235,6 +234,13 @@
             border-radius: 6px;
             font-weight: 600;
             border: 1px solid #10b981;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
         }
         
         /* Recommandations Niveau 2 */
@@ -391,13 +397,70 @@
         
         /* Tableaux scrollables sur mobile */
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+            .accordion-content {
+                padding: 20px;
+            }
+            table {
+                font-size: 0.8rem;
+            }
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
             .qcm-thematique {
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
             }
             
             .qcm-table {
-                min-width: 600px;
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
             }
             
             .vue-tableau {
@@ -639,72 +702,76 @@
             <div class="accordion-content">
                 
                 <!-- Tableau diagnostic -->
-                <table class="diagnostic-table">
-                    <tr>
-                        <th>Fréquence</th>
-                        <th>Moyenne QCM/an</th>
-                        <th>Format</th>
-                        <th>Dépendance</th>
-                    </tr>
-                    <tr>
-                        <td>Tombe chaque année</td>
-                        <td>2 à 3 QCM/an</td>
-                        <td>QCM sur partie ciblée du cours</td>
-                        <td>Indépendant</td>
-                    </tr>
-                </table>
+                <div class="table-wrapper">
+                    <table class="diagnostic-table">
+                        <tr>
+                            <th>Fréquence</th>
+                            <th>Moyenne QCM/an</th>
+                            <th>Format</th>
+                            <th>Dépendance</th>
+                        </tr>
+                        <tr>
+                            <td>Tombe chaque année</td>
+                            <td>2 à 3 QCM/an</td>
+                            <td>QCM sur partie ciblée du cours</td>
+                            <td>Indépendant</td>
+                        </tr>
+                    </table>
+                </div>
 
                 <!-- Vue d'ensemble -->
                 <div class="vue-ensemble">
                     <h4>📋 Vue d'ensemble des QCM</h4>
                     <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>11 QCM</strong> sur ce chapitre (moyenne 2,2/an). Ces QCM se regroupent en <strong>4 grandes thématiques</strong> :</p>
                     
-                    <table class="vue-tableau">
-                        <thead>
-                            <tr>
-                                <th>Thématique</th>
-                                <th>2020-2021</th>
-                                <th>2021-2022</th>
-                                <th>2022-2023</th>
-                                <th>2023-2024</th>
-                                <th>2024-2025</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Feuille de route "Accélérer le virage numérique" (2019-2022)</td>
-                                <td class="qcm-cell">Q1</td>
-                                <td class="qcm-cell">Q1, Q2</td>
-                                <td class="empty-cell">—</td>
-                                <td class="empty-cell">—</td>
-                                <td class="empty-cell">—</td>
-                            </tr>
-                            <tr>
-                                <td>Feuille de route 2023-2027</td>
-                                <td class="empty-cell">—</td>
-                                <td class="empty-cell">—</td>
-                                <td class="empty-cell">—</td>
-                                <td class="qcm-cell">Q1, Q2</td>
-                                <td class="qcm-cell">Q1, Q2</td>
-                            </tr>
-                            <tr>
-                                <td>Les grands domaines de l'informatique médicale</td>
-                                <td class="empty-cell">—</td>
-                                <td class="qcm-cell">Q3</td>
-                                <td class="qcm-cell">Q3</td>
-                                <td class="empty-cell">—</td>
-                                <td class="empty-cell">—</td>
-                            </tr>
-                            <tr>
-                                <td>Délégation ministérielle et Health Data Hub (ne sont plus au programme)</td>
-                                <td class="empty-cell">—</td>
-                                <td class="empty-cell">—</td>
-                                <td class="qcm-cell">Q1, Q2</td>
-                                <td class="empty-cell">—</td>
-                                <td class="empty-cell">—</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Feuille de route "Accélérer le virage numérique" (2019-2022)</td>
+                                    <td class="qcm-cell">Q1</td>
+                                    <td class="qcm-cell">Q1, Q2</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Feuille de route 2023-2027</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q1, Q2</td>
+                                    <td class="qcm-cell">Q1, Q2</td>
+                                </tr>
+                                <tr>
+                                    <td>Les grands domaines de l'informatique médicale</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q3</td>
+                                    <td class="qcm-cell">Q3</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Délégation ministérielle et Health Data Hub (ne sont plus au programme)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q1, Q2</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     
                     <!-- Légende -->
                     <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
