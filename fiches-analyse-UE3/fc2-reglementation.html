@@ -441,19 +441,29 @@
                 font-size: 0.7rem !important;
             }
             
-            .qcm-enonce {
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
                 font-size: 0.7rem !important;
                 margin-bottom: 6px;
             }
             
-            .qcm-items {
+            .qcm-table .qcm-items {
                 font-size: 0.7rem !important;
             }
             
-            .qcm-item {
+            .qcm-table .qcm-item {
                 padding: 3px 6px;
                 margin-bottom: 3px;
                 font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
             }
             
             .vue-tableau {
@@ -786,6 +796,7 @@
                         <h4>📋 Vue d'ensemble des QCM</h4>
                         <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>13 QCM</strong> sur ce chapitre (moyenne 2,6/an). Ces QCM se regroupent en <strong>7 grandes thématiques</strong> :</p>
                         
+                        <div class="table-wrapper">
                         <table class="vue-tableau">
                             <thead>
                                 <tr>
@@ -856,6 +867,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        </div>
                         
                         <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
                             <p style="margin: 0; font-size: 0.85rem; color: #166534;">
