@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC1 - Grands principes en santé numérique - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble - Tableau */
+        .vue-ensemble {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 2px solid #1a365d;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 10px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e0;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            display: inline-block;
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #059669;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            border: 1px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #ff6b7a;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1e40af;
+        }
+        
+        .reco-item p {
+            margin: 0 0 10px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .frequence {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border-left: 4px solid #ff6b7a;
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- HEADER -->
+        <div class="header">
+            <h1>FC1 - Grands principes en santé numérique</h1>
+            <div class="meta">
+                <span>📚 UE3 - Informatique & Communication</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+
+        <!-- ACCORDÉON 1 : QCM TOMBÉS -->
+        <details class="main-accordion">
+            <summary>📋 QCM tombés aux sessions 1</summary>
+            <div class="accordion-content">
+                
+                <!-- Thématique 1 -->
+                <div class="qcm-thematique">
+                    <h4>🎯 Feuille de route "Accélérer le virage numérique" (2019-2022) (3 QCM)</h4>
+                    <table class="qcm-table">
+                        <thead>
+                            <tr>
+                                <th>Année - QCM</th>
+                                <th>Énoncé et items</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2020-2021<br>Q1</td>
+                                <td>
+                                    <div class="qcm-enonce">A propos de la feuille de route « Accélérer le virage numérique », sélectionnez la ou les proposition(s) exactes :</div>
+                                    <div class="qcm-items">
+                                        <div class="qcm-item">A: Elle a été mise en place par la loi du 26 juillet 2013.</div>
+                                        <div class="qcm-item">B: Elle a 5 orientations.</div>
+                                        <div class="qcm-item">C: Elle prévoit de déployer des plateformes numériques de santé au régional.</div>
+                                        <div class="qcm-item">D: Un soutien aux systèmes d'Information médico-sociaux est prévu dans cette feuille de route.</div>
+                                        <div class="qcm-item">E: Elle soutient l'innovation en santé.</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2021-2022<br>Q1</td>
+                                <td>
+                                    <div class="qcm-enonce">Sur la stratégie nationale d'e-santé, sélectionnez la ou les proposition(s) exactes :</div>
+                                    <div class="qcm-items">
+                                        <div class="qcm-item">A: Elle a une feuille de route définie.</div>
+                                        <div class="qcm-item">B: Elle prévoit d'augmenter la gouvernance du numérique en santé.</div>
+                                        <div class="qcm-item">C: Elle n'a pas d'objectif spécifique en matière de sécurité des systèmes d'information.</div>
+                                        <div class="qcm-item">D: Elle fixe les orientations de la politique du numérique en santé.</div>
+                                        <div class="qcm-item">E: Elle prévoit d'accélérer le déploiement des services numériques socles.</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2021-2022<br>Q2</td>
+                                <td>
+                                    <div class="qcm-enonce">Sur la feuille de route « Accélérer le virage numérique », sélectionnez la ou les proposition(s) exactes :</div>
+                                    <div class="qcm-items">
+                                        <div class="qcm-item">A: Elle a été mise en place par la loi du 26 juillet 2019.</div>
+                                        <div class="qcm-item">B: Elle a 5 orientations.</div>
+                                        <div class="qcm-item">C: Elle prévoit de déployer des plateformes numériques de santé locales.</div>
+                                        <div class="qcm-item">D: Elle soutient l'innovation en santé.</div>
+                                        <div class="qcm-item">E: Tout est vrai.</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Thématique 2 -->
+                <div class="qcm-thematique">
+                    <h4>🎯 Feuille de route 2023-2027 (4 QCM)</h4>
+                    <table class="qcm-table">
+                        <thead>
+                            <tr>
+                                <th>Année - QCM</th>
+                                <th>Énoncé et items</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2023-2024<br>Q1</td>
+                                <td>
+                                    <div class="qcm-enonce">Sur la Feuille de route du Numérique en Santé 2023-2027, sélectionnez la ou les proposition(s) exacte(s) :</div>
+                                    <div class="qcm-items">
+                                        <div class="qcm-item">A: Elle a été créée lors de la Loi du 26 juillet 2019</div>
+                                        <div class="qcm-item">B: Elle fixe les grandes orientations de la politique du numérique en santé</div>
+                                        <div class="qcm-item">C: Elle a 4 axes prioritaires</div>
+                                        <div class="qcm-item">D: Elle a 5 orientations</div>
+                                        <div class="qcm-item">E: L'amélioration de l'accès à la santé pour les personnes et les professionnels qui les orientent est un axe prioritaire</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2023-2024<br>Q2</td>
+                                <td>
+                                    <div class="qcm-enonce">Sur la Feuille de route 2023-2027, sélectionnez la ou les proposition(s) faisant partie de l'axe « Accès à la santé » :</div>
+                                    <div class="qcm-items">
+                                        <div class="qcm-item">A: Faire bénéficier à tous des innovations en santé numérique</div>
+                                        <div class="qcm-item">B: Améliorer l'intégration et l'ergonomie des services socles dans les outils des professionnels de santé</div>
+                                        <div class="qcm-item">C: Simplifier la coordination locale des parcours de santé</div>
+                                        <div class="qcm-item">D: Développer une prévention personnalisée via Mon espace santé</div>
+                                        <div class="qcm-item">E: Développer l'usage de la télésanté dans un cadre régulé et éthique</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2024-2025<br>Q1</td>
+                                <td>
+                                    <div class="qcm-enonce">Sur la Feuille de route du Numérique en Santé 2023-2027, sélectionnez la ou les proposition(s) exactes :</div>
+                                    <div class="qcm-items">
+                                        <div class="qcm-item">A : Son objectif est de mettre le numérique au service de la santé</div>
+                                        <div class="qcm-item">B : Elle fixe les grandes orientations de la politique du numérique en santé</div>
+                                        <div class="qcm-item">C : Elle a 4 axes prioritaires</div>
+                                        <div class="qcm-item">D : Développer la prévention et rendre chacun acteur de sa santé est un axe prioritaire</div>
+                                        <div class="qcm-item">E : Elle a 5 orientations</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2024-2025<br>Q2</td>
+                                <td>
+                                    <div class="qcm-enonce">Sur la Feuille de route 2023-2027, sélectionnez la ou les proposition(s) faisant partie de l'axe «Prévention» :</div>
+                                    <div class="qcm-items">
+                                        <div class="qcm-item">A : Développer une prévention personnalisée via Mon espace santé</div>
+                                        <div class="qcm-item">B : Faire bénéficier à tous des innovations en santé numérique</div>
+                                        <div class="qcm-item">C : Améliorer l'intégration et l'ergonomie des services socles dans les outils des professionnels de santé</div>
+                                        <div class="qcm-item">D : Développer l'usage de la télésanté dans un cadre régulé et éthique</div>
+                                        <div class="qcm-item">E : Déployer le bouquet de services aux professionnels</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Thématique 3 -->
+                <div class="qcm-thematique">
+                    <h4>🎯 Les grands domaines de l'informatique médicale (2 QCM)</h4>
+                    <table class="qcm-table">
+                        <thead>
+                            <tr>
+                                <th>Année - QCM</th>
+                                <th>Énoncé et items</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2021-2022<br>Q3</td>
+                                <td>
+                                    <div class="qcm-enonce">Sur les grands domaines de l'informatique médicale, sélectionnez la ou les proposition(s) exactes :</div>
+                                    <div class="qcm-items">
+                                        <div class="qcm-item">A: Il existe 3 grands domaines en informatique médicale.</div>
+                                        <div class="qcm-item">B: L'informatique de la santé publique s'intéresse aux citoyens et aux patients.</div>
+                                        <div class="qcm-item">C: La bio-informatique s'intéresse aux molécules et aux cellules.</div>
+                                        <div class="qcm-item">D: L'informatique clinique permet le management des données et des connaissances dans la recherche clinique et les études épidémiologiques.</div>
+                                        <div class="qcm-item">E: La bioinformatique utilise des méthodes de calcul avancé pour traiter les données génétiques.</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2022-2023<br>Q3</td>
+                                <td>
+                                    <div class="qcm-enonce">Sur les grands domaines de l'informatique médicale, sélectionnez la ou les proposition(s) exactes :</div>
+                                    <div class="qcm-items">
+                                        <div class="qcm-item">A: Il existe quatre grands domaines en informatique médicale</div>
+                                        <div class="qcm-item">B: La bioinformatique s'intéresse aux citoyens et aux patients</div>
+                                        <div class="qcm-item">C: L'informatique de la santé publique s'intéresse aux molécules et aux cellules</div>
+                                        <div class="qcm-item">D: L'informatique clinique permet le management des données et des connaissances dans la recherche clinique et les études épidémiologiques</div>
+                                        <div class="qcm-item">E: L'informatique de la santé publique utilise les résultats et méthodes de l'informatique clinique pour améliorer</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Thématique 4 -->
+                <div class="qcm-thematique">
+                    <h4>🎯 Délégation ministérielle et Health Data Hub (2 QCM) - <em>Ne sont plus au programme à partir de 2024-2025</em></h4>
+                    <table class="qcm-table">
+                        <thead>
+                            <tr>
+                                <th>Année - QCM</th>
+                                <th>Énoncé et items</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2022-2023<br>Q1</td>
+                                <td>
+                                    <div class="qcm-enonce">Sur la Délégation ministérielle du Numérique en Santé, sélectionnez la ou les proposition(s) exactes :</div>
+                                    <div class="qcm-items">
+                                        <div class="qcm-item">A: Sa création est issue de la feuille de route « Accélérer le virage numérique »</div>
+                                        <div class="qcm-item">B: Elle permet de renforcer la gouvernance du numérique en santé</div>
+                                        <div class="qcm-item">C: Elle applique la politique numérique de Santé définie par les acteurs du terrain</div>
+                                        <div class="qcm-item">D: Elle a élaboré la feuille de route commune en se basant sur les avis des experts de la Haute Autorité de Santé</div>
+                                        <div class="qcm-item">E: Elle ne participe pas aux ateliers citoyens du numérique en santé</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2022-2023<br>Q2</td>
+                                <td>
+                                    <div class="qcm-enonce">Sur le « Health Data Hub », sélectionnez la ou les proposition(s) exactes :</div>
+                                    <div class="qcm-items">
+                                        <div class="qcm-item">A: Son existence est antérieure à la stratégie nationale e-santé</div>
+                                        <div class="qcm-item">B: Il est ouvert à tous les citoyens</div>
+                                        <div class="qcm-item">C: Il a pour mission de faciliter l'accès aux bases nationales de santé</div>
+                                        <div class="qcm-item">D: Il permet de soutenir la recherche épidémiologique</div>
+                                        <div class="qcm-item">E: Tout est faux</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </details>
+
+        <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+        <details class="main-accordion" open>
+            <summary>📊 Rappel diagnostic</summary>
+            <div class="accordion-content">
+                
+                <!-- Tableau diagnostic -->
+                <table class="diagnostic-table">
+                    <tr>
+                        <th>Fréquence</th>
+                        <th>Moyenne QCM/an</th>
+                        <th>Format</th>
+                        <th>Dépendance</th>
+                    </tr>
+                    <tr>
+                        <td>Tombe chaque année</td>
+                        <td>2 à 3 QCM/an</td>
+                        <td>QCM sur partie ciblée du cours</td>
+                        <td>Indépendant</td>
+                    </tr>
+                </table>
+
+                <!-- Vue d'ensemble -->
+                <div class="vue-ensemble">
+                    <h4>📋 Vue d'ensemble des QCM</h4>
+                    <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>11 QCM</strong> sur ce chapitre (moyenne 2,2/an). Ces QCM se regroupent en <strong>4 grandes thématiques</strong> :</p>
+                    
+                    <table class="vue-tableau">
+                        <thead>
+                            <tr>
+                                <th>Thématique</th>
+                                <th>2020-2021</th>
+                                <th>2021-2022</th>
+                                <th>2022-2023</th>
+                                <th>2023-2024</th>
+                                <th>2024-2025</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Feuille de route "Accélérer le virage numérique" (2019-2022)</td>
+                                <td class="qcm-cell">Q1</td>
+                                <td class="qcm-cell">Q1, Q2</td>
+                                <td class="empty-cell">—</td>
+                                <td class="empty-cell">—</td>
+                                <td class="empty-cell">—</td>
+                            </tr>
+                            <tr>
+                                <td>Feuille de route 2023-2027</td>
+                                <td class="empty-cell">—</td>
+                                <td class="empty-cell">—</td>
+                                <td class="empty-cell">—</td>
+                                <td class="qcm-cell">Q1, Q2</td>
+                                <td class="qcm-cell">Q1, Q2</td>
+                            </tr>
+                            <tr>
+                                <td>Les grands domaines de l'informatique médicale</td>
+                                <td class="empty-cell">—</td>
+                                <td class="qcm-cell">Q3</td>
+                                <td class="qcm-cell">Q3</td>
+                                <td class="empty-cell">—</td>
+                                <td class="empty-cell">—</td>
+                            </tr>
+                            <tr>
+                                <td>Délégation ministérielle et Health Data Hub (ne sont plus au programme)</td>
+                                <td class="empty-cell">—</td>
+                                <td class="empty-cell">—</td>
+                                <td class="qcm-cell">Q1, Q2</td>
+                                <td class="empty-cell">—</td>
+                                <td class="empty-cell">—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <!-- Légende -->
+                    <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                        <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                            <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre<br>
+                            <strong>Note</strong> : La Q1 de 2024-2025 reprend des items similaires à 2023-2024 Q1 mais avec des nuances.
+                        </p>
+                    </div>
+                </div>
+                
+            </div>
+        </details>
+
+        <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+        <details class="main-accordion">
+            <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+            <div class="accordion-content">
+                
+                <div class="reco-item">
+                    <h4>1. Feuille de route "Accélérer le virage numérique" (2019-2022)</h4>
+                    <p>Maîtrise la date de création (loi du 26 juillet 2019), les 5 orientations de cette feuille de route, et ce qu'elle prévoit : renforcer la gouvernance, intensifier la sécurité et l'interopérabilité, accélérer le déploiement des services numériques socles, déployer des plateformes numériques de santé, soutenir l'innovation en santé.</p>
+                    <span class="frequence">Tombé 2 fois en 5 ans</span>
+                </div>
+
+                <div class="reco-item">
+                    <h4>2. Feuille de route 2023-2027</h4>
+                    <p>Comprends l'objectif principal : mettre le numérique au service de la santé. Distingue bien les 4 axes prioritaires (Prévention, Prise en charge, Accès à la santé, Cadre propice) des 5 orientations. Pour chaque axe, retiens 2-3 actions clés.</p>
+                    <span class="frequence">Tombé 2 fois en 5 ans</span>
+                </div>
+
+                <div class="reco-item">
+                    <h4>3. Les 3 grands domaines de l'informatique médicale</h4>
+                    <p>Apprends à distinguer les trois domaines et leur objet d'étude : (1) Bioinformatique = niveau microscopique (molécules, cellules, ADN, génétique), (2) Informatique clinique = niveau patient individuel (management des données dans le soin, la recherche clinique et les études épidémiologiques), (3) Informatique de santé publique = niveau macroscopique (citoyens, populations), qui utilise les résultats et méthodes de l'informatique clinique.</p>
+                    <span class="frequence">Tombé 2 fois en 5 ans</span>
+                </div>
+
+                <div class="reco-item">
+                    <h4>4. Stratégie nationale e-santé</h4>
+                    <p>Retiens qu'elle a une feuille de route définie, qu'elle renforce la gouvernance du numérique en santé, qu'elle a des objectifs spécifiques en matière de sécurité des systèmes d'information, qu'elle fixe les orientations de la politique du numérique en santé, et qu'elle prévoit d'accélérer le déploiement des services numériques socles.</p>
+                    <span class="frequence">Tombé 1 fois en 5 ans</span>
+                </div>
+                
+            </div>
+        </details>
+
+        <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+        <details class="main-accordion">
+            <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+            <div class="accordion-content">
+                
+                <!-- Thématique 1 -->
+                <div class="qcm-analyse">
+                    <h4>Feuille de route "Accélérer le virage numérique" (2019-2022)</h4>
+                    <div class="qcm-badge">📋 <strong>2020-2021</strong> Q1 | <strong>2021-2022</strong> Q1, Q2</div>
+                    
+                    <div class="qcm-section">
+                        <div class="qcm-section-title">Constat :</div>
+                        <div class="qcm-section-content">Ces QCM testent la connaissance de la première feuille de route du numérique en santé : sa date de création (loi du 26 juillet 2019), ses 5 orientations, et ses principales mesures.</div>
+                    </div>
+                    
+                    <div class="qcm-section">
+                        <div class="qcm-section-title">Ce que tu dois faire :</div>
+                        <div class="qcm-section-content">Apprends la date exacte de la loi (26 juillet 2019), retiens qu'elle a 5 orientations, et mémorise les mesures clés qui reviennent : gouvernance, sécurité, services numériques socles, plateformes numériques (locales/régionales), innovation en santé.</div>
+                    </div>
+                    
+                    <div class="qcm-section">
+                        <div class="qcm-section-title">Clé de raisonnement :</div>
+                        <div class="connaissance-pure">
+                            C'est un QCM de connaissance pure. Les items recyclés portent sur : la date de la loi, le nombre d'orientations (5), les plateformes locales/régionales, le soutien à l'innovation. Cette feuille de route étant obsolète, il est probable qu'il n'y ait plus de QCM qui porte sur ce sujet.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thématique 2 -->
+                <div class="qcm-analyse">
+                    <h4>Feuille de route 2023-2027</h4>
+                    <div class="qcm-badge">📋 <strong>2023-2024</strong> Q1, Q2 | <strong>2024-2025</strong> Q1, Q2</div>
+                    
+                    <div class="qcm-section">
+                        <div class="qcm-section-title">Constat :</div>
+                        <div class="qcm-section-content">Ces QCM testent la nouvelle feuille de route sous deux angles : (1) les caractéristiques générales (objectif, nombre d'axes et d'orientations), (2) la capacité à distinguer les actions de chaque axe prioritaire.</div>
+                    </div>
+                    
+                    <div class="qcm-section">
+                        <div class="qcm-section-title">Ce que tu dois faire :</div>
+                        <div class="qcm-section-content">Distingue bien les 4 axes prioritaires des 5 orientations. Apprends l'objectif principal ("mettre le numérique au service de la santé"). Pour chaque axe, mémorise 2-3 actions types : pour "Prévention" (Mon espace santé, prévention personnalisée), pour "Accès à la santé" (télésanté, coordination des parcours), pour "Prise en charge" (intégration des services socles, bouquet de services).</div>
+                    </div>
+                    
+                    <div class="qcm-section">
+                        <div class="qcm-section-title">Clé de raisonnement :</div>
+                        <div class="cle-raisonnement">
+                            <p>Le prof teste la distinction entre les 4 axes et les 5 orientations - ne pas les confondre. Pour les questions sur les actions par axe, le pattern est :</p>
+                            <ul>
+                                <li>Identifier si l'action relève de la prévention (Mon espace santé, prévention personnalisée)</li>
+                                <li>De l'accès aux soins (télésanté, coordination des parcours, information sur l'offre de santé)</li>
+                                <li>Ou de l'amélioration de la prise en charge (intégration des services socles, bouquet de services aux professionnels)</li>
+                            </ul>
+                            <p>Les items "Mon espace santé" et "innovations en santé numérique" reviennent dans plusieurs QCM.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thématique 3 -->
+                <div class="qcm-analyse">
+                    <h4>Les grands domaines de l'informatique médicale</h4>
+                    <div class="qcm-badge">📋 <strong>2021-2022</strong> Q3 | <strong>2022-2023</strong> Q3</div>
+                    
+                    <div class="qcm-section">
+                        <div class="qcm-section-title">Constat :</div>
+                        <div class="qcm-section-content">Ces QCM testent la connaissance des 3 grands domaines de l'informatique médicale et leur distinction : bioinformatique (molécules/cellules), informatique clinique (recherche clinique/épidémiologie), informatique de santé publique (citoyens/patients).</div>
+                    </div>
+                    
+                    <div class="qcm-section">
+                        <div class="qcm-section-title">Ce que tu dois faire :</div>
+                        <div class="qcm-section-content">Apprends à associer chaque domaine à son "objet d'étude" : bioinformatique = molécules/cellules/ADN, informatique clinique = données dans le soin et la recherche, informatique de santé publique = populations/citoyens. Retiens aussi que l'informatique de santé publique utilise les résultats de l'informatique clinique.</div>
+                    </div>
+                    
+                    <div class="qcm-section">
+                        <div class="qcm-section-title">Clé de raisonnement :</div>
+                        <div class="cle-raisonnement">
+                            <p>Le piège récurrent est l'inversion des niveaux : bioinformatique vs informatique de santé publique.</p>
+                            <ul>
+                                <li><strong>Bioinformatique</strong> : niveau microscopique (molécules, cellules, séquences d'ADN, calcul avancé pour traiter les données génétiques)</li>
+                                <li><strong>Informatique clinique</strong> : niveau intermédiaire (patient individuel, management des données dans le soin, recherche clinique, études épidémiologiques)</li>
+                                <li><strong>Informatique de santé publique</strong> : niveau macroscopique (citoyens, populations, utilise les résultats de l'informatique clinique)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thématique 4 -->
+                <div class="qcm-analyse">
+                    <h4>Stratégie nationale e-santé</h4>
+                    <div class="qcm-badge">📋 <strong>2021-2022</strong> Q1</div>
+                    
+                    <div class="qcm-section">
+                        <div class="qcm-section-title">Constat :</div>
+                        <div class="qcm-section-content">Ce QCM teste les caractéristiques générales de la stratégie nationale e-santé : existence d'une feuille de route, objectifs sur la gouvernance et la sécurité, fixation des orientations politiques.</div>
+                    </div>
+                    
+                    <div class="qcm-section">
+                        <div class="qcm-section-title">Ce que tu dois faire :</div>
+                        <div class="qcm-section-content">Retiens que la stratégie nationale e-santé a une feuille de route définie, qu'elle prévoit de renforcer la gouvernance, qu'elle a des objectifs spécifiques en matière de sécurité, et qu'elle fixe les orientations de la politique du numérique en santé.</div>
+                    </div>
+                    
+                    <div class="qcm-section">
+                        <div class="qcm-section-title">Clé de raisonnement :</div>
+                        <div class="connaissance-pure">
+                            C'est un QCM de connaissance pure sur les grandes lignes de la stratégie nationale. Les items recyclés portent sur l'existence d'une feuille de route et le rôle de fixation des orientations politiques.
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </details>
+
+        <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+        <details class="main-accordion">
+            <summary>⚠️ Points de vigilance</summary>
+            <div class="accordion-content">
+                
+                <div class="vigilance-item">
+                    <h4>Confusion entre les deux feuilles de route</h4>
+                    <p>Il existe deux feuilles de route successives : "Accélérer le virage numérique" (2019-2022) et la feuille de route "2023-2027". La première a 5 orientations, la seconde a 4 axes prioritaires ET 5 orientations. Ne pas confondre les dates, les durées, et le contenu de chacune.</p>
+                </div>
+
+                <div class="vigilance-item">
+                    <h4>4 axes prioritaires ≠ 5 orientations (feuille de route 2023-2027)</h4>
+                    <p>La feuille de route 2023-2027 a à la fois 4 axes prioritaires ET 5 orientations. Le prof peut poser des pièges sur cette distinction. Les 4 axes sont : Prévention, Prise en charge, Accès à la santé, Cadre propice.</p>
+                </div>
+
+                <div class="vigilance-item">
+                    <h4>Inversion des niveaux dans les domaines de l'informatique médicale</h4>
+                    <p>L'erreur classique est d'inverser bioinformatique et informatique de santé publique. Retiens : bioinformatique = micro (molécules, cellules), informatique de santé publique = macro (citoyens, populations), informatique clinique = intermédiaire (patient).</p>
+                </div>
+
+                <div class="vigilance-item">
+                    <h4>Plateformes "locales" vs "régionales" vs "nationales"</h4>
+                    <p>Selon les feuilles de route, on parle de plateformes numériques "locales" (2021-2022), "régionales" (2020-2021), ou "nationales" (orientation 4 de la feuille 2019-2022). Le vocabulaire varie selon les années, attention à bien lire l'item.</p>
+                </div>
+
+                <div class="vigilance-item">
+                    <h4>Mon espace santé apparaît dans plusieurs axes</h4>
+                    <p>"Mon espace santé" est cité dans l'axe Prévention (développer une prévention personnalisée, utiliser au quotidien) mais aussi dans d'autres contextes. Ne pas l'associer automatiquement à un seul axe.</p>
+                </div>
+                
+            </div>
+        </details>
+
+        <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+        <details class="main-accordion">
+            <summary>💬 Avis du tuteur</summary>
+            <div class="accordion-content">
+                <div class="tuteur-zone">
+                    <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">FC1 est un chapitre très régulier qui tombe chaque année avec des QCM de connaissance pure. Le pattern est clair : connaître les grandes lignes de la politique du numérique en santé. Sur les 5 dernières années, c'est un chapitre qui est revenu avec constance, avec depuis 4 ans au minimum 2 questions sur ce chapitre. Les questions de cours pure sur "Accélérer le virage numérique" ne sont plus posées au profit de questions sur la feuille de route 2023-2027, mais elle peut mettre des pièges par rapport à une confusion avec la feuille de route précédente.</p>
+                    
+                    <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                    Apprenez l'intégralité du cours. Concentrez-vous sur la structure des deux feuilles de route (5 orientations pour 2019-2022, 4 axes + 5 orientations pour 2023-2027), les 3 grands domaines de l'informatique médicale avec leurs caractéristiques précises, et les actions concrètes de chaque axe de la feuille de route 2023-2027. Prenez le temps de bien comprendre la hiérarchie : bioinformatique (micro) → informatique clinique (méso) → informatique de santé publique (macro).</p>
+                    
+                    <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                    Concentrez-vous sur les 3 thèmes incontournables listés dans l'accordéon Niveau 2. Faites des fiches synthétiques pour chaque feuille de route (dates, nombre d'orientations/axes, mesures clés), et créez un schéma simple des 3 domaines de l'informatique médicale. Apprenez par cœur les associations : Mon espace santé = Prévention, télésanté = Accès à la santé, intégration des services = Prise en charge. Vous n'avez pas besoin de lire le cours en détail, mais assurez-vous de maîtriser les points clés qui tombent. Et pour cela, l'idéal est d'apprendre directement sur le diaporama du cours les diapos qui correspondent à ces points clés.</p>
+                    
+                    <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                    Apprenez exclusivement les thèmes déjà tombés ces 5 dernières années, hormis ceux qui ne sont plus au programme. Créez une liste des items vrais et faux pour chaque thématique. Pour la feuille de route 2019-2022 : loi du 26 juillet 2019, 5 orientations, plateformes locales/régionales, innovation. Pour la feuille de route 2023-2027 : 4 axes, 5 orientations, objectif = mettre le numérique au service de la santé. Pour les domaines : 3 domaines, bioinformatique = molécules/cellules, informatique clinique = recherche/épidémiologie, informatique de santé publique = citoyens/populations.</p>
+                </div>
+            </div>
+        </details>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+
+    </div>
+</body>
+</html>
