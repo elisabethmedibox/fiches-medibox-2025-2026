@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche Référence UE8 - ANATOMIE</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        .strategy-table {
+            width: 100%;
+            margin: 25px 0;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .strategy-table th {
+            background: #1a365d;
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #1a365d;
+            font-size: 0.85rem;
+        }
+        .strategy-table td {
+            padding: 10px 8px;
+            border: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        .strategy-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        .strategy-table tr:hover {
+            background: #e0f2fe;
+        }
+        .time-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0 30px 0;
+        }
+        .time-box {
+            background: white;
+            border: 2px solid #1a365d;
+            border-radius: 10px;
+            padding: 15px 25px;
+            text-align: center;
+            min-width: 150px;
+        }
+        .time-box.niveau3 {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+        .time-box.niveau2 {
+            border-color: #f59e0b;
+            background: #fffbeb;
+        }
+        .time-box.niveau1 {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        .time-box-title {
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        .time-box.niveau3 .time-box-title { color: #10b981; }
+        .time-box.niveau2 .time-box-title { color: #f59e0b; }
+        .time-box.niveau1 .time-box-title { color: #3b82f6; }
+        .time-box-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1a365d;
+        }
+        .warning-box {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-top: 30px;
+        }
+        .warning-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #92400e;
+        }
+        @media print {
+            .strategy-table {
+                font-size: 0.8rem;
+            }
+            .strategy-table th, .strategy-table td {
+                padding: 6px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>UE8 - ANATOMIE</h1>
+            <div class="meta">
+                <span>📚 Fiche Référence Stratégique</span>
+                <span>🎯 Module 40 - Gestion du retard</span>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- OBJECTIFS -->
+            <div class="objectifs">
+                <h2>🎯 Objectif de cette fiche</h2>
+                <ul>
+                    <li>avoir toutes les informations nécessaires pour remplir facilement l'arbre décisionnel de la Fiche 2</li>
+                </ul>
+            </div>
+
+            <!-- TEMPS PAR NIVEAU -->
+            <div class="section">
+                <h2>⏱️ Temps moyen par chapitre selon le niveau (estimation selon sondage élèves)</h2>
+                
+                <div class="time-boxes">
+                    <div class="time-box niveau3">
+                        <div class="time-box-title">Niveau 3</div>
+                        <div class="time-box-value">≈ 12h</div>
+                    </div>
+                    <div class="time-box niveau2">
+                        <div class="time-box-title">Niveau 2</div>
+                        <div class="time-box-value">≈ 7h15</div>
+                    </div>
+                    <div class="time-box niveau1">
+                        <div class="time-box-title">Niveau 1</div>
+                        <div class="time-box-value">≈ 3h30</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TABLEAU -->
+            <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+                <table class="strategy-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Chapitre</th>
+                            <th style="width: 12%;">Nb QCM moyen/exam</th>
+                            <th style="width: 18%;">Fréquence</th>
+                            <th style="width: 25%;">Format QCM</th>
+                            <th style="width: 15%;">Dépendance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Introduction générale</strong></td>
+                            <td>0</td>
+                            <td>😎 Jamais tombé</td>
+                            <td>⚫ Pas de QCM sur ce cours</td>
+                            <td>🔴 Pré-requis absolu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Étude générale des os</strong></td>
+                            <td>1 (pour les 3 chapitres de l'étude générale)</td>
+                            <td>🔵 Revient souvent (3-4 fois)</td>
+                            <td>🎯 QCM sur partie ciblée du cours - avec récurrence des items</td>
+                            <td>😺 Indépendant</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Étude générale des articulations</strong></td>
+                            <td>1 (pour les 3 chapitres de l'étude générale)</td>
+                            <td>⚠️ Tombe rarement (1-2 fois)</td>
+                            <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                            <td>🔴 Pré-requis absolu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Étude générale des muscles</strong></td>
+                            <td>1 (pour les 3 chapitres de l'étude générale)</td>
+                            <td>⚠️ Tombe rarement (1-2 fois)</td>
+                            <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                            <td>😺 Indépendant</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5. Épaule</strong></td>
+                            <td>0-2</td>
+                            <td>🔵 Revient souvent (3-4 fois)</td>
+                            <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                            <td>😺 Indépendant</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6. Bras</strong></td>
+                            <td>0-1</td>
+                            <td>⚠️ Tombe rarement (1-2 fois)</td>
+                            <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                            <td>🔗 Cours appartenant à une suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>7. Avant-bras</strong></td>
+                            <td>0-1</td>
+                            <td>🔵 Revient souvent (3-4 fois)</td>
+                            <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                            <td>🔗 Cours appartenant à une suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>8. Poignet et main</strong></td>
+                            <td>0-2</td>
+                            <td>⚠️ Tombe rarement (1-2 fois)</td>
+                            <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                            <td>🔗 Cours appartenant à une suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>9. Hanche</strong></td>
+                            <td>0-1</td>
+                            <td>⚠️ Tombe rarement (1-2 fois)</td>
+                            <td>🎯 QCM sur partie ciblée du cours - avec récurrence des items</td>
+                            <td>😺 Indépendant</td>
+                        </tr>
+                        <tr>
+                            <td><strong>10. Cuisse</strong></td>
+                            <td>0-2</td>
+                            <td>🔵 Revient souvent (3-4 fois)</td>
+                            <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                            <td>🔗 Cours appartenant à une suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>11. Genou et jambe</strong></td>
+                            <td>1-2</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                            <td>🔗 Cours appartenant à une suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>12. Cheville et pied</strong></td>
+                            <td>0-1</td>
+                            <td>⚠️ Tombe rarement (1-2 fois)</td>
+                            <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                            <td>🔗 Cours appartenant à une suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>13. Rachis et station érigée</strong></td>
+                            <td>2</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                            <td>😺 Indépendant</td>
+                        </tr>
+                        <tr>
+                            <td><strong>14. Thorax</strong></td>
+                            <td>0</td>
+                            <td>😎 Jamais tombé</td>
+                            <td>⚫ Pas de QCM sur ce cours</td>
+                            <td>😺 Indépendant</td>
+                        </tr>
+                        <tr>
+                            <td><strong>15. Cœur et vaisseaux</strong></td>
+                            <td>1-2</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>🎯 QCM sur partie ciblée du cours - avec récurrence des items</td>
+                            <td>😺 Indépendant</td>
+                        </tr>
+                        <tr>
+                            <td><strong>16. Aorte</strong></td>
+                            <td>2 items/an (sauf 2024-2025 : 4 items)</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>💡 QCM avec items récurrents</td>
+                            <td>🔗 Cours appartenant à une suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>17. Veine cave inférieure</strong></td>
+                            <td>0</td>
+                            <td>😎 Jamais tombé</td>
+                            <td>⚫ Pas de QCM sur ce cours</td>
+                            <td>🔗 Cours appartenant à une suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>18. Appareil digestif</strong></td>
+                            <td>2</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>💡 QCM avec items récurrents</td>
+                            <td>😺 Indépendant</td>
+                        </tr>
+                        <tr>
+                            <td><strong>19. Appareil respiratoire</strong></td>
+                            <td>2</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                            <td>😺 Indépendant</td>
+                        </tr>
+                        <tr>
+                            <td><strong>20. Appareil uro-génital</strong></td>
+                            <td>2</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                            <td>😺 Indépendant</td>
+                        </tr>
+                        <tr>
+                            <td><strong>21. Os de la tête</strong></td>
+                            <td>1</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>💡 QCM avec items récurrents</td>
+                            <td>😺 Indépendant</td>
+                        </tr>
+                        <tr>
+                            <td><strong>22. Myologie de la tête et du cou, viscères et vaisseaux</strong></td>
+                            <td>1-2</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>💡 QCM avec items récurrents</td>
+                            <td>🔗 Cours appartenant à une suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>23. Système nerveux central</strong></td>
+                            <td>Jamais tombé jusqu'en 2024-2025</td>
+                            <td>⚠️ Tombe rarement (1-2 fois)</td>
+                            <td>📚 QCM sur tout le cours - sans prévisibilité</td>
+                            <td>😺 Indépendant</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- POINTS CLÉS -->
+            <div class="key-points">
+                <h2>🎯 Points clés à retenir</h2>
+                <ul>
+                    <li><strong>Nombre de QCM :</strong> En moyenne environ 2 QCM par chapitre. Le membre supérieur et le membre inférieur comportent chacun 3 QCM. À noter : la veine cave inférieure n'a qu'un seul item qui tombe en moyenne, mais cet item cite la VCI tout en étant aussi présent dans le cours de l'aorte. C'est pourquoi on considère que la VCI n'est jamais tombée en tant que telle.</li>
+                    <li><strong>Fréquence :</strong> Quasiment tous les chapitres tombent chaque année. Le système nerveux central est arrivé pour la première fois en 2024-2025, on ne peut donc pas savoir s'il ciblera toujours les mêmes types de questions.</li>
+                    <li><strong>Récurrence :</strong> De nombreux chapitres ont des thématiques récurrentes. Cependant, la tendance de M. Uziel est de ne plus mettre les mêmes items. Il fut un temps où les items étaient assez prévisibles, mais la tendance est que ce soit de moins en moins vrai. À noter : pour l'appareil digestif, le professeur a déjà recyclé des questions telles quelles. Pour l'appareil respiratoire, sur les trois premières années, il reposait exactement les mêmes questions, mais la tendance depuis 2022-2023 est de changer les questions.</li>
+                    <li><strong>Conclusion :</strong> Globalement, cette UE peut être adaptée aux stratégies de Niveau 2, à condition que l'ambition de note à atteindre ne soit pas au-delà de 12-13. Si la filière visée est kiné, c'est une matière qui doit être suivie en Niveau 3 car la note visée en filière kiné est supérieure à 15 (très discriminante sur ce concours). C'est une matière discriminante pour tout le monde, mais le poids et le volume de certains cours font qu'il peut être stratégiquement adéquat de zapper certains cours lorsqu'on vise un objectif compris entre 10 et 12.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+
+        <!-- AVERTISSEMENT -->
+        <div class="warning-box">
+            <p><strong>⚠️ AVERTISSEMENT</strong></p>
+            <p>Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.</p>
+        </div>
+    </div>
+</body>
+</html>
