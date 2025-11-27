@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UE7 - Fiche Référence Stratégique</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            color: #1a365d;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 30px;
+        }
+        .objectifs, .section, .key-points {
+            margin-bottom: 30px;
+        }
+        .objectifs h2, .section h2, .key-points h2 {
+            color: #1a365d;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .objectifs ul, .key-points ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .objectifs li, .key-points li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        .objectifs li::before, .key-points li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+        .strategy-table {
+            width: 100%;
+            margin: 25px 0;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .strategy-table th {
+            background: #1a365d;
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #1a365d;
+            font-size: 0.85rem;
+        }
+        .strategy-table td {
+            padding: 10px 8px;
+            border: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        .strategy-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        .strategy-table tr:hover {
+            background: #e0f2fe;
+        }
+        .time-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0 30px 0;
+        }
+        .time-box {
+            background: white;
+            border: 2px solid #1a365d;
+            border-radius: 10px;
+            padding: 15px 25px;
+            text-align: center;
+            min-width: 150px;
+        }
+        .time-box.niveau3 {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+        .time-box.niveau2 {
+            border-color: #f59e0b;
+            background: #fffbeb;
+        }
+        .time-box.niveau1 {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        .time-box-title {
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        .time-box.niveau3 .time-box-title { color: #10b981; }
+        .time-box.niveau2 .time-box-title { color: #f59e0b; }
+        .time-box.niveau1 .time-box-title { color: #3b82f6; }
+        .time-box-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1a365d;
+        }
+        .warning-box {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-top: 30px;
+        }
+        .warning-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #92400e;
+        }
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        @media print {
+            .strategy-table {
+                font-size: 0.8rem;
+            }
+            .strategy-table th, .strategy-table td {
+                padding: 6px 4px;
+            }
+        }
+        @media (max-width: 768px) {
+            .strategy-table {
+                font-size: 0.75rem;
+            }
+            .strategy-table th, .strategy-table td {
+                padding: 6px 4px;
+            }
+            .meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>UE7 - PHYSIOLOGIE</h1>
+            <div class="meta">
+                <span>📚 Fiche Référence Stratégique</span>
+                <span>🎯 Module 40 - Gestion du retard</span>
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- OBJECTIFS -->
+            <div class="objectifs">
+                <h2>🎯 Objectif de cette fiche</h2>
+                <ul>
+                    <li>Avoir toutes les informations nécessaires pour remplir facilement l'arbre décisionnel de la Fiche 2</li>
+                </ul>
+            </div>
+
+            <!-- TEMPS PAR NIVEAU -->
+            <div class="section">
+                <h2>⏱️ Temps moyen par chapitre selon le niveau (estimation selon sondage élèves)</h2>
+                
+                <div class="time-boxes">
+                    <div class="time-box niveau3">
+                        <div class="time-box-title">Niveau 3</div>
+                        <div class="time-box-value">≈ 6h</div>
+                    </div>
+                    <div class="time-box niveau2">
+                        <div class="time-box-title">Niveau 2</div>
+                        <div class="time-box-value">≈ 3h45</div>
+                    </div>
+                    <div class="time-box niveau1">
+                        <div class="time-box-title">Niveau 1</div>
+                        <div class="time-box-value">≈ 1h45</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TABLEAU -->
+            <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+                <table class="strategy-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Chapitre</th>
+                            <th style="width: 12%;">Nb QCM moyen/exam</th>
+                            <th style="width: 18%;">Fréquence</th>
+                            <th style="width: 25%;">Format QCM</th>
+                            <th style="width: 15%;">Dépendance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>FC1 - Compartiments liquidiens</strong></td>
+                            <td>2 à 3</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>💡 QCM avec items récurrents</td>
+                            <td>🔴 Pré-requis absolu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FC2 - Échanges liquidiens</strong></td>
+                            <td>2 à 4</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>💡 QCM avec items récurrents</td>
+                            <td>🔗 Suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FC3 - Introduction et forces de déplacement</strong></td>
+                            <td>0 à 2</td>
+                            <td>🔵 Revient souvent (>3x sur 5 ans)</td>
+                            <td>💡 QCM avec items récurrents</td>
+                            <td>🔴 Pré-requis absolu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FC4 - Canaux, transporteurs et pompes</strong></td>
+                            <td>1 à 2</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>💡 QCM avec items récurrents</td>
+                            <td>🔗 Suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FC5 - Potentiel de membrane et potentiel d'action</strong></td>
+                            <td>3</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>💡 QCM avec items récurrents</td>
+                            <td>🔗 Suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FC6 - Électrophysiologie cardiaque</strong></td>
+                            <td>2</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>💡 QCM avec items récurrents</td>
+                            <td>🔗 Suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FC7 - Acides et bases, solutions tampons</strong></td>
+                            <td>1 à 2</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>💡 QCM avec items récurrents</td>
+                            <td>🔴 Pré-requis absolu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FC8 - Régulations physiologiques</strong></td>
+                            <td>1</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>💡 QCM avec items récurrents</td>
+                            <td>🔗 Suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FC9 - Mécanique fluides I (statique liquides)</strong></td>
+                            <td>1 à 2</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>💡 QCM avec items récurrents</td>
+                            <td>🔴 Pré-requis absolu</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FC10 - Mécanique fluides I (statique gaz, O2)</strong></td>
+                            <td>1 à 2</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>💡 QCM avec items récurrents</td>
+                            <td>🔗 Suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FC11 - Mécanique fluides II (Bernoulli)</strong></td>
+                            <td>1 à 2</td>
+                            <td>✅ Tombe chaque année</td>
+                            <td>💡 QCM avec items récurrents</td>
+                            <td>🔗 Suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FC12 - Mécanique fluides III (viscosité)</strong></td>
+                            <td>0 à 1</td>
+                            <td>🔵 Revient souvent (>3x sur 5 ans)</td>
+                            <td>💡 QCM avec items récurrents</td>
+                            <td>🔗 Suite logique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FC13 - Mécanique fluides IV (élasticité paroi)</strong></td>
+                            <td>0</td>
+                            <td>😎 Jamais tombé</td>
+                            <td>⚫ Pas de QCM sur ce cours</td>
+                            <td>😺 Indépendant</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- POINTS CLÉS -->
+            <div class="key-points">
+                <h2>🎯 Points clés à retenir</h2>
+                <ul>
+                    <li><strong>Nombre de QCM :</strong> Le nombre de QCM est stable d'une année à l'autre, il n'y a jamais de très grosses différences entre les années sur le nombre de QCM par chapitre.</li>
+                    <li><strong>Fréquence :</strong> Dans l'immense majorité des cas, tous les chapitres sont testés chaque année, sauf le chapitre FC13 (Élasticité de la paroi des conduits) qui n'est encore jamais tombé.</li>
+                    <li><strong>Récurrence :</strong> Très forte récurrence des items. Pour tous les QCM à calcul, il faut bien sûr comprendre le principe du calcul car les chiffres peuvent être légèrement différents d'une année à l'autre. Dans la partie mécanique des fluides, il est très important de bien repérer les mots-clés dans l'énoncé qui vont induire la réflexion : "fluide réel" vs "fluide idéal", "laminaire" vs "turbulent", "nombre de Reynolds", "Poiseuille", etc.</li>
+                    <li><strong>Conclusion :</strong> UE très adaptée aux stratégies Niveau 1 (annales) et Niveau 2 (ciblage), forte rentabilité du travail sur annales.</li>
+                    <li><strong>⚠️ ATTENTION - Changement de professeur en 2024-2025 :</strong> Cette année-là, la nouvelle professeure n'a pas changé la stratégie des QCM de l'ancien prof. Elle a gardé un découpage identique et des QCM qui, à quelques exceptions près, étaient similaires (les exceptions concernaient les QCM pour lesquels elle n'était pas d'accord avec la correction de l'ancien professeur). Il est donc très important de regarder l'ED (Enseignement Dirigé) de la prof, car c'est vraisemblablement dans cet ED que la prof donnera ses principales indications pour le concours. Toute cette analyse est liée essentiellement à l'ancien prof et il est difficile de faire une prédiction sur l'année 2025-2026. Dans tous les cas, il faut absolument suivre l'ED, apprendre tous les QCM qui seront dans l'ED et travailler tous les QCM de l'ED comme une annale.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+
+        <!-- AVERTISSEMENT -->
+        <div class="warning-box">
+            <p><strong>⚠️ AVERTISSEMENT</strong></p>
+            <p>Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.</p>
+        </div>
+    </div>
+</body>
+</html>
