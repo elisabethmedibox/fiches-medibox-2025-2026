@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suivi des Fiches Medibox - S1 2025-2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a9b 100%);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(255, 107, 122, 0.3);
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6b7a;
+        }
+
+        .stat-card .label {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .stat-card.claude .number { color: #3b82f6; }
+        .stat-card.tuteur .number { color: #f59e0b; }
+        .stat-card.valide .number { color: #10b981; }
+        .stat-card.enligne .number { color: #8b5cf6; }
+
+        /* Progress bar global */
+        .global-progress {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .global-progress h3 {
+            margin-bottom: 15px;
+            color: #1e293b;
+        }
+
+        .progress-container {
+            background: #e2e8f0;
+            border-radius: 10px;
+            height: 30px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .progress-segment {
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-segment.claude { background: #3b82f6; }
+        .progress-segment.tuteur { background: #f59e0b; }
+        .progress-segment.valide { background: #10b981; }
+        .progress-segment.enligne { background: #8b5cf6; }
+
+        .progress-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.claude { background: #3b82f6; }
+        .legend-dot.tuteur { background: #f59e0b; }
+        .legend-dot.valide { background: #10b981; }
+        .legend-dot.enligne { background: #8b5cf6; }
+
+        /* UE Section */
+        .ue-section {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .ue-header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .ue-header:hover {
+            background: linear-gradient(135deg, #334155 0%, #475569 100%);
+        }
+
+        .ue-header h2 {
+            font-size: 1.3rem;
+        }
+
+        .ue-header .ue-stats {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+        }
+
+        .ue-header .toggle-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .ue-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .ue-content {
+            padding: 0;
+            max-height: 2000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .ue-content.collapsed {
+            max-height: 0;
+            padding: 0;
+        }
+
+        /* Table */
+        .fiches-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .fiches-table th {
+            background: #f8fafc;
+            padding: 15px 10px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #64748b;
+            border-bottom: 2px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+        }
+
+        .fiches-table th:first-child {
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .fiches-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .fiches-table td:first-child {
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .fiches-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .fiches-table tr.reference-row {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        }
+
+        .fiches-table tr.reference-row:hover {
+            background: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
+        }
+
+        .fiche-name {
+            font-size: 0.95rem;
+            color: #1e293b;
+        }
+
+        .fiche-name.reference {
+            font-weight: bold;
+            color: #92400e;
+        }
+
+        /* Custom Checkbox */
+        .checkbox-cell {
+            position: relative;
+        }
+
+        .custom-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 28px;
+            height: 28px;
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .custom-checkbox:hover {
+            border-color: #94a3b8;
+            transform: scale(1.1);
+        }
+
+        .custom-checkbox:checked {
+            border-color: transparent;
+        }
+
+        .custom-checkbox.claude:checked {
+            background: #3b82f6;
+        }
+
+        .custom-checkbox.tuteur:checked {
+            background: #f59e0b;
+        }
+
+        .custom-checkbox.valide:checked {
+            background: #10b981;
+        }
+
+        .custom-checkbox.enligne:checked {
+            background: #8b5cf6;
+        }
+
+        .custom-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .fiches-table th,
+            .fiches-table td {
+                padding: 10px 5px;
+                font-size: 0.8rem;
+            }
+
+            .custom-checkbox {
+                width: 24px;
+                height: 24px;
+            }
+
+            .fiche-name {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Bouton reset */
+        .reset-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+            transition: all 0.2s;
+        }
+
+        .reset-btn:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+
+        /* Last updated */
+        .last-updated {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 20px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Suivi des Fiches Medibox</h1>
+            <p>Semestre 1 - 2025-2026 | 9 Fiches de Référence + 125 Fiches d'Analyse QCM</p>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-card claude">
+                <div class="number" id="stat-claude">0</div>
+                <div class="label">✅ Terminé sur Claude</div>
+            </div>
+            <div class="stat-card tuteur">
+                <div class="number" id="stat-tuteur">0</div>
+                <div class="label">📤 Envoyé au tuteur</div>
+            </div>
+            <div class="stat-card valide">
+                <div class="number" id="stat-valide">0</div>
+                <div class="label">✔️ Validé par tuteur</div>
+            </div>
+            <div class="stat-card enligne">
+                <div class="number" id="stat-enligne">0</div>
+                <div class="label">🌐 En ligne ExoTeach</div>
+            </div>
+        </div>
+
+        <div class="global-progress">
+            <h3>Progression globale (134 fiches au total)</h3>
+            <div class="progress-container">
+                <div class="progress-segment claude" id="progress-claude" style="width: 0%"></div>
+                <div class="progress-segment tuteur" id="progress-tuteur" style="width: 0%"></div>
+                <div class="progress-segment valide" id="progress-valide" style="width: 0%"></div>
+                <div class="progress-segment enligne" id="progress-enligne" style="width: 0%"></div>
+            </div>
+            <div class="progress-legend">
+                <div class="legend-item"><span class="legend-dot claude"></span> Terminé Claude</div>
+                <div class="legend-item"><span class="legend-dot tuteur"></span> Envoyé tuteur</div>
+                <div class="legend-item"><span class="legend-dot valide"></span> Validé</div>
+                <div class="legend-item"><span class="legend-dot enligne"></span> En ligne</div>
+            </div>
+        </div>
+
+        <div id="ue-container"></div>
+
+        <button class="reset-btn" onclick="resetAll()">🗑️ Réinitialiser tout</button>
+
+        <div class="last-updated" id="last-updated"></div>
+    </div>
+
+    <script>
+        // Données des UE et chapitres
+        const ueData = {
+            "UE1": {
+                name: "Métiers de la santé",
+                chapters: [
+                    "Introduction et santé publique",
+                    "Interprofessionnalité",
+                    "Éthique en santé",
+                    "Professionnalisme",
+                    "Les métiers de la santé",
+                    "Coordination des soins",
+                    "Les 16 fiches métier"
+                ]
+            },
+            "UE2": {
+                name: "Santé publique",
+                chapters: [
+                    "Échantillonnage",
+                    "Biais",
+                    "Cohorte et cas témoin",
+                    "Confusion, modification de l'effet",
+                    "Mesures d'impact",
+                    "Type d'études et niveaux de preuves",
+                    "Méthodologie de la recherche",
+                    "Probabilité et statistiques : partie 1",
+                    "Probabilité et statistiques : partie 2",
+                    "Risques et facteurs de risques",
+                    "Protection sociale",
+                    "Économie de la santé",
+                    "Besoins et demandes de santé",
+                    "Mesure de l'état de santé - Les grands problèmes de santé",
+                    "Prévention, promotion de la santé"
+                ]
+            },
+            "UE3": {
+                name: "Informatique & Communication",
+                chapters: [
+                    "Grands principes en santé numérique",
+                    "Réglementation en santé numérique - Protection des données",
+                    "Représentation (vocabulaire) des données en santé",
+                    "Le Dossier Patient Informatisé : DPI",
+                    "Le Programme de Médicalisation des Systèmes d'Information : PMSI",
+                    "SIH",
+                    "Gestion et diffusion des données en santé",
+                    "Aide à la décision en santé publique",
+                    "Entrepôt des données en santé",
+                    "SNDS"
+                ]
+            },
+            "UE4": {
+                name: "Rayonnements et Santé",
+                chapters: [
+                    "Noyau atomique - Stabilité - Instabilité nucléaire",
+                    "Transformations radioactives",
+                    "Interactions rayonnements - matière",
+                    "Les 4 modes de production des radionucléides",
+                    "Produits de santé contenant des radionucléides",
+                    "Sources d'exposition et risques associés",
+                    "Nature des risques et conduite à tenir en cas d'incident",
+                    "Effets biologiques des rayonnements ionisants",
+                    "Radioprotection : organisation et principes fondamentaux",
+                    "Radioprotection des professionnels, des patients, du public et de l'environnement",
+                    "Utilisation en imagerie : partie 1",
+                    "Utilisation en imagerie : partie 2",
+                    "Utilisation en thérapie et en recherche"
+                ]
+            },
+            "UE5": {
+                name: "Biochimie",
+                chapters: [
+                    "Les acides aminés 1 - Classification et nomenclature",
+                    "Les acides aminés 2 - Propriétés physico-chimiques, chimiques et biologiques",
+                    "Les acides aminés 3 - Méthodes d'études",
+                    "Les peptides",
+                    "Les protéines",
+                    "La molécule d'hémoglobine",
+                    "Structure des glucides",
+                    "Enzymologie",
+                    "La glycolyse",
+                    "La néoglucogenèse",
+                    "La voie des pentoses phosphates",
+                    "Glycogénolyse et glycogénogenèse",
+                    "Structure des lipides et β-oxydation",
+                    "Cycle de Krebs",
+                    "Régulation hormonale du métabolisme au repos et durant l'exercice"
+                ]
+            },
+            "UE6": {
+                name: "Embryologie",
+                chapters: [
+                    "Gamétogenèse : généralités",
+                    "La spermatogenèse",
+                    "L'ovogenèse",
+                    "Événements précédant la fécondation",
+                    "Maîtriser la procréation",
+                    "AMP",
+                    "Phénomènes cellulaires de la fécondation, conséquences et anomalies",
+                    "La 1ère semaine de développement",
+                    "La 2ème semaine de développement",
+                    "La 3ème semaine de développement",
+                    "La 4ème semaine de développement",
+                    "Mécanismes moléculaires des étapes du développement embryonnaire et de l'organogenèse",
+                    "Organogenèse, histogenèse et cytogenèse du SNC",
+                    "Organogenèse de l'intestin primitif",
+                    "Organogenèse du système respiratoire",
+                    "Organogenèse de la face",
+                    "Organogenèse des membres",
+                    "Organogenèse du système cardiaque primitif",
+                    "Organogenèse de l'appareil génital",
+                    "Organogenèse de l'appareil urinaire"
+                ]
+            },
+            "UE7": {
+                name: "Physiologie",
+                chapters: [
+                    "Compartiments liquidiens de l'organisme",
+                    "Les échanges des liquides corporels entre les compartiments",
+                    "Introduction et forces de déplacement",
+                    "Les différents canaux",
+                    "Transporteurs et pompes",
+                    "Potentiel de membrane et potentiel d'action neuro",
+                    "Application potentiel d'action cardio : Électrophysiologie cardiaque",
+                    "Acides-bases : rappels",
+                    "Solutions tampons",
+                    "Régulation physiologique",
+                    "Statique des fluides : partie 1",
+                    "Statique des fluides : partie 2",
+                    "Équation de continuité – théorème de Bernoulli",
+                    "Fluides réels - viscosité",
+                    "Élasticité de la paroi des conduits"
+                ]
+            },
+            "UE8": {
+                name: "Anatomie",
+                chapters: [
+                    "Introduction générale",
+                    "Étude générale des os",
+                    "Étude générale des articulations",
+                    "Étude générale des muscles",
+                    "Épaule",
+                    "Bras",
+                    "Avant-bras",
+                    "Mains",
+                    "Hanche",
+                    "Cuisse",
+                    "Demi-jambe",
+                    "Pieds",
+                    "Rachis et station érigée",
+                    "Thorax",
+                    "Cœur et vaisseaux",
+                    "Aorte",
+                    "Veine Cave Inférieure",
+                    "Appareil respiratoire",
+                    "Appareil Digestif",
+                    "Appareil Uro-génital",
+                    "Les os de la tête",
+                    "Myologie de la tête et du cou, viscères et vaisseaux",
+                    "Le système nerveux central"
+                ]
+            },
+            "UE9": {
+                name: "Chimie",
+                chapters: [
+                    "Atomistique",
+                    "Réactifs et réactions en chimie organique",
+                    "Nomenclature",
+                    "Étude de quelques fonctions simples",
+                    "Molécules possédant plusieurs fonctions",
+                    "Isomérie",
+                    "Thermodynamique",
+                    "Chimie minérale"
+                ]
+            }
+        };
+
+        // Initialisation
+        const STORAGE_KEY = 'medibox-fiches-suivi-v1';
+        let fichesState = loadState();
+
+        function loadState() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                return JSON.parse(saved);
+            }
+            return {};
+        }
+
+        function saveState() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(fichesState));
+            updateLastUpdated();
+        }
+
+        function updateLastUpdated() {
+            const now = new Date();
+            const formatted = now.toLocaleString('fr-FR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('last-updated').textContent = `Dernière mise à jour : ${formatted}`;
+        }
+
+        function generateFicheId(ue, type, chapterIndex = null) {
+            if (type === 'reference') {
+                return `${ue}-ref`;
+            }
+            return `${ue}-chap-${chapterIndex}`;
+        }
+
+        function handleCheckboxChange(ficheId, column) {
+            if (!fichesState[ficheId]) {
+                fichesState[ficheId] = {};
+            }
+            
+            const checkbox = document.getElementById(`${ficheId}-${column}`);
+            fichesState[ficheId][column] = checkbox.checked;
+            
+            saveState();
+            updateStats();
+        }
+
+        function updateStats() {
+            let counts = { claude: 0, tuteur: 0, valide: 0, enligne: 0 };
+            const totalFiches = 134; // 9 references + 125 chapters
+
+            Object.values(fichesState).forEach(fiche => {
+                if (fiche.claude) counts.claude++;
+                if (fiche.tuteur) counts.tuteur++;
+                if (fiche.valide) counts.valide++;
+                if (fiche.enligne) counts.enligne++;
+            });
+
+            // Update stat cards
+            document.getElementById('stat-claude').textContent = counts.claude;
+            document.getElementById('stat-tuteur').textContent = counts.tuteur;
+            document.getElementById('stat-valide').textContent = counts.valide;
+            document.getElementById('stat-enligne').textContent = counts.enligne;
+
+            // Update progress bars
+            document.getElementById('progress-claude').style.width = `${(counts.claude / totalFiches) * 100}%`;
+            document.getElementById('progress-tuteur').style.width = `${(counts.tuteur / totalFiches) * 100}%`;
+            document.getElementById('progress-valide').style.width = `${(counts.valide / totalFiches) * 100}%`;
+            document.getElementById('progress-enligne').style.width = `${(counts.enligne / totalFiches) * 100}%`;
+        }
+
+        function toggleUE(ueId) {
+            const header = document.querySelector(`#${ueId} .ue-header`);
+            const content = document.querySelector(`#${ueId} .ue-content`);
+            
+            header.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+        }
+
+        function resetAll() {
+            if (confirm('⚠️ Es-tu sûre de vouloir réinitialiser TOUTE ta progression ? Cette action est irréversible !')) {
+                if (confirm('🔴 DERNIÈRE CONFIRMATION : Toutes les cases seront décochées. Continuer ?')) {
+                    localStorage.removeItem(STORAGE_KEY);
+                    fichesState = {};
+                    renderAll();
+                    updateStats();
+                }
+            }
+        }
+
+        function createCheckbox(ficheId, column) {
+            const isChecked = fichesState[ficheId]?.[column] || false;
+            return `
+                <td class="checkbox-cell">
+                    <input type="checkbox" 
+                           class="custom-checkbox ${column}" 
+                           id="${ficheId}-${column}"
+                           ${isChecked ? 'checked' : ''}
+                           onchange="handleCheckboxChange('${ficheId}', '${column}')">
+                </td>
+            `;
+        }
+
+        function renderAll() {
+            const container = document.getElementById('ue-container');
+            let html = '';
+
+            Object.entries(ueData).forEach(([ueId, ue]) => {
+                const refId = generateFicheId(ueId, 'reference');
+                
+                html += `
+                    <div class="ue-section" id="section-${ueId}">
+                        <div class="ue-header" onclick="toggleUE('section-${ueId}')">
+                            <h2>${ueId} - ${ue.name}</h2>
+                            <div class="ue-stats">
+                                <span>📄 ${ue.chapters.length + 1} fiches</span>
+                                <span class="toggle-icon">▼</span>
+                            </div>
+                        </div>
+                        <div class="ue-content">
+                            <table class="fiches-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 50%">Nom de la fiche</th>
+                                        <th style="width: 12.5%">✅ Terminé Claude</th>
+                                        <th style="width: 12.5%">📤 Envoyé tuteur</th>
+                                        <th style="width: 12.5%">✔️ Validé</th>
+                                        <th style="width: 12.5%">🌐 En ligne</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="reference-row">
+                                        <td><span class="fiche-name reference">📋 Fiche Référence Stratégique ${ueId}</span></td>
+                                        ${createCheckbox(refId, 'claude')}
+                                        ${createCheckbox(refId, 'tuteur')}
+                                        ${createCheckbox(refId, 'valide')}
+                                        ${createCheckbox(refId, 'enligne')}
+                                    </tr>
+                `;
+
+                ue.chapters.forEach((chapter, index) => {
+                    const chapId = generateFicheId(ueId, 'chapter', index);
+                    html += `
+                                    <tr>
+                                        <td><span class="fiche-name">📊 ${chapter}</span></td>
+                                        ${createCheckbox(chapId, 'claude')}
+                                        ${createCheckbox(chapId, 'tuteur')}
+                                        ${createCheckbox(chapId, 'valide')}
+                                        ${createCheckbox(chapId, 'enligne')}
+                                    </tr>
+                    `;
+                });
+
+                html += `
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            updateStats();
+            updateLastUpdated();
+        }
+
+        // Initial render
+        renderAll();
+    </script>
+</body>
+</html>
