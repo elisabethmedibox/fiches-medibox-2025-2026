@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Métabolisme - FC9 à FC15 - Fiche Transversale</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1d4a3a 0%, #2d5a4a 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        /* Accordéons vert sapin */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1d4a3a 0%, #2d5a4a 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            color: #1d4a3a;
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1d4a3a;
+            border-bottom: 2px solid #f59e0b;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux scrollables */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        .data-table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .data-table thead {
+            background: #1d4a3a;
+            color: white;
+        }
+        
+        .data-table th {
+            padding: 12px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .data-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        /* Badges tendances */
+        .tendance-baisse {
+            color: #dc2626;
+            font-weight: 600;
+        }
+        
+        .tendance-hausse {
+            color: #16a34a;
+            font-weight: 600;
+        }
+        
+        /* Blocs d'analyse */
+        .analyse-bloc {
+            background: white;
+            border-left: 4px solid #1d4a3a;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .analyse-bloc h4 {
+            margin: 0 0 10px 0;
+            color: #1d4a3a;
+        }
+        
+        .analyse-bloc p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+        
+        /* Carrefours métaboliques */
+        .carrefour-table {
+            width: 100%;
+            min-width: 800px;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+        
+        .carrefour-table thead {
+            background: #1d4a3a;
+            color: white;
+        }
+        
+        .carrefour-table th {
+            padding: 10px 8px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .carrefour-table th:first-child {
+            text-align: left;
+            min-width: 150px;
+        }
+        
+        .carrefour-table td {
+            padding: 8px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            vertical-align: top;
+            font-size: 0.75rem;
+        }
+        
+        .carrefour-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1d4a3a;
+            background: #f0fdf4;
+        }
+        
+        .carrefour-table .cell-present {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .carrefour-table .cell-absent {
+            background: #f8fafc;
+            color: #cbd5e1;
+        }
+        
+        /* Conclusion box */
+        .conclusion-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .conclusion-box h4 {
+            color: #92400e;
+            margin: 0 0 10px 0;
+        }
+        
+        .conclusion-box p {
+            color: #92400e;
+            margin: 0;
+        }
+        
+        /* Fréquence étoiles */
+        .freq-5 { color: #dc2626; font-weight: 700; }
+        .freq-4 { color: #ea580c; font-weight: 600; }
+        .freq-3 { color: #ca8a04; }
+        .freq-2 { color: #65a30d; }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1d4a3a;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+            
+            .accordion-content {
+                padding: 15px;
+            }
+            
+            .data-table, .carrefour-table {
+                font-size: 0.7rem;
+            }
+            
+            .data-table th, .data-table td,
+            .carrefour-table th, .carrefour-table td {
+                padding: 6px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Guide Métabolisme - FC9 à FC15</h1>
+            <div class="meta">
+                <span>🔬 UE5 - Biochimie</span>
+                <span>🎯 Fiche Transversale</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : ANALYSE DU COMPORTEMENT DU PROFESSEUR -->
+            <details class="main-accordion" open>
+                <summary>📈 Analyse du comportement du professeur sur 5 ans</summary>
+                <div class="accordion-content">
+                    
+                    <h3>Évolution quantitative des QCM métabolisme</h3>
+                    
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>Nb QCM FC9</th>
+                                    <th>QCM multi-chapitres</th>
+                                    <th>Complexité perçue</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>2020-2021</strong></td>
+                                    <td>6 QCM</td>
+                                    <td>2 (Q10, Q13)</td>
+                                    <td>🔴 Élevée</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2021-2022</strong></td>
+                                    <td>3 QCM</td>
+                                    <td>2 (Q12, Q14)</td>
+                                    <td>🟠 Moyenne-haute</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2022-2023</strong></td>
+                                    <td>1 QCM</td>
+                                    <td>0</td>
+                                    <td>🟢 Simple</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2023-2024</strong></td>
+                                    <td>4 QCM</td>
+                                    <td>1 (Q16)</td>
+                                    <td>🟠 Moyenne</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2024-2025</strong></td>
+                                    <td>3 QCM</td>
+                                    <td>1 (Q14)</td>
+                                    <td>🟢 Simple-Moyenne</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h3>Tendances observées</h3>
+                    
+                    <div class="analyse-bloc">
+                        <h4>📉 Tendance 1 : Simplification progressive des questions</h4>
+                        <p><strong>2020-2021 :</strong> Questions complexes mêlant plusieurs concepts (navette + chaîne respiratoire, régulation allostérique + glycogène, MODY-2 avec mécanismes multiples)</p>
+                        <p><strong>2024-2025 :</strong> Questions plus directes et factuelles ("La glycolyse comporte 3 réactions", "Le shunt de Rapoport remplace la réaction n°7")</p>
+                    </div>
+                    
+                    <div class="analyse-bloc">
+                        <h4>📉 Tendance 2 : Moins de QCM multi-chapitres</h4>
+                        <p>Le professeur a tendance à <strong>séparer davantage les chapitres</strong> ces dernières années.</p>
+                        <p><strong>Exception :</strong> La régulation coordonnée glycolyse/néoglucogenèse reste systématiquement transversale (PFK1 / Fr-1,6-BPase).</p>
+                    </div>
+                    
+                    <div class="analyse-bloc">
+                        <h4>📊 Tendance 3 : Apparition de "QCM types" récurrents</h4>
+                        <p>Le professeur semble avoir stabilisé certains formats :</p>
+                        <p>• <strong>"Sur le shunt de Rapoport"</strong> → tombé en 2020-2021 et 2024-2025 (format quasi-identique)</p>
+                        <p>• <strong>"Sur la glycolyse" (bilan énergétique)</strong> → tombé en 2022-2023, 2023-2024, 2024-2025</p>
+                        <p>• <strong>"Sur la régulation coordonnée PFK1/Fr-1,6-BPase"</strong> → tombé en 2021-2022, 2023-2024, 2024-2025</p>
+                    </div>
+                    
+                    <div class="analyse-bloc">
+                        <h4>📉 Tendance 4 : Questions plus "scolaires" et moins "piégeuses"</h4>
+                        <p><strong>Avant :</strong> Questions avec des pièges subtils (ex: "La charge énergétique exerce une régulation allostérique positive sur la pyruvate kinase" → FAUX)</p>
+                        <p><strong>Maintenant :</strong> Questions testant des connaissances factuelles directes</p>
+                    </div>
+                    
+                    <div class="conclusion-box">
+                        <h4>🎯 Conclusion sur le comportement du professeur</h4>
+                        <div class="table-wrapper">
+                            <table class="data-table" style="min-width: 400px;">
+                                <thead>
+                                    <tr>
+                                        <th>Critère</th>
+                                        <th>Évolution</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Difficulté</td>
+                                        <td class="tendance-baisse">📉 En baisse (questions plus directes)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>QCM multi-chapitres</td>
+                                        <td class="tendance-baisse">📉 En baisse (sauf régulation coordonnée)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Prévisibilité</td>
+                                        <td class="tendance-hausse">📈 En hausse (formats récurrents)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pièges</td>
+                                        <td class="tendance-baisse">📉 En baisse (moins de subtilités)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p style="margin-top: 15px;"><strong>⚠️ Attention :</strong> Le professeur maintient un "noyau dur" de concepts qu'il reteste régulièrement (PFK1, enzyme bifonctionnelle, régulation coordonnée). Ces thèmes restent incontournables.</p>
+                    </div>
+                    
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : CARTE DES CARREFOURS MÉTABOLIQUES -->
+            <details class="main-accordion">
+                <summary>🗺️ Carte des carrefours métaboliques</summary>
+                <div class="accordion-content">
+                    
+                    <p style="margin-bottom: 20px; color: #4a5568;">Cette carte recense les <strong>molécules-pivots</strong> et <strong>enzymes-clés</strong> qui apparaissent dans plusieurs chapitres du métabolisme et sont fréquemment testées aux examens.</p>
+                    
+                    <h3>Molécules-carrefours</h3>
+                    
+                    <div class="table-wrapper">
+                        <table class="carrefour-table">
+                            <thead>
+                                <tr>
+                                    <th>Molécule</th>
+                                    <th>FC9<br>Glycolyse</th>
+                                    <th>FC10<br>NGG</th>
+                                    <th>FC11<br>PP</th>
+                                    <th>FC12<br>Glycogène</th>
+                                    <th>FC14<br>Krebs</th>
+                                    <th>FC15<br>Chaîne resp.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Glucose-6-phosphate (G6P)</td>
+                                    <td class="cell-present">Produit réaction 1</td>
+                                    <td class="cell-present">Point d'arrivée</td>
+                                    <td class="cell-present">Point de départ</td>
+                                    <td class="cell-present">Issu de G1P</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Pyruvate</td>
+                                    <td class="cell-present">Produit final</td>
+                                    <td class="cell-present">Précurseur (via OAA)</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-present">→ Acétyl-CoA</td>
+                                    <td class="cell-absent">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Fructose-2,6-BP (Fr-2,6-BP)</td>
+                                    <td class="cell-present">Active PFK1</td>
+                                    <td class="cell-present">Inhibe Fr-1,6-BPase</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Acétyl-CoA</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-present">Entre dans Krebs</td>
+                                    <td class="cell-present">Produit β-oxydation</td>
+                                </tr>
+                                <tr>
+                                    <td>NAD⁺/NADH,H⁺</td>
+                                    <td class="cell-present">Nécessaire, navettes</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-present">Produit par Krebs</td>
+                                    <td class="cell-present">Oxydé complexe I</td>
+                                </tr>
+                                <tr>
+                                    <td>ATP/ADP/AMP</td>
+                                    <td class="cell-present">Régule PFK1, PK</td>
+                                    <td class="cell-present">Régule NGG</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-present">ATP synthase</td>
+                                </tr>
+                                <tr>
+                                    <td>Lactate</td>
+                                    <td class="cell-present">Glycolyse anaérobie</td>
+                                    <td class="cell-present">Cycle de Cori</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                </tr>
+                                <tr>
+                                    <td>2,3-BPG</td>
+                                    <td class="cell-present">Shunt Rapoport</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h3>Enzymes-pivots</h3>
+                    
+                    <div class="table-wrapper">
+                        <table class="carrefour-table">
+                            <thead>
+                                <tr>
+                                    <th>Enzyme</th>
+                                    <th>FC9</th>
+                                    <th>FC10</th>
+                                    <th>FC12</th>
+                                    <th>Rôle global</th>
+                                    <th>Fréquence exam</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Hexokinase (muscle)</td>
+                                    <td class="cell-present">Réaction 1, inhibée par G6P</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td>Séquestration glucose musculaire</td>
+                                    <td class="freq-4">⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>Glucokinase (foie)</td>
+                                    <td class="cell-present">Réaction 1, faible affinité</td>
+                                    <td class="cell-absent">Absente NGG</td>
+                                    <td class="cell-present">G → G6P</td>
+                                    <td>Séquestration glucose hépatique</td>
+                                    <td class="freq-4">⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>PFK1</td>
+                                    <td class="cell-present">Réaction 3, régulée +++</td>
+                                    <td class="cell-present">Inhibée si NGG active</td>
+                                    <td class="cell-absent">—</td>
+                                    <td>Point de contrôle majeur</td>
+                                    <td class="freq-5">⭐⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>PFK2/FBPase2 (bifonctionnelle)</td>
+                                    <td class="cell-present">Produit Fr-2,6-BP</td>
+                                    <td class="cell-present">Dégrade Fr-2,6-BP</td>
+                                    <td class="cell-absent">—</td>
+                                    <td>Relais insuline/glucagon</td>
+                                    <td class="freq-5">⭐⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>Pyruvate kinase</td>
+                                    <td class="cell-present">Réaction 10, régulée</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td>Dernière étape glycolyse</td>
+                                    <td class="freq-4">⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>LDH (Lactate déshydrogénase)</td>
+                                    <td class="cell-present">Pyruvate → Lactate</td>
+                                    <td class="cell-present">Lactate → Pyruvate</td>
+                                    <td class="cell-absent">—</td>
+                                    <td>Pont glycolyse/NGG</td>
+                                    <td class="freq-2">⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>PKA</td>
+                                    <td class="cell-present">Inhibe PFK1 (via PFK2)</td>
+                                    <td class="cell-present">Active NGG</td>
+                                    <td class="cell-present">Active glycogénolyse</td>
+                                    <td>Effecteur glucagon/adrénaline</td>
+                                    <td class="freq-4">⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>PP1</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-present">Active GS, inactive GP</td>
+                                    <td>Effecteur insuline</td>
+                                    <td class="freq-3">⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>Glycogène phosphorylase</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-present">Dégrade glycogène</td>
+                                    <td>Libération G1P</td>
+                                    <td class="freq-4">⭐⭐⭐⭐</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h3>Régulation hormonale - Vue croisée</h3>
+                    
+                    <div class="table-wrapper">
+                        <table class="carrefour-table" style="min-width: 700px;">
+                            <thead>
+                                <tr>
+                                    <th>Hormone</th>
+                                    <th>Effet glycolyse (FC9)</th>
+                                    <th>Effet NGG (FC10)</th>
+                                    <th>Effet glycogène (FC12)</th>
+                                    <th>Mécanisme</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Insuline</td>
+                                    <td class="cell-present">✅ Active (PP2A → PFK2 → Fr-2,6-BP)</td>
+                                    <td style="background: #fee2e2; color: #991b1b;">❌ Inhibe</td>
+                                    <td class="cell-present">✅ Active glycogénogenèse</td>
+                                    <td>Hypoglycémiante</td>
+                                </tr>
+                                <tr>
+                                    <td>Glucagon</td>
+                                    <td style="background: #fee2e2; color: #991b1b;">❌ Inhibe (PKA → FBPase2)</td>
+                                    <td class="cell-present">✅ Active</td>
+                                    <td class="cell-present">✅ Active glycogénolyse</td>
+                                    <td>Hyperglycémiant</td>
+                                </tr>
+                                <tr>
+                                    <td>Adrénaline</td>
+                                    <td style="background: #fee2e2; color: #991b1b;">❌ Inhibe (foie)</td>
+                                    <td class="cell-absent">—</td>
+                                    <td class="cell-present">✅ Active glycogénolyse</td>
+                                    <td>Mobilisation rapide</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h3>Points de croisement fréquemment testés</h3>
+                    
+                    <div class="table-wrapper">
+                        <table class="data-table" style="min-width: 650px;">
+                            <thead>
+                                <tr>
+                                    <th>Croisement</th>
+                                    <th>Chapitres</th>
+                                    <th>Fréquence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Régulation coordonnée PFK1 / Fr-1,6-BPase</strong></td>
+                                    <td>FC9 + FC10</td>
+                                    <td class="freq-5">⭐⭐⭐⭐⭐ Systématique</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Enzyme bifonctionnelle PFK2/FBPase2</strong></td>
+                                    <td>FC9 + FC10</td>
+                                    <td class="freq-4">⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cycle de Cori (lactate ↔ glucose)</strong></td>
+                                    <td>FC9 + FC10</td>
+                                    <td class="freq-3">⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Navette glycérol-phosphate</strong></td>
+                                    <td>FC9 + FC15</td>
+                                    <td class="freq-3">⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>G6P : carrefour glycolyse/PP/glycogène</strong></td>
+                                    <td>FC9 + FC11 + FC12</td>
+                                    <td class="freq-3">⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Régulation par PKA</strong></td>
+                                    <td>FC9 + FC12</td>
+                                    <td class="freq-3">⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Pyruvate → Acétyl-CoA → Krebs</strong></td>
+                                    <td>FC9 + FC14</td>
+                                    <td class="freq-2">⭐⭐</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="conclusion-box">
+                        <h4>💡 Comment utiliser cette carte ?</h4>
+                        <p>Quand tu révises un chapitre du métabolisme, reviens sur cette carte pour identifier les <strong>liens avec les autres chapitres</strong>. Les croisements marqués ⭐⭐⭐⭐⭐ sont quasi-systématiquement testés sous forme de QCM multi-chapitres.</p>
+                    </div>
+                    
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche transversale ne se substitue pas au cours officiel. Elle est destinée à accompagner les fiches d'analyse individuelles des chapitres FC9 à FC15. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme.
+        </div>
+    </div>
+</body>
+</html>
