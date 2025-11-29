@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC1-2-3 - Les Acides Aminés - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        .main-accordion { margin-bottom: 15px; border: 2px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
+        .main-accordion summary { background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%); color: white; padding: 18px 25px; cursor: pointer; font-size: 1.1rem; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .main-accordion summary::-webkit-details-marker { display: none; }
+        .main-accordion summary::after { content: "▼"; font-size: 0.8rem; transition: transform 0.3s ease; }
+        .main-accordion[open] summary::after { transform: rotate(180deg); }
+        .main-accordion[open] summary { background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%); }
+        .accordion-content { padding: 25px; background: #f8fafc; }
+        .accordion-content h3 { color: #1a365d; border-bottom: 2px solid #ff6b7a; padding-bottom: 8px; margin-top: 25px; margin-bottom: 15px; }
+        .accordion-content h3:first-child { margin-top: 0; }
+        .qcm-thematique { margin-bottom: 30px; }
+        .qcm-thematique h4 { color: #1a365d; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); padding: 12px 15px; border-radius: 8px; margin: 0 0 15px 0; font-size: 1rem; }
+        .qcm-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.85rem; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .qcm-table thead { background: #1a365d; color: white; }
+        .qcm-table th { padding: 10px; text-align: left; font-weight: 600; }
+        .qcm-table th:first-child { width: 120px; }
+        .qcm-table td { padding: 12px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+        .qcm-table td:first-child { font-weight: 600; color: #ff6b7a; background: #f8fafc; }
+        .qcm-table tr:last-child td { border-bottom: none; }
+        .qcm-enonce { font-weight: 600; color: #1a365d; margin-bottom: 8px; }
+        .qcm-items { line-height: 1.6; color: #4a5568; }
+        .qcm-item { margin-bottom: 4px; }
+        .chapitre-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-left: 8px; }
+        .badge-fc1 { background: #dbeafe; color: #1e40af; }
+        .badge-fc2 { background: #fef3c7; color: #92400e; }
+        .badge-fc3 { background: #d1fae5; color: #065f46; }
+        .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px; }
+        .diagnostic-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.9rem; }
+        .diagnostic-table th { background: #1a365d; color: white; padding: 10px; text-align: left; }
+        .diagnostic-table td { padding: 10px; border: 1px solid #e2e8f0; background: white; }
+        .vue-ensemble { margin-top: 25px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .vue-ensemble h4 { margin: 0 0 15px 0; color: #1a365d; font-size: 1.1rem; }
+        .vue-ensemble-intro { color: #4a5568; margin-bottom: 15px; font-size: 0.95rem; }
+        .vue-tableau { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem; }
+        .vue-tableau th { background: #1a365d; color: white; padding: 10px; text-align: center; font-weight: 600; }
+        .vue-tableau th:first-child { text-align: left; width: 30%; }
+        .vue-tableau td { padding: 10px; border: 1px solid #e2e8f0; text-align: center; background: white; }
+        .vue-tableau td:first-child { text-align: left; font-weight: 600; color: #1a365d; background: #f8fafc; }
+        .vue-tableau .qcm-cell { color: #ff6b7a; font-weight: 600; }
+        .vue-tableau .empty-cell { color: #cbd5e1; }
+        .niveau-warning { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b; border-radius: 8px; padding: 15px 20px; margin-bottom: 20px; }
+        .niveau-warning h4 { margin: 0 0 10px 0; color: #92400e; font-size: 1rem; }
+        .niveau-warning p { margin: 0; color: #92400e; font-size: 0.9rem; line-height: 1.5; }
+        .reco-item { background: white; border-left: 4px solid #10b981; padding: 15px; margin-bottom: 15px; border-radius: 0 8px 8px 0; }
+        .reco-item h4 { margin: 0 0 8px 0; color: #1a365d; }
+        .reco-item p { margin: 0 0 8px 0; color: #4a5568; font-size: 0.95rem; line-height: 1.5; }
+        .reco-item .frequence { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 3px 10px; border-radius: 12px; font-size: 0.8rem; margin-top: 8px; }
+        .qcm-analyse { background: white; border: 2px solid #3b82f6; border-radius: 12px; padding: 20px; margin-bottom: 20px; position: relative; }
+        .qcm-analyse h4 { margin: 0 0 5px 0; color: #1e40af; font-size: 1.1rem; }
+        .qcm-badge { background: #1e3a5f; color: #94a3b8; font-size: 0.8rem; padding: 6px 12px; border-radius: 8px; margin-bottom: 15px; display: inline-block; }
+        .qcm-badge strong { color: #ff6b7a; }
+        .qcm-section { margin-bottom: 12px; }
+        .qcm-section:last-child { margin-bottom: 0; }
+        .qcm-section-title { font-weight: 600; color: #1a365d; font-size: 0.9rem; margin-bottom: 5px; }
+        .qcm-section-content { color: #4a5568; font-size: 0.95rem; line-height: 1.6; }
+        .cle-raisonnement { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-left: 3px solid #10b981; padding: 12px 15px; border-radius: 0 8px 8px 0; margin-top: 8px; }
+        .cle-raisonnement p { margin: 0 0 8px 0; color: #166534; }
+        .cle-raisonnement p:last-child { margin-bottom: 0; }
+        .cle-raisonnement ul { margin: 8px 0 0 20px; padding: 0; }
+        .cle-raisonnement li { margin-bottom: 5px; color: #166534; }
+        .connaissance-pure { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 3px solid #f59e0b; padding: 12px 15px; border-radius: 0 8px 8px 0; margin-top: 8px; color: #92400e; }
+        .vigilance-item { background: white; border-left: 4px solid #f59e0b; padding: 15px; margin-bottom: 15px; border-radius: 0 8px 8px 0; }
+        .vigilance-item h4 { margin: 0 0 8px 0; color: #b45309; }
+        .vigilance-item p { margin: 0; color: #4a5568; font-size: 0.95rem; line-height: 1.5; }
+        .tuteur-zone { background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border: 2px dashed #8b5cf6; border-radius: 8px; padding: 20px; }
+        .tuteur-zone p { margin: 0; color: #6b21a8; }
+        .avertissement { background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 15px 25px; margin-top: 20px; text-align: center; font-size: 0.8rem; color: #92400e; line-height: 1.5; }
+        .avertissement strong { display: block; margin-bottom: 8px; font-size: 0.85rem; }
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px; }
+            .qcm-thematique { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .qcm-table { min-width: 750px; font-size: 0.7rem !important; }
+            .qcm-table th:first-child, .qcm-table td:first-child { width: 90px; font-size: 0.7rem !important; }
+            .qcm-table td { font-size: 0.7rem !important; }
+            .qcm-table .qcm-enonce { font-size: 0.7rem !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC1-2-3 : Les Acides Aminés</h1>
+            <div class="meta">
+                <span>📚 UE5 - Biochimie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <div class="qcm-thematique">
+                        <h4>🎯 Classification des acides aminés (3 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr><th>Année - QCM</th><th>Énoncé et items</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q1</td>
+                                    <td>
+                                        <div class="qcm-enonce">Soit l'acide aminé la tyrosine :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : C'est un acide aminé basique. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">B : C'est un acide aminé aromatique. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">C : Il présente un pic d'absorption maximale dans l'UV. <span class="chapitre-badge badge-fc2">FC2</span></div>
+                                            <div class="qcm-item">D : Il est détruit par une hydrolyse acide. <span class="chapitre-badge badge-fc2">FC2</span></div>
+                                            <div class="qcm-item">E : Fait partie des acides aminés essentiels chez l'homme. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2020-2021<br>Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">Soit le peptide suivant: Ile-Leu-Lys-Met-Ser-Arg</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : L'acide aminé C terminal est basique. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">B : Ce peptide comporte deux acides aminés basiques. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">C : Ce peptide comporte un seul acide aminé aliphatique. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">D : Un des acides aminés de ce peptide peut-être phosphorylé. <span class="chapitre-badge badge-fc2">FC2</span></div>
+                                            <div class="qcm-item">E : Un des acides aminés de ce peptide porte sur sa chaîne latérale un groupement sulfhydrile. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos de l'angiotensine II :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Ce peptide contient un seul acide aminé aromatique. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">B : Ce peptide comprend un acide aminé qui ne présente pas de carbone asymétrique. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">C : Ce peptide comprend un acide aminé qui présente deux carbones asymétriques. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">D : Ce peptide comprend plus d'acides aminés à chaîne latérale basique que d'acides aminés à chaîne latérale acide. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">E : Ce peptide est impliqué dans le maintien de la tension artérielle. <span class="chapitre-badge badge-fc1">FC4</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="qcm-thematique">
+                        <h4>🎯 Propriétés générales des AA : C asymétrique, série L, pHi (3 QCM - récurrents)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr><th>Année - QCM</th><th>Énoncé et items</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les acides aminés :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Tous les acides aminés possèdent au moins un carbone asymétrique. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">B : Les acides aminés naturels appartiennent à la série L. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">C : Le pH isoélectrique d'un acide aminé correspond au pH où il n'est pas ionisé. <span class="chapitre-badge badge-fc2">FC2</span></div>
+                                            <div class="qcm-item">D : Les quatre acides aminés suivants ont une chaîne latérale fortement ionisée et donc chargée à pH neutre: lysine, arginine, acide aspartique et acide glutamique. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">E : Phénylalanine, tyrosine et tryptophane sont dits aromatiques car ils possèdent un noyau benzénique sur leur chaîne latérale. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les acides aminés :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : 4 acides aminés possèdent des chaînes latérales aromatiques P, W, Y et F. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">B : Un atome de soufre est présent dans la chaîne latérale de la méthionine. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">C : Acide aspartique et acide glutamique ont une chaîne latérale chargée positivement à pH neutre. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">D : Les acides aminés peuvent être séparés suivant leur point isoélectrique par électrophorèse. <span class="chapitre-badge badge-fc3">FC3</span></div>
+                                            <div class="qcm-item">E : En chromatographie échangeuse d'ions une résine cationique échange réversiblement un acide aminé chargé positivement. <span class="chapitre-badge badge-fc3">FC3</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les acides aminés :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Tous les acides aminés possèdent au moins un carbone asymétrique. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">B : Les acides aminés naturels appartiennent à la série L. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">C : Le pH isoélectrique d'un acide aminé correspond au pH où sa charge nette est nulle. <span class="chapitre-badge badge-fc2">FC2</span></div>
+                                            <div class="qcm-item">D : Lysine et arginine ont une chaîne latérale chargée positivement à pH neutre. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                            <div class="qcm-item">E : Phénylalanine et tyrosine diffèrent par un groupement hydroxyle. <span class="chapitre-badge badge-fc1">FC1</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="qcm-thematique">
+                        <h4>🎯 Électrophorèse et migration selon le pHi (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr><th>Année - QCM</th><th>Énoncé et items</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">On soumet trois peptides à une électrophorèse en tampon à pH=9. Ces trois peptides ont des valeurs de pHi suivants: peptide 1 pHi=3; peptide 2 pHi=5 et peptide 3 pHi=9</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Le peptide 1 migre vers le pôle positif. <span class="chapitre-badge badge-fc3">FC3</span></div>
+                                            <div class="qcm-item">B : Le peptide 3 est chargé positivement au pH de l'électrophorèse. <span class="chapitre-badge badge-fc3">FC3</span></div>
+                                            <div class="qcm-item">C : L'un de ces peptides ne migre pas à pH9. <span class="chapitre-badge badge-fc3">FC3</span></div>
+                                            <div class="qcm-item">D : À pH=2, le peptide 3 migre le plus rapidement vers le pôle positif. <span class="chapitre-badge badge-fc3">FC3</span></div>
+                                            <div class="qcm-item">E : À pH=7, seuls les peptides 1 et 2 migrent vers le pôle positif. <span class="chapitre-badge badge-fc3">FC3</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="qcm-thematique">
+                        <h4>🎯 Modifications des chaînes latérales : ponts S-S, phosphorylation, glycosylation (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr><th>Année - QCM</th><th>Énoncé et items</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos des modifications des chaînes latérales des acides aminés :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Après réduction des ponts disulfures par le 2-mercaptoéthanol, on peut utiliser l'iodoacétamide pour empêcher leur réformation. <span class="chapitre-badge badge-fc2">FC2</span></div>
+                                            <div class="qcm-item">B : Chez les eucaryotes le taux de phosphorylation de la sérine est 1000 fois supérieur à celui de la tyrosine. <span class="chapitre-badge badge-fc2">FC2</span></div>
+                                            <div class="qcm-item">C : La O-glycosylation permet l'addition de glucides au niveau de l'O de la chaîne latérale de la sérine ou de la thréonine de polypeptides présents dans la lumière de l'appareil de Golgi. <span class="chapitre-badge badge-fc2">FC2</span></div>
+                                            <div class="qcm-item">D : La N-glycosylation est catalysée par une enzyme de type glycosyl-transférase. <span class="chapitre-badge badge-fc2">FC2</span></div>
+                                            <div class="qcm-item">E : Lors de la N-glycosylation, un oligoside est lié sur un résidu asparagine appartenant à une séquence consensus type Asn-X-Ser/Thr. <span class="chapitre-badge badge-fc2">FC2</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                                <td>🔴 FC1 : Prérequis absolu<br>🔗 FC2-FC3 : Suite logique</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>7 QCM</strong> sur ces 3 chapitres (35 items). Le prof mélange presque systématiquement les 3 chapitres FC1, FC2 et FC3 dans ses questions.</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Classification AA (aromatiques, basiques, acides, soufrés)</td>
+                                    <td class="qcm-cell">Q1, Q2</td>
+                                    <td class="qcm-cell">Q3</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="qcm-cell">Q5</td>
+                                </tr>
+                                <tr>
+                                    <td>C asymétrique / Série L</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q3</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q5</td>
+                                </tr>
+                                <tr>
+                                    <td>pHi (charge nette nulle)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q3</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q5</td>
+                                </tr>
+                                <tr>
+                                    <td>Électrophorèse / migration</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Chromatographie échangeuse d'ions</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Modifications chimiques (S-S, phospho, glycosyl)</td>
+                                    <td class="qcm-cell">Q5</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 Récurrences identifiées</strong> : "Carbone asymétrique sauf Gly", "Série L", "pHi = charge nette nulle", "AA basiques chargés + à pH neutre", "AA aromatiques (F, Y, W)"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="niveau-warning">
+                        <h4>⚠️ Attention : particularité de ce chapitre</h4>
+                        <p>Le professeur mélange presque systématiquement les trois cours (FC1, FC2, FC3) dans un même QCM. Cela signifie que si vous n'apprenez qu'un seul cours, vous risquez malgré tout de ne pas obtenir le point : un item mal répondu issu d'un cours non appris vous coûtera -0.5 ou le point entier.</p>
+                        <p style="margin-top: 10px;"><strong>Sur ces acides aminés, c'est une stratégie de tout ou rien :</strong> soit vous apprenez les trois cours ensemble, soit vous n'en apprenez aucun. Statistiquement, il n'y a en moyenne qu'1 QCM par an sur ce thème (2020-2021 a été une exception avec 4 QCM).</p>
+                        <p style="margin-top: 10px;"><strong>Les recommandations ci-dessous ne sont à suivre que si vous décidez d'apprendre les 3 cours.</strong> Sinon, ce chapitre ne paraît pas rentable dans une stratégie Niveau 2.</p>
+                    </div>
+                    
+                    <div class="reco-item">
+                        <h4>Classification des 20 acides aminés</h4>
+                        <p>Connaître par cœur les 7 groupes : aliphatiques (6), aromatiques (3), soufrés (2), hydroxylés (2), basiques (3), acides (2), amides (2). Savoir identifier chaque AA dans sa catégorie.</p>
+                        <span class="frequence">Tombé à chaque session</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Carbone asymétrique et série L</h4>
+                        <p>Tous les AA ont au moins 1 C asymétrique SAUF la glycine. Tous les AA naturels sont de série L. Isoleucine et thréonine ont 2 C asymétriques.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>AA basiques vs acides à pH neutre</h4>
+                        <p>Basiques (Lys, Arg, His) = chargés + à pH neutre. Acides (Asp, Glu) = chargés - à pH neutre. Piège fréquent : inversion des charges.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>AA aromatiques : attention au tryptophane</h4>
+                        <p>Phe et Tyr ont un noyau benzénique. MAIS le tryptophane a un noyau INDOLE (≠ benzène). C'est un piège classique.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Point isoélectrique (pHi)</h4>
+                        <p>pHi = pH où la charge NETTE est nulle (≠ "non ionisé"). L'AA est sous forme zwitterion mais reste ionisé. Piège classique sur la formulation.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Électrophorèse : principe de migration</h4>
+                        <p>Si pH > pHi → AA chargé - → migre vers anode (+). Si pH < pHi → AA chargé + → migre vers cathode (-). Si pH = pHi → pas de migration.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Chromatographie échangeuse d'ions</h4>
+                        <p>Résine cationique = chargée - → échange des CATIONS (AA chargés +). Résine anionique = chargée + → échange des ANIONS (AA chargés -).</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Modifications post-traductionnelles</h4>
+                        <p>O-glycosylation : sur Ser/Thr dans le Golgi. N-glycosylation : sur Asn (séquence Asn-X-Ser/Thr) dans le RE. Phosphorylation : sur Ser/Thr/Tyr.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : ANALYSE NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Analyse détaillée Niveau 1 (travail quasi exclusif sur annales)</summary>
+                <div class="accordion-content">
+
+                    <div class="niveau-warning">
+                        <h4>⚠️ Voir l'avertissement du Niveau 2</h4>
+                        <p>Il est probablement très peu rentable de travailler exclusivement sur les annales pour ce cours. Contrairement à d'autres chapitres où les mêmes questions reviennent, ici le professeur change les acides aminés et les formulations à chaque session. Si la tyrosine est tombée en 2020-2021, les probabilités qu'elle retombe sont quasi nulles.</p>
+                        <p style="margin-top: 10px;"><strong>Pour un travail quasi exclusif sur annales, ce chapitre ne rapportera statistiquement qu'un seul point par an, avec un risque élevé de ne pas l'obtenir.</strong></p>
+                        <p style="margin-top: 10px;">Nous vous laissons malgré tout l'analyse de chaque QCM ci-dessous, mais en ayant conscience que cette analyse vous servira probablement très peu.</p>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Tyrosine : classification et propriétés</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q1</div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la classification de la tyrosine (aromatique, pas basique), ses propriétés physiques (absorption UV) et son caractère essentiel ou non.</div>
+                        </div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprendre la fiche de la tyrosine : aromatique (noyau phénol), non essentielle (peut être synthétisée à partir de Phe), absorbe dans l'UV, résiste à l'hydrolyse acide (contrairement au tryptophane).</div>
+                        </div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">C'est un QCM de connaissance pure. Tu dois connaître les propriétés de chaque AA. La tyrosine est AROMATIQUE (pas basique), NON ESSENTIELLE, et ABSORBE dans l'UV grâce à son noyau aromatique.</div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Analyse d'un peptide : identifier les AA</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q2</div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM donne une séquence peptidique et demande d'identifier les catégories d'AA présents (basiques, aliphatiques, soufrés, phosphorylables).</div>
+                        </div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Pour chaque AA de la séquence, identifier sa catégorie. Ile-Leu = aliphatiques. Lys-Arg = basiques. Met = soufré (thioéther, PAS de -SH). Ser = hydroxylé, phosphorylable.</div>
+                        </div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Piège classique :</strong> Méthionine contient du soufre mais n'a PAS de groupement sulfhydrile (-SH). C'est la CYSTÉINE qui a le -SH. La méthionine a une liaison thioéther (-S-CH3).</p>
+                                <ul>
+                                    <li>Arg = C-terminal = basique ✓</li>
+                                    <li>Lys + Arg = 2 basiques ✓</li>
+                                    <li>Ile + Leu = 2 aliphatiques (pas 1)</li>
+                                    <li>Ser = phosphorylable ✓</li>
+                                    <li>Met = soufre mais PAS de -SH</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Propriétés générales : C asymétrique, série L, pHi</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q3 / <strong>2024-2025</strong> Q5</div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ces QCM testent les mêmes notions récurrentes : carbone asymétrique, série L, définition du pHi, classification basiques/acides, aromatiques.</div>
+                        </div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprendre par cœur ces 5 points qui reviennent systématiquement.</div>
+                        </div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Les 5 pièges récurrents :</strong></p>
+                                <ul>
+                                    <li>"Tous les AA ont au moins 1 C asymétrique" → FAUX (glycine = exception)</li>
+                                    <li>"Série L" → VRAI pour tous les AA naturels</li>
+                                    <li>"pHi = pH où l'AA n'est pas ionisé" → FAUX (charge NETTE nulle, mais reste ionisé = zwitterion)</li>
+                                    <li>"Lys, Arg chargés + à pH neutre" → VRAI (basiques)</li>
+                                    <li>"F, Y, W ont un noyau benzénique" → FAUX (Trp = indole ≠ benzène)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Électrophorèse : migration selon pHi vs pH tampon</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q4</div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM demande de prédire le sens de migration de peptides en fonction de leur pHi et du pH du tampon d'électrophorèse.</div>
+                        </div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Appliquer la règle : comparer pHi et pH du tampon pour déterminer la charge et donc le sens de migration.</div>
+                        </div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Règle de migration :</strong></p>
+                                <ul>
+                                    <li>Si pH tampon > pHi → AA perd des H+ → charge NÉGATIVE → migre vers ANODE (+)</li>
+                                    <li>Si pH tampon < pHi → AA gagne des H+ → charge POSITIVE → migre vers CATHODE (-)</li>
+                                    <li>Si pH tampon = pHi → charge nulle → NE MIGRE PAS</li>
+                                </ul>
+                                <p><strong>Application au QCM :</strong> À pH=9 : peptide 1 (pHi=3) migre vers +, peptide 2 (pHi=5) migre vers +, peptide 3 (pHi=9) ne migre pas.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Modifications des chaînes latérales</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q5</div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste les modifications post-traductionnelles : ponts disulfures, phosphorylation, O-glycosylation, N-glycosylation.</div>
+                        </div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprendre les 4 types de modifications et leurs caractéristiques (AA concernés, localisation cellulaire, enzymes).</div>
+                        </div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">C'est un QCM de connaissance pure. Points clés : 2-mercaptoéthanol réduit les ponts S-S, iodoacétamide bloque les Cys. Phosphorylation sur Ser >> Tyr. O-glycosylation dans Golgi sur Ser/Thr. N-glycosylation dans RE sur Asn (séquence Asn-X-Ser/Thr).</div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Chromatographie échangeuse d'ions</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q4</div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Cet item teste la compréhension du principe de la chromatographie échangeuse d'ions.</div>
+                        </div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retenir la logique : la résine échange des ions de MÊME SIGNE que ceux qu'elle peut capter.</div>
+                        </div>
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Résine CATIONIQUE :</strong></p>
+                                <ul>
+                                    <li>Elle est chargée NÉGATIVEMENT (contre-ions = cations)</li>
+                                    <li>Elle CAPTE les CATIONS (AA chargés +)</li>
+                                    <li>Elle ÉCHANGE des CATIONS</li>
+                                </ul>
+                                <p>L'item "une résine cationique échange un AA chargé positivement" est donc VRAI.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Glycine : l'exception au carbone asymétrique</h4>
+                        <p>La glycine est le SEUL acide aminé sans carbone asymétrique car sa chaîne latérale est un simple hydrogène (R = H). Tous les autres AA ont au moins 1 C asymétrique. Isoleucine et thréonine en ont 2.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>pHi ≠ "non ionisé"</h4>
+                        <p>Le pHi est le pH où la CHARGE NETTE est nulle, mais l'AA reste IONISÉ sous forme zwitterion (NH3+ et COO-). Ne pas confondre avec "non ionisé" qui serait NH2 et COOH.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Tryptophane : noyau INDOLE, pas benzène</h4>
+                        <p>Phénylalanine et tyrosine ont un noyau benzénique (ou phényle). Le tryptophane a un noyau INDOLE qui est bicyclique. Si l'item dit "les 3 aromatiques ont un noyau benzénique", c'est FAUX.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Méthionine vs Cystéine : le soufre</h4>
+                        <p>Les deux contiennent du soufre MAIS : Cystéine a un groupement -SH (sulfhydrile) réactif qui forme les ponts disulfures. Méthionine a une liaison thioéther (-S-CH3) non réactive.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Acides vs Basiques : les charges à pH neutre</h4>
+                        <p>Basiques (Lys, Arg, His) = chaîne latérale chargée POSITIVEMENT à pH neutre. Acides (Asp, Glu) = chaîne latérale chargée NÉGATIVEMENT à pH neutre. Piège fréquent : inversion des charges.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Proline n'est PAS aromatique</h4>
+                        <p>La proline a un cycle mais ce n'est PAS un cycle aromatique. C'est un cycle pyrrolidine (saturé). Les aromatiques sont uniquement F, Y, W (3 AA, pas 4).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Résine cationique vs anionique</h4>
+                        <p>Résine CATIONIQUE = chargée - = capte les CATIONS (+). Résine ANIONIQUE = chargée + = capte les ANIONS (-). Le nom indique ce qu'elle ÉCHANGE, pas sa propre charge.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Cette fiche regroupe les chapitres FC1, FC2 et FC3. C'est un incontournable avec des thématiques récurrentes claires. Toutefois, le professeur mélange presque systématiquement les trois sous-chapitres dans un même QCM, ce qui justifie de les réviser ensemble — ou de les abandonner ensemble.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Apprenez les trois cours sans aucune impasse, puisque les questions peuvent tomber dans tous les sens.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les récurrences identifiées, mais vous devez travailler les trois cours.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Il est probablement très peu rentable de travailler les annales sur ce cours, qui ne rapportera statistiquement qu'un seul point. <strong>Récurrence MOYENNE (~35%) :</strong> quelques items reviennent régulièrement (C asymétrique sauf Gly, série L, pHi, basiques chargés +), mais la majorité des items varient d'une année à l'autre. Le Niveau 1 n'est pas conseillé sur ces chapitres. Essayez au moins d'atteindre le Niveau 2 car quelques thématiques sont récurrentes.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
