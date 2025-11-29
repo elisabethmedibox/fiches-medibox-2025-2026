@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC3 - Canaux ioniques (introduction) - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        /* Clé de raisonnement */
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 10px 0;
+            color: #166534;
+            font-size: 0.9rem;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0;
+            padding-left: 20px;
+            color: #166534;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .cle-raisonnement strong {
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC3 - Canaux ioniques : introduction et forces de déplacement</h1>
+            <div class="meta">
+                <span>📚 UE7 - Physiologie (Biophysique)</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- CONDUCTANCE GLOBALE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Conductance globale d'un cation (4 QCM - Question récurrente)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q6<br>2021-2022 Q9<br>2023-2024 Q6<br>2024-2025 Q6<br><em>🔄 Quasi-identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Un cation se déplace à travers la membrane d'une cellule par un canal. À propos de la conductance globale de ce cation :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Elle est indépendante du nombre de canaux / Elle dépend du nombre de canaux (selon années)</div>
+                                            <div class="qcm-item">B: Elle dépend de la conductance unitaire du canal / Elle est indépendante de la conductance unitaire (selon années)</div>
+                                            <div class="qcm-item">C: Elle est inversement proportionnelle à la probabilité d'ouverture / Elle est proportionnelle à la probabilité d'ouverture (selon années)</div>
+                                            <div class="qcm-item">D: Elle permet de ramener le potentiel de membrane à 0 volt / Elle permet de ramener le potentiel au potentiel d'équilibre (selon années)</div>
+                                            <div class="qcm-item">E: L'entrée d'un cation dans la cellule correspond à un courant négatif / positif (selon années)</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- LOI DE FICK -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Loi de Fick - Diffusion (1 QCM unique)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">On s'intéresse à un phénomène de diffusion du NaCl à travers une membrane semi-perméable. Deux cuves U1 et U2 de section S = 1 m² sont séparées par une membrane d'épaisseur e = 1 mm. C1 = 150 mmol/L, C2 = 10 mmol/L, D = 10⁻¹⁰ m²/s.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le NaCl se déplace de la cuve U1 vers la cuve U2</div>
+                                            <div class="qcm-item">B: Le débit de diffusion du NaCl à travers la membrane est égal à 0,4.10⁻⁴ mmol/s</div>
+                                            <div class="qcm-item">C: Le débit de diffusion du NaCl à travers la membrane est égal à 0,014 mmol/s</div>
+                                            <div class="qcm-item">D: La quantité de NaCl qui a traversé la membrane au bout de 1 minute est d'environ 140 mmol</div>
+                                            <div class="qcm-item">E: La concentration finale de NaCl dans U2 est égale à la concentration initiale de NaCl dans U1</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>⚠️ Tombe 4 ans sur 5 (0-2 QCM/an)</td>
+                                <td>💡 Items récurrents</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>5 QCM</strong> sur ce chapitre (moyenne 1/an). Ces QCM se regroupent en <strong>2 thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Conductance globale d'un cation</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q6</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q9</span></td>
+                                    <td class="empty-cell">—</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q6</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q6</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Loi de Fick (Diffusion)</td>
+                                    <td class="qcm-cell">Q5</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique ou quasi-identique (même énoncé, mêmes items avec variations mineures) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>La conductance globale d'un canal ionique</h4>
+                        <p>Maîtriser la formule G = N × γ × Po (nombre de canaux × conductance unitaire × probabilité d'ouverture). Comprendre que la conductance ramène le potentiel au potentiel d'équilibre de l'ion (pas à 0 V).</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La convention de signe du courant ionique</h4>
+                        <p>Retenir que par convention, l'entrée d'un cation (charge +) dans la cellule correspond à un courant POSITIF (courant entrant). C'est un piège récurrent qui change de formulation selon les années.</p>
+                        <div style="margin-top: 10px; padding: 10px; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-left: 3px solid #ef4444; border-radius: 0 6px 6px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #991b1b;"><strong>⚠️ Attention :</strong> L'ancien professeur avait écrit l'inverse dans son cours (entrée = courant négatif). Les corrections d'annales 2020-2024 peuvent donc indiquer le contraire. La nouvelle professeure a corrigé cette erreur dans son ED en 2024-2025. En cas de contradiction cours/ED, c'est l'ED qui fait foi. Cette question a probablement été annulée en 2024-2025 et pourrait ne plus être posée à l'avenir.</p>
+                        </div>
+                        <span class="frequence">Tombé 4 fois en 5 ans (item piège)</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La loi de Fick (diffusion)</h4>
+                        <p>Connaître la formule du débit de diffusion : Débit = D × S × (C1 - C2) / e. Attention à bien convertir les unités (mm en m). Comprendre que la diffusion va du plus concentré vers le moins concentré.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- QCM 1 : Conductance globale -->
+                    <div class="qcm-analyse">
+                        <h4>Conductance globale d'un cation</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q6 | <strong>2021-2022</strong> Q9 | <strong>2023-2024</strong> Q6 | <strong>2024-2025</strong> Q6</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM tombe presque chaque année (4/5 ans) avec une structure STRICTEMENT IDENTIQUE. Les 5 mêmes notions sont testées, seule la formulation vrai/faux est inversée selon les années. C'est l'une des questions les plus prévisibles de l'UE7.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les 5 notions par cœur avec leur réponse VRAIE. Le jour de l'examen, vérifie simplement si la formulation correspond à la version vraie ou à son inverse (fausse).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Les 5 vérités à connaître sur la conductance globale G :</strong></p>
+                                <ul>
+                                    <li><strong>G DÉPEND du nombre de canaux (N)</strong> → "indépendante du nombre" = FAUX</li>
+                                    <li><strong>G DÉPEND de la conductance unitaire (γ)</strong> → "indépendante de la conductance unitaire" = FAUX</li>
+                                    <li><strong>G est PROPORTIONNELLE à la probabilité d'ouverture (Po)</strong> → "inversement proportionnelle" = FAUX</li>
+                                    <li><strong>G ramène au POTENTIEL D'ÉQUILIBRE</strong> → "ramène à 0 volt" = FAUX</li>
+                                    <li><strong>Entrée d'un cation = courant POSITIF</strong> → "courant négatif" = FAUX</li>
+                                </ul>
+                                <p><strong>Formule à retenir :</strong> G = N × γ × Po</p>
+                            </div>
+                            <div style="margin-top: 10px; padding: 10px; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-left: 3px solid #ef4444; border-radius: 0 6px 6px 0;">
+                                <p style="margin: 0; font-size: 0.85rem; color: #991b1b;"><strong>⚠️ Attention sur l'item E (convention de signe) :</strong> L'ancien professeur avait écrit l'inverse dans son cours. Les corrections d'annales 2020-2024 peuvent indiquer "entrée = courant négatif". La nouvelle professeure a corrigé cette erreur dans son ED 2024-2025. En cas de contradiction cours/ED, c'est l'ED qui fait foi. Soyez attentifs aux prochains ED.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Loi de Fick -->
+                    <div class="qcm-analyse">
+                        <h4>Loi de Fick - Diffusion (QCM de calcul)</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q5</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM n'est tombé qu'une seule fois en 5 ans. C'est un QCM de calcul qui teste la loi de Fick. Moins prioritaire que la conductance globale, mais à connaître pour le Niveau 2.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Comprends le principe de la diffusion (du plus concentré vers le moins concentré) et la formule de Fick. Attention aux conversions d'unités (mm → m).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Ce que tu dois comprendre SANS ouvrir le cours :</strong></p>
+                                <p>La diffusion, c'est simple : une substance va <strong>toujours</strong> du compartiment où elle est <strong>la plus concentrée</strong> vers celui où elle est <strong>la moins concentrée</strong>. C'est comme un parfum qui se répand dans une pièce.</p>
+                                
+                                <p style="margin-top: 15px;"><strong>🔹 Item A : "Le NaCl se déplace de U1 vers U2"</strong></p>
+                                <p>Regarde les concentrations : C1 = 150 mmol/L (beaucoup) et C2 = 10 mmol/L (peu).<br>
+                                → Le NaCl va du plus concentré vers le moins concentré = de U1 vers U2. ✅ <strong>VRAI</strong></p>
+                                
+                                <p style="margin-top: 15px;"><strong>🔹 Items B et C : Calcul du débit</strong></p>
+                                <p>Formule de Fick : <strong>Débit = D × S × (C1 - C2) / e</strong></p>
+                                <ul>
+                                    <li>D = 10⁻¹⁰ m²/s</li>
+                                    <li>S = 1 m²</li>
+                                    <li>C1 - C2 = 150 - 10 = <strong>140 mmol/L</strong></li>
+                                    <li>e = 1 mm = <strong>10⁻³ m</strong> ⚠️ (piège : convertir en mètres !)</li>
+                                </ul>
+                                <p>Débit = 10⁻¹⁰ × 1 × 140 / 10⁻³ = 140 × 10⁻⁷ = <strong>0,014 mmol/s</strong></p>
+                                <p>→ Item B (0,4.10⁻⁴ mmol/s) : ❌ FAUX | Item C (0,014 mmol/s) : ✅ <strong>VRAI</strong></p>
+                                
+                                <p style="margin-top: 15px;"><strong>🔹 Item D : "Quantité traversée en 1 min ≈ 140 mmol"</strong></p>
+                                <p>Quantité = Débit × Temps = 0,014 × 60 = <strong>0,84 mmol</strong> (très loin de 140 !)</p>
+                                <p><em>Piège : 140 c'est la différence de concentration (C1-C2), pas la quantité.</em> ❌ <strong>FAUX</strong></p>
+                                
+                                <p style="margin-top: 15px;"><strong>🔹 Item E : "Concentration finale U2 = concentration initiale U1"</strong></p>
+                                <p>À l'équilibre, les deux cuves auront la <strong>même concentration finale</strong>, mais ce sera une <strong>moyenne</strong> : (150 + 10) / 2 = 80 mmol/L, pas 150 ! ❌ <strong>FAUX</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur "inversement proportionnelle"</h4>
+                        <p>La conductance globale est PROPORTIONNELLE à la probabilité d'ouverture (Po), pas inversement proportionnelle. Ce piège revient dans 3 des 4 QCM sur la conductance (2020-2021, 2023-2024, 2024-2025).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur le potentiel "à 0 volt"</h4>
+                        <p>La conductance permet de ramener le potentiel de membrane au POTENTIEL D'ÉQUILIBRE de l'ion (variable selon l'ion), PAS à 0 volt. Seule l'année 2021-2022 propose la bonne formulation.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur le signe du courant</h4>
+                        <p>Par convention, l'entrée d'un CATION (charge +) dans la cellule = courant POSITIF (entrant). L'item change de formulation chaque année (positif/négatif) : vérifie bien ce qui est écrit !</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur la conversion mm → m (Loi de Fick)</h4>
+                        <p>Dans le QCM sur la diffusion, l'épaisseur est donnée en mm (1 mm). Il faut la convertir en mètres (10⁻³ m) avant d'appliquer la formule. Oublier cette conversion donne un résultat faux.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion ΔC vs Quantité (Loi de Fick)</h4>
+                        <p>La différence de concentration (C1 - C2 = 140 mmol/L) n'est PAS la quantité qui traverse la membrane. L'item D est un piège qui joue sur cette confusion. La quantité réelle est 0,84 mmol en 1 minute.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Récurrence : TRÈS FORTE (100%). Ce chapitre présente un paradoxe intéressant : bien qu'il ne tombe pas systématiquement chaque année (absent en 2022-2023), quand il tombe, c'est TOUJOURS la même question sur la conductance globale avec les 5 mêmes items formulés de manière identique ou inversée.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Lisez le cours entier pour comprendre la physique des canaux ioniques. Les notions de FC3 sont fondamentales pour comprendre FC4 (transporteurs et pompes) et FC5 (potentiel d'action). La loi de Fick peut aussi apparaître dans d'autres contextes (échanges gazeux).</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur la formule de la conductance globale (G = N × γ × Po) et la convention de signe des courants ioniques. La loi de Fick est secondaire (1 seule apparition en 5 ans).</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        C'est un chapitre TRÈS RENTABLE. Apprenez UN SEUL QCM type (conductance globale) avec ses 5 vérités. Le jour J, vous n'aurez qu'à vérifier si les items sont formulés en version "vraie" ou "inversée (fausse)". La loi de Fick (2020-2021 Q5) est moins prioritaire mais reste un calcul accessible si vous maîtrisez la formule et les conversions d'unités.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
