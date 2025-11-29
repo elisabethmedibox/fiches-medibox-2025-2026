@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC4 - Les Peptides - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC4 - Les Peptides</h1>
+            <div class="meta">
+                <span>📚 UE5 - Biochimie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- INSULINE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Insuline (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'insuline:</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: C'est un peptide à 2 chaines d'acides aminés, A et B, de respectivement 21 et 30 résidus.</div>
+                                            <div class="qcm-item">B: Sa structure comprend 6 cystéines, toutes liées par des ponts disulfures.</div>
+                                            <div class="qcm-item">C: Elles est sécrétée sous forme d'une pré-pro-insuline d'une seule chaîne peptidique de 110 résidus.</div>
+                                            <div class="qcm-item">D: Elle est sécrétée par le pancréas dès que la glycémie dépasse 6.10^-3 M.</div>
+                                            <div class="qcm-item">E: Son effet hyperglycémiant favorise le retour de la glycémie à la valeur basale.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q7 <span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items B,C,D</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur des peptides biologiquement actifs :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: ACE2 transforme l'angiotensine II en angiotensine 1-7 qui a une activité vasodilatatrice.</div>
+                                            <div class="qcm-item" style="background: #fef3c7; padding: 4px 8px; border-radius: 4px;"><strong>B: L'insuline possède 3 chaines d'acides aminés.</strong></div>
+                                            <div class="qcm-item" style="background: #fef3c7; padding: 4px 8px; border-radius: 4px;"><strong>C: L'insuline a un effet hyperglycemiant.</strong></div>
+                                            <div class="qcm-item" style="background: #fef3c7; padding: 4px 8px; border-radius: 4px;"><strong>D: L'insuline est sécrétée par le pancréas dès que la glycémie dépasse 6.10^-3 M.</strong></div>
+                                            <div class="qcm-item">E: L'ocytocyne est un neuropeptide qui agit sur les muscles lisses de l'utérus.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- OCYTOCINE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Ocytocine (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2023-2024<br>Q7 <span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">item E</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur des peptides biologiquement actifs :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: ACE2 transforme l'angiotensine II en angiotensine 1-7 qui a une activité vasodilatatrice.</div>
+                                            <div class="qcm-item">B: L'insuline possède 3 chaines d'acides aminés.</div>
+                                            <div class="qcm-item">C: L'insuline a un effet hyperglycemiant.</div>
+                                            <div class="qcm-item">D: L'insuline est sécrétée par le pancréas dès que la glycémie dépasse 6.10^-3 M.</div>
+                                            <div class="qcm-item" style="background: #fef3c7; padding: 4px 8px; border-radius: 4px;"><strong>E: L'ocytocyne est un neuropeptide qui agit sur les muscles lisses de l'utérus.</strong></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'ocytocine.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : C'est un neuropeptide.</div>
+                                            <div class="qcm-item">B : Elle comporte 9 résidus.</div>
+                                            <div class="qcm-item">C : L'ocytocine est très sensible aux peptidases.</div>
+                                            <div class="qcm-item">D : L'ocytocine est excrétée par l'hypothalamus.</div>
+                                            <div class="qcm-item">E : L'ocytocine agit principalement sur les muscles lisses de l'uterus et les glandes mammaires</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ANGIOTENSINE II -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Angiotensine II (2 items)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q4 <span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">item E</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos de l'angiotensine II : (ASP-ARG-VAL-TYR-ILE-HIS-PRO-PHE)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Il contient 2 acides aminés aromatiques.</div>
+                                            <div class="qcm-item">B: Il comprend 8 carbones asymétriques.</div>
+                                            <div class="qcm-item">C: Les chaînes latérales basiques sont en excès par rapport aux chaînes latérales acides.</div>
+                                            <div class="qcm-item">D: Les chaînes latérales acides sont en excès par rapport aux chaînes latérales basiques.</div>
+                                            <div class="qcm-item" style="background: #fef3c7; padding: 4px 8px; border-radius: 4px;"><strong>E: Ce peptide est impliqué dans le maintien de la tension artérielle.</strong></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q7 <span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">item A</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur des peptides biologiquement actifs :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item" style="background: #fef3c7; padding: 4px 8px; border-radius: 4px;"><strong>A: ACE2 transforme l'angiotensine II en angiotensine 1-7 qui a une activité vasodilatatrice.</strong></div>
+                                            <div class="qcm-item">B: L'insuline possède 3 chaines d'acides aminés.</div>
+                                            <div class="qcm-item">C: L'insuline a un effet hyperglycemiant.</div>
+                                            <div class="qcm-item">D: L'insuline est sécrétée par le pancréas dès que la glycémie dépasse 6.10^-3 M.</div>
+                                            <div class="qcm-item">E: L'ocytocyne est un neuropeptide qui agit sur les muscles lisses de l'utérus.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- GLUTATHION -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Glutathion (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q10</td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos du glutathion :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: C'est un pseudo tripeptide formé par la condensation d'acide glutamique, de cystéine et de glycine.</div>
+                                            <div class="qcm-item">B: Dans ce peptide le groupement NH2 de la cystéine est condensé avec la fonction carboxyle en γ de l'acide glutamique.</div>
+                                            <div class="qcm-item">C: Il peut passer d'un état réduit à un état oxydé en détruisant les peroxydes, grâce à la glutathion peroxydase.</div>
+                                            <div class="qcm-item">D: Il intervient dans le maintien de l'équilibre acido-basique du cytoplasme de la cellule.</div>
+                                            <div class="qcm-item">E: Intervient dans un certain nombre de réactions de détoxication et d'élimination d'espèces réactives de l'oxygène.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- PROPRIÉTÉS DES PEPTIDES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Propriétés des peptides (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les peptides : (Soit le peptide NH₂-Ala-Leu-Ser-Pro-Leu-Ile-Gly-COOH)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Six liaisons peptidiques sont mises en jeu dans la structure de ce peptide.</div>
+                                            <div class="qcm-item">B: À son point isoélectrique la charge globale nette de ce peptide est nulle.</div>
+                                            <div class="qcm-item">C: En solution basique (pH > 12) la charge globale nette de ce peptide est +1.</div>
+                                            <div class="qcm-item">D: En solution acide (pH < 2) la charge globale nette de ce peptide est +1.</div>
+                                            <div class="qcm-item">E: Le peptide peut être hydrolysé par la trypsine.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>🔵 Revient souvent (&gt;3x sur 5 ans)</td>
+                                <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                                <td>🔗 Cours appartenant à une suite logique</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>5 QCM + 1 item isolé</strong> sur ce chapitre (moyenne ~1/an). Ces QCM se regroupent en <strong>5 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Insuline</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q7</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Ocytocine</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q7</td>
+                                    <td class="qcm-cell">Q7</td>
+                                </tr>
+                                <tr>
+                                    <td>Angiotensine II</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="qcm-cell">Q7</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Glutathion</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q10</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Propriétés des peptides</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q5</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>L'insuline : structure et fonction</h4>
+                        <p>Connaître la structure (2 chaînes A et B, 21 et 30 résidus, 6 cystéines, ponts disulfures), la sécrétion (pré-pro-insuline de 110 résidus, seuil glycémique 6.10⁻³ M) et l'effet hypoglycémiant.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'ocytocine : caractéristiques</h4>
+                        <p>Savoir que c'est un neuropeptide de 9 résidus, sécrété par l'hypothalamus, excrété par l'hypophyse postérieure, agissant sur les muscles lisses de l'utérus et les glandes mammaires. Attention : la fonction carboxyle terminale bloquée par une fonction amide entraîne une résistance aux peptidases.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'angiotensine II : rôle et enzymes de conversion</h4>
+                        <p>Retenir le rôle dans le maintien de la tension artérielle et que ACE2 transforme l'angiotensine II en angiotensine 1-7 (activité vasodilatatrice).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le glutathion : structure et fonctions</h4>
+                        <p>Pseudo-tripeptide (Glu-Cys-Gly) avec liaison γ, existe sous forme réduite (G-SH) et oxydée (G-S-S-G), rôle dans le maintien du potentiel rédox, détoxication et élimination des espèces réactives de l'oxygène.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les propriétés des peptides</h4>
+                        <p>Savoir compter les liaisons peptidiques (n-1 pour n AA), comprendre le pHi et l'hydrolyse par la trypsine (coupe après Arg et Lys).</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM 1 : Insuline -->
+                    <div class="qcm-analyse">
+                        <h4>Insuline</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q4 | <strong>2023-2024</strong> Q7 (items B,C,D)</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Les mêmes notions reviennent : nombre de chaînes (2 et non 3), effet hypoglycémiant (et non hyperglycémiant), seuil de sécrétion (6.10⁻³ M). Le piège "hyperglycémiant" est apparu 2 fois.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends par cœur : 2 chaînes (A=21, B=30), 6 cystéines en ponts disulfures, pré-pro-insuline 110 résidus, seuil 6 mM, effet HYPOglycémiant.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>L'insuline fait BAISSER la glycémie</strong> (hypo = en dessous). C'est l'hormone du "stockage" après les repas. Le glucagon fait l'inverse.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Ocytocine -->
+                    <div class="qcm-analyse">
+                        <h4>Ocytocine</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q7 (item E) | <strong>2024-2025</strong> Q7</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">L'ocytocine est tombée 2 années consécutives. Les items testent : neuropeptide, 9 résidus, sécrétion (hypothalamus/hypophyse), cibles (utérus, glandes mammaires), sensibilité aux peptidases.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les 5 caractéristiques : neuropeptide, 9 résidus, sécrétée par hypothalamus, excrétée par hypophyse postérieure, agit sur utérus + glandes mammaires. Attention au piège sur les peptidases.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>L'ocytocine est RÉSISTANTE aux peptidases</strong> car sa fonction carboxyle terminale est bloquée par une fonction amide. L'item "très sensible aux peptidases" est donc FAUX.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Angiotensine II -->
+                    <div class="qcm-analyse">
+                        <h4>Angiotensine II</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q4 (item E) | <strong>2023-2024</strong> Q7 (item A)</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Seuls 2 items FC4 sont tombés : le rôle dans la tension artérielle et la transformation par ACE2 en angiotensine 1-7 vasodilatatrice.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens : angiotensine II = maintien de la pression artérielle (vasoconstriction). ACE2 la transforme en angiotensine 1-7 qui a l'effet inverse (vasodilatation).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Apprends les items déjà tombés.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Glutathion -->
+                    <div class="qcm-analyse">
+                        <h4>Glutathion</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q10</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la structure (pseudo-tripeptide, liaison γ), le couple rédox et les fonctions (détoxication, ERO). Attention au piège : il intervient dans le potentiel RÉDOX, pas l'équilibre acido-basique.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends : Glu-Cys-Gly avec liaison γ (pseudo-peptidique), forme réduite G-SH / oxydée G-S-S-G, rôle dans le potentiel rédox et la détoxication.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Le glutathion = potentiel RÉDOX</strong> (échange d'électrons), pas équilibre acido-basique (échange de protons H⁺). Ce sont deux notions différentes.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 5 : Propriétés des peptides -->
+                    <div class="qcm-analyse">
+                        <h4>Propriétés des peptides</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q5</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste le comptage des liaisons peptidiques, le pHi et l'hydrolyse enzymatique. Le peptide donné (7 AA) n'a pas de Lys ni Arg donc ne peut PAS être hydrolysé par la trypsine.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens : nombre de liaisons peptidiques = n-1 (pour n AA). La trypsine coupe après Arg (R) et Lys (K). Vérifie toujours si ces AA sont présents dans le peptide.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Pour l'hydrolyse par la trypsine :</strong> cherche R (Arg) ou K (Lys) dans la séquence. S'il n'y en a pas, le peptide ne peut PAS être hydrolysé par la trypsine.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion hypoglycémiant / hyperglycémiant</h4>
+                        <p>L'insuline a un effet HYPOglycémiant (elle fait BAISSER la glycémie). Le piège "hyperglycémiant" est apparu 2 fois dans les annales. Ne te fais pas avoir !</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Nombre de chaînes de l'insuline</h4>
+                        <p>L'insuline a 2 chaînes (A et B), pas 3. La pré-pro-insuline est une seule chaîne de 110 résidus qui est ensuite clivée.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Ocytocine et peptidases</h4>
+                        <p>L'ocytocine est RÉSISTANTE aux peptidases (pas sensible) car sa fonction carboxyle terminale est bloquée par une fonction amide.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Sécrétion vs excrétion de l'ocytocine</h4>
+                        <p>L'ocytocine est SÉCRÉTÉE par l'hypothalamus et EXCRÉTÉE par l'hypophyse postérieure. Attention à ne pas confondre les deux termes et les deux structures.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Glutathion : potentiel rédox ≠ équilibre acido-basique</h4>
+                        <p>Le glutathion intervient dans le maintien du potentiel RÉDOX (échange d'électrons), pas dans l'équilibre acido-basique (échange de protons). Ce piège est tombé en 2022-2023.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Hydrolyse par la trypsine</h4>
+                        <p>La trypsine coupe UNIQUEMENT après Arginine (R) ou Lysine (K). Si le peptide n'en contient pas, il ne peut pas être hydrolysé par la trypsine.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Sur ce chapitre, le prof cible quasi exclusivement la section 7 (peptides biologiquement actifs). Les parties sur les méthodes de séquençage (Sanger, Edman), le clivage enzymatique détaillé et la nomenclature ne sont jamais tombées en 5 ans. C'est un chapitre où le ciblage est très rentable.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Apprenez tout le cours et soyez incollable sur les quatre peptides biologiquement actifs (insuline, ocytocine, angiotensine II, glutathion). Les méthodes de séquençage (Sanger, Edman) n'ont jamais été testées mais restent à connaître pour une maîtrise complète.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Excellente stratégie pour ce chapitre ! Ciblez les 4 peptides actifs et les propriétés de base (liaisons peptidiques, pHi, hydrolyse trypsine). Vous couvrirez ainsi plus de 90% de ce qui peut tomber. Les méthodes de séquençage peuvent être survolées rapidement sur les diapos.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        <strong>Récurrence MOYENNE (~50%) :</strong> certains items reviennent (effet hypo/hyper, seuil glycémique, neuropeptide, utérus) mais le prof en ajoute de nouveaux à chaque session. Stratégie possible mais avec un risque de tomber sur des items inédits. Apprenez par cœur les caractéristiques des 4 peptides et les pièges classiques, mais soyez conscients que vous ne serez pas couverts à 100%.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
