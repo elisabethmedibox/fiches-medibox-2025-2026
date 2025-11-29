@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC4 - Canaux, transporteurs et pompes - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .main-accordion summary {
+                padding: 15px 18px;
+                font-size: 1rem;
+            }
+            
+            .accordion-content {
+                padding: 15px;
+            }
+            
+            .qcm-thematique h4 {
+                font-size: 0.9rem;
+                padding: 10px 12px;
+            }
+            
+            .qcm-table {
+                font-size: 0.75rem;
+            }
+            
+            .qcm-table th:first-child {
+                width: 90px;
+                min-width: 90px;
+            }
+            
+            .qcm-table td {
+                padding: 8px;
+            }
+            
+            .qcm-table td:first-child {
+                font-size: 0.7rem;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC4 - Canaux, transporteurs et pompes</h1>
+            <div class="meta">
+                <span>📚 UE7 - Physiologie (Biophysique)</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- CANAL K+ VOLTAGE DÉPENDANT -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Canal potassium K+ voltage dépendant (5 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q7<br>2021-2022 Q10<br>2023-2024 Q7<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos du canal potassium K+ voltage dépendant. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Seul l'état ouvert permet le passage des ions selon leur gradient électrochimique.</div>
+                                            <div class="qcm-item">B: Peut être sous 3 états : fermé, ouvert, réfractaire absolu.</div>
+                                            <div class="qcm-item">C: Est une structure pentamérique par assemblage de 5 sous unités.</div>
+                                            <div class="qcm-item">D: Sa sélectivité à l'ion potassium est absolue.</div>
+                                            <div class="qcm-item">E: Le passage de l'ion K+ dans le filtre de sélectivité fait intervenir des phénomènes d'hydratation et de liaison du K+ à des molécules d'oxygène.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q9</td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos du canal potassique K+ voltage dépendant. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Est une structure composée de 10 segments transmembranaires.</div>
+                                            <div class="qcm-item">B: Est uniquement sous 2 états différents : fermé ou ouvert.</div>
+                                            <div class="qcm-item">C: Les segments transmembranaires 5 et 6 s'organisent en tétramère pour former le pore.</div>
+                                            <div class="qcm-item">D: Le segment transmembranaire 4 a un rôle de senseur (capteur) de potentiel.</div>
+                                            <div class="qcm-item">E: Le passage de l'ion K+ dans le filtre de sélectivité fait intervenir des phénomènes d'hydratation et de liaison du K+ à des molécules d'oxygène.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos du canal potassique voltage dépendant. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Seul l'état ouvert permet le passage des ions selon leur gradient électrochimique.</div>
+                                            <div class="qcm-item">B: Peut être sous plusieurs états.</div>
+                                            <div class="qcm-item">C: Est une structure pentamérique par assemblage de 5 sous unités.</div>
+                                            <div class="qcm-item">D: Sa sélectivité à l'ion potassium est absolue.</div>
+                                            <div class="qcm-item">E: Le passage de l'ion K+ dans le filtre de sélectivité fait intervenir des phénomènes d'hydratation et de liaison du K+ à des molécules d'oxygène.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- POMPE NA+K+ ATPASE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Pompe Na+K+ ATPase (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q10</td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos de la pompe Na+K+ ATPase. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Assure un transport passif d'ions.</div>
+                                            <div class="qcm-item">B: Synthétise de l'ATP comme source d'énergie pour la cellule.</div>
+                                            <div class="qcm-item">C: Expulse l'ion potassium K+ à l'extérieur de la cellule.</div>
+                                            <div class="qcm-item">D: Permet de faire entrer 2 ions K+ dans la cellule et de faire sortir 3 ions Na+ de la cellule.</div>
+                                            <div class="qcm-item">E: Permet de créer une différence de potentiel de part et d'autre de la membrane cellulaire.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année (1 à 2 QCM/an)</td>
+                                <td>💡 QCM sur partie ciblée - avec récurrence des items (71%)</td>
+                                <td>🔗 Suite logique de FC3</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>6 QCM</strong> sur ce chapitre (moyenne 1,2/an). Ces QCM se regroupent en <strong>2 thématiques</strong>, dont une ultra-dominante :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Canal K+ voltage dépendant</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q7</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q10</span></td>
+                                    <td class="qcm-cell">Q9</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q7</span></td>
+                                    <td class="qcm-cell">Q7</td>
+                                </tr>
+                                <tr>
+                                    <td>Pompe Na+K+ ATPase</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q10</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique ou quasi-identique (même énoncé, mêmes items) d'une année sur l'autre. Ici, le QCM canal K+ est identique en 2020-21, 2021-22 et 2023-24.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>Le canal K+ voltage dépendant (structure et fonctionnement)</h4>
+                        <p>Ce QCM tombe CHAQUE année avec les mêmes items. Apprendre par cœur : structure TÉTRAMÈRE (4 sous-unités, pas 5), 6 segments transmembranaires par sous-unité, pore formé par segments 5-6, segment S4 = senseur de potentiel. Sélectivité très importante mais PAS absolue (ratio 1000:1 K+/Na+). Mécanisme du filtre : K+ perd son eau d'hydratation et fixe 4 molécules d'O2. Voir diapos 48-52.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans (100%)</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La pompe Na+K+ ATPase</h4>
+                        <p>Tombée une seule fois (2022-2023) mais à surveiller. Connaître : transport ACTIF (consomme ATP, ne le synthétise pas), fait SORTIR 3 Na+ et ENTRER 2 K+ (pas l'inverse !), consomme 1/3 de l'énergie cellulaire, crée la différence de potentiel transmembranaire. Voir diapo 66.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans (20%)</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les 3 états du canal voltage-dépendant</h4>
+                        <p>Concept transversal important : état FERMÉ (repos), état OUVERT (activé), état INACTIVÉ (réfractaire). Attention aux pièges : "réfractaire absolu" n'est pas un état du canal, et il existe bien 3 états, pas 2. Voir diapos sur le modèle double porte.</p>
+                        <span class="frequence">Notion testée dans 5/5 QCM canal K+</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- QCM 1 : Canal K+ voltage dépendant -->
+                    <div class="qcm-analyse">
+                        <h4>Canal potassium K+ voltage dépendant</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q7 | <strong>2021-2022</strong> Q10 | <strong>2022-2023</strong> Q9 | <strong>2023-2024</strong> Q7 | <strong>2024-2025</strong> Q7</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM tombe CHAQUE année avec une récurrence des items de 71%. En 2020-21, 2021-22 et 2023-24, le QCM est strictement IDENTIQUE. En 2022-23 et 2024-25, les items sont légèrement reformulés mais testent exactement les mêmes connaissances.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les 5 connaissances clés ci-dessous, puis vérifie si chaque proposition du QCM correspond ou non à ces vérités.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Connaissances à maîtriser :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>✅ Ce qu'il faut retenir sur le canal K+ voltage dépendant :</strong></p>
+                                <ul>
+                                    <li><strong>Structure :</strong> Le canal K+ est une structure <strong>TÉTRAMÈRE</strong> = assemblage de <strong>4 sous-unités</strong> (protéines). Chaque sous-unité possède 6 segments transmembranaires.</li>
+                                    <li><strong>Formation du pore :</strong> Le pore central est formé par les <strong>segments 5 et 6</strong> de chaque sous-unité. Le <strong>segment S4</strong> joue le rôle de senseur (capteur) de potentiel.</li>
+                                    <li><strong>Les 3 états :</strong> Le canal existe sous <strong>3 états</strong> : fermé (repos), ouvert (activé), <strong>inactivé</strong>. Seul l'état ouvert permet le passage des ions.</li>
+                                    <li><strong>Sélectivité :</strong> La sélectivité pour le K+ est <strong>très importante</strong> (ratio 1000:1 par rapport au Na+) mais <strong>pas absolue</strong>.</li>
+                                    <li><strong>Mécanisme du filtre :</strong> Dans le filtre de sélectivité, l'ion K+ <strong>perd son eau d'hydratation</strong> et se <strong>lie à 4 molécules d'oxygène</strong> (séquence TVGYG).</li>
+                                </ul>
+                                <p style="margin-top: 15px;"><strong>🎯 Pièges fréquents à identifier :</strong></p>
+                                <ul>
+                                    <li>"Pentamère" ou "5 sous-unités" → c'est 4 (tétramère)</li>
+                                    <li>"Réfractaire absolu" comme nom d'état → c'est "inactivé"</li>
+                                    <li>"Sélectivité absolue" → c'est très importante mais pas absolue</li>
+                                    <li>"10 segments transmembranaires" → c'est 6 par sous-unité (24 au total)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Pompe Na+K+ ATPase -->
+                    <div class="qcm-analyse">
+                        <h4>Pompe Na+K+ ATPase</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q10</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM n'est tombé qu'une seule fois (2022-2023). Cependant, c'est une notion fondamentale du cours qui pourrait être retestée.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les caractéristiques vraies de la pompe Na+K+ ATPase, puis vérifie si chaque proposition correspond.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Connaissances à maîtriser :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>✅ Ce qu'il faut retenir sur la pompe Na+K+ ATPase :</strong></p>
+                                <ul>
+                                    <li><strong>Type de transport :</strong> C'est un transport <strong>ACTIF</strong> (contre le gradient de concentration).</li>
+                                    <li><strong>Énergie :</strong> La pompe <strong>CONSOMME de l'ATP</strong> (elle ne le synthétise pas). Elle utilise environ 1/3 de l'énergie cellulaire.</li>
+                                    <li><strong>Sens du transport :</strong> Elle fait <strong>SORTIR 3 ions Na+</strong> de la cellule et <strong>ENTRER 2 ions K+</strong> dans la cellule.</li>
+                                    <li><strong>Effet électrogène :</strong> Comme 3 charges + sortent et seulement 2 charges + entrent, elle <strong>crée une différence de potentiel</strong> de part et d'autre de la membrane (contribue au potentiel de repos).</li>
+                                    <li><strong>Rôle :</strong> Elle maintient les différences de concentration ionique : [Na+] élevée en extracellulaire (150 mM), [K+] élevée en intracellulaire (150 mM).</li>
+                                </ul>
+                                <p style="margin-top: 15px;"><strong>🎯 Pièges fréquents à identifier :</strong></p>
+                                <ul>
+                                    <li>"Transport passif" → c'est actif (consomme ATP)</li>
+                                    <li>"Synthétise l'ATP" → elle le consomme</li>
+                                    <li>"Expulse le K+" → elle expulse le Na+ (fait entrer le K+)</li>
+                                    <li>Inversion des chiffres (2 Na+ / 3 K+) → c'est 3 Na+ sortent, 2 K+ entrent</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur la structure du canal K+ : tétramère ≠ pentamère</h4>
+                        <p>Le canal K+ voltage dépendant est formé par l'assemblage de <strong>4 sous-unités</strong> (structure TÉTRAMÈRE), pas 5 (pentamère). Ce piège revient chaque année dans l'item C. Chaque sous-unité possède 6 segments transmembranaires.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur la sélectivité du canal K+</h4>
+                        <p>La sélectivité du canal K+ pour le potassium est <strong>très importante</strong> (ratio 1000:1 K+/Na+) mais <strong>PAS absolue</strong>. L'item "sélectivité absolue" est toujours FAUX.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur les 3 états du canal</h4>
+                        <p>Le canal voltage-dépendant possède 3 états : <strong>fermé, ouvert, inactivé</strong>. Le terme "réfractaire absolu" n'est PAS un état du canal (c'est une période de la cellule). L'item "3 états : fermé, ouvert, réfractaire absolu" est donc FAUX à cause du mauvais terme.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur le sens de la pompe Na+K+ ATPase</h4>
+                        <p>La pompe fait <strong>SORTIR 3 Na+</strong> et <strong>ENTRER 2 K+</strong>. Le piège consiste à inverser les ions (dire qu'elle expulse le K+). Retenir : Sodium = Sort (même initiale S).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion transport actif/passif</h4>
+                        <p>La pompe Na+K+ ATPase est un transport <strong>ACTIF</strong> qui <strong>consomme</strong> de l'ATP. Elle ne synthétise pas d'ATP. Les canaux ioniques, eux, permettent un transport passif selon le gradient.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre est l'un des plus prévisibles de l'UE7. Le QCM sur le canal K+ voltage dépendant est quasi-identique chaque année, avec une récurrence des items de 71%. C'est une garantie de points si vous maîtrisez les 5 pièges récurrents.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Lisez les parties du cours sur les différents types de canaux (Na+, K+, Ca2+), les transporteurs (uniport, symport, antiport) et les différentes pompes (PMCA, SERCA). Ces notions n'ont jamais été testées mais constituent le socle théorique.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les diapos 48-52 (canal K+ voltage dépendant) et la diapo 66 (pompe Na+K+ ATPase). Ce sont les seules parties testées en 5 ans. Comprenez bien le mécanisme du filtre de sélectivité et le fonctionnement de la pompe.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Récurrence <strong>FORTE (71%)</strong>. Le QCM canal K+ est quasiment identique chaque année. Apprenez par cœur les 5 pièges : tétramère (pas pentamère), sélectivité non absolue (1000:1), 3 états (inactivé, pas réfractaire), état ouvert = seul passant, hydratation + liaison O2. Avec les annales seules, vous pouvez obtenir le point FC4 à chaque session.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
