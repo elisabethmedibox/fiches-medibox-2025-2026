@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC14 - Cycle de Krebs - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC14 : Cycle de Krebs</h1>
+            <p>Fiche d'analyse stratégique - UE5 Biochimie 2025-2026</p>
+        </div>
+        
+        <div class="content">
+            <!-- ACCORDÉON 1 : QCM TOMBÉS -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- Thématique 1 : Réactions anaplérotiques -->
+                    <div class="qcm-thematique">
+                        <h4>🔬 Réactions anaplérotiques et entrée dans le cycle</h4>
+                        <div class="table-wrapper">
+                            <table class="qcm-table">
+                                <thead>
+                                    <tr>
+                                        <th>Année</th>
+                                        <th>QCM</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2020-2021 Q11<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items C, E</span></td>
+                                        <td>
+                                            <div class="qcm-enonce">Sur le pyruvate</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A : Il peut être décarboxylé pour obtenir du lactate.</div>
+                                                <div class="qcm-item">B : Sa réduction lors de la glycolyse anaérobie, permet de régénérer du NAD+.</div>
+                                                <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">C : Sa décarboxylation en acétyl-CoA lui permet d'intégrer le cycle de Krebs.</div>
+                                                <div class="qcm-item">D : 1 pyruvate et 4 ATP nets sont produits par glycolyse, à partir d'un glucose.</div>
+                                                <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">E : Il est transformé en oxaloacétate par une réaction anaplérotique.</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Thématique 2 : Caractère amphibolique -->
+                    <div class="qcm-thematique">
+                        <h4>🔬 Caractère amphibolique et anaplérotique du cycle</h4>
+                        <div class="table-wrapper">
+                            <table class="qcm-table">
+                                <thead>
+                                    <tr>
+                                        <th>Année</th>
+                                        <th>QCM</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2022-2023 Q18</td>
+                                        <td>
+                                            <div class="qcm-enonce">Sur le cycle de Krebs :</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A : La pyruvate déshydrogénase est la troisième enzyme du cycle de Krebs.</div>
+                                                <div class="qcm-item">B : La pyruvate déshydrogénase est la quatrième enzyme du cycle de Krebs.</div>
+                                                <div class="qcm-item">C : Le cycle de Krebs est amphibolique.</div>
+                                                <div class="qcm-item">D : L'utilisation de l'oxaloacétate pour synthétiser du glucose fait partie d'un ensemble de réactions dites « anaplérotiques ».</div>
+                                                <div class="qcm-item">E : L'utilisation du pyruvate pour synthétiser de l'oxaloacétate, fait partie d'un ensemble de réactions dites « anaplérotiques ».</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>⚠️ Tombe rarement (1-2x)</td>
+                                <td>🎯 QCM sur partie ciblée du cours - avec récurrence des items</td>
+                                <td>🔗 Cours appartenant à une suite logique</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Ce tableau récapitule les QCM tombés par thématique et par année.</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-21</th>
+                                        <th>2021-22</th>
+                                        <th>2022-23</th>
+                                        <th>2023-24</th>
+                                        <th>2024-25</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Réactions anaplérotiques</td>
+                                        <td class="qcm-cell">Q11</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q18</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Entrée acétyl-CoA dans le cycle</td>
+                                        <td class="qcm-cell">Q11</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Caractère amphibolique</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q18</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pyruvate déshydrogénase (position)</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q18</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #92400e;">
+                                <strong>⚠️ Attention :</strong> Q11 2020-2021 est un QCM multi-chapitres (FC9 + FC14). Seuls les items C et E concernent FC14.
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="reco-item">
+                        <h4>Le rôle amphibolique du cycle de Krebs</h4>
+                        <p>Comprendre que le cycle est à la fois catabolique (dégradation pour produire de l'énergie) et anabolique (fourniture de précurseurs de biosynthèse).</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+                    
+                    <div class="reco-item">
+                        <h4>Les réactions anaplérotiques</h4>
+                        <p>Savoir identifier les réactions qui réapprovisionnent le cycle quand les intermédiaires manquent. Focus sur : pyruvate → oxaloacétate (pyruvate carboxylase).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+                    
+                    <div class="reco-item">
+                        <h4>L'entrée de l'acétyl-CoA dans le cycle</h4>
+                        <p>Comprendre comment le pyruvate est transformé en acétyl-CoA par le complexe pyruvate déshydrogénase, et comment l'acétyl-CoA entre dans le cycle.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+                    
+                    <div class="reco-item">
+                        <h4>La position de la pyruvate déshydrogénase</h4>
+                        <p>Savoir que la pyruvate déshydrogénase n'est PAS une enzyme du cycle de Krebs lui-même : elle intervient AVANT le cycle, pour transformer le pyruvate en acétyl-CoA.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+                    
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="qcm-analyse">
+                        <h4>Réactions anaplérotiques</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q11 (item E) | <strong>2022-2023</strong> Q18 (items D, E)</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">C'est la thématique la plus testée sur ce chapitre. L'item "pyruvate → oxaloacétate = anaplérotique" revient à l'identique en 2020-2021 et 2022-2023.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends la définition d'une réaction anaplérotique et les exemples du cours. Attention au piège de 2022-2023 (item D).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Anaplérotique = réapprovisionner le cycle</strong> quand les intermédiaires manquent.</p>
+                                <ul>
+                                    <li>Pyruvate → Oxaloacétate (pyruvate carboxylase) = <strong>ANAPLÉROTIQUE</strong> ✅</li>
+                                    <li>Oxaloacétate → Glucose (néoglucogenèse) = <strong>CATAPLÉROTIQUE</strong> (sortie du cycle, pas entrée) ❌</li>
+                                </ul>
+                                <p>Le piège classique : confondre "anaplérotique" (entrée) et "cataplérotique" (sortie).</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="qcm-analyse">
+                        <h4>Caractère amphibolique du cycle</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q18 (item C)</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Notion testée une seule fois, mais c'est un item de vocabulaire fondamental du cours.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends la définition du terme "amphibolique" et sache l'appliquer au cycle de Krebs.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Amphibolique = à la fois anabolique (synthèse de précurseurs) et catabolique (dégradation pour produire de l'énergie).
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="qcm-analyse">
+                        <h4>Pyruvate déshydrogénase</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q18 (items A, B)</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof teste si l'étudiant sait que la pyruvate déshydrogénase n'est PAS une enzyme du cycle de Krebs.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que la pyruvate DH intervient AVANT le cycle (transformation pyruvate → acétyl-CoA), et non pas dans le cycle lui-même.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>La <strong>1ère enzyme du cycle de Krebs</strong> est la <strong>citrate synthase</strong> (condensation acétyl-CoA + oxaloacétate → citrate).</p>
+                                <p>La pyruvate déshydrogénase travaille EN AMONT du cycle pour fournir l'acétyl-CoA.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+                    
+                    <div class="vigilance-item">
+                        <h4>Confusion anaplérotique / cataplérotique</h4>
+                        <p>Anaplérotique = réaction qui RÉAPPROVISIONNE le cycle (entrée d'intermédiaires). Cataplérotique = réaction qui UTILISE les intermédiaires pour d'autres voies (sortie). L'item D de 2022-2023 ("oxaloacétate → glucose") est cataplérotique, pas anaplérotique.</p>
+                    </div>
+                    
+                    <div class="vigilance-item">
+                        <h4>La pyruvate déshydrogénase n'est pas dans le cycle</h4>
+                        <p>Elle travaille EN AMONT pour transformer le pyruvate en acétyl-CoA. La première enzyme DU cycle est la citrate synthase. Ne te fais pas piéger par les items A et B de 2022-2023.</p>
+                    </div>
+                    
+                    <div class="vigilance-item">
+                        <h4>Attention aux QCM multi-chapitres</h4>
+                        <p>Q11 de 2020-2021 mélange glycolyse (FC9) et cycle de Krebs (FC14). Seuls les items C et E concernent FC14. Si tu n'as révisé que le cycle de Krebs, tu ne peux pas répondre aux autres items.</p>
+                    </div>
+                    
+                    <div class="vigilance-item">
+                        <h4>Le cycle de Krebs est peu tombé</h4>
+                        <p>Seulement 2 QCM en 5 ans (dont 1 multi-chapitres). Le prof teste principalement le vocabulaire (amphibolique, anaplérotique) et non les 8 réactions du cycle en détail.</p>
+                    </div>
+                    
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600;">Sur ce chapitre, le prof teste des notions très ciblées (amphibolique, anaplérotique) plutôt que les détails des 8 réactions. Le cycle de Krebs tombe rarement seul : il est souvent mélangé avec d'autres chapitres (glycolyse, chaîne respiratoire). La récurrence des items est FORTE (66,7%) sur la thématique des réactions anaplérotiques.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Apprenez l'ensemble du chapitre, y compris les 8 réactions, les enzymes et la régulation. Le prof peut introduire de nouvelles questions à tout moment, notamment sur les inhibiteurs (fluoroacétate, arsenic, malonate) ou sur la régulation enzymatique.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur le vocabulaire clé : amphibolique, anaplérotique, cataplérotique. Apprenez les exemples de réactions anaplérotiques (pyruvate → oxaloacétate). Survolez les 8 réactions sans les apprendre par cœur.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Ce chapitre est peu rentable en Niveau 1 : seulement 2 QCM en 5 ans, dont 1 multi-chapitres. Cependant, la récurrence est FORTE (66,7%) sur les réactions anaplérotiques. Apprenez par cœur : "pyruvate → oxaloacétate = anaplérotique" et "cycle amphibolique = anabolique + catabolique". Ce minimum peut suffire si le prof reteste ces notions.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
