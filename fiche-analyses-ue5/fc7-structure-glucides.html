@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC7 - Structure des glucides - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Encart spécial schéma */
+        .schema-encart {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .schema-encart h4 {
+            margin: 0 0 15px 0;
+            color: #92400e;
+            font-size: 1.1rem;
+        }
+        
+        .schema-encart ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #92400e;
+        }
+        
+        .schema-encart li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC7 - Structure des glucides</h1>
+            <div class="meta">
+                <span>📚 UE5 - Biochimie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- LE GLUCOSE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Le glucose - définition et configuration D/L (2 QCM - quasi-identiques)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2021-2022<br>Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le glucose :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La présence d'un groupe carbonyle de fonction cétone dans la forme linéaire du glucose en fait un cétohexose.</div>
+                                            <div class="qcm-item">B: Tous les carbones du glucose sont des centres chiraux.</div>
+                                            <div class="qcm-item">C: Le D-glucose et L-glucose ne comportent pas le même nombre de fonctions hydroxyde.</div>
+                                            <div class="qcm-item">D: D et L glucose diffèrent par la position du groupe hydroxyde sur le carbone asymétrique le plus éloigné du carbone C1.</div>
+                                            <div class="qcm-item">E: Le D-glucose est naturel.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="qcm-identique">
+                                    <td>2024-2025<br>Q1</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le glucose :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La présence d'un groupe carbonyle de fonction cétone dans la forme linéaire du glucose en fait un cétohexose.</div>
+                                            <div class="qcm-item">B: Tous les carbones du glucose sont des centres chiraux.</div>
+                                            <div class="qcm-item">C: Le D-glucose et le L-glucose diffèrent par leur nombre de fonctions hydroxyle.</div>
+                                            <div class="qcm-item">D: D et L glucose diffèrent par la position du groupe hydroxyle sur le carbone asymétrique le plus éloigné du carbone C1.</div>
+                                            <div class="qcm-item">E: Le L-glucose est naturel.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- LES OSES - CYCLISATION ET ANOMÉRIE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Les oses - cyclisation, anomérie et réactivité (3 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les oses :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: En solutions, les oses sont plus stables sous leur forme cyclique.</div>
+                                            <div class="qcm-item">B: Lors de la cyclisation de l'ose, le carbone portant la fonction carbonyle devient un carbone asymétrique que l'on qualifie d'anomérique.</div>
+                                            <div class="qcm-item">C: A l'état naturel, les cétoses sont en général sous la forme pyranosique.</div>
+                                            <div class="qcm-item">D: La réaction de Fehling permet de la mise en évidence de cétose et de sucres réducteurs.</div>
+                                            <div class="qcm-item">E: L'oxydation douce des aldoses avec Br2 ou I2 en milieu alcalin, donne les acides aldoniques.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q1</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les oses :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: En solution, les oses sont plus stables sous leur forme linéaire.</div>
+                                            <div class="qcm-item">B: Lors de la cyclisation de l'ose, le carbone portant la fonction carbonyle devient un carbone asymétrique que l'on qualifie d'anomérique.</div>
+                                            <div class="qcm-item">C: Les aldohexoses possèdent 4 carbones asymétriques ce qui correspond à 8 stéréoisomères.</div>
+                                            <div class="qcm-item">D: Le galactose est un épimère du glucose.</div>
+                                            <div class="qcm-item">E: En l'absence de l'épimérase qui permet l'épimérisation du galactose en glucose, on observe une galactosémie.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les oses :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: En solution, les oses sont plus stables sous leur forme linéaire.</div>
+                                            <div class="qcm-item">B: Lors de la cyclisation de l'ose, le carbone portant la fonction carbonyle devient un carbone asymétrique que l'on qualifie d'anomérique.</div>
+                                            <div class="qcm-item">C: La réaction de Fehling permet de la mise en évidence de sucres réducteurs.</div>
+                                            <div class="qcm-item">D: À l'état naturel, les cétoses sont en général sous la forme pyranosique.</div>
+                                            <div class="qcm-item">E: L'oxydation douce des aldoses avec Br2 ou I2 en milieu alcalin, donne les acides aldariques.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- OXYDATION DES OSES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Oxydation des oses et dérivés (3 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'oxydation des oses :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les oses sont des réducteurs plus faibles que les aldéhydes et les cétones vrais.</div>
+                                            <div class="qcm-item">B: Une oxydation douce avec Br2 ou I2 en milieu alcalin permet de transformer le glucose en acide gluconique.</div>
+                                            <div class="qcm-item">C: Le dosage spécifique des aldoses avec Br2 ou I2 est possible car dans ces conditions, les cétoses sont aussi oxydés.</div>
+                                            <div class="qcm-item">D: Une oxydation poussée avec l'acide nitrique à chaud permet de former des acides aldariques, possédant 2 fonctions carboxyliques sur les carbones 1 et 6.</div>
+                                            <div class="qcm-item">E: L'oxydation ménagée du glucose (avec protection de la fonction aldéhydique) permet de former l'acide glucuronique qui est un précurseur de la vitamine C.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les dérivés des oses :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les osamines, dont la glucosamine et la galactosamine, sont des constituants des glycolipides et des glycoprotéines.</div>
+                                            <div class="qcm-item">B: Les acides aldoniques résultent de l'oxydation des aldoses par des cétoses.</div>
+                                            <div class="qcm-item">C: Les acides uroniques proviennent de l'oxydation de la fonction alcool primaire de l'ose.</div>
+                                            <div class="qcm-item">D: Les acides uroniques ont un rôle essentiel dans la détoxification hépatique.</div>
+                                            <div class="qcm-item">E: La vitamine C est une vitamine liposoluble.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q1</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les oses :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le glucose est un aldohexose.</div>
+                                            <div class="qcm-item">B: La présence d'un groupe carbonyle en position terminale (carbone 1) définit les cétoses.</div>
+                                            <div class="qcm-item">C: Deux épimères ne diffèrent que par la position d'un groupement OH au niveau d'un seul carbone asymétrique.</div>
+                                            <div class="qcm-item">D: Le galactose est un épimère en C4 du glucose et en l'absence de l'épimérase permettant l'épimérisation du galactose en glucose, on observe une galactosémie.</div>
+                                            <div class="qcm-item">E: Les isomères D ont la même configuration absolue que le D-glycéraldéhyde.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- IDENTIFICATION DIHOLOSIDES SUR SCHÉMA -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Identification de diholosides sur schéma (3 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">Identification d'un diholoside [image] :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: C'est le α D galactopyranosyl (1-6) D glucopyranose.</div>
+                                            <div class="qcm-item">B: C'est le β D galactopyranosyl (1-6) D glucopyranose.</div>
+                                            <div class="qcm-item">C: C'est le α D glucopyranosyl (1-4) D galactopyranose.</div>
+                                            <div class="qcm-item">D: C'est le β D galactopyranosyl (1-4) D glucopyranose.</div>
+                                            <div class="qcm-item">E: C'est un diholoside réducteur car la fonction hémiacétalique est libre.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur ce diholoside [image] :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: C'est le β D galactopyranosyl (1-4) D glucopyranose.</div>
+                                            <div class="qcm-item">B: C'est le α D glucopyranoyl (1-4) D glucopyranose.</div>
+                                            <div class="qcm-item">C: C'est le β D galactofuranosyl (1-4) D glucopyranose.</div>
+                                            <div class="qcm-item">D: C'est le β D glucopyranosyl (1-6) D galactopyranose.</div>
+                                            <div class="qcm-item">E: C'est un diholoside réducteur car la fonction hémiacétalique est libre.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q8</td>
+                                    <td>
+                                        <div class="qcm-enonce">À partir du schéma du diholoside ci-dessous [image] :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: C'est un diholoside réducteur.</div>
+                                            <div class="qcm-item">B: C'est un diholoside non réducteur.</div>
+                                            <div class="qcm-item">C: C'est le α D glucopyranosyl (1-4) D galactopyranosyl.</div>
+                                            <div class="qcm-item">D: Le lactose est composé de galactose et de glucose liés en β (1-4).</div>
+                                            <div class="qcm-item">E: Le saccharose est un diholoside non réducteur très répandu dans le monde animal.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- DIHOLOSIDES MALTOSE/LACTOSE/SACCHAROSE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Diholosides : maltose, lactose, saccharose (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les osides et l'hydrolyse des diholosides :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le maltose est un oside réducteur formé de 2 glucoses liés en α (1-4).</div>
+                                            <div class="qcm-item">B: Les osidases responsables de l'hydrolyse des liaisons osidiques sont spécifiques de la nature de l'ose et de sa configuration anomérique.</div>
+                                            <div class="qcm-item">C: Le lactose est un diholoside réducteur formé de 2 molécules de glucose liées en β (1-4).</div>
+                                            <div class="qcm-item">D: Le saccharose est un diholoside non réducteur, hydrolysable par une α-glucosidase ou une β-fructosidase.</div>
+                                            <div class="qcm-item">E: La β-galactosidase (ou lactase) hydrolyse le lactose en glucose et fructose.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les osides :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les osides résultent de la combinaison de plusieurs molécules d'oses ou d'oses avec des composés non glucidiques.</div>
+                                            <div class="qcm-item">B: L'hydrolyse acide des osides fournit 2 ou plusieurs molécules d'oses toujours identiques.</div>
+                                            <div class="qcm-item">C: Le maltose est un oside réducteur formé par l'union de 2 molécules de glucose unies en 1-4.</div>
+                                            <div class="qcm-item">D: Le lactose est un diholoside réducteur constitué d'une molécule de galactose et d'une molécule de glucose.</div>
+                                            <div class="qcm-item">E: Le saccharose est un diholoside non réducteur, très répandu dans le monde animal.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- POLYOSIDES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Polyosides : amidon, glycogène, cellulose (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q8</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les polyosides :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La cellulose est constituée d'un motif répétitif formé de deux glucoses liés en β (1-4), libérant du maltose après action d'une β-glucosidase.</div>
+                                            <div class="qcm-item">B: L'amidon est constitué d'une chaîne linéaire de glucoses liés en α (1-4) avec des ramifications en α (1-6) ce qui en fait le polyoside de stockage chez l'animal.</div>
+                                            <div class="qcm-item">C: L'hydrolyse du glycogène par des α-amylases permet de libérer du glucose.</div>
+                                            <div class="qcm-item">D: La digestion du glycogène et de l'amidon fait intervenir une enzyme débranchante.</div>
+                                            <div class="qcm-item">E: L'homme possède une β-glucosidase intestinale permettant de digérer la cellulose.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- VITAMINE C -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Vitamine C (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025<br>Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la vitamine C :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: C'est une vitamine liposoluble.</div>
+                                            <div class="qcm-item">B: Elle est synthétisée par le foie.</div>
+                                            <div class="qcm-item">C: Elle possède un très fort pouvoir oxydant.</div>
+                                            <div class="qcm-item">D: Sa carence entraîne des anomalies de la synthèse du collagène.</div>
+                                            <div class="qcm-item">E: Sa carence entraîne une fragilité des parois vasculaires.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année (2,6 QCM/an)</td>
+                                <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                                <td>🔴 Pré-requis absolu pour FC9, FC11, FC12</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>13 QCM</strong> sur ce chapitre (moyenne 2,6/an). Ces QCM se regroupent en <strong>7 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Le glucose (D/L, cétohexose)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q5</span></td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q1</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Les oses (cyclisation, anomérie)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q2</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q1</td>
+                                    <td class="qcm-cell">Q2</td>
+                                </tr>
+                                <tr>
+                                    <td>Oxydation / dérivés d'oses</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q1, Q2</td>
+                                    <td class="qcm-cell">Q2</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Diholoside sur schéma</td>
+                                    <td class="qcm-cell">Q7</td>
+                                    <td class="qcm-cell">Q6</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q8</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Maltose / lactose / saccharose</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q3</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q3</td>
+                                </tr>
+                                <tr>
+                                    <td>Polyosides</td>
+                                    <td class="qcm-cell">Q8</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Vitamine C</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM quasi-identique</strong> : Questions avec items très similaires d'une année sur l'autre (mêmes notions testées, formulations proches)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>Les oses : forme cyclique, carbone anomérique et configuration α/β</h4>
+                        <p>Comprendre la cyclisation des oses, le concept de carbone anomérique, et savoir distinguer les formes α et β (position du OH anomérique).</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Identification des diholosides sur schéma</h4>
+                        <p>Savoir lire un schéma de diholoside : identifier les oses (glucose, galactose), la configuration anomérique (α ou β), le type de liaison (1-4 ou 1-6), et déterminer le caractère réducteur.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le glucose : aldohexose, configuration D/L, centres chiraux</h4>
+                        <p>Maîtriser les caractéristiques du glucose : c'est un aldohexose (pas un cétohexose), la différence D/L porte sur le C asymétrique le plus éloigné de C1, et le D-glucose est la forme naturelle.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans (QCM quasi-identiques)</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Oxydation des oses : acides aldoniques, uroniques, aldariques</h4>
+                        <p>Distinguer les 3 types d'oxydation : douce (Br2/I2 → acides aldoniques), poussée (HNO3 → acides aldariques), ménagée (→ acides uroniques, précurseurs de la vitamine C).</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les diholosides : maltose, lactose, saccharose</h4>
+                        <p>Connaître la composition, la liaison et le caractère réducteur de chaque diholoside. Le saccharose est le seul non réducteur et est répandu dans les végétaux (pas les animaux).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les épimères et la galactosémie</h4>
+                        <p>Savoir que le galactose est épimère en C4 du glucose, et que l'absence d'épimérase entraîne une galactosémie.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- ENCART SPÉCIAL : DÉCRYPTER UN SCHÉMA -->
+                    <div class="schema-encart">
+                        <h4>🔍 DÉCRYPTER UN SCHÉMA DE DIHOLOSIDE (tombé 3 fois)</h4>
+                        <p style="margin-bottom: 15px; color: #92400e;">Le professeur donne régulièrement un schéma de diholoside à identifier. Les schémas sont différents chaque année, mais la méthode de lecture est identique :</p>
+                        <ul>
+                            <li><strong>Étape 1 - Configuration α ou β :</strong> Regarder la position du OH sur le carbone anomérique (C1 de l'ose de gauche). OH en dessous du plan = α, OH au-dessus = β.</li>
+                            <li><strong>Étape 2 - Type de liaison :</strong> Identifier les carbones impliqués dans la liaison osidique (généralement 1-4 ou 1-6).</li>
+                            <li><strong>Étape 3 - Nature des oses :</strong> Reconnaître glucose (OH en C4 vers le bas en représentation Haworth) vs galactose (OH en C4 vers le haut).</li>
+                            <li><strong>Étape 4 - Caractère réducteur :</strong> Un diholoside est réducteur si la fonction hémiacétalique de l'ose de droite est libre (non engagée dans la liaison). C'est presque toujours le cas (sauf saccharose).</li>
+                        </ul>
+                    </div>
+
+                    <!-- QCM 1 : Le glucose -->
+                    <div class="qcm-analyse">
+                        <h4>Le glucose - définition et configuration D/L</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q5 | <strong>2024-2025</strong> Q1 (quasi-identiques)</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Les mêmes 5 notions sont testées dans les 2 QCM : cétohexose vs aldohexose, centres chiraux, nombre de OH en D/L, position du OH sur le C asymétrique le plus éloigné, et D-glucose vs L-glucose naturel.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprendre ces 5 items par cœur : le glucose est un aldohexose (carbonyle sur C1, pas une cétone), pas tous les C sont chiraux (C1 n'a pas 4 substituants différents), D et L ont le même nombre de OH, D/L diffèrent par le C asymétrique le plus éloigné de C1, et le D-glucose est naturel (pas le L).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Aldose vs cétose :</strong> Si le carbonyle (C=O) est sur le C1 (terminal) = aldose. Si le carbonyle est sur le C2 = cétose.</p>
+                                <p><strong>D vs L :</strong> On regarde le C asymétrique le PLUS ÉLOIGNÉ du carbonyle. Si son OH est à droite en Fisher = série D.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Les oses -->
+                    <div class="qcm-analyse">
+                        <h4>Les oses - cyclisation et carbone anomérique</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q2 | <strong>2023-2024</strong> Q1 | <strong>2024-2025</strong> Q2</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Deux items reviennent chaque année : "forme cyclique plus stable" et "carbone anomérique après cyclisation". Les autres items varient (Fehling, pyranose/furanose, oxydation).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retenir absolument : en solution, les oses sont plus stables sous forme CYCLIQUE (pas linéaire). Lors de la cyclisation, le C du carbonyle devient le carbone anomérique. Les cétoses sont plutôt sous forme FURANOSE (5 atomes), pas pyranose.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Carbone anomérique :</strong> C'est le C qui portait le carbonyle avant cyclisation. Il devient asymétrique et donne les formes α et β.</p>
+                                <p><strong>Pyranose vs furanose :</strong> Pyranose = cycle à 6 atomes (aldohexoses). Furanose = cycle à 5 atomes (cétoses comme le fructose).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Oxydation -->
+                    <div class="qcm-analyse">
+                        <h4>Oxydation des oses</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q2-E | <strong>2022-2023</strong> Q2 | <strong>2024-2025</strong> Q2-E</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le professeur teste régulièrement la distinction entre les 3 types d'oxydation, avec des pièges récurrents (confusion aldoniques/aldariques).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Mémoriser le tableau des oxydations et leurs produits. Attention au piège : oxydation douce = acides ALDONIQUES (pas aldariques).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Moyen mnémotechnique :</strong></p>
+                                <ul>
+                                    <li>Oxydation <strong>D</strong>ouce (Br2/I2) → acides al<strong>D</strong>oniques (1 seul COOH sur C1)</li>
+                                    <li>Oxydation poussée (HNO3) → acides al<strong>DAR</strong>iques (2 COOH sur C1 et C6)</li>
+                                    <li>Oxydation ménagée → acides <strong>URON</strong>iques (COOH sur C6 seulement) → précurseur vitamine C</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Diholosides -->
+                    <div class="qcm-analyse">
+                        <h4>Maltose, lactose, saccharose</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q3 | <strong>2024-2025</strong> Q3</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Les mêmes caractéristiques des 3 diholosides sont testées : composition, liaison, caractère réducteur. Le piège récurrent porte sur le saccharose (monde végétal, pas animal).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprendre par cœur le tableau des 3 diholosides avec toutes leurs caractéristiques.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                <p><strong>Tableau à mémoriser :</strong></p>
+                                <p>• Maltose = Glc + Glc en α(1-4) → RÉDUCTEUR</p>
+                                <p>• Lactose = Gal + Glc en β(1-4) → RÉDUCTEUR</p>
+                                <p>• Saccharose = Glc + Fru → NON réducteur → VÉGÉTAUX</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 5 : Épimères -->
+                    <div class="qcm-analyse">
+                        <h4>Épimères et galactosémie</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q1 | <strong>2023-2024</strong> Q1</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le couple galactose/glucose et la galactosémie sont testés 2 années consécutives avec des items très proches.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retenir que le galactose est épimère en C4 du glucose, et que l'absence d'épimérase entraîne une galactosémie (accumulation de galactose).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Épimère :</strong> Deux oses qui ne diffèrent que par la configuration d'UN SEUL carbone asymétrique.</p>
+                                <p>Galactose = épimère en <strong>C4</strong> du glucose (les OH sont inversés sur ce C).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion aldose / cétose</h4>
+                        <p>Le glucose a un carbonyle sur le C1 (terminal) = c'est un ALDOSE, pas un cétose. Le fructose a son carbonyle sur le C2 = c'est un CÉTOSE. Ne pas confondre malgré les formulations pièges type "fonction cétone".</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion acides aldoniques / aldariques</h4>
+                        <p>Oxydation DOUCE (Br2/I2) donne des acides ALDONIQUES (1 COOH). Oxydation POUSSÉE (HNO3) donne des acides ALDARIQUES (2 COOH). Le prof inverse souvent ces termes dans les items pièges.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège du saccharose "monde animal"</h4>
+                        <p>Le saccharose est très répandu dans le monde VÉGÉTAL (sucre de canne, betterave), PAS dans le monde animal. C'est un piège récurrent qui est tombé en 2023-2024 Q8 et 2024-2025 Q3.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège des cétoses en forme pyranosique</h4>
+                        <p>Les ALDOHEXOSES sont majoritairement sous forme pyranose (cycle 6). Les CÉTOSES comme le fructose sont plutôt sous forme FURANOSE (cycle 5). Ne pas généraliser "pyranose" à tous les oses.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion lactose = 2 glucoses</h4>
+                        <p>Le lactose est formé de GALACTOSE + GLUCOSE (pas 2 glucoses). C'est le MALTOSE qui est formé de 2 glucoses. Cette confusion est tombée en 2022-2023 Q3.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Vitamine C : hydrosoluble et réductrice</h4>
+                        <p>La vitamine C est HYDROSOLUBLE (pas liposoluble), possède un pouvoir RÉDUCTEUR (pas oxydant), et n'est PAS synthétisée par l'organisme. Ce sont 3 pièges classiques du QCM 2024-2025.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>L'homme ne digère pas la cellulose</h4>
+                        <p>L'homme ne possède PAS de β-glucosidase intestinale. Il ne peut donc pas hydrolyser les liaisons β(1-4) de la cellulose. Seuls les ruminants (grâce à leur flore intestinale) peuvent digérer la cellulose.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Sur ce chapitre, le professeur cible des thématiques récurrentes mais varie suffisamment ses items (récurrence MOYENNE à 55%). Les QCM sur schéma de diholoside demandent de maîtriser une logique de lecture plutôt que des items précis. C'est un chapitre fondamental qui conditionne la compréhension de la glycolyse (FC9), de la glycogénolyse (FC12) et de la voie des pentoses phosphates (FC11).</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Ce chapitre est un pré-requis absolu pour le métabolisme. Maîtrisez en profondeur les notions de liaison α/β, les caractéristiques des diholosides, et les réactions d'oxydation. Ces connaissances vous serviront dans plusieurs chapitres suivants.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les 6 thématiques tombées plusieurs fois : le glucose (D/L), les oses (cyclisation/anomérie), l'oxydation des oses, l'identification des diholosides sur schéma, les caractéristiques maltose/lactose/saccharose, et les épimères. Ces thèmes représentent plus de 90% des QCM. Les polyosides et la vitamine C ne sont tombés qu'une seule fois.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        ⚠️ <strong>Attention :</strong> Avec une récurrence des items de 55%, la stratégie de Niveau 1 est risquée sur ce chapitre. Seuls les QCM sur le glucose (2021-2022 et 2024-2025 quasi-identiques) garantissent des points si vous les apprenez par cœur. Pour les autres thématiques, le professeur varie ses items, donc même si vous connaissez les QCM passés, vous pourriez avoir des items nouveaux. Si vous êtes contraint à cette stratégie, concentrez-vous sur : (1) le QCM glucose (quasi-identique), (2) la méthode de lecture des schémas de diholosides, (3) le tableau maltose/lactose/saccharose. Mais soyez conscient que cela ne garantit pas tous les points sur ce chapitre.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
