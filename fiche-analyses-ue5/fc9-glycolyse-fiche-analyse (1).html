@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC9 - La Glycolyse - Fiche d'Analyse</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f1f5f9; min-height: 100vh; padding: 20px; line-height: 1.6; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%); color: white; padding: 30px; text-align: center; border-bottom: 4px solid #ff6b7a; }
+        .header h1 { font-size: 1.8rem; margin-bottom: 10px; }
+        .meta { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 0.95rem; opacity: 0.9; }
+        .content { padding: 25px; background: #f8fafc; border: 1px solid #e2e8f0; }
+        .main-accordion { margin-bottom: 15px; border: 2px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
+        .main-accordion summary { background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%); color: white; padding: 18px 25px; cursor: pointer; font-size: 1.1rem; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .main-accordion summary::-webkit-details-marker { display: none; }
+        .main-accordion summary::after { content: "▼"; font-size: 0.8rem; transition: transform 0.3s ease; }
+        .main-accordion[open] summary::after { transform: rotate(180deg); }
+        .main-accordion[open] summary { background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%); }
+        .accordion-content { padding: 25px; background: white; }
+        .accordion-content h3 { color: #1a365d; border-bottom: 2px solid #ff6b7a; padding-bottom: 8px; margin-top: 25px; margin-bottom: 15px; }
+        .accordion-content h3:first-child { margin-top: 0; }
+        .qcm-thematique { margin-bottom: 30px; }
+        .qcm-thematique h4 { color: #1a365d; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); padding: 12px 15px; border-radius: 8px; margin: 0 0 15px 0; font-size: 1rem; }
+        .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px; }
+        .qcm-table { width: 100%; min-width: 700px; border-collapse: collapse; font-size: 0.85rem; background: white; }
+        .qcm-table thead { background: #1a365d; color: white; }
+        .qcm-table th { padding: 12px 10px; text-align: left; font-weight: 600; }
+        .qcm-table th:first-child { width: 120px; }
+        .qcm-table td { padding: 12px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+        .qcm-table td:first-child { font-weight: 600; color: #ff6b7a; background: #f8fafc; }
+        .qcm-table tr:last-child td { border-bottom: none; }
+        .qcm-enonce { font-weight: 600; color: #1a365d; margin-bottom: 8px; }
+        .qcm-items { line-height: 1.6; color: #4a5568; }
+        .qcm-item { margin-bottom: 4px; }
+        .item-fc9 { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 4px 8px; border-radius: 4px; }
+        .multi-chapitre { border-left: 4px solid #f59e0b; }
+        .tag-fc { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin-left: 5px; }
+        .tag-fc9 { background: #dbeafe; color: #1e40af; }
+        .tag-fc10 { background: #dcfce7; color: #166534; }
+        .tag-fc12 { background: #f3e8ff; color: #7c3aed; }
+        .tag-fc15 { background: #fce7f3; color: #be185d; }
+        .diagnostic-table { width: 100%; min-width: 500px; border-collapse: collapse; font-size: 0.9rem; }
+        .diagnostic-table th { background: #1a365d; color: white; padding: 12px; text-align: center; font-weight: 600; }
+        .diagnostic-table td { padding: 12px; border: 1px solid #e2e8f0; background: white; text-align: center; }
+        .vue-ensemble { margin-top: 20px; }
+        .vue-ensemble h4 { color: #1a365d; margin-bottom: 10px; }
+        .vue-ensemble-intro { color: #4a5568; margin-bottom: 15px; font-size: 0.95rem; }
+        .vue-tableau { width: 100%; min-width: 600px; border-collapse: collapse; font-size: 0.8rem; }
+        .vue-tableau th { background: #1a365d; color: white; padding: 10px; text-align: center; font-weight: 600; }
+        .vue-tableau th:first-child { text-align: left; width: 30%; }
+        .vue-tableau td { padding: 10px; border: 1px solid #e2e8f0; text-align: center; background: white; }
+        .vue-tableau td:first-child { text-align: left; font-weight: 600; color: #1a365d; background: #f8fafc; }
+        .vue-tableau .qcm-cell { color: #ff6b7a; font-weight: 600; }
+        .vue-tableau .empty-cell { color: #cbd5e1; }
+        .reco-item { background: white; border-left: 4px solid #10b981; padding: 15px; margin-bottom: 15px; border-radius: 0 8px 8px 0; }
+        .reco-item h4 { margin: 0 0 10px 0; color: #1a365d; }
+        .reco-item p { margin: 0 0 8px 0; color: #4a5568; font-size: 0.95rem; line-height: 1.6; }
+        .reco-item ul { margin: 10px 0 0 20px; color: #4a5568; }
+        .reco-item li { margin-bottom: 5px; }
+        .frequence { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 3px 10px; border-radius: 12px; font-size: 0.8rem; margin-top: 8px; }
+        .qcm-analyse { background: white; border: 2px solid #3b82f6; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+        .qcm-analyse h4 { margin: 0 0 5px 0; color: #1e40af; font-size: 1.1rem; }
+        .qcm-badge { background: #1e3a5f; color: #94a3b8; font-size: 0.8rem; padding: 6px 12px; border-radius: 8px; margin-bottom: 15px; display: inline-block; }
+        .qcm-badge strong { color: #ff6b7a; }
+        .qcm-section { margin-bottom: 12px; }
+        .qcm-section-title { font-weight: 600; color: #1a365d; font-size: 0.9rem; margin-bottom: 5px; }
+        .qcm-section-content { color: #4a5568; font-size: 0.95rem; line-height: 1.6; }
+        .connaissance-pure { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 3px solid #f59e0b; padding: 12px 15px; border-radius: 0 8px 8px 0; margin-top: 8px; color: #92400e; }
+        .vigilance-item { background: white; border-left: 4px solid #f59e0b; padding: 15px; margin-bottom: 15px; border-radius: 0 8px 8px 0; }
+        .vigilance-item h4 { margin: 0 0 8px 0; color: #b45309; }
+        .vigilance-item p { margin: 0; color: #4a5568; font-size: 0.95rem; line-height: 1.5; }
+        .tuteur-zone { background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border: 2px dashed #8b5cf6; border-radius: 8px; padding: 20px; }
+        .tuteur-zone p { margin: 0 0 15px 0; color: #6b21a8; }
+        .tuteur-zone p:last-child { margin-bottom: 0; }
+        .footer { background: #e2e8f0; color: #1a365d; text-align: center; padding: 15px; font-size: 0.85rem; }
+        .avertissement { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b; color: #92400e; text-align: center; padding: 15px 20px; font-size: 0.8rem; line-height: 1.5; }
+        @media (max-width: 768px) { body { padding: 10px; } .header h1 { font-size: 1.4rem; } .main-accordion summary { padding: 15px 20px; font-size: 1rem; } .accordion-content { padding: 15px; } .qcm-table { font-size: 0.75rem; } .qcm-table th, .qcm-table td { padding: 8px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC9 - La Glycolyse</h1>
+            <div class="meta">
+                <span>🔬 UE5 - Biochimie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <div class="qcm-thematique">
+                        <h4>🎯 Régulation PFK1 / Enzyme bifonctionnelle (4 QCM)</h4>
+                        <div class="table-wrapper">
+                            <table class="qcm-table">
+                                <thead><tr><th>Année</th><th>Énoncé et items</th></tr></thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2020-2021<br>Q14</td>
+                                        <td><div class="qcm-enonce">Sur la phosphofructokinase 1 (PFK1) hépatique :</div><div class="qcm-items"><div class="qcm-item">A : La protéine phosphatase 2A permet indirectement, son activation.</div><div class="qcm-item">B : Elle est activée par phosphorylation par la phosphofructokinase 2.</div><div class="qcm-item">C : Elle est inhibée quand PKA est active.</div><div class="qcm-item">D : Sa réaction est irréversible.</div><div class="qcm-item">E : Elle catalyse une réaction productrice d'ATP.</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2021-2022<br>Q14</td>
+                                        <td><div class="qcm-enonce">Sur le fructose-2,6-bisphosphate :</div><div class="qcm-items"><div class="qcm-item">A : Il active la phosphofructokinase de type 1 (PFK1).</div><div class="qcm-item">B : Il inhibe la phosphofructokinase de type 1 (PFK1).</div><div class="qcm-item">C : Il est le relai du contrôle hormonal par l'insuline.</div><div class="qcm-item">D : Il est produit par phosphorylation du fructose-1,6-bisphosphate.</div><div class="qcm-item">E : Il est produit grâce à la réaction catalysée par la phosphofructokinase de type 2 (PFK2).</div></div></td>
+                                    </tr>
+                                    <tr class="multi-chapitre">
+                                        <td>2023-2024<br>Q16</td>
+                                        <td><div class="qcm-enonce">Sur la régulation coordonnée de la glycolyse et de la néoglucogenèse :</div><div class="qcm-items"><div class="qcm-item item-fc9">A : La PFK1 est régulée positivement par le fructose-2,6-bisphosphate.</div><div class="qcm-item">B : La fructose-2,6-bisphosphatase est régulée positivement par le fructose-2,6-bisphosphate. <span class="tag-fc tag-fc10">FC10</span></div><div class="qcm-item item-fc9">C : La PFK1 est régulée positivement par l'AMP.</div><div class="qcm-item item-fc9">D : La PFK1 est régulée positivement par l'ATP.</div><div class="qcm-item item-fc9">E : La PFK1 est régulée positivement par le citrate.</div></div></td>
+                                    </tr>
+                                    <tr class="multi-chapitre">
+                                        <td>2024-2025<br>Q14</td>
+                                        <td><div class="qcm-enonce">Sur la régulation de la PFK1 et de la fructose-1,6-bisphosphatase :</div><div class="qcm-items"><div class="qcm-item item-fc9">A : La PFK1 est régulée positivement par le fructose-2,6-bisphosphate.</div><div class="qcm-item">B : La fructose-1,6-bisphosphatase est régulée positivement par le fructose-2,6-bisphosphate. <span class="tag-fc tag-fc10">FC10</span></div><div class="qcm-item">C : Le glucagon favorise la production de fructose-2,6-bisphosphate. <span class="tag-fc tag-fc10">FC10</span></div><div class="qcm-item">D : L'insuline favorise la dégradation du fructose-2,6-bisphosphate. <span class="tag-fc tag-fc10">FC10</span></div><div class="qcm-item item-fc9">E : La PFK2 produit le fructose-2,6-bisphosphate.</div></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="qcm-thematique">
+                        <h4>🎯 Bilan énergétique / Réactions de la glycolyse (4 QCM)</h4>
+                        <div class="table-wrapper">
+                            <table class="qcm-table">
+                                <thead><tr><th>Année</th><th>Énoncé et items</th></tr></thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2022-2023<br>Q11</td>
+                                        <td><div class="qcm-enonce">Sur la régulation de la glycolyse :</div><div class="qcm-items"><div class="qcm-item">A : La glycolyse comporte 4 réactions irréversibles.</div><div class="qcm-item">B : La glycolyse comporte 3 réactions irréversibles.</div><div class="qcm-item">C : La phosphofructokinase (PFK1) catalyse une réaction réversible.</div><div class="qcm-item">D : La pyruvate kinase (PK) catalyse une réaction irréversible.</div><div class="qcm-item">E : La pyruvate kinase (PK) catalyse une réaction réversible.</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2023-2024<br>Q12</td>
+                                        <td><div class="qcm-enonce">Sur le bilan énergétique de la glycolyse :</div><div class="qcm-items"><div class="qcm-item">A : Elle nécessite un investissement de 2 ATP.</div><div class="qcm-item">B : La réaction n°7 produit de l'ATP.</div><div class="qcm-item">C : La PFK1 produit de l'ATP.</div><div class="qcm-item">D : Elle permet d'obtenir au total 106 ATP.</div><div class="qcm-item">E : Elle produit 2 pyruvates.</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2023-2024<br>Q13</td>
+                                        <td><div class="qcm-enonce">Sur la régulation de la glycolyse :</div><div class="qcm-items"><div class="qcm-item">A : L'hexokinase est présente dans le muscle.</div><div class="qcm-item">B : L'hexokinase catalyse la réaction n°2.</div><div class="qcm-item">C : La pyruvate kinase catalyse la réaction n°10.</div><div class="qcm-item">D : La régulation allostérique s'effectue en quelques heures.</div><div class="qcm-item">E : L'hexokinase est régulée par le glucose-6-phosphate.</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024-2025<br>Q12</td>
+                                        <td><div class="qcm-enonce">Sur la glycolyse :</div><div class="qcm-items"><div class="qcm-item">A : Elle comporte 3 réactions irréversibles.</div><div class="qcm-item">B : Elle comporte 3 réactions réversibles.</div><div class="qcm-item">C : Elle produit 2 ATP.</div><div class="qcm-item">D : L'hexokinase catalyse la réaction n°1.</div><div class="qcm-item">E : L'hexokinase catalyse un transfert de groupement phosphoryle.</div></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="qcm-thematique">
+                        <h4>🎯 Shunt de Rapoport / 2,3-BPG (2 QCM)</h4>
+                        <div class="table-wrapper">
+                            <table class="qcm-table">
+                                <thead><tr><th>Année</th><th>Énoncé et items</th></tr></thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2020-2021<br>Q12</td>
+                                        <td><div class="qcm-enonce">Sur le 2,3-bisphosphoglycérate :</div><div class="qcm-items"><div class="qcm-item">A : Il est produit lors de la fermentation alcoolique.</div><div class="qcm-item">B : Il est produit par une enzyme bifonctionnelle.</div><div class="qcm-item">C : Il est produit par phosphorylation du 3-phosphoglycérate.</div><div class="qcm-item">D : Il diminue l'affinité de l'hémoglobine pour l'O2.</div><div class="qcm-item">E : Il est un découplant de la chaîne respiratoire.</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024-2025<br>Q11</td>
+                                        <td><div class="qcm-enonce">Sur le shunt de Rapoport :</div><div class="qcm-items"><div class="qcm-item">A : Il s'effectue dans les érythrocytes.</div><div class="qcm-item">B : Il permet la régénération du NAD+.</div><div class="qcm-item">C : Il remplace la réaction n°1 de la glycolyse.</div><div class="qcm-item">D : Il remplace la réaction n°7 de la glycolyse.</div><div class="qcm-item">E : Il produit du 2,3-bisphosphoglycérate.</div></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="qcm-thematique">
+                        <h4>🎯 Régénération du NAD+ / Navettes (2 QCM)</h4>
+                        <div class="table-wrapper">
+                            <table class="qcm-table">
+                                <thead><tr><th>Année</th><th>Énoncé et items</th></tr></thead>
+                                <tbody>
+                                    <tr class="multi-chapitre">
+                                        <td>2020-2021<br>Q10</td>
+                                        <td><div class="qcm-enonce">Sur la navette glycérol phosphate :</div><div class="qcm-items"><div class="qcm-item item-fc9">A : Elle permet l'oxydation du NADH,H+ cytosolique.</div><div class="qcm-item item-fc9">B : Elle transfère les protons du DHAP au FAD.</div><div class="qcm-item">C : Elle transfère des électrons au complexe I de la chaîne respiratoire. <span class="tag-fc tag-fc15">FC15</span></div><div class="qcm-item">D : La glycérol-3-phosphate déshydrogénase est localisée sur la face interne de la membrane mitochondriale interne. <span class="tag-fc tag-fc15">FC15</span></div><div class="qcm-item item-fc9">E : Elle permet la régénération du NAD+ cytosolique.</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2023-2024<br>Q11</td>
+                                        <td><div class="qcm-enonce">Sur la régénération du NAD+ :</div><div class="qcm-items"><div class="qcm-item">A : Le NAD+ est nécessaire à la glycolyse.</div><div class="qcm-item">B : La transformation du pyruvate en lactate permet la régénération du NAD+.</div><div class="qcm-item">C : La réaction n°9 de la glycolyse permet la régénération du NAD+.</div><div class="qcm-item">D : La glycolyse anaérobie permet la régénération du NAD+.</div><div class="qcm-item">E : La lactate déshydrogénase permet la régénération du NAD+.</div></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="qcm-thematique">
+                        <h4>🎯 Régulation allostérique / Pyruvate (2 QCM)</h4>
+                        <div class="table-wrapper">
+                            <table class="qcm-table">
+                                <thead><tr><th>Année</th><th>Énoncé et items</th></tr></thead>
+                                <tbody>
+                                    <tr class="multi-chapitre">
+                                        <td>2020-2021<br>Q13</td>
+                                        <td><div class="qcm-enonce">Sur la régulation allostérique des enzymes du métabolisme du glucose :</div><div class="qcm-items"><div class="qcm-item item-fc9">A : L'hexokinase musculaire est inhibée par son produit.</div><div class="qcm-item item-fc9">B : La charge énergétique exerce une régulation allostérique positive sur la pyruvate kinase.</div><div class="qcm-item">C : La glycogène phosphorylase est régulée positivement par l'AMP. <span class="tag-fc tag-fc12">FC12</span></div><div class="qcm-item">D : La glycogène phosphorylase est activée par phosphorylation. <span class="tag-fc tag-fc12">FC12</span></div><div class="qcm-item">E : La charge énergétique exerce une régulation allostérique sur la glycogène phosphorylase. <span class="tag-fc tag-fc12">FC12</span></div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2020-2021<br>Q11</td>
+                                        <td><div class="qcm-enonce">Sur le pyruvate :</div><div class="qcm-items"><div class="qcm-item">A : Il peut être obtenu par décarboxylation du lactate.</div><div class="qcm-item">B : En condition anaérobie, il est réduit en lactate.</div><div class="qcm-item">C : Il peut être transformé en acétyl-CoA.</div><div class="qcm-item">D : La glycolyse, du glucose jusqu'au pyruvate, produit un bilan de 4 ATP.</div><div class="qcm-item">E : Il peut être transformé en oxaloacétate.</div></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="qcm-thematique">
+                        <h4>🎯 Consommation glucose hépatique / MODY-2 (2 QCM)</h4>
+                        <div class="table-wrapper">
+                            <table class="qcm-table">
+                                <thead><tr><th>Année</th><th>Énoncé et items</th></tr></thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2021-2022<br>Q11</td>
+                                        <td><div class="qcm-enonce">Sur la consommation du glucose sanguin par le foie :</div><div class="qcm-items"><div class="qcm-item">A : Elle est limitée par le fort Km de GLUT4.</div><div class="qcm-item">B : Elle est limitée par le fort Km de GLUT2.</div><div class="qcm-item">C : Elle est limitée par la faible affinité de la glucokinase pour le glucose.</div><div class="qcm-item">D : Elle est limitée par la faible affinité de l'hexokinase pour le glucose.</div><div class="qcm-item">E : Elle est faible si la glycémie est faible.</div></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2020-2021<br>Q15</td>
+                                        <td><div class="qcm-enonce">Sur le diabète de type MODY-2 :</div><div class="qcm-items"><div class="qcm-item">A : Il concerne plus de 80% des cas de diabètes en France.</div><div class="qcm-item">B : Il se manifeste en général après 50 ans.</div><div class="qcm-item">C : Il résulte entre autres d'une glycogénogenèse augmentée.</div><div class="qcm-item">D : Les patients concernés ont une production excessive d'insuline.</div><div class="qcm-item">E : Les patients concernés ont une néoglucogenèse augmentée.</div></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année (3,4 QCM/an)</td>
+                                <td>🟢 QCM sur partie ciblée - sans récurrence des items</td>
+                                <td>🔴 Pré-requis absolu pour FC10, FC11, FC12, FC14, FC15</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>17 QCM</strong> sur ce chapitre (moyenne 3,4/an). Ces QCM se regroupent en <strong>6 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead><tr><th>Thématique</th><th>20-21</th><th>21-22</th><th>22-23</th><th>23-24</th><th>24-25</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Régulation PFK1 / Enzyme bifonctionnelle</td><td class="qcm-cell">Q14</td><td class="qcm-cell">Q14</td><td class="empty-cell">—</td><td class="qcm-cell">Q16</td><td class="qcm-cell">Q14</td></tr>
+                                    <tr><td>Bilan énergétique / Réactions</td><td class="empty-cell">—</td><td class="empty-cell">—</td><td class="qcm-cell">Q11</td><td class="qcm-cell">Q12, Q13</td><td class="qcm-cell">Q12</td></tr>
+                                    <tr><td>Shunt de Rapoport / 2,3-BPG</td><td class="qcm-cell">Q12</td><td class="empty-cell">—</td><td class="empty-cell">—</td><td class="empty-cell">—</td><td class="qcm-cell">Q11</td></tr>
+                                    <tr><td>Régénération NAD+ / Navettes</td><td class="qcm-cell">Q10</td><td class="empty-cell">—</td><td class="empty-cell">—</td><td class="qcm-cell">Q11</td><td class="empty-cell">—</td></tr>
+                                    <tr><td>Régulation allostérique / Pyruvate</td><td class="qcm-cell">Q11, Q13</td><td class="empty-cell">—</td><td class="empty-cell">—</td><td class="empty-cell">—</td><td class="empty-cell">—</td></tr>
+                                    <tr><td>Glucose hépatique / MODY-2</td><td class="qcm-cell">Q15</td><td class="qcm-cell">Q11</td><td class="empty-cell">—</td><td class="empty-cell">—</td><td class="empty-cell">—</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- PLACEHOLDER ACCORDÉONS 3-6 -->
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="reco-item">
+                        <h4>1. La régulation de PFK1 et l'enzyme bifonctionnelle</h4>
+                        <p><strong>Pourquoi c'est prioritaire :</strong> Tombé 4 fois sur 5 ans, dont 2 QCM multi-chapitres avec FC10. C'est LE point de contrôle majeur de la glycolyse.</p>
+                        <p><strong>Ce que tu dois apprendre :</strong></p>
+                        <ul>
+                            <li><strong>PFK1</strong> : régulée positivement par le Fr-2,6-BP et l'AMP, négativement par l'ATP et le citrate</li>
+                            <li><strong>Enzyme bifonctionnelle PFK2/FBPase2</strong> : PFK2 produit le Fr-2,6-BP, FBPase2 le dégrade</li>
+                            <li><strong>Régulation hormonale</strong> : Insuline → PP2A → active PFK2 → ↑ Fr-2,6-BP → active PFK1 / Glucagon → PKA → active FBPase2 → ↓ Fr-2,6-BP → inhibe PFK1</li>
+                            <li><strong>Piège fréquent</strong> : "PFK1 est activée par phosphorylation" = FAUX (c'est PFK2 qui est régulée par phosphorylation)</li>
+                        </ul>
+                        <span class="frequence">⭐⭐⭐⭐⭐ Tombe quasi systématiquement</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>2. Le bilan énergétique et les 10 réactions</h4>
+                        <p><strong>Pourquoi c'est prioritaire :</strong> Tombé 4 fois sur 5 ans. Questions de plus en plus directes et factuelles.</p>
+                        <p><strong>Ce que tu dois apprendre :</strong></p>
+                        <ul>
+                            <li><strong>10 réactions</strong> dont <strong>3 irréversibles</strong> (réactions 1, 3 et 10)</li>
+                            <li><strong>Bilan net = 2 ATP</strong> (investissement de 2 ATP, production de 4 ATP)</li>
+                            <li><strong>Enzymes clés</strong> : Hexokinase (réaction 1), PFK1 (réaction 3), Pyruvate kinase (réaction 10)</li>
+                            <li><strong>Réaction 7</strong> = phosphoglycérate kinase, produit de l'ATP (substrat-level phosphorylation)</li>
+                            <li><strong>Piège</strong> : "La glycolyse comporte 4 réactions irréversibles" = FAUX (c'est 3)</li>
+                        </ul>
+                        <span class="frequence">⭐⭐⭐⭐ Tombé 4 fois</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>3. Le shunt de Rapoport et le 2,3-BPG</h4>
+                        <p><strong>Pourquoi c'est prioritaire :</strong> Tombé 2 fois avec des items quasi-identiques. Facile à apprendre, points gratuits.</p>
+                        <p><strong>Ce que tu dois apprendre :</strong></p>
+                        <ul>
+                            <li><strong>Localisation</strong> : uniquement dans les <strong>érythrocytes</strong></li>
+                            <li><strong>Remplace la réaction n°7</strong> (pas la réaction 1 !)</li>
+                            <li><strong>Produit le 2,3-BPG</strong> qui diminue l'affinité de l'hémoglobine pour l'O2</li>
+                            <li><strong>Ne produit PAS d'ATP</strong> (contrairement à la réaction 7 normale)</li>
+                            <li><strong>Piège</strong> : "Le 2,3-BPG est produit par une enzyme bifonctionnelle" = FAUX (c'est la BPG mutase)</li>
+                        </ul>
+                        <span class="frequence">⭐⭐⭐ Tombé 2 fois</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>4. La régénération du NAD+ et les navettes</h4>
+                        <p><strong>Pourquoi c'est prioritaire :</strong> Tombé 2 fois. Fait le lien avec FC15 (chaîne respiratoire).</p>
+                        <p><strong>Ce que tu dois apprendre :</strong></p>
+                        <ul>
+                            <li><strong>NAD+ indispensable</strong> à la glycolyse (utilisé à la réaction 6)</li>
+                            <li><strong>Glycolyse anaérobie</strong> : pyruvate → lactate par la LDH = régénère le NAD+</li>
+                            <li><strong>Navette glycérol-phosphate</strong> : transfère les électrons du NADH au FAD (pas au complexe I !), régénère le NAD+ cytosolique</li>
+                            <li><strong>Piège</strong> : "La réaction n°9 permet la régénération du NAD+" = FAUX (c'est la réaction 6 qui consomme le NAD+)</li>
+                        </ul>
+                        <span class="frequence">⭐⭐⭐ Tombé 2 fois</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>5. Glucokinase vs Hexokinase (foie vs muscle)</h4>
+                        <p><strong>Pourquoi c'est prioritaire :</strong> Tombé 2 fois. Différence fondamentale entre métabolisme hépatique et musculaire.</p>
+                        <p><strong>Ce que tu dois apprendre :</strong></p>
+                        <ul>
+                            <li><strong>Hexokinase (muscle)</strong> : forte affinité (faible Km), inhibée par le G6P</li>
+                            <li><strong>Glucokinase (foie)</strong> : faible affinité (fort Km), NON inhibée par le G6P</li>
+                            <li><strong>GLUT2 (foie)</strong> : fort Km = ne capte le glucose que si glycémie élevée</li>
+                            <li><strong>Conséquence</strong> : le foie ne séquestre le glucose qu'après un repas (glycémie haute)</li>
+                        </ul>
+                        <span class="frequence">⭐⭐⭐ Tombé 2 fois</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="connaissance-pure" style="margin-bottom: 20px;">
+                        <strong>⚠️ Rappel important :</strong> FC9 et FC10 doivent être appris ENSEMBLE (régulation coordonnée). Connaître 1-2 items sur 5 ne garantit PAS le point si les autres items portent sur des parties non travaillées.
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>1. Régulation PFK1 / Enzyme bifonctionnelle</h4>
+                        <div class="qcm-badge">📅 Tombé : <strong>2020-2021, 2021-2022, 2023-2024, 2024-2025</strong></div>
+                        <div class="qcm-section"><div class="qcm-section-title">📌 Constat</div><div class="qcm-section-content">Thème le plus fréquent (4/5 ans). Questions sur les régulateurs de PFK1 et le rôle du Fr-2,6-BP.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">✅ Ce que tu dois faire</div><div class="qcm-section-content">Apprendre le tableau des régulateurs de PFK1 (activateurs vs inhibiteurs) et le mécanisme de l'enzyme bifonctionnelle.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">🔑 Clé de raisonnement</div><div class="qcm-section-content">PFK1 = enzyme glycolytique régulée par allostérie. PFK2 = enzyme régulatrice qui produit le Fr-2,6-BP. Seule PFK2 est phosphorylée.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">🎯 Ce que tu dois savoir reconnaître</div><div class="qcm-section-content">
+                            • "PFK1 activée par Fr-2,6-BP / AMP" → <strong>VRAI</strong><br>
+                            • "PFK1 activée par ATP / citrate" → <strong>FAUX</strong><br>
+                            • "PFK2 produit le Fr-2,6-BP" → <strong>VRAI</strong>
+                        </div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">⚠️ Piège</div><div class="qcm-section-content">"PFK1 activée par phosphorylation" = FAUX. C'est PFK2 qui est régulée par phosphorylation, pas PFK1.</div></div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>2. Bilan énergétique / Réactions</h4>
+                        <div class="qcm-badge">📅 Tombé : <strong>2022-2023, 2023-2024, 2024-2025</strong></div>
+                        <div class="qcm-section"><div class="qcm-section-title">📌 Constat</div><div class="qcm-section-content">Questions directes sur le nombre de réactions irréversibles, le bilan ATP, les enzymes clés.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">✅ Ce que tu dois faire</div><div class="qcm-section-content">Mémoriser : 10 réactions, 3 irréversibles (1, 3, 10), bilan net = 2 ATP, enzymes des réactions clés.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">🔑 Clé de raisonnement</div><div class="qcm-section-content">Réactions 1 et 3 consomment ATP (investissement), réactions 7 et 10 produisent ATP (×2 car 2 trioses).</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">🎯 Ce que tu dois savoir reconnaître</div><div class="qcm-section-content">
+                            • "3 réactions irréversibles" → <strong>VRAI</strong> / "4 réactions" → <strong>FAUX</strong><br>
+                            • "Hexokinase = réaction 1, PK = réaction 10" → <strong>VRAI</strong><br>
+                            • "Réaction 7 produit ATP" → <strong>VRAI</strong>
+                        </div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">⚠️ Piège</div><div class="qcm-section-content">"PFK1 produit de l'ATP" = FAUX. PFK1 consomme de l'ATP (réaction 3).</div></div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>3. Shunt de Rapoport / 2,3-BPG</h4>
+                        <div class="qcm-badge">📅 Tombé : <strong>2020-2021, 2024-2025</strong></div>
+                        <div class="qcm-section"><div class="qcm-section-title">📌 Constat</div><div class="qcm-section-content">Questions sur la localisation, la réaction remplacée, le rôle du 2,3-BPG.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">✅ Ce que tu dois faire</div><div class="qcm-section-content">Mémoriser : érythrocytes, remplace réaction 7, produit 2,3-BPG, pas de production d'ATP.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">🔑 Clé de raisonnement</div><div class="qcm-section-content">Le shunt "sacrifie" la production d'ATP de la réaction 7 pour produire du 2,3-BPG qui module l'affinité de l'Hb.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">🎯 Ce que tu dois savoir reconnaître</div><div class="qcm-section-content">
+                            • "Érythrocytes / remplace réaction 7 / produit 2,3-BPG" → <strong>VRAI</strong><br>
+                            • "Remplace réaction 1" → <strong>FAUX</strong><br>
+                            • "2,3-BPG diminue affinité Hb pour O2" → <strong>VRAI</strong>
+                        </div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">⚠️ Piège</div><div class="qcm-section-content">"2,3-BPG produit par enzyme bifonctionnelle" = FAUX. C'est la BPG mutase, pas PFK2/FBPase2.</div></div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>4. Régénération NAD+ / Navettes</h4>
+                        <div class="qcm-badge">📅 Tombé : <strong>2020-2021, 2023-2024</strong></div>
+                        <div class="qcm-section"><div class="qcm-section-title">📌 Constat</div><div class="qcm-section-content">Questions sur le rôle du NAD+, la LDH, la navette glycérol-phosphate.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">✅ Ce que tu dois faire</div><div class="qcm-section-content">Comprendre pourquoi le NAD+ doit être régénéré et les 2 moyens : LDH (anaérobie) ou navettes (aérobie).</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">🔑 Clé de raisonnement</div><div class="qcm-section-content">Sans NAD+, la réaction 6 s'arrête → glycolyse bloquée. La navette glycérol-phosphate transfère au FAD, pas au complexe I.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">⚠️ Piège</div><div class="qcm-section-content">"Navette transfère au complexe I" = FAUX. C'est la navette malate-aspartate qui transfère au complexe I.</div></div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>5. Régulation allostérique / Pyruvate</h4>
+                        <div class="qcm-badge">📅 Tombé : <strong>2020-2021</strong></div>
+                        <div class="qcm-section"><div class="qcm-section-title">📌 Constat</div><div class="qcm-section-content">Questions sur l'inhibition de l'hexokinase et le devenir du pyruvate.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">✅ Ce que tu dois faire</div><div class="qcm-section-content">Savoir que l'hexokinase est inhibée par son produit (G6P) et connaître les 3 devenirs du pyruvate.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">🔑 Clé de raisonnement</div><div class="qcm-section-content">Pyruvate → lactate (anaérobie), acétyl-CoA (aérobie), ou oxaloacétate (néoglucogenèse).</div></div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>6. Glucose hépatique / MODY-2</h4>
+                        <div class="qcm-badge">📅 Tombé : <strong>2020-2021, 2021-2022</strong></div>
+                        <div class="qcm-section"><div class="qcm-section-title">📌 Constat</div><div class="qcm-section-content">Questions sur glucokinase vs hexokinase, GLUT2, conséquences du MODY-2.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">✅ Ce que tu dois faire</div><div class="qcm-section-content">Comprendre pourquoi le foie utilise la glucokinase (faible affinité) et pas l'hexokinase.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">🔑 Clé de raisonnement</div><div class="qcm-section-content">Fort Km = faible affinité. Le foie ne séquestre le glucose que si glycémie élevée → logique métabolique.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">⚠️ Piège</div><div class="qcm-section-content">MODY-2 = mutation glucokinase → le foie "ne voit pas" le glucose → NGG non freinée.</div></div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion PFK1 / PFK2</h4>
+                        <p><strong>PFK1</strong> = enzyme de la glycolyse (réaction 3), régulée par le Fr-2,6-BP. <strong>PFK2</strong> = enzyme régulatrice qui PRODUIT le Fr-2,6-BP. PFK2 est phosphorylée par PKA, pas PFK1.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion Fr-2,6-BP / Fr-1,6-BP</h4>
+                        <p><strong>Fr-2,6-BP</strong> = régulateur allostérique de PFK1. <strong>Fr-1,6-BP</strong> = intermédiaire de la glycolyse (produit de la réaction 3). Ne pas les confondre !</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion hexokinase / glucokinase</h4>
+                        <p><strong>Hexokinase</strong> (muscle) : forte affinité, inhibée par G6P. <strong>Glucokinase</strong> (foie) : faible affinité, non inhibée par G6P. Le foie utilise la glucokinase car il doit pouvoir libérer du glucose, pas le muscle.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion "produit ATP" / "consomme ATP"</h4>
+                        <p>Réactions 1 et 3 : <strong>consomment</strong> de l'ATP (investissement). Réactions 7 et 10 : <strong>produisent</strong> de l'ATP. Bilan net = 2 ATP par glucose.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le shunt de Rapoport ne produit PAS d'ATP</h4>
+                        <p>Le shunt remplace la réaction 7 qui normalement produit de l'ATP. Le shunt "sacrifie" cette production d'ATP pour produire du 2,3-BPG à la place.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>La navette glycérol-phosphate transfère au FAD, pas au complexe I</h4>
+                        <p>Contrairement à la navette malate-aspartate, la navette glycérol-phosphate transfère les électrons au FAD (donc à l'ubiquinone), pas au complexe I. Elle "perd" donc de l'énergie par rapport à la navette malate-aspartate.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>MODY-2 = mutation de la glucokinase</h4>
+                        <p>Le diabète MODY-2 est dû à une mutation de la glucokinase hépatique. Conséquence : le foie ne "voit" pas le glucose → pas de glycogénogenèse → néoglucogenèse non freinée → hyperglycémie modérée.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">
+                        FC9 est un chapitre à forte rentabilité (3,4 QCM/an) mais avec une récurrence des items FAIBLE (15%). Le professeur teste les mêmes thématiques chaque année mais varie systématiquement la formulation de ses items.
+                        </p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Maîtrisez les 10 réactions dans l'ordre avec enzymes et cofacteurs. Comprenez la logique de la régulation hormonale (insuline vs glucagon) et faites le lien avec FC10. Le prof aime les QCM transversaux sur la régulation coordonnée glycolyse/néoglucogenèse.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Approche recommandée pour ce chapitre. Concentrez-vous sur : (1) régulation PFK1/enzyme bifonctionnelle, (2) bilan énergétique (10 réactions, 3 irréversibles), (3) shunt de Rapoport. Ces 3 thèmes représentent la majorité des questions. FC9 et FC10 doivent être appris ENSEMBLE car la régulation coordonnée est systématiquement testée. Consultez le <strong>Guide Métabolisme FC9-FC15</strong> pour les liens entre chapitres.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 1 (stratégie annales) :</strong><br>
+                        ⚠️ <strong>Niveau 1 NON COMPATIBLE avec ce chapitre.</strong> Récurrence FAIBLE (15%) : le professeur ne recycle pas ses items d'une année sur l'autre. Seuls "PFK1 activée par Fr-2,6-BP" et "3 réactions irréversibles" reviennent régulièrement. Reconnaître 1-2 items sur 5 ne vous garantira pas le point si les autres items portent sur des parties du cours non travaillées.</p>
+                        
+                        <p style="background: #fee2e2; padding: 12px; border-radius: 8px; border-left: 4px solid #dc2626; color: #991b1b; margin-bottom: 0;">
+                        <strong>💡 Notre conseil :</strong> Ne restez PAS en Niveau 1 sur ce chapitre. Avec 3,4 QCM/an, FC9 est l'un des chapitres les plus rentables du programme. Investissez vos efforts ici ET sur FC10 (régulation coordonnée) pour maximiser vos points. <strong>Niveau 2 minimum fortement recommandé.</strong>
+                        </p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours.
+        </div>
+    </div>
+</body>
+</html>
