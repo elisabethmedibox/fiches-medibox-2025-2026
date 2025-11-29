@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC5 - Les Protéines - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC5 - Les Protéines</h1>
+            <div class="meta">
+                <span>📚 UE5 - Biochimie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- STRUCTURE DES PROTÉINES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Structure des protéines (5 QCM dont 2 identiques)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">Structure des protéines :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les atomes impliqués dans une liaison peptidique sont dans un même plan.</div>
+                                            <div class="qcm-item">B: Le maintien de la structure primaire des protéines dépend de la présence de nombreuses liaisons hydrogène.</div>
+                                            <div class="qcm-item">C: Les structures en feuillet plissé sont stabilisées par des liaisons hydrogènes.</div>
+                                            <div class="qcm-item">D: Les structures tertiaires des protéines dépendent uniquement de l'établissement de liaisons hydrogènes.</div>
+                                            <div class="qcm-item">E: Les ponts disulfures sont des liaisons covalentes et peuvent être détruites par le 2-mercaptoéthanol.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="qcm-identique">
+                                    <td>2021-2022 Q1<br>2024-2025 Q6<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la structure des protéines :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les atomes impliqués dans une liaison peptidique sont situés dans un même plan.</div>
+                                            <div class="qcm-item">B: L'hélice alpha est stabilisée par des liaison hydrogènes entre deux acides aminés consécutifs.</div>
+                                            <div class="qcm-item">C: L'hélice α est quasiment toujours une hélice droite.</div>
+                                            <div class="qcm-item">D: La structure tertiaire d'une protéine dépend uniquement de l'établissement de liaisons hydrogène.</div>
+                                            <div class="qcm-item">E: La dénaturation d'une protéine est toujours réversible.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos de la structure des protéines :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La structure primaire est la séquence des acides aminés de la chaîne polypeptidique.</div>
+                                            <div class="qcm-item">B: La structure primaire des protéines est modifiée par dénaturation thermique.</div>
+                                            <div class="qcm-item">C: Dans une hélice alpha les chaînes latérales des acides aminés pointent vers l'extérieur de l'hélice.</div>
+                                            <div class="qcm-item">D: L'hélice alpha est stabilisée par des liaisons hydrogène établies entre les groupements CO et NH des chaînes latérales de deux acides aminés différents.</div>
+                                            <div class="qcm-item">E: Les feuillets bêta sont stabilisés par des liaisons hydrogène établies entre acides aminés consécutifs.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les protéines :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Une protéine est un polymère dont les unités monomériques sont des acides aminés.</div>
+                                            <div class="qcm-item">B: La structure primaire d'une protéine est l'ordre des acides aminés le long de la chaîne polypeptidique.</div>
+                                            <div class="qcm-item">C: Dans toutes les structures secondaires, les liaisons H sont formées entre les groupements C=O et N-H.</div>
+                                            <div class="qcm-item">D: Un feuillet β est une structure secondaire qui est caractérisée par son pas.</div>
+                                            <div class="qcm-item">E: Le pas d'une hélice α est de 54 µm.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- PROPRIÉTÉS PHYSICO-CHIMIQUES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Propriétés physico-chimiques des protéines (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2023-2024<br>Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les propriétés physico-chimiques des protéines :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Une protéine est très soluble dans une solution dont le pH est égal au pHi de cette protéine.</div>
+                                            <div class="qcm-item">B: Une augmentation très importante de la force ionique d'une solution de protéines provoque la précipitation des protéines.</div>
+                                            <div class="qcm-item">C: La méthode du Biuret permet de solubiliser les protéines.</div>
+                                            <div class="qcm-item">D: Un tripeptide A-A-A possède une charge globale positive en solution de pH = 12.</div>
+                                            <div class="qcm-item">E: La masse molaire d'une protéine est exprimée en Dalton.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q8</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les propriétés physico-chimiques des protéines :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La masse moléculaire d'une protéine est exprimée en Dalton.</div>
+                                            <div class="qcm-item">B: La charge globale d'une protéine est indépendante du pH du milieu.</div>
+                                            <div class="qcm-item">C: La composition en acides aminés est généralement déterminée après hydrolyse acide (acide chlorhydrique 6N, 24h à 110°C, sous azote).</div>
+                                            <div class="qcm-item">D: La solubilité d'une protéine est minimum pour une valeur de pH égale à son pHi.</div>
+                                            <div class="qcm-item">E: Plus la force ionique du milieu augmente et plus la solubilité d'une protéine augmente.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- MODIFICATIONS POST-TRADUCTIONNELLES (à la frontière FC5/FC2) -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Modifications post-traductionnelles (1 QCM - frontière FC2/FC5)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les modifications post-traductionnelles des protéines :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La biotinylation des arginines assure in vivo l'activation des carboxylases.</div>
+                                            <div class="qcm-item">B: In vitro la biotinylation d'une protéine permet de l'employer comme sonde pour tester des solutions complexes, des cellules ou des tissus.</div>
+                                            <div class="qcm-item">C: O et N glycosylations sont importantes dans la reconnaissance et la signalisation cellulaire.</div>
+                                            <div class="qcm-item">D: La glypiation est une modification importante pour l'adressage d'une protéine à la membrane.</div>
+                                            <div class="qcm-item">E: La phosphorylation des acides glutamique est impliquée dans l'activation ou la désactivation des protéines et des voies métaboliques.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                                <td>🔗 Cours appartenant à une suite logique</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Ce chapitre a été testé 6 fois en 5 ans (1-2 QCM/an). Les QCM se concentrent sur 2 thématiques principales : la structure des protéines et leurs propriétés physico-chimiques.</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-2021</th>
+                                        <th>2021-2022</th>
+                                        <th>2022-2023</th>
+                                        <th>2023-2024</th>
+                                        <th>2024-2025</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Structure des protéines</td>
+                                        <td class="qcm-cell">Q3</td>
+                                        <td><span class="qcm-identique-cell">🔄 Q1</span></td>
+                                        <td class="qcm-cell">Q6</td>
+                                        <td class="qcm-cell">Q5</td>
+                                        <td><span class="qcm-identique-cell">🔄 Q6</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Propriétés physico-chimiques</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q6</td>
+                                        <td class="qcm-cell">Q8</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Modifications post-traductionnelles</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q7</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre — ici 2021-2022 Q1 = 2024-2025 Q6
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item">
+                        <h4>La coplanarité de la liaison peptidique</h4>
+                        <p>Comprendre pourquoi les 4 atomes de la liaison peptidique (C, O, N, H) sont dans un même plan (phénomène de résonance/mésomérie qui confère un caractère partiellement double à la liaison C-N).</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'hélice α : stabilisation et caractéristiques</h4>
+                        <p>Savoir que l'hélice α est stabilisée par des liaisons H entre le groupement C=O d'un AA et le groupement N-H du 4ème AA précédent (pas entre AA consécutifs !). Retenir qu'elle est quasiment toujours droite et que les chaînes latérales pointent vers l'extérieur.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La structure tertiaire : liaisons de stabilisation</h4>
+                        <p>Connaître TOUTES les liaisons qui stabilisent la structure tertiaire : liaisons H, ponts salins, interactions de Van der Waals, interactions hydrophobes, et ponts disulfures (liaisons covalentes). La structure tertiaire ne dépend PAS uniquement des liaisons H.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les feuillets β : liaisons H intermoléculaires</h4>
+                        <p>Distinguer les feuillets β de l'hélice α : dans les feuillets, les liaisons H sont établies entre brins différents (pas entre AA consécutifs). Les feuillets peuvent être parallèles ou antiparallèles.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Solubilité et pHi</h4>
+                        <p>Retenir que la solubilité d'une protéine est MINIMALE (pas maximale !) quand le pH = pHi. À ce pH, la charge nette est nulle, les interactions électrostatiques sont minimales et la protéine précipite.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Force ionique et effet de relargage</h4>
+                        <p>Comprendre l'effet biphasique de la force ionique : à faible concentration, les ions augmentent la solubilité (salting-in), mais à très forte concentration, ils provoquent la précipitation (salting-out ou relargage).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM 1 : Coplanarité liaison peptidique -->
+                    <div class="qcm-analyse">
+                        <h4>Coplanarité de la liaison peptidique</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q3, <strong>2021-2022</strong> Q1, <strong>2024-2025</strong> Q6</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">L'item "les atomes impliqués dans une liaison peptidique sont dans un même plan" est tombé 3 fois en 5 ans, toujours VRAI.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends cet item tel quel. C'est un point quasi-garanti.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>La liaison peptidique a un caractère de <strong>double liaison partielle</strong> (résonance/mésomérie) qui empêche la rotation libre autour de la liaison C-N. Les 4 atomes (C, O, N, H) sont donc coplanaires.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Structure tertiaire uniquement liaisons H -->
+                    <div class="qcm-analyse">
+                        <h4>Structure tertiaire ≠ uniquement liaisons H</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q3, <strong>2021-2022</strong> Q1, <strong>2024-2025</strong> Q6</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">L'item "la structure tertiaire dépend uniquement de liaisons hydrogène" est tombé 3 fois, toujours FAUX.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que la structure tertiaire fait intervenir PLUSIEURS types de liaisons, pas uniquement les liaisons H.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>La structure tertiaire est stabilisée par 5 types de liaisons :</p>
+                                <ul>
+                                    <li>Liaisons hydrogène</li>
+                                    <li>Ponts salins (liaisons ioniques)</li>
+                                    <li>Interactions de Van der Waals</li>
+                                    <li>Interactions hydrophobes</li>
+                                    <li>Ponts disulfures (covalents)</li>
+                                </ul>
+                                <p>Le mot <strong>"uniquement"</strong> rend l'item faux.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Hélice alpha AA consécutifs -->
+                    <div class="qcm-analyse">
+                        <h4>Hélice α : liaisons H entre AA consécutifs ?</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q1, <strong>2024-2025</strong> Q6</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">L'item "l'hélice α est stabilisée par des liaisons H entre deux AA consécutifs" est tombé 2 fois, toujours FAUX.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Mémorise que les liaisons H dans l'hélice α se font entre un AA et le 4ème AA précédent, PAS entre AA consécutifs.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>Dans l'hélice α, chaque liaison H unit le groupement <strong>C=O de l'AA n</strong> au groupement <strong>N-H de l'AA n+4</strong>. C'est ce qui crée la structure en spirale caractéristique avec un pas de 0,54 nm.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Hélice α droite -->
+                    <div class="qcm-analyse">
+                        <h4>Hélice α quasiment toujours droite</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q1, <strong>2024-2025</strong> Q6</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">L'item "l'hélice α est quasiment toujours une hélice droite" est tombé 2 fois, toujours VRAI.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends cet item tel quel.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. L'hélice α est quasiment toujours droite car les acides aminés sont de configuration L.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 5 : Dénaturation réversible -->
+                    <div class="qcm-analyse">
+                        <h4>Dénaturation toujours réversible ?</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q1, <strong>2024-2025</strong> Q6</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">L'item "la dénaturation d'une protéine est toujours réversible" est tombé 2 fois, toujours FAUX.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que la dénaturation n'est PAS toujours réversible.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>La dénaturation peut être réversible (si conditions douces) ou irréversible (si conditions trop sévères). Le mot <strong>"toujours"</strong> rend l'item faux.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 6 : Masse en Dalton -->
+                    <div class="qcm-analyse">
+                        <h4>Masse moléculaire en Dalton</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q6, <strong>2024-2025</strong> Q8</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">L'item sur la masse moléculaire exprimée en Dalton est tombé 2 fois, toujours VRAI.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends que la masse moléculaire des protéines s'exprime en Dalton (Da) ou kilodalton (kDa).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. 1 Da = 1 g/mol.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM IDENTIQUE -->
+                    <div class="qcm-analyse" style="border-color: #10b981; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
+                        <h4>⭐ QCM strictement identique 2021-2022 / 2024-2025</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q1 = <strong>2024-2025</strong> Q6</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le QCM 2024-2025 Q6 est strictement identique (mot pour mot) au QCM 2021-2022 Q1. Les 5 items sont les mêmes.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends ce QCM par cœur. Si le prof l'a redonné une fois à l'identique, il peut le refaire.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>Les 5 items de ce QCM testent :</p>
+                                <ul>
+                                    <li>Coplanarité de la liaison peptidique (VRAI)</li>
+                                    <li>Hélice α entre AA consécutifs (FAUX)</li>
+                                    <li>Hélice α droite (VRAI)</li>
+                                    <li>Structure tertiaire uniquement liaisons H (FAUX)</li>
+                                    <li>Dénaturation toujours réversible (FAUX)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion hélice α / feuillets β sur les liaisons H</h4>
+                        <p>Dans l'hélice α, les liaisons H sont INTRAmoléculaires (au sein d'une même chaîne, entre AA n et n+4). Dans les feuillets β, les liaisons H sont INTERmoléculaires (entre brins différents). Ne confonds pas "AA consécutifs" avec "brins adjacents".</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le piège du pas de l'hélice α</h4>
+                        <p>Le pas de l'hélice α est de 0,54 nm (ou 5,4 Å), pas 54 µm ! Attention aux ordres de grandeur dans les items qui testent cette valeur.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Solubilité minimale au pHi</h4>
+                        <p>Au pHi, la protéine a une charge nette nulle et sa solubilité est MINIMALE (elle précipite). Ne confonds pas avec "solubilité maximale". C'est contre-intuitif mais fondamental.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Effet biphasique de la force ionique</h4>
+                        <p>À faible force ionique : les ions augmentent la solubilité (salting-in). À forte force ionique : les ions provoquent la précipitation (salting-out/relargage). Les items qui disent "plus la force ionique augmente, plus la solubilité augmente" sont donc FAUX car ils ignorent l'effet de relargage.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Méthode du Biuret = dosage, pas solubilisation</h4>
+                        <p>La méthode du Biuret permet de DOSER les protéines (réaction colorée avec le cuivre en milieu alcalin), pas de les solubiliser. Ne confonds pas avec les techniques de précipitation/solubilisation.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Biotinylation sur Lys, pas sur Arg</h4>
+                        <p>La biotinylation se fait sur les LYSINES (Lys), pas sur les arginines. C'est un piège classique dans les QCM sur les modifications post-traductionnelles.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Phosphorylation sur Ser/Thr/Tyr, pas sur Glu</h4>
+                        <p>La phosphorylation concerne les acides aminés à fonction hydroxyle : Sérine, Thréonine, Tyrosine. L'acide glutamique (Glu) n'est PAS phosphorylé.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre tombe chaque année avec 1-2 QCM, essentiellement sur la structure des protéines. La récurrence des items est moyenne (46%) : certains items reviennent régulièrement, mais le prof varie aussi ses questions.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Ne faites aucune impasse. Ce chapitre fait partie de la suite logique AA → Peptides → Protéines → Hémoglobine. Maîtrisez bien les 4 niveaux de structure, les modifications post-traductionnelles, et les propriétés physico-chimiques. Attention aux méthodes d'étude (SDS-PAGE, chromatographie) qui n'ont pas encore été testées mais pourraient l'être.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les structures primaire, secondaire et tertiaire (tombées chaque année). Les propriétés physico-chimiques (pHi, solubilité, force ionique) sont apparues récemment et méritent votre attention. Pour les modifications post-traductionnelles, apprenez les grandes catégories sur les diapos sans entrer dans tous les détails.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        La récurrence des items est moyenne (46%), ce qui rend cette stratégie possible mais avec des risques. Apprenez en priorité le QCM identique 2021-2022/2024-2025 qui peut retomber. Les items sur la coplanarité de la liaison peptidique et la structure tertiaire reviennent régulièrement. Attention cependant : le prof introduit de nouveaux items à chaque session, donc connaître uniquement les items déjà tombés ne garantit pas tous les points. Globalement il est peu probable qu'une stratégie annales soit efficace sur ce chapitre sauf coup de chance et recyclage d'un QCM complet.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
