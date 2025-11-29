@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC15 - Régulation hormonale du métabolisme - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .vue-ensemble h4 {
+            color: #1a365d;
+            margin: 0 0 15px 0;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        .vue-tableau td {
+            padding: 8px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            font-weight: 600;
+        }
+        
+        /* Cartes niveau 2 */
+        .niveau2-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .niveau2-card h4 {
+            color: #1a365d;
+            margin: 0 0 10px 0;
+            font-size: 1rem;
+        }
+        
+        .niveau2-card p {
+            color: #4a5568;
+            margin: 0 0 10px 0;
+            font-size: 0.9rem;
+        }
+        
+        .niveau2-badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* Cartes analyse QCM niveau 1 */
+        .qcm-analyse {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 2px solid #e2e8f0;
+        }
+        
+        .qcm-analyse h4 {
+            color: #1a365d;
+            margin: 0 0 12px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 4px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 0;
+            padding-left: 20px;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border-left: 4px solid #6366f1;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            color: #3730a3;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #f97316;
+        }
+        
+        .vigilance-item h4 {
+            color: #ea580c;
+            margin: 0 0 8px 0;
+            font-size: 0.95rem;
+        }
+        
+        .vigilance-item p {
+            color: #4a5568;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid #22c55e;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+        
+        /* Responsive mobile */
+        @media (max-width: 768px) {
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <h1>FC15 - Régulation hormonale du métabolisme</h1>
+            <p class="subtitle">Fiche d'analyse stratégique - UE5 Biochimie</p>
+        </header>
+        
+        <div class="content">
+            <!-- ACCORDÉON 1 : QCM TOMBÉS -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- Thématique 1 : Ubiquinone -->
+                    <div class="qcm-thematique">
+                        <h4>🔬 Ubiquinone (Coenzyme Q)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>QCM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q16</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'ubiquinone :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : L'ubiquinol est une forme réduite de l'ubiquinone.</div>
+                                            <div class="qcm-item">B : L'ubiquinone peut recevoir des électrons du complexe II de la chaîne respiratoire.</div>
+                                            <div class="qcm-item">C : L'ubiquinone est une pompe à protons.</div>
+                                            <div class="qcm-item">D : L'ubiquinone transfère des électrons au complexe IV de la chaîne respiratoire.</div>
+                                            <div class="qcm-item">E : L'ubiquinone est une protéine.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025 Q20</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'ubiquinone.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : C'est un oxydant.</div>
+                                            <div class="qcm-item">B : Elle accepte des électrons du complexe III.</div>
+                                            <div class="qcm-item">C : Elle peut accepter des électrons d'au moins 4 façons différentes.</div>
+                                            <div class="qcm-item">D : Elle fait le lien entre le complexe III et le complexe IV.</div>
+                                            <div class="qcm-item">E : Elle est une pompe à protons.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Thématique 2 : Complexes de la chaîne respiratoire -->
+                    <div class="qcm-thematique">
+                        <h4>⚡ Complexes de la chaîne respiratoire</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>QCM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q10<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items C,D</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la navette glycérol phosphate :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Elle permet l'oxydation du NADH,H+.</div>
+                                            <div class="qcm-item">B : Elle transfère les protons du dihydroxyacétone phosphate au FAD.</div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: 600;">C : Elle transfère des électrons au niveau du complexe I.</div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: 600;">D : Elle a lieu sur la face interne de la membrane mitochondriale interne.</div>
+                                            <div class="qcm-item">E : Elle permet de régénérer le NAD+ nécessaire à la glycolyse.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022 Q19</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le complexe III de la chaîne respiratoire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Ce complexe participe à la formation du gradient de protons.</div>
+                                            <div class="qcm-item">B : Ce complexe ne transfère pas de protons dans l'espace intermembranaire.</div>
+                                            <div class="qcm-item">C : Ce complexe transfère des électrons à l'ubiquinone.</div>
+                                            <div class="qcm-item">D : Ce complexe transfère des électrons au cytochrome c.</div>
+                                            <div class="qcm-item">E : Ce complexe constitue l'étape à laquelle le FADH2 cède ses électrons.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023 Q19</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la chaîne respiratoire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Ses réactions ont lieu au sein du noyau des cellules.</div>
+                                            <div class="qcm-item">B : Elle comporte 4 complexes.</div>
+                                            <div class="qcm-item">C : Elle comporte 3 complexes.</div>
+                                            <div class="qcm-item">D : Le complexe II est une pompe à protons.</div>
+                                            <div class="qcm-item">E : Le cyanure inhibe le complexe I.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024 Q20</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la chaîne respiratoire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Les électrons du NADH,H⁺ sont captés au niveau du complexe I.</div>
+                                            <div class="qcm-item">B : Les électrons du FADH₂ sont captés au niveau du complexe I</div>
+                                            <div class="qcm-item">C : L'ubiquinone fait le lien entre le complexe III et le complexe IV</div>
+                                            <div class="qcm-item">D : Le cytochrome c fait le lien entre le complexe III et le complexe IV</div>
+                                            <div class="qcm-item">E : L'O₂ est utilisé par le complexe IV</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Thématique 3 : Régulation hormonale / Insuline -->
+                    <div class="qcm-thematique">
+                        <h4>💉 Régulation hormonale - Insuline / Glucagon / Adrénaline</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>QCM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022 Q20</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les hormones du métabolisme glucidique</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : L'insuline joue un rôle hypoglycémiant.</div>
+                                            <div class="qcm-item">B : Le glucagon joue un rôle hypoglycémiant.</div>
+                                            <div class="qcm-item">C : Le glucagon favorise la glycogénogenèse.</div>
+                                            <div class="qcm-item">D : L'adrénaline favorise la glycogénolyse.</div>
+                                            <div class="qcm-item">E : L'adrénaline favorise la glycogénogénèse musculaire.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023 Q20</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'insuline :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Elle est produite par les cellules musculaires.</div>
+                                            <div class="qcm-item">B : Elle a un effet hypoglycémiant.</div>
+                                            <div class="qcm-item">C : Les cellules qui la sécrètent, le font par endocytose.</div>
+                                            <div class="qcm-item">D : Sa sécrétion est stimulée en cas de glycémie élevée.</div>
+                                            <div class="qcm-item">E : Le glucose entre au sein des cellules capables de la sécréter, via GLUT2.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <thead>
+                                <tr>
+                                    <th>Fréquence</th>
+                                    <th>Moyenne QCM/an</th>
+                                    <th>Format</th>
+                                    <th>Dépendance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>✅ Tombe chaque année</td>
+                                    <td>1,6 QCM/an</td>
+                                    <td>🟢 QCM sur parties ciblées - sans récurrence des items</td>
+                                    <td>😺 Indépendant</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Répartition des QCM FC15 sur les 5 dernières années :</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-21</th>
+                                        <th>2021-22</th>
+                                        <th>2022-23</th>
+                                        <th>2023-24</th>
+                                        <th>2024-25</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align: left; font-weight: 600;">Ubiquinone</td>
+                                        <td>Q16</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>Q20</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left; font-weight: 600;">Complexes chaîne respiratoire</td>
+                                        <td>Q10 (C,D)</td>
+                                        <td>Q19</td>
+                                        <td>Q19</td>
+                                        <td>Q20</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left; font-weight: 600;">Hormones (insuline/glucagon)</td>
+                                        <td>-</td>
+                                        <td>Q20</td>
+                                        <td>Q20</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #92400e;">
+                                <strong>⚠️ Récurrence FAIBLE (11%)</strong> : Le prof varie considérablement ses items. Seules 4 notions sur 35 items ont été retestées de façon similaire.
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="niveau2-card">
+                        <h4>L'ubiquinone (Coenzyme Q)</h4>
+                        <p>Molécule liposoluble non protéique de la membrane mitochondriale interne. Maîtrise les 4 façons dont elle reçoit des électrons (complexe I, complexe II, β-oxydation, navette glycérol phosphate). Retiens que l'ubiquinone n'est PAS une pompe à protons et qu'elle transfère ses électrons au complexe III (pas au IV).</p>
+                        <span class="niveau2-badge">Tombé 2 fois en 5 ans</span>
+                    </div>
+                    
+                    <div class="niveau2-card">
+                        <h4>Les 4 complexes de la chaîne respiratoire</h4>
+                        <p>Localisation (membrane mitochondriale interne), rôle de chaque complexe, qui sont les pompes à protons (I, III, IV mais PAS le II), et les transporteurs mobiles (ubiquinone entre I/II et III, cytochrome c entre III et IV). Retiens que le NADH cède ses électrons au complexe I, le FADH2 au complexe II.</p>
+                        <span class="niveau2-badge">Tombé 4 fois en 5 ans</span>
+                    </div>
+                    
+                    <div class="niveau2-card">
+                        <h4>Rôle des hormones du métabolisme glucidique</h4>
+                        <p>Insuline = hypoglycémiante (favorise glycogénogenèse, inhibe NGG). Glucagon = hyperglycémiant (favorise NGG et glycogénolyse). Adrénaline = favorise glycogénolyse (stress). Retiens aussi le mécanisme de sécrétion de l'insuline : GLUT2 → glycolyse → ATP → fermeture canal K+ → dépolarisation → entrée Ca2+ → exocytose.</p>
+                        <span class="niveau2-badge">Tombé 2 fois en 5 ans</span>
+                    </div>
+                    
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (annales)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- QCM 1 : Ubiquinone -->
+                    <div class="qcm-analyse">
+                        <h4>Ubiquinone - caractéristiques et fonction</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q16 • <strong>2024-2025</strong> Q20</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">L'ubiquinone est testée sous différents angles : nature chimique, états redox, sources d'électrons, position dans la chaîne. Les pièges récurrents portent sur "pompe à protons" (FAUX) et "lien III-IV" (FAUX, c'est I/II vers III).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les caractéristiques fondamentales : molécule liposoluble non protéique, forme réduite = ubiquinol, reçoit électrons de 4 sources (complexe I, II, β-oxydation, navette glycérol-P), transfère au complexe III.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>L'ubiquinone fait le lien entre I/II et III</strong> (pas entre III et IV = c'est le cytochrome c).</p>
+                                <p><strong>L'ubiquinone n'est PAS une pompe à protons</strong> (les pompes sont les complexes I, III, IV).</p>
+                                <p>Piège : "accepte des électrons du complexe III" = FAUX, elle les DONNE au III.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Complexe III -->
+                    <div class="qcm-analyse">
+                        <h4>Complexe III de la chaîne respiratoire</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q19</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste le fonctionnement du complexe III : pompe à protons, transfert d'électrons au cytochrome c, et des pièges sur l'ubiquinone et le FADH2.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que le complexe III est une pompe à protons, qu'il transfère ses électrons au cytochrome c (pas à l'ubiquinone), et que le FADH2 cède ses électrons au complexe II (pas au III).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>Le flux d'électrons suit l'ordre : <strong>NADH → I → UQ → III → Cyt c → IV → O2</strong></p>
+                                <p>Le FADH2 entre au niveau du <strong>complexe II</strong>, pas du III.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Chaîne respiratoire généralités -->
+                    <div class="qcm-analyse">
+                        <h4>Chaîne respiratoire - généralités</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q19 • <strong>2023-2024</strong> Q20</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ces QCM testent la localisation (membrane mitochondriale interne, PAS le noyau), le nombre de complexes (4), les pompes à protons (I, III, IV mais PAS II), et les inhibiteurs.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Mémorise : 4 complexes, localisation MMI, complexe II = succinate déshydrogénase (PAS une pompe à protons), cyanure inhibe le complexe IV (pas le I), O2 = accepteur final au niveau du complexe IV.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Pompes à protons = I, III, IV</strong> (pas le II car il est dans la membrane mais ne pompe pas).</p>
+                                <p>Le <strong>cyanure inhibe le complexe IV</strong> (dernier complexe, bloque le transfert à l'O2).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Hormones métabolisme glucidique -->
+                    <div class="qcm-analyse">
+                        <h4>Hormones du métabolisme glucidique</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q20</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste le rôle global de l'insuline, du glucagon et de l'adrénaline. Les pièges inversent les effets (glucagon hypoglycémiant, adrénaline favorise glycogénogenèse).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Mémorise le tableau : Insuline = hypoglycémiante (glycogénogenèse). Glucagon = hyperglycémiant (NGG). Adrénaline = glycogénolyse (mobilisation rapide).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Insuline = seule hormone hypoglycémiante</strong> (toutes les autres sont hyperglycémiantes).</p>
+                                <p>Glucagon et adrénaline = opposés à l'insuline mais par des voies différentes.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 5 : Insuline sécrétion -->
+                    <div class="qcm-analyse">
+                        <h4>Insuline - sécrétion et mécanisme</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q20</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste le mécanisme de sécrétion de l'insuline par les cellules β pancréatiques : rôle de GLUT2, effet hypoglycémiant, stimulus par glycémie élevée, exocytose (pas endocytose).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens la cascade : glycémie élevée → GLUT2 → glycolyse → ↑ATP → fermeture canal K+ → dépolarisation → ouverture canal Ca2+ → exocytose insuline.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>L'insuline est sécrétée par <strong>exocytose</strong> (fusion vésicule-membrane), pas par endocytose.</p>
+                                <p>Le <strong>GLUT2</strong> permet l'entrée du glucose dans les cellules β pancréatiques (fort Km).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Ubiquinone ≠ pompe à protons</h4>
+                        <p>L'ubiquinone transporte des électrons mais ne pompe PAS de protons. Seuls les complexes I, III et IV sont des pompes à protons. Ce piège est tombé en 2020 et 2024.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Ubiquinone fait le lien I/II → III (pas III → IV)</h4>
+                        <p>L'ubiquinone reçoit les électrons des complexes I et II et les transfère au complexe III. Le lien entre III et IV est assuré par le cytochrome c. Piège récurrent dans les QCM.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Complexe II ≠ pompe à protons</h4>
+                        <p>Le complexe II (succinate déshydrogénase) fait partie de la chaîne mais ne pompe pas de protons dans l'espace intermembranaire. C'est pourquoi le FADH2 produit moins d'ATP que le NADH.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Cyanure inhibe le complexe IV (pas le I)</h4>
+                        <p>Le cyanure bloque le transfert final d'électrons à l'O2 au niveau du complexe IV. Ne pas confondre avec le complexe I qui est inhibé par la roténone.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Insuline = exocytose (pas endocytose)</h4>
+                        <p>L'insuline est libérée par fusion des vésicules avec la membrane = exocytose. L'endocytose est le processus inverse (entrée dans la cellule).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Glucagon = hyperglycémiant (pas hypoglycémiant)</h4>
+                        <p>Seule l'insuline est hypoglycémiante. Glucagon, adrénaline et cortisol sont tous hyperglycémiants. Le glucagon favorise la NGG et la glycogénolyse.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">FC15 est un chapitre qui tombe chaque année avec 1-2 QCM, principalement sur la chaîne respiratoire. C'est un chapitre relativement autonome qui peut être travaillé indépendamment des autres chapitres du métabolisme.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Maîtrisez l'ensemble de la chaîne respiratoire (4 complexes, transporteurs mobiles, inhibiteurs, bilan énergétique) et la régulation hormonale complète (insuline, glucagon, adrénaline, cortisol). Comprenez les mécanismes moléculaires de sécrétion de l'insuline et les cascades de signalisation.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les 3 thématiques tombées : l'ubiquinone et ses 4 sources d'électrons, les caractéristiques des 4 complexes (pompes à protons ou non), et le rôle global des 3 hormones principales. Le diabète n'est jamais tombé sur FC15 (il est traité dans FC9 avec le MODY-2).</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Attention : la récurrence des items est FAIBLE (11%). Le prof varie beaucoup ses angles d'attaque d'une année sur l'autre. Les seuls items vraiment récurrents sont "ubiquinone n'est pas une pompe à protons", "cytochrome c = lien III-IV", et "insuline = hypoglycémiante". Un travail uniquement sur annales est risqué sur ce chapitre car les items exacts ne reviennent pas souvent. Un Niveau 2 minimum est recommandé.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
