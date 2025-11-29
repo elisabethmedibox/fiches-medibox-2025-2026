@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC10 - La Néoglucogenèse - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC10 - La Néoglucogenèse</h1>
+            <div class="meta">
+                <span>📚 UE5 - Biochimie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- CYCLE DE CORI -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Cycle de Cori (3 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q13<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items D,E → FC10</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la néoglucogenèse :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le glycérol des triglycérides, la rejoignent sous forme de pyruvate. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
+                                            <div class="qcm-item">B: Les acides gras des triglycérides, ne la rejoignent pas chez l'homme. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
+                                            <div class="qcm-item">C: Le lactate doit être transformer en pyruvate pour l'intégrer. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: 600;">D: Elle est utilisée lors du cycle de Cori, dans le foie. <span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC10</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: 600;">E: Elle est utilisée lors du cycle de Cori, dans le muscle. <span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC10</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q12</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la néoglucogenèse :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La néoglucogenèse fait partie du cycle de l'alanine.</div>
+                                            <div class="qcm-item">B: La néoglucogenèse fait partie de la voie des pentoses phosphate.</div>
+                                            <div class="qcm-item">C: La néoglucogenèse sert à former du pyruvate.</div>
+                                            <div class="qcm-item">D: La néoglucogenèse fait partie du cycle de Cori.</div>
+                                            <div class="qcm-item">E: La néoglucogenèse sert à former du lactate.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q15</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le cycle de Cori :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le cycle de Cori se déroule entièrement dans le muscle</div>
+                                            <div class="qcm-item">B: Le cycle de Cori comprend la glycolyse.</div>
+                                            <div class="qcm-item">C: Le cycle de Cori comprend la voie des pentoses phosphate</div>
+                                            <div class="qcm-item">D: Il sert à synthétiser du glucose pour le muscle</div>
+                                            <div class="qcm-item">E: Il est surtout utilisé lors d'un jeûne prolongé.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- PRÉCURSEURS GLUCOFORMATEURS -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Précurseurs glucoformateurs (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q13<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items A,B,C → FC10</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la néoglucogenèse :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: 600;">A: Le glycérol des triglycérides, la rejoignent sous forme de pyruvate. <span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC10</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: 600;">B: Les acides gras des triglycérides, ne la rejoignent pas chez l'homme. <span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC10</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: 600;">C: Le lactate doit être transformer en pyruvate pour l'intégrer. <span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC10</span></div>
+                                            <div class="qcm-item">D: Elle est utilisée lors du cycle de Cori, dans le foie. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
+                                            <div class="qcm-item">E: Elle est utilisée lors du cycle de Cori, dans le muscle. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q13</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la néoglucogenèse :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Elle aboutit à la formation de glycogène.</div>
+                                            <div class="qcm-item">B: Elle aboutit à la formation de pyruvate.</div>
+                                            <div class="qcm-item">C: Elle permet d'obtenir 2 ATP.</div>
+                                            <div class="qcm-item">D: L'alanine et le lactate sont des précurseurs glucoformateurs.</div>
+                                            <div class="qcm-item">E: Le glycérol est un précurseur glucoformateur.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- RÉGULATION COORDONNÉE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Régulation coordonnée glycolyse/NGG (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2023-2024<br>Q16<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">item B → FC10</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la régulation coordonnée de la glycolyse et de la néoglucogenèse :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le fructose-2,6-bisphosphate régule positivement la phosphofructokinase de type 1 (PFK1). <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: 600;">B: Le fructose-2,6-bisphosphate régule positivement la fructose-2,6-bisphosphatase. <span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC10</span></div>
+                                            <div class="qcm-item">C: L'ATP régule positivement la phosphofructokinase de type 1 (PFK1). <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
+                                            <div class="qcm-item">D: En cas de forte charge énergétique, la phosphofructokinase de type 1 (PFK1) est activée. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
+                                            <div class="qcm-item">E: L'AMP est un inhibiteur allostérique de la phosphofructokinase de type 1 (PFK1) <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q14<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items B,C,D → FC10</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la régulation coordonnée de PFK1 et de Fr-1,6-BPase :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La PFK1 (phosphofructokinase de type 1) est régulée positivement par l'AMP <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: 600;">B: La Fr-1,6-BPase (fructose-1,6-bisphosphatase) est régulée positivement par l'AMP. <span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC10</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: 600;">C: Le glucagon favorise la néoglucogenèse hépatique <span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC10</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: 600;">D: L'insuline favorise la néoglucogenèse hépatique. <span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC10</span></div>
+                                            <div class="qcm-item">E: L'insuline entraîne indirectement l'activation de la PFK2. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ENZYMES SPÉCIFIQUES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Enzymes spécifiques de la NGG (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q12<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items D,E → FC10</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les enzymes de la glycolyse et de la néoglucogenèse :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La glucokinase catalyse la première réaction de la néoglucogenèse. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
+                                            <div class="qcm-item">B: La phosphofructokinase de type 1 (PFK1) catalyse une réaction réversible. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
+                                            <div class="qcm-item">C: L'énolase est une enzyme commune à la glycolyse et à la néoglucogenèse. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: 600;">D: La pyruvate carboxylase (PC) utilise du GTP pour sa réaction <span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC10</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: 600;">E: La phosphoénolpyruvate carboxykinase (PEPCK) utilise du GTP pour sa réaction. <span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC10</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- BILAN ÉNERGÉTIQUE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Bilan énergétique de la NGG (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2023-2024<br>Q14</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le bilan de la néoglucogenèse :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La néoglucogenèse est coûteuse en énergie.</div>
+                                            <div class="qcm-item">B: La néoglucogenèse fournit de l'énergie.</div>
+                                            <div class="qcm-item">C: La néoglucogenèse fournit globalement 2 ATP.</div>
+                                            <div class="qcm-item">D: La néoglucogenèse requiert 2 GTP.</div>
+                                            <div class="qcm-item">E: La néoglucogenèse requiert 2 NADH,H⁺</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <thead>
+                                <tr>
+                                    <th>Fréquence</th>
+                                    <th>Moyenne QCM/an</th>
+                                    <th>Format</th>
+                                    <th>Dépendance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>🔵 Revient souvent (4x/5)</td>
+                                    <td>1,6 QCM/an</td>
+                                    <td>🟢 QCM sur parties ciblées - sans récurrence</td>
+                                    <td>🔗 Suite logique (interconnecté avec FC9)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Répartition des 8 QCM FC10 sur 5 ans (aucun QCM en 2020-2021) :</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-21</th>
+                                        <th>2021-22</th>
+                                        <th>2022-23</th>
+                                        <th>2023-24</th>
+                                        <th>2024-25</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Cycle de Cori</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q13</td>
+                                        <td class="qcm-cell">Q12</td>
+                                        <td class="qcm-cell">Q15</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Précurseurs glucoformateurs</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q13</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q13</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Régulation coordonnée</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q16</td>
+                                        <td class="qcm-cell">Q14</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Enzymes spécifiques (PC, PEPCK)</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q12</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bilan énergétique NGG</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q14</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cycle de l'alanine</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q12</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #92400e;">
+                                <strong>⚠️ Note :</strong> 3 QCM sur 8 sont multi-chapitres (FC9+FC10). Les items surlignés en jaune dans l'accordéon 1 correspondent aux items FC10 dans ces QCM partagés.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item">
+                        <h4>Le cycle de Cori</h4>
+                        <p>Comprendre le cycle complet : glycolyse anaérobie dans le muscle → lactate → sang → foie → NGG → glucose → sang → muscle. Savoir que la NGG se fait dans le FOIE, pas dans le muscle.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les précurseurs glucoformateurs</h4>
+                        <p>Connaître les 3 catégories de précurseurs : le lactate (via le pyruvate), l'alanine (via le pyruvate), et le glycérol (des triglycérides). Retenir que les acides gras NE SONT PAS des précurseurs glucoformateurs chez l'homme.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La régulation coordonnée glycolyse/NGG</h4>
+                        <p>Maîtriser le couple PFK1/Fr-1,6-BPase et le rôle du fructose-2,6-bisphosphate. Comprendre les effets opposés du glucagon (favorise NGG) et de l'insuline (inhibe NGG).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le bilan énergétique de la NGG</h4>
+                        <p>Retenir que la NGG est COÛTEUSE en énergie : 4 ATP + 2 GTP + 2 NADH,H+ pour former 1 glucose à partir de 2 pyruvates. C'est l'inverse de la glycolyse qui produit de l'énergie.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les enzymes spécifiques de la NGG</h4>
+                        <p>Connaître les 4 réactions de contournement et leurs enzymes : pyruvate carboxylase (PC, utilise ATP), PEPCK (utilise GTP), fructose-1,6-bisphosphatase, glucose-6-phosphatase.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+                        <p style="margin: 0; color: #dc2626; font-weight: 600;">⚠️ ATTENTION : La stratégie Niveau 1 est peu rentable sur ce chapitre</p>
+                        <p style="margin: 10px 0 0 0; color: #7f1d1d; font-size: 0.9rem;">Avec une récurrence MOYENNE des items (43%), le prof varie ses questions d'une année sur l'autre. Apprendre uniquement les items déjà tombés ne garantit pas de retrouver les mêmes formulations.</p>
+                    </div>
+
+                    <!-- QCM 1 : Cycle de Cori -->
+                    <div class="qcm-analyse">
+                        <h4>Cycle de Cori</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q13 | <strong>2022-2023</strong> Q12 | <strong>2023-2024</strong> Q15</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">C'est la thématique la plus tombée de FC10. Le prof teste la compréhension du cycle, sa localisation (foie vs muscle), et les confusions possibles avec d'autres voies.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends que la NGG fait partie du cycle de Cori et qu'elle se déroule dans le FOIE. Le muscle fait la glycolyse, pas la NGG.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Le cycle de Cori = collaboration muscle-foie :</strong></p>
+                                <ul>
+                                    <li>MUSCLE : glycolyse anaérobie → produit du lactate</li>
+                                    <li>FOIE : NGG → transforme le lactate en glucose</li>
+                                    <li>Le cycle de Cori ≠ voie des pentoses phosphates</li>
+                                    <li>Le cycle de Cori ≠ jeûne prolongé (c'est le cycle de l'alanine pour le jeûne)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Précurseurs glucoformateurs -->
+                    <div class="qcm-analyse">
+                        <h4>Précurseurs glucoformateurs</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q13 | <strong>2024-2025</strong> Q13</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof teste la connaissance des molécules qui peuvent entrer dans la NGG. Le piège classique concerne les acides gras.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens la liste des précurseurs (lactate, alanine, glycérol) et surtout l'exception des acides gras qui NE SONT PAS glucoformateurs chez l'homme.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Peuvent entrer dans la NGG :</strong> lactate, alanine, glycérol, certains AA</p>
+                                <p><strong>Ne peuvent PAS :</strong> les acides gras (chez l'homme) → ils donnent de l'acétyl-CoA qui ne peut pas remonter vers le glucose</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Régulation coordonnée -->
+                    <div class="qcm-analyse">
+                        <h4>Régulation coordonnée glycolyse/NGG</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q16 | <strong>2024-2025</strong> Q14</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ces QCM sont souvent multi-chapitres (FC9+FC10). Le prof teste la régulation de la Fr-1,6-BPase et les effets des hormones sur la NGG.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les régulateurs de la Fr-1,6-BPase (enzyme de la NGG) et les effets du glucagon vs insuline sur la NGG.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Fr-1,6-BPase (enzyme de la NGG) :</strong></p>
+                                <ul>
+                                    <li>INHIBÉE par le F-2,6-BP (donc F-2,6-BP = anti-NGG)</li>
+                                    <li>INHIBÉE par l'AMP (faible charge énergétique)</li>
+                                </ul>
+                                <p><strong>Hormones :</strong></p>
+                                <ul>
+                                    <li>Glucagon → FAVORISE la NGG (hypoglycémie → il faut produire du glucose)</li>
+                                    <li>Insuline → INHIBE la NGG (hyperglycémie → pas besoin de produire du glucose)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Bilan énergétique -->
+                    <div class="qcm-analyse">
+                        <h4>Bilan énergétique de la NGG</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q14</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Un seul QCM sur cette thématique, mais les notions sont fondamentales et peuvent retomber.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens le bilan : 4 ATP + 2 GTP + 2 NADH,H+ consommés pour 1 glucose produit.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Retiens : la NGG est COÛTEUSE en énergie (elle consomme, elle ne produit pas). Bilan = 4 ATP + 2 GTP + 2 NADH,H+ pour 1 glucose.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion cycle de Cori / cycle de l'alanine</h4>
+                        <p>Le cycle de Cori utilise le LACTATE et fonctionne pendant l'exercice intense. Le cycle de l'alanine utilise l'ALANINE et fonctionne pendant le jeûne prolongé. Ne pas confondre les deux situations physiologiques.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Localisation de la NGG</h4>
+                        <p>La NGG se déroule principalement dans le FOIE (et un peu dans le rein). Elle ne se fait PAS dans le muscle. Le muscle fait la glycolyse, c'est le foie qui fait la NGG pour lui fournir du glucose.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Les acides gras ne sont pas glucoformateurs</h4>
+                        <p>Chez l'homme, les acides gras donnent de l'acétyl-CoA qui entre dans le cycle de Krebs mais ne peut PAS remonter vers le glucose. Seul le glycérol des triglycérides peut entrer dans la NGG.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion PC / PEPCK sur les cofacteurs</h4>
+                        <p>La pyruvate carboxylase (PC) utilise de l'ATP (+ biotine). La PEPCK utilise du GTP. Ne pas inverser les cofacteurs énergétiques de ces deux enzymes.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur l'insuline et la NGG</h4>
+                        <p>L'insuline INHIBE la NGG (elle favorise la glycolyse). Si un item dit "l'insuline favorise la NGG hépatique", c'est FAUX. C'est le glucagon qui favorise la NGG.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>La NGG consomme de l'énergie</h4>
+                        <p>Contrairement à la glycolyse qui PRODUIT de l'ATP, la NGG en CONSOMME. Un item disant "la NGG fournit de l'énergie" ou "produit de l'ATP" est FAUX.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Sur ce chapitre, le Pr. Garnier fait tourner les thématiques et varie ses items d'une année sur l'autre. Le cycle de Cori est la thématique la plus stable (3x en 5 ans), mais les formulations changent. La régulation coordonnée est souvent testée en QCM multi-chapitres avec FC9.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Maîtrisez l'ensemble du chapitre, en particulier les 4 réactions de contournement et leur localisation (mitochondrie vs cytosol). Comprenez les liens avec la glycolyse (FC9) et le cycle de Krebs (FC14). Les schémas du cours sont à connaître.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur le cycle de Cori (thématique la plus tombée), les précurseurs glucoformateurs, et la régulation coordonnée avec la glycolyse. Pour le reste, une lecture des diapos suffit. Ce chapitre est court et assez rentable en Niveau 2.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        <strong>Récurrence MOYENNE (43%)</strong> : Cette stratégie est peu rentable sur FC10. Le prof varie ses items et ses angles d'approche. Vous pouvez sécuriser quelques notions sur le cycle de Cori (localisation foie, pas muscle), mais ne comptez pas retrouver les mêmes items.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
