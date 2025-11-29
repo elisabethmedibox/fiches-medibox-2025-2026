@@ -6,6 +6,49 @@
     <title>FC15 - Régulation hormonale du métabolisme - Fiche d'Analyse</title>
     <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
     <style>
+        /* Container et structure de base */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .header .meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .header .meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Content wrapper */
+        .content {
+            margin-bottom: 20px;
+        }
+        
         /* Accordéons principaux */
         .main-accordion {
             margin-bottom: 15px;
@@ -171,203 +214,256 @@
         
         /* Vue d'ensemble */
         .vue-ensemble {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
         .vue-ensemble h4 {
-            color: #1a365d;
             margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
         }
         
         .vue-ensemble-intro {
             color: #4a5568;
             margin-bottom: 15px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
         
         .vue-tableau {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.85rem;
+            margin-top: 15px;
+            font-size: 0.9rem;
         }
         
         .vue-tableau th {
             background: #1a365d;
             color: white;
-            padding: 8px;
+            padding: 10px;
             text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
         }
         
         .vue-tableau td {
-            padding: 8px;
+            padding: 10px;
             border: 1px solid #e2e8f0;
             text-align: center;
-        }
-        
-        .qcm-identique-cell {
-            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-            font-weight: 600;
-        }
-        
-        /* Cartes niveau 2 */
-        .niveau2-card {
             background: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-left: 4px solid #3b82f6;
         }
         
-        .niveau2-card h4 {
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
             color: #1a365d;
-            margin: 0 0 10px 0;
-            font-size: 1rem;
+            background: #f8fafc;
         }
         
-        .niveau2-card p {
-            color: #4a5568;
-            margin: 0 0 10px 0;
-            font-size: 0.9rem;
-        }
-        
-        .niveau2-badge {
-            display: inline-block;
-            background: #dbeafe;
-            color: #1e40af;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
             font-weight: 600;
         }
         
-        /* Cartes analyse QCM niveau 1 */
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
         .qcm-analyse {
             background: white;
+            border: 2px solid #3b82f6;
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border: 2px solid #e2e8f0;
+            position: relative;
         }
         
         .qcm-analyse h4 {
-            color: #1a365d;
-            margin: 0 0 12px 0;
-            font-size: 1rem;
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
         }
         
         .qcm-badge {
-            display: inline-block;
-            background: #dbeafe;
-            color: #1e40af;
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
             padding: 6px 12px;
             border-radius: 8px;
-            font-size: 0.85rem;
             margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
         }
         
         .qcm-section {
             margin-bottom: 12px;
         }
         
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
         .qcm-section-title {
             font-weight: 600;
             color: #1a365d;
-            margin-bottom: 4px;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
         }
         
         .qcm-section-content {
             color: #4a5568;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
         
         .cle-raisonnement {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border-left: 4px solid #f59e0b;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
             padding: 12px 15px;
             border-radius: 0 8px 8px 0;
-            font-size: 0.9rem;
+            margin-top: 8px;
         }
         
         .cle-raisonnement p {
             margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
         }
         
         .cle-raisonnement ul {
-            margin: 8px 0 0 0;
-            padding-left: 20px;
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
         }
         
         .connaissance-pure {
-            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
-            border-left: 4px solid #6366f1;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
             padding: 12px 15px;
             border-radius: 0 8px 8px 0;
-            font-size: 0.9rem;
-            color: #3730a3;
+            margin-top: 8px;
+            color: #92400e;
         }
         
         /* Points de vigilance */
         .vigilance-item {
             background: white;
-            border-radius: 12px;
-            padding: 15px 20px;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
             margin-bottom: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-left: 4px solid #f97316;
+            border-radius: 0 8px 8px 0;
         }
         
         .vigilance-item h4 {
-            color: #ea580c;
             margin: 0 0 8px 0;
-            font-size: 0.95rem;
+            color: #b45309;
         }
         
         .vigilance-item p {
-            color: #4a5568;
             margin: 0;
-            font-size: 0.9rem;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
         
         /* Zone tuteur */
         .tuteur-zone {
-            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-            border: 2px solid #22c55e;
-            border-radius: 12px;
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
             padding: 20px;
         }
         
-        /* Footer */
-        .footer {
-            background: #e2e8f0;
-            color: #1a365d;
-            text-align: center;
-            padding: 15px;
-            font-size: 0.85rem;
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
         }
         
-        /* Avertissement */
-        .avertissement {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border: 2px solid #f59e0b;
-            color: #92400e;
-            text-align: center;
-            padding: 15px 20px;
-            font-size: 0.8rem;
-            line-height: 1.5;
-        }
-        
-        .avertissement strong {
-            color: #92400e;
-        }
-        
-        /* Responsive mobile */
+        /* Responsive - Mobile */
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
             .qcm-thematique {
                 overflow-x: auto;
                 -webkit-overflow-scrolling: touch;
@@ -421,34 +517,62 @@
                 min-width: 500px;
             }
         }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="main-header">
+        <div class="header">
             <h1>FC15 - Régulation hormonale du métabolisme</h1>
-            <p class="subtitle">Fiche d'analyse stratégique - UE5 Biochimie</p>
-        </header>
+            <div class="meta">
+                <span>📚 UE5 - Biochimie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
         
         <div class="content">
-            <!-- ACCORDÉON 1 : QCM TOMBÉS -->
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
             <details class="main-accordion">
                 <summary>📋 QCM tombés aux sessions 1</summary>
                 <div class="accordion-content">
                     
-                    <!-- Thématique 1 : Ubiquinone -->
+                    <!-- UBIQUINONE -->
                     <div class="qcm-thematique">
-                        <h4>🔬 Ubiquinone (Coenzyme Q)</h4>
+                        <h4>🎯 Ubiquinone (Coenzyme Q)</h4>
                         <table class="qcm-table">
                             <thead>
                                 <tr>
-                                    <th>Année</th>
-                                    <th>QCM</th>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>2020-2021 Q16</td>
+                                    <td>2020-2021<br>Q16</td>
                                     <td>
                                         <div class="qcm-enonce">Sur l'ubiquinone :</div>
                                         <div class="qcm-items">
@@ -461,7 +585,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>2024-2025 Q20</td>
+                                    <td>2024-2025<br>Q20</td>
                                     <td>
                                         <div class="qcm-enonce">Sur l'ubiquinone.</div>
                                         <div class="qcm-items">
@@ -476,33 +600,33 @@
                             </tbody>
                         </table>
                     </div>
-                    
-                    <!-- Thématique 2 : Complexes de la chaîne respiratoire -->
+
+                    <!-- COMPLEXES CHAÎNE RESPIRATOIRE -->
                     <div class="qcm-thematique">
-                        <h4>⚡ Complexes de la chaîne respiratoire</h4>
+                        <h4>🎯 Complexes de la chaîne respiratoire</h4>
                         <table class="qcm-table">
                             <thead>
                                 <tr>
-                                    <th>Année</th>
-                                    <th>QCM</th>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>2020-2021 Q10<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items C,D</span></td>
+                                    <td>2020-2021<br>Q10<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items C,D</span></td>
                                     <td>
                                         <div class="qcm-enonce">Sur la navette glycérol phosphate :</div>
                                         <div class="qcm-items">
-                                            <div class="qcm-item">A : Elle permet l'oxydation du NADH,H+.</div>
-                                            <div class="qcm-item">B : Elle transfère les protons du dihydroxyacétone phosphate au FAD.</div>
+                                            <div class="qcm-item">A : Elle permet l'oxydation du NADH,H+. <span style="background: #e0f2fe; color: #0369a1; padding: 1px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
+                                            <div class="qcm-item">B : Elle transfère les protons du dihydroxyacétone phosphate au FAD. <span style="background: #e0f2fe; color: #0369a1; padding: 1px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
                                             <div class="qcm-item" style="background: #fef3c7; font-weight: 600;">C : Elle transfère des électrons au niveau du complexe I.</div>
                                             <div class="qcm-item" style="background: #fef3c7; font-weight: 600;">D : Elle a lieu sur la face interne de la membrane mitochondriale interne.</div>
-                                            <div class="qcm-item">E : Elle permet de régénérer le NAD+ nécessaire à la glycolyse.</div>
+                                            <div class="qcm-item">E : Elle permet de régénérer le NAD+ nécessaire à la glycolyse. <span style="background: #e0f2fe; color: #0369a1; padding: 1px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px;">FC9</span></div>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>2021-2022 Q19</td>
+                                    <td>2021-2022<br>Q19</td>
                                     <td>
                                         <div class="qcm-enonce">Sur le complexe III de la chaîne respiratoire :</div>
                                         <div class="qcm-items">
@@ -515,7 +639,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>2022-2023 Q19</td>
+                                    <td>2022-2023<br>Q19</td>
                                     <td>
                                         <div class="qcm-enonce">Sur la chaîne respiratoire :</div>
                                         <div class="qcm-items">
@@ -528,7 +652,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>2023-2024 Q20</td>
+                                    <td>2023-2024<br>Q20</td>
                                     <td>
                                         <div class="qcm-enonce">Sur la chaîne respiratoire :</div>
                                         <div class="qcm-items">
@@ -543,20 +667,20 @@
                             </tbody>
                         </table>
                     </div>
-                    
-                    <!-- Thématique 3 : Régulation hormonale / Insuline -->
+
+                    <!-- HORMONES -->
                     <div class="qcm-thematique">
-                        <h4>💉 Régulation hormonale - Insuline / Glucagon / Adrénaline</h4>
+                        <h4>🎯 Régulation hormonale - Insuline / Glucagon / Adrénaline</h4>
                         <table class="qcm-table">
                             <thead>
                                 <tr>
-                                    <th>Année</th>
-                                    <th>QCM</th>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>2021-2022 Q20</td>
+                                    <td>2021-2022<br>Q20</td>
                                     <td>
                                         <div class="qcm-enonce">Sur les hormones du métabolisme glucidique</div>
                                         <div class="qcm-items">
@@ -569,7 +693,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>2022-2023 Q20</td>
+                                    <td>2022-2023<br>Q20</td>
                                     <td>
                                         <div class="qcm-enonce">Sur l'insuline :</div>
                                         <div class="qcm-items">
@@ -592,71 +716,65 @@
             <details class="main-accordion">
                 <summary>📊 Rappel diagnostic</summary>
                 <div class="accordion-content">
-                    
                     <div class="table-wrapper">
                         <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année (1-2 QCM/an)</td>
+                                <td>🟢 QCM sur parties ciblées - sans récurrence des items</td>
+                                <td>🔗 Suite logique (peut se travailler en indépendant, mais la compréhension de FC9, FC10, FC12 et FC13 rendra son apprentissage plus rapide)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>8 QCM</strong> sur ce chapitre (moyenne 1,6/an). Ces QCM se regroupent en <strong>3 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
                             <thead>
                                 <tr>
-                                    <th>Fréquence</th>
-                                    <th>Moyenne QCM/an</th>
-                                    <th>Format</th>
-                                    <th>Dépendance</th>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>✅ Tombe chaque année</td>
-                                    <td>1,6 QCM/an</td>
-                                    <td>🟢 QCM sur parties ciblées - sans récurrence des items</td>
-                                    <td>😺 Indépendant</td>
+                                    <td>Ubiquinone</td>
+                                    <td class="qcm-cell">Q16</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q20</td>
+                                </tr>
+                                <tr>
+                                    <td>Complexes chaîne respiratoire</td>
+                                    <td class="qcm-cell">Q10 (C,D)</td>
+                                    <td class="qcm-cell">Q19</td>
+                                    <td class="qcm-cell">Q19</td>
+                                    <td class="qcm-cell">Q20</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Hormones (insuline/glucagon)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q20</td>
+                                    <td class="qcm-cell">Q20</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                    
-                    <div class="vue-ensemble">
-                        <h4>📋 Vue d'ensemble des QCM</h4>
-                        <p class="vue-ensemble-intro">Répartition des QCM FC15 sur les 5 dernières années :</p>
-                        
-                        <div class="table-wrapper">
-                            <table class="vue-tableau">
-                                <thead>
-                                    <tr>
-                                        <th>Thématique</th>
-                                        <th>2020-21</th>
-                                        <th>2021-22</th>
-                                        <th>2022-23</th>
-                                        <th>2023-24</th>
-                                        <th>2024-25</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="text-align: left; font-weight: 600;">Ubiquinone</td>
-                                        <td>Q16</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>Q20</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: left; font-weight: 600;">Complexes chaîne respiratoire</td>
-                                        <td>Q10 (C,D)</td>
-                                        <td>Q19</td>
-                                        <td>Q19</td>
-                                        <td>Q20</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: left; font-weight: 600;">Hormones (insuline/glucagon)</td>
-                                        <td>-</td>
-                                        <td>Q20</td>
-                                        <td>Q20</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                         
                         <div style="margin-top: 15px; padding: 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0;">
@@ -665,45 +783,42 @@
                             </p>
                         </div>
                     </div>
-                    
                 </div>
             </details>
 
-            <!-- ACCORDÉON 3 : NIVEAU 2 -->
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
             <details class="main-accordion">
-                <summary>🎯 Recommandations Niveau 2 (ciblage)</summary>
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
                 <div class="accordion-content">
-                    
-                    <div class="niveau2-card">
+                    <div class="reco-item">
                         <h4>L'ubiquinone (Coenzyme Q)</h4>
                         <p>Molécule liposoluble non protéique de la membrane mitochondriale interne. Maîtrise les 4 façons dont elle reçoit des électrons (complexe I, complexe II, β-oxydation, navette glycérol phosphate). Retiens que l'ubiquinone n'est PAS une pompe à protons et qu'elle transfère ses électrons au complexe III (pas au IV).</p>
-                        <span class="niveau2-badge">Tombé 2 fois en 5 ans</span>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
                     </div>
-                    
-                    <div class="niveau2-card">
+
+                    <div class="reco-item">
                         <h4>Les 4 complexes de la chaîne respiratoire</h4>
                         <p>Localisation (membrane mitochondriale interne), rôle de chaque complexe, qui sont les pompes à protons (I, III, IV mais PAS le II), et les transporteurs mobiles (ubiquinone entre I/II et III, cytochrome c entre III et IV). Retiens que le NADH cède ses électrons au complexe I, le FADH2 au complexe II.</p>
-                        <span class="niveau2-badge">Tombé 4 fois en 5 ans</span>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
                     </div>
-                    
-                    <div class="niveau2-card">
+
+                    <div class="reco-item">
                         <h4>Rôle des hormones du métabolisme glucidique</h4>
                         <p>Insuline = hypoglycémiante (favorise glycogénogenèse, inhibe NGG). Glucagon = hyperglycémiant (favorise NGG et glycogénolyse). Adrénaline = favorise glycogénolyse (stress). Retiens aussi le mécanisme de sécrétion de l'insuline : GLUT2 → glycolyse → ATP → fermeture canal K+ → dépolarisation → entrée Ca2+ → exocytose.</p>
-                        <span class="niveau2-badge">Tombé 2 fois en 5 ans</span>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
                     </div>
-                    
                 </div>
             </details>
 
-            <!-- ACCORDÉON 4 : NIVEAU 1 -->
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
             <details class="main-accordion">
-                <summary>📝 Recommandations Niveau 1 (annales)</summary>
+                <summary>📝 Recommandations Niveau 1 (travail sur annales)</summary>
                 <div class="accordion-content">
-                    
+
                     <!-- QCM 1 : Ubiquinone -->
                     <div class="qcm-analyse">
                         <h4>Ubiquinone - caractéristiques et fonction</h4>
-                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q16 • <strong>2024-2025</strong> Q20</div>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q16 | <strong>2024-2025</strong> Q20</div>
                         
                         <div class="qcm-section">
                             <div class="qcm-section-title">Constat :</div>
@@ -752,7 +867,7 @@
                     <!-- QCM 3 : Chaîne respiratoire généralités -->
                     <div class="qcm-analyse">
                         <h4>Chaîne respiratoire - généralités</h4>
-                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q19 • <strong>2023-2024</strong> Q20</div>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q19 | <strong>2023-2024</strong> Q20</div>
                         
                         <div class="qcm-section">
                             <div class="qcm-section-title">Constat :</div>
@@ -790,9 +905,8 @@
                         
                         <div class="qcm-section">
                             <div class="qcm-section-title">Clé de raisonnement :</div>
-                            <div class="cle-raisonnement">
-                                <p><strong>Insuline = seule hormone hypoglycémiante</strong> (toutes les autres sont hyperglycémiantes).</p>
-                                <p>Glucagon et adrénaline = opposés à l'insuline mais par des voies différentes.</p>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Insuline = seule hormone hypoglycémiante. Glucagon et adrénaline = hyperglycémiants par des voies différentes.
                             </div>
                         </div>
                     </div>
@@ -867,7 +981,7 @@
                 <summary>💬 Avis du tuteur</summary>
                 <div class="accordion-content">
                     <div class="tuteur-zone">
-                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">FC15 est un chapitre qui tombe chaque année avec 1-2 QCM, principalement sur la chaîne respiratoire. C'est un chapitre relativement autonome qui peut être travaillé indépendamment des autres chapitres du métabolisme.</p>
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">FC15 est un chapitre qui tombe chaque année avec 1-2 QCM, principalement sur la chaîne respiratoire. Bien qu'il puisse se travailler en indépendant, la compréhension de FC9 (glycolyse), FC10 (NGG), FC12 (glycogène) et FC13 (lipides) rendra son apprentissage plus rapide.</p>
                         
                         <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
                         Maîtrisez l'ensemble de la chaîne respiratoire (4 complexes, transporteurs mobiles, inhibiteurs, bilan énergétique) et la régulation hormonale complète (insuline, glucagon, adrénaline, cortisol). Comprenez les mécanismes moléculaires de sécrétion de l'insuline et les cascades de signalisation.</p>
