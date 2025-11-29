@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC6 - Hémoglobine - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC6 - La molécule d'hémoglobine</h1>
+            <div class="meta">
+                <span>📚 UE5 - Biochimie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- STRUCTURE DE L'HÉMOGLOBINE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Structure de l'hémoglobine (5 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q9</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos de l'hémoglobine :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : L'hémoglobine A est un tétramère comprenant deux chaînes α-globine et deux chaînes β-globine.</div>
+                                            <div class="qcm-item">B : La fixation de l'oxygène sur l'hémoglobine est associée à une modification allostérique de la structure de l'hémoglobine.</div>
+                                            <div class="qcm-item">C : L'affinité de l'hémoglobine pour l'oxygène diminue quand la pression partielle en CO2 augmente.</div>
+                                            <div class="qcm-item">D : L'affinité de l'hémoglobine pour l'oxygène augmente quand le pH diminue.</div>
+                                            <div class="qcm-item">E : La drépanocytose est une maladie héréditaire caractérisée par une mutation de la chaîne alpha de l'hémoglobine.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q9</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'hémoglobine :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Chez l'adulte c'est un hétéro-tétramère associant 2 sous-unités identiques d'α-globine et 2 sous-unités identiques de β-globine.</div>
+                                            <div class="qcm-item">B : L'affinité de l'hémoglobine pour l'oxygène est d'autant plus faible que la PO2 est faible.</div>
+                                            <div class="qcm-item">C : O2 se fixe mieux sur une hématie déjà oxygénée et à l'inverse s'en libère plus facilement quand le globule rouge est peu oxygéné.</div>
+                                            <div class="qcm-item">D : Le CO2 augmente l'affinité de l'hémoglobine pour l'O2 en diminuant le pH.</div>
+                                            <div class="qcm-item">E : Le 2-3 Bisphosphoglycérate augmente l'affinité de l'hémoglobine pour l'oxygène.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q9</td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos de l'hémoglobine :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : L'hémoglobine A est un hétérotétramère comprenant 2 sous-unités identiques d'α-globine et 2 sous-unités identiques de β-globine.</div>
+                                            <div class="qcm-item">B : Dans l'hémoglobine A seules les sous-unités β-globine sont associées à un groupe hème.</div>
+                                            <div class="qcm-item">C : L'hème est une molécule plane et polaire composée d'une molécule de protoporphyrine et d'un atome de fer neutre.</div>
+                                            <div class="qcm-item">D : La forme T (forme Tendue) de l'hémoglobine a une affinité faible pour l'O2.</div>
+                                            <div class="qcm-item">E : À pH bas et quand l'oxygène est rare, la forme T est privilégiée et l'hémoglobine relâche l'oxygène.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q9</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'hémoglobine :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Les structures tertiaire et quaternaire de l'hémoglobine jouent un rôle primordial dans son rôle de transporteur.</div>
+                                            <div class="qcm-item">B : La forme T de l'hémoglobine (forme Tendue) a une affinité faible pour l'O2.</div>
+                                            <div class="qcm-item">C : La forme R de l'hémoglobine (Relâchée) a une plus forte affinité pour l'O2.</div>
+                                            <div class="qcm-item">D : À pH élevé et en présence d'oxygène, la forme T est privilégiée (et l'hémoglobine cherche donc à capturer de l'oxygène).</div>
+                                            <div class="qcm-item">E : À pH bas et quand l'oxygène est rare, la forme R est privilégiée et l'hémoglobine relâche l'oxygène.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q9</td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos de l'hémoglobine.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : C'est une métalloprotéine.</div>
+                                            <div class="qcm-item">B : Chacune des huit chaînes est associée à un groupe prosthétique appelé hème.</div>
+                                            <div class="qcm-item">C : La partie protéique possède une structure globulaire, riche en hélices alpha.</div>
+                                            <div class="qcm-item">D : Une molécule d'hémoglobine est capable de fixer 4 molécules d'oxygène.</div>
+                                            <div class="qcm-item">E : L'hémoglobine A représente 7% des molécules d'hémoglobines chez l'adulte.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- FONCTION / P50 / EFFET BOHR -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Fonction de l'hémoglobine et effet Bohr (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2023-2024<br>Q10</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la fonction de l'hémoglobine :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Une P50 normale chez l'homme correspond à une valeur de PO2 de 2600 +/- 2 mmHg</div>
+                                            <div class="qcm-item">B : La valeur de la P50 varie en sens inverse de l'affinité, c'est-à-dire qu'une hémoglobine qui aura une affinité augmentée pour l'oxygène aura une P50 diminuée.</div>
+                                            <div class="qcm-item">C : Le CO2 augmente l'affinité de l'hémoglobine pour l'O2 en diminuant le pH.</div>
+                                            <div class="qcm-item">D : Dans le globule rouge, l'anhydrase carbonique provoque la libération d'ions H+ qui sont pris en charge par l'hémoglobine ce qui stabilise sa forme désoxygénée</div>
+                                            <div class="qcm-item">E : Une augmentation de la PCO2 est responsable d'une augmentation de la P50 soit une augmentation de l'affinité de l'hémoglobine pour l'O2.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- HÉMOGLOBINOPATHIES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Hémoglobinopathies (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q10</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les hémoglobinopathies :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Les anomalies les plus fréquentes affectent les chaînes α, plus rarement les chaînes β, exceptionnelle les chaînes γ ou δ.</div>
+                                            <div class="qcm-item">B : Le type d'anomalie le plus fréquent est la substitution de plusieurs acides aminés par plusieurs autres acides aminés.</div>
+                                            <div class="qcm-item">C : Drépanocytose, hémoglobinose C et hémoglobinose E sont associées à la substitution d'un seul acide aminé des chaînes β de l'hémoglobine A par un autre acide aminé.</div>
+                                            <div class="qcm-item">D : A basse pression en oxygène, le globule rouge du patient drépanocytaire est déformé et fragilisé car la désoxyhémoglobine-HbS se polymérise et s'organise en grandes fibres.</div>
+                                            <div class="qcm-item">E : En France, la maladie génétique la plus fréquente est la drépanocytose.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>7 QCM</strong> sur ce chapitre (moyenne 1,4/an). Ces QCM se regroupent en <strong>3 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Structure Hb / Formes T et R</td>
+                                    <td class="qcm-cell">Q9</td>
+                                    <td class="qcm-cell">Q9</td>
+                                    <td class="qcm-cell">Q9</td>
+                                    <td class="qcm-cell">Q9</td>
+                                    <td class="qcm-cell">Q9</td>
+                                </tr>
+                                <tr>
+                                    <td>Fonction Hb / P50 / Effet Bohr</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q10</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Hémoglobinopathies</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q10</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>Structure de l'hémoglobine A</h4>
+                        <p>Comprendre la composition : hétérotétramère α2β2, 4 chaînes associées chacune à un hème, métalloprotéine avec fer Fe²⁺, structure globulaire riche en hélices α.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les formes T (Tendue) et R (Relâchée)</h4>
+                        <p>Maîtriser les affinités : forme T = affinité faible pour O2, forme R = affinité forte pour O2. Comprendre les conditions qui favorisent chaque forme.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'effet Bohr et la régulation de l'affinité</h4>
+                        <p>Comprendre l'impact du CO2 et du pH sur l'affinité : CO2 ↑ → pH ↓ → affinité ↓. Connaître le rôle du 2,3-DPG et la notion de P50.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les hémoglobinopathies et la drépanocytose</h4>
+                        <p>Connaître les deux types d'anomalies (quantitative = thalassémies, qualitative = substitutions). Savoir que les anomalies les plus fréquentes affectent les chaînes β.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- QCM 1 : Structure Hb -->
+                    <div class="qcm-analyse">
+                        <h4>Structure de l'hémoglobine</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q9 | <strong>2021-2022</strong> Q9 | <strong>2022-2023</strong> Q9 | <strong>2024-2025</strong> Q9</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">La structure de l'hémoglobine est testée chaque année mais avec des items différents. Le professeur varie les angles d'approche : nombre de chaînes, association avec l'hème, type de structure, pourcentage chez l'adulte.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprendre les caractéristiques fondamentales : hétérotétramère α2β2, 4 chaînes (pas 8), chaque chaîne a son hème, métalloprotéine, structure globulaire avec 8 hélices α, Hb A = forme majoritaire (>80%).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>4 chaînes = 4 hèmes = 4 O2</strong></p>
+                                <p>L'hémoglobine A a 4 sous-unités (2α + 2β), chacune avec 1 hème contenant 1 Fe²⁺ qui fixe 1 O2. Donc 4 O2 maximum par molécule d'Hb.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Formes T et R -->
+                    <div class="qcm-analyse">
+                        <h4>Formes T et R de l'hémoglobine</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q9 | <strong>2023-2024</strong> Q9</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Les formes T et R sont testées régulièrement avec des pièges sur les conditions qui favorisent chaque forme. Les items inversent souvent les affinités ou les conditions pH/O2.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Mémoriser les associations : T = Tendue = affinité faible O2 = favorisée par pH bas et O2 rare. R = Relâchée = affinité forte O2 = favorisée par pH élevé et O2 présent.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>T = Tendue = "Tight" = tient peu l'O2</strong></p>
+                                <p><strong>R = Relâchée = "Relaxed" = retient bien l'O2</strong></p>
+                                <p>Dans les tissus (pH bas, peu d'O2) → forme T → libère O2. Dans les poumons (pH élevé, beaucoup d'O2) → forme R → capte O2.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Effet Bohr -->
+                    <div class="qcm-analyse">
+                        <h4>Effet Bohr et régulation de l'affinité</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q9 | <strong>2021-2022</strong> Q9 | <strong>2023-2024</strong> Q10</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">L'effet du CO2 et du pH sur l'affinité est testé avec des pièges récurrents. L'item "le CO2 augmente l'affinité" est un piège classique (c'est faux). La P50 et le 2,3-DPG sont testés plus rarement.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retenir la chaîne causale : CO2 ↑ → (anhydrase carbonique) → H⁺ ↑ → pH ↓ → affinité Hb pour O2 ↓ → P50 ↑. Le 2,3-DPG diminue aussi l'affinité.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>CO2 = ennemi de l'O2 sur l'hémoglobine</strong></p>
+                                <p>Plus il y a de CO2, moins l'Hb garde l'O2. C'est logique : dans les tissus qui produisent du CO2, l'Hb doit libérer l'O2.</p>
+                                <p><strong>P50 et affinité varient en sens inverse</strong> : affinité ↑ = P50 ↓ (courbe décalée à gauche).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Hémoglobinopathies -->
+                    <div class="qcm-analyse">
+                        <h4>Hémoglobinopathies</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q9 | <strong>2021-2022</strong> Q10</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce thème est tombé 2 fois en 5 ans avec des pièges sur les chaînes affectées (β et non α) et le type de mutation (substitution d'1 seul AA).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retenir : anomalies les plus fréquentes = chaînes β (pas α). Drépanocytose = substitution Glu→Val en position 6 de la chaîne β. En France = maladie génétique la plus fréquente.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Retiens que les hémoglobinopathies les plus fréquentes touchent les chaînes β, et que la drépanocytose résulte de la substitution d'UN SEUL acide aminé (pas plusieurs).
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion sur le nombre de chaînes</h4>
+                        <p>L'hémoglobine A a 4 chaînes (2α + 2β), pas 8. Le piège "chacune des huit chaînes" (Q9 2024-2025) est classique. 4 chaînes = 4 hèmes = 4 O2 maximum.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Inversion des affinités T et R</h4>
+                        <p>Forme T = affinité FAIBLE pour O2. Forme R = affinité FORTE pour O2. Les items inversent souvent ces affinités ou les conditions qui favorisent chaque forme.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur l'effet du CO2</h4>
+                        <p>Le CO2 DIMINUE l'affinité de l'Hb pour l'O2 (en diminuant le pH). L'item "le CO2 augmente l'affinité" est un piège récurrent (tombé en 2021-2022 et 2023-2024).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion P50 et affinité</h4>
+                        <p>P50 et affinité varient en SENS INVERSE. Affinité ↑ = P50 ↓. Le piège "augmentation de P50 = augmentation de l'affinité" est faux.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Chaînes α vs β dans les hémoglobinopathies</h4>
+                        <p>Les anomalies les plus fréquentes affectent les chaînes β (pas α). La drépanocytose touche la chaîne β (pas α comme indiqué dans le piège Q9 2020-2021).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Hémoglobine A chez l'adulte</h4>
+                        <p>L'Hb A représente plus de 80% des hémoglobines chez l'adulte (pas 7% comme dans le piège Q9 2024-2025). Les 7% correspondraient plutôt à l'HbA1 (forme glyquée) ou HbA2.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Sur ce chapitre, le professeur teste les mêmes thématiques chaque année (structure, formes T/R, effet Bohr) mais varie ses items. La récurrence des items est FAIBLE (≈14%) : les mêmes notions sont testées sous des angles différents à chaque session.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Travaillez l'ensemble du cours en profondeur. Ce chapitre est indépendant et relativement court. Portez une attention particulière à la compréhension des mécanismes (allostérie, effet Bohr) plutôt qu'à la simple mémorisation.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Stratégie viable. Concentrez-vous sur les 4 thèmes identifiés : structure de l'Hb A, formes T et R, effet Bohr/régulation de l'affinité, et bases des hémoglobinopathies. Ces thèmes couvrent l'intégralité des QCM tombés en 5 ans.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Stratégie RISQUÉE sur ce chapitre. La récurrence des items étant faible (≈14%), apprendre les annales par cœur ne garantit pas les points car le professeur reformule ses questions différemment chaque année. Cependant, les clés de raisonnement (T vs R, effet du CO2, chaînes β) restent les mêmes. Privilégiez la compréhension des logiques plutôt que la mémorisation brute des items.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
