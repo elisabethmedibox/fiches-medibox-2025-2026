@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC12 - Glycogénolyse et Glycogénogenèse - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC12 - Glycogénolyse et Glycogénogenèse</h1>
+            <div class="meta">
+                <span>📚 UE5 - Biochimie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- RÉGULATION ALLOSTÉRIQUE (QCM PARTAGÉ) -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Régulation allostérique de la glycogène phosphorylase (3 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q13<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items C,D,E</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la régulation allostérique :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Elle est dite négative lorsqu'on considère l'impact du glucose 6-phosphate sur l'hexokinase <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-left: 5px;">FC9</span></div>
+                                            <div class="qcm-item">B : La charge énergétique exerce une régulation allostérique positive sur la pyruvate kinase. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-left: 5px;">FC9</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">C : La protéine phosphatase 1 exerce une régulation allostérique positive sur la glycogène phosphorylase.</div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">D : La glycogène phosphorylase musculaire est inhibée de façon allostérique par l'AMP.</div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">E : Elle s'exerce généralement lors de la fixation d'un produit sur le site catalytique de l'enzyme réalisant la réaction considérée.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la régulation du métabolisme du glycogène :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : L'insuline cause indirectement la phosphorylation de la protéine phosphatase 1 (PP1)</div>
+                                            <div class="qcm-item">B : L'insuline cause indirectement l'activation de la glycogène synthase.</div>
+                                            <div class="qcm-item">C : L'insuline favorise la glycogénolyse</div>
+                                            <div class="qcm-item">D : La glycogène phosphorylase peut être activée par phosphorylation.</div>
+                                            <div class="qcm-item">E : La phosphorylase kinase peut être activée par phosphorylation.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q16</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la glycogène phosphorylase musculaire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Elle subit une régulation allostérique en fonction de la charge énergétique</div>
+                                            <div class="qcm-item">B : L'AMP la régule positivement</div>
+                                            <div class="qcm-item">C : L'enzyme PP1 est responsable de sa phosphorylation</div>
+                                            <div class="qcm-item">D : Elle peut être rendue active par phosphorylation</div>
+                                            <div class="qcm-item">E : Elle est impliquée dans la glycogénolyse</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- PKA ET PHOSPHORYLASE KINASE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 PKA et phosphorylase kinase (3 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur PKA (protéine kinase A) dans le muscle :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Elle active la protéine phosphatase 1.</div>
+                                            <div class="qcm-item">B : Elle phosphoryle Gm.</div>
+                                            <div class="qcm-item">C : Elle est activée en cas de réception d'insuline.</div>
+                                            <div class="qcm-item">D : Elle active la glycogène synthase.</div>
+                                            <div class="qcm-item">E : Elle est activée lors d'un exercice musculaire.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q16</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la phosphorylase kinase musculaire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Elle contient 2 sous-unités.</div>
+                                            <div class="qcm-item">B : Elle phosphoryle le glycogène.</div>
+                                            <div class="qcm-item">C : Elle est activable par les ions Ca2+.</div>
+                                            <div class="qcm-item">D : Elle est activable par phosphorylation, via la protéine kinase A (PKA).</div>
+                                            <div class="qcm-item">E : Elle intervient dans la glycogénogenèse.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q14</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la régulation musculaire de la glycogénolyse :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : L'adrénaline favorise la glycogénolyse.</div>
+                                            <div class="qcm-item">B : L'adrénaline favorise la glycogénogenèse.</div>
+                                            <div class="qcm-item">C : L'adrénaline cause l'activation de la PKA.</div>
+                                            <div class="qcm-item">D : Les contractions musculaires permettent l'activation partielle de la phosphorylase kinase.</div>
+                                            <div class="qcm-item">E : Les ions Ca²⁺ inhibent la phosphorylase kinase.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- GLYCOGÉNOGENÈSE ET GLYCOGÈNE SYNTHASE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Glycogénogenèse et glycogène synthase (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q15</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la glycogénogenèse :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Elle a pour but de produire de l'ATP.</div>
+                                            <div class="qcm-item">B : Elle a pour but de produire du NADPH,H⁺.</div>
+                                            <div class="qcm-item">C : Elle est favorisée dans le foie, par l'insuline.</div>
+                                            <div class="qcm-item">D : Elle est inhibée dans le foie, par l'insuline.</div>
+                                            <div class="qcm-item">E : Elle est très intense pendant un jeûne prolongé.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la glycogénogenèse après un repas :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Elle est favorisée par l'insuline</div>
+                                            <div class="qcm-item">B : Elle est favorisée par le glucagon</div>
+                                            <div class="qcm-item">C : L'insuline favorise l'activation de la PKB (protéine kinase B)</div>
+                                            <div class="qcm-item">D : La glycogène synthase est active, une fois phosphorylée par PP1</div>
+                                            <div class="qcm-item">E : La glycogène synthase est active, une fois déphosphorylée par PP1</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- GLYCOGÉNOSE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Glycogénose de type Ia (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q18</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la glycogénose de type Ia :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Elle résulte d'un déficit en enzyme débranchante.</div>
+                                            <div class="qcm-item">B : Elle donne lieu à la production de glycogène de structure anormale.</div>
+                                            <div class="qcm-item">C : Elle cause une hypoglycémie en période inter-prandiale.</div>
+                                            <div class="qcm-item">D : Elle est caractérisée par une hépatomégalie.</div>
+                                            <div class="qcm-item">E : Elle cause une accumulation du glycogène musculaire.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                                <td>🔗 Cours appartenant à une suite logique</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>9 QCM</strong> sur ce chapitre (moyenne 1,8/an). Ces QCM se regroupent en <strong>4 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Régulation glycogène phosphorylase</td>
+                                    <td class="qcm-cell">Q13</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q17</td>
+                                    <td class="qcm-cell">Q16</td>
+                                </tr>
+                                <tr>
+                                    <td>PKA et phosphorylase kinase</td>
+                                    <td class="qcm-cell">Q17</td>
+                                    <td class="qcm-cell">Q16</td>
+                                    <td class="qcm-cell">Q14</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Glycogénogenèse / Glycogène synthase</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q15</td>
+                                    <td class="qcm-cell">Q17</td>
+                                    <td class="qcm-cell">Q17</td>
+                                </tr>
+                                <tr>
+                                    <td>Glycogénose de type Ia</td>
+                                    <td class="qcm-cell">Q18</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #fff7ed; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #92400e;">
+                                <strong>⚠️ Note :</strong> Le Q13 de 2020-2021 est un QCM partagé avec FC9 (Glycolyse). Seuls les items C, D, E concernent FC12.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>La régulation de la glycogène phosphorylase</h4>
+                        <p>Comprendre la double régulation (allostérique par AMP/ATP et covalente par phosphorylation) et le rôle de PP1.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La cascade de signalisation PKA / phosphorylase kinase</h4>
+                        <p>Maîtriser l'activation de la phosphorylase kinase par PKA et par le Ca²⁺, et son rôle dans la glycogénolyse.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La régulation de la glycogène synthase</h4>
+                        <p>Comprendre l'activation par déphosphorylation via PP1 et le rôle de l'insuline via PKB.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les effets opposés insuline / glucagon-adrénaline</h4>
+                        <p>Savoir que l'insuline favorise la glycogénogenèse et que le glucagon/adrénaline favorisent la glycogénolyse.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les glycogénoses (pathologies)</h4>
+                        <p>Connaître les caractéristiques de la glycogénose de type Ia (déficit en glucose-6-phosphatase, hypoglycémie, hépatomégalie).</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- QCM 1 : Glycogène phosphorylase -->
+                    <div class="qcm-analyse">
+                        <h4>Régulation de la glycogène phosphorylase</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q13 | <strong>2023-2024</strong> Q17 | <strong>2024-2025</strong> Q16</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ces QCM testent la régulation allostérique (par AMP) et covalente (par phosphorylation) de la glycogène phosphorylase. Les items varient d'une année à l'autre, mais les concepts clés reviennent.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les items tombés et comprends le mécanisme de double régulation de la GP musculaire.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Glycogène phosphorylase musculaire :</strong></p>
+                                <ul>
+                                    <li>Activée par l'AMP (signal de faible énergie) → régulation allostérique POSITIVE</li>
+                                    <li>Activée par phosphorylation (via phosphorylase kinase)</li>
+                                    <li>PP1 la DÉphosphoryle → l'inactive (pas une régulation allostérique !)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : PKA et phosphorylase kinase -->
+                    <div class="qcm-analyse">
+                        <h4>PKA et phosphorylase kinase</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q17 | <strong>2021-2022</strong> Q16 | <strong>2022-2023</strong> Q14</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ces QCM testent la cascade de signalisation : adrénaline → PKA → phosphorylase kinase → glycogène phosphorylase. Le rôle du Ca²⁺ est également testé.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends la cascade de signalisation et les deux modes d'activation de la phosphorylase kinase (par PKA et par Ca²⁺).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Phosphorylase kinase :</strong></p>
+                                <ul>
+                                    <li>Activée par PKA (phosphorylation) = voie hormonale (adrénaline)</li>
+                                    <li>Activée par Ca²⁺ = voie musculaire (contraction)</li>
+                                    <li>Elle phosphoryle la glycogène PHOSPHORYLASE (pas le glycogène !)</li>
+                                    <li>Elle intervient dans la glycogénoLYSE (pas la glycogénogenèse)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Glycogénogenèse -->
+                    <div class="qcm-analyse">
+                        <h4>Glycogénogenèse et glycogène synthase</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q15 | <strong>2023-2024</strong> Q17 | <strong>2024-2025</strong> Q17</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ces QCM testent le rôle de l'insuline dans l'activation de la glycogénogenèse, via la voie PKB/PP1/glycogène synthase.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends le mécanisme d'activation de la glycogène synthase par l'insuline et les pièges classiques.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Glycogène synthase :</strong></p>
+                                <ul>
+                                    <li>Active quand elle est DÉphosphorylée (par PP1)</li>
+                                    <li>Inactive quand elle est phosphorylée</li>
+                                    <li>L'insuline → active PKB → active PP1 → déphosphoryle GS → GS active</li>
+                                </ul>
+                                <p><strong>Attention :</strong> La glycogénogenèse NE produit PAS d'ATP ni de NADPH. Elle CONSOMME de l'énergie pour stocker le glucose.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Glycogénose -->
+                    <div class="qcm-analyse">
+                        <h4>Glycogénose de type Ia</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q18</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la connaissance des caractéristiques de la glycogénose de type Ia (maladie de von Gierke). N'est tombé qu'une seule fois.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les caractéristiques spécifiques de la glycogénose de type Ia.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Glycogénose de type Ia :</strong></p>
+                                <ul>
+                                    <li>Déficit en glucose-6-phosphatase (pas en enzyme débranchante !)</li>
+                                    <li>Glycogène de structure NORMALE (pas anormale)</li>
+                                    <li>Hypoglycémie inter-prandiale (le foie ne peut pas libérer le glucose)</li>
+                                    <li>Hépatomégalie (accumulation de glycogène dans le FOIE, pas le muscle)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion AMP active / AMP inhibe la glycogène phosphorylase</h4>
+                        <p>L'AMP ACTIVE la glycogène phosphorylase musculaire (régulation allostérique positive). C'est un signal de faible énergie qui déclenche la dégradation du glycogène. Ne pas confondre avec l'ATP qui, lui, inhibe.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion PP1 régulation allostérique / covalente</h4>
+                        <p>PP1 (protéine phosphatase 1) exerce une régulation COVALENTE (déphosphorylation), PAS une régulation allostérique. Elle déphosphoryle la glycogène phosphorylase pour l'inactiver.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion phosphorylase kinase phosphoryle le glycogène</h4>
+                        <p>La phosphorylase kinase phosphoryle la glycogène PHOSPHORYLASE (l'enzyme), pas le glycogène lui-même. C'est la glycogène phosphorylase qui agit ensuite sur le glycogène.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion glycogène synthase active phosphorylée / déphosphorylée</h4>
+                        <p>La glycogène synthase est ACTIVE quand elle est DÉphosphorylée. C'est l'inverse de la glycogène phosphorylase qui est active quand elle est phosphorylée. PP1 active la GS en la déphosphorylant.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion insuline favorise glycogénolyse</h4>
+                        <p>L'insuline favorise la glycogénoGENÈSE (synthèse du glycogène), pas la glycogénoLYSE. C'est le glucagon et l'adrénaline qui favorisent la glycogénolyse.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion glycogénose type Ia : enzyme débranchante / glucose-6-phosphatase</h4>
+                        <p>La glycogénose de type Ia est due à un déficit en glucose-6-phosphatase, pas en enzyme débranchante. Le glycogène a une structure NORMALE mais ne peut pas être libéré sous forme de glucose.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion Ca²⁺ inhibe / active la phosphorylase kinase</h4>
+                        <p>Le Ca²⁺ ACTIVE la phosphorylase kinase (via la sous-unité calmoduline). C'est le mécanisme d'activation lors des contractions musculaires.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Sur ce chapitre, le professeur teste les mêmes thématiques d'une année sur l'autre (régulation de la GP, cascade PKA/PhK, glycogénogenèse), mais il varie considérablement les items. La récurrence des items est MOYENNE (environ 31%), ce qui rend le Niveau 1 possible mais risqué.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Ce chapitre fait partie d'une suite logique avec FC9 (Glycolyse), FC10 (Néoglucogenèse) et FC15 (Régulation hormonale). Ne faites pas d'impasse sur la régulation coordonnée glycogénolyse/glycogénogenèse, qui est le cœur du cours.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les 4 thématiques identifiées : régulation de la GP, cascade PKA/phosphorylase kinase, glycogénogenèse avec le rôle de l'insuline, et les effets opposés insuline/glucagon. Les glycogénoses peuvent être apprises sur le diaporama uniquement.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Attention : la récurrence des items n'est que de 31% (moyenne). Les thématiques reviennent, mais les items spécifiques changent souvent. Apprenez les items déjà tombés ET les clés de raisonnement associées pour pouvoir répondre à des variations. Un travail basé uniquement sur la mémorisation brute des items exacts aura peu de chance d'avoir de bons résultats.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
