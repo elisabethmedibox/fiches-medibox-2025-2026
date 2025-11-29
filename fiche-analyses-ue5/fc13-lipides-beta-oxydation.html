@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC13 - Structure des lipides et β-oxydation - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        .main-accordion { margin-bottom: 15px; border: 2px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
+        .main-accordion summary { background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%); color: white; padding: 18px 25px; cursor: pointer; font-size: 1.1rem; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .main-accordion summary::-webkit-details-marker { display: none; }
+        .main-accordion summary::after { content: "▼"; font-size: 0.8rem; transition: transform 0.3s ease; }
+        .main-accordion[open] summary::after { transform: rotate(180deg); }
+        .main-accordion[open] summary { background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%); }
+        .accordion-content { padding: 25px; background: #f8fafc; }
+        .accordion-content h3 { color: #1a365d; border-bottom: 2px solid #ff6b7a; padding-bottom: 8px; margin-top: 25px; margin-bottom: 15px; }
+        .accordion-content h3:first-child { margin-top: 0; }
+        .qcm-thematique { margin-bottom: 30px; }
+        .qcm-thematique h4 { color: #1a365d; background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); padding: 12px 15px; border-radius: 8px; margin: 0 0 15px 0; font-size: 1rem; }
+        .qcm-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.85rem; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .qcm-table thead { background: #1a365d; color: white; }
+        .qcm-table th { padding: 10px; text-align: left; font-weight: 600; }
+        .qcm-table th:first-child { width: 120px; }
+        .qcm-table td { padding: 12px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+        .qcm-table td:first-child { font-weight: 600; color: #ff6b7a; background: #f8fafc; }
+        .qcm-table tr:last-child td { border-bottom: none; }
+        .qcm-identique { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-left: 4px solid #10b981; }
+        .qcm-enonce { font-weight: 600; color: #1a365d; margin-bottom: 8px; }
+        .qcm-items { line-height: 1.6; color: #4a5568; }
+        .qcm-item { margin-bottom: 4px; }
+        .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px; }
+        .diagnostic-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.9rem; }
+        .diagnostic-table th { background: #1a365d; color: white; padding: 10px; text-align: left; }
+        .diagnostic-table td { padding: 10px; border: 1px solid #e2e8f0; background: white; }
+        .vue-ensemble { margin-top: 25px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .vue-ensemble h4 { margin: 0 0 15px 0; color: #1a365d; font-size: 1.1rem; }
+        .vue-ensemble-intro { color: #4a5568; margin-bottom: 15px; font-size: 0.95rem; }
+        .vue-tableau { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem; }
+        .vue-tableau th { background: #1a365d; color: white; padding: 10px; text-align: center; font-weight: 600; }
+        .vue-tableau th:first-child { text-align: left; width: 30%; }
+        .vue-tableau td { padding: 10px; border: 1px solid #e2e8f0; text-align: center; background: white; }
+        .vue-tableau td:first-child { text-align: left; font-weight: 600; color: #1a365d; background: #f8fafc; }
+        .vue-tableau .qcm-cell { color: #ff6b7a; font-weight: 600; }
+        .vue-tableau .empty-cell { color: #cbd5e1; }
+        .vue-tableau .qcm-identique-cell { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); color: #065f46; font-weight: 700; padding: 4px 8px; border-radius: 6px; display: inline-block; border: 2px solid #10b981; }
+        .reco-item { background: white; border-left: 4px solid #10b981; padding: 15px; margin-bottom: 15px; border-radius: 0 8px 8px 0; }
+        .reco-item h4 { margin: 0 0 8px 0; color: #1a365d; }
+        .reco-item p { margin: 0 0 8px 0; color: #4a5568; font-size: 0.95rem; line-height: 1.5; }
+        .reco-item .frequence { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 3px 10px; border-radius: 12px; font-size: 0.8rem; margin-top: 8px; }
+        .qcm-analyse { background: white; border: 2px solid #3b82f6; border-radius: 12px; padding: 20px; margin-bottom: 20px; position: relative; }
+        .qcm-analyse h4 { margin: 0 0 5px 0; color: #1e40af; font-size: 1.1rem; }
+        .qcm-badge { background: #1e3a5f; color: #94a3b8; font-size: 0.8rem; padding: 6px 12px; border-radius: 8px; margin-bottom: 15px; display: inline-block; }
+        .qcm-badge strong { color: #ff6b7a; }
+        .qcm-section { margin-bottom: 12px; }
+        .qcm-section:last-child { margin-bottom: 0; }
+        .qcm-section-title { font-weight: 600; color: #1a365d; font-size: 0.9rem; margin-bottom: 5px; }
+        .qcm-section-content { color: #4a5568; font-size: 0.95rem; line-height: 1.6; }
+        .cle-raisonnement { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-left: 3px solid #10b981; padding: 12px 15px; border-radius: 0 8px 8px 0; margin-top: 8px; }
+        .cle-raisonnement p { margin: 0 0 8px 0; color: #166534; }
+        .cle-raisonnement p:last-child { margin-bottom: 0; }
+        .connaissance-pure { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 3px solid #f59e0b; padding: 12px 15px; border-radius: 0 8px 8px 0; margin-top: 8px; color: #92400e; }
+        .vigilance-item { background: white; border-left: 4px solid #f59e0b; padding: 15px; margin-bottom: 15px; border-radius: 0 8px 8px 0; }
+        .vigilance-item h4 { margin: 0 0 8px 0; color: #b45309; }
+        .vigilance-item p { margin: 0; color: #4a5568; font-size: 0.95rem; line-height: 1.5; }
+        .tuteur-zone { background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border: 2px dashed #8b5cf6; border-radius: 8px; padding: 20px; }
+        .tuteur-zone p { margin: 0; color: #6b21a8; }
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+            .qcm-thematique { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .qcm-table { min-width: 750px; font-size: 0.7rem !important; }
+            .qcm-table th:first-child, .qcm-table td:first-child { width: 90px; font-size: 0.7rem !important; }
+            .qcm-table td { font-size: 0.7rem !important; }
+            .qcm-table .qcm-enonce { font-size: 0.7rem !important; margin-bottom: 6px; }
+            .qcm-table .qcm-items { font-size: 0.7rem !important; }
+            .qcm-table .qcm-item { padding: 3px 6px; margin-bottom: 3px; font-size: 0.7rem !important; }
+            .table-wrapper { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+            .vue-tableau { min-width: 600px; }
+            .diagnostic-table { min-width: 500px; }
+        }
+        .footer { background: #e2e8f0; color: #1a365d; text-align: center; padding: 15px; font-size: 0.85rem; }
+        .avertissement { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b; color: #92400e; text-align: center; padding: 15px 20px; font-size: 0.8rem; line-height: 1.5; }
+        .avertissement strong { color: #92400e; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC13 - Structure des lipides et β-oxydation</h1>
+            <div class="meta">
+                <span>📚 UE5 - Biochimie (Pr Garnier)</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        <div class="content">
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    <div class="qcm-thematique">
+                        <h4>🎯 Palmitate et structure des acides gras (5 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead><tr><th>Année - QCM</th><th>Énoncé et items</th></tr></thead>
+                            <tbody>
+                                <tr><td>2021-2022<br>Q17</td><td><div class="qcm-enonce">Sur l'acide stéarique:</div><div class="qcm-items"><div class="qcm-item">A : Il contient 20 atomes de carbone</div><div class="qcm-item">B : C'est un acide gras à chaîne moyenne.</div><div class="qcm-item">C : C'est un acide gras poly-insaturé.</div><div class="qcm-item">D : Il permet d'obtenir 120 ATP.</div><div class="qcm-item">E : Sa β-oxydation nécessite 7 tours de spire de l'hélice de Lynen.</div></div></td></tr>
+                                <tr><td>2022-2023<br>Q16</td><td><div class="qcm-enonce">Sur le palmitate :</div><div class="qcm-items"><div class="qcm-item">A : Il s'agit d'un sucre.</div><div class="qcm-item">B : Il comporte 6 carbones.</div><div class="qcm-item">C : Il comporte 16 carbones.</div><div class="qcm-item">D : Il permet de produire 8 acétyl-CoA, via la β-oxydation.</div><div class="qcm-item">E : Son catabolisme permet de produire 120 ATP.</div></div></td></tr>
+                                <tr><td>2023-2024<br>Q18</td><td><div class="qcm-enonce">Sur le palmitate :</div><div class="qcm-items"><div class="qcm-item">A : Il permet de générer de l'énergie par β-oxydation et entrée dans le cycle de Krebs</div><div class="qcm-item">B : Il possède 16 carbones.</div><div class="qcm-item">C : Il permet de générer 120 ATP</div><div class="qcm-item">D : Il permet de générer 7 acétylCoA</div><div class="qcm-item">E : Il subit la β-oxydation au sein de la matrice mitochondriale.</div></div></td></tr>
+                                <tr><td>2024-2025<br>Q18</td><td><div class="qcm-enonce">Sur la structure des acides gras.</div><div class="qcm-items"><div class="qcm-item">A : Les acides gras comportent une fonction COOH (carboxylique) à chacune de leurs 2 extrémités.</div><div class="qcm-item">B : Les acides gras possèdent tous au moins une insaturation.</div><div class="qcm-item">C : L'acide palmitique possède 16 carbones.</div><div class="qcm-item">D : L'acide arachidique possède une chaîne dite «très longue».</div><div class="qcm-item">E : L'acide stéarique possède 16 carbones.</div></div></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="qcm-thematique">
+                        <h4>🎯 Dégradation et synthèse des acides gras (2 QCM - quasi-identiques)</h4>
+                        <table class="qcm-table">
+                            <thead><tr><th>Année - QCM</th><th>Énoncé et items</th></tr></thead>
+                            <tbody>
+                                <tr class="qcm-identique"><td>2023-2024 Q19<br>2024-2025 Q19<br><em>🔄 Identiques</em></td><td><div class="qcm-enonce">Sur la dégradation et la synthèse d'acides gras :</div><div class="qcm-items"><div class="qcm-item">A : Cette dégradation s'effectue dans le cytosol.</div><div class="qcm-item">B : Cette dégradation aboutit à la formation d'acétyl-CoA</div><div class="qcm-item">C : Cette synthèse nécessite du NADPH,H+.</div><div class="qcm-item">D : Cette synthèse nécessite du NADH,H+</div><div class="qcm-item">E : Des intermédiaires sont liés au coenzyme A lors de la dégradation.</div></div></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="qcm-thematique">
+                        <h4>🎯 Corps cétoniques et cétogenèse (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead><tr><th>Année - QCM</th><th>Énoncé et items</th></tr></thead>
+                            <tbody>
+                                <tr><td>2020-2021<br>Q20</td><td><div class="qcm-enonce">Sur la cétogenèse:</div><div class="qcm-items"><div class="qcm-item">A : La première de ses réactions est réalisée par la thiolase.</div><div class="qcm-item">B : L'acétoacétate est transformé en D-β-hydroxybutyrate de façon spontanée.</div><div class="qcm-item">C : Les corps cétoniques sont surtout utilisés par les adipocytes pour leurs besoins.</div><div class="qcm-item">D : La thiolase transforme 2 acétyl-CoA en acétoacétyl-CoA de façon réversible.</div><div class="qcm-item">E : Les corps cétoniques sont produits dans le foie.</div></div></td></tr>
+                                <tr><td>2021-2022<br>Q18</td><td><div class="qcm-enonce">Sur la production et l'utilisation des corps cétoniques:</div><div class="qcm-items"><div class="qcm-item">A : L'acétoacétate est un corps cétonique.</div><div class="qcm-item">B : L'acétoacétate est utile surtout pour le foie, lors d'un jeûne prolongé.</div><div class="qcm-item">C : L'acétoacétate intègre le cycle de Krebs sous forme d'acétyl-CoA.</div><div class="qcm-item">D : La thiolase permet la formation d'acétoacétyl-CoA dans le muscle</div><div class="qcm-item">E : La thiolase permet la formation d'acétyl-CoA dans le muscle.</div></div></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="qcm-thematique">
+                        <h4>🎯 Réserves énergétiques (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead><tr><th>Année - QCM</th><th>Énoncé et items</th></tr></thead>
+                            <tbody>
+                                <tr><td>2022-2023<br>Q17</td><td><div class="qcm-enonce">Sur les réserves énergétiques :</div><div class="qcm-items"><div class="qcm-item">A : Le tissu adipeux constitue une plus grande réserve d'énergie que le glycogène hépatique.</div><div class="qcm-item">B : Le tissu adipeux constitue une plus grande réserve d'énergie que le glycogène musculaire.</div><div class="qcm-item">C : En cas de grève de la faim, la durée de survie théorique est supérieure à 40 jours.</div><div class="qcm-item">D : La lipolyse permet de mobiliser les protéines.</div><div class="qcm-item">E : La lipolyse permet de mobiliser les glucides.</div></div></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </details>
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr><th>Fréquence d'apparition</th><th>Format des QCM</th><th>Niveau de dépendance</th></tr>
+                            <tr><td>✅ Tombe chaque année</td><td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td><td>😺 Indépendant</td></tr>
+                        </table>
+                    </div>
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>9 QCM</strong> sur ce chapitre (moyenne 1,8/an). Ces QCM se regroupent en <strong>4 grandes thématiques</strong> :</p>
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead><tr><th>Thématique</th><th>2020-2021</th><th>2021-2022</th><th>2022-2023</th><th>2023-2024</th><th>2024-2025</th></tr></thead>
+                            <tbody>
+                                <tr><td>Palmitate / Structure AG</td><td class="empty-cell">—</td><td class="qcm-cell">Q17</td><td class="qcm-cell">Q16</td><td class="qcm-cell">Q18</td><td class="qcm-cell">Q18</td></tr>
+                                <tr><td>Dégradation/Synthèse AG</td><td class="empty-cell">—</td><td class="empty-cell">—</td><td class="empty-cell">—</td><td><span class="qcm-identique-cell">🔄 Q19</span></td><td><span class="qcm-identique-cell">🔄 Q19</span></td></tr>
+                                <tr><td>Corps cétoniques</td><td class="qcm-cell">Q20</td><td class="qcm-cell">Q18</td><td class="empty-cell">—</td><td class="empty-cell">—</td><td class="empty-cell">—</td></tr>
+                                <tr><td>Réserves énergétiques</td><td class="empty-cell">—</td><td class="empty-cell">—</td><td class="qcm-cell">Q17</td><td class="empty-cell">—</td><td class="empty-cell">—</td></tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;"><strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item"><h4>Le palmitate et la β-oxydation</h4><p>Connaître le nombre de carbones du palmitate (16C), le nombre d'acétyl-CoA produits (8), le bilan ATP (106-108 ATP selon conventions), et la localisation de la β-oxydation (matrice mitochondriale).</p><span class="frequence">Tombé 4 fois en 5 ans</span></div>
+                    <div class="reco-item"><h4>La structure des acides gras</h4><p>Maîtriser la nomenclature des acides gras (palmitique = 16C saturé, stéarique = 18C saturé, arachidique = 20C). Savoir distinguer acides gras saturés, mono-insaturés et poly-insaturés.</p><span class="frequence">Tombé 2 fois en 5 ans</span></div>
+                    <div class="reco-item"><h4>Dégradation vs synthèse des acides gras</h4><p>Distinguer les localisations (dégradation = mitochondrie, synthèse = cytosol) et les cofacteurs utilisés (dégradation = FAD/NAD+, synthèse = NADPH).</p><span class="frequence">Tombé 2 fois en 5 ans (QCM quasi-identique)</span></div>
+                    <div class="reco-item"><h4>Les corps cétoniques et la cétogenèse</h4><p>Connaître les 3 corps cétoniques (acétoacétate, D-β-hydroxybutyrate, acétone), leur lieu de production (foie) et d'utilisation (tissus extra-hépatiques, pas les adipocytes).</p><span class="frequence">Tombé 2 fois en 5 ans</span></div>
+                    <div class="reco-item"><h4>Les réserves énergétiques</h4><p>Comparer les réserves en lipides vs glycogène. Le tissu adipeux représente la plus grande réserve énergétique de l'organisme.</p><span class="frequence">Tombé 1 fois en 5 ans</span></div>
+                </div>
+            </details>
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    <div class="qcm-analyse">
+                        <h4>Dégradation et synthèse des acides gras</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q19 | <strong>2024-2025</strong> Q19</div>
+                        <div class="qcm-section"><div class="qcm-section-title">Constat :</div><div class="qcm-section-content">Ce QCM est quasi-identique sur 2 années consécutives. Les 5 items sont strictement les mêmes, testant la localisation, les produits et les cofacteurs de la dégradation et de la synthèse.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">Ce que tu dois faire :</div><div class="qcm-section-content">Apprends ce QCM par cœur : c'est un point quasi-garanti si le prof maintient ce pattern. Mémorise les 5 items et leurs réponses.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">Clé de raisonnement :</div><div class="cle-raisonnement"><p><strong>Dégradation (β-oxydation)</strong> = dans la <strong>mitochondrie</strong> (matrice) → produit de l'<strong>acétyl-CoA</strong></p><p><strong>Synthèse</strong> = dans le <strong>cytosol</strong> → utilise du <strong>NADPH,H+</strong> (pas NADH,H+)</p><p>Les intermédiaires de la dégradation sont bien liés au <strong>coenzyme A</strong>.</p></div></div>
+                    </div>
+                    <div class="qcm-analyse">
+                        <h4>Le palmitate</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q16 | <strong>2023-2024</strong> Q18</div>
+                        <div class="qcm-section"><div class="qcm-section-title">Constat :</div><div class="qcm-section-content">Le palmitate revient régulièrement avec des items sur le nombre de carbones (16C) et le bilan ATP (120 ATP). Attention au piège sur le nombre d'acétyl-CoA : 8 (pas 7).</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">Ce que tu dois faire :</div><div class="qcm-section-content">Mémorise les chiffres clés du palmitate et sache calculer le bilan énergétique.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">Clé de raisonnement :</div><div class="cle-raisonnement"><p><strong>Palmitate = C16:0</strong> (16 carbones, saturé)</p><p>β-oxydation : <strong>7 tours</strong> de l'hélice de Lynen → <strong>8 acétyl-CoA</strong></p><p>Bilan : environ <strong>106-108 ATP</strong> (ou 120 ATP selon les conventions de calcul utilisées dans le cours)</p><p>Localisation : <strong>matrice mitochondriale</strong></p></div></div>
+                    </div>
+                    <div class="qcm-analyse">
+                        <h4>Structure des acides gras</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q17 | <strong>2024-2025</strong> Q18</div>
+                        <div class="qcm-section"><div class="qcm-section-title">Constat :</div><div class="qcm-section-content">Ces QCM testent la connaissance des caractéristiques des différents acides gras (palmitique, stéarique, arachidique) avec des pièges sur le nombre de carbones.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">Ce que tu dois faire :</div><div class="qcm-section-content">Mémorise le tableau des principaux acides gras avec leur nombre de carbones et leur degré d'insaturation.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">Clé de raisonnement :</div><div class="connaissance-pure">C'est un QCM de connaissance pure. Retiens : Palmitique = 16C saturé, Stéarique = 18C saturé, Arachidique = 20C saturé (chaîne longue). Un AG a une seule fonction COOH (pas deux). Les AG saturés n'ont aucune insaturation.</div></div>
+                    </div>
+                    <div class="qcm-analyse">
+                        <h4>Corps cétoniques et cétogenèse</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q20 | <strong>2021-2022</strong> Q18</div>
+                        <div class="qcm-section"><div class="qcm-section-title">Constat :</div><div class="qcm-section-content">Ces QCM n'ont pas été posés depuis 2021-2022. Les items varient beaucoup d'une année sur l'autre (récurrence faible ~10%).</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">Ce que tu dois faire :</div><div class="qcm-section-content">Apprends les notions de base sur les corps cétoniques : leur nature, leur lieu de production et d'utilisation.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">Clé de raisonnement :</div><div class="cle-raisonnement"><p><strong>Production</strong> : dans le <strong>foie</strong> uniquement</p><p><strong>Utilisation</strong> : par les <strong>tissus extra-hépatiques</strong> (cerveau, muscle, cœur) — <strong>PAS les adipocytes</strong></p><p>La thiolase intervient à la fois dans la cétogenèse (foie) et dans l'utilisation des corps cétoniques (muscle).</p></div></div>
+                    </div>
+                    <div class="qcm-analyse">
+                        <h4>Réserves énergétiques</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q17</div>
+                        <div class="qcm-section"><div class="qcm-section-title">Constat :</div><div class="qcm-section-content">Ce QCM n'est tombé qu'une seule fois. Il compare les réserves lipidiques au glycogène et teste la définition de la lipolyse.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">Ce que tu dois faire :</div><div class="qcm-section-content">Apprends les ordres de grandeur des réserves énergétiques et la définition précise de la lipolyse.</div></div>
+                        <div class="qcm-section"><div class="qcm-section-title">Clé de raisonnement :</div><div class="cle-raisonnement"><p>Le <strong>tissu adipeux</strong> = plus grande réserve énergétique (>> glycogène hépatique et musculaire)</p><p><strong>Lipolyse</strong> = mobilisation des <strong>lipides</strong> (triglycérides → acides gras + glycérol)</p><p>La lipolyse ne mobilise NI les protéines NI les glucides.</p></div></div>
+                    </div>
+                </div>
+            </details>
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+                    <div class="vigilance-item"><h4>Confusion palmitate (16C) / stéarate (18C)</h4><p>Le palmitate a 16 carbones, le stéarate en a 18. Ne pas confondre ! Le piège "l'acide stéarique possède 16 carbones" est tombé en 2024-2025.</p></div>
+                    <div class="vigilance-item"><h4>Piège sur le nombre d'acétyl-CoA</h4><p>Le palmitate (16C) produit 8 acétyl-CoA, pas 7. Le prof a testé "7 acétylCoA" en 2023-2024 comme piège. Formule : nombre d'acétyl-CoA = nombre de carbones / 2.</p></div>
+                    <div class="vigilance-item"><h4>Localisation dégradation vs synthèse</h4><p>La β-oxydation (dégradation) se fait dans la MITOCHONDRIE. La synthèse des AG se fait dans le CYTOSOL. Ne pas inverser !</p></div>
+                    <div class="vigilance-item"><h4>Cofacteurs : NADPH vs NADH</h4><p>La synthèse des AG utilise du NADPH,H+ (pas du NADH,H+). Le NADPH vient de la voie des pentoses phosphates. C'est un piège récurrent.</p></div>
+                    <div class="vigilance-item"><h4>Corps cétoniques : production foie, utilisation extra-hépatique</h4><p>Les corps cétoniques sont produits dans le FOIE mais utilisés par les tissus EXTRA-HÉPATIQUES (cerveau, muscle, cœur). Les adipocytes ne les utilisent PAS.</p></div>
+                    <div class="vigilance-item"><h4>Définition de la lipolyse</h4><p>La lipolyse mobilise uniquement les LIPIDES (triglycérides). Elle ne mobilise ni les protéines ni les glucides. Ne pas confondre avec la protéolyse ou la glycogénolyse.</p></div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Sur ce chapitre, le prof cible quelques thématiques précises mais varie ses items d'une année sur l'autre. La récurrence globale est MOYENNE (40%), avec une exception notable : le QCM "Dégradation/Synthèse des AG" qui est quasi-identique sur 2023-2024 et 2024-2025 (100% de récurrence sur cette thématique).</p>
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>FC13 est un chapitre relativement court et accessible. Maîtrisez la structure des acides gras (nomenclature, saturation), la β-oxydation complète avec ses bilans, la cétogenèse et son intégration métabolique. Comprenez les liens avec le cycle de Krebs et la chaîne respiratoire pour le calcul du bilan ATP.</p>
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>Concentrez-vous sur les 4 thématiques tombées : le palmitate (16C, 8 acétyl-CoA, 120 ATP), la distinction dégradation/synthèse (localisation + cofacteurs), les corps cétoniques (production foie, utilisation extra-hépatique), et les réserves énergétiques. Les autres parties du cours (sphingolipides, cholestérol détaillé) sont moins prioritaires.</p>
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>La récurrence MOYENNE (40%) rend le Niveau 1 possible mais avec des risques. Un point est quasi-garanti avec le QCM "Dégradation/Synthèse AG" (identique 2 années de suite). Pour les autres thématiques, le prof varie ses items, donc apprendre uniquement les QCM tombés ne suffit pas toujours. Mémorisez quand même les chiffres clés (16C palmitate, 18C stéarate, 8 acétyl-CoA) et les localisations (mitochondrie vs cytosol).</p>
+                    </div>
+                </div>
+            </details>
+        </div>
+        
+        <div class="footer"><strong>Création originale de E. Schaeffer</strong><br>Soumis à droits d'auteur - Reproduction interdite</div>
+        <div class="avertissement"><strong>⚠️ AVERTISSEMENT</strong><br>Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.</div>
+    </div>
+</body>
+</html>
