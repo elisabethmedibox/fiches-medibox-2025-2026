@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC2 - Les échanges liquidiens - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 25px;
+            padding: 0;
+            padding-left: 10px;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+            padding-left: 5px;
+        }
+        
+        .cle-raisonnement table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 0.85rem;
+        }
+        
+        .cle-raisonnement th, .cle-raisonnement td {
+            border: 1px solid #86efac;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        .cle-raisonnement th {
+            background: #bbf7d0;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Bloc explications */
+        .bloc-explications {
+            background: #f0f9ff;
+            border: 2px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .bloc-explications h4 {
+            color: #0369a1;
+            margin: 0 0 15px 0;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #0ea5e9;
+            padding-bottom: 10px;
+        }
+        
+        .explication-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .explication-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .explication-item h5 {
+            color: #1e40af;
+            margin: 0 0 10px 0;
+            font-size: 1rem;
+        }
+        
+        .explication-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .explication-item ul {
+            margin: 8px 0 8px 25px;
+            padding: 0;
+            padding-left: 10px;
+        }
+        
+        .explication-item li {
+            margin-bottom: 5px;
+            color: #4a5568;
+            font-size: 0.9rem;
+            padding-left: 5px;
+        }
+        
+        .explication-item table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 0.85rem;
+        }
+        
+        .explication-item th, .explication-item td {
+            border: 1px solid #e2e8f0;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        .explication-item th {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .attention-box {
+            background: #fef3c7;
+            border-left: 3px solid #f59e0b;
+            padding: 10px 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 10px 0;
+            font-size: 0.85rem;
+            color: #92400e;
+        }
+        
+        .spoiler-box {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .spoiler-box p {
+            margin: 0 0 8px 0;
+            color: #92400e;
+        }
+        
+        .spoiler-box ul {
+            margin: 8px 0 0 25px;
+            padding-left: 10px;
+        }
+        
+        .spoiler-box li {
+            color: #92400e;
+            margin-bottom: 5px;
+            padding-left: 5px;
+        }
+
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                font-size: 0.7rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC2 - Les échanges liquidiens</h1>
+            <div class="meta">
+                <span>📚 UE7 - Biophysique</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- CALCULS NaCl -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Calculs d'osmolarité - NaCl (5 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q2<br>2024-2025 Q2<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Vous dissolvez 117 mg de chlorure de sodium (NaCl) dans un litre d'eau (masse molaire atomique du Na = 23 grammes et du Cl = 35.5 grammes). Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La concentration de cette solution est de 2 mmol.L⁻¹.</div>
+                                            <div class="qcm-item">B: La concentration électrolytique de cette solution est de 4 mEq.L⁻¹.</div>
+                                            <div class="qcm-item">C: L'osmolarité de cette solution est de 2 mOsm.L⁻¹.</div>
+                                            <div class="qcm-item">D: L'osmolalité de cette solution est de 2 mEq.L⁻¹.</div>
+                                            <div class="qcm-item">E: Cette solution est hysotonique par rapport à celle du plasma.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">Vous dissolvez 234 mg de chlorure de sodium (NaCl) dans un litre d'eau (masse molaire atomique du Na = 23 grammes et du Cl = 35.5 grammes). Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La concentration de cette solution est de 4 mmol.L⁻¹.</div>
+                                            <div class="qcm-item">B: La concentration électrolytique de cette solution est de 8 mEq.L⁻¹.</div>
+                                            <div class="qcm-item">C: L'osmolarité de cette solution est de 8 mOsm.L⁻¹.</div>
+                                            <div class="qcm-item">D: L'osmolarité de cette solution est de 8 mEq.L⁻¹.</div>
+                                            <div class="qcm-item">E: Cette solution est isotonique avec celle du plasma.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">Vous dissolvez 58.5 mg de chlorure de sodium (NaCl, masse molaire atomique du Na = 23 grammes et du Cl = 35.5 grammes) dans un demi-litre d'eau. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La concentration de cette solution est de 2 mmol.L⁻¹.</div>
+                                            <div class="qcm-item">B: La concentration électrolytique de cette solution est de 4 mEq.L⁻¹.</div>
+                                            <div class="qcm-item">C: L'osmolarité de cette solution est de 2 mOsm.L⁻¹.</div>
+                                            <div class="qcm-item">D: L'osmolarité et la concentration électrolytique de cette solution sont équivalentes.</div>
+                                            <div class="qcm-item">E: Cette solution est isotonique avec celle du plasma.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">Vous dissolvez 117 mg de chlorure de sodium (NaCl) dans un litre d'eau (masse molaire atomique du Na = 23 grammes et du Cl = 35.5 grammes). Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La concentration de cette solution est de 4 mmol.L⁻¹</div>
+                                            <div class="qcm-item">B: La concentration électrolytique de cette solution est de 4 mEq.L⁻¹</div>
+                                            <div class="qcm-item">C: L'osmolarité de cette solution est de 4 mOsm.L⁻¹</div>
+                                            <div class="qcm-item">D: L'osmolalité de cette solution est de 2 mEq.L⁻¹</div>
+                                            <div class="qcm-item">E: Cette solution est hypotonique par rapport à celle de plasma.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- CALCULS CaCl2 -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Calculs d'osmolarité - CaCl₂ (4 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2021-2022 Q3<br>2023-2024 Q5<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Vous dissolvez 22.2 grammes de chlorure de calcium (CaCl₂) dans un litre d'eau (masse molaire atomique du Ca = 40 grammes et du Cl = 35.5 grammes). Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La concentration de cette solution est de 200 mmol.L⁻¹.</div>
+                                            <div class="qcm-item">B: La concentration électrolytique de cette solution est de 400 mEq.L⁻¹.</div>
+                                            <div class="qcm-item">C: La concentration électrolytique de cette solution est de 800 mEq.L⁻¹.</div>
+                                            <div class="qcm-item">D: L'osmolarité de cette solution est de 1200 mOsm.L⁻¹.</div>
+                                            <div class="qcm-item">E: L'osmolarité de cette solution est de 600 mEq.L⁻¹.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">Vous dissolvez 11.1 grammes de chlorure de calcium (CaCl₂) dans un litre d'eau (masse molaire atomique du Ca = 40 grammes et du Cl = 35.5 grammes). Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La concentration de cette solution est de 100 mmol.L⁻¹.</div>
+                                            <div class="qcm-item">B: La concentration électrolytique de cette solution est de 200 mEq.L⁻¹.</div>
+                                            <div class="qcm-item">C: La concentration électrolytique de cette solution est de 400 mEq.L⁻¹.</div>
+                                            <div class="qcm-item">D: L'osmolarité et la concentration électrolytique de cette solution sont équivalentes.</div>
+                                            <div class="qcm-item">E: L'osmolarité de cette solution est de 300 mOsm.L⁻¹.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q5 ❌</td>
+                                    <td>
+                                        <div class="qcm-enonce">Vous dissolvez 22.2 grammes de chlorure de calcium (CaCl) dans un litre d'eau (masse molaire atomique du Ca = 40 gr et du CL = 35 gr). Laquelle ou lesquelles de ces propositions est ou sont exactes ?</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item"><em>(Question annulée car les données de l'énoncé sont fausses : il manque l'indice 2 à Cl et la masse molaire atomique du chlore c'est 35,5)</em></div>
+                                            <div class="qcm-item">A: La concentration de cette solution est de 200 mmol/L</div>
+                                            <div class="qcm-item">B: La concentration électrolytique de cette solution est de 400 mEq/L</div>
+                                            <div class="qcm-item">C: La concentration électrolytique de cette solution est de 800 mEq/L</div>
+                                            <div class="qcm-item">D: L'osmolarité de cette solution est de 1200 moM/L</div>
+                                            <div class="qcm-item">E: L'osmolarité de cette solution est de 600 mEq/L</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- GAIN D'EAU PURE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Gain d'eau pure (4 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q3<br>2023-2024 Q3<br>2024-2025 Q3<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">L'ingestion massive et rapide d'eau pure dépassant largement les capacités d'excrétion physiologiques s'accompagne des conséquences suivantes. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Une réduction initiale du volume extracellulaire.</div>
+                                            <div class="qcm-item">B: Une diminution initiale de l'osmolarité du volume extracellulaire.</div>
+                                            <div class="qcm-item">C: Un déplacement d'eau du compartiment intracellulaire vers le compartiment extracellulaire.</div>
+                                            <div class="qcm-item">D: Une augmentation du volume intracellulaire après équilibre des mouvements d'eau entre les compartiments.</div>
+                                            <div class="qcm-item">E: Une réduction de la natrémie plasmatique (hyponatrémie) après équilibre des mouvements d'eau entre les compartiments.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q5<br><em>(modification minime)</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Le gain rapide et massif d'eau pure s'accompagne des conséquences suivantes. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Une augmentation du volume extracellulaire.</div>
+                                            <div class="qcm-item">B: Une réduction initiale de l'osmolarité du compartiment extracellulaire.</div>
+                                            <div class="qcm-item">C: Un déplacement d'eau du compartiment intracellulaire vers le compartiment extracellulaire.</div>
+                                            <div class="qcm-item">D: Une diminution du volume intracellulaire après équilibre des mouvements d'eau entre les compartiments.</div>
+                                            <div class="qcm-item">E: Une diminution de la natrémie plasmatique (hyponatrémie) après équilibre des mouvements d'eau entre les compartiments.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- PERTE D'EAU PURE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Perte d'eau pure (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">La perte rapide et massive d'eau pure s'accompagne des conséquences suivantes. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Une réduction initiale du volume extracellulaire.</div>
+                                            <div class="qcm-item">B: Une augmentation initiale de l'osmolarité du compartiment extracellulaire.</div>
+                                            <div class="qcm-item">C: Un déplacement d'eau du compartiment extracellulaire vers le compartiment intracellulaire.</div>
+                                            <div class="qcm-item">D: Une diminution du volume intracellulaire après équilibre des mouvements d'eau entre les compartiments.</div>
+                                            <div class="qcm-item">E: Une augmentation de la natrémie plasmatique (hypernatrémie) après équilibre des mouvements d'eau entre les compartiments.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- COMPOSITION IONIQUE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Composition ionique (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2022-2023 Q1<br>2024-2025 Q20<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos de la composition ionique de l'organisme chez un adulte normal. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La natrémie plasmatique est de l'ordre de 140 millimole par litre (mmol/l)</div>
+                                            <div class="qcm-item">B: La kaliémie plasmatique est de l'ordre de 9 millimole par litre (mmol/l)</div>
+                                            <div class="qcm-item">C: La kaliémie plasmatique est de l'ordre de 4,5 milliéquivalent par litre (mEq/l)</div>
+                                            <div class="qcm-item">D: Une hyponatrémie plasmatique s'accompagne d'un risque de réduction du volume des cellules</div>
+                                            <div class="qcm-item">E: Une hyperkaliémie plasmatique s'accompagne d'un risque de trouble du rythme cardiaque</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année (2 à 4 QCM)</td>
+                                <td>🎯 QCM sur partie ciblée du cours - avec récurrence des items</td>
+                                <td>🔗 Cours appartenant à une suite logique</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>16 QCM</strong> sur ce chapitre (moyenne 3/an). Ces QCM se regroupent en <strong>5 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Calcul osmolarité NaCl</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q2</span></td>
+                                    <td class="qcm-cell">Q2</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="qcm-cell">Q2</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q2</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Calcul osmolarité CaCl₂</td>
+                                    <td class="empty-cell">—</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q3</span></td>
+                                    <td class="qcm-cell">Q3</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q5</span></td>
+                                    <td class="qcm-cell">Q5 ❌</td>
+                                </tr>
+                                <tr>
+                                    <td>Gain d'eau pure</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q3</span></td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q5</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q3</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q3</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Perte d'eau pure</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Composition ionique</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q1</span></td>
+                                    <td class="empty-cell">—</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q20</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre<br>
+                                <strong>❌</strong> : Question annulée
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>Calculs d'osmolarité (NaCl et CaCl₂)</h4>
+                        <p>Maîtriser les formules de concentration molaire, concentration électrolytique et osmolarité. Connaître la différence entre particules et charges.</p>
+                        <span class="frequence">Tombé 9 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Gains et pertes d'eau pure</h4>
+                        <p>Comprendre les mouvements d'eau entre compartiments LEC/LIC et leurs conséquences sur l'osmolarité et la natrémie.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Tonicité par rapport au plasma</h4>
+                        <p>Savoir comparer l'osmolarité d'une solution à celle du plasma (≈ 290-300 mOsm/L) pour déterminer si elle est isotonique, hypotonique ou hypertonique.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Osmolarité vs Osmolalité</h4>
+                        <p>Bien distinguer les unités : osmolarité en mOsm/L, osmolalité en mOsm/kg. Les pièges d'unité sont fréquents.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Composition ionique et dysnatrémies</h4>
+                        <p>Connaître les valeurs normales (natrémie ≈ 140 mmol/L, kaliémie ≈ 4,5 mmol/L) et les conséquences des variations.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🔍 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- BLOC 1 : Calculs avec NaCl -->
+                    <div class="qcm-analyse">
+                        <h4>Calculs avec NaCl</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q2 | <strong>2021-2022</strong> Q2 | <strong>2022-2023</strong> Q4 | <strong>2023-2024</strong> Q2 | <strong>2024-2025</strong> Q2</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM tombe chaque année sous la même forme. Les items A à E testent toujours les mêmes calculs.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Tableau des items types :</div>
+                            <div class="cle-raisonnement">
+                                <table>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Question type</th>
+                                        <th>Fréquence</th>
+                                        <th>Explication</th>
+                                    </tr>
+                                    <tr>
+                                        <td>A</td>
+                                        <td>La concentration de cette solution est de X mmol/L</td>
+                                        <td>5 fois</td>
+                                        <td>→ Explication 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>B</td>
+                                        <td>La concentration électrolytique de cette solution est de X mEq/L</td>
+                                        <td>5 fois</td>
+                                        <td>→ Explication 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>C</td>
+                                        <td>L'osmolarité de cette solution est de X mOsm/L</td>
+                                        <td>5 fois</td>
+                                        <td>→ Explication 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>D</td>
+                                        <td>L'osmo<span style="color: #dc2626; font-weight: bold;">L</span>alité de cette solution est de X mEq/L</td>
+                                        <td>2 fois</td>
+                                        <td>→ Explication 4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>D</td>
+                                        <td>L'osmo<span style="color: #dc2626; font-weight: bold;">R</span>arité de cette solution est de X mEq/L</td>
+                                        <td>1 fois</td>
+                                        <td>→ Explication 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>D</td>
+                                        <td>L'osmolarité et la concentration électrolytique sont équivalentes</td>
+                                        <td>1 fois</td>
+                                        <td>→ Explication 5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>E</td>
+                                        <td>Cette solution est isotonique avec celle du plasma</td>
+                                        <td>4 fois</td>
+                                        <td>→ Explication 6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>E</td>
+                                        <td>Cette solution est hypotonique par rapport au plasma</td>
+                                        <td>1 fois</td>
+                                        <td>→ Explication 6</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOC 2 : Calculs avec CaCl2 -->
+                    <div class="qcm-analyse">
+                        <h4>Calculs avec CaCl₂</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q3 | <strong>2022-2023</strong> Q3 | <strong>2023-2024</strong> Q5 | <strong>2024-2025</strong> Q5</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM tombe chaque année sous la même forme. Attention : pour CaCl₂, les calculs sont différents de NaCl (3 particules vs 2, 4 charges vs 2).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Tableau des items types :</div>
+                            <div class="cle-raisonnement">
+                                <table>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Question type</th>
+                                        <th>Fréquence</th>
+                                        <th>Explication</th>
+                                    </tr>
+                                    <tr>
+                                        <td>A</td>
+                                        <td>La concentration de cette solution est de X mmol/L</td>
+                                        <td>4 fois</td>
+                                        <td>→ Explication 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>B</td>
+                                        <td>La concentration électrolytique de cette solution est de X mEq/L</td>
+                                        <td>4 fois</td>
+                                        <td>→ Explication 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>C</td>
+                                        <td>La concentration électrolytique de cette solution est de X mEq/L</td>
+                                        <td>4 fois</td>
+                                        <td>→ Explication 2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>D</td>
+                                        <td>L'osmolarité de cette solution est de X mOsm/L</td>
+                                        <td>2 fois</td>
+                                        <td>→ Explication 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>D</td>
+                                        <td>L'osmolarité et la concentration électrolytique sont équivalentes</td>
+                                        <td>1 fois</td>
+                                        <td>→ Explication 5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>E</td>
+                                        <td>L'osmolarité de cette solution est de X mEq/L</td>
+                                        <td>4 fois</td>
+                                        <td>→ Explication 3</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOC 3 : Explications détaillées -->
+                    <div class="bloc-explications">
+                        <h4>📚 Explications détaillées</h4>
+                        
+                        <!-- Explication 1 -->
+                        <div class="explication-item">
+                            <h5>Explication 1 : Calcul de la concentration molaire (mmol/L)</h5>
+                            
+                            <p><strong>🔑 Préambule : Comment calculer la masse molaire ?</strong></p>
+                            <p>La masse molaire d'une molécule = somme des masses molaires atomiques de ses atomes.</p>
+                            <table>
+                                <tr><th>Molécule</th><th>Calcul</th><th>Masse molaire</th></tr>
+                                <tr><td>NaCl</td><td>Na (23) + Cl (35.5)</td><td><strong>58.5 g/mol</strong></td></tr>
+                                <tr><td>CaCl₂</td><td>Ca (40) + 2 × Cl (35.5) = 40 + 71</td><td><strong>111 g/mol</strong></td></tr>
+                            </table>
+                            
+                            <p style="margin-top: 15px;"><strong>📐 Formule de base :</strong></p>
+                            <p>Pour 1 litre : <strong>Concentration (mmol/L) = Masse (mg) ÷ Masse molaire</strong></p>
+                            <p>Pour 0.5 litre : <strong>Concentration (mmol/L) = (Masse (mg) ÷ Masse molaire) × 2</strong></p>
+                            
+                            <p style="margin-top: 15px;"><strong>⚡ Raisonnement accéléré (pour vérifier un item) :</strong></p>
+                            <p>On inverse le calcul : <strong>Masse ÷ Proposition de l'item A = ?</strong></p>
+                            <ul>
+                                <li>Si le résultat = masse molaire → <strong>VRAI</strong></li>
+                                <li>Si le résultat ≠ masse molaire → <strong>FAUX</strong></li>
+                            </ul>
+                            
+                            <p><strong>Exemple concret avec 117 mg de NaCl dans 1L :</strong></p>
+                            <ul>
+                                <li>Item propose "2 mmol/L" → 117 ÷ 2 = <strong>58.5</strong> = masse molaire de NaCl → <strong>VRAI ✓</strong></li>
+                                <li>Item propose "4 mmol/L" → 117 ÷ 4 = <strong>29.25</strong> ≠ masse molaire de NaCl → <strong>FAUX ✗</strong></li>
+                            </ul>
+                            
+                            <p style="margin-top: 15px;"><strong>📌 Cas particulier : volume de 0.5L</strong></p>
+                            <p>Quand le volume est de 0.5L au lieu de 1L, il faut <strong>doubler la masse</strong> avant d'appliquer l'astuce.</p>
+                            <p><strong>Exemple avec 58.5 mg de NaCl dans 0.5L :</strong></p>
+                            <ul>
+                                <li>Étape 1 : Doubler la masse → 58.5 × 2 = 117 mg (équivalent pour 1L)</li>
+                                <li>Étape 2 : Item propose "2 mmol/L" → 117 ÷ 2 = 58.5 = masse molaire → <strong>VRAI ✓</strong></li>
+                            </ul>
+                            
+                            <p style="margin-top: 15px;"><strong>NaCl - Exemples des annales (masse molaire = 58.5) :</strong></p>
+                            <table>
+                                <tr><th>Masse</th><th>Concentration pour 1L</th><th>Concentration pour 0.5L</th></tr>
+                                <tr><td>58.5 mg ⭐</td><td>1 mmol/L</td><td><strong>2 mmol/L</strong> ⭐</td></tr>
+                                <tr><td>117 mg ⭐</td><td>2 mmol/L ⭐</td><td>4 mmol/L</td></tr>
+                                <tr><td>234 mg ⭐</td><td>4 mmol/L ⭐</td><td>8 mmol/L</td></tr>
+                            </table>
+                            <p style="font-size: 0.8rem; color: #6b7280;">⭐ = déjà tombé aux annales</p>
+                            
+                            <p style="margin-top: 15px;"><strong>CaCl₂ - Exemples des annales (masse molaire = 111) :</strong></p>
+                            <table>
+                                <tr><th>Masse</th><th>Concentration pour 1L</th><th>Concentration pour 0.5L</th></tr>
+                                <tr><td>11.1 g ⭐</td><td>100 mmol/L ⭐</td><td>200 mmol/L</td></tr>
+                                <tr><td>22.2 g ⭐</td><td>200 mmol/L ⭐</td><td>400 mmol/L</td></tr>
+                            </table>
+                            <p style="font-size: 0.8rem; color: #6b7280;">⭐ = déjà tombé aux annales</p>
+                            
+                            <div class="attention-box">
+                                <strong>⚠️ ATTENTION - Unités dans les énoncés :</strong><br>
+                                Jusqu'à présent dans les annales :<br>
+                                • <strong>NaCl</strong> → masses toujours en <strong>milligrammes (mg)</strong><br>
+                                • <strong>CaCl₂</strong> → masses toujours en <strong>grammes (g)</strong><br>
+                                Mais cela pourrait changer ! Rappel : 1 g = 1000 mg
+                            </div>
+                        </div>
+                        
+                        <!-- Explication 2 -->
+                        <div class="explication-item">
+                            <h5>Explication 2 : Calcul de la concentration électrolytique (mEq/L)</h5>
+                            <p><strong>Formule :</strong> Concentration électrolytique (mEq/L) = Concentration molaire (mmol/L) × Nombre de <strong>CHARGES</strong></p>
+                            
+                            <p style="margin-top: 15px;"><strong>C'est quoi une charge ?</strong></p>
+                            <p>Quand une molécule se dissout, elle se sépare en ions. Chaque ion porte une ou plusieurs charges électriques. Le nombre de charges d'un ion = le petit chiffre en exposant (ex : ²⁺ = 2 charges).</p>
+                            
+                            <p style="margin-top: 15px;"><strong>Exemple NaCl → Na⁺ + Cl⁻</strong></p>
+                            <ul>
+                                <li>Na⁺ : 1 ion × 1 charge = 1 charge</li>
+                                <li>Cl⁻ : 1 ion × 1 charge = 1 charge</li>
+                            </ul>
+                            <p><strong>Total = 2 charges</strong></p>
+                            
+                            <p style="margin-top: 15px;"><strong>Exemple CaCl₂ → Ca²⁺ + 2 Cl⁻</strong></p>
+                            <ul>
+                                <li>Ca²⁺ : 1 ion × 2 charges = 2 charges</li>
+                                <li>Cl⁻ : 2 ions × 1 charge = 2 charges</li>
+                            </ul>
+                            <p><strong>Total = 4 charges</strong></p>
+                            
+                            <p style="margin-top: 15px;"><strong>Tableau récapitulatif : Multiplier la concentration molaire par le nombre de charges</strong></p>
+                            <table>
+                                <tr><th>Molécule</th><th>Nombre de charges</th><th>Exemple de calcul</th></tr>
+                                <tr><td>NaCl</td><td>× 2</td><td>2 mmol/L × 2 = <strong>4 mEq/L</strong></td></tr>
+                                <tr><td>CaCl₂</td><td>× 4</td><td>200 mmol/L × 4 = <strong>800 mEq/L</strong></td></tr>
+                            </table>
+                            
+                            <div class="attention-box">
+                                <strong>⚠️ Si l'item A est faux :</strong> Tu dois recalculer toi-même la concentration molaire correcte avant de traiter cet item.
+                            </div>
+                        </div>
+                        
+                        <!-- Explication 3 -->
+                        <div class="explication-item">
+                            <h5>Explication 3 : Calcul de l'osmolarité (mOsm/L)</h5>
+                            <p><strong>Formule :</strong> Osmolarité (mOsm/L) = Concentration molaire (mmol/L) × Nombre de <strong>PARTICULES</strong></p>
+                            
+                            <p style="margin-top: 15px;"><strong>C'est quoi une particule ?</strong></p>
+                            <p>Une particule = chaque ion ou molécule qui se retrouve en solution après dissolution, <strong>peu importe sa charge</strong>.</p>
+                            
+                            <p style="margin-top: 15px;"><strong>Différence entre particules et charges :</strong></p>
+                            <table>
+                                <tr><th></th><th>Particules</th><th>Charges</th></tr>
+                                <tr><td>On compte...</td><td>Le nombre d'ions</td><td>Le nombre de charges portées par les ions</td></tr>
+                                <tr><td>NaCl</td><td>2 (Na⁺ et Cl⁻)</td><td>2 (1 charge portée par Na⁺ et 1 charge portée par Cl⁻)</td></tr>
+                                <tr><td>CaCl₂</td><td>3 (Ca²⁺ et 2 Cl⁻)</td><td>4 (2 charges portées par Ca²⁺ et 2 charges portées par 2 Cl⁻)</td></tr>
+                            </table>
+                            
+                            <p style="margin-top: 15px;"><strong>Tableau récapitulatif : Multiplier la concentration molaire par le nombre de particules</strong></p>
+                            <table>
+                                <tr><th>Molécule</th><th>Nombre de particules</th><th>Exemple de calcul</th></tr>
+                                <tr><td>NaCl</td><td>× 2</td><td>2 mmol/L × 2 = <strong>4 mOsm/L</strong></td></tr>
+                                <tr><td>CaCl₂</td><td>× 3</td><td>200 mmol/L × 3 = <strong>600 mOsm/L</strong></td></tr>
+                            </table>
+                            
+                            <div class="attention-box">
+                                <strong>⚠️ Piège fréquent CaCl₂ :</strong> On propose 800 ou 1200 mOsm/L → FAUX !<br>
+                                200 mmol/L × 3 = <strong>600 mOsm/L</strong> (pas 800, pas 1200)<br>
+                                800 c'est la concentration électrolytique, pas l'osmolarité.
+                            </div>
+                        </div>
+                        
+                        <!-- Explication 4 -->
+                        <div class="explication-item">
+                            <h5>Explication 4 : L'osmolalité (piège d'unité)</h5>
+                            <p><strong>Premier réflexe : vérifier l'unité</strong></p>
+                            <p>L'osmolalité s'exprime en <strong>mOsm/kg</strong>, jamais en mEq/L.</p>
+                            <p>Si l'unité proposée est mEq/L → <strong>FAUX</strong> (sans même calculer)</p>
+                            
+                            <p style="margin-top: 15px;"><strong>Si l'unité est correcte (mOsm/kg) : comment calculer ?</strong></p>
+                            <p>L'osmolalité se calcule comme l'osmolarité : Concentration molaire × Nombre de particules</p>
+                            <p>Pour des solutions diluées (comme dans les QCM), osmolalité ≈ osmolarité (les valeurs sont quasi identiques, seule l'unité change).</p>
+                        </div>
+                        
+                        <!-- Explication 5 -->
+                        <div class="explication-item">
+                            <h5>Explication 5 : Osmolarité et concentration électrolytique équivalentes ?</h5>
+                            <p><strong>La règle :</strong> Équivalentes si nombre de particules = nombre de charges</p>
+                            
+                            <table>
+                                <tr><th>Molécule</th><th>Particules</th><th>Charges</th><th>Réponse</th></tr>
+                                <tr><td>NaCl</td><td>2</td><td>2</td><td><strong>TOUJOURS VRAI</strong></td></tr>
+                                <tr><td>CaCl₂</td><td>3</td><td>4</td><td><strong>TOUJOURS FAUX</strong></td></tr>
+                            </table>
+                            
+                            <div class="spoiler-box">
+                                <p><strong>⚠️ ATTENTION si la prof change de molécule :</strong></p>
+                                <p>Il faut recompter le nombre de particules ET recompter le nombre de charges.</p>
+                                <p>Mais jusqu'à présent, seuls NaCl et CaCl₂ ont été utilisés dans les annales. Donc :</p>
+                                <ul>
+                                    <li><strong>NaCl</strong> : particules (2) = charges (2) → <strong>TOUJOURS ÉQUIVALENT</strong></li>
+                                    <li><strong>CaCl₂</strong> : particules (3) ≠ charges (4) → <strong>JAMAIS ÉQUIVALENT</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Explication 6 -->
+                        <div class="explication-item">
+                            <h5>Explication 6 : Tonicité par rapport au plasma (NaCl uniquement)</h5>
+                            <p><strong>Rappel : Tonicité du plasma = Osmolarité plasmatique ≈ 300 mOsm/L</strong></p>
+                            
+                            <table>
+                                <tr><th>Osmolarité calculée</th><th>Comparaison</th><th>Tonicité</th></tr>
+                                <tr><td>&lt;&lt; 300 mOsm/L</td><td>Très inférieure</td><td><strong>HYPOTONIQUE</strong></td></tr>
+                                <tr><td>≈ 300 mOsm/L</td><td>Équivalente</td><td><strong>ISOTONIQUE</strong></td></tr>
+                                <tr><td>&gt;&gt; 300 mOsm/L</td><td>Très supérieure</td><td><strong>HYPERTONIQUE</strong></td></tr>
+                            </table>
+                            
+                            <p style="margin-top: 15px;"><strong>En pratique dans les annales :</strong> Les concentrations des QCM (quelques mmol/L) donnent toujours des osmolarités très faibles (&lt; 10 mOsm/L). Réponse directe : comparer à 300 mOsm/L.</p>
+                            
+                            <div class="attention-box">
+                                <strong>⚠️ ATTENTION si changement de calcul :</strong> Bien connaître les valeurs cibles (300 mOsm/L pour le plasma).
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOC 4 : Gain d'eau pure -->
+                    <div class="qcm-analyse">
+                        <h4>Gain d'eau pure (expansion hypo-osmotique)</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q3 | <strong>2022-2023</strong> Q5 | <strong>2023-2024</strong> Q3 | <strong>2024-2025</strong> Q3</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM tombe presque chaque année avec des formulations quasi-identiques. Les QCM de 2020-2021, 2023-2024 et 2024-2025 sont strictement identiques. Le QCM 2022-2023 Q5 présente une modification minime (inversion augmentation/diminution dans les items).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprendre par cœur la séquence d'événements :</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <table>
+                                    <tr><th>Item</th><th>Ce qui se passe</th><th>Réponse</th></tr>
+                                    <tr><td>A</td><td>Volume du LEC initialement</td><td>AUGMENTE</td></tr>
+                                    <tr><td>B</td><td>Osmolarité du LEC initialement</td><td>DIMINUE</td></tr>
+                                    <tr><td>C</td><td>Sens du déplacement d'eau</td><td>LEC → LIC</td></tr>
+                                    <tr><td>D</td><td>Volume du LIC après équilibre</td><td>AUGMENTE</td></tr>
+                                    <tr><td>E</td><td>Natrémie après équilibre</td><td>DIMINUE (hyponatrémie)</td></tr>
+                                </table>
+                                
+                                <p style="margin-top: 15px;"><strong>Explications item par item :</strong></p>
+                                
+                                <p><strong>Item A - Le volume du LEC augmente initialement</strong><br>
+                                L'eau entre dans l'organisme et s'installe dans le liquide extracellulaire. Donc le volume du LEC augmente → VRAI</p>
+                                
+                                <p><strong>Item B - L'osmolarité du LEC diminue initialement</strong><br>
+                                On a rajouté beaucoup d'eau sans rajouter de particules. Donc la concentration en particules du LEC diminue. Donc l'osmolarité du LEC diminue (particules fortement diluées) → VRAI</p>
+                                
+                                <p><strong>Item C - L'eau va du LEC vers le LIC</strong><br>
+                                Après avoir bu beaucoup d'eau, prenons comme exemple un LEC ≈ 280 mOsm/L (moins concentré) et un LIC ≈ 290 mOsm/L (inchangé). L'eau se déplace du moins concentré vers le plus concentré par osmose (transport passif, sans besoin d'énergie). Donc l'eau va aller du LEC vers le LIC. Cela gonfle les cellules → une partie de l'eau ingérée passe dans le LIC.</p>
+                                
+                                <p><strong>Item D - Le volume du LIC augmente après équilibre</strong><br>
+                                L'eau passée du LEC vers le LIC fait gonfler les cellules. Le volume du LIC a augmenté → VRAI</p>
+                                
+                                <p><strong>Item E - La natrémie diminue (hyponatrémie)</strong><br>
+                                La natrémie = concentration de Na⁺ dans le plasma (qui fait partie du LEC). Attention au piège : "après équilibre" peut faire croire que la natrémie reste identique. Mais non ! Après équilibre, il y a globalement plus d'eau dans tout le système (LEC + LIC). La concentration en Na⁺ reste donc diluée → la natrémie diminue = hyponatrémie → VRAI</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOC 5 : Perte d'eau pure -->
+                    <div class="qcm-analyse">
+                        <h4>Perte d'eau pure (contraction hyper-osmotique)</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q4</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM n'est tombé qu'une fois mais teste le raisonnement inverse du gain d'eau pure. Les pièges sont inversés.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Comprendre que c'est le raisonnement inverse du gain d'eau pure.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <table>
+                                    <tr><th>Item</th><th>Ce qui se passe</th><th>Réponse</th></tr>
+                                    <tr><td>A</td><td>Volume du LEC initialement</td><td>DIMINUE</td></tr>
+                                    <tr><td>B</td><td>Osmolarité du LEC initialement</td><td>AUGMENTE</td></tr>
+                                    <tr><td>C</td><td>Sens du déplacement d'eau</td><td>LIC → LEC</td></tr>
+                                    <tr><td>D</td><td>Volume du LIC après équilibre</td><td>DIMINUE</td></tr>
+                                    <tr><td>E</td><td>Natrémie après équilibre</td><td>AUGMENTE (hypernatrémie)</td></tr>
+                                </table>
+                                
+                                <p style="margin-top: 15px;"><strong>Explications item par item :</strong></p>
+                                
+                                <p><strong>Item A - Le volume du LEC diminue initialement</strong><br>
+                                L'eau perdue provient d'abord du compartiment extracellulaire (urines, sueur, respiration). L'eau quitte l'organisme en partant du liquide extracellulaire.</p>
+                                
+                                <p><strong>Item B - L'osmolarité du LEC augmente initialement</strong><br>
+                                On a perdu beaucoup d'eau sans perdre de particules → la concentration augmente.</p>
+                                
+                                <p><strong>Item C - L'eau va du LIC vers le LEC</strong><br>
+                                Après avoir perdu beaucoup d'eau : LEC ≈ 300 mOsm/L (plus concentré) et LIC ≈ 290 mOsm/L (inchangé). L'eau se déplace du moins concentré (LIC) vers le plus concentré (LEC) par osmose.</p>
+                                
+                                <p><strong>Item D - Le volume du LIC diminue après équilibre</strong><br>
+                                L'eau passée du LIC vers le LEC fait rétrécir les cellules. À l'équilibre, les deux compartiments ont perdu une partie de leur eau.</p>
+                                
+                                <p><strong>Item E - La natrémie augmente (hypernatrémie)</strong><br>
+                                La natrémie = concentration de Na⁺ dans le plasma (qui fait partie du LEC). Comme on a perdu beaucoup d'eau du LEC, la concentration de Na⁺ a augmenté = hypernatrémie.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOC 6 : Composition ionique -->
+                    <div class="qcm-analyse">
+                        <h4>Composition ionique</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q1 | <strong>2024-2025</strong> Q20</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM est tombé 2 fois strictement identique (2022-2023 Q1 et 2024-2025 Q20).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprendre les valeurs normales de la concentration en Na⁺ et K⁺ dans le plasma, et comprendre la logique des dysnatrémies et dyskaliémies.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Valeurs à retenir :</strong></p>
+                                <table>
+                                    <tr><th>Ion</th><th>Valeur normale</th><th>Équivalence</th></tr>
+                                    <tr><td>Natrémie (Na⁺ plasmatique)</td><td><strong>140 mmol/L</strong></td><td>= 140 mEq/L</td></tr>
+                                    <tr><td>Kaliémie (K⁺ plasmatique)</td><td><strong>4,5 mmol/L</strong></td><td>= 4,5 mEq/L</td></tr>
+                                </table>
+                                
+                                <p><strong>Pourquoi mmol/L = mEq/L pour Na⁺ et K⁺ ?</strong><br>
+                                Na⁺ et K⁺ sont des ions monovalents (1 seule charge). Donc 1 mmol = 1 mEq.</p>
+                                
+                                <p><strong>Conséquences des dysnatrémies :</strong></p>
+                                <table>
+                                    <tr><th>Situation</th><th>Ce qui se passe</th><th>Conséquence</th></tr>
+                                    <tr><td><strong>Hyponatrémie</strong> (Na⁺ diminue)</td><td>Le LEC devient moins concentré que le LIC</td><td>L'eau entre dans les cellules → <strong>gonflement cellulaire</strong></td></tr>
+                                    <tr><td><strong>Hypernatrémie</strong> (Na⁺ augmente)</td><td>Le LEC devient plus concentré que le LIC</td><td>L'eau sort des cellules → <strong>réduction du volume cellulaire</strong></td></tr>
+                                </table>
+                                
+                                <div class="attention-box">
+                                    <strong>⚠️ Piège de l'item D :</strong> "Une hyponatrémie s'accompagne d'un risque de réduction du volume des cellules" = <strong>FAUX</strong><br>
+                                    C'est l'inverse ! Hyponatrémie = gonflement, pas réduction.
+                                </div>
+                                
+                                <p><strong>Conséquences de l'hyperkaliémie :</strong><br>
+                                Une hyperkaliémie (excès de K⁺ dans le sang, &gt; 5 mmol/L) perturbe l'activité électrique des cellules cardiaques → <strong>risque de troubles du rythme cardiaque</strong> (arythmies).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion osmolarité / concentration électrolytique</h4>
+                        <p>L'osmolarité compte le NOMBRE DE PARTICULES. La concentration électrolytique compte le NOMBRE DE CHARGES. Pour NaCl elles sont égales (2 et 2), mais pour CaCl₂ elles sont différentes (3 particules vs 4 charges).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège de l'item D sur l'osmolalité</h4>
+                        <p>L'item D propose souvent "L'osmolalité est de X mEq/L". C'est un piège : l'osmolalité s'exprime en mOsm/kg, pas en mEq/L. Dès que tu vois mEq/L avec osmolalité → FAUX sans calculer.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion osmolarité / osmolalité</h4>
+                        <p>Osmolarité = mOsm/L (par litre de solution). Osmolalité = mOsm/kg (par kg de solvant). Attention à bien lire l'unité proposée dans l'item.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège des unités dans l'énoncé</h4>
+                        <p>Vérifiez toujours la cohérence entre l'énoncé et les items. Si l'énoncé donne des milligrammes et qu'on propose 200 mmol/L, c'est incohérent (petite masse → petite concentration).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège de la tonicité</h4>
+                        <p>Les solutions des QCM ont toujours des osmolarités très faibles (quelques mOsm/L), donc elles sont toujours hypotoniques par rapport au plasma (≈ 300 mOsm/L). "Isotonique" est presque toujours FAUX.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège du sens de déplacement de l'eau</h4>
+                        <p>L'eau va TOUJOURS du moins concentré vers le plus concentré. Gain d'eau pure = LEC moins concentré → eau va du LEC vers le LIC. Perte d'eau pure = LEC plus concentré → eau va du LIC vers le LEC.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège hyponatrémie / volume cellulaire</h4>
+                        <p>Hyponatrémie = gonflement cellulaire (pas réduction). L'eau entre dans les cellules car le LEC est moins concentré. Hypernatrémie = réduction du volume cellulaire.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre est très rentable car les QCM sont extrêmement prévisibles et recyclés d'une année sur l'autre. Avec une bonne préparation sur les annales, 2 à 3 points sont quasiment assurés.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Maîtrisez parfaitement les calculs d'osmolarité pour NaCl ET CaCl₂. Comprenez la logique des gains/pertes d'eau pure. Soyez attentifs aux nouveaux formats possibles avec le changement de professeur en 2024-2025.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les calculs d'osmolarité (NaCl et CaCl₂) et les gains d'eau pure qui tombent chaque année. Apprenez les tableaux de raisonnement par cœur.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Les QCM sont souvent strictement identiques d'une année sur l'autre. Apprenez les QCM des annales par cœur, en particulier ceux sur NaCl (117 mg/1L = 2 mmol/L) et le gain d'eau pure. C'est un investissement minimal pour un rendement maximal.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement" style="background: #fef3c7; border: 2px solid #f59e0b; border-radius: 8px; padding: 15px; margin-top: 15px; color: #92400e;">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
