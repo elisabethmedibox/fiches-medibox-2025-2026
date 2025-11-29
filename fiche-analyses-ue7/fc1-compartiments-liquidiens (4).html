@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC1 - Compartiments liquidiens - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC1 - Les compartiments liquidiens</h1>
+            <div class="meta">
+                <span>📚 UE7 - Physiologie (Biophysique)</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- VOLUMES DE RÉPARTITION -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Volumes de répartition des compartiments hydriques (5 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q1<br>2023-2024 Q1<br>2024-2025 Q1<br><em>🔄 Quasi-identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos du volume et de la répartition des compartiments hydriques chez une femme adulte de 72 kg. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'eau totale représente un volume de 36 litres.</div>
+                                            <div class="qcm-item">B: Le volume du compartiment intracellulaire est de 12 litres.</div>
+                                            <div class="qcm-item">C: Le volume du compartiment extracellulaire est de 24 litres.</div>
+                                            <div class="qcm-item">D: Le volume plasmatique est de 3 litres.</div>
+                                            <div class="qcm-item">E (2020-2024): Les compartiments intracellulaires et extracellulaires sont séparés par une membrane perméable à l'eau.</div>
+                                            <div class="qcm-item">E (2024-2025): Les compartiments intracellulaires et extracellulaires sont séparés par une membrane <span style="background: #fef08a; padding: 2px 6px; border-radius: 4px; font-weight: 600;">perméable et/ou semi-perméable</span> à l'eau.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q1</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos du volume et de la répartition des compartiments hydriques chez une femme adulte de 84 kg. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'eau totale représente un volume de 42 litres.</div>
+                                            <div class="qcm-item">B: Le volume du compartiment extracellulaire est de 14 litres.</div>
+                                            <div class="qcm-item">C: Le volume du compartiment intracellulaire est de 20 litres.</div>
+                                            <div class="qcm-item">D: Le volume plasmatique est de 3,5 litres.</div>
+                                            <div class="qcm-item">E: Les compartiments intracellulaire et extracellulaire sont séparés par une membrane imperméable à l'eau.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos du volume et de la répartition des compartiments hydriques chez une femme adulte de 66 kg. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'eau totale représente un volume de 39.6 litres.</div>
+                                            <div class="qcm-item">B: Le volume du compartiment intracellulaire est de 11 litres.</div>
+                                            <div class="qcm-item">C: Le volume du compartiment extracellulaire est de 22 litres.</div>
+                                            <div class="qcm-item">D: Le volume plasmatique est de 2,75 litres.</div>
+                                            <div class="qcm-item">E: Les compartiments intracellulaire et extracellulaire sont séparés par une membrane perméable à l'eau.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- COMPOSITION IONIQUE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Composition ionique des compartiments (5 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q4<br>2021-2022 Q5<br>2023-2024 Q4<br>2024-2025 Q4<br><em>🔄 Quasi-identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos de la composition du compartiment extracellulaire et du compartiment intracellulaire. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'ion Na+ (<span style="background: #fef08a; padding: 2px 6px; border-radius: 4px;">Ca2+ en 2023-2024</span>) est le principal cation du compartiment extracellulaire.</div>
+                                            <div class="qcm-item">B: L'ion K+ est le principal cation du compartiment intracellulaire.</div>
+                                            <div class="qcm-item">C: L'ion Cl- est le principal anion du compartiment intracellulaire.</div>
+                                            <div class="qcm-item">D: L'osmolarité du compartiment extracellulaire est d'environ 600 mOsm/L / 290-300 mOsm/L / 300 mOsm/L (chacune de ces propositions a été testée durant ces 5 dernières années).</div>
+                                            <div class="qcm-item">E: La concentration en protéine du liquide interstitiel est supérieure à celle du plasma.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos de la composition ionique et protéique des compartiments extracellulaire et intracellulaire. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'ion Na+ est le principal cation du compartiment intracellulaire.</div>
+                                            <div class="qcm-item">B: L'ion K+ est le principal cation du compartiment extracellulaire.</div>
+                                            <div class="qcm-item">C: L'ion Cl- est le principal anion du compartiment extracellulaire.</div>
+                                            <div class="qcm-item">D: L'ion phosphate (HPO4-) est le principal anion du compartiment intracellulaire.</div>
+                                            <div class="qcm-item">E: La concentration en protéine du liquide interstitiel est supérieure à celle du plasma.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année (2 QCM/an)</td>
+                                <td>💡 QCM avec items récurrents</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>10 QCM</strong> sur ce chapitre (moyenne 2/an). Ces QCM se regroupent en <strong>2 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Volumes de répartition</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q1</span></td>
+                                    <td class="qcm-cell">Q1</td>
+                                    <td class="qcm-cell">Q2</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q1</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q1</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Composition ionique</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q4</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q5</span></td>
+                                    <td class="qcm-cell">Q6</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q4</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q4</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique ou quasi-identique (même énoncé, mêmes items avec variations mineures) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>Les volumes de répartition des compartiments hydriques</h4>
+                        <p>Savoir calculer rapidement les volumes chez une femme adulte : eau totale (50% du poids), LIC (2/3 de l'eau totale), LEC (1/3 de l'eau totale), plasma (1/4 du LEC). Voir diapo 15.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La composition ionique des compartiments</h4>
+                        <p>Connaître les cations et anions principaux de chaque compartiment : Na+ et Cl- en extracellulaire, K+ et HPO4- en intracellulaire. Osmolarité du LEC ≈ 290-300 mOsm/L. Voir diapos 10-11, 23-26.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les différences plasma / liquide interstitiel</h4>
+                        <p>Comprendre que le plasma contient plus de protéines (72 g/L) que le liquide interstitiel (2 g/L), ce qui explique la différence de pression oncotique (25 mmHg vs 4 mmHg). Voir diapos 23-24.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans (item piège récurrent)</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- QCM 1 : Volumes de répartition -->
+                    <div class="qcm-analyse">
+                        <h4>Volumes de répartition des compartiments hydriques</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q1 | <strong>2021-2022</strong> Q1 | <strong>2022-2023</strong> Q2 | <strong>2023-2024</strong> Q1 | <strong>2024-2025</strong> Q1</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM tombe chaque année avec le même format. Seul le poids de la femme change (66, 72 ou 84 kg), ce qui modifie les valeurs numériques. Les items A, B, C, D testent les calculs de volumes, l'item E teste la perméabilité de la membrane.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Maîtrise les formules de calcul rapide pour une femme (50% du poids = eau totale), pour un homme (60% du poids) et pour un bébé (75% du poids). Apprends les pièges récurrents : item E avec "imperméable" au lieu de "perméable".</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Formules pour une FEMME (à transposer pour un homme) :</strong></p>
+                                <ul>
+                                    <li><strong>Eau totale</strong> = 50% du poids = poids ÷ 2 (ex: 72 kg → 36 L)</li>
+                                    <li><strong>Astuce :</strong> Commence par calculer le LEC (même si c'est l'item C) car c'est plus facile !</li>
+                                    <li><strong>LEC</strong> = 1/3 de l'eau totale = eau totale ÷ 3 (ex: 36 L ÷ 3 = 12 L)</li>
+                                    <li><strong>LIC</strong> = Eau totale − LEC (ex: 36 L − 12 L = 24 L)</li>
+                                    <li><strong>Plasma</strong> = 1/4 du LEC = LEC ÷ 4 (ex: 12 L ÷ 4 = 3 L)</li>
+                                </ul>
+                                <p><strong>Item E - Perméabilité de la membrane :</strong></p>
+                                <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b; border-radius: 8px; padding: 12px; margin-top: 10px;">
+                                    <p style="margin: 0 0 8px 0; color: #92400e; font-weight: 600;">⚠️ ATTENTION - Changement de professeur en 2024-2025 :</p>
+                                    <p style="margin: 0 0 8px 0; color: #92400e;">L'ancien professeur considérait l'item "perméable à l'eau" comme <strong>VRAI</strong>.</p>
+                                    <p style="margin: 0 0 8px 0; color: #92400e;">La nouvelle professeure considère cet item comme <strong>FAUX</strong> car pour elle la bonne réponse est "<strong>semi-perméable</strong> à l'eau".</p>
+                                    <p style="margin: 0 0 8px 0; color: #92400e;">Dans son ED de 2024-2025, elle a modifié le libellé de cet item. Comme vous pouvez le voir dans Q1 de 2024-2025, elle a mis dans son énoncé "<strong>semi-perméable et/ou perméable à l'eau</strong>" → dans ce cas, la réponse reste <strong>VRAIE</strong>.</p>
+                                    <p style="margin: 0; color: #92400e;"><strong>Conseil :</strong> Lisez attentivement le libellé exact de l'item E le jour de l'examen !</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Composition ionique -->
+                    <div class="qcm-analyse">
+                        <h4>Composition ionique des compartiments</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q4 | <strong>2021-2022</strong> Q5 | <strong>2022-2023</strong> Q6 | <strong>2023-2024</strong> Q4 | <strong>2024-2025</strong> Q4</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM tombe chaque année avec des items quasi-identiques. Les pièges récurrents sont : l'inversion Na+/K+, l'osmolarité à 600 mOsm/L (faux), le Cl- comme anion intracellulaire (faux), les protéines interstitielles supérieures au plasma (faux).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends par cœur la répartition ionique avec les valeurs chiffrées. Identifie les 4 pièges classiques qui reviennent chaque année.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Compartiment EXTRACELLULAIRE (plasma/interstitiel) :</strong></p>
+                                <ul>
+                                    <li>Na+ = cation principal (142 mEq/L)</li>
+                                    <li>K+ = faible (4 mEq/L)</li>
+                                    <li>Cl- = anion principal</li>
+                                </ul>
+                                <p><strong>Compartiment INTRACELLULAIRE :</strong></p>
+                                <ul>
+                                    <li>K+ = cation principal (140 mEq/L)</li>
+                                    <li>Na+ = faible (10 mEq/L)</li>
+                                    <li>HPO4- (phosphate) = anion principal</li>
+                                </ul>
+                                <p><strong>Osmolarité LEC :</strong> Plasma = 291 mOsm/L, Liquide interstitiel = 289 mOsm/L (≈ 290-300, JAMAIS 600 !)</p>
+                                <p><strong>Protéines :</strong> Plasma (72 g/L) >> Liquide interstitiel (2 g/L)</p>
+                                <p><strong>Pression oncotique :</strong> Plasma = 25 mmHg, Liquide interstitiel = 4 mmHg</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur l'osmolarité du LEC</h4>
+                        <p>L'osmolarité du compartiment extracellulaire est d'environ 290-300 mOsm/L, JAMAIS 600 mOsm/L. Ce piège revient presque chaque année (2020-2021, 2024-2025).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Inversion des cations Na+/K+</h4>
+                        <p>Na+ est le cation principal du compartiment EXTRACELLULAIRE (142 mEq/L). K+ est le cation principal du compartiment INTRACELLULAIRE (140 mEq/L). Le QCM 2022-2023 Q6 inverse volontairement pour piéger.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion anion principal intracellulaire</h4>
+                        <p>L'anion principal du LIC est HPO4- (phosphate), PAS Cl-. Le Cl- est l'anion principal du LEC. Ce piège revient dans tous les QCM sur la composition ionique.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur les protéines plasma/interstitiel</h4>
+                        <p>Les protéines sont beaucoup plus concentrées dans le PLASMA (72 g/L) que dans le liquide interstitiel (2 g/L). L'item "la concentration en protéine du liquide interstitiel est supérieure à celle du plasma" est TOUJOURS FAUX.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>⚠️ Piège sur la perméabilité de la membrane - CHANGEMENT DE PROF</h4>
+                        <p>La membrane entre LIC et LEC est perméable à l'eau (grâce aux aquaporines). <strong>MAIS ATTENTION :</strong> la nouvelle professeure (2024-2025) considère que la bonne réponse est "semi-perméable" à l'eau. L'item "perméable à l'eau" seul pourrait être considéré comme FAUX par elle. En 2024-2025, elle a reformulé l'item en "semi-perméable et/ou perméable" → dans ce cas c'est VRAI. Lisez attentivement le libellé exact !</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Sur ce chapitre, le professeur recycle massivement les mêmes QCM d'une année sur l'autre. Les deux thématiques principales (volumes de répartition et composition ionique) tombent CHAQUE année avec des items quasi-identiques. C'est l'un des chapitres les plus prévisibles de l'UE7.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Lisez le cours entier pour comprendre la logique physiologique derrière les chiffres. Attention aux calculs de volumes sanguins avec l'hématocrite qui n'ont jamais été testés mais pourraient l'être.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les parties du cours correspondant aux QCM tombés : répartition des compartiments (diapo 15), composition ionique (diapos 10-11 et 23-26). Les formules de calcul des volumes sont indispensables.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Ce chapitre est une garantie de points si vous apprenez les QCM par cœur. Les questions sont quasi-identiques chaque année. Mémorisez les 4-5 pièges récurrents (osmolarité 600, Cl- intracellulaire, protéines interstitielles, membrane imperméable). Avec les annales seules, vous pouvez facilement obtenir 2 points sur ce chapitre.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
