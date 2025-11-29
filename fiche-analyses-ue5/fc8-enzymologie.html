@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC8 - Enzymologie - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC8 - Enzymologie</h1>
+            <div class="meta">
+                <span>📚 UE5 - Biochimie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- GÉNÉRALITÉS ET DÉFINITIONS -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Généralités : définition des enzymes et spécificité (5 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos des enzymes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les enzymes sont des protéines douées d'activité catalytique spécifique.</div>
+                                            <div class="qcm-item">B: Les enzymes augmentent l'énergie d'activation des composés impliqués dans la réaction.</div>
+                                            <div class="qcm-item">C: La cinétique d'une enzyme michaélienne est représentée par une hyperbole.</div>
+                                            <div class="qcm-item">D: Plus le Km est faible, plus l'affinité de l'enzyme pour le substrat est forte.</div>
+                                            <div class="qcm-item">E: Dans la représentation de Eadie-Hofstee la pente de la droite v=f(v/S) permet de calculer le Km d'une enzyme.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q8</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les enzymes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les enzymes sont des catalyseurs protéiques qui modifient les équilibres réactionnels.</div>
+                                            <div class="qcm-item">B: Les enzymes possèdent un site où l'interaction avec le substrat est spécifique.</div>
+                                            <div class="qcm-item">C: Les enzymes abaissent l'énergie d'activation des composés impliqués dans la réaction.</div>
+                                            <div class="qcm-item">D: La représentation michaelienne montrant la vitesse initiale de la réaction en fonction de la concentration initiale en substrat est une hyperbole.</div>
+                                            <div class="qcm-item">E: Dans la représentation de Lineweaver et Burk, l'ordonnée à l'origine de la droite permet de déterminer la Vmax d'une réaction enzymatique.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos des réactions enzymatiques :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Exception faite des ribozymes toutes les seules biomolécules capables de catalyser des réactions chimiques dans les cellules sont des enzymes.</div>
+                                            <div class="qcm-item">B: Une enzyme en présence d'un substrat déterminé est capable de catalyser toutes les réactions thermodynamiquement possibles.</div>
+                                            <div class="qcm-item">C: L'activité des enzymes est liée à la présence dans leur structure d'un site particulier appelé le site actif.</div>
+                                            <div class="qcm-item">D: Les enzymes augmentent la vitesse de la réaction en abaissant l'énergie d'activation.</div>
+                                            <div class="qcm-item">E: Au cours d'une réaction enzymatiques certaines liaisons de l'enzyme sont créées en absorbant de l'énergie et certaines liaisons du produit sont formées en libérant de l'énergie.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les enzymes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Une molécule modifiée par l'action catalytique d'une enzyme est appelée substrat.</div>
+                                            <div class="qcm-item">B: Une enzyme en présence d'un substrat déterminé est capable de catalyser une seule des réactions thermodynamiquement possibles.</div>
+                                            <div class="qcm-item">C: Les enzymes augmentent la vitesse de la réaction en augmentant l'énergie d'activation.</div>
+                                            <div class="qcm-item">D: La Vmax d'une enzyme est la vitesse initiale qu'aurait la réaction si la concentration du substrat était infinie.</div>
+                                            <div class="qcm-item">E: Km est la concentration de substrat pour que la vitesse observée soit égale à la moitié de Vmax.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q10</td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos des enzymes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Une enzyme donnée catalyse toujours la même transformation, se produisant sur les mêmes corps chimiques initiaux.</div>
+                                            <div class="qcm-item">B: On appelle substrat la nouvelle molécule qui résulte d'une réaction catalysée par une enzyme.</div>
+                                            <div class="qcm-item">C: Une enzyme en présence d'un substrat déterminé est capable de catalyser toutes les réactions thermodynamiquement possibles.</div>
+                                            <div class="qcm-item">D: Les enzymes augmentent la vitesse de la réaction en abaissant l'énergie d'activation.</div>
+                                            <div class="qcm-item">E: L'activité des enzymes est liée à la présence dans leur structure d'un site particulier appelé le site actif.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- CINÉTIQUE MICHAELIENNE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Cinétique enzymatique michaelienne (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q8</td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos de la cinétique enzymatique michaelienne :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Durant la phase stationnaire, la vitesse de réaction enzymatique est croissante : on l'appelle vitesse initiale.</div>
+                                            <div class="qcm-item">B: Durant la phase stationnaire un nombre maximum des molécules de l'enzyme sont liées à des molécules de substrat. Le rapport [enzyme liée] / [enzyme totale] est maximum.</div>
+                                            <div class="qcm-item">C: Dans les conditions de vitesse initiale, l'efficacité catalytique de l'enzyme est la plus grande.</div>
+                                            <div class="qcm-item">D: En cinétique michaelienne Vmax est une vitesse finale, purement théorique.</div>
+                                            <div class="qcm-item">E: La vitesse maximale réelle est égale à la vitesse initiale multipliée par le rapport [ES]/[E] tot.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>🎯 QCM sur partie ciblée du cours - avec récurrence des items</td>
+                                <td>🔗 Cours appartenant à une suite logique</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">6 QCM tombés sur 5 ans (moyenne : 1,2 QCM/an). Les QCM portent sur des notions très ciblées avec une forte récurrence des items (91%).</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-2021</th>
+                                        <th>2021-2022</th>
+                                        <th>2022-2023</th>
+                                        <th>2023-2024</th>
+                                        <th>2024-2025</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Généralités et définitions</td>
+                                        <td class="qcm-cell">Q6</td>
+                                        <td class="qcm-cell">Q8</td>
+                                        <td class="qcm-cell">Q7</td>
+                                        <td class="qcm-cell">Q3</td>
+                                        <td class="qcm-cell">Q10</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cinétique michaelienne (détail)</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q8</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Légende séparée -->
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>📊 Récurrence des items : 91% (FORTE)</strong> — Les mêmes notions sont testées chaque année avec des formulations quasi-identiques.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item">
+                        <h4>Généralités et définitions</h4>
+                        <p>Cette partie tombe CHAQUE ANNÉE. Concentre-toi sur les définitions fondamentales : enzyme = protéine catalytique, spécificité de réaction, notion de substrat/produit, site actif, et surtout le rôle sur l'énergie d'activation.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Énergie d'activation</h4>
+                        <p>Item testé CHAQUE ANNÉE sous différentes formulations (vraie ou fausse). Retiens : les enzymes ABAISSENT l'énergie d'activation, elles ne l'augmentent pas.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Spécificité de réaction</h4>
+                        <p>Item récurrent : une enzyme catalyse UNE SEULE réaction thermodynamiquement possible, pas TOUTES. Attention à l'inversion vrai/faux.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Cinétique michaelienne</h4>
+                        <p>Maîtrise les bases : hyperbole, Km = [S] pour V = Vmax/2, Vmax = vitesse si [S] infinie. Les représentations graphiques (Lineweaver-Burk, Eadie-Hofstee) ont été testées 2 fois.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Site actif</h4>
+                        <p>L'activité des enzymes est liée à la présence d'un site particulier appelé site actif. Item tombé de façon quasi-identique en 2022-2023 et 2024-2025.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM 1 : Énergie d'activation -->
+                    <div class="qcm-analyse">
+                        <h4>Énergie d'activation</h4>
+                        <div class="qcm-badge">📋 Tombé <strong>5 fois</strong> : 2020-2021, 2021-2022, 2022-2023, 2023-2024, 2024-2025</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Cet item tombe CHAQUE ANNÉE avec la même logique : le prof alterne entre "les enzymes augmentent" (FAUX) et "les enzymes abaissent" (VRAI) l'énergie d'activation.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends par cœur : les enzymes ABAISSENT l'énergie d'activation. Lis bien l'item pour repérer si c'est "augmentent" (faux) ou "abaissent" (vrai).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Les enzymes ABAISSENT l'énergie d'activation.</strong></p>
+                                <p>C'est ce qui permet d'accélérer la réaction sans modifier l'équilibre final. Si tu vois "augmentent" → FAUX. Si tu vois "abaissent" → VRAI.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Spécificité de réaction -->
+                    <div class="qcm-analyse">
+                        <h4>Spécificité de réaction</h4>
+                        <div class="qcm-badge">📋 Tombé <strong>4 fois</strong> : 2022-2023, 2023-2024, 2024-2025 (+ notion connexe en 2020-2021)</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof teste la spécificité : une enzyme catalyse UNE SEULE réaction, pas TOUTES les réactions thermodynamiquement possibles.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Repère le mot clé : "toutes" = FAUX, "une seule" = VRAI.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Une enzyme = UNE SEULE réaction.</strong></p>
+                                <p>"Une enzyme en présence d'un substrat déterminé est capable de catalyser TOUTES les réactions..." → FAUX</p>
+                                <p>"...UNE SEULE des réactions thermodynamiquement possibles" → VRAI</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Site actif -->
+                    <div class="qcm-analyse">
+                        <h4>Site actif</h4>
+                        <div class="qcm-badge">📋 Tombé <strong>3 fois</strong> : 2021-2022, 2022-2023, 2024-2025</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Item quasi-identique en 2022-2023 et 2024-2025 : "L'activité des enzymes est liée à la présence dans leur structure d'un site particulier appelé le site actif."</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends cette formulation par cœur. C'est un item qui tombe de façon identique.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. L'activité enzymatique = présence d'un SITE ACTIF (cavité/sillon où se fixe le substrat).
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Cinétique michaelienne -->
+                    <div class="qcm-analyse">
+                        <h4>Cinétique michaelienne : hyperbole, Km, Vmax</h4>
+                        <div class="qcm-badge">📋 Tombé <strong>4 fois</strong> : 2020-2021, 2021-2022, 2023-2024 (+ QCM dédié 2022-2023)</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Les notions de base reviennent régulièrement : hyperbole, définition de Km et Vmax, représentations graphiques.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les définitions exactes de Km et Vmax, et sache que la représentation est une hyperbole.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Définitions à connaître :</strong></p>
+                                <ul>
+                                    <li>Km = concentration de substrat pour V = Vmax/2</li>
+                                    <li>Vmax = vitesse initiale si [S] était infinie</li>
+                                    <li>Plus le Km est faible, plus l'affinité est forte</li>
+                                    <li>La représentation V = f([S]) est une HYPERBOLE</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 5 : Définition substrat/produit -->
+                    <div class="qcm-analyse">
+                        <h4>Définition substrat / produit</h4>
+                        <div class="qcm-badge">📋 Tombé <strong>2 fois</strong> : 2023-2024, 2024-2025</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof teste la confusion substrat/produit avec des formulations inversées.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Lis attentivement : SUBSTRAT = molécule de départ (modifiée par l'enzyme). PRODUIT = molécule résultante.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Substrat ≠ Produit</strong></p>
+                                <p>"On appelle substrat la nouvelle molécule qui résulte..." → FAUX (c'est le PRODUIT)</p>
+                                <p>"Une molécule modifiée par l'action catalytique..." → attention, c'est le SUBSTRAT qui est modifié, pas qui résulte</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Inversion "augmentent" / "abaissent" pour l'énergie d'activation</h4>
+                        <p>Le piège le plus fréquent ! Le prof alterne les formulations vraies et fausses. Les enzymes ABAISSENT l'énergie d'activation, elles ne l'augmentent JAMAIS.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Inversion "toutes" / "une seule" pour la spécificité</h4>
+                        <p>Une enzyme catalyse UNE SEULE réaction, pas TOUTES. Lis bien l'item pour repérer le mot clé.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion substrat / produit</h4>
+                        <p>Le substrat est la molécule de départ qui est transformée. Le produit est la molécule qui résulte de la réaction. Attention aux formulations inversées.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur les équilibres réactionnels</h4>
+                        <p>Les enzymes NE MODIFIENT PAS les équilibres réactionnels (item 2021-2022 A). Elles accélèrent la réaction mais l'équilibre final reste le même.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Phase stationnaire : vitesse CONSTANTE, pas croissante</h4>
+                        <p>Durant la phase stationnaire, la vitesse est CONSTANTE (pas croissante). C'est pendant cette phase qu'on mesure la vitesse initiale.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Vmax : vitesse INITIALE, pas finale</h4>
+                        <p>Vmax est la vitesse INITIALE qu'aurait la réaction si [S] était infinie. Ce n'est PAS une vitesse finale.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre est un des plus rentables de l'UE5. Il tombe CHAQUE ANNÉE avec une récurrence des items de 91%. Les mêmes notions sont testées sous des formulations quasi-identiques.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Maîtrisez l'ensemble du chapitre. Attention particulière aux parties qui ne sont pas encore tombées : nomenclature des enzymes (6 classes EC), isoenzymes (LDH), effets du pH et de la température. Ces thématiques pourraient apparaître.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les 5 thématiques récurrentes : énergie d'activation, spécificité de réaction, site actif, cinétique michaelienne (Km, Vmax, hyperbole), et définition substrat/produit. Ces parties représentent la quasi-totalité des items tombés.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        <strong>Ce chapitre est IDÉAL pour le Niveau 1.</strong> Avec une récurrence de 91%, apprendre les items déjà tombés vous garantit quasiment de retrouver les mêmes formulations à l'examen. Apprenez par cœur les 5-6 items récurrents identifiés ci-dessus : énergie d'activation (abaissent, pas augmentent), spécificité (une seule réaction, pas toutes), site actif, définitions Km/Vmax, confusion substrat/produit. Le rapport effort/rendement est excellent.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
