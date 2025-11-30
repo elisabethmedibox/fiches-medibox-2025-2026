@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC17 - Organogenèse des membres - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tag image identique */
+        .tag-img-identique {
+            display: inline-block;
+            background: #d1fae5;
+            color: #065f46;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 6px;
+            border: 1px solid #10b981;
+            margin-top: 4px;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .qcm-item-grise {
+            color: #9ca3af;
+            font-style: italic;
+        }
+        
+        .qcm-item-fc {
+            background: #fef3c7;
+            font-weight: bold;
+        }
+        
+        .tag-fc {
+            background: #fbbf24;
+            color: #78350f;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-left: 5px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Spoiler organogenèse */
+        .spoiler-organo {
+            background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+            border: 2px solid #d946ef;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .spoiler-organo h4 {
+            color: #a21caf;
+            margin: 0 0 12px 0;
+        }
+        
+        .spoiler-organo p {
+            color: #86198f;
+            margin: 0 0 10px 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .spoiler-organo p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Conclusion niveau 1 */
+        .conclusion-n1 {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+            border: 2px solid #ef4444;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .conclusion-n1 p {
+            margin: 0;
+            color: #991b1b;
+            font-weight: 500;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC17 - Organogenèse des membres</h1>
+            <div class="meta">
+                <span>📚 UE6 - Embryologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <h3>A. Tous les QCM (recopiage intégral)</h3>
+                    
+                    <div class="qcm-thematique">
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>QCM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q18<br>+ IMG</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le développement des membres et du cœur.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item qcm-item-fc">A: La structure indiquée par la flèche A se met en place après la structure indiquée par la lettre B.</div>
+                                            <div class="qcm-item qcm-item-fc">B: Le développement des structures indiquées par les flèches A et B s'effectue de l'extrémité proximale vers l'extrémité distale.</div>
+                                            <div class="qcm-item qcm-item-fc">C: L'innervation des membres se développe dans les bourgeons à partir de la 7ème semaine de développement.</div>
+                                            <div class="qcm-item qcm-item-grise">D: La flèche C indique l'ébauche cardiaque. <span class="tag-fc">FC18</span></div>
+                                            <div class="qcm-item qcm-item-grise">E: Lors de sa mise en place, le tube cardiaque primitif résulte de la fusion des tubes endocardiques sur la ligne médiane. <span class="tag-fc">FC18</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025 Q19<br>+ IMG<br><span class="tag-img-identique">= même image que 2020-2021</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La mise en place des membres.<br><em>Vos connaissances et le schéma permettront de répondre aux items du QCM.</em></div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'embryon du schéma est âgé de 22 jours.</div>
+                                            <div class="qcm-item">B: Les structures indiquées par les flèches A et B se sont mises en place le même jour.</div>
+                                            <div class="qcm-item">C: Au niveau des palettes des membres, par un mécanisme d'apoptose, les doigts et les orteils s'individualiseront.</div>
+                                            <div class="qcm-item">D: L'individualisation des doigts et des orteils est probablement sous la dépendance de gènes Hox.</div>
+                                            <div class="qcm-item">E: Les gènes Hox sont des morphogènes.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    
+                    <h3>B. Répartition des items par thématique</h3>
+                    
+                    <!-- Thématique 1 -->
+                    <div class="qcm-thematique">
+                        <h4>Chronologie des bourgeons des membres (J24/J28)</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>Items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q18<br>+ IMG</td>
+                                    <td>
+                                        <div class="qcm-item">A: La structure indiquée par la flèche A se met en place après la structure indiquée par la lettre B.</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025 Q19<br>+ IMG</td>
+                                    <td>
+                                        <div class="qcm-item">A: L'embryon du schéma est âgé de 22 jours.</div>
+                                        <div class="qcm-item">B: Les structures indiquées par les flèches A et B se sont mises en place le même jour.</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Thématique 2 -->
+                    <div class="qcm-thematique">
+                        <h4>Développement proximo-distal</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>Items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q18<br>+ IMG</td>
+                                    <td>
+                                        <div class="qcm-item">B: Le développement des structures indiquées par les flèches A et B s'effectue de l'extrémité proximale vers l'extrémité distale.</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Thématique 3 -->
+                    <div class="qcm-thematique">
+                        <h4>Innervation des membres</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>Items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q18<br>+ IMG</td>
+                                    <td>
+                                        <div class="qcm-item">C: L'innervation des membres se développe dans les bourgeons à partir de la 7ème semaine de développement.</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Thématique 4 -->
+                    <div class="qcm-thematique">
+                        <h4>Transformation de la palette (apoptose, gènes Hox)</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>Items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025 Q19<br>+ IMG</td>
+                                    <td>
+                                        <div class="qcm-item">C: Au niveau des palettes des membres, par un mécanisme d'apoptose, les doigts et les orteils s'individualiseront.</div>
+                                        <div class="qcm-item">D: L'individualisation des doigts et des orteils est probablement sous la dépendance de gènes Hox.</div>
+                                        <div class="qcm-item">E: Les gènes Hox sont des morphogènes.</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                    <table class="diagnostic-table">
+                        <thead>
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>⚠️ Tombe rarement (2 fois en 5 ans)</td>
+                                <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                                <td>🔗 Cours appartenant à une suite logique</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Ce tableau montre la répartition des thématiques testées par année. Le chapitre FC17 tombe très rarement : seulement 2 fois en 5 ans.</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Chronologie bourgeons (J24/J28)</td>
+                                    <td class="qcm-cell">Q18 (A)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q19 (A,B)</td>
+                                </tr>
+                                <tr>
+                                    <td>Développement proximo-distal</td>
+                                    <td class="qcm-cell">Q18 (B)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Innervation des membres</td>
+                                    <td class="qcm-cell">Q18 (C)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Transformation palette (apoptose, Hox)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q19 (C,D,E)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>Chronologie des bourgeons des membres</h4>
+                        <p>Retiens les dates clés : membre supérieur à J24 (région cervicale C5-C8), membre inférieur à J28 (région lombaire L3-L5). Le décalage de 4 jours entre les deux est une notion testée.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Transformation de la palette et gènes Hox</h4>
+                        <p>Comprends que l'individualisation des doigts/orteils se fait par apoptose à SD7, sous dépendance des gènes Hox. Attention : les gènes Hox sont des gènes homéotiques, PAS des morphogènes.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Développement proximo-distal</h4>
+                        <p>Le développement des membres s'effectue de l'extrémité proximale (proche du tronc) vers l'extrémité distale (palette).</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Innervation des membres</h4>
+                        <p>L'innervation des membres se développe à partir de SD5 (et non SD7). Retiens cette date précise.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+                    
+                    <div class="reco-item">
+                        <h4>Le schéma d'embryon à SD4</h4>
+                        <p>Les 2 QCM utilisent des schémas d'embryon montrant les bourgeons des membres (même période embryonnaire). Réfère-toi au schéma page 5 du cours pour visualiser la position des bourgeons.</p>
+                        <span class="frequence">Image présente dans 2 QCM sur 2</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🔍 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="qcm-analyse">
+                        <h4>Chronologie des bourgeons des membres</h4>
+                        <div class="qcm-badge">Années : <strong>2020-2021, 2024-2025</strong></div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat</div>
+                            <div class="qcm-section-content">La chronologie membre sup vs membre inf est testée 2 fois en 5 ans, sous des angles différents : en 2020-2021 via l'ordre de mise en place, en 2024-2025 via la datation et la simultanéité.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire</div>
+                            <div class="qcm-section-content">Apprends les dates exactes : J24 pour le membre supérieur, J28 pour le membre inférieur. Retiens que le membre sup apparaît AVANT le membre inf (décalage de 4 jours).</div>
+                        </div>
+                        
+                        <div class="cle-raisonnement">
+                            <p><strong>Clé de raisonnement :</strong> Le développement embryonnaire suit un gradient céphalo-caudal : ce qui est en haut (cervical = membre sup) se développe avant ce qui est en bas (lombaire = membre inf).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="qcm-analyse">
+                        <h4>Développement proximo-distal</h4>
+                        <div class="qcm-badge">Années : <strong>2020-2021</strong></div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat</div>
+                            <div class="qcm-section-content">Tombé 1 seule fois en 5 ans.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire</div>
+                            <div class="qcm-section-content">Retiens simplement que le développement se fait du proximal (racine) vers le distal (extrémité).</div>
+                        </div>
+                        
+                        <div class="connaissance-pure">
+                            <p>C'est un QCM de connaissance pure. Apprends l'item déjà tombé.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="qcm-analyse">
+                        <h4>Innervation des membres</h4>
+                        <div class="qcm-badge">Années : <strong>2020-2021</strong></div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat</div>
+                            <div class="qcm-section-content">Tombé 1 seule fois en 5 ans. L'item teste une date précise.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire</div>
+                            <div class="qcm-section-content">Retiens que l'innervation démarre à SD5, pas à SD7. Le cours est clair sur ce point.</div>
+                        </div>
+                        
+                        <div class="connaissance-pure">
+                            <p>C'est un QCM de connaissance pure. Apprends la date exacte : SD5.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="qcm-analyse">
+                        <h4>Transformation de la palette (apoptose, gènes Hox)</h4>
+                        <div class="qcm-badge">Années : <strong>2024-2025</strong></div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat</div>
+                            <div class="qcm-section-content">Thématique testée pour la première fois en 2024-2025 avec 3 items. Le QCM teste à la fois le mécanisme (apoptose), le rôle des gènes Hox, et un piège sur la nature des gènes Hox.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire</div>
+                            <div class="qcm-section-content">Apprends les 3 items tombés. Attention particulière à l'item E : les gènes Hox sont des gènes homéotiques (= gènes de transcription), ce ne sont PAS des morphogènes.</div>
+                        </div>
+                        
+                        <div class="cle-raisonnement">
+                            <p><strong>Clé de raisonnement :</strong> Les morphogènes agissent par diffusion (gradient de concentration), les gènes homéotiques agissent comme facteurs de transcription (régulation directe de l'expression génique). Les gènes Hox sont dans la 2ème catégorie.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+                    
+                    <div class="vigilance-item">
+                        <h4>Gènes Hox ≠ Morphogènes</h4>
+                        <p>C'est LE piège du QCM 2024-2025. Les gènes Hox sont des gènes homéotiques (facteurs de transcription), pas des morphogènes. Cette distinction est fondamentale et explicitement mentionnée dans le cours.</p>
+                    </div>
+                    
+                    <div class="vigilance-item">
+                        <h4>Innervation : SD5, pas SD7</h4>
+                        <p>Le QCM 2020-2021 propose SD7 pour l'innervation des membres. C'est faux : l'innervation démarre à SD5. Ne confonds pas avec SD7 qui correspond à l'individualisation des doigts (apoptose).</p>
+                    </div>
+                    
+                    <div class="vigilance-item">
+                        <h4>QCM mixte FC17 + FC18</h4>
+                        <p>Le QCM 2020-2021 mélange membres (items A, B, C) et cœur (items D, E). Lors de l'examen, identifie bien quel item appartient à quel cours pour ne pas te laisser déstabiliser.</p>
+                    </div>
+                    
+                    <div class="vigilance-item">
+                        <h4>Schémas d'embryon</h4>
+                        <p>Les 2 QCM comportent des schémas de la même période embryonnaire. Familiarise-toi avec le schéma page 5 du cours montrant les bourgeons des membres à SD4.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">
+                            Ce chapitre tombe très rarement (2 fois en 5 ans) et sans récurrence des items. Le prof ne recycle pas les questions : en 2020-2021 il testait la chronologie et l'innervation, en 2024-2025 il a introduit l'apoptose et les gènes Hox. C'est un chapitre peu rentable en termes de temps/points.
+                        </p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Lis l'intégralité du cours (12 pages). Comprends bien la logique du développement des membres : apparition des bourgeons à SD4, évolution en palette à SD5, transformation par apoptose à SD7, croissance et rotation à SD8.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentre-toi sur les 4 thématiques tombées : chronologie J24/J28, développement proximo-distal, innervation SD5, transformation palette (apoptose + gènes Hox). Survole le reste (rotation des membres, segments).</p>
+                        
+                        <p style="margin-bottom: 15px;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Apprends par cœur les 8 items déjà tombés. Attention : aucune récurrence, donc il est peu probable que ces items retombent. Retiens surtout les pièges : innervation = SD5 (pas SD7), gènes Hox = homéotiques (pas morphogènes).</p>
+                        
+                        <div class="conclusion-n1">
+                            <p><strong>⚠️ Conclusion Niveau 1 :</strong> Un investissement de Niveau 1 sur ce cours paraît extrêmement aléatoire, avec peu de chances d'obtenir des résultats. Tu aurais tout intérêt à passer en Niveau 2, d'autant plus que ce cours n'est pas très compliqué à mémoriser et ne contient pas beaucoup d'informations. De plus, si la prof mixe encore les membres avec un autre cours (comme en 2020-2021 avec FC18), tu mets en danger tes connaissances de l'autre cours si tu ne connais rien à celui-ci.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="spoiler-organo">
+                        <h4>🔗 Lien entre FC17 (Membres) et FC18 (Cœur)</h4>
+                        <p>En 2020-2021, le prof a mélangé FC17 et FC18 dans le même QCM. Ce n'est pas un hasard : les bourgeons des membres ET l'ébauche cardiaque se mettent en place au même moment, pendant <strong>SD4</strong>.</p>
+                        <p>Sur un même schéma d'embryon à SD4, le prof peut tester plusieurs organogenèses simultanées. C'est une logique de <strong>synchronicité développementale</strong> : plusieurs structures apparaissent en parallèle pendant cette semaine clé.</p>
+                        <p><strong>Conseil :</strong> Si tu révises FC17, jette un œil aux notions de base de FC18 sur le tube cardiaque primitif (fusion des tubes endocardiques). Le prof pourrait à nouveau mixer ces deux chapitres.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
