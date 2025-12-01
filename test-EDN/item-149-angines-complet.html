@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item 149 – Angines | Fiche EDN</title>
+    <style>
+        /* ========================================
+           PALETTE MEDIBOX + ROUE CHROMATIQUE
+           ======================================== */
+        :root {
+            --bleu-medibox: #1a365d;
+            --corail-medibox: #ff6b7a;
+            
+            /* 11 couleurs roue chromatique */
+            --etape-1: #1a365d;  /* Bleu Medibox */
+            --etape-2: #0891b2;  /* Cyan */
+            --etape-3: #4f46e5;  /* Indigo */
+            --etape-4: #8b5cf6;  /* Violet */
+            --etape-5: #d946ef;  /* Fuchsia */
+            --etape-5bis: #e879f9; /* Fuchsia clair */
+            --etape-6: #ec4899;  /* Rose */
+            --etape-7: #f97316;  /* Orange */
+            --etape-8: #eab308;  /* Jaune */
+            --etape-9: #65a30d;  /* Vert lime */
+            --etape-10: #14b8a6; /* Turquoise */
+            --etape-11: #ff6b7a; /* Corail Medibox */
+            
+            /* Couleurs de rang */
+            --rang-a: #10b981;
+            --rang-a-bg: #d1fae5;
+            --rang-b: #f59e0b;
+            --rang-b-bg: #fef3c7;
+            --rang-c: #6b7280;
+            --rang-c-bg: #f3f4f6;
+            
+            /* Neutres */
+            --fond-page: #f8fafc;
+            --fond-carte: #ffffff;
+            --bordure: #e2e8f0;
+            --texte: #1e293b;
+            --texte-light: #64748b;
+            
+            /* Spéciaux */
+            --urgence: #dc2626;
+            --urgence-bg: #fef2f2;
+            --has: #7c3aed;
+            --has-bg: #f5f3ff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--texte);
+            background: var(--fond-page);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--fond-carte);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        /* ========================================
+           HEADER
+           ======================================== */
+        .header {
+            background: linear-gradient(135deg, var(--bleu-medibox) 0%, #2d3748 100%);
+            color: white;
+            padding: 30px 35px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .header h1 { font-size: 1.8rem; font-weight: 700; }
+
+        .header-tags {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .header-item-num {
+            background: var(--corail-medibox);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .header-college {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .header-objectifs {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        /* ========================================
+           ONGLETS PRINCIPAUX
+           ======================================== */
+        .tabs {
+            display: flex;
+            background: var(--bleu-medibox);
+            border-bottom: 3px solid var(--corail-medibox);
+        }
+
+        .tab {
+            padding: 14px 28px;
+            color: rgba(255,255,255,0.7);
+            cursor: pointer;
+            font-weight: 500;
+            border: none;
+            background: none;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .tab:hover {
+            color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .tab.active {
+            color: white;
+            background: var(--corail-medibox);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 25px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ========================================
+           ACCORDÉONS ÉTAPES (11 couleurs)
+           ======================================== */
+        .etape-accordion {
+            margin-bottom: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid var(--bordure);
+        }
+
+        .etape-accordion summary {
+            padding: 16px 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .etape-accordion summary::-webkit-details-marker { display: none; }
+
+        .etape-accordion summary::after {
+            content: "▼";
+            font-size: 0.7rem;
+            margin-left: auto;
+            transition: transform 0.3s;
+        }
+
+        .etape-accordion[open] summary::after { transform: rotate(180deg); }
+
+        .etape-num {
+            width: 28px;
+            height: 28px;
+            background: rgba(255,255,255,0.25);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .etape-question {
+            font-weight: 400;
+            opacity: 0.9;
+            font-size: 0.9rem;
+            margin-left: 5px;
+        }
+
+        .etape-content {
+            padding: 20px;
+            background: var(--fond-page);
+        }
+
+        /* Couleurs des étapes */
+        .etape-1 summary { background: var(--etape-1); }
+        .etape-2 summary { background: var(--etape-2); }
+        .etape-3 summary { background: var(--etape-3); }
+        .etape-4 summary { background: var(--etape-4); }
+        .etape-5 summary { background: var(--etape-5); }
+        .etape-5bis summary { background: var(--etape-5bis); }
+        .etape-6 summary { background: var(--etape-6); }
+        .etape-7 summary { background: var(--etape-7); }
+        .etape-8 summary { background: var(--etape-8); color: #1e293b; }
+        .etape-8 summary .etape-num { background: rgba(0,0,0,0.15); }
+        .etape-9 summary { background: var(--etape-9); }
+        .etape-10 summary { background: var(--etape-10); }
+        .etape-11 summary { background: var(--etape-11); }
+
+        /* ========================================
+           SOUS-ACCORDÉONS (formes cliniques)
+           ======================================== */
+        .sub-accordion {
+            margin: 10px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--bordure);
+            background: white;
+        }
+
+        .sub-accordion summary {
+            padding: 14px 18px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            color: var(--bleu-medibox);
+            border-left: 4px solid var(--bleu-medibox);
+        }
+
+        .sub-accordion summary::-webkit-details-marker { display: none; }
+
+        .sub-accordion summary::before {
+            content: "▶";
+            font-size: 0.6rem;
+            transition: transform 0.2s;
+        }
+
+        .sub-accordion[open] summary::before { transform: rotate(90deg); }
+
+        .sub-accordion[open] summary {
+            background: var(--bleu-medibox);
+            color: white;
+        }
+
+        .sub-content {
+            padding: 15px;
+            background: white;
+        }
+
+        /* Couleurs des formes cliniques */
+        .forme-pseudo summary { border-left-color: #8b5cf6; }
+        .forme-pseudo[open] summary { background: #8b5cf6; }
+        
+        .forme-vesic summary { border-left-color: #06b6d4; }
+        .forme-vesic[open] summary { background: #06b6d4; }
+        
+        .forme-ulcer summary { border-left-color: #f59e0b; }
+        .forme-ulcer[open] summary { background: #f59e0b; }
+
+        /* ========================================
+           TAGS (sous-parties récurrentes)
+           ======================================== */
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .tag-sf { background: #dbeafe; color: #1e40af; }
+        .tag-ec { background: #dcfce7; color: #166534; }
+        .tag-bio { background: #f3e8ff; color: #7c3aed; }
+        .tag-img { background: #e0f2fe; color: #0369a1; }
+        .tag-med { background: #fef3c7; color: #b45309; }
+        .tag-nonmed { background: #d1fae5; color: #065f46; }
+        .tag-urgence { background: #fee2e2; color: #dc2626; }
+
+        /* ========================================
+           BADGES DE RANG
+           ======================================== */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 6px;
+        }
+
+        .badge-a { background: var(--rang-a); color: white; }
+        .badge-b { background: var(--rang-b); color: white; }
+        .badge-c { background: var(--rang-c); color: white; }
+
+        /* ========================================
+           BLOCS DE CONTENU
+           ======================================== */
+        .bloc {
+            background: white;
+            border: 1px solid var(--bordure);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .bloc-header {
+            padding: 10px 14px;
+            background: var(--fond-page);
+            border-bottom: 1px solid var(--bordure);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .bloc-body {
+            padding: 14px;
+        }
+
+        .bloc-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .bloc-body li {
+            padding: 5px 0;
+            padding-left: 16px;
+            position: relative;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .bloc-body li:last-child { border-bottom: none; }
+
+        .bloc-body li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--corail-medibox);
+        }
+
+        /* Grille 2 colonnes */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        /* ========================================
+           ENCADRÉS SPÉCIAUX
+           ======================================== */
+        .alert-box {
+            background: var(--urgence-bg);
+            border-left: 4px solid var(--urgence);
+            border-radius: 0 8px 8px 0;
+            padding: 14px 16px;
+            margin: 15px 0;
+        }
+
+        .alert-box-title {
+            color: var(--urgence);
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            border-radius: 0 8px 8px 0;
+            padding: 14px 16px;
+            margin: 15px 0;
+        }
+
+        .has-box {
+            background: var(--has-bg);
+            border-left: 4px solid var(--has);
+            border-radius: 0 8px 8px 0;
+            padding: 16px 18px;
+            margin: 15px 0;
+        }
+
+        .has-box-header {
+            color: var(--has);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* ========================================
+           MNÉMOTECHNIQUE
+           ======================================== */
+        .mnemonic-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-radius: 10px;
+            padding: 18px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .mnemonic-title {
+            color: var(--bleu-medibox);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .mnemonic-letters {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .mnemonic-item {
+            background: white;
+            border-radius: 8px;
+            padding: 8px 12px;
+            min-width: 70px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .mnemonic-letter {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--corail-medibox);
+        }
+
+        .mnemonic-word {
+            font-size: 0.7rem;
+            color: var(--texte-light);
+        }
+
+        /* ========================================
+           TABLEAUX
+           ======================================== */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th {
+            background: var(--bleu-medibox);
+            color: white;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--bordure);
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) td { background: var(--fond-page); }
+
+        /* Tableau récap formes */
+        .recap-table {
+            margin-top: 20px;
+            border: 2px solid var(--corail-medibox);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .recap-table th { background: var(--corail-medibox); }
+        .recap-table td:first-child { font-weight: 600; background: #fff5f5; }
+
+        /* ========================================
+           COMPARATIF DOUBLE
+           ======================================== */
+        .comparatif {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .comparatif-item {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--bordure);
+        }
+
+        .comparatif-header {
+            padding: 10px 14px;
+            font-weight: 600;
+            text-align: center;
+            color: white;
+        }
+
+        .comparatif-body {
+            padding: 12px;
+            background: white;
+            font-size: 0.85rem;
+        }
+
+        .comparatif-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .comparatif-body li {
+            padding: 4px 0;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .comparatif-body li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--texte-light);
+        }
+
+        /* ========================================
+           COMPARATIF PATHOLOGIES (Mobile-friendly)
+           ======================================== */
+        .pathology-compare {
+            display: flex;
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        .pathology-column {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid var(--bordure);
+            background: white;
+        }
+
+        .pathology-header {
+            padding: 12px 16px;
+            font-weight: 700;
+            text-align: center;
+            color: white;
+            font-size: 0.95rem;
+        }
+
+        .pathology-section {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--bordure);
+        }
+
+        .pathology-section:last-child {
+            border-bottom: none;
+        }
+
+        .pathology-section-title {
+            font-weight: 600;
+            color: var(--bleu-medibox);
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        .pathology-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pathology-section li {
+            padding: 3px 0;
+            padding-left: 14px;
+            position: relative;
+            font-size: 0.85rem;
+        }
+
+        .pathology-section li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--texte-light);
+        }
+
+        /* Sur mobile : colonnes empilées (MNI en premier, puis Diphtérie) */
+        @media (max-width: 900px) {
+            .pathology-compare {
+                flex-direction: column;
+            }
+        }
+
+        /* ========================================
+           ACCORDÉON RANG C
+           ======================================== */
+        .rang-c-accordion {
+            margin-top: 15px;
+            border: 1px dashed var(--rang-c);
+            border-radius: 6px;
+        }
+
+        .rang-c-accordion summary {
+            padding: 10px 14px;
+            background: var(--rang-c-bg);
+            color: var(--rang-c);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rang-c-accordion summary::-webkit-details-marker { display: none; }
+
+        .rang-c-accordion summary::before {
+            content: "▶";
+            font-size: 0.65rem;
+            transition: transform 0.2s;
+        }
+
+        .rang-c-accordion[open] summary::before { transform: rotate(90deg); }
+
+        .rang-c-content {
+            padding: 14px;
+            background: white;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+
+        /* ========================================
+           RESSOURCES & ANNALES
+           ======================================== */
+        .ressource-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px;
+            background: var(--fond-page);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--bordure);
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .ressource-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: var(--bleu-medibox);
+        }
+
+        .ressource-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--has);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .ressource-icon.externe { background: var(--bleu-medibox); }
+
+        .ressource-content h4 {
+            margin: 0 0 3px 0;
+            color: var(--bleu-medibox);
+            font-size: 0.95rem;
+        }
+
+        .ressource-content p {
+            margin: 0;
+            color: var(--texte-light);
+            font-size: 0.85rem;
+        }
+
+        .placeholder {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--texte-light);
+        }
+
+        .placeholder-icon {
+            font-size: 3.5rem;
+            margin-bottom: 12px;
+        }
+
+        /* ========================================
+           BOUTONS TOGGLE ALL
+           ======================================== */
+        .toggle-all-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: flex-end;
+        }
+
+        .toggle-btn {
+            background: var(--fond-page);
+            border: 2px solid var(--bordure);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--bleu-medibox);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .toggle-btn:hover {
+            background: var(--bleu-medibox);
+            color: white;
+            border-color: var(--bleu-medibox);
+        }
+
+        .toggle-btn span {
+            font-size: 0.7rem;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            background: var(--fond-page);
+            padding: 18px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--texte-light);
+            border-top: 1px solid var(--bordure);
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header { padding: 20px; }
+            .header h1 { font-size: 1.4rem; }
+            .tab { flex: 1; text-align: center; padding: 12px 10px; font-size: 0.85rem; }
+            .tab-content { padding: 15px; }
+            .grid-2, .comparatif { grid-template-columns: 1fr; }
+            .mnemonic-letters { flex-direction: column; align-items: center; }
+            .etape-accordion summary { font-size: 0.9rem; padding: 14px 16px; }
+            .etape-question { display: none; }
+            .toggle-all-buttons { justify-content: center; }
+            .toggle-btn { padding: 6px 12px; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-top">
+                <h1>Angines de l'adulte et de l'enfant</h1>
+                <div class="header-tags">
+                    <span class="header-item-num">Item 149</span>
+                    <span class="header-college">Collège Pédiatrie</span>
+                </div>
+            </div>
+            <div class="header-subtitle">+ Rhinopharyngites de l'enfant</div>
+            <div class="header-objectifs">
+                <strong>Objectifs :</strong> Connaître les formes cliniques des angines · Utilisation appropriée du TDR · Traitement antibiotique et/ou symptomatique
+            </div>
+        </div>
+
+        <!-- ONGLETS -->
+        <div class="tabs">
+            <button class="tab active" onclick="openTab(event, 'fiche')">📚 Fiche</button>
+            <button class="tab" onclick="openTab(event, 'colleges')">📀 Collèges croisés</button>
+            <button class="tab" onclick="openTab(event, 'ressources')">📎 Ressources</button>
+            <button class="tab" onclick="openTab(event, 'annales')">📝 Annales</button>
+        </div>
+
+        <!-- ==================== ONGLET FICHE ==================== -->
+        <div id="fiche" class="tab-content active">
+
+            <!-- Boutons ouvrir/fermer tous -->
+            <div class="toggle-all-buttons">
+                <button class="toggle-btn" onclick="toggleAllAccordions(true)">
+                    <span>▼</span> Tout déplier
+                </button>
+                <button class="toggle-btn" onclick="toggleAllAccordions(false)">
+                    <span>▲</span> Tout replier
+                </button>
+            </div>
+
+            <!-- ÉTAPE 1 : DÉFINITION -->
+            <details class="etape-accordion etape-1">
+                <summary>
+                    <span class="etape-num">1</span>
+                    Définition & Généralités
+                    <span class="etape-question">— Qu'est-ce que c'est ?</span>
+                </summary>
+                <div class="etape-content">
+                    <div class="bloc">
+                        <div class="bloc-header">Définitions <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Pharyngite</strong> = inflammation de l'oropharynx</li>
+                                <li><strong>Angine (amygdalite)</strong> = infection douloureuse et fébrile des amygdales palatines</li>
+                                <li>Pas de rhinite associée (≠ rhinopharyngite)</li>
+                                <li>Majoritairement <strong>bénin</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bloc">
+                        <div class="bloc-header">4 formes anatomocliniques <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Érythémateuse / Érythématopultacée</strong> (80-90%) — la plus fréquente ✓</li>
+                                <li><strong>Pseudomembraneuse</strong> — fausses membranes (MNI, diphtérie)</li>
+                                <li><strong>Vésiculeuse</strong> — vésicules (toujours virale)</li>
+                                <li><strong>Ulcéreuse / Ulcéronécrotique</strong> — ulcération (Vincent, syphilis)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>💡 Cette fiche traite principalement la forme érythémato-pultacée (la plus fréquente).</strong><br>
+                        Les autres formes sont détaillées dans l'étape 5bis "Autres formes cliniques".
+                    </div>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 2 : ÉPIDÉMIOLOGIE -->
+            <details class="etape-accordion etape-2">
+                <summary>
+                    <span class="etape-num">2</span>
+                    Épidémiologie
+                    <span class="etape-question">— Qui est concerné ?</span>
+                </summary>
+                <div class="etape-content">
+                    <div class="bloc">
+                        <div class="bloc-header">Données épidémiologiques <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>9 millions</strong> de cas/an en France</li>
+                                <li>Angines = <strong>infections ORL les plus fréquentes</strong> (avec les otites) chez l'enfant</li>
+                                <li>Pic de fréquence : <strong>5-15 ans</strong></li>
+                                <li>Rare avant 18 mois et chez l'adulte</li>
+                                <li>Prédominance <strong>automno-hivernale</strong></li>
+                                <li>Transmission <strong>aérienne</strong> (gouttelettes) à partir porteur sain (5%) ou malade</li>
+                                <li>Transmission rapports oro-génitaux : gonocoque, syphilis</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-2">
+                        <div class="bloc">
+                            <div class="bloc-header">Étiologies virales (majoritaires) <span class="badge badge-b">B</span></div>
+                            <div class="bloc-body">
+                                <ul>
+                                    <li>Enfant : <strong>60-75%</strong></li>
+                                    <li>Adulte : <strong>75-90%</strong></li>
+                                    <li><strong>> 200 virus</strong> possibles : adénovirus, influenzavirus, parainfluenzavirus, VRS, entérovirus, EBV, VIH (primo-infection), rhinovirus, coronavirus</li>
+                                    <li>Immunité locale de <strong>courte durée</strong> ne protégeant pas contre types hétérologues → réinfections possibles</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bloc">
+                            <div class="bloc-header">Étiologies bactériennes <span class="badge badge-a">A</span></div>
+                            <div class="bloc-body">
+                                <ul>
+                                    <li><strong>SBHA</strong> (<em>Streptococcus pyogenes</em>) = seul justifiant ATB</li>
+                                    <li>Enfant : <strong>25-40%</strong> des angines après 3 ans (pic 5-15 ans)</li>
+                                    <li>Adulte : <strong>10-25%</strong></li>
+                                    <li><strong>Rare < 3 ans</strong> (angine streptococcique exceptionnelle)</li>
+                                    <li>SBHA <strong>constamment sensible à l'amoxicilline</strong></li>
+                                    <li>Résistance aux macrolides faible (<strong>3% en 2011</strong>, <10% actuellement)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <details class="rang-c-accordion">
+                        <summary><span class="badge badge-c">C</span> Autres bactéries (sans rôle pathogène démontré)</summary>
+                        <div class="rang-c-content">
+                            <p><em>Haemophilus influenzae</em> non typable, <em>H. parainfluenzae</em>, <em>Moraxella catarrhalis</em>, pneumocoque, staphylocoque, anaérobies → <strong>pas de traitement spécifique</strong>.</p>
+                        </div>
+                    </details>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 3 : PHYSIOPATHOLOGIE -->
+            <details class="etape-accordion etape-3">
+                <summary>
+                    <span class="etape-num">3</span>
+                    Physiopathologie
+                    <span class="etape-question">— Pourquoi ça arrive ?</span>
+                </summary>
+                <div class="etape-content">
+                    <div class="bloc">
+                        <div class="bloc-header">Anatomie de l'oropharynx (Fig. 31.1 du Collège) <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Voile du palais</strong> : partie molle du palais</li>
+                                <li><strong>Luette (uvule)</strong> : appendice médian du voile</li>
+                                <li><strong>Piliers</strong> : antérieur (arc palato-glosse) et postérieur (arc palato-pharyngien)</li>
+                                <li><strong>Amygdale palatine</strong> : entre les deux piliers</li>
+                                <li><strong>Paroi postérieure de l'oropharynx</strong></li>
+                                <li><strong>V lingual et sillon terminal</strong> : base de langue</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Transmission <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Voie aérienne</strong> (gouttelettes) à partir d'un porteur sain (5% pour SBHA) ou malade</li>
+                                <li>Rapports oro-génitaux : gonocoque, syphilis</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Complications possibles <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Locorégionales</strong> = suppuratives (phlegmon, abcès...)</li>
+                                <li><strong>Générales toxiniques</strong> : scarlatine (SBHA), diphtérie</li>
+                                <li><strong>Générales immunologiques</strong> post-streptococciques : RAA, GNA (dépôts complexes immuns Ag SBHA + IgG sur glomérules et articulations → activation complément + réaction inflammatoire)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 4 : ÉTIOLOGIES -->
+            <details class="etape-accordion etape-4">
+                <summary>
+                    <span class="etape-num">4</span>
+                    Étiologies / Facteurs de risque
+                    <span class="etape-question">— Qu'est-ce qui le provoque ?</span>
+                </summary>
+                <div class="etape-content">
+                    <div class="bloc">
+                        <div class="bloc-header">Angine érythémato-pultacée : 2 étiologies <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Virale</strong> (majoritaire) : adénovirus, EBV, VIH (primo-infection), rhinovirus, VRS, influenza</li>
+                                <li><strong>Bactérienne</strong> : SBHA +++ (seul justifiant ATB), streptocoques B, C, F, G, gonocoque</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>⚠️ Penser à la primo-infection VIH</strong> devant une angine virale avec facteurs de risque !
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Scarlatine <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>SBHA sécrétant une <strong>toxine érythrogène</strong></li>
+                                <li>Fièvre 40°C + vomissements</li>
+                                <li>Pharynx, amygdales et bords de langue <strong>rouges</strong></li>
+                                <li>Pas de catarrhe rhinopharyngé</li>
+                                <li>Rechercher début de rash scarlatineux aux <strong>plis de flexion</strong></li>
+                                <li>Faire TDR → même traitement que angine à SBHA</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 5 : DIAGNOSTIC CLINIQUE -->
+            <details class="etape-accordion etape-5">
+                <summary>
+                    <span class="etape-num">5</span>
+                    Diagnostic clinique
+                    <span class="etape-question">— Comment le reconnaître ?</span>
+                </summary>
+                <div class="etape-content">
+                    
+                    <div class="bloc">
+                        <div class="bloc-header">Données anamnestiques utiles <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Âge</strong> de l'enfant</li>
+                                <li>Existence d'une <strong>fièvre ± élevée</strong></li>
+                                <li>Appréciation de l'<strong>odynophagie</strong> ± diminution prise alimentaire</li>
+                                <li>Contexte viral, <strong>contage</strong> (entourage familial, collectivité)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="bloc">
+                            <div class="bloc-header"><span class="tag tag-sf">Signes fonctionnels</span> <span class="badge badge-a">A</span></div>
+                            <div class="bloc-body">
+                                <ul>
+                                    <li>Installation <strong>rapide</strong></li>
+                                    <li><strong>Odynophagie</strong> (douleur à la déglutition)</li>
+                                    <li>Fièvre d'intensité variable</li>
+                                    <li>± Otalgie réflexe</li>
+                                    <li>Enfant : vomissements, douleurs abdominales</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bloc">
+                            <div class="bloc-header"><span class="tag tag-ec">Signes physiques</span> <span class="badge badge-a">A</span></div>
+                            <div class="bloc-body">
+                                <ul>
+                                    <li>Inflammation oropharynx et amygdales</li>
+                                    <li>ADP cervicales satellites sensibles (inconstant)</li>
+                                    <li><strong>Érythémateuse</strong> : pharynx rouge, amygdales ↑ volume (Fig. 31.2A)</li>
+                                    <li><strong>Érythématopultacée</strong> : + enduit blanchâtre punctiforme, <strong>détachable à l'abaisse-langue</strong>, ne déborde pas les amygdales (Fig. 31.2B)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert-box">
+                        <div class="alert-box-title">⚠️ Point clé fondamental</div>
+                        <p style="margin:0;"><strong>Aucune donnée clinique ne permet d'affirmer l'origine bactérienne ou non d'une angine.</strong><br>→ TDR pour le SGA en cas d'angine chez un enfant à partir de l'âge de 3 ans.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>💡 Arguments orientant vers une origine virale :</strong> atteinte diffuse ORL/respiratoire (laryngite, trachéite, bronchite, conjonctivite) ou signes extra-ORL (polyADP superficielle, hépato-splénomégalie, exanthème).
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Angine virale</th>
+                                    <th>Angine à SBHA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Épidémio</strong></td>
+                                    <td>Épidémie, contage, tout âge</td>
+                                    <td>Contage, <strong>3-15 ans (pic 5 ans)</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Début</strong></td>
+                                    <td>Progressif</td>
+                                    <td><strong>Brutal</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Fièvre</strong></td>
+                                    <td>Variable</td>
+                                    <td><strong>Élevée</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Odynophagie</strong></td>
+                                    <td>Modérée ou absente</td>
+                                    <td><strong>Intense</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Toux</strong></td>
+                                    <td>Présente</td>
+                                    <td><strong>Absente</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Clinique</strong></td>
+                                    <td>Aspect érythémateux ± vésicules, rhinorrhée, conjonctivite, myalgies, diarrhée, éruption cutanée</td>
+                                    <td>Érythème pharyngé intense, purpura du voile, ADP sensibles, douleurs abdo, vomissements</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mnemonic-box">
+                        <div class="mnemonic-title">🧠 Score de Mac Isaac (adulte > 15 ans uniquement)</div>
+                        <div class="mnemonic-letters">
+                            <div class="mnemonic-item">
+                                <div class="mnemonic-letter">F</div>
+                                <div class="mnemonic-word">Fièvre > 38°C (+1)</div>
+                            </div>
+                            <div class="mnemonic-item">
+                                <div class="mnemonic-letter">T</div>
+                                <div class="mnemonic-word">Toux absente (+1)</div>
+                            </div>
+                            <div class="mnemonic-item">
+                                <div class="mnemonic-letter">A</div>
+                                <div class="mnemonic-word">ADP sensibles (+1)</div>
+                            </div>
+                            <div class="mnemonic-item">
+                                <div class="mnemonic-letter">A</div>
+                                <div class="mnemonic-word">Amygdales ↑ (+1)</div>
+                            </div>
+                            <div class="mnemonic-item">
+                                <div class="mnemonic-letter">Â</div>
+                                <div class="mnemonic-word">15-44: 0 / ≥45: -1</div>
+                            </div>
+                        </div>
+                        <p style="margin-top: 12px; font-size: 0.9rem;"><strong>Mac Isaac < 2 = VPN > 95%</strong> → élimine angine à SBHA chez l'adulte</p>
+                        <p style="margin-top: 6px; font-size: 0.85rem; color: #dc2626;"><strong>⚠️ Le score de Mac Isaac n'est PAS validé chez l'enfant</strong> → TDR systématique si ≥ 3 ans</p>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Arbre décisionnel <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Enfant < 3 ans</strong> → Virale +++ → <strong>Pas de TDR</strong> → TTT symptomatique</li>
+                                <li><strong>Enfant 3-15 ans</strong> → <strong>TDR systématique</strong></li>
+                                <li><strong>Adulte Mac Isaac < 2</strong> → Pas de TDR → TTT symptomatique</li>
+                                <li><strong>Adulte Mac Isaac ≥ 2</strong> → TDR</li>
+                                <li>TDR + → ATB / TDR - → TTT symptomatique</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 5bis : AUTRES FORMES CLINIQUES -->
+            <details class="etape-accordion etape-5bis">
+                <summary>
+                    <span class="etape-num">5bis</span>
+                    Autres formes cliniques
+                    <span class="etape-question">— Quelles variantes ?</span>
+                </summary>
+                <div class="etape-content">
+
+                    <!-- FORME PSEUDOMEMBRANEUSE -->
+                    <details class="sub-accordion forme-pseudo">
+                        <summary>🟣 Angine pseudomembraneuse</summary>
+                        <div class="sub-content">
+                            <div class="bloc">
+                                <div class="bloc-header">Aspect <span class="badge badge-a">A</span></div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li>Fausses membranes confluentes, nacrées ou grisâtres</li>
+                                        <li>Souvent étendues au-delà des amygdales</li>
+                                        <li><strong>2 étiologies</strong> : MNI (fréquent) vs Diphtérie (rare mais grave)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Structure mobile-friendly : 2 colonnes sur desktop, empilées sur mobile par pathologie -->
+                            <div class="pathology-compare">
+                                <!-- Colonne MNI -->
+                                <div class="pathology-column pathology-mni">
+                                    <div class="pathology-header" style="background: #10b981;">MNI (EBV) — Fréquent</div>
+                                    
+                                    <div class="pathology-section">
+                                        <div class="pathology-section-title">Terrain & Clinique</div>
+                                        <ul>
+                                            <li><strong>Terrain</strong> : ado, adulte jeune (20-30 ans)</li>
+                                            <li><strong>Incubation</strong> : 4-6 semaines</li>
+                                            <li>Asthénie + fièvre > 10j</li>
+                                            <li>Membranes <strong>non adhérentes</strong></li>
+                                            <li><strong>Respect de la luette</strong></li>
+                                            <li>Splénomégalie (50%), purpura du voile</li>
+                                            <li>Poly-ADP diffuses</li>
+                                            <li>Exanthème si Amox (<strong>≠ allergie</strong>)</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="pathology-section">
+                                        <div class="pathology-section-title"><span class="tag tag-bio">Biologie</span></div>
+                                        <ul>
+                                            <li><strong>1ère intention</strong> : MNI-test (Sp++, Se 50-85%)</li>
+                                            <li>Si négatif : sérologie IgM anti-VCA sans Ac anti-EBNA</li>
+                                            <li>NFS : Sd mononucléosique (hyperlymphocytose hyperbasophile)</li>
+                                            <li>Cytolyse hépatique, thrombopénie</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="pathology-section">
+                                        <div class="pathology-section-title"><span class="tag tag-med">Traitement</span></div>
+                                        <ul>
+                                            <li>Symptomatique : repos + paracétamol</li>
+                                            <li><strong>CI Amoxicilline</strong> (éruption morbilliforme ≠ allergie)</li>
+                                            <li>Corticoïdes si formes sévères</li>
+                                            <li>Complications rares : rupture rate, AHAI, atteinte neuro</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Colonne Diphtérie -->
+                                <div class="pathology-column pathology-diphtheria">
+                                    <div class="pathology-header" style="background: #dc2626;">⚠️ DIPHTÉRIE — URGENCE</div>
+                                    
+                                    <div class="pathology-section">
+                                        <div class="pathology-section-title">Terrain & Clinique</div>
+                                        <ul>
+                                            <li><strong>Terrain</strong> : non vacciné, voyage Europe Est/PVD</li>
+                                            <li><strong>Incubation</strong> : < 7 jours</li>
+                                            <li>Malaise, fièvre modérée</li>
+                                            <li>Membranes <strong>adhérentes, extensives, saignantes</strong></li>
+                                            <li><strong>Envahissement de la luette</strong></li>
+                                            <li>Coryza unilatéral (jetage nasal)</li>
+                                            <li>Signes toxiniques : pâleur, tachycardie</li>
+                                            <li>ADP sous-angulo-maxillaires</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="pathology-section">
+                                        <div class="pathology-section-title"><span class="tag tag-bio">Biologie</span></div>
+                                        <ul>
+                                            <li><strong>URGENCE</strong> : prélèvement gorge/fausses membranes écouvillon sec</li>
+                                            <li>ED : BGP (corynébactéries)</li>
+                                            <li>Culture + PCR gène toxine</li>
+                                            <li>Hyperleucocytose à PNN</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="pathology-section">
+                                        <div class="pathology-section-title"><span class="tag tag-urgence">Traitement</span></div>
+                                        <ul>
+                                            <li>Isolement gouttelettes</li>
+                                            <li><strong>Sérothérapie</strong> + Amoxicilline IV 14j + vaccination</li>
+                                            <li><strong>Déclaration obligatoire ARS</strong></li>
+                                            <li>Éviction jusqu'à 2 prélèvements négatifs à 24h</li>
+                                            <li>Vaccination + ATB prophylaxie contacts</li>
+                                            <li>Complications : croup, myocardite, paralysie, décès (10%)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- FORME VÉSICULEUSE -->
+                    <details class="sub-accordion forme-vesic">
+                        <summary>🔵 Angine vésiculeuse (toujours virale)</summary>
+                        <div class="sub-content">
+                            <div class="bloc">
+                                <div class="bloc-header">Aspect <span class="badge badge-a">A</span></div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li>Vésicules sur muqueuse inflammatoire</li>
+                                        <li>Non limitées aux amygdales (palais, piliers, paroi pharyngée)</li>
+                                        <li>Rupture rapide → érosions avec halo inflammatoire ("auréole rouge")</li>
+                                        <li><strong>Très douloureuse</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="comparatif">
+                                <div class="comparatif-item">
+                                    <div class="comparatif-header" style="background: #06b6d4;">Herpès (HSV, VZV)</div>
+                                    <div class="comparatif-body">
+                                        <ul>
+                                            <li><strong>Terrain</strong> : enfant 1-4 ans</li>
+                                            <li>Primo-infection : <strong>gingivo-stomatite diffuse</strong></li>
+                                            <li>Éruption vésiculeuse périlabiale</li>
+                                            <li>Début brutal, fièvre 39-40°C, frissons</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="comparatif-item">
+                                    <div class="comparatif-header" style="background: #14b8a6;">Entérovirus (Coxsackie, Échovirus)</div>
+                                    <div class="comparatif-body">
+                                        <ul>
+                                            <li><strong>Terrain</strong> : enfant 1-7 ans</li>
+                                            <li><strong>Épidémie estivale</strong></li>
+                                            <li><strong>Herpangine</strong> : lésions localisées oropharynx</li>
+                                            <li>Syndrome <strong>pied-main-bouche</strong></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bloc">
+                                <div class="bloc-header"><span class="tag tag-med">Traitement</span> <span class="badge badge-b">B</span></div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li><strong>Ambulatoire</strong> - Évolution bénigne</li>
+                                        <li>Réhydratation + soins de bouche + antalgiques/antipyrétiques</li>
+                                        <li>Si primo-infection herpétique : <strong>Aciclovir PO 5 jours</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- FORME ULCÉREUSE -->
+                    <details class="sub-accordion forme-ulcer">
+                        <summary>🟠 Angine ulcéreuse / ulcéronécrotique</summary>
+                        <div class="sub-content">
+                            <div class="bloc">
+                                <div class="bloc-header">Aspect <span class="badge badge-a">A</span></div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li>Ulcération <strong>unilatérale</strong> le plus souvent</li>
+                                        <li>± Profonde, recouverte d'un enduit nécrotique</li>
+                                        <li>DD : <strong>Cancer de l'amygdale</strong> si absence amélioration après TTT → biopsie</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="comparatif">
+                                <div class="comparatif-item">
+                                    <div class="comparatif-header" style="background: #f59e0b;">Angine de Vincent</div>
+                                    <div class="comparatif-body">
+                                        <ul>
+                                            <li><strong>Germe</strong> : association fuso-spirillaire (Fusobacterium + Borrelia)</li>
+                                            <li><strong>Terrain</strong> : mauvaise hygiène bucco-dentaire</li>
+                                            <li>Fièvre modérée + <strong>haleine fétide</strong></li>
+                                            <li>Ulcération unilatérale profonde, <strong>non indurée</strong>, souple au toucher</li>
+                                            <li>Membranes grisâtres non adhérentes</li>
+                                            <li>ADP satellite minime</li>
+                                            <li><strong>Diag</strong> : ED gorge (association fusospirillaire)</li>
+                                            <li><strong>TTT</strong> : Amoxicilline 10j (allergie : Métronidazole) + dentiste</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="comparatif-item">
+                                    <div class="comparatif-header" style="background: #8b5cf6;">Chancre syphilitique</div>
+                                    <div class="comparatif-body">
+                                        <ul>
+                                            <li><strong>Terrain</strong> : rapports oro-génitaux non protégés</li>
+                                            <li>Pas de signes généraux</li>
+                                            <li>Ulcération unilatérale peu profonde</li>
+                                            <li><strong>Indurée, indolore</strong></li>
+                                            <li>ADP unilatérale <strong>indolore</strong> (GG central + petits GG autour)</li>
+                                            <li><strong>Diag</strong> : ED microscope fond noir + sérologie TPHA/VDRL</li>
+                                            <li><strong>TTT</strong> : Pénicilline G IM dose unique + mesures IST</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="alert-box">
+                                <div class="alert-box-title">⚠️ Évoquer si ulcéronécrotique traînant + AEG</div>
+                                <ul style="padding-left: 20px; margin: 0;">
+                                    <li><strong>Cancer amygdale</strong> : OH-tabac-HPV, unilatéral, induré, saignement, ADP maligne → Biopsie</li>
+                                    <li><strong>Agranulocytose/Hémopathie</strong> : bilatéral, extension rapide, pas d'ADP → NFS + myélogramme</li>
+                                </ul>
+                            </div>
+
+                            <div class="bloc">
+                                <div class="bloc-header">Syndrome de Lemierre (complication angine de Vincent) <span class="badge badge-b">B</span></div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li>Germe : <em>Fusobacterium necrophorum</em> - mortalité 5%</li>
+                                        <li><strong>Thrombophlébite jugulaire septique</strong> + emboles pulmonaires (infarctus, abcès)</li>
+                                        <li>Clinique : AEG, fièvre, frissons 4-5j post-angine + douleurs latéro-cervicales + dyspnée, douleurs pleurétiques</li>
+                                        <li>TDM cervico-thoracique injecté</li>
+                                        <li>TTT : ATB 6 semaines (Augmentin ou Métronidazole) + drainage</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- TABLEAU RÉCAPITULATIF -->
+                    <div class="recap-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Forme</th>
+                                    <th>Aspect</th>
+                                    <th>Étiologie</th>
+                                    <th>Examen clé</th>
+                                    <th>Traitement</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Érythémato-pultacée</td>
+                                    <td>Rouge ± enduit blanc non adhérent</td>
+                                    <td>Virus / SBHA</td>
+                                    <td>TDR</td>
+                                    <td>Sympto / Amox 6j</td>
+                                </tr>
+                                <tr>
+                                    <td>Pseudomembraneuse</td>
+                                    <td>Fausses membranes</td>
+                                    <td>MNI / Diphtérie</td>
+                                    <td>MNI-test / Prélèvement</td>
+                                    <td>Sympto / URGENCE</td>
+                                </tr>
+                                <tr>
+                                    <td>Vésiculeuse</td>
+                                    <td>Vésicules</td>
+                                    <td>Herpès / Entérovirus</td>
+                                    <td>Clinique</td>
+                                    <td>Sympto ± Aciclovir</td>
+                                </tr>
+                                <tr>
+                                    <td>Ulcéreuse</td>
+                                    <td>Ulcération unilatérale</td>
+                                    <td>Vincent / Syphilis</td>
+                                    <td>ED / Sérologie</td>
+                                    <td>Amox 10j / Péni G</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 6 : EXAMENS COMPLÉMENTAIRES -->
+            <details class="etape-accordion etape-6">
+                <summary>
+                    <span class="etape-num">6</span>
+                    Examens complémentaires
+                    <span class="etape-question">— Comment le confirmer ?</span>
+                </summary>
+                <div class="etape-content">
+                    <div class="bloc">
+                        <div class="bloc-header"><span class="tag tag-bio">TDR (Test Diagnostic Rapide)</span> <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>Détection Ag de paroi (<strong>polysaccharide C</strong>) de <em>S. pyogenes</em></li>
+                                <li>Prélèvement : <strong>écouvillonnage face interne des amygdales</strong></li>
+                                <li>Résultat en <strong>< 5 minutes</strong></li>
+                                <li><strong>Sp > 95%, Se > 90%</strong></li>
+                                <li><strong>Gratuit</strong> sur simple demande à l'Assurance Maladie</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Indications TDR <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Enfant 3-15 ans</strong> : <strong>systématique</strong></li>
+                                <li><strong>Adulte > 15 ans</strong> : si Mac Isaac ≥ 2</li>
+                                <li><strong>Pas avant 3 ans</strong> : diagnostic d'angine rare, et le plus fréquemment d'origine virale</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Culture du prélèvement pharyngé <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>N'est plus réalisée en pratique courante</strong> (résultat sous 1-2 jours)</li>
+                                <li>Éventuellement utile dans <strong>2 situations</strong> (si enfant ≥ 3 ans) :
+                                    <ul style="padding-left: 20px; margin-top: 5px;">
+                                        <li><strong>Échec thérapeutique à 72h</strong> d'évolution</li>
+                                        <li><strong>TDR négatif + FDR de RAA</strong> (en France = essentiellement ATCD de RAA)</li>
+                                    </ul>
+                                </li>
+                                <li>→ ATB si culture positive</li>
+                                <li>Utile aussi pour <strong>antibiogramme</strong> si échec ATB (vérification absence résistance)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Autres examens selon contexte <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>NFS</strong> : si pseudomembraneuse ou ulcéronécrotique (recherche syndrome mononucléosique ou neutropénie)</li>
+                                <li><strong>MNI-test</strong> (très spécifique, Se 50-85%) ± <strong>sérologie EBV</strong> (IgM anti-VCA sans Ac anti-EBNA) : si suspicion mononucléose</li>
+                                <li><strong>Dépistage VIH</strong> : si suspicion primo-infection (angine virale + FDR)</li>
+                                <li><strong>ED bactério</strong> : si présentation évocatrice (Vincent, syphilis, diphtérie)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 7 : DIAGNOSTICS DIFFÉRENTIELS -->
+            <details class="etape-accordion etape-7">
+                <summary>
+                    <span class="etape-num">7</span>
+                    Diagnostics différentiels
+                    <span class="etape-question">— Quoi éliminer ?</span>
+                </summary>
+                <div class="etape-content">
+                    <div class="bloc">
+                        <div class="bloc-header">À évoquer <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Cancer de l'amygdale</strong> : OH-tabac-HPV, unilatéral, induré, saignement au toucher, ADP maligne, pas de SG</li>
+                                <li><strong>Neutropénie</strong> : lésions pseudomembraneuses/sphacéliques diffuses sur tout pharynx, bilatéral, extension rapide, <strong>pas d'ADP</strong></li>
+                                <li><strong>Leucose aiguë</strong> : atteinte amygdalienne + gingivite hypertrophique, tendance hémorragique → NFS + myélogramme</li>
+                                <li><strong>Zona pharyngien</strong> : atteinte nerf glossopharyngien</li>
+                                <li><strong>Aphtose</strong> : érosions muqueuse gingivo-buccale</li>
+                                <li><strong>Pemphigus</strong> : éruptions bulleuses</li>
+                                <li><strong>IDM</strong> : peut simuler angine avec douleur unilatérale mais pas d'anomalie intra-buccale → ECG</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 8 : ÉVOLUTION & COMPLICATIONS -->
+            <details class="etape-accordion etape-8">
+                <summary>
+                    <span class="etape-num">8</span>
+                    Évolution & Complications
+                    <span class="etape-question">— Que peut-il se passer ?</span>
+                </summary>
+                <div class="etape-content">
+                    
+                    <div class="bloc">
+                        <div class="bloc-header">Évolution naturelle <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>Spontanément favorable en <strong>3-4 jours</strong> même sans traitement</li>
+                                <li>Mais complications potentiellement graves du SBHA → justifie ATB</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Complications locorégionales (suppuratives) <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Phlegmon péri-amygdalien</strong> (le + fréquent) : fièvre, odynophagie unilatérale majeure, <strong>TRISMUS</strong>, voix "patate chaude", hypersalivation, asymétrie pharyngée (tuméfaction pilier antérieur masquant l'amygdale), luette œdématiée "en battant de cloche" déviée du côté opposé (Fig. 31.4)</li>
+                                <li><strong>Infections rétro-pharyngées/rétro-styliennes</strong> : <strong>enfant < 7 ans</strong> (sur rhinopharyngite > angine, régression des GG rétropharyngés vers 7 ans), <strong>TORTICOLIS fébrile</strong>, dyspnée, sialorrhée, tuméfaction latéro-cervicale</li>
+                                <li><strong>Infections pré-styliennes</strong> : <strong>adulte/ado</strong>, origine dentaire > angine, <strong>torticolis + TRISMUS</strong>, sialorrhée, tuméfaction latéro-cervicale haute</li>
+                                <li><strong>Adénophlegmon latéro-cervical</strong> : <strong>TORTICOLIS</strong> douloureux fébrile, empâtement cervical profond, syndrome fébrile, absence de trismus</li>
+                                <li><strong>Cellulite cervicale</strong> → risque de <strong>médiastinite</strong> (extension rapide aux espaces celluleux)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mnemonic-box">
+                        <div class="mnemonic-title">🧠 Astuce du PU - Clinique des complications</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px;">
+                            <div style="background: white; padding: 12px; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 1.4rem; font-weight: 800; color: #dc2626;">TRISMUS = "P"</div>
+                                <div style="font-size: 0.85rem; color: #64748b; margin-top: 5px;"><strong>P</strong>hlegmon <strong>P</strong>éri-amygdalien<br><strong>P</strong>ré-stylien</div>
+                            </div>
+                            <div style="background: white; padding: 12px; border-radius: 8px; text-align: center;">
+                                <div style="font-size: 1.4rem; font-weight: 800; color: #f59e0b;">TORTICOLIS</div>
+                                <div style="font-size: 0.85rem; color: #64748b; margin-top: 5px;"><strong>Rétro</strong>-pharyngé, <strong>Rétro</strong>-stylien<br><strong>Adéno</strong>phlegmon latéro-cervical</div>
+                            </div>
+                        </div>
+                        <p style="margin-top: 12px; font-size: 0.85rem; color: #dc2626;"><strong>⚠️ Torticolis fébrile chez l'enfant → toujours penser à un abcès rétropharyngé ou parapharyngé</strong></p>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Complications générales du SBHA <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <p style="margin-bottom: 10px; font-style: italic; color: #64748b;">Syndromes post-streptococciques : <strong>exceptionnels dans les pays industrialisés</strong></p>
+                            <ul>
+                                <li><strong>RAA</strong> (15-20j post-angine) : dépôts complexes immuns (Ag SBHA + IgG) sur articulations et cœur
+                                    <ul style="padding-left: 20px; margin-top: 5px;">
+                                        <li><em>Articulaire</em> : polyarthrite mobile, <strong>migratrice, asymétrique</strong>, grosses articulations, durée 1 mois, disparition sans séquelles</li>
+                                        <li><em>Cardiaque (sujet jeune)</em> : <strong>IM > IA > RM/RA</strong>, myocardite (IC, TdR, TdC, cardiomégalie), péricardite</li>
+                                        <li><em>Cutané</em> : nodosités de <strong>Meynet</strong> (sous-cutanées, fermes, indolores, qqs mm à 2cm, en regard os/tendons : coudes, poignets, genoux, chevilles, durée 1-2 sem), érythème marginé (macules rosées non prurigineuses, fugaces, racine membres et tronc)</li>
+                                        <li><em>Neuro</em> : <strong>Chorée de Sydenham</strong> (mouvements involontaires, anarchiques, diffus, bilatéraux, après plusieurs poussées inflammatoires)</li>
+                                        <li><em>Général</em> : fièvre sensible aux AINS, douleurs abdominales (5-10% : adénolymphite mésentérique ou foie cardiaque), syndrome inflammatoire</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box" style="background: #fef3c7; border-color: #f59e0b;">
+                        <strong>💡 Relation inverse gravité articulaire / cardiaque</strong><br>
+                        Plus l'atteinte articulaire est grave, moins l'atteinte cardiaque est importante (et inversement).
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">GNA post-streptococcique <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>Début <strong>10-20 jours</strong> post-angine</li>
+                                <li><strong>Syndrome néphritique</strong> à début brutal :
+                                    <ul style="padding-left: 20px; margin-top: 5px;">
+                                        <li>IRA, protéinurie glomérulaire, hématurie macroscopique</li>
+                                        <li>HTA, œdèmes</li>
+                                        <li>↓ complément (C3, C4)</li>
+                                    </ul>
+                                </li>
+                                <li>Biopsie (si réalisée) : prolifération endocapillaire ± extracapillaire si sévère, dépôts C3 mésangiaux ("humps")</li>
+                                <li>Évolution : favorable chez l'enfant, IR irréversible possible chez l'adulte</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Autres complications générales <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Complications toxiniques</strong> : scarlatine, choc toxique streptococcique</li>
+                                <li>Contamination d'un sujet à risque (varicelle) par SGA</li>
+                                <li>Septicémie et localisations secondaires : pleuropneumonies, fasciite nécrosante</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">FDR de RAA <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>ATCD personnels de RAA</strong></li>
+                                <li>Âge <strong>5-25 ans</strong> + ATCD multiples d'angines à SBHA</li>
+                                <li>Séjour en <strong>zone d'endémie</strong> (Afrique, DOM-TOM)</li>
+                                <li>FDR environnementaux : promiscuité, précarité, collectivité fermée, mauvaises conditions de vie</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>→ Si FDR de RAA + TDR négatif : contrôler par mise en culture</strong>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 9 : TRAITEMENT -->
+            <details class="etape-accordion etape-9">
+                <summary>
+                    <span class="etape-num">9</span>
+                    Traitement
+                    <span class="etape-question">— Comment traiter ?</span>
+                </summary>
+                <div class="etape-content">
+
+                    <div class="bloc">
+                        <div class="bloc-header"><span class="tag tag-nonmed">TTT symptomatique (systématique)</span> <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Paracétamol</strong> : antalgique/antipyrétique de 1ère intention</li>
+                                <li><strong>Pas d'AINS ni de corticoïdes</strong> : pas de bénéfice démontré, risques de complications locales notables (↑ risque phlegmon)</li>
+                                <li>Exception corticoïdes : formes sévères MNI, certaines complications diphtérie</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header"><span class="tag tag-med">Buts de l'ATB (angine à SBHA)</span> <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>↓ durée des symptômes</strong> (24h si ATB précoce)</li>
+                                <li><strong>Prévention des complications non suppuratives</strong> : efficace sur RAA même si ATB tardive (jusqu'à J9) — <strong>pas de certitude pour GNA</strong></li>
+                                <li><strong>↓ contagiosité</strong> : non contagieux 24h après début ATB (vs 4 mois sans ATB)</li>
+                                <li><strong>↓ risque de suppuration locorégionale</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header"><span class="tag tag-med">ATB si TDR positif</span> <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>1ère intention : Amoxicilline 6 jours</strong>
+                                    <ul style="padding-left: 20px; margin-top: 5px;">
+                                        <li>Adulte : 2 g/j en 2 prises</li>
+                                        <li>Enfant : 50 mg/kg/j en 2 prises (max 2g)</li>
+                                    </ul>
+                                </li>
+                                <li>L'intérêt du recours à une ATB par voie locale n'est pas démontré</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="has-box">
+                        <div class="has-box-header">📋 Recommandations HAS 2021 - Alternatives</div>
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li><strong>2ème intention - Allergie pénicillines sans CI céphalosporines :</strong>
+                                <ul style="padding-left: 20px; margin-top: 5px;">
+                                    <li>C2G <strong>céfuroxime-axétil : 4 jours</strong></li>
+                                    <li>C3G <strong>cefpodoxime-proxétil : 5 jours</strong></li>
+                                </ul>
+                            </li>
+                            <li><strong>3ème intention - CI β-lactamines (exceptionnelle) :</strong> macrolides (sans nécessité de prélèvement bactériologique préalable)
+                                <ul style="padding-left: 20px; margin-top: 5px;">
+                                    <li><strong>Azithromycine : 3 jours</strong></li>
+                                    <li>Clarithromycine : 5 jours</li>
+                                    <li>Josamycine : 5 jours</li>
+                                </ul>
+                            </li>
+                            <li style="color: #dc2626;"><strong>⚠️ Résistance aux macrolides < 10%</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Mesures associées <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Éviction scolaire 48h obligatoire</strong> après début ATB (si scarlatine ou SBHA) — recommandations HCSP</li>
+                                <li><strong>Pas de contrôle TDR post-ATB</strong></li>
+                                <li>Traitement identique si <strong>scarlatine</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Orientation et hospitalisation <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>Pathologie <strong>bénigne, prise en charge ambulatoire</strong></li>
+                                <li>Les indications d'<strong>hospitalisation sont exceptionnelles</strong>, reliées à la gravité d'éventuelles complications</li>
+                                <li>Un <strong>avis ORL</strong> n'est nécessaire qu'en cas de complications locorégionales (rares)</li>
+                                <li><strong>Indications d'hospitalisation :</strong>
+                                    <ul style="padding-left: 20px; margin-top: 5px;">
+                                        <li>Complications angine streptococcique (phlegmon...)</li>
+                                        <li>Diphtérie</li>
+                                        <li>Complications MNI</li>
+                                        <li>Angine aphagiante</li>
+                                        <li>Gingivostomatite avec impossibilité alimentation</li>
+                                        <li>Angine de Vincent</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 10 : SUIVI -->
+            <details class="etape-accordion etape-10">
+                <summary>
+                    <span class="etape-num">10</span>
+                    Suivi & Pronostic
+                    <span class="etape-question">— Comment surveiller ?</span>
+                </summary>
+                <div class="etape-content">
+                    <div class="bloc">
+                        <div class="bloc-header">Évolution attendue <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>Guérison spontanée en 3-4 jours (virale)</li>
+                                <li>Amélioration en 24-48h sous ATB (SBHA)</li>
+                                <li>Non contagieux 24h après début ATB (vs 4 mois sans ATB)</li>
+                                <li><strong>Pas de contrôle TDR post-traitement</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="alert-box">
+                        <div class="alert-box-title">⚠️ Signes devant faire reconsulter</div>
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li>Fièvre > 3 jours ou réapparition fièvre > 3 jours</li>
+                            <li>Persistance symptômes > 10 jours</li>
+                            <li>Gêne respiratoire</li>
+                            <li>Dysphagie majeure, trismus, torticolis</li>
+                            <li>Tuméfaction cervicale</li>
+                            <li>Conjonctivite purulente, œdème palpébral</li>
+                            <li>Éruption cutanée, troubles digestifs</li>
+                        </ul>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Causes d'échec d'éradication du SBHA <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>Mauvaise compliance au traitement</li>
+                                <li>Interférence bactérienne (β-lactamases de la flore → destruction amoxicilline)</li>
+                                <li>Réinfection par l'entourage en fin de traitement</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <details class="rang-c-accordion">
+                        <summary><span class="badge badge-c">C</span> Amygdalectomie</summary>
+                        <div class="rang-c-content">
+                            <p>Indications réduites : infections récidivantes sévères, pathologies obstructives (SAOS). Morbimortalité postopératoire à considérer.</p>
+                        </div>
+                    </details>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 11 : POINTS CLÉS -->
+            <details class="etape-accordion etape-11">
+                <summary>
+                    <span class="etape-num">11</span>
+                    Points clés / Pièges
+                    <span class="etape-question">— Ne pas oublier...</span>
+                </summary>
+                <div class="etape-content">
+                    <div class="info-box" style="background: #fef3c7; border-color: #f59e0b;">
+                        <div style="color: #b45309; font-weight: 600; margin-bottom: 8px;">💡 Points clés à retenir</div>
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li>60-90% des angines sont <strong>virales</strong> → pas d'ATB</li>
+                            <li><strong>Aucune donnée clinique</strong> ne permet d'affirmer l'origine bactérienne ou non</li>
+                            <li>TDR systématique <strong>enfant ≥ 3 ans</strong> et <strong>adulte si Mac Isaac ≥ 2</strong></li>
+                            <li>Mac Isaac <strong>non validé chez l'enfant</strong></li>
+                            <li>Seul le <strong>SBHA</strong> justifie une antibiothérapie (+ Vincent, diphtérie, syphilis)</li>
+                            <li><strong>Amoxicilline 6 jours</strong> = traitement de référence</li>
+                            <li><strong>Pas d'AINS ni corticoïdes</strong> (risque phlegmon)</li>
+                            <li>Éviction scolaire <strong>48h obligatoire</strong> après début ATB</li>
+                            <li><strong>SBHA constamment sensible</strong> à l'amoxicilline</li>
+                            <li>Complications post-streptococciques <strong>exceptionnelles</strong> dans les pays industrialisés</li>
+                        </ul>
+                    </div>
+
+                    <div class="alert-box">
+                        <div class="alert-box-title">⚠️ Pièges classiques</div>
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li>Aspect érythémateux ≠ forcément bactérien (TDR tranche)</li>
+                            <li>MNI + amoxicilline = éruption morbilliforme (<strong>≠ allergie vraie</strong>)</li>
+                            <li>Diphtérie = <strong>URGENCE + DO</strong> (y penser si non vacciné + voyage Europe Est/PVD)</li>
+                            <li>Phlegmon = urgence médico-chirurgicale (TDM + drainage)</li>
+                            <li><strong>Torticolis fébrile enfant</strong> → toujours évoquer abcès rétropharyngé</li>
+                            <li>Angine traînante + AEG = évoquer <strong>cancer/hémopathie</strong> → biopsie</li>
+                            <li>Rhinorrhée purulente ≠ infection bactérienne</li>
+                            <li>ATB prévient RAA (même si tardive jusqu'à J9) mais <strong>pas de certitude pour GNA</strong></li>
+                            <li><strong>Relation inverse</strong> gravité articulaire/cardiaque dans RAA</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>📋 Documentation bactériologique par culture si échec du traitement antibiotique</strong>
+                    </div>
+                </div>
+            </details>
+
+            <!-- BONUS : RHINOPHARYNGITE -->
+            <details class="etape-accordion" style="border: 2px dashed #0891b2;">
+                <summary style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);">
+                    <span class="etape-num">+</span>
+                    Rhinopharyngite de l'enfant
+                    <span class="etape-question">— Bonus (inclus dans l'item)</span>
+                </summary>
+                <div class="etape-content">
+                    <div class="bloc">
+                        <div class="bloc-header">Clinique <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Rhinorrhée antérieure</strong> séro-muqueuse → purulente ou muco-purulente (jaune-vert si beaucoup de cellules de desquamation) — <strong>caractère purulent ≠ infection bactérienne</strong></li>
+                                <li><strong>Obstruction nasale</strong>, éternuements, toux</li>
+                                <li>Fièvre à début <strong>brutal</strong> ± vomissements, diarrhées (agitation matinale)</li>
+                                <li>Obstruction aiguë tube auditif (surdité de transmission légère)</li>
+                                <li>Oropharynx inflammatoire, tympans congestifs</li>
+                                <li>ADP bilatérales douloureuses</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="bloc">
+                            <div class="bloc-header">Facteurs favorisants <span class="badge badge-b">B</span></div>
+                            <div class="bloc-body">
+                                <ul>
+                                    <li>Hypertrophie des végétations adénoïdes</li>
+                                    <li>Facteurs climatiques : printemps, automne</li>
+                                    <li>Facteurs épidémiques : grippe...</li>
+                                    <li>Mode de vie : crèche, école, tabagisme passif</li>
+                                    <li>Fièvres éruptives enfant : rougeole, varicelle, scarlatine</li>
+                                    <li>Terrain : "fragilité muqueuse", allergique ou non</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="bloc">
+                            <div class="bloc-header">Facteurs de complications <span class="badge badge-b">B</span></div>
+                            <div class="bloc-body">
+                                <ul>
+                                    <li>Immunodépression : constitutionnelle, post-varicelle, VIH, CTC/IS</li>
+                                    <li>ATCD d'OMA récidivante</li>
+                                    <li>Vie en collectivité</li>
+                                    <li>Âge : <strong>6 mois à 4 ans</strong>, > 80 ans</li>
+                                    <li>Comorbidités : diabète, insuffisance cardiaque</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Évolution <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Favorable spontanément en 7-10 jours</strong></li>
+                                <li>Fièvre : 3-4 jours</li>
+                                <li>Rhinorrhée et toux : 7-10 jours ± plus longtemps</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Traitement <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Symptomatique uniquement</strong></li>
+                                <li>DRP au sérum physiologique</li>
+                                <li>Paracétamol si fièvre</li>
+                                <li><strong>Non recommandé</strong> : vasoconstricteurs (nasaux ou généraux) < 15 ans, AINS, corticoïdes, ATB</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Rhinopharyngites à répétition <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>Éducation du mouchage et de l'hygiène nasale</li>
+                                <li>Éviction du tabagisme passif</li>
+                                <li>Éviction temporaire de la crèche</li>
+                                <li>Correction d'un reflux gastro-œsophagien</li>
+                                <li>Ablation des végétations (adénoïdectomie)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Complications <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>OMA</strong> : précoce, enfant <strong>6 mois-2 ans</strong></li>
+                                <li><strong>Sinusite</strong> : ethmoïdite d'abord, puis sinusite maxillaire</li>
+                                <li><strong>Ganglionnaire</strong> : adénophlegmon cervical, abcès rétropharyngé, torticolis</li>
+                                <li><strong>Laryngées</strong> : laryngite aiguë sous-glottique, striduleuse</li>
+                                <li><strong>Digestives</strong> : diarrhées, vomissements, déshydratation (NN)</li>
+                                <li><strong>Autres</strong> : convulsions fébriles, hyperthermie maligne</li>
+                                <li><em>NB : les complications respiratoires basses ne sont PAS une complication (sauf < 6 mois qui ne sait pas respirer par la bouche)</em></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="alert-box">
+                        <div class="alert-box-title">⚠️ Signes devant faire reconsulter</div>
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li>Fièvre > 3 jours ou réapparition fièvre</li>
+                            <li>Persistance symptômes > 10 jours</li>
+                            <li><strong>Changement de comportement</strong> : anorexie, irritabilité, réveils nocturnes, somnolence</li>
+                            <li>Otalgie, otorrhée</li>
+                            <li>Conjonctivite purulente, œdème palpébral</li>
+                            <li>Troubles digestifs : anorexie, vomissements, diarrhée</li>
+                            <li>Gêne respiratoire</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ==================== ONGLET COLLÈGES CROISÉS ==================== -->
+        <div id="colleges" class="tab-content">
+            <div class="placeholder">
+                <div class="placeholder-icon">📀</div>
+                <h3 style="margin-bottom: 8px; color: var(--bleu-medibox);">Collèges croisés</h3>
+                <p>Cet item est également traité dans d'autres collèges (ORL, Médecine Générale).<br>Les informations complémentaires seront ajoutées ici.</p>
+            </div>
+        </div>
+
+        <!-- ==================== ONGLET RESSOURCES ==================== -->
+        <div id="ressources" class="tab-content">
+            <h3 style="margin-bottom: 18px; color: var(--bleu-medibox);">📎 Ressources complémentaires</h3>
+            
+            <a href="https://has-sante.fr/jcms/p_3283386/fr/choix-et-duree-de-l-antibiotherapie-rhinopharyngite-aigue-et-angine-aigue-de-l-enfant-fiche-memo" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="ressource-item" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
+                    <div class="ressource-icon">📋</div>
+                    <div class="ressource-content">
+                        <h4>HAS - Choix et durée de l'antibiothérapie</h4>
+                        <p>Rhinopharyngite aiguë et angine aiguë de l'enfant · Fiche mémo 2016, mise à jour 2021</p>
+                    </div>
+                </div>
+            </a>
+
+            <div class="has-box">
+                <div class="has-box-header">📋 Résumé HAS 2021 - Points essentiels</div>
+                <ul style="padding-left: 20px; line-height: 1.9;">
+                    <li>TDR systématique si score Mac Isaac ≥ 2</li>
+                    <li>Pas d'ATB si TDR négatif</li>
+                    <li>Amoxicilline 6 jours en 1ère intention</li>
+                    <li>Éviction scolaire 48h obligatoire</li>
+                    <li>Réévaluation à 72h si persistance des symptômes</li>
+                </ul>
+            </div>
+
+            <a href="https://www.sforl.org/wp-content/uploads/2021/11/Recommandation-SFORL-Amygdalectomie_2021.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="ressource-item" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
+                    <div class="ressource-icon externe">🔗</div>
+                    <div class="ressource-content">
+                        <h4>SFORL - Amygdalectomie de l'enfant</h4>
+                        <p>Recommandations pour la pratique clinique · 2020</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="http://www.hcsp.fr/explore.cgi/avisrapportsdomaine?clefr=306" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="ressource-item" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
+                    <div class="ressource-icon externe">🔗</div>
+                    <div class="ressource-content">
+                        <h4>HCSP - Guide des conduites à tenir</h4>
+                        <p>Maladies infectieuses dans une collectivité d'enfants ou d'adultes · 2012</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://antibioclic.com/questionnaire/17" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="ressource-item" style="cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">
+                    <div class="ressource-icon externe">🔗</div>
+                    <div class="ressource-content">
+                        <h4>Antibioclic - Angine</h4>
+                        <p>Outil d'aide à la prescription antibiotique</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- ==================== ONGLET ANNALES ==================== -->
+        <div id="annales" class="tab-content">
+            <div class="placeholder">
+                <div class="placeholder-icon">📝</div>
+                <h3 style="margin-bottom: 8px; color: var(--bleu-medibox);">Annales</h3>
+                <p>Item tombé <strong>7 fois depuis 2016</strong>.<br>Les QCM seront ajoutés ici.</p>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <strong>Fiche EDN - Item 149</strong><br>
+            Création : E. Schaeffer · Droits réservés
+        </div>
+
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var tabcontent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            var tabs = document.getElementsByClassName("tab");
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function toggleAllAccordions(open) {
+            // Sélectionne tous les accordéons principaux (étapes)
+            var accordions = document.querySelectorAll('#fiche .etape-accordion');
+            accordions.forEach(function(accordion) {
+                if (open) {
+                    accordion.setAttribute('open', '');
+                } else {
+                    accordion.removeAttribute('open');
+                }
+            });
+            
+            // Gère aussi l'accordéon bonus (rhinopharyngite)
+            var bonusAccordion = document.querySelector('#fiche details[style*="dashed"]');
+            if (bonusAccordion) {
+                if (open) {
+                    bonusAccordion.setAttribute('open', '');
+                } else {
+                    bonusAccordion.removeAttribute('open');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
