@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>53-retard croissance-PED-V4</title>
+    <style>
+        /* ========================================
+           PALETTE MEDIBOX + ROUE CHROMATIQUE
+           ======================================== */
+        :root {
+            --bleu-medibox: #1a365d;
+            --corail-medibox: #ff6b7a;
+            
+            /* 11 couleurs roue chromatique */
+            --etape-1: #1a365d;  /* Bleu Medibox */
+            --etape-2: #0891b2;  /* Cyan */
+            --etape-3: #4f46e5;  /* Indigo */
+            --etape-4: #8b5cf6;  /* Violet */
+            --etape-5: #d946ef;  /* Fuchsia */
+            --etape-6: #ec4899;  /* Rose */
+            --etape-7: #f97316;  /* Orange */
+            --etape-8: #eab308;  /* Jaune */
+            --etape-9: #65a30d;  /* Vert lime */
+            --etape-10: #14b8a6; /* Turquoise */
+            --etape-11: #ff6b7a; /* Corail Medibox */
+            
+            /* Couleurs de rang */
+            --rang-a: #10b981;
+            --rang-a-bg: #d1fae5;
+            --rang-b: #f59e0b;
+            --rang-b-bg: #fef3c7;
+            --rang-c: #6b7280;
+            --rang-c-bg: #f3f4f6;
+            
+            /* Neutres */
+            --fond-page: #f8fafc;
+            --fond-carte: #ffffff;
+            --bordure: #e2e8f0;
+            --texte: #1e293b;
+            --texte-light: #64748b;
+            
+            /* Spéciaux */
+            --urgence: #dc2626;
+            --urgence-bg: #fef2f2;
+            --has: #7c3aed;
+            --has-bg: #f5f3ff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--texte);
+            background: var(--fond-page);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--fond-carte);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        /* ========================================
+           HEADER
+           ======================================== */
+        .header {
+            background: linear-gradient(135deg, var(--bleu-medibox) 0%, #2d3748 100%);
+            color: white;
+            padding: 30px 35px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .header h1 { font-size: 1.8rem; font-weight: 700; }
+
+        .header-tags {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .header-item-num {
+            background: var(--corail-medibox);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .header-college {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .header-subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .header-objectifs {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        /* ========================================
+           ONGLETS PRINCIPAUX
+           ======================================== */
+        .tabs {
+            display: flex;
+            align-items: center;
+            background: rgba(26, 54, 93, 0.8);
+            border-bottom: 3px solid var(--corail-medibox);
+        }
+
+        .tab {
+            padding: 14px 28px;
+            color: rgba(255,255,255,0.7);
+            cursor: pointer;
+            font-weight: 500;
+            border: none;
+            background: none;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .tab:hover {
+            color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .tab.active {
+            color: white;
+            background: var(--corail-medibox);
+        }
+
+        .tabs-spacer {
+            flex: 1;
+        }
+
+        .tag-maj {
+            background: rgba(59, 130, 246, 0.3);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 20px;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 25px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ========================================
+           ACCORDÉONS ÉTAPES (11 couleurs)
+           ======================================== */
+        .etape-accordion {
+            margin-bottom: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid var(--bordure);
+        }
+
+        .etape-accordion summary {
+            padding: 16px 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .etape-accordion summary::-webkit-details-marker { display: none; }
+
+        .etape-accordion summary::after {
+            content: "▼";
+            font-size: 0.7rem;
+            margin-left: auto;
+            transition: transform 0.3s;
+        }
+
+        .etape-accordion[open] summary::after { transform: rotate(180deg); }
+
+        .etape-num {
+            width: 28px;
+            height: 28px;
+            background: rgba(255,255,255,0.25);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .etape-question {
+            font-weight: 400;
+            opacity: 0.9;
+            font-size: 0.9rem;
+            margin-left: 5px;
+        }
+
+        .etape-tag {
+            background: rgba(255,255,255,0.3);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .etape-content {
+            padding: 20px;
+            background: var(--fond-page);
+        }
+
+        /* Couleurs des étapes */
+        .etape-1 summary { background: var(--etape-1); }
+        .etape-2 summary { background: var(--etape-2); }
+        .etape-3 summary { background: var(--etape-3); }
+        .etape-4 summary { background: var(--etape-4); }
+        .etape-5 summary { background: var(--etape-5); }
+        .etape-6 summary { background: var(--etape-6); }
+        .etape-7 summary { background: var(--etape-7); }
+        .etape-8 summary { background: var(--etape-8); }
+        .etape-9 summary { background: var(--etape-9); }
+        .etape-10 summary { background: var(--etape-10); }
+        .etape-11 summary { background: var(--etape-11); }
+
+        /* ========================================
+           SOUS-ACCORDÉONS
+           ======================================== */
+        .sub-accordion {
+            margin: 10px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--bordure);
+            background: white;
+        }
+
+        .sub-accordion summary {
+            padding: 14px 18px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            color: var(--bleu-medibox);
+            border-left: 4px solid var(--etape-4);
+        }
+
+        .sub-accordion summary::-webkit-details-marker { display: none; }
+
+        .sub-accordion summary::before {
+            content: "▶";
+            font-size: 0.6rem;
+            transition: transform 0.2s;
+        }
+
+        .sub-accordion[open] summary::before { transform: rotate(90deg); }
+
+        .sub-accordion[open] summary {
+            background: var(--etape-4);
+            color: white;
+        }
+
+        .sub-content {
+            padding: 15px;
+            background: white;
+        }
+
+        /* ========================================
+           BADGES DE RANG
+           ======================================== */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 6px;
+        }
+
+        .badge-a { background: var(--rang-a); color: white; }
+        .badge-b { background: var(--rang-b); color: white; }
+        .badge-c { background: var(--rang-c); color: white; }
+
+        /* ========================================
+           BLOCS DE CONTENU
+           ======================================== */
+        .bloc {
+            background: white;
+            border: 1px solid var(--bordure);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .bloc-header {
+            padding: 10px 14px;
+            background: rgba(26, 54, 93, 0.12);
+            border-bottom: 1px solid var(--bordure);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        /* Headers colorés selon l'étape parente */
+        .etape-1 .bloc-header { background: rgba(26, 54, 93, 0.15); }
+        .etape-2 .bloc-header { background: rgba(8, 145, 178, 0.15); }
+        .etape-3 .bloc-header { background: rgba(79, 70, 229, 0.15); }
+        .etape-4 .bloc-header { background: rgba(139, 92, 246, 0.15); }
+        .etape-5 .bloc-header { background: rgba(217, 70, 239, 0.15); }
+        .etape-6 .bloc-header { background: rgba(236, 72, 153, 0.15); }
+        .etape-7 .bloc-header { background: rgba(249, 115, 22, 0.15); }
+        .etape-8 .bloc-header { background: rgba(234, 179, 8, 0.15); }
+        .etape-9 .bloc-header { background: rgba(101, 163, 13, 0.15); }
+        .etape-10 .bloc-header { background: rgba(20, 184, 166, 0.15); }
+        .etape-11 .bloc-header { background: rgba(255, 107, 122, 0.15); }
+
+        .bloc-body {
+            padding: 14px;
+        }
+
+        .bloc-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .bloc-body li {
+            padding: 5px 0;
+            padding-left: 16px;
+            position: relative;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .bloc-body li:last-child { border-bottom: none; }
+
+        .bloc-body li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--corail-medibox);
+        }
+
+        /* Grille 2 colonnes */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        /* ========================================
+           ENCADRÉS SPÉCIAUX
+           ======================================== */
+        .alert-box {
+            background: var(--urgence-bg);
+            border-left: 4px solid var(--urgence);
+            border-radius: 0 8px 8px 0;
+            padding: 14px 16px;
+            margin: 15px 0;
+        }
+
+        .alert-box-title {
+            color: var(--urgence);
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            border-radius: 0 8px 8px 0;
+            padding: 14px 16px;
+            margin: 15px 0;
+        }
+
+        /* Encadrés colorés par rang - fond blanc, liseré coloré uniquement */
+        .rang-a-box {
+            background: white;
+            border-left: 4px solid var(--rang-a);
+            border-radius: 0 8px 8px 0;
+            padding: 14px 16px;
+            margin: 10px 0;
+            border: 1px solid var(--bordure);
+            border-left: 4px solid var(--rang-a);
+        }
+
+        .rang-a-box-title {
+            color: #065f46;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rang-b-box {
+            background: white;
+            border-left: 4px solid var(--rang-b);
+            border-radius: 0 8px 8px 0;
+            padding: 14px 16px;
+            margin: 10px 0;
+            border: 1px solid var(--bordure);
+            border-left: 4px solid var(--rang-b);
+        }
+
+        .rang-b-box-title {
+            color: #92400e;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ========================================
+           MNÉMOTECHNIQUE
+           ======================================== */
+        .mnemonic-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-radius: 10px;
+            padding: 18px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .mnemonic-title {
+            color: var(--bleu-medibox);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .mnemonic-letters {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .mnemonic-item {
+            background: white;
+            border-radius: 8px;
+            padding: 8px 12px;
+            min-width: 70px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .mnemonic-letter {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--corail-medibox);
+        }
+
+        .mnemonic-word {
+            font-size: 0.7rem;
+            color: var(--texte-light);
+        }
+
+        /* ========================================
+           TABLEAUX
+           ======================================== */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th {
+            background: var(--bleu-medibox);
+            color: white;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--bordure);
+            vertical-align: top;
+            background: white;
+        }
+
+        /* Tableau simple 2 colonnes */
+        .simple-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin: 10px 0;
+        }
+
+        .simple-table td {
+            padding: 8px 12px;
+            border: 1px solid var(--bordure);
+            background: white;
+        }
+
+        .simple-table td:first-child {
+            font-weight: 600;
+            width: 35%;
+        }
+
+        /* Tableau récap */
+        .recap-table {
+            margin-top: 20px;
+            border: 2px solid var(--corail-medibox);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .recap-table th { background: var(--corail-medibox); }
+        .recap-table td:first-child { font-weight: 600; background: #fff5f5; }
+
+        /* ========================================
+           FORMULE
+           ======================================== */
+        .formula-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid var(--rang-a);
+            border-radius: 10px;
+            padding: 18px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .formula-title {
+            color: #166534;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .formula {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--bleu-medibox);
+            background: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        /* ========================================
+           BOUTONS TOGGLE ALL
+           ======================================== */
+        .toggle-all-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: flex-end;
+        }
+
+        .toggle-btn {
+            background: var(--fond-page);
+            border: 2px solid var(--bordure);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--bleu-medibox);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .toggle-btn:hover {
+            background: var(--bleu-medibox);
+            color: white;
+            border-color: var(--bleu-medibox);
+        }
+
+        .toggle-btn span {
+            font-size: 0.7rem;
+        }
+
+        /* Boutons locaux dans les étapes */
+        .toggle-sub-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            justify-content: flex-start;
+        }
+
+        .toggle-btn-small {
+            background: white;
+            border: 1px solid var(--bordure);
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--etape-4);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .toggle-btn-small:hover {
+            background: var(--etape-4);
+            color: white;
+            border-color: var(--etape-4);
+        }
+
+        .toggle-btn-small span {
+            font-size: 0.6rem;
+        }
+
+        /* ========================================
+           RESSOURCES & PLACEHOLDERS
+           ======================================== */
+        .ressource-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px;
+            background: var(--fond-page);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--bordure);
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .ressource-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: var(--bleu-medibox);
+        }
+
+        .ressource-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--has);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .ressource-icon.externe { background: var(--bleu-medibox); }
+
+        .ressource-content h4 {
+            margin: 0 0 3px 0;
+            color: var(--bleu-medibox);
+            font-size: 0.95rem;
+        }
+
+        .ressource-content p {
+            margin: 0;
+            color: var(--texte-light);
+            font-size: 0.85rem;
+        }
+
+        .placeholder {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--texte-light);
+        }
+
+        .placeholder-icon {
+            font-size: 3.5rem;
+            margin-bottom: 12px;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            background: var(--fond-page);
+            padding: 18px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--texte-light);
+            border-top: 1px solid var(--bordure);
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header { padding: 20px; }
+            .header h1 { font-size: 1.4rem; }
+            .tab { flex: 1; text-align: center; padding: 12px 10px; font-size: 0.85rem; }
+            .tab-content { padding: 15px; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .mnemonic-letters { flex-direction: column; align-items: center; }
+            .etape-accordion summary { font-size: 0.9rem; padding: 14px 16px; }
+            .etape-question { display: none; }
+            .toggle-all-buttons { justify-content: center; }
+            .toggle-btn { padding: 6px 12px; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-top">
+                <h1>Retard de croissance staturo-pondérale</h1>
+                <div class="header-tags">
+                    <span class="header-item-num">Item 53</span>
+                    <span class="header-college">Collège Pédiatrie</span>
+                </div>
+            </div>
+            <div class="header-subtitle">+ Item 243 : Hypothyroïdie</div>
+            <div class="header-objectifs">
+                <strong>Objectifs :</strong> Évoquer un retard de croissance staturo-pondérale · Diagnostiquer une hypothyroïdie chez le nouveau-né, l'enfant et l'adulte · Connaître les principes de prise en charge thérapeutique
+            </div>
+        </div>
+
+        <!-- ONGLETS -->
+        <div class="tabs">
+            <button class="tab active" onclick="openTab(event, 'fiche')">📚 Fiche</button>
+            <button class="tab" onclick="openTab(event, 'colleges')">🔀 Collèges croisés</button>
+            <button class="tab" onclick="openTab(event, 'ressources')">📎 Ressources</button>
+            <button class="tab" onclick="openTab(event, 'annales')">📝 Annales</button>
+            <div class="tabs-spacer"></div>
+            <span class="tag-maj">MAJ : 01/12/2025</span>
+        </div>
+
+        <!-- ==================== ONGLET FICHE ==================== -->
+        <div id="fiche" class="tab-content active">
+
+            <!-- Boutons ouvrir/fermer tous -->
+            <div class="toggle-all-buttons">
+                <button class="toggle-btn" onclick="toggleAllAccordions(true)">
+                    <span>▼</span> Tout déplier
+                </button>
+                <button class="toggle-btn" onclick="toggleAllAccordions(false)">
+                    <span>▲</span> Tout replier
+                </button>
+            </div>
+
+            <!-- ÉTAPE 1 : DÉFINITION -->
+            <details class="etape-accordion etape-1">
+                <summary>
+                    <span class="etape-num">1</span>
+                    Définition & Généralités
+                    <span class="etape-question">- Qu'est-ce que c'est ?</span>
+                </summary>
+                <div class="etape-content">
+                    
+                    <div class="info-box">
+                        <strong>💡 Principe fondamental :</strong> La croissance est le reflet de la santé de l'enfant. Le retard de croissance doit être considéré comme un <strong>signe d'appel justifiant toujours une évaluation</strong>.
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Définition d'une anomalie de croissance staturale <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>Taille <strong>&lt; -2 DS</strong> selon les courbes de la population générale</li>
+                                <li>Et/ou taille <strong>&lt; -1,5 DS</strong> par rapport à la taille cible génétique</li>
+                                <li>Et/ou <strong>ralentissement (ou cassure)</strong> de la vitesse de croissance (&lt; 4 cm/an après 4 ans)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="formula-box">
+                            <div class="formula-title">📐 Taille cible génétique</div>
+                            <div class="formula">(Taille père + Taille mère) / 2 ± 6,5 cm</div>
+                            <p style="margin-top: 10px; font-size: 0.85rem; color: #166534;">+ 6,5 cm chez le garçon · - 6,5 cm chez la fille</p>
+                        </div>
+                        <div class="formula-box">
+                            <div class="formula-title">📐 IMC</div>
+                            <div class="formula">Poids (kg) / Taille (m)²</div>
+                            <p style="margin-top: 10px; font-size: 0.85rem; color: #166534;">Permet d'analyser le rapport poids/taille</p>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Courbes normales de croissance <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>95% de la population : entre <strong>-2 DS et +2 DS</strong> (ou 3ème et 97ème percentile)</li>
+                                <li>95% des enfants sont à <strong>± 1,5 DS de leur taille cible</strong></li>
+                                <li>Taille &lt; -1,5 DS de la taille cible = <strong>pathologique</strong></li>
+                                <li>Courbes de référence : courbes françaises actualisées 2018 (carnet de santé) ≈ courbes OMS</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 2 : ÉPIDÉMIOLOGIE (légère) -->
+            <details class="etape-accordion etape-2">
+                <summary>
+                    <span class="etape-num">2</span>
+                    Épidémiologie
+                    <span class="etape-question">- Qui est concerné ?</span>
+                </summary>
+                <div class="etape-content">
+                    <div class="bloc">
+                        <div class="bloc-header">Données générales <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>Motif fréquent de consultation en pédiatrie</li>
+                                <li>De nombreuses pathologies peuvent se manifester par un retard de croissance initialement isolé</li>
+                                <li><strong>Petite taille constitutionnelle (idiopathique) = 85% des cas</strong> explorés (diagnostic d'élimination)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 3 : PHYSIOPATHOLOGIE (Croissance normale) -->
+            <details class="etape-accordion etape-3">
+                <summary>
+                    <span class="etape-num">3</span>
+                    Physiologie de la croissance
+                    <span class="etape-question">- Comment ça fonctionne ?</span>
+                </summary>
+                <div class="etape-content">
+
+                    <div class="bloc">
+                        <div class="bloc-header">Repères de croissance à mémoriser <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Âge</th>
+                                            <th>Taille (cm)</th>
+                                            <th>Poids (kg)</th>
+                                            <th>PC (cm)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Naissance</strong></td>
+                                            <td>TN = 50</td>
+                                            <td>PN = 3,5</td>
+                                            <td>PCN = 35</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>4 mois</strong></td>
+                                            <td>60</td>
+                                            <td>7 (= PN × 2)</td>
+                                            <td>40</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>9 mois</strong></td>
+                                            <td>70</td>
+                                            <td>9</td>
+                                            <td>45 (= T/2 + 10)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>1 an</strong></td>
+                                            <td>75</td>
+                                            <td>10 (= PN × 3)</td>
+                                            <td>47</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>4 ans</strong></td>
+                                            <td>100 (= TN × 2)</td>
+                                            <td>16</td>
+                                            <td>50</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mnemonic-box">
+                        <div class="mnemonic-title">🧠 Mnémotechnique : Poids</div>
+                        <div class="mnemonic-letters">
+                            <div class="mnemonic-item">
+                                <div class="mnemonic-letter">×2</div>
+                                <div class="mnemonic-word">à 4 mois</div>
+                            </div>
+                            <div class="mnemonic-item">
+                                <div class="mnemonic-letter">×3</div>
+                                <div class="mnemonic-word">à 1 an</div>
+                            </div>
+                        </div>
+                        <p style="margin-top: 12px; font-size: 0.85rem;">Taille de naissance <strong>×2 à 4 ans</strong> (≈ 1 mètre)</p>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Les 4 phases de la croissance staturale <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>1. Croissance fœtale</strong> : la plus rapide (50 cm en 9 mois)</li>
+                                <li><strong>2. Naissance → 4 ans</strong> : phase de croissance élevée qui décroît progressivement (25 cm la 1ère année, puis 10 cm/an) → mise sur le <strong>couloir de croissance génétique</strong></li>
+                                <li><strong>3. 4 ans → début puberté</strong> : phase de croissance linéaire (5-6 cm/an) — <strong>pathologique si &lt; 4 cm/an après 4 ans</strong></li>
+                                <li><strong>4. Puberté</strong> : accélération (8-10 cm/an), pic de croissance pubertaire : <strong>20-25 cm fille, 25-30 cm garçon</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Taille adulte moyenne <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Femme : 165 cm</strong></li>
+                                <li><strong>Homme : 177 cm</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Facteurs contrôlant la croissance <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Nutritionnels et énergétiques</strong></li>
+                                <li><strong>Psycho-affectifs</strong></li>
+                                <li><strong>Hormonaux</strong> : hormone de croissance (GH), IGF-1, hormones thyroïdiennes, hormones sexuelles</li>
+                                <li><strong>Osseux</strong></li>
+                                <li><strong>Génétiques</strong> : taille cible calculée à partir des tailles des parents</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 4 : ÉTIOLOGIES -->
+            <details class="etape-accordion etape-4">
+                <summary>
+                    <span class="etape-num">4</span>
+                    Étiologies / Causes à rechercher
+                    <span class="etape-question">- Qu'est-ce qui le provoque ?</span>
+                    <span class="etape-tag">8 causes</span>
+                </summary>
+                <div class="etape-content">
+
+                    <div class="info-box" style="background: #f0f9ff; border-color: #0ea5e9;">
+                        <div style="color: #0369a1; font-weight: 600; margin-bottom: 8px;">🔑 Clé de raisonnement : Analyser le rapport poids/taille</div>
+                        <div class="table-wrapper">
+                            <table class="simple-table">
+                                <tr>
+                                    <td><strong>Retard pondéral isolé ou précédant le retard statural</strong></td>
+                                    <td>Déséquilibre de la balance énergétique → Origine <strong>carentielle ou digestive</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Retard statural prédominant + poids normal ou excessif/taille</strong></td>
+                                    <td>Origine <strong>hormonale, osseuse ou génétique</strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Boutons locaux déplier/replier pour les sous-accordéons -->
+                    <div class="toggle-sub-buttons">
+                        <button class="toggle-btn-small" onclick="toggleSubAccordions(this, true)">
+                            <span>▼</span> Déplier les causes
+                        </button>
+                        <button class="toggle-btn-small" onclick="toggleSubAccordions(this, false)">
+                            <span>▲</span> Replier les causes
+                        </button>
+                    </div>
+
+                    <!-- SOUS-ACCORDÉON 1 : Hypothyroïdie -->
+                    <details class="sub-accordion">
+                        <summary>Hypothyroïdie <span class="badge badge-a">A</span><span class="badge badge-b">B</span></summary>
+                        <div class="sub-content">
+                            
+                            <div class="rang-a-box">
+                                <div class="rang-a-box-title"><span class="badge badge-a">A</span> Hypothyroïdie congénitale</div>
+                                <table class="simple-table">
+                                    <tr>
+                                        <td>Dépistage</td>
+                                        <td>Dépistage néonatal systématique <strong>J3</strong> (test de Guthrie)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Naissance</td>
+                                        <td>Taille et poids <strong>normaux</strong> pour l'âge gestationnel</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sans traitement</td>
+                                        <td>Retard statural + retard acquisitions psychomotrices <strong>1ère année de vie</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Avec traitement</td>
+                                        <td>Évolution favorable sous traitement substitutif précoce</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="rang-b-box">
+                                <div class="rang-b-box-title"><span class="badge badge-b">B</span> Hypothyroïdie acquise</div>
+                                <table class="simple-table">
+                                    <tr>
+                                        <td>Épidémio</td>
+                                        <td>Âges variables, pic <strong>adolescence, filles ++</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Étiologie</td>
+                                        <td><strong>Thyroïdite de Hashimoto +++</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Croissance</td>
+                                        <td>Ralentissement vitesse de croissance ± arrêt complet</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Spécificités pédiatriques</td>
+                                        <td><strong>Difficultés scolaires, goître</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Signes adulte (discrets)</td>
+                                        <td>Asthénie physique et psychique, frilosité, constipation</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Biologie</td>
+                                        <td>TSH ↑, T4L ↓, <strong>TPO +</strong>, tissu hétérogène à l'écho</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- SOUS-ACCORDÉON 2 : Petite taille constitutionnelle -->
+                    <details class="sub-accordion">
+                        <summary>Petite taille constitutionnelle <span class="badge badge-b">B</span> — LA + FRÉQUENTE (85%)</summary>
+                        <div class="sub-content">
+                            <div class="rang-b-box">
+                                <table class="simple-table">
+                                    <tr>
+                                        <td>Fréquence</td>
+                                        <td><strong>85% des cas</strong> explorés</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Définition</td>
+                                        <td>Diagnostic d'<strong>élimination</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Clinique</td>
+                                        <td>Tailles parentales <strong>petites</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Courbe</td>
+                                        <td>Vitesse de croissance <strong>régulière</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Âge osseux</td>
+                                        <td>= âge chronologique</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- SOUS-ACCORDÉON 3 : Retard simple puberté -->
+                    <details class="sub-accordion">
+                        <summary>Retard simple de croissance et de puberté <span class="badge badge-b">B</span></summary>
+                        <div class="sub-content">
+                            <div class="rang-b-box">
+                                <table class="simple-table">
+                                    <tr>
+                                        <td>Épidémio</td>
+                                        <td><strong>Cause la + fréquente</strong> de retard statural à l'adolescence <strong>chez les GARÇONS</strong> · Rare chez les filles</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Clinique</td>
+                                        <td>Ralentissement progressif de la croissance · Aggravation période pubertaire (absence du pic)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ATCD</td>
+                                        <td>ATCD familiaux de retard simple de puberté ++</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Âge osseux</td>
+                                        <td><strong>Très retardé</strong> et &lt; âge début normal puberté (11 ans F, 13 ans G)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CAT</td>
+                                        <td>Pas d'examens si : ATCD familiaux + perte &lt; 1DS + taille &gt; -2DS + âge osseux retardé + examen normal → <strong>surveillance simple</strong></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <p style="margin-top: 10px; font-style: italic; color: var(--texte-light);">= Diagnostic d'élimination</p>
+                        </div>
+                    </details>
+
+                    <!-- SOUS-ACCORDÉON 4 : Turner -->
+                    <details class="sub-accordion">
+                        <summary>Syndrome de Turner <span class="badge badge-b">B</span></summary>
+                        <div class="sub-content">
+                            <div class="rang-b-box">
+                                <table class="simple-table">
+                                    <tr>
+                                        <td>Épidémio</td>
+                                        <td>Affection génétique <strong>rare : 1/2500 filles</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Génétique</td>
+                                        <td>Absence totale ou partielle chromosome X = monosomie X (45,X) ou mosaïque</td>
+                                    </tr>
+                                </table>
+
+                                <p style="margin: 12px 0 8px 0; font-weight: 600;">Clinique :</p>
+                                <table class="simple-table">
+                                    <tr>
+                                        <td>Croissance</td>
+                                        <td>RCIU (50%), <strong>Retard statural prédominant</strong> (taille adulte sans TTT = 142 cm)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gonades</td>
+                                        <td><strong>Insuffisance ovarienne</strong> = pas de dvpt pubertaire + infertilité</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cardio</td>
+                                        <td>Coarctation aorte, bicuspidie aortique</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Uro</td>
+                                        <td>Rein en fer à cheval</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ORL</td>
+                                        <td>Infections à répétition</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Neuro</td>
+                                        <td><strong>PAS de déficience intellectuelle</strong></td>
+                                    </tr>
+                                </table>
+
+                                <p style="margin: 12px 0 8px 0; font-weight: 600;">Signes morphologiques :</p>
+                                <ul style="padding-left: 20px; margin: 0;">
+                                    <li>Hypertélorisme, orientation bas-dehors fentes palpébrales</li>
+                                    <li>Cou court et large, implantation basse cheveux</li>
+                                    <li>Écartement mamelonnaire, cubitus valgus</li>
+                                </ul>
+                            </div>
+
+                            <div class="alert-box">
+                                <div class="alert-box-title">⚠️ ALERTE</div>
+                                <p>Formes paucisymptomatiques (mosaïques) → Caryotype <strong>SYSTÉMATIQUE</strong> chez <strong>toute fille petite taille</strong>, même sans signe clinique</p>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- SOUS-ACCORDÉON 5 : Déficit GH -->
+                    <details class="sub-accordion">
+                        <summary>Déficit en hormone de croissance (GHD) <span class="badge badge-b">B</span></summary>
+                        <div class="sub-content">
+                            
+                            <div class="info-box">
+                                <strong>En dehors de la période néonatale, le retard statural est la principale manifestation du GHD</strong>
+                            </div>
+
+                            <div class="rang-b-box">
+                                <div class="rang-b-box-title">Causes congénitales</div>
+                                <table class="simple-table">
+                                    <tr>
+                                        <td>Naissance</td>
+                                        <td>Mensurations <strong>normales</strong> → retard de croissance dans les <strong>1ères années</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Évocateur</td>
+                                        <td><strong>Hypoglycémies prolongées &gt; 1ère semaine de vie</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Clinique</td>
+                                        <td>Signes d'autres déficits hypophysaires : ictère, <strong>verge petite ± cryptorchidie</strong>, anomalies ligne médiane (colobome, sténose sinus piriformes, anomalies palais/luette)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Imagerie</td>
+                                        <td>IRM : malformation hypothalamo-hypophysaire</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="rang-b-box">
+                                <div class="rang-b-box-title">Causes acquises</div>
+                                <table class="simple-table">
+                                    <tr>
+                                        <td>Étiologies</td>
+                                        <td>TC sévère, infections neuroméningées, <strong>iatrogène (radiothérapie cérébrale)</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>TOUJOURS ÉVOQUER</strong></td>
+                                        <td><strong>Tumeur hypothalamo-hypophysaire (CRANIOPHARYNGIOME)</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Clinique</td>
+                                        <td>Signes <strong>HTIC</strong> (céphalées, vomissements matinaux), signes neurologiques/visuels</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ophtalmo</td>
+                                        <td><strong>FO + Champ visuel</strong> : œdème papillaire, hémianopsie bitemporale</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Imagerie</td>
+                                        <td><strong>IRM hypothalamo-hypophysaire EN URGENCE</strong> (sans attendre bilan hormonal)</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="rang-b-box">
+                                <div class="rang-b-box-title">Biologie</div>
+                                <table class="simple-table">
+                                    <tr>
+                                        <td>IGF-1</td>
+                                        <td>Bas</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Test GH</td>
+                                        <td>Test de <strong>stimulation</strong> de la GH (le dosage ponctuel n'a aucun intérêt car sécrétion pulsatile)</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- SOUS-ACCORDÉON 6 : Hypercorticisme -->
+                    <details class="sub-accordion">
+                        <summary>Hypercorticisme <span class="badge badge-b">B</span></summary>
+                        <div class="sub-content">
+                            <div class="rang-b-box">
+                                <table class="simple-table">
+                                    <tr>
+                                        <td>Étiologies</td>
+                                        <td><strong>Iatrogène +++</strong> : corticothérapie orale prolongée<br>Endogène : Maladie de Cushing (adénome hypophysaire sécrétant ACTH) ou Sd de Cushing (production autonome cortisol par surrénales)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Courbe évocatrice</td>
+                                        <td>Ralentissement vitesse croissance staturale <strong>+ prise de poids excessive</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Diagnostic</td>
+                                        <td>Dosage <strong>cortisol libre urinaire 24h</strong> ↑</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Confirmation</td>
+                                        <td>Perte du cycle nycthéméral du cortisol + absence de freinage au test à la dexaméthasone</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- SOUS-ACCORDÉON 7 : PAG/RCIU -->
+                    <details class="sub-accordion">
+                        <summary>PAG / RCIU <span class="badge badge-b">B</span></summary>
+                        <div class="sub-content">
+                            <div class="rang-b-box">
+                                <table class="simple-table">
+                                    <tr>
+                                        <td>RCIU</td>
+                                        <td>Terme si dépistage anténatal à l'échographie</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PAG</td>
+                                        <td>Petit pour l'Âge Gestationnel (Small for Gestational Age)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>PAG</td>
+                                        <td>Poids &lt; <strong>10ème percentile</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PAG sévère</td>
+                                        <td>Poids &lt; <strong>3ème percentile</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Évolution</td>
+                                        <td>Taille se normalise dans <strong>90% des cas</strong> dans les 2 premières années</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Si absence rattrapage</td>
+                                        <td>Rechercher étiologie (génétique, osseuse)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Risques adulte</td>
+                                        <td>Puberté précoce, syndrome métabolique (<strong>PAS d'obésité</strong>)</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- SOUS-ACCORDÉON 8 : Maladies osseuses -->
+                    <details class="sub-accordion">
+                        <summary>Maladies osseuses constitutionnelles <span class="badge badge-b">B</span></summary>
+                        <div class="sub-content">
+                            <div class="rang-b-box">
+                                <table class="simple-table">
+                                    <tr>
+                                        <td>Clinique</td>
+                                        <td>Retard de taille <strong>DYSHARMONIEUX</strong> (prédominant sur membres ou tronc)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Critères</td>
+                                        <td>Envergure ≈ taille · Taille assise ≈ ½ taille debout</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ATCD</td>
+                                        <td>Origine familiale possible</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Diagnostic</td>
+                                        <td><strong>Radiographies du squelette</strong> + analyses génétiques ciblées</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- SOUS-ACCORDÉON 9 : Tableau insuffisance pondérale -->
+                    <details class="sub-accordion">
+                        <summary>📋 Tableau récap — Insuffisance pondérale <span class="badge badge-b">B</span></summary>
+                        <div class="sub-content">
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Mécanisme</th>
+                                            <th>Causes</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Carence d'apports</strong></td>
+                                            <td>Négligence, régimes carencés (végétalisme), anorexie, vomissements, troubles oralité</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Malabsorption</strong></td>
+                                            <td>Maladie cœliaque, APLV, MICI</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>↑ Dépense énergétique</strong></td>
+                                            <td>Respi (SAHOS, IR), Cardio (cardiopathie), Immuno (infections répétées), Inflammatoire, Maladies métaboliques, <strong>Hyperthyroïdie</strong> (+ avance staturale)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Pertes excessives</strong></td>
+                                            <td>Digestives (diarrhées, stomies), Urinaires (diabète, néphropathie), Cutanées (brûlé, eczéma)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- SOUS-ACCORDÉON 10 : Tableau retard statural -->
+                    <details class="sub-accordion">
+                        <summary>📋 Tableau récap — Retard statural <span class="badge badge-b">B</span></summary>
+                        <div class="sub-content">
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Mécanisme</th>
+                                            <th>Causes</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Carence énergétique</strong></td>
+                                            <td>Souvent secondaire à insuffisance pondérale (maladie cœliaque peut donner taille isolée)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Carence de soins</strong></td>
+                                            <td>Nanisme psychosocial (diagnostic a posteriori après éloignement)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Causes hormonales</strong></td>
+                                            <td>Déficit en GH, Hypothyroïdie, Hypercorticisme, Retard pubertaire</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Causes osseuses</strong></td>
+                                            <td>Maladies osseuses constitutionnelles, Rachitisme</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Causes génétiques</strong></td>
+                                            <td>Turner (fille), Noonan (garçons et filles), Autres anomalies chromosomiques</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>RCIU</strong></td>
+                                            <td>Sans rattrapage postnatal</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Idiopathique</strong></td>
+                                            <td>Petite taille constitutionnelle (<strong>85%</strong>)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- ENCADRÉ ALERTE FINAL -->
+                    <div class="alert-box">
+                        <div class="alert-box-title">🚨 RETARD STATURAL + PRISE DE POIDS = 3 CAUSES À ÉVOQUER</div>
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li><strong>Hypercorticisme</strong></li>
+                            <li><strong>Hypothyroïdie</strong></li>
+                            <li><strong>Craniopharyngiome</strong> (tumeur hypothalamo-hypophysaire)</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ÉTAPE 5 : DIAGNOSTIC CLINIQUE -->
+            <details class="etape-accordion etape-5">
+                <summary>
+                    <span class="etape-num">5</span>
+                    Diagnostic clinique
+                    <span class="etape-question">- Comment le reconnaître ?</span>
+                </summary>
+                <div class="etape-content">
+
+                    <div class="bloc">
+                        <div class="bloc-header">Suivi pédiatrique <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>Mesurer <strong>poids et taille</strong> : tous les <strong>3 mois jusqu'à 2 ans</strong>, puis tous les <strong>6 mois</strong> jusqu'à la fin de la croissance</li>
+                                <li>Mesure du <strong>PC</strong> : jusqu'à l'âge de <strong>3 ans</strong></li>
+                                <li>À noter dans le <strong>carnet de santé</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Analyse systématique des courbes : 5 informations <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Mensurations à la naissance</strong> (à interpréter selon l'âge gestationnel)</li>
+                                <li><strong>Aspect de la courbe de croissance</strong> : régulière ou ralentie (cassure)</li>
+                                <li><strong>Taille / population générale</strong> (en DS)</li>
+                                <li><strong>Taille / tailles parentales</strong> (distance à la taille cible)</li>
+                                <li><strong>Rapport croissance staturale / pondérale</strong> (IMC)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Interrogatoire <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>ATCD familiaux : consanguinité, arbre généalogique, poids/tailles/âges pubertaires des parents et de la fratrie</li>
+                                <li>ATCD personnels : déroulement grossesse, terme, mensurations naissance, pathologie néonatale</li>
+                                <li>Acquisitions psychomotrices et apprentissages</li>
+                                <li>Alimentation, ATCD médico-chirurgicaux, traitements</li>
+                                <li>Contexte psychosocial et retentissement psychologique du retard</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Examen clinique <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>Examen clinique <strong>de tous les systèmes</strong> à la recherche de signes associés</li>
+                                <li>Recherche de dysmorphie, disproportion corporelle</li>
+                                <li>En période pubertaire : <strong>stades de Tanner</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ÉTAPE 6 : EXAMENS COMPLÉMENTAIRES -->
+            <details class="etape-accordion etape-6">
+                <summary>
+                    <span class="etape-num">6</span>
+                    Examens complémentaires
+                    <span class="etape-question">- Comment le confirmer ?</span>
+                </summary>
+                <div class="etape-content">
+
+                    <div class="alert-box">
+                        <div class="alert-box-title">🚨 URGENCE — Si cassure de croissance + signes HTIC</div>
+                        <p><strong>Imagerie cérébrale et hypophysaire (TDM ou IRM) + Fond d'œil EN URGENCE</strong> avant toute exploration hormonale pour éliminer une tumeur hypothalamo-hypophysaire</p>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Bilan de 1ère intention (si absence d'orientation) <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>NFS, ionogramme, réserve alcaline (HCO3-), créatininémie</strong></li>
+                                <li><strong>Calcémie, phosphatémie, phosphatases alcalines</strong></li>
+                                <li><strong>Transaminases, ferritine, CRP, VS</strong></li>
+                                <li><strong>IgA anti-transglutaminase + IgA totales</strong></li>
+                                <li><strong>Bandelette urinaire</strong> (protéinurie, glycosurie, densité urinaire)</li>
+                                <li><strong>TSH, T4L, IGF-1</strong></li>
+                                <li><strong>Caryotype sanguin</strong> chez la <strong>fille</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Âge osseux <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>Radiographie de la <strong>main et du poignet gauche</strong> de face</li>
+                                <li>Comparée à des radiographies standards (atlas de <strong>Greulich et Pyle</strong>)</li>
+                                <li><strong>Peu informatif</strong> pour déterminer l'étiologie (souvent retardé dans les pathologies hormonales ET les retards simples)</li>
+                                <li>Renseigne sur le <strong>potentiel de croissance restant</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Explorations approfondies <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>Si IGF-1 bas (absence de dénutrition ou pathologie hépatique) : <strong>tests de stimulation de la GH</strong> en milieu spécialisé</li>
+                                <li>Si disproportion corporelle : <strong>radiographies du squelette</strong></li>
+                                <li>Si dysmorphie, malformations, retard mental : <strong>avis génétique ± analyse ciblée</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ÉTAPE 7 : ORIENTATION DIAGNOSTIQUE -->
+            <details class="etape-accordion etape-7">
+                <summary>
+                    <span class="etape-num">7</span>
+                    Orientation diagnostique
+                    <span class="etape-question">- Comment s'orienter ?</span>
+                </summary>
+                <div class="etape-content">
+
+                    <div class="bloc">
+                        <div class="bloc-header">Arbre décisionnel <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <p style="margin-bottom: 15px;"><strong>Devant un retard staturo-pondéral :</strong></p>
+
+                            <div class="grid-2">
+                                <div class="rang-b-box" style="background: #fef2f2; border-color: #ef4444;">
+                                    <div style="color: #dc2626; font-weight: 600; margin-bottom: 8px;">1️⃣ Insuffisance pondérale prédominante</div>
+                                    <p style="margin: 0;">→ Bilan de retard pondéral (causes digestives, carentielles)</p>
+                                </div>
+
+                                <div class="rang-b-box" style="background: #eff6ff; border-color: #3b82f6;">
+                                    <div style="color: #1e40af; font-weight: 600; margin-bottom: 8px;">2️⃣ Retard statural prédominant</div>
+                                    <p style="margin: 0;">→ Voir ci-dessous</p>
+                                </div>
+                            </div>
+
+                            <p style="margin: 20px 0 10px 0; font-weight: 600;">Si retard statural prédominant :</p>
+                            <ul style="padding-left: 20px;">
+                                <li><strong>Signes HTIC / neuro / cassure</strong> → Imagerie + FO <strong>EN URGENCE</strong></li>
+                                <li><strong>Poids excessif / taille</strong> → IGF-1, TSH/T4L, Cortisoluries → Causes hormonales</li>
+                                <li><strong>Disproportion corporelle</strong> → Rx osseuses → Maladie osseuse</li>
+                                <li><strong>Dysmorphie, malformations</strong> → Avis génétique → Syndrome génétique</li>
+                                <li><strong>Pas d'orientation</strong> → Bilan de base + Caryotype (fille) → Si IGF-1 bas : test stimulation GH</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ÉTAPE 8 : TRAITEMENT -->
+            <details class="etape-accordion etape-8">
+                <summary>
+                    <span class="etape-num">8</span>
+                    Traitement
+                    <span class="etape-question">- Comment traiter ?</span>
+                </summary>
+                <div class="etape-content">
+                    <div class="bloc">
+                        <div class="bloc-header">Principes <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Traitement étiologique</strong> quand il existe</li>
+                                <li>Hypothyroïdie : <strong>traitement substitutif</strong> par lévothyroxine</li>
+                                <li>Déficit en GH : <strong>hormone de croissance recombinante</strong></li>
+                                <li>Syndrome de Turner : GH + traitement hormonal substitutif à la puberté</li>
+                                <li>Retard simple de puberté : <strong>surveillance</strong> ± induction pubertaire</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 9 : ÉVOLUTION -->
+            <details class="etape-accordion etape-9">
+                <summary>
+                    <span class="etape-num">9</span>
+                    Évolution & Pronostic
+                    <span class="etape-question">- Que peut-il se passer ?</span>
+                </summary>
+                <div class="etape-content">
+                    <div class="bloc">
+                        <div class="bloc-header">Pronostic <span class="badge badge-b">B</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>Dépend entièrement de la <strong>cause sous-jacente</strong></li>
+                                <li>Diagnostic et traitement précoces = meilleur pronostic statural</li>
+                                <li>Retard simple de puberté : pronostic statural <strong>satisfaisant</strong></li>
+                                <li>Turner sans traitement : taille adulte ≈ 142 cm</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 10 : SUIVI -->
+            <details class="etape-accordion etape-10">
+                <summary>
+                    <span class="etape-num">10</span>
+                    Suivi
+                    <span class="etape-question">- Comment surveiller ?</span>
+                </summary>
+                <div class="etape-content">
+                    <div class="bloc">
+                        <div class="bloc-header">Surveillance <span class="badge badge-a">A</span></div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>Suivi régulier de la <strong>courbe de croissance</strong></li>
+                                <li>Poids et taille : /3 mois jusqu'à 2 ans, puis /6 mois</li>
+                                <li>PC : jusqu'à 3 ans</li>
+                                <li>Développement pubertaire (stades de Tanner)</li>
+                                <li>Adaptation du traitement selon la réponse</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ÉTAPE 11 : POINTS CLÉS -->
+            <details class="etape-accordion etape-11">
+                <summary>
+                    <span class="etape-num">11</span>
+                    Points clés / Pièges
+                    <span class="etape-question">- Ne pas oublier...</span>
+                </summary>
+                <div class="etape-content">
+
+                    <div class="info-box" style="background: #fef3c7; border-color: #f59e0b;">
+                        <div style="color: #b45309; font-weight: 600; margin-bottom: 8px;">💡 Points clés à retenir</div>
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li>Retard de croissance = <strong>signe d'appel justifiant toujours une évaluation</strong></li>
+                            <li>Définition : taille &lt; -2 DS OU &lt; -1,5 DS/cible OU cassure &lt; 4 cm/an après 4 ans</li>
+                            <li>Analyser le rapport <strong>poids/taille</strong> pour orienter</li>
+                            <li><strong>Petite taille constitutionnelle = 85%</strong> des cas (diagnostic d'élimination)</li>
+                            <li><strong>Caryotype systématique chez toute fille</strong> petite taille (Turner)</li>
+                            <li>Hypothyroïdie congénitale dépistée à <strong>J3</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="alert-box">
+                        <div class="alert-box-title">⚠️ Pièges classiques</div>
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li><strong>Cassure + HTIC = URGENCE imagerie</strong> avant bilan hormonal (craniopharyngiome)</li>
+                            <li>Retard statural + prise de poids = cause <strong>hormonale</strong> (pas nutritionnelle)</li>
+                            <li>Turner peut être <strong>paucisymptomatique</strong> (mosaïques)</li>
+                            <li>Dosage ponctuel de GH <strong>inutile</strong> (sécrétion pulsatile)</li>
+                            <li>Âge osseux peu informatif pour l'étiologie (retardé dans plusieurs situations)</li>
+                            <li>PAG/RCIU : risque de syndrome métabolique mais <strong>PAS d'obésité</strong></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ==================== ONGLET COLLÈGES CROISÉS ==================== -->
+        <div id="colleges" class="tab-content">
+            <div class="placeholder">
+                <div class="placeholder-icon">🔀</div>
+                <h3 style="margin-bottom: 8px; color: var(--bleu-medibox);">Collèges croisés</h3>
+                <p>Cet item est également traité dans d'autres collèges (Endocrinologie).<br>Les informations complémentaires seront ajoutées ici.</p>
+            </div>
+        </div>
+
+        <!-- ==================== ONGLET RESSOURCES ==================== -->
+        <div id="ressources" class="tab-content">
+            <h3 style="margin-bottom: 18px; color: var(--bleu-medibox);">📎 Ressources complémentaires</h3>
+            
+            <a href="https://solidarites-sante.gouv.fr/IMG/pdf/carnet_de_sante-num-.pdf" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="ressource-item">
+                    <div class="ressource-icon">📋</div>
+                    <div class="ressource-content">
+                        <h4>Carnet de santé (modèle 2018)</h4>
+                        <p>Courbes de croissance actualisées · Ministère de la Santé</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://www.has-sante.fr/jcms/c_632797/fr/syndrome-de-turner" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="ressource-item">
+                    <div class="ressource-icon">📋</div>
+                    <div class="ressource-content">
+                        <h4>HAS - Syndrome de Turner</h4>
+                        <p>Protocole national de diagnostic et de soins · 2021</p>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://www.audipog.net/" target="_blank" style="text-decoration: none; color: inherit;">
+                <div class="ressource-item">
+                    <div class="ressource-icon externe">🔗</div>
+                    <div class="ressource-content">
+                        <h4>Courbes AUDIPOG</h4>
+                        <p>Courbes de croissance fœtale et néonatale</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- ==================== ONGLET ANNALES ==================== -->
+        <div id="annales" class="tab-content">
+            <div class="placeholder">
+                <div class="placeholder-icon">📝</div>
+                <h3 style="margin-bottom: 8px; color: var(--bleu-medibox);">Annales</h3>
+                <p>Item tombé <strong>4 fois depuis 2016</strong>.<br>Les QCM seront ajoutés ici.</p>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <strong>Fiche EDN - Item 53</strong><br>
+            Création : E. Schaeffer · Droits réservés
+        </div>
+
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var tabcontent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            var tabs = document.getElementsByClassName("tab");
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function toggleAllAccordions(open) {
+            var accordions = document.querySelectorAll('#fiche .etape-accordion');
+            accordions.forEach(function(accordion) {
+                if (open) {
+                    accordion.setAttribute('open', '');
+                } else {
+                    accordion.removeAttribute('open');
+                }
+            });
+        }
+
+        function toggleSubAccordions(button, open) {
+            // Trouve l'étape parente (etape-content)
+            var etapeContent = button.closest('.etape-content');
+            if (etapeContent) {
+                var subAccordions = etapeContent.querySelectorAll('.sub-accordion');
+                subAccordions.forEach(function(accordion) {
+                    if (open) {
+                        accordion.setAttribute('open', '');
+                    } else {
+                        accordion.removeAttribute('open');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
