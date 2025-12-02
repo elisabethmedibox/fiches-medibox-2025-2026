@@ -1,0 +1,2188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UE2 - Cours 1 : Pathologies liées à des anomalies de la signalisation</title>
+    <style>
+        /* ========================================
+           CHARTE COULEURS MEDIBOX
+           ======================================== */
+        :root {
+            /* Couleurs principales */
+            --bleu-medibox: #1a365d;
+            --corail-medibox: #ff6b7a;
+            
+            /* Roue chromatique - 11 couleurs accordéons */
+            --accord-1: #1a365d;   /* Bleu Medibox */
+            --accord-2: #0891b2;   /* Cyan */
+            --accord-3: #4f46e5;   /* Indigo */
+            --accord-4: #8b5cf6;   /* Violet */
+            --accord-5: #d946ef;   /* Fuchsia */
+            --accord-6: #ec4899;   /* Rose */
+            --accord-7: #f97316;   /* Orange */
+            --accord-8: #eab308;   /* Jaune */
+            --accord-9: #65a30d;   /* Vert lime */
+            --accord-10: #14b8a6;  /* Turquoise */
+            --accord-11: #ff6b7a;  /* Corail Medibox */
+            
+            /* Couleur UE */
+            --ue2-color: #10b981;  /* Vert clair pour UE2 */
+            --ue2-bg: #d1fae5;
+            
+            /* Tags EDN */
+            --tag-edn: #7c3aed;
+            --tag-edn-bg: #f5f3ff;
+            
+            /* Badges importance */
+            --essentiel: #dc2626;
+            --important: #f59e0b;
+            --complement: #6b7280;
+            
+            /* Neutres */
+            --fond-page: #f8fafc;
+            --fond-carte: #ffffff;
+            --bordure: #e2e8f0;
+            --texte: #1e293b;
+            --texte-light: #64748b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--texte);
+            background: var(--fond-page);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--fond-carte);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        /* ========================================
+           HEADER - Base bleue Medibox
+           ======================================== */
+        .header {
+            background: linear-gradient(135deg, var(--bleu-medibox) 0%, #2d3748 100%);
+            color: white;
+            padding: 25px 30px;
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .header-left {
+            flex: 1;
+        }
+
+        .header h1 { 
+            font-size: 1.5rem; 
+            font-weight: 700; 
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        .header-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin-top: 3px;
+        }
+
+        .header-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        .header-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .tag-ue {
+            background: var(--ue2-color);
+            padding: 5px 14px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .tag-type {
+            background: rgba(16, 185, 129, 0.5);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Infos prof sous le sous-titre */
+        .header-meta {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 8px;
+        }
+
+        .header-prof {
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .edn-tags {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .edn-label {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        .edn-tag {
+            background: var(--tag-edn);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: help;
+        }
+
+        /* Barre UE colorée */
+        .ue-bar {
+            height: 4px;
+            background: var(--ue2-color);
+        }
+
+        /* ========================================
+           ONGLETS
+           ======================================== */
+        .tabs {
+            display: flex;
+            align-items: center;
+            background: rgba(26, 54, 93, 0.8);
+            border-bottom: 3px solid var(--ue2-color);
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 12px 20px;
+            color: rgba(255,255,255,0.7);
+            cursor: pointer;
+            font-weight: 500;
+            border: none;
+            background: none;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .tab:hover {
+            color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .tab.active {
+            color: white;
+            background: var(--ue2-color);
+        }
+
+        .tabs-spacer { flex: 1; }
+
+        .tag-maj {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            margin-right: 15px;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 25px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ========================================
+           OBJECTIFS DU COURS
+           ======================================== */
+        .objectifs-box {
+            background: linear-gradient(135deg, var(--ue2-bg) 0%, #a7f3d0 100%);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--ue2-color);
+        }
+
+        .objectifs-title {
+            color: #065f46;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .objectifs-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .objectifs-list li {
+            padding: 4px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #064e3b;
+        }
+
+        .objectifs-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--ue2-color);
+            font-weight: bold;
+        }
+
+        /* ========================================
+           BOUTONS TOGGLE
+           ======================================== */
+        .toggle-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            justify-content: flex-end;
+        }
+
+        .toggle-btn {
+            background: var(--fond-page);
+            border: 2px solid var(--bordure);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--bleu-medibox);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .toggle-btn:hover {
+            background: var(--bleu-medibox);
+            color: white;
+            border-color: var(--bleu-medibox);
+        }
+
+        /* ========================================
+           ACCORDÉONS - Roue chromatique
+           ======================================== */
+        .partie-accordion {
+            margin-bottom: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid var(--bordure);
+        }
+
+        .partie-accordion summary {
+            padding: 14px 18px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .partie-accordion summary::-webkit-details-marker { display: none; }
+
+        .partie-accordion summary::after {
+            content: "▼";
+            font-size: 0.65rem;
+            margin-left: auto;
+            transition: transform 0.3s;
+        }
+
+        .partie-accordion[open] summary::after { transform: rotate(180deg); }
+
+        .partie-num {
+            width: 28px;
+            height: 28px;
+            background: rgba(255,255,255,0.25);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .partie-content {
+            padding: 18px;
+            background: var(--fond-page);
+        }
+
+        /* Couleurs accordéons */
+        .accord-sommaire summary { 
+            background: #f8fafb; 
+            color: var(--ue2-color);
+            border: 2px solid var(--ue2-color);
+            border-radius: 10px;
+        }
+        .accord-sommaire summary::after {
+            color: var(--ue2-color);
+        }
+        .accord-sommaire .partie-num {
+            background: var(--ue2-color);
+            color: white;
+        }
+        .accord-1 summary { background: var(--accord-1); }
+        .accord-2 summary { background: var(--accord-2); }
+        .accord-3 summary { background: var(--accord-3); }
+        .accord-4 summary { background: var(--accord-4); }
+        .accord-5 summary { background: var(--accord-5); }
+        .accord-6 summary { background: var(--accord-6); }
+        .accord-7 summary { background: var(--accord-7); }
+        .accord-8 summary { background: var(--accord-8); }
+        .accord-9 summary { background: var(--accord-9); }
+        .accord-10 summary { background: var(--accord-10); }
+        .accord-11 summary { background: var(--accord-11); }
+
+        /* ========================================
+           SOUS-ACCORDÉONS - Héritage couleur parent
+           ======================================== */
+        .sub-accordion {
+            margin: 8px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--bordure);
+            background: white;
+        }
+
+        .sub-accordion summary {
+            padding: 12px 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            color: var(--bleu-medibox);
+            transition: all 0.2s;
+        }
+
+        .sub-accordion summary::-webkit-details-marker { display: none; }
+
+        .sub-accordion summary::before {
+            content: "▶";
+            font-size: 0.55rem;
+            transition: transform 0.2s;
+        }
+
+        .sub-accordion[open] summary::before { transform: rotate(90deg); }
+
+        .sub-content {
+            padding: 15px;
+            background: white;
+        }
+
+        /* Styles par accordéon parent - Sous-accordéons */
+        .accord-1 .sub-accordion summary { border-left: 3px solid var(--accord-1); }
+        .accord-1 .sub-accordion[open] summary { background: rgba(26, 54, 93, 0.5); color: white; }
+        
+        .accord-2 .sub-accordion summary { border-left: 3px solid var(--accord-2); }
+        .accord-2 .sub-accordion[open] summary { background: rgba(8, 145, 178, 0.5); color: white; }
+        
+        .accord-3 .sub-accordion summary { border-left: 3px solid var(--accord-3); }
+        .accord-3 .sub-accordion[open] summary { background: rgba(79, 70, 229, 0.5); color: white; }
+        
+        .accord-4 .sub-accordion summary { border-left: 3px solid var(--accord-4); }
+        .accord-4 .sub-accordion[open] summary { background: rgba(139, 92, 246, 0.5); color: white; }
+        
+        .accord-5 .sub-accordion summary { border-left: 3px solid var(--accord-5); }
+        .accord-5 .sub-accordion[open] summary { background: rgba(217, 70, 239, 0.5); color: white; }
+        
+        .accord-6 .sub-accordion summary { border-left: 3px solid var(--accord-6); }
+        .accord-6 .sub-accordion[open] summary { background: rgba(236, 72, 153, 0.5); color: white; }
+        
+        .accord-7 .sub-accordion summary { border-left: 3px solid var(--accord-7); }
+        .accord-7 .sub-accordion[open] summary { background: rgba(249, 115, 22, 0.5); color: white; }
+        
+        .accord-8 .sub-accordion summary { border-left: 3px solid var(--accord-8); }
+        .accord-8 .sub-accordion[open] summary { background: rgba(234, 179, 8, 0.5); color: white; }
+        
+        .accord-9 .sub-accordion summary { border-left: 3px solid var(--accord-9); }
+        .accord-9 .sub-accordion[open] summary { background: rgba(101, 163, 13, 0.5); color: white; }
+        
+        .accord-10 .sub-accordion summary { border-left: 3px solid var(--accord-10); }
+        .accord-10 .sub-accordion[open] summary { background: rgba(20, 184, 166, 0.5); color: white; }
+        
+        .accord-11 .sub-accordion summary { border-left: 3px solid var(--accord-11); }
+        .accord-11 .sub-accordion[open] summary { background: rgba(255, 107, 122, 0.5); color: white; }
+
+        /* Bulles de numérotation sous-accordéons */
+        .sub-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 22px;
+            padding: 0 8px;
+            border-radius: 11px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: white;
+            margin-right: 4px;
+        }
+        
+        .accord-1 .sub-num { background: var(--accord-1); }
+        .accord-2 .sub-num { background: var(--accord-2); }
+        .accord-3 .sub-num { background: var(--accord-3); }
+        .accord-4 .sub-num { background: var(--accord-4); }
+        .accord-5 .sub-num { background: var(--accord-5); }
+        .accord-6 .sub-num { background: var(--accord-6); }
+        .accord-7 .sub-num { background: var(--accord-7); }
+        .accord-8 .sub-num { background: var(--accord-8); }
+        .accord-9 .sub-num { background: var(--accord-9); }
+        .accord-10 .sub-num { background: var(--accord-10); }
+        .accord-11 .sub-num { background: var(--accord-11); }
+        
+        /* Quand sous-accordéon ouvert, bulle en blanc avec texte coloré */
+        .accord-1 .sub-accordion[open] .sub-num { background: white; color: var(--accord-1); }
+        .accord-2 .sub-accordion[open] .sub-num { background: white; color: var(--accord-2); }
+        .accord-3 .sub-accordion[open] .sub-num { background: white; color: var(--accord-3); }
+        .accord-4 .sub-accordion[open] .sub-num { background: white; color: var(--accord-4); }
+        .accord-5 .sub-accordion[open] .sub-num { background: white; color: var(--accord-5); }
+        .accord-6 .sub-accordion[open] .sub-num { background: white; color: var(--accord-6); }
+        .accord-7 .sub-accordion[open] .sub-num { background: white; color: var(--accord-7); }
+        .accord-8 .sub-accordion[open] .sub-num { background: white; color: var(--accord-8); }
+        .accord-9 .sub-accordion[open] .sub-num { background: white; color: var(--accord-9); }
+        .accord-10 .sub-accordion[open] .sub-num { background: white; color: var(--accord-10); }
+        .accord-11 .sub-accordion[open] .sub-num { background: white; color: var(--accord-11); }
+
+        /* ========================================
+           BADGES
+           ======================================== */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-left: 6px;
+        }
+
+        .badge-essentiel { background: var(--essentiel); color: white; }
+        .badge-important { background: var(--important); color: white; }
+        .badge-complement { background: var(--complement); color: white; }
+
+        /* ========================================
+           BLOCS DE CONTENU - Héritage couleur parent
+           ======================================== */
+        .bloc {
+            background: white;
+            border: 1px solid var(--bordure);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .bloc-header {
+            padding: 10px 14px;
+            background: rgba(26, 54, 93, 0.15);
+            border-bottom: 1px solid var(--bordure);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        /* Styles par accordéon parent - Bloc headers */
+        .accord-1 .bloc-header { background: rgba(26, 54, 93, 0.3); }
+        .accord-2 .bloc-header { background: rgba(8, 145, 178, 0.3); }
+        .accord-3 .bloc-header { background: rgba(79, 70, 229, 0.3); }
+        .accord-4 .bloc-header { background: rgba(139, 92, 246, 0.3); }
+        .accord-5 .bloc-header { background: rgba(217, 70, 239, 0.3); }
+        .accord-6 .bloc-header { background: rgba(236, 72, 153, 0.3); }
+        .accord-7 .bloc-header { background: rgba(249, 115, 22, 0.3); }
+        .accord-8 .bloc-header { background: rgba(234, 179, 8, 0.3); }
+        .accord-9 .bloc-header { background: rgba(101, 163, 13, 0.3); }
+        .accord-10 .bloc-header { background: rgba(20, 184, 166, 0.3); }
+        .accord-11 .bloc-header { background: rgba(255, 107, 122, 0.3); }
+
+        .bloc-body {
+            padding: 14px;
+        }
+
+        .bloc-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .bloc-body li {
+            padding: 5px 0;
+            padding-left: 18px;
+            position: relative;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .bloc-body li:last-child { border-bottom: none; }
+
+        .bloc-body li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--ue2-color);
+            font-weight: bold;
+        }
+
+        /* ========================================
+           ENCADRÉS SPÉCIAUX
+           ======================================== */
+        /* Définition - Vert */
+        .definition-box {
+            background: #f0fdf4;
+            border-left: 4px solid #10b981;
+            border-radius: 0 8px 8px 0;
+            padding: 14px 16px;
+            margin: 12px 0;
+        }
+
+        .definition-box-title {
+            color: #065f46;
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Info / À noter - Bleu */
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            border-radius: 0 8px 8px 0;
+            padding: 14px 16px;
+            margin: 12px 0;
+        }
+
+        .info-box strong {
+            color: #1e40af;
+        }
+
+        /* Attention / Alerte - Rouge */
+        .alert-box {
+            background: #fef2f2;
+            border-left: 4px solid #dc2626;
+            border-radius: 0 8px 8px 0;
+            padding: 14px 16px;
+            margin: 12px 0;
+        }
+
+        .alert-box-title {
+            color: #dc2626;
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Encadré Medibox - Violet (explications complémentaires prépa) */
+        .medibox-box {
+            background: #f5f3ff;
+            border-left: 4px solid #7c3aed;
+            border-radius: 0 8px 8px 0;
+            padding: 14px 16px;
+            margin: 12px 0;
+        }
+
+        .medibox-box-title {
+            color: #5b21b6;
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Point clé - Jaune */
+        .key-point {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 10px;
+            padding: 16px;
+            margin: 15px 0;
+            border: 2px solid #f59e0b;
+        }
+
+        .key-point-title {
+            color: #92400e;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ========================================
+           SCHÉMA PLACEHOLDER
+           ======================================== */
+        .schema-placeholder {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border: 2px dashed var(--bordure);
+            border-radius: 10px;
+            padding: 30px 20px;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .schema-placeholder-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .schema-placeholder p {
+            color: var(--texte-light);
+            font-size: 0.85rem;
+        }
+
+        /* ========================================
+           TABLEAUX - Héritage couleur parent
+           ======================================== */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 12px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th {
+            background: rgba(26, 54, 93, 0.3);
+            color: var(--texte);
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--bordure);
+            vertical-align: top;
+            background: white;
+        }
+
+        tr:hover td {
+            background: #f8fafc;
+        }
+
+        /* Styles par accordéon parent - Tableaux */
+        .accord-1 th { background: rgba(26, 54, 93, 0.3); }
+        .accord-2 th { background: rgba(8, 145, 178, 0.3); }
+        .accord-3 th { background: rgba(79, 70, 229, 0.3); }
+        .accord-4 th { background: rgba(139, 92, 246, 0.3); }
+        .accord-5 th { background: rgba(217, 70, 239, 0.3); }
+        .accord-6 th { background: rgba(236, 72, 153, 0.3); }
+        .accord-7 th { background: rgba(249, 115, 22, 0.3); }
+        .accord-8 th { background: rgba(234, 179, 8, 0.3); }
+        .accord-9 th { background: rgba(101, 163, 13, 0.3); }
+        .accord-10 th { background: rgba(20, 184, 166, 0.3); }
+        .accord-11 th { background: rgba(255, 107, 122, 0.3); }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            background: var(--fond-page);
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--texte-light);
+            border-top: 1px solid var(--bordure);
+        }
+
+        /* ========================================
+           SOMMAIRE
+           ======================================== */
+        .sommaire-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .sommaire-partie {
+            background: white;
+            border-radius: 10px;
+            padding: 14px 18px;
+            border: 1px solid var(--bordure);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .sommaire-partie:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .sommaire-partie-titre {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .sommaire-items {
+            font-size: 0.85rem;
+            color: var(--texte-light);
+            padding-left: 10px;
+        }
+
+        .sommaire-sous-parties {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding-left: 10px;
+        }
+
+        .sommaire-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--texte);
+        }
+
+        .sommaire-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 20px;
+            padding: 0 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        /* ========================================
+           FLASHCARDS QCM
+           ======================================== */
+        .flashcards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            padding: 10px 0;
+        }
+
+        .flashcard {
+            perspective: 1000px;
+            height: 280px;
+            cursor: pointer;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+
+        .flashcard-front {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 2px solid var(--bleu-medibox);
+        }
+
+        .flashcard-back {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border: 2px solid var(--rang-a);
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-number {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--bleu-medibox);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .flashcard-back .flashcard-number {
+            background: var(--rang-a);
+        }
+
+        .flashcard-title {
+            font-weight: 700;
+            color: var(--bleu-medibox);
+            margin-bottom: 12px;
+            padding-left: 30px;
+            font-size: 0.95rem;
+        }
+
+        .flashcard-back .flashcard-title {
+            color: #065f46;
+        }
+
+        .flashcard-options {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .flashcard-options li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .flashcard-options li:last-child {
+            border-bottom: none;
+        }
+
+        .flashcard-options li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--bleu-medibox);
+        }
+
+        .flashcard-back .flashcard-options li::before {
+            color: var(--rang-a);
+        }
+
+        /* Réponses fausses barrées */
+        .flashcard-options li.wrong {
+            text-decoration: line-through;
+            color: #9ca3af;
+        }
+
+        .flashcard-options li.wrong::before {
+            color: #9ca3af;
+        }
+
+        /* Réponses correctes en vert */
+        .flashcard-options li.correct {
+            color: #065f46;
+            font-weight: 600;
+        }
+
+        /* Tag année sur les réponses */
+        .tag-annee {
+            display: inline-block;
+            background: var(--ue2-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .flashcard-hint {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.75rem;
+            color: var(--texte-light);
+            font-style: italic;
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header { padding: 20px; }
+            .header h1 { font-size: 1.2rem; }
+            .header-main { flex-direction: column; }
+            .header-right { align-items: flex-start; }
+            .tab { padding: 10px 12px; font-size: 0.8rem; }
+            .edn-tags { justify-content: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- ==================== HEADER ==================== -->
+        <div class="header">
+            <div class="header-main">
+                <div class="header-left">
+                    <h1>Signalisation cellulaire</h1>
+                    <div class="header-subtitle">Cours n°1 - Partie 1 - Biologie cellulaire</div>
+                    <div class="header-meta">👨‍🏫 Dr. GARNIER · 09/09/2025 · 2h</div>
+                </div>
+                <div class="header-right">
+                    <div class="header-tags">
+                        <span class="tag-ue">UE 2 · Bases moléculaires et cellulaires des pathologies</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ue-bar"></div>
+
+        <!-- ==================== ONGLETS ==================== -->
+        <div class="tabs">
+            <button class="tab active" onclick="openTab(event, 'cours')">📖 Cours</button>
+            <button class="tab" onclick="openTab(event, 'ressources')">📎 Ressources</button>
+            <button class="tab" onclick="openTab(event, 'qcm')">✅ QCM du cours</button>
+            <div class="tabs-spacer"></div>
+            <span class="tag-maj">MAJ : 02/12/2025</span>
+        </div>
+
+        <!-- ==================== ONGLET COURS ==================== -->
+        <div id="cours" class="tab-content active">
+
+            <!-- Objectifs du cours -->
+            <div class="objectifs-box">
+                <div class="objectifs-title">🎯 Objectifs du cours</div>
+                <ul class="objectifs-list">
+                    <li>Comprendre les différents types de communications cellulaires</li>
+                    <li>Maîtriser l'architecture des systèmes de régulation (rétro-inhibition, cascades)</li>
+                    <li>Connaître les grandes voies de signalisation : RCPG, RTK, récepteurs nucléaires</li>
+                    <li>Comprendre les mécanismes moléculaires de la transduction du signal</li>
+                </ul>
+            </div>
+
+            <!-- Boutons toggle -->
+            <div class="toggle-buttons">
+                <button class="toggle-btn" onclick="toggleAllAccordions(true)">▼ Tout déplier</button>
+                <button class="toggle-btn" onclick="toggleAllAccordions(false)">▲ Tout replier</button>
+            </div>
+
+            <!-- ==================== SOMMAIRE ==================== -->
+            <details class="partie-accordion accord-sommaire">
+                <summary>
+                    <span class="partie-num">📑</span>
+                    Sommaire
+                </summary>
+                <div class="partie-content">
+                    <div class="sommaire-container">
+                        
+                        <div class="sommaire-partie">
+                            <div class="sommaire-partie-titre" style="color: var(--accord-1);">1. Introduction</div>
+                            <div class="sommaire-items">
+                                <span>Principe fondamental</span> · <span>Les 3 niveaux d'anomalies</span> · <span>Intérêt clinique</span>
+                            </div>
+                        </div>
+
+                        <div class="sommaire-partie">
+                            <div class="sommaire-partie-titre" style="color: var(--accord-2);">2. Types de communications cellulaires</div>
+                            <div class="sommaire-sous-parties">
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-2);">2.1</span> Communication par facteur sécrété</div>
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-2);">2.2</span> Communication par contact direct</div>
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-2);">2.3</span> Communication entre cytoplasmes</div>
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-2);">2.4</span> Communication autocrine et intracrine</div>
+                            </div>
+                        </div>
+
+                        <div class="sommaire-partie">
+                            <div class="sommaire-partie-titre" style="color: var(--accord-3);">3. Architecture des communications</div>
+                            <div class="sommaire-sous-parties">
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-3);">3.1</span> Rétro-inhibition (feedback négatif)</div>
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-3);">3.2</span> Rétro-activation (feedback positif)</div>
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-3);">3.3</span> Cascade endocrine</div>
+                            </div>
+                        </div>
+
+                        <div class="sommaire-partie">
+                            <div class="sommaire-partie-titre" style="color: var(--accord-4);">4. Liaison ligand-récepteur</div>
+                            <div class="sommaire-sous-parties">
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-4);">4.1</span> Affinité et compétition entre ligands</div>
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-4);">4.2</span> Modulation par le nombre de récepteurs</div>
+                            </div>
+                        </div>
+
+                        <div class="sommaire-partie">
+                            <div class="sommaire-partie-titre" style="color: var(--accord-5);">5. Récepteurs couplés aux protéines G (RCPG)</div>
+                            <div class="sommaire-sous-parties">
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-5);">5.1</span> Structure des RCPG</div>
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-5);">5.2</span> Mécanisme d'activation</div>
+                            </div>
+                        </div>
+
+                        <div class="sommaire-partie">
+                            <div class="sommaire-partie-titre" style="color: var(--accord-6);">6. Types de protéines G</div>
+                            <div class="sommaire-sous-parties">
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-6);">6.1</span> Protéine Gs (stimulatrice)</div>
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-6);">6.2</span> Protéine Gq</div>
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-6);">6.3</span> Protéine Gi (inhibitrice)</div>
+                            </div>
+                        </div>
+
+                        <div class="sommaire-partie">
+                            <div class="sommaire-partie-titre" style="color: var(--accord-7);">7. Récepteurs à activité tyrosine kinase (RTK)</div>
+                            <div class="sommaire-sous-parties">
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-7);">7.1</span> Structure des RTK</div>
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-7);">7.2</span> Mécanisme d'activation</div>
+                            </div>
+                        </div>
+
+                        <div class="sommaire-partie">
+                            <div class="sommaire-partie-titre" style="color: var(--accord-8);">8. Récepteurs à activité nucléaire</div>
+                            <div class="sommaire-sous-parties">
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-8);">8.1</span> Principe de fonctionnement</div>
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-8);">8.2</span> Régulation de la transcription</div>
+                                <div class="sommaire-item"><span class="sommaire-num" style="background: var(--accord-8);">8.3</span> Exemples d'hormones</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="info-box" style="margin-top: 20px;">
+                        <strong>📚 Suite du cours :</strong> Les <strong>pathologies liées aux anomalies de signalisation</strong> (anomalies des RCPG, RTK, récepteurs nucléaires et ligands) seront traitées dans une fiche dédiée (Partie 2 : Pathologie).
+                    </div>
+                </div>
+            </details>
+
+            <!-- ==================== PARTIE 1 : INTRODUCTION ==================== -->
+            <details class="partie-accordion accord-1">
+                <summary>
+                    <span class="partie-num">1</span>
+                    Introduction
+                </summary>
+                <div class="partie-content">
+
+                    <div class="definition-box">
+                        <div class="definition-box-title">📚 Principe fondamental</div>
+                        <p>L'être humain est un <strong>organisme pluricellulaire</strong>. La coordination entre les différentes cellules et tissus repose sur des systèmes de <strong>communication cellulaire</strong>. Lorsque ces communications sont altérées, des <strong>pathologies</strong> peuvent survenir.</p>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Les 3 niveaux d'anomalies possibles</div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li><strong>Anomalie du message (ligand)</strong> : l'hormone ou le facteur de signalisation est anormal (structure modifiée, quantité inadaptée)</li>
+                                <li><strong>Anomalie de la réception (récepteur)</strong> : le récepteur ne fonctionne pas correctement (muté, absent, surexprimé)</li>
+                                <li><strong>Anomalie de la signalisation intracellulaire (effecteurs)</strong> : la cascade de signalisation en aval est perturbée</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="schema-placeholder">
+                        <div class="schema-placeholder-icon">🔄</div>
+                        <p><strong>Schéma :</strong> Ligand → Récepteur → Signalisation intracellulaire → Réponse cellulaire<br><em>(Chaque étape peut être le siège d'une anomalie)</em></p>
+                    </div>
+
+                    <div class="bloc">
+                        <div class="bloc-header">Conséquences des anomalies de signalisation</div>
+                        <div class="bloc-body">
+                            <p>Ces anomalies peuvent entraîner une <strong>perte de réponse</strong> ou une <strong>perte de contrôle</strong>, conduisant à :</p>
+                            <ul>
+                                <li><strong>Apoptose</strong> : mort cellulaire programmée</li>
+                                <li><strong>Sénescence</strong> : arrêt irréversible de la prolifération</li>
+                                <li><strong>Tumorigenèse</strong> : processus de cancérisation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="key-point">
+                        <div class="key-point-title">💡 Intérêt clinique</div>
+                        <p>Comprendre les anomalies de signalisation permet de :</p>
+                        <ul style="padding-left: 20px; margin-top: 8px;">
+                            <li>Identifier la <strong>physiopathologie</strong> d'une maladie</li>
+                            <li>Comprendre le <strong>mécanisme d'action des médicaments</strong></li>
+                            <li>Identifier de nouvelles <strong>cibles thérapeutiques</strong></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ==================== PARTIE 2 : TYPES DE COMMUNICATIONS CELLULAIRES ==================== -->
+            <details class="partie-accordion accord-2">
+                <summary>
+                    <span class="partie-num">2</span>
+                    Types de communications cellulaires
+                </summary>
+                <div class="partie-content">
+
+                    <div class="info-box">
+                        <strong>💡 Vue d'ensemble :</strong> Il existe plusieurs modes de communication entre les cellules, qui se distinguent par la <strong>distance</strong> entre l'émetteur et le récepteur, et par le <strong>mode de transmission</strong> du message.
+                    </div>
+
+                    <!-- Sous-accordéon : Communication par facteur sécrété -->
+                    <details class="sub-accordion" open>
+                        <summary><span class="sub-num">2.1</span> Communication par facteur sécrété</summary>
+                        <div class="sub-content">
+                            
+                            <p style="margin-bottom: 12px;">La cellule émettrice <strong>sécrète un message</strong> (hormone, facteur de croissance, neurotransmetteur) qui est capté par la cellule réceptrice. On distingue 3 sous-types :</p>
+
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Distance</th>
+                                            <th>Mécanisme</th>
+                                            <th>Exemple</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Paracrine</strong></td>
+                                            <td>Courte (voisinage)</td>
+                                            <td>Message reçu par une cellule proche</td>
+                                            <td>Chimiokines déposées sur l'endothélium pour attirer les leucocytes</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Endocrine</strong></td>
+                                            <td>Longue (via le sang)</td>
+                                            <td>Hormone sécrétée → passe dans le sang → atteint un organe cible distant</td>
+                                            <td>Hormones thyroïdiennes, insuline</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Synaptique</strong></td>
+                                            <td>Très courte (fente synaptique ~nm)</td>
+                                            <td>Neurotransmetteur libéré par exocytose → reçu par membrane post-synaptique</td>
+                                            <td>Acétylcholine à la jonction neuromusculaire</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="schema-placeholder">
+                                <div class="schema-placeholder-icon">🖼️</div>
+                                <p><strong>Schéma :</strong> Comparaison paracrine / endocrine / synaptique</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- Sous-accordéon : Communication par contact direct -->
+                    <details class="sub-accordion">
+                        <summary><span class="sub-num">2.2</span> Communication par contact direct</summary>
+                        <div class="sub-content">
+                            
+                            <div class="definition-box">
+                                <div class="definition-box-title">📚 Définition</div>
+                                <p>Deux cellules entrent en <strong>contact physique</strong>. Une molécule de surface de l'une interagit avec un récepteur de l'autre.</p>
+                            </div>
+
+                            <div class="bloc">
+                                <div class="bloc-header">Exemple : Présentation d'antigène</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li>Un <strong>pathogène</strong> est phagocyté par une <strong>cellule présentatrice d'antigène (CPA)</strong> : macrophage ou cellule dendritique</li>
+                                        <li>Le pathogène est partiellement digéré</li>
+                                        <li>Un fragment antigénique est présenté à la surface via une molécule du <strong>CMH</strong></li>
+                                        <li>Un <strong>lymphocyte T</strong> reconnaît cet antigène grâce à son <strong>TCR</strong> (T Cell Receptor)</li>
+                                        <li>→ Activation spécifique du lymphocyte T correspondant</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="medibox-box">
+                                <div class="medibox-box-title">🎓 Explication Medibox</div>
+                                <p>Cette interaction CMH-TCR est à la base de l'<strong>immunité adaptative</strong>. Seul le lymphocyte T portant le bon TCR (capable de reconnaître l'antigène présenté) sera activé. C'est le principe de la <strong>spécificité de la réponse immunitaire</strong>.</p>
+                            </div>
+
+                            <div class="schema-placeholder">
+                                <div class="schema-placeholder-icon">🖼️</div>
+                                <p><strong>Schéma :</strong> Interaction CPA - Lymphocyte T (CMH / TCR)</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- Sous-accordéon : Communication par jonctions communicantes -->
+                    <details class="sub-accordion">
+                        <summary><span class="sub-num">2.3</span> Communication par contact direct entre cytoplasmes</summary>
+                        <div class="sub-content">
+                            
+                            <div class="definition-box">
+                                <div class="definition-box-title">📚 Définition</div>
+                                <p>Les cytoplasmes de deux cellules adjacentes sont <strong>mis en continuité</strong> via des <strong>jonctions communicantes</strong> (= gap junctions). Des ions et petites molécules peuvent passer directement d'une cellule à l'autre.</p>
+                            </div>
+
+                            <div class="bloc">
+                                <div class="bloc-header">Exemple : Muscle cardiaque</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li>Les <strong>cardiomyocytes</strong> sont connectés par des gap junctions</li>
+                                        <li>Permettent le passage rapide d'ions (notamment Ca²⁺)</li>
+                                        <li>→ <strong>Contraction synchrone et homogène</strong> de l'oreillette ou du ventricule</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="schema-placeholder">
+                                <div class="schema-placeholder-icon">🖼️</div>
+                                <p><strong>Schéma :</strong> Gap junctions entre deux cellules</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- Sous-accordéon : Communication autocrine et intracrine -->
+                    <details class="sub-accordion">
+                        <summary><span class="sub-num">2.4</span> Communication autocrine et intracrine</summary>
+                        <div class="sub-content">
+                            
+                            <p style="margin-bottom: 12px;">Dans les cas précédents, cellule émettrice et cellule réceptrice sont <strong>distinctes</strong>. Mais une cellule peut aussi se signaler <strong>à elle-même</strong> :</p>
+
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Mécanisme</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Autocrine</strong></td>
+                                            <td>La cellule sécrète un message qui <strong>sort</strong> en extracellulaire, puis est capté par un récepteur de <strong>cette même cellule</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Intracrine</strong></td>
+                                            <td>Le message <strong>reste intracellulaire</strong> et agit directement à l'intérieur de la cellule qui l'a produit</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="schema-placeholder">
+                                <div class="schema-placeholder-icon">🖼️</div>
+                                <p><strong>Schéma :</strong> Autocrine vs Intracrine</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- Récap -->
+                    <div class="key-point">
+                        <div class="key-point-title">💡 À retenir</div>
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li><strong>Paracrine</strong> = voisinage</li>
+                            <li><strong>Endocrine</strong> = à distance via le sang</li>
+                            <li><strong>Synaptique</strong> = fente synaptique (neurones)</li>
+                            <li><strong>Contact direct</strong> = CMH-TCR, molécules d'adhésion</li>
+                            <li><strong>Gap junctions</strong> = continuité cytoplasmique</li>
+                            <li><strong>Autocrine</strong> = même cellule, message extracellulaire</li>
+                            <li><strong>Intracrine</strong> = même cellule, message intracellulaire</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ==================== PARTIE 3 : ARCHITECTURE DES COMMUNICATIONS ==================== -->
+            <details class="partie-accordion accord-3">
+                <summary>
+                    <span class="partie-num">3</span>
+                    Architecture des communications cellulaires
+                </summary>
+                <div class="partie-content">
+
+                    <div class="info-box">
+                        <strong>💡 Principe :</strong> Les communications cellulaires ne sont pas de simples signaux unidirectionnels. Elles s'inscrivent dans des <strong>boucles de régulation</strong> qui permettent un contrôle fin de la réponse.
+                    </div>
+
+                    <!-- Sous-accordéon : Rétro-inhibition -->
+                    <details class="sub-accordion" open>
+                        <summary><span class="sub-num">3.1</span> Rétro-inhibition (feedback négatif)</summary>
+                        <div class="sub-content">
+                            
+                            <div class="definition-box">
+                                <div class="definition-box-title">📚 Définition</div>
+                                <p>La <strong>réponse</strong> produite par le système vient <strong>inhiber le stimulus initial</strong>, ce qui permet d'éviter une production excessive de l'hormone.</p>
+                            </div>
+
+                            <div class="bloc">
+                                <div class="bloc-header">Mécanisme</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li><strong>Stimulus</strong> → déclenche la production d'une hormone de signalisation</li>
+                                        <li>L'hormone atteint sa <strong>cellule cible</strong> → génère une <strong>réponse</strong></li>
+                                        <li>Une partie de cette réponse <strong>réduit le stimulus</strong> initial</li>
+                                        <li>→ Cela évite l'emballement du système</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="schema-placeholder">
+                                <div class="schema-placeholder-icon">🔄</div>
+                                <p><strong>Schéma :</strong> Boucle de rétro-inhibition<br>Stimulus → Hormone → Réponse ⟲ (inhibe le stimulus)</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- Sous-accordéon : Rétro-activation -->
+                    <details class="sub-accordion">
+                        <summary><span class="sub-num">3.2</span> Rétro-activation (feedback positif)</summary>
+                        <div class="sub-content">
+                            
+                            <div class="definition-box">
+                                <div class="definition-box-title">📚 Définition</div>
+                                <p>À l'inverse, la <strong>réponse amplifie le stimulus</strong> initial. Ce mécanisme est plus rare car il peut conduire à un emballement du système.</p>
+                            </div>
+
+                            <div class="bloc">
+                                <div class="bloc-header">Mécanisme</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li><strong>Stimulus</strong> → production d'une hormone</li>
+                                        <li>L'hormone génère une <strong>réponse</strong></li>
+                                        <li>Cette réponse <strong>augmente le stimulus</strong></li>
+                                        <li>→ Effet d'amplification (jusqu'à un point de rupture ou un autre mécanisme de contrôle)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="schema-placeholder">
+                                <div class="schema-placeholder-icon">🔄</div>
+                                <p><strong>Schéma :</strong> Boucle de rétro-activation<br>Stimulus → Hormone → Réponse ⟲ (amplifie le stimulus)</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- Sous-accordéon : Cascade endocrine -->
+                    <details class="sub-accordion">
+                        <summary><span class="sub-num">3.3</span> Cascade endocrine</summary>
+                        <div class="sub-content">
+                            
+                            <div class="definition-box">
+                                <div class="definition-box-title">📚 Définition</div>
+                                <p>Une cascade endocrine implique <strong>plusieurs intermédiaires</strong> entre le stimulus initial et la réponse finale. Chaque étage peut être régulé.</p>
+                            </div>
+
+                            <div class="bloc">
+                                <div class="bloc-header">Exemple : Axe hypothalamo-hypophyso-thyroïdien</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li><strong>Stimulus</strong> → stimule l'<strong>hypothalamus</strong></li>
+                                        <li>L'hypothalamus produit la <strong>TRH</strong> (Thyreotropin-Releasing Hormone)</li>
+                                        <li>La TRH stimule l'<strong>adénohypophyse</strong></li>
+                                        <li>L'adénohypophyse produit la <strong>TSH</strong> (Thyroid-Stimulating Hormone)</li>
+                                        <li>La TSH stimule la <strong>thyroïde</strong></li>
+                                        <li>La thyroïde produit les hormones thyroïdiennes <strong>T3</strong> (tri-iodothyronine) et <strong>T4</strong> (tétra-iodothyronine ou thyroxine)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="alert-box">
+                                <div class="alert-box-title">⚠️ Rétro-inhibition associée</div>
+                                <p>Les hormones T3 et T4 exercent une <strong>rétro-inhibition</strong> sur l'hypothalamus et l'hypophyse pour éviter une surstimulation de la thyroïde.</p>
+                            </div>
+
+                            <div class="schema-placeholder">
+                                <div class="schema-placeholder-icon">🖼️</div>
+                                <p><strong>Schéma :</strong> Axe hypothalamo-hypophyso-thyroïdien avec boucle de rétro-inhibition</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- Récap -->
+                    <div class="key-point">
+                        <div class="key-point-title">💡 À retenir</div>
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li><strong>Rétro-inhibition</strong> = la réponse freine le stimulus (mécanisme le plus fréquent)</li>
+                            <li><strong>Rétro-activation</strong> = la réponse amplifie le stimulus (plus rare)</li>
+                            <li><strong>Cascade endocrine</strong> = plusieurs étages successifs (ex : hypothalamus → hypophyse → glande périphérique)</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ==================== PARTIE 4 : LIAISON LIGAND-RÉCEPTEUR ==================== -->
+            <details class="partie-accordion accord-4">
+                <summary>
+                    <span class="partie-num">4</span>
+                    Liaison ligand-récepteur
+                </summary>
+                <div class="partie-content">
+
+                    <div class="info-box">
+                        <strong>💡 Principe :</strong> Pour qu'un message hormonal soit reçu, il faut que le <strong>ligand</strong> (hormone) se fixe à son <strong>récepteur</strong>. Cette liaison obéit à des règles biophysiques précises.
+                    </div>
+
+                    <!-- Caractéristiques de la liaison -->
+                    <div class="bloc">
+                        <div class="bloc-header">Caractéristiques de la liaison ligand-récepteur</div>
+                        <div class="bloc-body">
+                            <ul>
+                                <li>Liaison <strong>non-covalente</strong> (liaisons faibles : hydrogène, ioniques, van der Waals)</li>
+                                <li>Liaison <strong>réversible</strong></li>
+                                <li>Chaque couple ligand-récepteur possède des <strong>paramètres d'association et de dissociation propres</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Compétition entre ligands -->
+                    <details class="sub-accordion" open>
+                        <summary><span class="sub-num">4.1</span> Affinité et compétition entre ligands</summary>
+                        <div class="sub-content">
+                            
+                            <div class="bloc">
+                                <div class="bloc-header">Principe de compétition</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li>Un même récepteur peut recevoir <strong>plusieurs ligands différents</strong></li>
+                                        <li>Chaque ligand a une <strong>affinité propre</strong> pour ce récepteur</li>
+                                        <li>Il y a donc <strong>compétition</strong> entre les ligands pour se fixer au récepteur</li>
+                                        <li>C'est le ligand fixé qui détermine la <strong>réponse cellulaire</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="definition-box">
+                                <div class="definition-box-title">📚 Constante de dissociation (Kd)</div>
+                                <p>Le <strong>Kd</strong> représente la concentration de ligand pour laquelle <strong>50% des récepteurs sont occupés</strong>.</p>
+                                <ul style="padding-left: 20px; margin-top: 8px;">
+                                    <li><strong>Kd bas</strong> = haute affinité (il faut peu de ligand pour saturer 50% des récepteurs)</li>
+                                    <li><strong>Kd élevé</strong> = faible affinité</li>
+                                </ul>
+                            </div>
+
+                            <div class="schema-placeholder">
+                                <div class="schema-placeholder-icon">📈</div>
+                                <p><strong>Graphique :</strong> Courbe [hormone fixée] en fonction de [hormone libre]<br>Le Kd correspond à l'abscisse du point où l'on atteint 50% de saturation</p>
+                            </div>
+
+                            <div class="medibox-box">
+                                <div class="medibox-box-title">🎓 Explication Medibox</div>
+                                <p>Imaginons 2 ligands (vert et bleu) pour un même récepteur. Si le ligand vert a un Kd plus bas, il atteindra 50% de saturation à une concentration plus faible. Donc <strong>à concentration égale, c'est le ligand vert qui se fixera préférentiellement</strong>. C'est le principe de la compétition par affinité.</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- Modulation par le nombre de récepteurs -->
+                    <details class="sub-accordion">
+                        <summary><span class="sub-num">4.2</span> Modulation par le nombre de récepteurs</summary>
+                        <div class="sub-content">
+                            
+                            <div class="bloc">
+                                <div class="bloc-header">Principe</div>
+                                <div class="bloc-body">
+                                    <p>Pour une même concentration d'hormone, la réponse cellulaire dépend aussi du <strong>nombre de récepteurs disponibles</strong> à la surface de la cellule.</p>
+                                    <ul>
+                                        <li>Plus il y a de récepteurs disponibles, plus la fixation est rapide et importante</li>
+                                        <li>Une cellule qui <strong>surexprime</strong> un récepteur répondra davantage à l'hormone</li>
+                                        <li>Une cellule qui <strong>sous-exprime</strong> un récepteur répondra moins</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="schema-placeholder">
+                                <div class="schema-placeholder-icon">📈</div>
+                                <p><strong>Graphique :</strong> Courbes [hormone fixée] vs [hormone libre] pour différentes quantités de récepteurs<br>Plus il y a de récepteurs, plus la courbe monte vite</p>
+                            </div>
+
+                            <div class="key-point">
+                                <div class="key-point-title">💡 Conséquence clinique</div>
+                                <p>En modifiant le <strong>niveau d'expression d'un récepteur</strong>, une cellule peut moduler sa sensibilité à une hormone, même si la concentration de cette hormone reste constante. C'est un mécanisme d'<strong>adaptation cellulaire</strong>.</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- Récap -->
+                    <div class="key-point">
+                        <div class="key-point-title">💡 À retenir</div>
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li>Liaison ligand-récepteur = <strong>non-covalente et réversible</strong></li>
+                            <li><strong>Kd</strong> = concentration pour 50% de saturation (Kd bas = haute affinité)</li>
+                            <li>Plusieurs ligands peuvent <strong>entrer en compétition</strong> pour un même récepteur</li>
+                            <li>La réponse dépend aussi du <strong>nombre de récepteurs</strong> exprimés par la cellule</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ==================== PARTIE 5 : RCPG ==================== -->
+            <details class="partie-accordion accord-5">
+                <summary>
+                    <span class="partie-num">5</span>
+                    Récepteurs couplés aux protéines G (RCPG)
+                </summary>
+                <div class="partie-content">
+
+                    <div class="info-box">
+                        <strong>💡 Concept clé :</strong> Les RCPG sont une grande famille de récepteurs membranaires qui transmettent le signal via des <strong>protéines G trimériques</strong>. C'est l'un des systèmes de signalisation les plus répandus dans l'organisme.
+                    </div>
+
+                    <!-- 5.1 Structure -->
+                    <details class="sub-accordion" open>
+                        <summary><span class="sub-num">5.1</span> Structure des RCPG</summary>
+                        <div class="sub-content">
+                            
+                            <div class="bloc">
+                                <div class="bloc-header">Architecture du récepteur</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li><strong>7 domaines transmembranaires</strong> (serpentins)</li>
+                                        <li>Partie <strong>extracellulaire</strong> : site de fixation du ligand</li>
+                                        <li>Partie <strong>intracellulaire</strong> : associée à la protéine G</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="bloc">
+                                <div class="bloc-header">Protéine G associée</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li><strong>Trimère</strong> composé de 3 sous-unités : <strong>α</strong>, <strong>β</strong> et <strong>γ</strong></li>
+                                        <li>La sous-unité α peut lier du <strong>GDP</strong> (état inactif) ou du <strong>GTP</strong> (état actif)</li>
+                                        <li>Avant réception du ligand : protéine G sous forme trimérique avec GDP → <strong>inactive</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="schema-placeholder">
+                                <div class="schema-placeholder-icon">🖼️</div>
+                                <p><strong>Schéma :</strong> Structure d'un RCPG avec ses 7 domaines transmembranaires et la protéine G trimérique associée</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- 5.2 Mécanisme d'activation -->
+                    <details class="sub-accordion">
+                        <summary><span class="sub-num">5.2</span> Mécanisme d'activation</summary>
+                        <div class="sub-content">
+                            
+                            <div class="bloc">
+                                <div class="bloc-header">Étapes de l'activation</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li><strong>1.</strong> Le <strong>ligand</strong> se fixe au récepteur</li>
+                                        <li><strong>2.</strong> Le RCPG change de <strong>conformation</strong></li>
+                                        <li><strong>3.</strong> Au niveau de la sous-unité α : le <strong>GDP est remplacé par du GTP</strong></li>
+                                        <li><strong>4.</strong> Le trimère se <strong>dissocie</strong> : sous-unité α-GTP d'un côté, dimère βγ de l'autre</li>
+                                        <li><strong>5.</strong> La sous-unité <strong>α-GTP migre</strong> vers la <strong>protéine effectrice</strong> et l'active</li>
+                                        <li><strong>6.</strong> Transduction du signal → <strong>réponse cellulaire</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="bloc">
+                                <div class="bloc-header">Retour à l'état basal</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li>La liaison ligand-récepteur est <strong>réversible</strong></li>
+                                        <li>Quand le ligand se détache : le <strong>GTP est hydrolysé</strong> en GDP</li>
+                                        <li>La sous-unité α-GDP se <strong>réassocie</strong> au dimère βγ</li>
+                                        <li>Retour à l'état <strong>inactif</strong> (situation de départ)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="schema-placeholder">
+                                <div class="schema-placeholder-icon">🔄</div>
+                                <p><strong>Schéma :</strong> Cycle d'activation/inactivation de la protéine G<br>GDP → GTP → dissociation → activation effecteur → hydrolyse → réassociation</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- Récap -->
+                    <div class="key-point">
+                        <div class="key-point-title">💡 À retenir</div>
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li>RCPG = récepteur à <strong>7 domaines transmembranaires</strong></li>
+                            <li>Protéine G = <strong>trimère αβγ</strong></li>
+                            <li>GDP = inactif / <strong>GTP = actif</strong></li>
+                            <li>Activation → dissociation → α-GTP active l'effecteur</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ==================== PARTIE 6 : TYPES DE PROTÉINES G ==================== -->
+            <details class="partie-accordion accord-6">
+                <summary>
+                    <span class="partie-num">6</span>
+                    Types de protéines G
+                </summary>
+                <div class="partie-content">
+
+                    <div class="info-box">
+                        <strong>💡 Concept clé :</strong> Il existe plusieurs types de protéines G, chacune activant un <strong>effecteur différent</strong>. Le type de protéine G détermine la cascade de signalisation en aval.
+                    </div>
+
+                    <!-- 6.1 Protéine Gs -->
+                    <details class="sub-accordion" open>
+                        <summary><span class="sub-num">6.1</span> Protéine Gs (stimulatrice)</summary>
+                        <div class="sub-content">
+                            
+                            <div class="bloc">
+                                <div class="bloc-header">Voie de signalisation</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li>Effecteur = <strong>Adénylate Cyclase (AC)</strong></li>
+                                        <li>Gs <strong>active</strong> l'AC</li>
+                                        <li>L'AC catalyse : <strong>ATP → AMPc</strong> (second messager)</li>
+                                        <li>L'AMPc active la <strong>PKA</strong> (Protéine Kinase A)</li>
+                                        <li>La PKA <strong>phosphoryle</strong> des protéines cibles → réponse cellulaire</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Étape</th>
+                                            <th>Molécule</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Ligand + RCPG</td>
+                                            <td>Activation Gs</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Gs (α-GTP)</td>
+                                            <td>Active l'Adénylate Cyclase</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Adénylate Cyclase</td>
+                                            <td>ATP → AMPc</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>AMPc</td>
+                                            <td>Active la PKA</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>PKA</td>
+                                            <td>Phosphoryle les cibles → Réponse</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="schema-placeholder">
+                                <div class="schema-placeholder-icon">🖼️</div>
+                                <p><strong>Schéma :</strong> Voie Gs → AC → AMPc → PKA</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- 6.2 Protéine Gq -->
+                    <details class="sub-accordion">
+                        <summary><span class="sub-num">6.2</span> Protéine Gq</summary>
+                        <div class="sub-content">
+                            
+                            <div class="bloc">
+                                <div class="bloc-header">Voie de signalisation</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li>Effecteur = <strong>Phospholipase C (PLC)</strong></li>
+                                        <li>Gq <strong>active</strong> la PLC</li>
+                                        <li>La PLC clive le <strong>PIP2</strong> en deux produits :
+                                            <ul style="margin-top: 5px;">
+                                                <li><strong>DAG</strong> (diacylglycérol) → active la <strong>PKC</strong></li>
+                                                <li><strong>IP3</strong> (inositol triphosphate) → libère le <strong>Ca²⁺</strong> du RE</li>
+                                            </ul>
+                                        </li>
+                                        <li>Le Ca²⁺ cytoplasmique active d'autres protéines en aval</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Produit du clivage</th>
+                                            <th>Action</th>
+                                            <th>Effet</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>DAG</strong></td>
+                                            <td>Active la PKC</td>
+                                            <td>Phosphorylation de cibles</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>IP3</strong></td>
+                                            <td>Se lie à son récepteur sur le RE</td>
+                                            <td>Libération de Ca²⁺ dans le cytoplasme</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="medibox-box">
+                                <div class="medibox-box-title">🎓 Explication Medibox</div>
+                                <p>Le récepteur de l'IP3 sur le réticulum endoplasmique est aussi un <strong>canal calcique</strong>. Quand l'IP3 s'y fixe, le canal s'ouvre et le Ca²⁺ stocké dans le RE sort dans le cytoplasme. Cette augmentation de Ca²⁺ cytoplasmique est un signal majeur pour de nombreux processus cellulaires.</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- 6.3 Protéine Gi -->
+                    <details class="sub-accordion">
+                        <summary><span class="sub-num">6.3</span> Protéine Gi (inhibitrice)</summary>
+                        <div class="sub-content">
+                            
+                            <div class="bloc">
+                                <div class="bloc-header">Voie de signalisation</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li>Gi <strong>inhibe</strong> l'Adénylate Cyclase</li>
+                                        <li>Action <strong>opposée</strong> à celle de Gs</li>
+                                        <li>→ Diminution de la production d'AMPc</li>
+                                        <li>→ Diminution de l'activité de la PKA</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="key-point">
+                                <div class="key-point-title">💡 Équilibre Gs/Gi</div>
+                                <p>Une même cellule peut exprimer des récepteurs couplés à Gs ET à Gi. L'effet final dépend de l'<strong>équilibre</strong> entre les deux voies. C'est un mécanisme fin de régulation.</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- Tableau récap -->
+                    <div class="bloc">
+                        <div class="bloc-header">Tableau récapitulatif des protéines G</div>
+                        <div class="bloc-body">
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Protéine G</th>
+                                            <th>Effecteur</th>
+                                            <th>Second messager</th>
+                                            <th>Kinase activée</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Gs</strong></td>
+                                            <td>Adénylate Cyclase ↑</td>
+                                            <td>AMPc ↑</td>
+                                            <td>PKA</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Gi</strong></td>
+                                            <td>Adénylate Cyclase ↓</td>
+                                            <td>AMPc ↓</td>
+                                            <td>PKA ↓</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Gq</strong></td>
+                                            <td>Phospholipase C</td>
+                                            <td>DAG + IP3 (→ Ca²⁺)</td>
+                                            <td>PKC</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ==================== PARTIE 7 : RTK ==================== -->
+            <details class="partie-accordion accord-7">
+                <summary>
+                    <span class="partie-num">7</span>
+                    Récepteurs à activité tyrosine kinase (RTK)
+                </summary>
+                <div class="partie-content">
+
+                    <div class="info-box">
+                        <strong>💡 Concept clé :</strong> Les RTK sont des récepteurs transmembranaires qui possèdent une <strong>activité enzymatique intrinsèque</strong> : ils peuvent phosphoryler des tyrosines.
+                    </div>
+
+                    <!-- 7.1 Structure -->
+                    <details class="sub-accordion" open>
+                        <summary><span class="sub-num">7.1</span> Structure des RTK</summary>
+                        <div class="sub-content">
+                            
+                            <div class="bloc">
+                                <div class="bloc-header">Architecture</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li><strong>Domaine extracellulaire</strong> : fixation du ligand</li>
+                                        <li><strong>Domaine transmembranaire</strong> : ancrage dans la membrane</li>
+                                        <li><strong>Domaine intracellulaire</strong> : possède une fonction <strong>tyrosine kinase</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="definition-box">
+                                <div class="definition-box-title">📚 Rappel : Kinases</div>
+                                <p>Une <strong>kinase</strong> est une enzyme qui <strong>phosphoryle</strong> (ajoute un groupement phosphate). Les acides aminés phosphorylables possèdent une fonction <strong>-OH</strong> :</p>
+                                <ul style="padding-left: 20px; margin-top: 8px;">
+                                    <li><strong>Tyrosine</strong> → tyrosine kinase</li>
+                                    <li><strong>Sérine et Thréonine</strong> → sérine/thréonine kinase</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- 7.2 Mécanisme d'activation -->
+                    <details class="sub-accordion">
+                        <summary><span class="sub-num">7.2</span> Mécanisme d'activation</summary>
+                        <div class="sub-content">
+                            
+                            <div class="bloc">
+                                <div class="bloc-header">Étapes de l'activation</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li><strong>1.</strong> Le <strong>ligand</strong> se fixe au domaine extracellulaire</li>
+                                        <li><strong>2.</strong> <strong>Dimérisation</strong> : deux monomères de récepteurs se rapprochent</li>
+                                        <li><strong>3.</strong> <strong>Autophosphorylation</strong> : chaque récepteur phosphoryle l'autre sur des tyrosines</li>
+                                        <li><strong>4.</strong> Les <strong>phosphotyrosines</strong> sont reconnues par d'autres protéines de signalisation</li>
+                                        <li><strong>5.</strong> Ces protéines recrutées déclenchent la <strong>cascade de signalisation</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="schema-placeholder">
+                                <div class="schema-placeholder-icon">🖼️</div>
+                                <p><strong>Schéma :</strong> Activation RTK<br>Ligand → Dimérisation → Autophosphorylation → Recrutement protéines → Réponse</p>
+                            </div>
+
+                            <div class="key-point">
+                                <div class="key-point-title">💡 Point important</div>
+                                <p>La <strong>phosphorylation/déphosphorylation</strong> est un moyen majeur de contrôle de l'activité des protéines. L'ajout ou le retrait d'un phosphate modifie la conformation et donc l'activité de la protéine cible.</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- Récap -->
+                    <div class="key-point">
+                        <div class="key-point-title">💡 À retenir</div>
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li>RTK = récepteur avec <strong>activité kinase intrinsèque</strong></li>
+                            <li>Activation par <strong>dimérisation</strong> puis <strong>autophosphorylation</strong></li>
+                            <li>Les phosphotyrosines servent de <strong>sites d'ancrage</strong> pour les protéines de signalisation</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ==================== PARTIE 8 : RÉCEPTEURS NUCLÉAIRES ==================== -->
+            <details class="partie-accordion accord-8">
+                <summary>
+                    <span class="partie-num">8</span>
+                    Récepteurs à activité nucléaire
+                </summary>
+                <div class="partie-content">
+
+                    <div class="info-box">
+                        <strong>💡 Concept clé :</strong> Certaines hormones (liposolubles) peuvent traverser la membrane plasmique et se lier à des récepteurs <strong>intracellulaires</strong> qui agissent directement sur la <strong>transcription des gènes</strong>.
+                    </div>
+
+                    <!-- 8.1 Principe -->
+                    <details class="sub-accordion" open>
+                        <summary><span class="sub-num">8.1</span> Principe de fonctionnement</summary>
+                        <div class="sub-content">
+                            
+                            <div class="bloc">
+                                <div class="bloc-header">État inactif (sans hormone)</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li>Le récepteur est dans le <strong>cytoplasme</strong></li>
+                                        <li>Il est associé à un <strong>inhibiteur</strong> qui masque :
+                                            <ul style="margin-top: 5px;">
+                                                <li>Le site de fixation à l'ADN</li>
+                                                <li>La séquence <strong>NLS</strong> (Nuclear Localization Signal)</li>
+                                            </ul>
+                                        </li>
+                                        <li>→ Le récepteur ne peut pas entrer dans le noyau</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="bloc">
+                                <div class="bloc-header">État actif (avec hormone)</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li><strong>1.</strong> L'hormone (liposoluble) traverse la membrane plasmique</li>
+                                        <li><strong>2.</strong> L'hormone se fixe au récepteur dans le cytoplasme</li>
+                                        <li><strong>3.</strong> <strong>Séparation</strong> du récepteur et de son inhibiteur</li>
+                                        <li><strong>4.</strong> La <strong>séquence NLS est exposée</strong></li>
+                                        <li><strong>5.</strong> Le complexe hormone-récepteur est <strong>importé dans le noyau</strong> (via les pores nucléaires)</li>
+                                        <li><strong>6.</strong> Le récepteur se fixe à sa <strong>séquence cible sur l'ADN</strong></li>
+                                        <li><strong>7.</strong> <strong>Activation</strong> (ou inhibition) de la transcription du gène cible</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="schema-placeholder">
+                                <div class="schema-placeholder-icon">🖼️</div>
+                                <p><strong>Schéma :</strong> Activation d'un récepteur nucléaire<br>Hormone → Fixation → Libération inhibiteur → Import nucléaire → Fixation ADN → Transcription</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- 8.2 Régulation de la transcription -->
+                    <details class="sub-accordion">
+                        <summary><span class="sub-num">8.2</span> Régulation de la transcription</summary>
+                        <div class="sub-content">
+
+                            <div class="definition-box">
+                                <div class="definition-box-title">📚 Vocabulaire</div>
+                                <ul style="padding-left: 20px; margin: 0;">
+                                    <li><strong>Séquence en cis</strong> : séquence régulatrice située sur le même ADN que le gène régulé (fait partie du gène)</li>
+                                    <li><strong>Facteur en trans</strong> : protéine (comme le récepteur) qui vient se fixer sur la séquence en cis pour réguler le gène</li>
+                                </ul>
+                            </div>
+
+                            <div class="bloc">
+                                <div class="bloc-header">Mode d'action</div>
+                                <div class="bloc-body">
+                                    <ul>
+                                        <li>Le récepteur se fixe à une <strong>séquence régulatrice en cis</strong> spécifique</li>
+                                        <li>La transcription ne s'effectue généralement pas avec un seul récepteur</li>
+                                        <li>Il y a souvent <strong>dimérisation</strong> des récepteurs</li>
+                                        <li>Des <strong>co-facteurs</strong> sont également recrutés</li>
+                                        <li>Effet : <strong>activation</strong> de la transcription (le plus souvent) ou <strong>inhibition</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="medibox-box">
+                                <div class="medibox-box-title">🎓 Explication Medibox</div>
+                                <p>Le récepteur agit "en trans" car il est codé par un autre gène que celui qu'il régule. La séquence régulatrice agit "en cis" car elle est à proximité du gène qu'elle contrôle, sur le même brin d'ADN. C'est une terminologie importante en biologie moléculaire.</p>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- 8.3 Exemples d'hormones -->
+                    <details class="sub-accordion">
+                        <summary><span class="sub-num">8.3</span> Exemples d'hormones à récepteurs nucléaires</summary>
+                        <div class="sub-content">
+                            
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Hormone</th>
+                                            <th>Récepteur</th>
+                                            <th>Effets principaux</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Glucocorticoïdes</strong> (cortisol)</td>
+                                            <td>Récepteur des glucocorticoïdes (GR)</td>
+                                            <td>Anti-inflammatoire, métabolisme glucidique</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Hormones thyroïdiennes</strong> (T3/T4)</td>
+                                            <td>Récepteur des hormones thyroïdiennes (TR)</td>
+                                            <td>Métabolisme basal, croissance</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Hormones stéroïdiennes</strong></td>
+                                            <td>Récepteurs des estrogènes, androgènes, progestérone</td>
+                                            <td>Développement sexuel, reproduction</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Vitamine D</strong></td>
+                                            <td>VDR</td>
+                                            <td>Métabolisme phosphocalcique</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </details>
+
+                    <!-- Récap -->
+                    <div class="key-point">
+                        <div class="key-point-title">💡 À retenir</div>
+                        <ul style="padding-left: 20px; margin: 0;">
+                            <li>Récepteurs nucléaires = pour les hormones <strong>liposolubles</strong></li>
+                            <li>Sans hormone : récepteur <strong>cytoplasmique + inhibiteur</strong></li>
+                            <li>Avec hormone : <strong>import nucléaire → fixation ADN → transcription</strong></li>
+                            <li>Agit en <strong>trans</strong> sur une séquence en <strong>cis</strong></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- Message de fin -->
+            <div class="key-point" style="margin-top: 25px; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-color: var(--bleu-medibox);">
+                <div class="key-point-title" style="color: var(--bleu-medibox);">🎓 Fin de la partie Physiologie</div>
+                <p style="margin-bottom: 10px;">Vous avez terminé la <strong>Partie 1 : Physiologie de la signalisation</strong>.</p>
+                <p>La suite du cours (<strong>Partie 2 : Pathologie</strong>) traite des anomalies de signalisation et sera disponible dans une fiche dédiée :</p>
+                <ul style="padding-left: 20px; margin-top: 8px;">
+                    <li>Anomalies des RCPG (récepteur AVP, récepteur TSH)</li>
+                    <li>Anomalies des RTK et récepteurs nucléaires</li>
+                    <li>Anomalies des ligands (leptine, FasL)</li>
+                    <li>Auto-anticorps et maladies auto-immunes (Basedow, myasthénie)</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- ==================== ONGLET RESSOURCES ==================== -->
+        <div id="ressources" class="tab-content">
+            <div class="bloc">
+                <div class="bloc-header">📄 Documents du cours</div>
+                <div class="bloc-body">
+                    <ul>
+                        <li>Diaporama Dr. Garnier (PDF)</li>
+                        <li>Ronéo Medik' West Indies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== ONGLET QCM ==================== -->
+        <div id="qcm" class="tab-content">
+            <div class="info-box" style="margin-bottom: 20px;">
+                <strong>✅ QCM vus en cours/ED</strong><br>
+                Cliquez sur une carte pour voir les réponses. Les propositions fausses sont barrées.
+            </div>
+
+            <div class="flashcards-container">
+                
+                <!-- FLASHCARD 1 -->
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <span class="flashcard-number">1</span>
+                            <div class="flashcard-title">La protéine Gs :</div>
+                            <ul class="flashcard-options">
+                                <li><strong>A.</strong> Elle est composée de 4 monomères</li>
+                                <li><strong>B.</strong> Elle active la phospholipase C</li>
+                                <li><strong>C.</strong> Elle active l'adénylate cyclase</li>
+                                <li><strong>D.</strong> Sa sous-unité Gs est une kinase</li>
+                                <li><strong>E.</strong> Son activation permet indirectement la sortie de Ca²⁺ du RE</li>
+                            </ul>
+                            <div class="flashcard-hint">👆 Cliquez pour voir les réponses</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <span class="flashcard-number">1</span>
+                            <div class="flashcard-title">La protéine Gs :</div>
+                            <ul class="flashcard-options">
+                                <li class="wrong"><strong>A.</strong> Elle est composée de 4 monomères <span class="tag-annee">2024-2025</span></li>
+                                <li class="wrong"><strong>B.</strong> Elle active la phospholipase C</li>
+                                <li class="correct"><strong>C.</strong> Elle active l'adénylate cyclase ✓</li>
+                                <li class="wrong"><strong>D.</strong> Sa sous-unité Gs est une kinase</li>
+                                <li class="wrong"><strong>E.</strong> Son activation permet indirectement la sortie de Ca²⁺ du RE <span class="tag-annee">2024-2025</span></li>
+                            </ul>
+                            <div class="flashcard-hint">👆 Cliquez pour revenir à la question</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ==================== FOOTER ==================== -->
+        <div class="footer">
+            <strong>UE2 - Biologie cellulaire · Cours 1</strong> · Medibox P2<br>
+            Fac des Antilles · DFGSM2 2025-2026
+        </div>
+
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var tabcontent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            var tabs = document.getElementsByClassName("tab");
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function toggleAllAccordions(open) {
+            var accordions = document.querySelectorAll('#cours .partie-accordion, #cours .sub-accordion');
+            accordions.forEach(function(accordion) {
+                if (open) {
+                    accordion.setAttribute('open', '');
+                } else {
+                    accordion.removeAttribute('open');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
