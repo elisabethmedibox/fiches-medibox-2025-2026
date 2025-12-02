@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC3 - L'ovogenèse - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau td {
+            padding: 8px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 500;
+            background: #f8fafc;
+        }
+        
+        .qcm-cell {
+            background: #e0f2fe;
+            color: #1a365d;
+            font-weight: 600;
+        }
+        
+        .empty-cell {
+            color: #a0aec0;
+        }
+        
+        .qcm-identique-cell {
+            background: #d1fae5;
+            color: #065f46;
+            font-weight: 600;
+        }
+        
+        /* Recommandations */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 10px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .frequence {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* Analyses QCM */
+        .qcm-analyse {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 10px 0;
+            color: #1a365d;
+            font-size: 1.05rem;
+        }
+        
+        .qcm-badge {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Encart alerte priorité */
+        .alerte-priorite {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border: 2px solid #ef4444;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .alerte-priorite h4 {
+            color: #dc2626;
+            margin: 0 0 15px 0;
+            font-size: 1.1rem;
+        }
+        
+        .alerte-priorite-content {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        
+        .alerte-priorite-content p {
+            margin: 0 0 10px 0;
+            color: #7f1d1d;
+            font-size: 0.95rem;
+        }
+        
+        .alerte-priorite-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC3 - L'ovogenèse</h1>
+            <div class="meta">
+                <span>📚 UE6 - Embryologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <div style="margin-bottom: 20px; padding: 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0;">
+                        <p style="margin: 0; font-size: 0.9rem; color: #92400e;">
+                            <strong>📷 Note sur les images :</strong> Les années 2021-2022, 2022-2023 et 2023-2024 utilisent une image partagée (schémas de folliculogenèse) pour les Q4-Q5-Q6. En 2024-2025, un cas clinique (Madame D) couvre les Q3-Q6.
+                        </p>
+                    </div>
+                    
+                    <!-- Thématique 1 : Étapes de l'ovogenèse et follicule primordial -->
+                    <div class="qcm-thematique">
+                        <h4>Étapes de l'ovogenèse et follicule primordial</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>Contenu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse féminine</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'ovogenèse débute en vie intra-utérine</div>
+                                            <div class="qcm-item">B: Dans l'ovaire fœtal, les ovogonies se multiplient par méiose</div>
+                                            <div class="qcm-item">C: A partir de la mise en place du follicule primordial, la folliculogenèse et l'ovogenèse assurent la production des gamètes féminins</div>
+                                            <div class="qcm-item">D: La réserve en follicules ovariens est renouvelée par l'activation de l'OMI lors de la naissance</div>
+                                            <div class="qcm-item">E: Entre la puberté et la ménopause, de manière générale, tous les 28 jours un gamète fécondable est produit</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022 Q4<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">avec schéma</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse féminine (schémas follicules 1, 2, 3)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le follicule représenté en 1 se met en place à la naissance</div>
+                                            <div class="qcm-item">B: Le follicule représenté en 1 est un follicule primaire</div>
+                                            <div class="qcm-item">C: Les flèches A indiquent la membrane de Slavjansky</div>
+                                            <div class="qcm-item">D: Dans le follicule représenté en 1, l'ovocyte l effectue l'ensemble de la méiose I puis il est bloqué par l'OMI</div>
+                                            <div class="qcm-item">E: À la puberté, la mise en place de l'activité de l'axe hypothalamo-hypophysaire permet la croissance des follicules ovariens et la reprise de la méiose</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023 Q4<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">avec schéma</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse féminine (1)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Dès la mise en place du follicule primordial, la folliculogenèse et l'ovogenèse sont liées</div>
+                                            <div class="qcm-item">B: Les flèches B indiquent des cellules folliculaires</div>
+                                            <div class="qcm-item">C: La flèche A indique une cellule diploïde</div>
+                                            <div class="qcm-item">D: L'évolution du follicule primordial dépend des hormones gonadotropes hypophysaires</div>
+                                            <div class="qcm-item">E: Le follicule primordial se met en place dans l'ovaire fœtal</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024 Q4<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">avec schéma</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse féminine (1)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Un follicule correspond à l'association d'un ovocyte et de cellules satellites</div>
+                                            <div class="qcm-item">B: Le premier follicule a se mettre en place est le follicule primaire</div>
+                                            <div class="qcm-item">C: L'ovocyte du follicule 1 s'est mis en place dans l'ovaire fœtal</div>
+                                            <div class="qcm-item">D: Les ovocytes des follicules 1 et 2 sont bloqués au stade diplotène par le facteur inhibiteur de la méiose ou OMI</div>
+                                            <div class="qcm-item">E: À partir de la puberté, et jusqu'à la ménopause, l'activité des ovaires se déroule selon un rythme cyclique de 28 jours en moyenne</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                    <!-- Thématique 2 : Folliculogenèse (follicule pré-antral et antral) -->
+                    <div class="qcm-thematique">
+                        <h4>Folliculogenèse (follicule pré-antral et antral)</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>Contenu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">La folliculogenèse et l'ovogenèse</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: A la puberté, la mise en place de l'activité de l'axe hypothalamo-hypophysaire permet la croissance des follicules ovariens et la reprise de la méiose</div>
+                                            <div class="qcm-item">B: Le follicule primaire est le premier follicule à se mettre en place</div>
+                                            <div class="qcm-item">C: Le follicule primaire est isolé du stroma ovarien par la membrane de Slavjanski</div>
+                                            <div class="qcm-item">D: La croissance du follicule pré-antral est indépendante des hormones gonadotropes hypophysaires</div>
+                                            <div class="qcm-item">E: Les modifications qui marquent le passage du stade follicule antral au stade follicule de De Graaf ont lieu dans les heures qui précèdent l'ovulation</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022 Q5<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">avec schéma</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse féminine (suite schémas)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Sur le follicule représenté en 2, la flèche B indique une cellule de la granulosa</div>
+                                            <div class="qcm-item">B: La granulosa est abondamment vascularisée</div>
+                                            <div class="qcm-item">C: Au stade de développement du follicule représenté en 2, les cellules de la granulosa possèdent des récepteurs à la LH</div>
+                                            <div class="qcm-item">D: La régulation de la croissance du follicule représenté en 2 est uniquement intra ovarienne</div>
+                                            <div class="qcm-item">E: Au stade de maturation du follicule représenté en 2, la zone pellucide se met en place</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023 Q5<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">avec schéma</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse féminine (2)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Dans le follicule pré-antral, les cellules indiquées par la flèche B sont devenues de morphologie cubique et organisées en plusieurs couches, elles constituent la granulosa</div>
+                                            <div class="qcm-item">B: Les flèches C indiquent des cellules de la granulosa</div>
+                                            <div class="qcm-item">C: À ce stade de développement du follicule antral les cellules indiquées par la flèche C possèdent des récepteurs à FSH. Ces récepteurs se sont mis en place au stade pré antral</div>
+                                            <div class="qcm-item">D: Les flèches D indiquent des cellules de la thèque externe</div>
+                                            <div class="qcm-item">E: Les cellules indiquées par les flèches D présentent des récepteurs à la LH</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024 Q5<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">avec schéma</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse féminine (2)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les flèches A indiquent des cellules qui se sont mises en place au stade de follicule pré-antral</div>
+                                            <div class="qcm-item">B: Sur les cellules indiquées par les flèches A se mettent en place des récepteurs à la FSH</div>
+                                            <div class="qcm-item">C: La mise en place des récepteurs à la FSH s'effectue au stade du follicule 2</div>
+                                            <div class="qcm-item">D: Au stade du follicule 2 une zone fibrillaire formée de glycoprotéines sulfatées se forme</div>
+                                            <div class="qcm-item">E: La cavité indiquée par la flèche B se nomme, Antrum</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025 Q4<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">cas clinique</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse féminine (2) - Cas Madame D</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Du 18 au 26 septembre en réponse aux œstrogènes sécrétés par les follicules préantraux l'endomètre se reconstitue à partir de sa couche basale</div>
+                                            <div class="qcm-item">B: Dans les follicules pré-antraux, les ovocytes sont bloqués en méiose I sous l'effet de l'OMI (ou facteur inhibiteur de la méiose)</div>
+                                            <div class="qcm-item">C: La membrane de Slavjanski se met en place dans les follicules pré-antraux</div>
+                                            <div class="qcm-item">D: Dans les follicules pré-antraux au niveau de la granulosa se mettent en place des récepteurs à la FSH</div>
+                                            <div class="qcm-item">E: Dans le follicule antral, entre la membrane plasmique de l'ovocyte et les cellules de la granulosa, se met en place la zone pellucide</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                    <!-- Thématique 3 : Transformations pré-ovulatoires et follicule de De Graaf -->
+                    <div class="qcm-thematique">
+                        <h4>Transformations pré-ovulatoires et follicule de De Graaf</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>Contenu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q5<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">avec schéma</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Dans les heures qui précèdent l'ovulation (QCM avec schéma)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La flèche A indique des structures qui se mettent en place dans les 36 heures qui précèdent l'ovulation</div>
+                                            <div class="qcm-item">B: La flèche B indique la granulosa</div>
+                                            <div class="qcm-item">C: La flèche C indique le cumulus oophorus</div>
+                                            <div class="qcm-item">D: Au niveau de la flèche D le phénomène de mucification va se produire</div>
+                                            <div class="qcm-item">E: La flèche E indique la proéminence du follicule mûr, sous l'épithélium ovarien</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022 Q6<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">avec schéma</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse féminine (suite schémas)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Sur le follicule représenté en 3, la flèche C indique l'antrum</div>
+                                            <div class="qcm-item">B: Sur le follicule représenté en 3, la flèche D indique le cumulus oophorus</div>
+                                            <div class="qcm-item">C: Sur le follicule représenté en 3, des cellules indiquées par les flèches E subiront le phénomène de mucification</div>
+                                            <div class="qcm-item">D: Au stade du follicule représenté en 3, la thèque interne est mise en place</div>
+                                            <div class="qcm-item">E: Le follicule représenté en 3 correspond au follicule de De Graff</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023 Q6<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">avec schéma</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse féminine (3)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Dans la cellule indiquée par la flèche G, les granules corticaux se mettent en place</div>
+                                            <div class="qcm-item">B: Le follicule antral est le follicule concerné par le phénomène d'ovulation</div>
+                                            <div class="qcm-item">C: La flèche F indique une cellule du cumulus oophorus</div>
+                                            <div class="qcm-item">D: Dans la cellule indiquée par la flèche G, le facteur OMI est actif</div>
+                                            <div class="qcm-item">E: La flèche E indique l'antrum</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024 Q6<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">avec schéma</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse féminine (3)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le follicule de De Graaf se met en place dans les heures qui précèdent l'ovulation</div>
+                                            <div class="qcm-item">B: Le follicule 3 est un follicule de De Graff</div>
+                                            <div class="qcm-item">C: Au stade du follicule 3 se produit l'ovulation</div>
+                                            <div class="qcm-item">D: L'ovulation active le CSF dans l'ovocyte indiqué par la flèche C</div>
+                                            <div class="qcm-item">E: L'ovocyte indiqué par la flèche C va être récupéré par le pavillon de la trompe</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025 Q5<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">cas clinique</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse féminine (3) - Cas Madame D</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Vous estimez que vers le 25 septembre sont survenues les modifications qui marquent le passage du stade follicule antral au stade follicule de De Graaf</div>
+                                            <div class="qcm-item">B: Dans le follicule de De Graff, la méiose I se termine</div>
+                                            <div class="qcm-item">C: Dans les heures qui précèdent l'ovulation, les granules corticaux disparaissent</div>
+                                            <div class="qcm-item">D: L'ovulation de Madame D est survenue le 26 septembre</div>
+                                            <div class="qcm-item">E: Au cours du phénomène d'ovulation, l'inhibition du CSF permet à l'ovocyte de commencer sa méiose II</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                    <!-- Thématique 4 : Ovulation et corps jaune -->
+                    <div class="qcm-thematique">
+                        <h4>Ovulation et corps jaune</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>Contenu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022 Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">L'ovulation et ses conséquences</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le phénomène d'ovulation concerne le follicule de De Graff</div>
+                                            <div class="qcm-item">B: L'ovocyte ovulé a terminé la seconde division de méiose</div>
+                                            <div class="qcm-item">C: Après l'ovulation, la granulosa se vascularise</div>
+                                            <div class="qcm-item">D: La lutéinisation permet la formation du corps jaune, une glande endocrine provisoire</div>
+                                            <div class="qcm-item">E: Dans le corps jaune, les petites cellules lutéales dérivent de la thèque externe</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024 Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le corps jaune</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La membrane de Slavjanski est un acteur majeur du phénomène de lutéinisation</div>
+                                            <div class="qcm-item">B: Au cours du phénomène de lutéinisation les cellules de la granulosa se vascularisent</div>
+                                            <div class="qcm-item">C: Les cellules de la thèque interne disparaissent par apoptose lors du phénomène de lutéinisation</div>
+                                            <div class="qcm-item">D: Le phénomène de lutéinisation, aboutit à la formation du corps jaune</div>
+                                            <div class="qcm-item">E: Le corps jaune sécrète, entre autres, de la progestérone</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025 Q6<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">cas clinique</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Le corps jaune - Cas Madame D</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Dès le 26 septembre, l'ovocyte et le follicule évoluent séparément</div>
+                                            <div class="qcm-item">B: Au niveau de l'ovocyte la membrane de Slavjanski se dissocie et disparait</div>
+                                            <div class="qcm-item">C: Dans l'ovaire, après l'expulsion de l'ovocyte et du liquide folliculaire, la vascularisation de la granulosa provoque la transformation de ses cellules</div>
+                                            <div class="qcm-item">D: Au cours de la lutéinisation, les grandes cellules lutéales du corps jaune se mettent en place à partir des cellules de la thèque interne</div>
+                                            <div class="qcm-item">E: Les grandes cellules lutéales du corps jaune élaborent principalement la progestérone et l'inhibine</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                    <!-- Thématique 5 : Cycle menstruel -->
+                    <div class="qcm-thematique">
+                        <h4>Cycle menstruel</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>Contenu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023 Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le cycle ovarien et le cycle utérin</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La lettre A indique la phase pré-ovulatoire du cycle ovarien</div>
+                                            <div class="qcm-item">B: Lors de la phase pré-ovulatoire du cycle ovarien, sous l'effet stimulant de la FSH, une synthèse croissante d'œstrogènes est observée</div>
+                                            <div class="qcm-item">C: Après l'ovulation, l'endomètre se reconstitue à partir de sa couche basale en réponse aux œstrogènes sécrétés par les follicules pré-antraux</div>
+                                            <div class="qcm-item">D: Au cours de la phase indiquée par la lettre B, le corps jaune est présent</div>
+                                            <div class="qcm-item">E: Au cours de la phase indiquée par la lettre B, les modifications structurelles de l'endomètre sont induites par les œstrogènes et la progestérone sécrétés par le corps jaune</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025 Q3<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">cas clinique</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse féminine (1) - Cas clinique Madame D (22 ans, aménorrhée 3 semaines)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'hémorragie menstruelle est dû à la présence du corps jaune qui assure la lutéolyse des cellules de l'endomètre</div>
+                                            <div class="qcm-item">B: Le premier jour du dernier cycle menstruel de Madame D est le 13 septembre</div>
+                                            <div class="qcm-item">C: Ce qui amène Madame à consulter est l'absence du cycle qui aurait dû débuter le 11 octobre</div>
+                                            <div class="qcm-item">D: Vous estimez que la phase proliférative du cycle de Madame D, commencé le 13 septembre, se déroule du 18 au 26 septembre</div>
+                                            <div class="qcm-item">E: Pour confirmer le début de grossesse de Madame D vous allez lui prescrire des analyses sanguines. Ces analyses vont permettre entre autres, de mesurer les taux sanguins en œstrogènes et progestérone. Ces taux devraient être plus élevés que ceux d'un cycle hormonal sans fécondation</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                    <table class="diagnostic-table">
+                        <tr>
+                            <th>Fréquence d'apparition</th>
+                            <th>Moyenne QCM/an</th>
+                            <th>Format des QCM</th>
+                            <th>Niveau de dépendance</th>
+                        </tr>
+                        <tr>
+                            <td>✅ Tombe chaque année</td>
+                            <td>3,8 QCM/an</td>
+                            <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                            <td>🔗 Cours appartenant à une suite logique (avec FC2)</td>
+                        </tr>
+                    </table>
+                    </div>
+                    
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Ce tableau montre les questions par thématique et par année. Les schémas de folliculogenèse sont utilisés plusieurs années consécutives avec des questions sur les mêmes structures.</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Étapes ovogenèse / Follicule primordial</td>
+                                    <td class="qcm-cell">Q3</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Folliculogenèse (pré-antral/antral)</td>
+                                    <td class="qcm-cell">Q4</td>
+                                    <td class="qcm-cell">Q5</td>
+                                    <td class="qcm-cell">Q5</td>
+                                    <td class="qcm-cell">Q5</td>
+                                    <td class="qcm-cell">Q4</td>
+                                </tr>
+                                <tr>
+                                    <td>Transformations pré-ovulatoires / De Graaf</td>
+                                    <td class="qcm-cell">Q5</td>
+                                    <td class="qcm-cell">Q6</td>
+                                    <td class="qcm-cell">Q6</td>
+                                    <td class="qcm-cell">Q6</td>
+                                    <td class="qcm-cell">Q5</td>
+                                </tr>
+                                <tr>
+                                    <td>Ovulation et corps jaune</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q7</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q7</td>
+                                    <td class="qcm-cell">Q6</td>
+                                </tr>
+                                <tr>
+                                    <td>Cycle menstruel</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q7</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q3</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>📷 Images partagées :</strong> Q4-Q5-Q6 de 2021-2022, 2022-2023 et 2023-2024 utilisent des schémas de folliculogenèse similaires. En 2024-2025, un cas clinique (Madame D) couvre Q3-Q6.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>Les stades folliculaires et leurs caractéristiques</h4>
+                        <p>Distinguer follicule primordial (cellules aplaties, OMI actif), follicule primaire (cellules cubiques), follicule pré-antral (granulosa multicouche, récepteurs FSH, thèques), follicule antral (antrum, cumulus oophorus) et follicule de De Graaf (modifications pré-ovulatoires).</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La membrane de Slavjanski et la granulosa</h4>
+                        <p>La membrane de Slavjanski isole le follicule du stroma. La granulosa n'est PAS vascularisée (sauf après ovulation lors de la lutéinisation). Les récepteurs FSH apparaissent au stade pré-antral.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le blocage méiotique (OMI et CSF)</h4>
+                        <p>Ovocyte I bloqué au stade diplotène de prophase I par l'OMI. Reprise de méiose I avant ovulation (MPF). Ovocyte II bloqué en métaphase II par le CSF jusqu'à la fécondation.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le corps jaune et la lutéinisation</h4>
+                        <p>Vascularisation de la granulosa après ovulation. Grandes cellules lutéales (de la granulosa) sécrètent progestérone et inhibine. Petites cellules lutéales (de la thèque interne) sécrètent œstradiol.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les thèques interne et externe</h4>
+                        <p>Thèque interne : vascularisée, récepteurs LH, synthèse d'androgènes. Thèque externe : myofibroblastes, non vascularisée.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le cycle menstruel et ses phases</h4>
+                        <p>Phase proliférative (œstrogènes des follicules pré-antraux), phase sécrétoire (œstrogènes + progestérone du corps jaune). Phase post-ovulatoire = 14 jours invariables.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les schémas de folliculogenèse</h4>
+                        <p>Identifier sur les schémas : membrane de Slavjanski, granulosa, zone pellucide, antrum, cumulus oophorus, corona radiata, thèques interne et externe, stigma.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans (avec image)</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="qcm-analyse">
+                        <h4>Follicule primordial vs follicule primaire</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q3, Q4 | <strong>2021-2022</strong> Q4 | <strong>2022-2023</strong> Q4 | <strong>2023-2024</strong> Q4</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Piège récurrent : confondre le premier follicule (primordial) avec le follicule primaire. Le prof teste la distinction entre mise en place dans l'ovaire fœtal et transformation en cellules cubiques.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Mémoriser la séquence : ovogonie → follicule PRIMORDIAL (cellules aplaties, ovaire fœtal) → follicule PRIMAIRE (cellules cubiques). Le primordial est le PREMIER, pas le primaire.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>Pense à l'étymologie : "primordial" = à l'origine. C'est le TOUT PREMIER follicule, celui qui existe dès la vie fœtale.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Vascularisation de la granulosa</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q5, Q7 | <strong>2023-2024</strong> Q7 | <strong>2024-2025</strong> Q6</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof pose régulièrement des items sur la vascularisation de la granulosa. Item piège récurrent : "la granulosa est vascularisée" (FAUX avant ovulation, VRAI après).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retenir que la granulosa est avasculaire TANT QUE la membrane de Slavjanski est présente. La vascularisation = lutéinisation = APRÈS l'ovulation.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>La membrane de Slavjanski = barrière. Tant qu'elle est là, pas de vaisseaux dans la granulosa. Ovulation = rupture = vascularisation = corps jaune.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Récepteurs FSH et LH</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q5 | <strong>2022-2023</strong> Q5 | <strong>2023-2024</strong> Q5 | <strong>2024-2025</strong> Q4</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">La localisation des récepteurs hormonaux est testée chaque année. Pièges : inverser FSH/LH ou confondre le stade d'apparition.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Granulosa = récepteurs FSH (apparition au stade pré-antral). Thèque interne = récepteurs LH. Ne pas confondre avec "récepteurs LH sur la granulosa" (piège).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>FSH = Follicle Stimulating = agit sur les cellules folliculaires = granulosa. LH = agit sur les cellules en dehors = thèque interne (vascularisée, donc accessible par voie sanguine).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Cellules lutéales (grandes vs petites)</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q7 | <strong>2023-2024</strong> Q7 | <strong>2024-2025</strong> Q6</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof teste l'origine et la fonction des cellules lutéales. Piège : inverser grandes/petites ou leur origine (granulosa vs thèque).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Grandes cellules lutéales = viennent de la granulosa = progestérone + inhibine. Petites cellules lutéales = viennent de la thèque INTERNE (pas externe !) = œstradiol.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>La granulosa est plus volumineuse que la thèque → elle donne les GRANDES cellules. La thèque interne est plus petite → elle donne les PETITES cellules.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>OMI et CSF (facteurs de blocage)</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q3 | <strong>2022-2023</strong> Q6 | <strong>2023-2024</strong> Q4, Q6 | <strong>2024-2025</strong> Q5</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Les facteurs de blocage méiotique sont testés régulièrement. Pièges : confondre OMI et CSF, ou mal situer le blocage (prophase I vs métaphase II).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">OMI = blocage en prophase I (stade diplotène), actif de la vie fœtale jusqu'à l'ovulation. CSF = blocage en métaphase II, actif après l'ovulation jusqu'à la fécondation.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>Ordre chronologique : OMI d'abord (méiose I bloquée longtemps), puis CSF ensuite (méiose II bloquée brièvement). L'ovulation lève l'OMI, la fécondation lève le CSF.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion follicule primordial / follicule primaire</h4>
+                        <p>Le follicule PRIMORDIAL est le premier (cellules aplaties, ovaire fœtal). Le follicule PRIMAIRE vient après (cellules cubiques). Ne pas confondre "premier" et "primaire".</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Vascularisation de la granulosa</h4>
+                        <p>La granulosa n'est PAS vascularisée tant que la membrane de Slavjanski est présente. Elle ne se vascularise qu'APRÈS l'ovulation, lors de la lutéinisation.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Récepteurs LH sur la granulosa</h4>
+                        <p>La granulosa a des récepteurs FSH (pas LH). Les récepteurs LH sont sur la thèque INTERNE. Item piège fréquent.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Petites cellules lutéales et thèque externe</h4>
+                        <p>Les petites cellules lutéales viennent de la thèque INTERNE (pas externe). La thèque externe contient des myofibroblastes et n'intervient pas dans la lutéinisation.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Zone pellucide au stade pré-antral</h4>
+                        <p>La zone pellucide (ZP1, ZP2, ZP3, ZP4) se met en place au stade PRÉ-ANTRAL, pas au stade antral. Elle est déjà présente quand l'antrum apparaît.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Ovocyte ovulé et fin de méiose</h4>
+                        <p>L'ovocyte ovulé est un ovocyte II bloqué en métaphase II. Il n'a PAS terminé la méiose. La méiose II se termine uniquement SI fécondation.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Membrane de Slavjanski et lutéinisation</h4>
+                        <p>La membrane de Slavjanski se dissocie et disparaît lors de la lutéinisation (pas au niveau de l'ovocyte mais au niveau du follicule resté dans l'ovaire).</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        
+                        <div class="alerte-priorite">
+                            <h4>🚨 CHAPITRE À TRAVAILLER EN PRIORITÉ ABSOLUE</h4>
+                            <div class="alerte-priorite-content">
+                                <p><strong>📊 Le poids :</strong> FC2 (Spermatogenèse) + FC3 (Ovogenèse) = environ 1/3 des points de l'UE6 (32 QCM sur ~100 en 5 ans)</p>
+                                <p><strong>💡 La difficulté :</strong> Aucune difficulté majeure de compréhension. C'est de l'apprentissage avec une logique chronologique claire.</p>
+                                <p><strong>✅ La recommandation :</strong> Il est totalement déconseillé d'avoir une stratégie de Niveau 1 ou même Niveau 2 sur ce cours. Travaillez-le intensivement et complètement.</p>
+                            </div>
+                        </div>
+                        
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">
+                        Sur ce chapitre, le prof utilise des schémas de folliculogenèse récurrents et teste les mêmes notions chaque année : stades folliculaires, récepteurs hormonaux, vascularisation, cellules lutéales. Les items sont très prévisibles. Le cas clinique 2024-2025 (Madame D) teste les mêmes concepts mais en situation concrète.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Maîtrisez l'intégralité du cours, notamment les schémas de folliculogenèse avec toutes les structures (membrane de Slavjanski, granulosa, zone pellucide, thèques, antrum, cumulus oophorus). Comprenez la chronologie complète depuis l'ovogonie jusqu'au corps jaune. Attention au cas clinique : savoir calculer les dates du cycle.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les 7 thèmes identifiés dans les recommandations. Maîtrisez parfaitement les schémas de folliculogenèse et la chronologie des stades. Pour le cycle menstruel, retenez les phases et leurs hormones associées.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Mémorisez les items récurrents : follicule primordial ≠ primaire, granulosa non vascularisée avant ovulation, récepteurs FSH sur granulosa (pas LH), grandes cellules lutéales = granulosa, petites = thèque interne. Les 5 analyses de l'accordéon 4 couvrent l'essentiel des pièges. Récurrence MOYENNE des items (~35-40%), ce qui rend le Niveau 1 risqué : le prof varie ses items même s'il reste sur les mêmes thématiques. Le chapitre est trop rentable pour faire des impasses.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
