@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC2 - La spermatogenèse - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 500;
+            background: #f8fafc;
+        }
+        
+        .qcm-cell {
+            color: #1a365d;
+            font-weight: 600;
+        }
+        
+        .empty-cell {
+            color: #a0aec0;
+        }
+        
+        .qcm-identique-cell {
+            background: #d1fae5;
+            color: #047857;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+            font-size: 1rem;
+        }
+        
+        .reco-item p {
+            margin: 0 0 10px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* Recommandations Niveau 1 */
+        .qcm-analyse {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 10px 0;
+            color: #1a365d;
+            font-size: 1.05rem;
+        }
+        
+        .qcm-badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC2 - La spermatogenèse</h1>
+            <div class="meta">
+                <span>📚 UE6 - Embryologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- Thématique 1 : Généralités et dynamique -->
+                    <div class="qcm-thematique">
+                        <h4>Généralités et dynamique de la spermatogenèse</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>QCM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q1</td>
+                                    <td>
+                                        <div class="qcm-enonce">La dynamique de la spermatogenèse.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La production des spermatozoïdes est permanente à partir de la puberté.</div>
+                                            <div class="qcm-item">B: Le rendement de la spermatogenèse est identique pour tous les individus masculins en âge de procréer.</div>
+                                            <div class="qcm-item">C: En cas de fièvre prolongée la spermatogenèse peut être affectée.</div>
+                                            <div class="qcm-item">D: Les immuno-dépresseurs peuvent provoquer des perturbations souvent irréversibles de la spermatogenèse.</div>
+                                            <div class="qcm-item">E: La spermatogenèse se déroule au niveau des testicules dans la paroi des tubes séminifères.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023 Q1</td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse masculine (1)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Débute à la puberté et nécessite 74 jours pour former à partir d'une spermatogonie des spermatozoïdes</div>
+                                            <div class="qcm-item">B: Est un processus hormono-dépendant</div>
+                                            <div class="qcm-item">C: Se déroule de manière cyclique</div>
+                                            <div class="qcm-item">D: S'effectue dans les gonades</div>
+                                            <div class="qcm-item">E: Utilise la méiose pour réduire le nombre de chromosomes et assurer la diversité génétique</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024 Q1</td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse masculine (1) - Les étapes de la spermatogenèse<br>[Schéma : Les étapes de la spermatogenèse]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La spermatogenèse nécessite environ 74 jours</div>
+                                            <div class="qcm-item">B: Les étapes de la spermatogenèse visualisées sur le schéma se déroulent dans les tubes séminifères</div>
+                                            <div class="qcm-item">C: Deux ou trois tubes séminifères sont présents par lobule testiculaire</div>
+                                            <div class="qcm-item">D: La nutrition des cellules visualisées sur le schéma est assurée par les cellules de Sertoli</div>
+                                            <div class="qcm-item">E: Les tubes séminifères de chaque lobule testiculaire communiquent directement avec l'épididyme</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025 Q1</td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse masculine (1)<br>[Schéma d'un spermatozoïde]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: A partir de la puberté, dans les tubes séminifères, la production des spermatozoïdes s'effectue de manière cyclique.</div>
+                                            <div class="qcm-item">B: Le spermatozoïde représente le gamète mâle, une cellule haploïde.</div>
+                                            <div class="qcm-item">C: Le spermatozoïde est le résultat de la méiose II de la spermatide.</div>
+                                            <div class="qcm-item">D: Au cours de la spermiogenèse se mettent en place ou s'organisent les structures indiquées par les lettres A, C, D, E</div>
+                                            <div class="qcm-item">E: Les cellules de Sertoli facilitent la libération des spermatozoïdes dans la lumière des tubes séminifères</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                    <!-- Thématique 2 : Tubes séminifères et cellules de Sertoli -->
+                    <div class="qcm-thematique">
+                        <h4>Tubes séminifères et cellules de Sertoli</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>QCM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">La spermatogenèse</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les cellules de la lignée germinale sont localisées dans des cryptes organisées par les cellules de Sertoli.</div>
+                                            <div class="qcm-item">B: La disposition des cellules de la lignée germinale représente de la périphérie du tube séminifère au centre du tube tous les stades de la spermatogenèse.</div>
+                                            <div class="qcm-item">C: Les spermatogonies sont localisées à proximité de la lumière du tube séminifère.</div>
+                                            <div class="qcm-item">D: Les spermatides au cours de la spermiogenèse se différencient en spermatozoïdes.</div>
+                                            <div class="qcm-item">E: La spermiogenèse se déroule au contact des cellules de Leydig.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022 Q1</td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse masculine<br>[Schéma : Représentation schématique de la spermatogenèse]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les cellules du schéma sont des cellules somatiques.</div>
+                                            <div class="qcm-item">B: L'évolution des cellules du schéma s'effectue dans les tubes séminifères.</div>
+                                            <div class="qcm-item">C: Les cellules du schéma se trouvent à l'intérieur des deux compartiments délimités par les prolongements des cellules de Sertoli.</div>
+                                            <div class="qcm-item">D: Les cellules de Sertoli ont pour fonctions de soutenir, protéger et nourrir les cellules du schéma.</div>
+                                            <div class="qcm-item">E: Les cellules de Sertoli sécrètent de la testostérone.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023 Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse masculine (2)<br>[Schéma : portion de tube séminifère]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le schéma représente une portion de tube séminifère</div>
+                                            <div class="qcm-item">B: Dans un testicule, les tubes séminifères sont au nombre de 200 par lobule.</div>
+                                            <div class="qcm-item">C: La flèche A indique le cytoplasme d'une cellule de Sertoli</div>
+                                            <div class="qcm-item">D: La division par méiose de la cellule indiquée par la flèche B permet d'entretenir le stock de ces cellules</div>
+                                            <div class="qcm-item">E: La flèche C indique une cellule de Leydig</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                    <!-- Thématique 3 : Déroulement de la spermatogenèse et méiose -->
+                    <div class="qcm-thematique">
+                        <h4>Déroulement de la spermatogenèse et méiose</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>QCM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022 Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse masculine<br>[Même schéma que Q1]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La flèche A indique une cellule positionnée à proximité de la lame basale.</div>
+                                            <div class="qcm-item">B: La cellule indiquée par la flèche A se divise par méiose.</div>
+                                            <div class="qcm-item">C: Dans la cellule indiquée par la flèche A, la vésicule sexuelle se met en place.</div>
+                                            <div class="qcm-item">D: La flèche B indique une cellule haploïde.</div>
+                                            <div class="qcm-item">E: La cellule indiquée par la flèche C va effectuer la spermiogenèse.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024 Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse masculine (2)<br>[Même schéma que Q1]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les cellules indiquées par les flèches A, B, C, D et E sont diploïdes</div>
+                                            <div class="qcm-item">B: La cellule indiquée par la flèche A se divise par mitose</div>
+                                            <div class="qcm-item">C: La cellule indiquée par la flèche B contribue au maintien de la réserve en spermatogonies</div>
+                                            <div class="qcm-item">D: La cellule indiquée par la flèche E résulte de la mitose de la cellule indiquée par la flèche D</div>
+                                            <div class="qcm-item">E: Dans la cellule indiquée par la flèche F, au stade pachytène se met en place la vésicule sexuelle</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                    <!-- Thématique 4 : Spermiogenèse -->
+                    <div class="qcm-thematique">
+                        <h4>Spermiogenèse</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>QCM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022 Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">Parmi les structures mentionnées ci-dessous lesquelles se mettent en place au cours de la spermiogenèse ?</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'acrosome.</div>
+                                            <div class="qcm-item">B: Le flagelle.</div>
+                                            <div class="qcm-item">C: L'appareil de Golgi.</div>
+                                            <div class="qcm-item">D: Le centriole proximal.</div>
+                                            <div class="qcm-item">E: Le manchon mitochondrial.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023 Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse masculine (3)<br>[Schéma : spermatozoïde]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La spermiogenèse se déroule dans la lumière du tube séminifère</div>
+                                            <div class="qcm-item">B: La cellule qui effectue la spermiogenèse est une spermatide</div>
+                                            <div class="qcm-item">C: Au cours de la spermiogenèse, la cellule termine la seconde division de méiose est devient haploïde</div>
+                                            <div class="qcm-item">D: La flèche A indique une structure qui sera nécessaire à la traversée du cumulus oophorus</div>
+                                            <div class="qcm-item">E: La flèche B indique le centriole distal qui permet l'élaboration du flagelle</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024 Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse masculine (3)<br>[Même schéma que Q1-Q2]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La transformation des cellules indiquées par la flèche G en spermatozoïdes s'effectue au cours de la spermiogenèse</div>
+                                            <div class="qcm-item">B: La spermiogenèse se déroule au contact des cellules de Leydig</div>
+                                            <div class="qcm-item">C: Une fois formé les spermatozoïdes sont libres dans la lumière du tube séminifère</div>
+                                            <div class="qcm-item">D: En utilisant la mobilité du flagelle, mis en place à partir du centriole proximal chaque spermatozoïde atteint rapidement l'épididyme</div>
+                                            <div class="qcm-item">E: Dans l'épididyme, les spermatozoïdes de morphologie normale effectuent toutes les étapes de maturation nécessaires à leur fécondance, les spermatozoïdes anormaux sont phagocytés par les cellules de Sertoli</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                    <!-- Thématique 5 : Maturation épididymaire et décapacitation -->
+                    <div class="qcm-thematique">
+                        <h4>Maturation épididymaire et décapacitation</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>QCM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025 Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">La gamétogenèse masculine (2)<br>[Même schéma que Q1]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La lettre E indique la structure qui permet aux spermatozoïdes de rejoindre l'épididyme.</div>
+                                            <div class="qcm-item">B: Dans l'épididyme, les spermatozoïdes effectuent la décapacitation.</div>
+                                            <div class="qcm-item">C: Au cours de la décapacitation des changements sont effectués, notamment, au niveau de la structure indiquée par la flèche B.</div>
+                                            <div class="qcm-item">D: Au cours de la décapacitation, au niveau de la structure indiquée par la flèche des protéines membranaires, qui interviendront dans la fixation du spermatozoïde à la zone pellucide et à la membrane ovocytaire, sont ajoutées.</div>
+                                            <div class="qcm-item">E: A la sortie de l'épididyme les spermatozoïdes ont terminé toutes les étapes de leur maturation.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>📚 QCM sur tout le cours - sans prévisibilité</td>
+                                <td>🔗 Cours appartenant à une suite logique</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Sur 5 ans, <strong>13 QCM</strong> ont été posés sur ce chapitre (moyenne de 2,6 QCM/an).<br>
+                        Ces QCM se regroupent en <strong>5 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Généralités et dynamique</td>
+                                    <td class="qcm-cell">Q1</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q1</td>
+                                    <td class="qcm-cell">Q1</td>
+                                    <td class="qcm-cell">Q1</td>
+                                </tr>
+                                <tr>
+                                    <td>Tubes séminifères et Sertoli</td>
+                                    <td class="qcm-cell">Q2</td>
+                                    <td class="qcm-cell">Q1</td>
+                                    <td class="qcm-cell">Q2</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Déroulement et méiose</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q2</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q2</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Spermiogenèse</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q3</td>
+                                    <td class="qcm-cell">Q3</td>
+                                    <td class="qcm-cell">Q3</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Maturation épididymaire</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Aucun QCM strictement identique détecté sur ce chapitre.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="reco-item">
+                        <h4>La durée et le lieu de la spermatogenèse</h4>
+                        <p>Retenir que la spermatogenèse dure 74 jours, débute à la puberté, et se déroule dans les tubes séminifères des testicules.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les cellules de Sertoli et leurs fonctions</h4>
+                        <p>Maîtriser les fonctions des cellules de Sertoli : soutien, protection, nutrition des cellules germinales, phagocytose des corps résiduels, facilitation de la libération des spermatozoïdes (spermiation). Ne pas confondre avec les cellules de Leydig (testostérone).</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'organisation spatiale du tube séminifère</h4>
+                        <p>Comprendre la disposition des cellules de la périphérie vers le centre : spermatogonies (lame basale) → spermatocytes → spermatides → spermatozoïdes (lumière).</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La spermiogenèse et les structures du spermatozoïde</h4>
+                        <p>Identifier les structures mises en place pendant la spermiogenèse (23 jours) : acrosome (Golgi), flagelle (centriole distal), manchon mitochondrial. Retenir que la spermatide effectue la spermiogenèse.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les étapes de la méiose et la vésicule sexuelle</h4>
+                        <p>Savoir que les spermatogonies se divisent par mitose, les spermatocytes I par méiose. La vésicule sexuelle se forme au stade pachytène dans le spermatocyte I.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les facteurs de contrôle de la spermatogenèse</h4>
+                        <p>Connaître les facteurs affectant la spermatogenèse : température (fièvre), facteurs nutritionnels, vasculaires, médicaments (immunosuppresseurs, antimitotiques).</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <div class="qcm-analyse">
+                        <h4>Généralités sur la spermatogenèse</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q1 | <strong>2022-2023</strong> Q1 | <strong>2023-2024</strong> Q1 | <strong>2024-2025</strong> Q1</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Les items reviennent sur la durée (74 jours), le lieu (tubes séminifères), le début (puberté), et le caractère continu (pas cyclique). La notion de production "cyclique" vs "continue/permanente" est un piège récurrent.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprendre les chiffres clés (74 jours, puberté, tubes séminifères) et bien distinguer "permanent" (vrai) de "cyclique" (faux - c'est l'ovogenèse qui est cyclique).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>La spermatogenèse est PERMANENTE et CONTINUE à partir de la puberté. Seule l'ovogenèse est cyclique (tous les 28 jours). C'est un piège classique de confusion homme/femme.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Cellules de Sertoli vs Leydig</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q2 | <strong>2021-2022</strong> Q1 | <strong>2022-2023</strong> Q2</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">La confusion Sertoli/Leydig est testée régulièrement. Les fonctions de Sertoli (nutrition, soutien, protection) et la localisation des Leydig (hors tube, testostérone) sont des pièges.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Mémoriser : Sertoli = DANS le tube, fonctions de nourrice. Leydig = HORS du tube, sécrète testostérone.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Sertoli</strong> : "Soutien-Sertoli" → soutient, protège, nourrit les cellules germinales, phagocyte les corps résiduels, facilite la spermiation.<br>
+                                <strong>Leydig</strong> : "Leydig-Loin" → en dehors du tube, autour des capillaires, sécrète la testostérone.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Spermiogenèse : structures formées</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q3 | <strong>2022-2023</strong> Q3 | <strong>2023-2024</strong> Q3</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Les QCM testent les structures mises en place pendant la spermiogenèse. Attention : l'appareil de Golgi EXISTE AVANT la spermiogenèse (il élabore l'acrosome).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Liste des structures formées PENDANT la spermiogenèse : acrosome, flagelle (via centriole distal), manchon mitochondrial. Le centriole proximal ne subit pas de modification mais se positionne.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>La spermiogenèse transforme une spermatide (cellule ronde) en spermatozoïde (cellule allongée). Ce qui se MET EN PLACE : acrosome, flagelle, manchon mitochondrial. Ce qui EXISTE DÉJÀ : appareil de Golgi, centrioles.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Méiose et vésicule sexuelle</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q2 | <strong>2023-2024</strong> Q2</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Les QCM sur schéma testent la reconnaissance des stades (diploïde/haploïde) et le type de division (mitose/méiose). La vésicule sexuelle au stade pachytène est un classique.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retenir : spermatogonies = mitose, spermatocytes = méiose. Vésicule sexuelle = stade pachytène du spermatocyte I. Haploïde à partir du spermatocyte II.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                <p>C'est un QCM de connaissance pure sur les schémas. Apprends le schéma de la spermatogenèse par cœur avec les stades de ploïdie.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Maturation épididymaire et décapacitation</h4>
+                        <div class="qcm-badge">📋 <strong>2024-2025</strong> Q2</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Nouveau thème apparu en 2024-2025. Les spermatozoïdes ne sont pas fécondants à la sortie du testicule, ils doivent maturer dans l'épididyme (décapacitation) puis dans les voies génitales féminines (capacitation).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retenir que la décapacitation a lieu dans l'épididyme et rend le spermatozoïde provisoirement inapte à la fécondation. La capacitation inverse ce processus dans les voies génitales féminines.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Décapacitation</strong> (épididyme) = modifications membranaires qui BLOQUENT temporairement la fécondance.<br>
+                                <strong>Capacitation</strong> (voies féminines) = inverse, PERMET la fécondance.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+                    
+                    <div class="vigilance-item">
+                        <h4>Confusion production "cyclique" vs "permanente"</h4>
+                        <p>La spermatogenèse est PERMANENTE et CONTINUE, pas cyclique. C'est l'ovogenèse qui est cyclique (un ovocyte par mois). Piège récurrent dans les QCM.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion Sertoli / Leydig</h4>
+                        <p>Les cellules de Sertoli sont DANS le tube séminifère (fonctions de nourrice). Les cellules de Leydig sont EN DEHORS du tube (sécrètent la testostérone). La spermiogenèse ne se déroule PAS au contact des cellules de Leydig.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Position des spermatogonies</h4>
+                        <p>Les spermatogonies sont à la PÉRIPHÉRIE du tube (près de la lame basale), PAS près de la lumière. Les spermatozoïdes sont dans la lumière.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Spermiogenèse ≠ méiose</h4>
+                        <p>La spermiogenèse est la transformation de la spermatide en spermatozoïde. Elle n'inclut PAS de division de méiose (la spermatide est déjà haploïde). Ne pas confondre avec la méiose qui a lieu avant.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Appareil de Golgi et spermiogenèse</h4>
+                        <p>L'appareil de Golgi existe AVANT la spermiogenèse. C'est lui qui ÉLABORE l'acrosome pendant la spermiogenèse, mais il n'est pas "mis en place" à ce moment.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Centriole distal vs proximal</h4>
+                        <p>Le centriole DISTAL donne le flagelle (axonème). Le centriole PROXIMAL ne subit pas de modification. Ne pas inverser.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Mobilité des spermatozoïdes</h4>
+                        <p>Les spermatozoïdes ne sont PAS mobiles à la sortie du tube séminifère. Le transfert vers l'épididyme est PASSIF. Ils acquièrent leur mobilité pendant le transit épididymaire.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    
+                    <!-- ENCART ALERTE STRATÉGIQUE -->
+                    <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 3px solid #dc2626; border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+                        <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                            <span style="font-size: 2rem; margin-right: 12px;">🚨</span>
+                            <h4 style="margin: 0; color: #991b1b; font-size: 1.2rem;">CHAPITRE À TRAVAILLER EN PRIORITÉ ABSOLUE</h4>
+                        </div>
+                        <p style="color: #991b1b; font-size: 1rem; line-height: 1.6; margin: 0 0 15px 0;">
+                            <strong>Il est DÉCONSEILLÉ d'adopter une stratégie de Niveau 1 ou Niveau 2 sur ce cours.</strong>
+                        </p>
+                        <div style="background: white; border-radius: 8px; padding: 15px; border-left: 4px solid #dc2626;">
+                            <p style="margin: 0 0 10px 0; color: #1a365d; font-size: 0.95rem;">
+                                <strong>📊 Pourquoi ?</strong> Les deux cours sur la gamétogenèse (FC2 Spermatogenèse + FC3 Ovogenèse) représentent ensemble <strong>près d'1/3 des points de l'UE6</strong> (environ 32 QCM sur 100 en 5 ans).
+                            </p>
+                            <p style="margin: 0 0 10px 0; color: #1a365d; font-size: 0.95rem;">
+                                <strong>💡 Difficulté ?</strong> Ces cours ne présentent <strong>aucune difficulté majeure de compréhension</strong>. C'est essentiellement de l'apprentissage par cœur avec une logique chronologique simple à suivre.
+                            </p>
+                            <p style="margin: 0; color: #dc2626; font-size: 0.95rem; font-weight: 600;">
+                                ✅ <strong>Recommandation :</strong> Travaillez FC2 et FC3 de façon INTENSIVE et COMPLÈTE. C'est un investissement rentable avec un excellent ratio temps/points.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">
+                            Ce chapitre tombe chaque année avec 2 à 3 QCM. Le professeur utilise beaucoup les schémas (spermatogenèse, spermatozoïde) comme support de plusieurs questions. Les thématiques tournent mais certaines sont très récurrentes (durée 74 jours, fonctions Sertoli, structures de la spermiogenèse). La récurrence des items est MOYENNE (environ 40-50%) : certains concepts reviennent mais avec des formulations variées.
+                        </p>
+
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Lire l'intégralité du cours, comprendre la chronologie complète (spermatogonie → spermatozoïde), maîtriser tous les schémas et les détails de chaque étape. Attention aux détails sur la vésicule sexuelle et les stades de la méiose.</p>
+
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Se concentrer sur les 5 thématiques identifiées : généralités (74 jours, puberté, tubes séminifères), cellules de Sertoli vs Leydig, organisation du tube, spermiogenèse (acrosome, flagelle, manchon), méiose et vésicule sexuelle. Bien maîtriser le schéma de la spermatogenèse.</p>
+
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Mémoriser les items récurrents : 74 jours, production permanente (pas cyclique), Sertoli = nutrition/soutien, Leydig = testostérone hors tube, spermiogenèse = spermatide → spermatozoïde. Le schéma du spermatozoïde et celui de la spermatogenèse sont incontournables. Attention : pas de QCM identique détecté, donc moins de "points garantis" que sur d'autres chapitres.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
