@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC6 - Maîtrise de la procréation - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC6 - Maîtrise de la procréation</h1>
+            <div class="meta">
+                <span>📚 UE6 - Embryologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- CONTRACEPTION -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Contraception (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">Maitrise de la procréation. Vous recevez en consultation pour la première fois, une femme âgée de 30 ans. L'interrogatoire révèle que cette femme est mère d'un enfant, qu'elle a dans le passé utilisé des contraceptifs hormonaux oestroprogestatifs, qu'à l'heure actuelle elle utilise des méthodes naturelles mais pour des raisons professionnelles elle ne souhaite pas avoir de nouvelles grossesses pour les 3 années à venir. Par ailleurs, elle vous explique qu'elle a du mal à suivre la prise journalière d'un contraceptif.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: En vous basant sur la valeur de l'indice de Pearl vous conseillez à la patiente d'utiliser un spermicide.</div>
+                                            <div class="qcm-item">B: Vous lui expliquez que le spermicide doit être introduit dans le vagin avant le rapport sexuel et qu'il doit être laissé plusieurs heures après le rapport.</div>
+                                            <div class="qcm-item">C: Prescrire à cette patiente un contraceptif hormonal oestroprogestatif vous semble la meilleure décision.</div>
+                                            <div class="qcm-item">D: Avant la prescription d'un contraceptif oestroprogestatif vous allez pousser l'interrogatoire et rechercher d'éventuels antécédents personnels et familiaux ainsi que les facteurs de risques et les contre-indications.</div>
+                                            <div class="qcm-item">E: En tenant compte de la personnalité de la patiente, et des valeurs de l'indice de Pearl, proposer un dispositif intra-utérin hormonal vous semble une bonne décision.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q11</td>
+                                    <td>
+                                        <div class="qcm-enonce">La contraception</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Une méthode contraceptive doit permettre entre autres, d'interrompre transitoirement et réversiblement la fertilité</div>
+                                            <div class="qcm-item">B: L'indice de Pearl permet d'estimer l'efficacité des méthodes contraceptives</div>
+                                            <div class="qcm-item">C: Les méthodes naturelles basées sur l'observation du cycle menstruel, sont des méthodes efficaces</div>
+                                            <div class="qcm-item">D: Le diaphragme est une méthode hormonale très efficace</div>
+                                            <div class="qcm-item">E: La pilule progestative microdosée peut être utilisée dans certains cas de contre-indication aux pilules oestro-progestatives</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>⚠️ Tombe rarement (2x en 5 ans)</td>
+                                <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>2 QCM</strong> sur ce chapitre (moyenne 0,4/an). Ces QCM portent sur <strong>1 grande thématique</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Contraception (général)</td>
+                                    <td class="qcm-cell">Q6</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q11</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>Les critères de la contraception idéale</h4>
+                        <p>Connaître les 5 critères : interruption transitoire et réversible de la fertilité, efficacité (indice de Pearl), innocuité, acceptabilité, coût.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'indice de Pearl</h4>
+                        <p>Savoir que l'indice de Pearl mesure l'efficacité contraceptive. Être capable de hiérarchiser les méthodes par efficacité (implant > DIU hormonal > pilule > DIU cuivre > préservatif > diaphragme > spermicides).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La classification des méthodes contraceptives</h4>
+                        <p>Distinguer méthodes locales (diaphragme, cape cervicale, spermicides) vs méthodes hormonales (pilule, implant, patch, anneau). Le diaphragme n'est PAS une méthode hormonale.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les méthodes naturelles et leur efficacité</h4>
+                        <p>Connaître les principales méthodes (Ogino, courbe de température, Billings, auto-tests, retrait, MAMA) et savoir qu'elles ont une efficacité modérée à faible.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La pilule progestative microdosée</h4>
+                        <p>Connaître ses indications (contre-indications aux oestroprogestatifs : antécédents thromboemboliques, diabète, HTA, allaitement) et son mode d'action.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les dispositifs intra-utérins (DIU)</h4>
+                        <p>Connaître les deux types (cuivre et hormonal), leurs modes d'action respectifs et leur efficacité.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La recherche des contre-indications</h4>
+                        <p>Avant toute prescription de contraceptif oestroprogestatif : rechercher antécédents personnels et familiaux, facteurs de risque thromboembolique.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- QCM 1 : Cas clinique -->
+                    <div class="qcm-analyse">
+                        <h4>Cas clinique : choix adapté à la patiente</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q6</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM présente un cas clinique où il faut adapter le choix contraceptif au profil de la patiente (difficulté avec prise journalière, recherche des contre-indications).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Comprends les critères de choix d'une contraception : profil de la patiente, efficacité (indice de Pearl), observance, contre-indications à rechercher.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Le spermicide seul a un indice de Pearl de 18</strong> = peu efficace → ce n'est pas un bon conseil basé sur l'indice de Pearl.</p>
+                                <p><strong>Si difficulté avec prise journalière</strong> → le DIU hormonal est une bonne option car pas de prise quotidienne.</p>
+                                <p><strong>Avant tout oestroprogestatif</strong> → toujours rechercher les contre-indications (ATCD thromboemboliques, familiaux).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Notions théoriques -->
+                    <div class="qcm-analyse">
+                        <h4>Notions théoriques sur la contraception</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q11</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste des définitions et classifications de base sur la contraception.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les définitions clés : indice de Pearl, critères de contraception idéale, et la classification locale vs hormonale des méthodes.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Méthodes naturelles</strong> = efficacité modérée à faible (indice de Pearl 1 à 9), donc PAS "efficaces" au sens strict.</p>
+                                <p><strong>Diaphragme</strong> = méthode LOCALE (barrière mécanique), pas hormonale, et efficacité modérée.</p>
+                                <p><strong>Pilule progestative microdosée</strong> = alternative aux oestroprogestatifs en cas de contre-indication.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion méthode locale vs hormonale</h4>
+                        <p>Le diaphragme et la cape cervicale sont des méthodes LOCALES (barrière mécanique), pas hormonales. L'implant, le patch, l'anneau vaginal et la pilule sont des méthodes HORMONALES.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Efficacité des méthodes naturelles</h4>
+                        <p>Les méthodes naturelles (Ogino, Billings, courbe de température) ont une efficacité MODÉRÉE, pas "très efficace". Leur indice de Pearl varie de 1 à 9 selon le respect des consignes.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Indice de Pearl : plus il est bas, plus c'est efficace</h4>
+                        <p>Implant (0,05) > DIU hormonal (0,1) > Pilule (0,3) > DIU cuivre (0,6) > Préservatif masculin (2) > Diaphragme (6-9) > Spermicides (18). Ne pas inverser l'interprétation.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Recherche des contre-indications avant oestroprogestatifs</h4>
+                        <p>Avant de prescrire une pilule oestroprogestative : interrogatoire sur les antécédents personnels et familiaux de thrombose, AVC, infarctus chez sujets jeunes, tabagisme.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>DIU cuivre vs DIU hormonal : modes d'action différents</h4>
+                        <p>DIU cuivre = processus inflammatoires + inactivation des spermatozoïdes. DIU hormonal = action sur muqueuse utérine + glaire cervicale (progestatif).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Pilule progestative microdosée : prise SANS interruption</h4>
+                        <p>Contrairement à la pilule combinée (21 jours + 7 jours d'arrêt), la pilule progestative microdosée se prend TOUS LES JOURS sans interruption.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    
+                    <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b; border-radius: 10px; padding: 15px; margin-bottom: 20px;">
+                        <p style="margin: 0; color: #92400e; font-weight: 600;">🔮 <strong>SPOILER :</strong> Chaque année la prof nous surprend par ses questions. Elle n'a encore jamais testé le fait de faire un cas clinique assez long qui inclurait les chapitres de gamétogenèse + maîtrise de la procréation + AMP. C'est une possibilité tout à fait crédible et dans l'ensemble notre conseil c'est de travailler aussi ces 2 chapitres correctement pour se préparer à cette éventualité.</p>
+                    </div>
+                    
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre est peu interrogé (2 QCM en 5 ans) et les items ne se répètent pas d'une année sur l'autre. La récurrence des items est FAIBLE. Le Niveau 2 semble le plus approprié pour ce chapitre.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Apprenez l'ensemble du cours en vous concentrant sur les indices de Pearl des principales méthodes, les modes d'action, et les contre-indications des oestroprogestatifs. Le cours n'est pas très long (20 pages) et les notions sont assez intuitives.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        C'est la stratégie recommandée pour ce chapitre. Ciblez : les critères de la contraception idéale, l'indice de Pearl (définition + hiérarchie des méthodes), la classification locale vs hormonale, les indications de la pilule progestative, et les DIU (modes d'action des 2 types).</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Chapitre peu rentable avec cette stratégie : seulement 2 QCM en 5 ans et aucune récurrence des items. Ça ne coûte pas grand-chose de revoir ces 2 QCM, mais ne t'attends pas à retrouver les mêmes items à l'examen.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
