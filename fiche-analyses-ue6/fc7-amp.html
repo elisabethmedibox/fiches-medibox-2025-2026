@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC7 - AMP - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 500;
+            background: #f8fafc;
+        }
+        
+        .qcm-cell {
+            background: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+        }
+        
+        .empty-cell {
+            color: #94a3b8;
+        }
+        
+        .qcm-identique-cell {
+            background: #d1fae5;
+            color: #065f46;
+            font-weight: 600;
+        }
+        
+        /* Recommandations */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #ff6b7a;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 10px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .frequence {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* Stratégie annales */
+        .strategie-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .strategie-item h4 {
+            margin: 0 0 5px 0;
+            color: #1a365d;
+        }
+        
+        .strategie-badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC7 - Assistance Médicale à la Procréation (AMP)</h1>
+            <div class="meta">
+                <span>📚 UE6 - Embryologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <div class="qcm-thematique">
+                        <h4>Généralités AMP et législation</h4>
+                        <div class="table-wrapper">
+                            <table class="qcm-table">
+                                <thead>
+                                    <tr>
+                                        <th>Année</th>
+                                        <th>Question</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2020-2021 Q7</td>
+                                        <td>
+                                            <div class="qcm-enonce">Assistance médicale à la procréation (AMP).</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A: L'assistance médicale à la procréation peut être utilisée pour éviter la transmission d'une maladie génétique grave.</div>
+                                                <div class="qcm-item">B: En France les méthodes d'assistance médicale à la procréation sont réglementées par la législation.</div>
+                                                <div class="qcm-item">C: En France l'assistance médicale à la procréation est réalisée de manière minoritaire avec les gamètes des deux membres du couple.</div>
+                                                <div class="qcm-item">D: L'induction de l'ovulation est habituellement proposée pour les infertilités féminines causées par des anomalies tubaires.</div>
+                                                <div class="qcm-item">E: L'insémination artificielle avec sperme du conjoint est indiquée, entre autres, en cas d'insuffisance du nombre de spermatozoïdes mobiles.</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="qcm-thematique">
+                        <h4>Cas cliniques - Bilan d'infertilité</h4>
+                        <div class="table-wrapper">
+                            <table class="qcm-table">
+                                <thead>
+                                    <tr>
+                                        <th>Année</th>
+                                        <th>Question</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2022-2023 Q8</td>
+                                        <td>
+                                            <div class="qcm-enonce">Vous recevez en consultation, pour la première fois, un couple dont la femme est âgée de 33 ans et l'homme de 30 ans. Ce couple vous explique qu'ils ont une difficulté à procréer. Ils ont des rapports réguliers depuis 2 ans et qu'il n'y a jamais eu de grossesse dans le couple. La femme précise que ses cycles sont très réguliers de 28 jours et ovulatoires.</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A: Ce couple fait partie des 20% des couples qui rencontrent une difficulté ou une impossibilité à concevoir</div>
+                                                <div class="qcm-item">B: Compte tenu de l'âge de la femme, vous allez faire des investigations uniquement chez elle</div>
+                                                <div class="qcm-item">C: Pour établir les causes de l'infertilité chez cette patiente, vous allez explorer la courbe des températures, analyser la glaire cervicale, faire des dosages hormonaux et explorer les voies génitales</div>
+                                                <div class="qcm-item">D: Comme méthode d'aide médicale à la procréation, vous proposez à ce couple l'induction de l'ovulation</div>
+                                                <div class="qcm-item">E: Avant de proposer une méthode d'aide médicale à la procréation, il est nécessaire de faire la recherche des causes de non-procréation chez les deux partenaires</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2023-2024 Q10</td>
+                                        <td>
+                                            <div class="qcm-enonce">L'aide médicale à la procréation. Vous recevez en consultation Madame M et Monsieur P, tous les deux âgés de 29 ans et en couple depuis 2 ans, sans méthode contraceptive depuis 18 mois car souhaitant avoir des enfants ensemble. Le couple a des rapports sexuels réguliers. Madame M a une fille de 4 ans issue d'une autre union, et Monsieur P a une fille de 3 ans issue aussi d'une autre union.</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A: D'après ce que vous rapportent Madame M et Monsieur P, vous concluez qu'ils sont inféconds</div>
+                                                <div class="qcm-item">B: Pour le couple de Madame M et Monsieur P, le délai nécessaire à concevoir peut-être considéré comme pathologique</div>
+                                                <div class="qcm-item">C: Le couple de Madame M et Monsieur P est infertile</div>
+                                                <div class="qcm-item">D: Vous orientez d'emblée Madame M et Monsieur P vers une injection intracytoplasmique avec don de spermatozoïdes</div>
+                                                <div class="qcm-item">E: En France les techniques d'aide médicale à la procréation sont régies par la loi de Bioéthique</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>🔵 Revient souvent (3x sur 5 ans)</td>
+                                <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Répartition des QCM par thématique et par année :</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-2021</th>
+                                        <th>2021-2022</th>
+                                        <th>2022-2023</th>
+                                        <th>2023-2024</th>
+                                        <th>2024-2025</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Généralités AMP et législation</td>
+                                        <td class="qcm-cell">Q7</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cas cliniques - Bilan d'infertilité</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q8</td>
+                                        <td class="qcm-cell">Q10</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2</summary>
+                <div class="accordion-content">
+                    <p style="color: #4a5568; margin-bottom: 20px;">Thèmes incontournables à maîtriser pour ce chapitre :</p>
+                    
+                    <div class="reco-item">
+                        <h4>Les définitions : infertilité vs infécondité</h4>
+                        <p>Maîtriser la différence entre infertilité (difficulté à concevoir malgré des rapports réguliers) et infécondité (impossibilité définitive de concevoir). Le délai pathologique est supérieur à 1 an de rapports réguliers sans grossesse.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+                    
+                    <div class="reco-item">
+                        <h4>Le cadre légal de l'AMP</h4>
+                        <p>Comprendre que l'AMP est régie par la loi de Bioéthique en France. L'AMP peut être utilisée pour éviter la transmission d'une maladie génétique grave.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+                    
+                    <div class="reco-item">
+                        <h4>Les indications des techniques d'AMP</h4>
+                        <p>Savoir distinguer les indications de l'insémination (insuffisance de spermatozoïdes mobiles, anomalies glaire cervicale) et de la FIV (anomalies tubaires). L'induction de l'ovulation seule n'est PAS indiquée pour les anomalies tubaires.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+                    
+                    <div class="reco-item">
+                        <h4>Le bilan d'infertilité du couple</h4>
+                        <p>Avant toute technique d'AMP, il faut rechercher les causes chez les DEUX partenaires. L'homme est impliqué dans plus d'un cas sur deux d'infertilité du couple.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+                    
+                    <div class="reco-item">
+                        <h4>L'épidémiologie de l'infertilité</h4>
+                        <p>Connaître les chiffres clés : 1 couple sur 6 (environ 14-15%) consulte pour difficultés de procréation. Répartition des causes : 30% féminine, 20% masculine, 40% mixte, 10% inexpliquée.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+                    
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📚 Recommandations Niveau 1</summary>
+                <div class="accordion-content">
+                    <p style="color: #4a5568; margin-bottom: 20px;">Stratégie basée uniquement sur les annales pour les étudiants très en retard :</p>
+                    
+                    <div class="strategie-item">
+                        <h4>Généralités AMP et législation</h4>
+                        <span class="strategie-badge">2020-2021</span>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat</div>
+                            <div class="qcm-section-content">Un seul QCM direct sur l'AMP en 5 ans, portant sur les généralités : indications, législation, et distinction entre les techniques.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire</div>
+                            <div class="qcm-section-content">Apprendre les items de la Q7 2020-2021. Retenir que l'AMP est réglementée par la loi, qu'elle peut servir à éviter une maladie génétique, et que l'insémination est indiquée pour l'insuffisance de spermatozoïdes mobiles.</div>
+                        </div>
+                        
+                        <div class="cle-raisonnement">
+                            <p><strong>💡 Clé de raisonnement :</strong></p>
+                            <p>Anomalies tubaires = FIV (on contourne les trompes). Insuffisance de spermatozoïdes = insémination (on rapproche les gamètes). L'induction de l'ovulation seule ne résout pas un problème de trompes bouchées.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="strategie-item">
+                        <h4>Cas cliniques - Bilan d'infertilité</h4>
+                        <span class="strategie-badge">2022-2023, 2023-2024</span>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat</div>
+                            <div class="qcm-section-content">Le format cas clinique est apparu en 2022-2023 et s'est maintenu en 2023-2024. Les QCM testent la compréhension des définitions et la démarche diagnostique.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire</div>
+                            <div class="qcm-section-content">Étudier les 2 cas cliniques (Q8 2022-2023 et Q10 2023-2024). Bien distinguer infertilité (couple qui n'arrive pas à concevoir ensemble) et infécondité (impossibilité biologique). Retenir que le bilan doit être fait chez les DEUX partenaires.</div>
+                        </div>
+                        
+                        <div class="cle-raisonnement">
+                            <p><strong>💡 Clé de raisonnement :</strong></p>
+                            <p>Si chaque membre du couple a déjà eu un enfant d'une autre union, ils ne sont ni infertiles ni inféconds individuellement. Le problème concerne le couple actuel. Le délai pathologique est &gt;1 an (18 mois n'est pas encore pathologique pour un couple jeune de 29 ans).</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+                    
+                    <div class="vigilance-item">
+                        <h4>Confusion induction ovulation / FIV</h4>
+                        <p>L'induction de l'ovulation n'est PAS indiquée pour les anomalies tubaires. Si les trompes sont bouchées, faire ovuler la femme ne sert à rien car l'ovocyte ne pourra pas rencontrer le spermatozoïde. Il faut une FIV pour contourner l'obstacle tubaire.</p>
+                    </div>
+                    
+                    <div class="vigilance-item">
+                        <h4>Piège sur les pourcentages</h4>
+                        <p>Les items peuvent jouer sur les chiffres : environ 15% des couples consultent (pas 20%). L'homme est impliqué dans plus de 50% des cas (20% seul + 40% mixte = 60% au total).</p>
+                    </div>
+                    
+                    <div class="vigilance-item">
+                        <h4>Infertilité vs Infécondité dans les cas cliniques</h4>
+                        <p>Un couple où chaque partenaire a déjà eu un enfant n'est pas "infécond" (chacun peut biologiquement procréer). Ils peuvent être "infertiles en tant que couple" si le délai &gt;1 an. Attention à la nuance !</p>
+                    </div>
+                    
+                    <div class="vigilance-item">
+                        <h4>Bilan uniquement chez la femme</h4>
+                        <p>C'est FAUX de ne faire le bilan que chez la femme, même si elle est plus âgée. L'homme est impliqué dans plus d'un cas sur deux. Le bilan doit TOUJOURS être fait chez les deux partenaires.</p>
+                    </div>
+                    
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    
+                    <div style="margin-bottom: 20px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b; border-radius: 8px; padding: 15px;">
+                        <p style="margin: 0; color: #92400e; line-height: 1.6;">
+                            <strong>🔮 SPOILER :</strong> Chaque année la prof nous surprend par ses questions. Elle n'a encore jamais testé le fait de faire un cas clinique assez long qui inclurait les chapitres de gamétogenèse + maîtrise de la procréation + AMP. C'est une possibilité tout à fait crédible et dans l'ensemble notre conseil c'est de travailler aussi ces 2 chapitres correctement pour se préparer à cette éventualité.
+                        </p>
+                    </div>
+                    
+                    <div class="tuteur-zone">
+                        <p><strong>Chapitre à faible investissement</strong></p>
+                        <br>
+                        <p>FC7 est un chapitre relativement peu interrogé (3 QCM en 5 ans, soit 0,6 QCM/an en moyenne). Le format a évolué vers des cas cliniques ces dernières années.</p>
+                        <br>
+                        <p><strong>Pour le Niveau 3 :</strong> Lis l'intégralité du cours en insistant sur les parties marquées ✭ et 🎯. Les détails sur l'ICSI, les dons de gamètes et les embryons surnuméraires n'ont jamais été testés mais représentent une part importante du cours.</p>
+                        <br>
+                        <p><strong>Pour le Niveau 2 :</strong> Les 5 thèmes identifiés couvrent l'essentiel des notions testées. Concentre-toi sur les définitions (infertilité/infécondité), le cadre légal, et les indications respectives de l'insémination et de la FIV.</p>
+                        <br>
+                        <p><strong>Pour le Niveau 1 :</strong> La récurrence des items est moyenne (environ 40%). Les items sur la législation/loi de bioéthique reviennent, ainsi que la notion de bilan chez les deux partenaires. Cependant, les cas cliniques varient dans leur formulation. Stratégie possible mais probablement inefficace.</p>
+                    </div>
+                    
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
