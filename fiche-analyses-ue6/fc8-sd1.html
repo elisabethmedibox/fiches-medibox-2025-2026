@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC8 - SD1 - 1ère semaine de développement - Fiche d'Analyse</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f8fafc;
+            color: #1a202c;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            background: white;
+            padding: 25px;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Tag FC pour items d'autres chapitres */
+        .tag-fc9 {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #3730a3;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 6px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC8 - SD1 : 1ère semaine de développement</h1>
+            <div class="meta">
+                <span>📚 UE6 - Embryologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <div class="qcm-thematique">
+                        <h4>Segmentation et caractéristiques générales de la 1ère semaine</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>QCM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q10</td>
+                                    <td>
+                                        <div class="qcm-enonce">La première semaine de dévelopement.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les modifications structurales de l'endomètre sont induites par les œstrogènes et la progestérone sécrétés par le corps jaune.</div>
+                                            <div class="qcm-item">B: La mère ne présente aucun signe tant clinique que biologique de grossesse.</div>
+                                            <div class="qcm-item">C: Au niveau du zygote le CSF maintient actif le MPF.</div>
+                                            <div class="qcm-item">D: La chromatine du pronoyau mâle est condensée par les protamines.</div>
+                                            <div class="qcm-item">E: La période de segmentation qui dure 4 jours aboutit à la formation de la morula.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024 Q12</td>
+                                    <td>
+                                        <div class="qcm-enonce">La première semaine de développement</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La première semaine de développement correspond à la période de vie libre du zygote.</div>
+                                            <div class="qcm-item">B: Dès que le zygote a atteint la cavité utérine, la morula se met en place.</div>
+                                            <div class="qcm-item">C: Au niveau des blastomères centraux de la morula, le flux passif d'ions sodium et le courant osmotique sont à l'origine de la mise en place du blastocèle.</div>
+                                            <div class="qcm-item">D: Le blastocyste est issu des blastomères internes compactés de la morula, alors que le trophoblaste est issu des blastomères externes non compactés de la morula.</div>
+                                            <div class="qcm-item">E: Le phénomène d'inactivation d'un des deux chromosomes X chez les individus de sexe féminins se déroule au cours de la segmentation.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                    <div class="qcm-thematique">
+                        <h4>QCM avec schéma/photo (lecture d'image)</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>QCM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q11</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le blastocyste. [Photo avec flèches A, B, C]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La flèche A indique la structure qui permet l'apposition du blastocyste à l'épithélium utérin. <span class="tag-fc9">FC9</span></div>
+                                            <div class="qcm-item">B: La structure indiquée par la flèche A s'est mise en place au stade de follicule pré-antral.</div>
+                                            <div class="qcm-item">C: La compaction a assuré la mise en place des structures cellulaires indiquées par les flèches B et C.</div>
+                                            <div class="qcm-item">D: Le phénomène d'éclosion permet à la structure indiquée par la flèche B de sortir du blastocyste. <span class="tag-fc9">FC9</span></div>
+                                            <div class="qcm-item">E: Au moment de l'interaction blastocyste - endomètre, les cellules de l'endomètre sécrètent des facteurs qui vont contrôler le degré d'invasion de la structure indiquée par la flèche C. <span class="tag-fc9">FC9</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025 Q9</td>
+                                    <td>
+                                        <div class="qcm-enonce">La première semaine de développement. Vos connaissances et les photos ci-dessous permettront de répondre aux items du QCM. [Photo 1: zygote avec 2 blastomères, Photo 2: morula]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La photo 1 montre un zygote.</div>
+                                            <div class="qcm-item">B: Sur la photo 1, si la flèche A indique le second globule polaire alors, le contenu chromosomique de cette cellule est de 23 chromosomes à 1 chromatide, identique à celui des structures indiquées par les flèches B et C.</div>
+                                            <div class="qcm-item">C: La flèche D indique un blastomère.</div>
+                                            <div class="qcm-item">D: Au stade de la photo 2, dans la cellule indiquée par la flèche D, Oct-3 est réprimé.</div>
+                                            <div class="qcm-item">E: La flèche E indique une structure qui assure l'adhésion de la morula à l'endomètre lors de l'apposition.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                    <div class="qcm-thematique">
+                        <h4>QCM mixtes FC8/FC9 (1ère et 2ème semaine mélangées)</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>QCM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022 Q11</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le clivage et l'implantation du zygote</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La première division de segmentation survient deux jours après l'arrivée du zygote dans la cavité utérine.</div>
+                                            <div class="qcm-item">B: Au cours de la période de clivage, chaque blastomère exprime d'une façon équivalente la totalité du programme génétique.</div>
+                                            <div class="qcm-item">C: La totipotence des blastomères est liée à l'expression du gène oct-3.</div>
+                                            <div class="qcm-item">D: Apposition et éclosion sont des préalables à l'implantation du blastocyste dans la muqueuse utérine. <span class="tag-fc9">FC9</span></div>
+                                            <div class="qcm-item">E: Le cytotrophoblaste détruit et phagocyte tous les composants de l'endomètre à son contact grâce à la sécrétion d'enzymes protéolytiques. <span class="tag-fc9">FC9</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023 Q9</td>
+                                    <td>
+                                        <div class="qcm-enonce">Les premières semaines du développement embryonnaire</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Au cours de la première semaine de développement les transcrits maternels sont utilisés jusqu'à l'activation du génome embryonnaire.</div>
+                                            <div class="qcm-item">B: Au cours de la segmentation, chaque division cellulaire, permet à l'embryon d'augmenter de volume pour atteindre son volume maximal au stade blastocyste.</div>
+                                            <div class="qcm-item">C: L'implantation débute environ deux jours après l'arrivée du blastocyste dans la cavité utérine. <span class="tag-fc9">FC9</span></div>
+                                            <div class="qcm-item">D: L'implantation se termine vers le 7ème jour de développement. <span class="tag-fc9">FC9</span></div>
+                                            <div class="qcm-item">E: Le blastocyste activé s'oriente de façon à présenter son pôle embryonnaire face à l'endomètre. <span class="tag-fc9">FC9</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Moyenne QCM/an</th>
+                                <th>Format</th>
+                                <th>Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>1 QCM/an</td>
+                                <td>🟢 QCM sur parties ciblées du cours</td>
+                                <td>🔗 Cours lié à FC9 (SD2)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Ce chapitre est régulièrement mélangé avec FC9 (SD2) dans les QCM. Les items portent principalement sur la segmentation, la compaction, la cavitation et l'inactivation du X.</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-2021</th>
+                                        <th>2021-2022</th>
+                                        <th>2022-2023</th>
+                                        <th>2023-2024</th>
+                                        <th>2024-2025</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Segmentation et vie libre</td>
+                                        <td class="qcm-cell">Q10</td>
+                                        <td class="qcm-cell">Q11</td>
+                                        <td class="qcm-cell">Q9</td>
+                                        <td class="qcm-cell">Q12</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Compaction et cavitation</td>
+                                        <td class="qcm-cell">Q11</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q12</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Totipotence et Oct-3</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q11</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q9</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Inactivation du X</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q12</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lecture d'image (photo/schéma)</td>
+                                        <td class="qcm-cell">Q11</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q9</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Aucun QCM strictement identique détecté sur ce chapitre.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>La segmentation et ses caractéristiques</h4>
+                        <p>Comprendre que le volume du zygote ne change pas pendant la segmentation, que les blastomères diminuent de taille, et que les transcrits maternels sont utilisés jusqu'à J2-J3.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La totipotence et le gène Oct-3</h4>
+                        <p>Savoir que la totipotence des blastomères est liée à l'expression du gène Oct-3, et qu'elle se perd lors de la compaction.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La compaction de la morula</h4>
+                        <p>Maîtriser le rôle de la E-cadhérine et du calcium, la distinction entre blastomères périphériques (→ trophoblaste) et centraux (→ bouton embryonnaire).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La cavitation et formation du blastocyste</h4>
+                        <p>Comprendre le rôle des pompes Na+/K+ ATPase sur les blastomères périphériques, la formation du blastocèle, et la transformation morula → blastocyste.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'inactivation du chromosome X</h4>
+                        <p>Savoir que ce phénomène se déroule pendant la segmentation, qu'il est au hasard (→ mosaïque), irréversible dans les cellules somatiques mais réversible dans les cellules germinales.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="qcm-analyse">
+                        <h4>Segmentation et caractéristiques générales</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q10 | <strong>2021-2022</strong> Q11 | <strong>2022-2023</strong> Q9 | <strong>2023-2024</strong> Q12</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat</div>
+                            <div class="qcm-section-content">Les items sur la segmentation reviennent dans presque toutes les annales. Les notions testées : durée de 4 jours, pas d'accroissement du volume, utilisation des transcrits maternels, absence de signes de grossesse chez la mère.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire</div>
+                            <div class="qcm-section-content">Bien distinguer les différentes étapes chronologiques : zygote → blastomères → morula → blastocyste. Attention aux pièges sur la chronologie et les lieux (trompe vs cavité utérine).</div>
+                        </div>
+                        
+                        <div class="cle-raisonnement">
+                            <p><strong>💡 Clé de raisonnement :</strong></p>
+                            <p>Pendant la segmentation, tout se passe à l'INTÉRIEUR de la zone pellucide. Le volume total reste constant car il n'y a pas de nutrition externe. Les blastomères se divisent SANS grandir → ils deviennent de plus en plus petits.</p>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Totipotence et gène Oct-3</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q11 | <strong>2024-2025</strong> Q9</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat</div>
+                            <div class="qcm-section-content">Le gène Oct-3 et la totipotence sont testés régulièrement. Attention : Oct-3 est EXPRIMÉ (pas réprimé) dans les blastomères totipotents.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire</div>
+                            <div class="qcm-section-content">Retenir que Oct-3 = totipotence. La perte de totipotence survient lors de la compaction quand les blastomères se différencient.</div>
+                        </div>
+                        
+                        <div class="cle-raisonnement">
+                            <p><strong>💡 Clé de raisonnement :</strong></p>
+                            <p>Oct-3 EXPRIMÉ = cellule TOTIPOTENTE. Oct-3 RÉPRIMÉ = cellule qui s'est différenciée (a perdu sa totipotence).</p>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Compaction et cavitation</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q11 | <strong>2023-2024</strong> Q12</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat</div>
+                            <div class="qcm-section-content">Les items portent sur la distinction entre blastomères périphériques et centraux, et sur le mécanisme de formation du blastocèle.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire</div>
+                            <div class="qcm-section-content">Attention au piège classique : les pompes Na+/K+ ATPase sont sur les blastomères PÉRIPHÉRIQUES (pas centraux). Le flux de sodium crée le blastocèle.</div>
+                        </div>
+                        
+                        <div class="cle-raisonnement">
+                            <p><strong>💡 Clé de raisonnement :</strong></p>
+                            <p>PÉRIPHÉRIQUES = petits, aplatis, polarisés → trophoblaste. CENTRAUX = gros, sphériques → bouton embryonnaire. Les pompes sont sur les PÉRIPHÉRIQUES.</p>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Lecture d'images (photos de zygote, morula, blastocyste)</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q11 | <strong>2024-2025</strong> Q9</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat</div>
+                            <div class="qcm-section-content">Des photos ou schémas sont utilisés 2 fois sur 5 ans. Il faut savoir identifier : zone pellucide, globules polaires, blastomères, pronoyaux.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire</div>
+                            <div class="qcm-section-content">Revoir les photos du cours. Savoir distinguer un zygote (2 pronoyaux visibles) d'un embryon à 2 blastomères. Connaître le contenu chromosomique du 2ème globule polaire (23 chr à 1 chromatide).</div>
+                        </div>
+                        
+                        <div class="connaissance-pure">
+                            <p>C'est un QCM de connaissance pure sur l'identification des structures. Les photos du cours 2024-2025 sont à connaître.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+                    
+                    <div class="vigilance-item">
+                        <h4>Confusion blastomères périphériques / centraux</h4>
+                        <p>Les blastomères PÉRIPHÉRIQUES donnent le trophoblaste (pas le bouton embryonnaire). Les blastomères CENTRAUX donnent le bouton embryonnaire. Les pompes Na+/K+ sont sur les périphériques.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le volume pendant la segmentation</h4>
+                        <p>Le volume total du zygote ne change PAS pendant la segmentation. Ce sont les blastomères qui deviennent plus petits à chaque division, pas l'embryon qui grossit.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Chronologie morula / blastocyste</h4>
+                        <p>La morula se forme DANS la trompe pendant la migration. Le blastocyste se forme APRÈS l'arrivée dans la cavité utérine (et non avant).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Oct-3 exprimé vs réprimé</h4>
+                        <p>Oct-3 est EXPRIMÉ dans les cellules totipotentes. Si on vous dit qu'Oct-3 est "réprimé", cela signifie que la cellule a PERDU sa totipotence.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Zone pellucide et apposition</h4>
+                        <p>La zone pellucide ne permet PAS l'apposition à l'endomètre. C'est le trophoblaste (après éclosion) qui assure l'adhésion. L'apposition ne peut avoir lieu qu'APRÈS l'éclosion.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Mélange FC8/FC9</h4>
+                        <p>Ce chapitre est souvent mélangé avec FC9 dans les QCM. Révise les deux ensemble. Tout ce qui concerne l'implantation (apposition, éclosion, syncytiotrophoblaste) = FC9.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">
+                        Ce chapitre tombe chaque année mais avec seulement ~1 QCM/an. Les thématiques tournent : segmentation, compaction, cavitation, inactivation X. Le prof mélange souvent FC8 et FC9 dans le même QCM. Les photos/schémas reviennent régulièrement (2x sur 5 ans).
+                        </p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Ce cours est court (16 pages) et les notions sont assez logiques si on comprend la chronologie. Maîtrisez bien les photos du cours (zygote à 2 blastomères, morula, blastocyste). Révisez FC8 et FC9 ensemble car ils sont souvent mélangés.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur : segmentation (durée, caractéristiques), compaction (E-cadhérine, distinction périphériques/centraux), cavitation (pompes Na+/K+), et Oct-3/totipotence. L'inactivation du X est moins fréquente.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Apprenez par cœur les items déjà tombés. Points récurrents : pas d'augmentation de volume, 4 jours de segmentation, transcrits maternels jusqu'à J2-J3, Oct-3 = totipotence, pompes sur blastomères périphériques. Aucun QCM identique détecté, mais les notions reviennent sous des formulations différentes.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
