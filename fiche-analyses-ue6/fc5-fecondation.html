@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC5 - Phénomènes cellulaires de la fécondation - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Tags FC */
+        .tag-fc {
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 8px;
+        }
+        
+        .tag-fc4 {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .tag-fc8 {
+            background: #8b5cf6;
+            color: white;
+        }
+        
+        /* Tags thématiques */
+        .tag-theme {
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 8px;
+        }
+        
+        .tag-theme2 {
+            background: #f97316;
+            color: white;
+        }
+        
+        .tag-theme3 {
+            background: #14b8a6;
+            color: white;
+        }
+        
+        /* Badge items dans colonne année */
+        .items-badge {
+            display: block;
+            font-size: 0.75rem;
+            margin-top: 4px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #f1f5f9;
+            color: #475569;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Légende FC */
+        .legende-fc {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .legende-fc-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+        }
+        
+        .legende-fc-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        /* Responsive mobile */
+        @media (max-width: 768px) {
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+            
+            .accordion-content {
+                padding: 15px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+            
+            .legende-fc {
+                flex-direction: column;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC5 - Phénomènes cellulaires de la fécondation</h1>
+            <div class="meta">
+                <span>📚 UE6 - Embryologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- Légende des couleurs -->
+                    <div class="legende-fc">
+                        <div class="legende-fc-item">
+                            <div class="legende-fc-color" style="background: #3b82f6;"></div>
+                            <span><strong>FC4</strong> - Événements pré-fécondation</span>
+                        </div>
+                        <div class="legende-fc-item">
+                            <div class="legende-fc-color" style="background: #8b5cf6;"></div>
+                            <span><strong>FC8</strong> - SD1</span>
+                        </div>
+                        <div class="legende-fc-item">
+                            <div class="legende-fc-color" style="background: #f97316;"></div>
+                            <span><strong>Thème 2</strong> - Fusion gamétique</span>
+                        </div>
+                        <div class="legende-fc-item">
+                            <div class="legende-fc-color" style="background: #14b8a6;"></div>
+                            <span><strong>Thème 3</strong> - Activation ovocytaire</span>
+                        </div>
+                    </div>
+
+                    <h3>Traversée du cumulus et zone pellucide</h3>
+                    <div class="qcm-thematique">
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>QCM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q9<span class="items-badge">items BCDE</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La fécondation</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les mouvements hyperactivés du flagelle, permettent aux spermatozoïdes de remonter les voies génitales féminines et d'atteindre le lieu de la fécondation. <span class="tag-fc tag-fc4">FC4</span></div>
+                                            <div class="qcm-item">B: La réaction acrosomique assure la liquéfaction de la matrice extracellulaire du cumulus oophorus.</div>
+                                            <div class="qcm-item">C: Au contact de la zone pellucide, l'inhibition de la synaptotagmine assure la liaison du spermatozoïde à ZP2.</div>
+                                            <div class="qcm-item">D: La liaison à ZP2 est irréversible.</div>
+                                            <div class="qcm-item">E: La liaison entre des molécules de la membrane plasmique de la tête du spermatozoïde comme Izumo et des récepteurs de la membrane plasmique ovocytaire comme Juno assure la fusion des gamètes. <span class="tag-theme tag-theme2">Thème 2</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024 Q9<span class="items-badge">items ABCE</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La fécondation</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Le spermatozoïde pour traverser le cumulus oophorus utilise la PH20</div>
+                                            <div class="qcm-item">B : La PH20 est une protéine à activité hyaluronidase</div>
+                                            <div class="qcm-item">C : Dans l'espèce humaine, uniquement les spermatozoïdes dont la membrane plasmique est intacte peuvent se lier à la zone pellucide</div>
+                                            <div class="qcm-item">D : La liaison du spermatozoïde à la zone pellucide s'effectue par l'intermédiaire des protéines Adams et Juno</div>
+                                            <div class="qcm-item">E : Lors de la réaction corticale, les enzymes lysosomiales libérées vont modifier les glycoprotéines de la zone pellucide <span class="tag-theme tag-theme3">Thème 3</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025 Q8<span class="items-badge">items ACDE</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La rencontre des gamètes</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Avant d'entrer dans le cytoplasme de l'ovocyte, le spermatozoïde doit franchir le cumulus oophorus, la corona radiata, la zone pellucide et la membrane plasmique de l'ovocyte.</div>
+                                            <div class="qcm-item">B : La PH 20, protéine présente au niveau de la membrane plasmique du spermatozoïde, assure la reconnaissance d'espèce au niveau de la zone pellucide.</div>
+                                            <div class="qcm-item">C : La réaction acrosomique est nécessaire à la traversée de la zone pellucide.</div>
+                                            <div class="qcm-item">D : La fusion entre l'ovocyte et le spermatozoïde nécessite une reconnaissance moléculaire spécifique d'espèce.</div>
+                                            <div class="qcm-item">E : Au moment de la fusion de la membrane plasmique du spermatozoïde à la membrane plasmique de l'ovocyte, Izumo situé sur le spermatozoïde se lie à Juno porté par l'ovocyte. <span class="tag-theme tag-theme2">Thème 2</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                    <h3>Fusion gamétique (Izumo-Juno, ADAM)</h3>
+                    <div class="qcm-thematique">
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>QCM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022 Q9<span class="items-badge">items ABCDE</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La rencontre des gamètes [avec schéma de la fusion]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La flèche A indique la membrane externe de l'acrosome</div>
+                                            <div class="qcm-item">B: La flèche B indique la membrane plasmique du spermatozoïde.</div>
+                                            <div class="qcm-item">C: A ce stade, le spermatozoide a déjà réalisé la réaction acrosomique.</div>
+                                            <div class="qcm-item">D: La flèche C indique probablement une protéine ADAMS.</div>
+                                            <div class="qcm-item">E: Les flèches D indiquent vraisemblablement les protéines Juno.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                    <h3>Activation ovocytaire (calcium, CSF/MPF, réaction corticale)</h3>
+                    <div class="qcm-thematique">
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>QCM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022 Q10<span class="items-badge">items BCE</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Les conséquences de l'entrée du spermatozoïde dans le cytoplasme de l'ovocyte</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Une fois entré dans le cytoplasme de l'ovocyte, le spermatozoïde libère de grandes quantités de calcium.</div>
+                                            <div class="qcm-item">B: La mobilisation du calcium intra-ovocytaire permet l'exocytose des enzymes lysosomales contenues dans les granules corticaux.</div>
+                                            <div class="qcm-item">C: La déglycosylation de ZP3 et de ZP4, conséquence de la réaction acrosomiale, participe au blocage de la polyspermie.</div>
+                                            <div class="qcm-item">D: Le CSF stabilisé peut dégrader le MPF. <span class="tag-fc tag-fc8">FC8</span></div>
+                                            <div class="qcm-item">E: La dégradation du MPF permet à l'ovocyte fécondé de terminer sa méiose II, de mettre en place le pronoyau femelle et de libérer le second globule polaire.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                    <table class="diagnostic-table">
+                        <tr>
+                            <th>Fréquence d'apparition</th>
+                            <th>Format des QCM</th>
+                            <th>Niveau de dépendance</th>
+                        </tr>
+                        <tr>
+                            <td>🔵 Revient souvent (4x sur 5 ans)</td>
+                            <td>🎯 QCM sur partie ciblée du cours - avec récurrence des items</td>
+                            <td>🔗 Cours appartenant à une suite logique</td>
+                        </tr>
+                    </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Ce chapitre a été interrogé <strong>5 fois en 5 ans</strong> (1 QCM en 2020-2021, 2 QCM en 2021-2022, 0 en 2022-2023, 1 en 2023-2024, 1 en 2024-2025). Les QCM se regroupent en <strong>3 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Traversée cumulus/ZP (PH20, réaction acrosomique)</td>
+                                    <td class="qcm-cell">Q9 (BCDE)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q9 (ABCE)</td>
+                                    <td class="qcm-cell">Q8 (ACDE)</td>
+                                </tr>
+                                <tr>
+                                    <td>Fusion gamétique (Izumo-Juno, ADAM)</td>
+                                    <td class="qcm-cell">Q9 (E)</td>
+                                    <td class="qcm-cell">Q9 (ABCDE)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q8 (E)</td>
+                                </tr>
+                                <tr>
+                                    <td>Activation ovocytaire (calcium, CSF/MPF)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q10 (BCE)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q9 (E)</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>📌 Note :</strong> Un même QCM peut couvrir plusieurs thématiques. L'interaction Izumo-Juno est récurrente (3 fois sur 4 années où le chapitre est tombé). Entre parenthèses : items FC5 uniquement.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="reco-item">
+                        <h4>L'interaction Izumo-Juno</h4>
+                        <p>Connaître le rôle fondamental de cette interaction dans la fusion gamétique. Izumo (spermatozoïde) se lie à Juno (ovocyte). Savoir que cette liaison est indispensable à la fécondation.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La traversée du cumulus oophorus et la PH20</h4>
+                        <p>Comprendre que la PH20 est une protéine à activité hyaluronidase qui permet au spermatozoïde de traverser le cumulus. Bien distinguer du rôle des protéines ZP.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La réaction acrosomique et la zone pellucide</h4>
+                        <p>Maîtriser la séquence : liaison primaire ZP3/ZP4 (réversible) → activation synaptotagmine → liaison secondaire ZP2 (irréversible). La réaction acrosomique est nécessaire pour traverser la ZP.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'activation ovocytaire et la réaction corticale</h4>
+                        <p>Comprendre le rôle du calcium dans l'exocytose des granules corticaux, la déglycosylation de ZP3/ZP4 et le blocage de la polyspermie. Connaître le mécanisme CSF/MPF pour la reprise de méiose II.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La spécificité de reconnaissance moléculaire</h4>
+                        <p>Attention piège : la reconnaissance moléculaire lors de la fusion est spécifique sur le plan moléculaire mais SANS spécificité d'espèce.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="qcm-analyse">
+                        <h4>Traversée du cumulus et zone pellucide</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q9 | <strong>2023-2024</strong> Q9 | <strong>2024-2025</strong> Q8</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Cette thématique est très récurrente. Les items sur la PH20 (activité hyaluronidase), la réaction acrosomique nécessaire pour traverser la ZP, et l'ordre des structures traversées reviennent régulièrement.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Mémorise l'ordre exact : cumulus oophorus → corona radiata → zone pellucide → membrane plasmique. Retiens que PH20 = hyaluronidase = traversée cumulus. La réaction acrosomique est NÉCESSAIRE pour traverser la ZP.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">PH20 agit sur le cumulus (acide hyaluronique), pas sur la zone pellucide. La ZP est traversée grâce aux enzymes libérées par la réaction acrosomique (acrosine, hyaluronidase acrosomale).</div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Fusion gamétique (Izumo-Juno)</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q9 | <strong>2021-2022</strong> Q9 | <strong>2024-2025</strong> Q8</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">L'interaction Izumo-Juno est systématiquement testée quand le chapitre tombe. L'item est quasi-identique à chaque fois : Izumo (spz) + Juno (ovocyte) = fusion.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retenir : Izumo = spermatozoïde, Juno = ovocyte. Cette liaison est FONDAMENTALE pour la fécondation. Les protéines ADAM interagissent avec CD9/intégrines.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">C'est un QCM de connaissance pure. Retiens l'association : Izumo (du sanctuaire japonais du mariage) = spz ; Juno (déesse romaine fertilité) = ovocyte.</div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Activation ovocytaire (CSF/MPF)</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q10 | <strong>2023-2024</strong> Q9</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Les items sur le rôle du calcium, la réaction corticale (déglycosylation ZP3/ZP4), et le couple CSF/MPF reviennent. Attention : l'item sur CSF/MPF peut aussi être rattaché au FC8 (SD1).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Mémorise : le spz apporte la PLC → libération Ca²⁺ ovocytaire (pas le spz qui libère le Ca²⁺ !). Le CSF STABILISE le MPF. L'augmentation du Ca²⁺ INHIBE le CSF et permet la DÉGRADATION du MPF → reprise méiose II.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">CSF = "cytostatic factor" = il STABILISE (maintient bloqué). Pour débloquer → il faut INHIBER le CSF. Le Ca²⁺ est l'inhibiteur. MPF dégradé = méiose reprend.</div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+                    
+                    <div class="vigilance-item">
+                        <h4>Confusion PH20 / reconnaissance d'espèce</h4>
+                        <p>La PH20 permet de traverser le cumulus grâce à son activité hyaluronidase, mais elle N'ASSURE PAS la reconnaissance d'espèce. La reconnaissance d'espèce se fait via les protéines ZP (notamment FT-5 chez l'homme).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Spécificité moléculaire vs spécificité d'espèce</h4>
+                        <p>La fusion gamétique nécessite une reconnaissance moléculaire spécifique (Izumo-Juno, ADAM-CD9) mais cette reconnaissance n'est PAS spécifique d'espèce. Item piège fréquent.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Qui libère le calcium ?</h4>
+                        <p>Ce n'est PAS le spermatozoïde qui libère le calcium. Le spz apporte la PLC (phospholipase C) qui provoque la libération du Ca²⁺ des réserves INTRA-OVOCYTAIRES.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Déglycosylation = réaction CORTICALE, pas acrosomiale</h4>
+                        <p>La déglycosylation de ZP3/ZP4 est une conséquence de la réaction CORTICALE (granules corticaux de l'ovocyte), pas de la réaction acrosomiale (qui vient du spermatozoïde).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>CSF stabilise, ne dégrade pas</h4>
+                        <p>Le CSF STABILISE le MPF (maintient l'ovocyte bloqué en métaphase II). Le CSF ne PEUT PAS dégrader le MPF. C'est l'INHIBITION du CSF par le Ca²⁺ qui permet la dégradation du MPF.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Item FC4 dans les QCM FC5</h4>
+                        <p>Attention : l'item sur les "mouvements hyperactivés du flagelle pour remonter les voies génitales" relève du FC4 (capacitation), pas du FC5. Il peut apparaître dans un QCM "Fécondation" mais c'est une notion de pré-fécondation.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">
+                            Ce chapitre présente une récurrence FORTE des items (environ 65%). L'interaction Izumo-Juno est testée quasi-systématiquement. Le prof alterne entre les mécanismes de traversée (cumulus/ZP) et l'activation ovocytaire, mais certains items reviennent à l'identique. Attention aux items qui chevauchent FC4 (capacitation/hyperactivation) et FC8 (CSF/MPF).
+                        </p>
+
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Ce chapitre est de taille moyenne (16 pages) avec beaucoup de mécanismes moléculaires à retenir. Si tu as le temps, révise tout le cours car les 4 voies d'entrée du calcium et les détails de la réaction acrosomique peuvent tomber même s'ils ne sont pas encore apparus en annales.</p>
+
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentre-toi sur : (1) l'interaction Izumo-Juno, (2) le rôle de PH20 et la traversée du cumulus, (3) la séquence liaison ZP3/ZP4 → réaction acrosomique → liaison ZP2 irréversible, (4) le mécanisme CSF/MPF pour la reprise de méiose. Ces 4 thèmes couvrent 90% des items tombés.</p>
+
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        La récurrence forte rend cette stratégie viable. Apprends les items déjà tombés sur Izumo-Juno, PH20, liaison ZP2 irréversible, et le couple CSF/MPF. Attention toutefois : 2022-2023 n'a eu aucun QCM, ce qui suggère que le prof peut "sauter" ce chapitre certaines années.</p>
+                    </div>
+
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
