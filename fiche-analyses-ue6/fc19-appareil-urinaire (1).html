@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC19 - Organogenèse de l'appareil urinaire - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC19 - Organogenèse de l'appareil urinaire</h1>
+            <div class="meta">
+                <span>📚 UE6 - Embryologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- CORDON NÉPHROGÈNE ET SES DÉRIVÉS -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Cordon néphrogène et ses dérivés (5 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q20<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items A,B</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Le développement du système urinaire et de l'appareil génital [avec schéma]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">A: La flèche A indique une structure à l'origine du corps de Wolff. <span style="background: #3b82f6; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">B: La flèche B indique une structure dont la disparition est complète en ce qui concerne l'appareil génital féminin. <span style="background: #3b82f6; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item">C: La lettre C indique une structure, qui jusqu'à la fin de la 6ème semaine de développement, a le même aspect morphologique dans les deux sexes. <span style="background: #10b981; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; margin-left: 6px;">FC20</span></div>
+                                            <div class="qcm-item">D: Chez l'embryon génétiquement mâle, la sécrétion de testostérone permet le développement des canaux de Wolff <span style="background: #10b981; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; margin-left: 6px;">FC20</span></div>
+                                            <div class="qcm-item">E: Un pseudo-hermaphrodisme masculin peut être la conséquence d'une insensibilité aux androgènes de la part des cellules cibles. <span style="background: #10b981; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; margin-left: 6px;">FC20</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q20</td>
+                                    <td>
+                                        <div class="qcm-enonce">L'appareil urinaire</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Dès la fin de la 4ème semaine de développement, dans la région dorso-lombaire, le développement du cordon néphrogène assure la mise en place du mésonéphros.</div>
+                                            <div class="qcm-item">B: Le mésonéphros est aussi appelé corps de Wolff.</div>
+                                            <div class="qcm-item">C: Le corps de Wolff, près de son abouchement dans le cloaque, est à l'origine du blastème métanéphrogène.</div>
+                                            <div class="qcm-item">D: Le métanéphros dérive du blastème métanéphrogène et du bourgeon urétéral.</div>
+                                            <div class="qcm-item">E: Le bourgeon urétéral est à l'origine, dans le sexe masculin, de l'épididyme et du canal déférent.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q19</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le développement de l'appareil urinaire</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le développement de l'appareil urinaire dépend de la mise en place du cordon néphrogène</div>
+                                            <div class="qcm-item">B: Le cordon néphrogène s'étend de la région céphalique à la région caudale de l'embryon</div>
+                                            <div class="qcm-item">C: Les néphrotomes correspondent à la segmentation du cordon néphrogène</div>
+                                            <div class="qcm-item">D: La segmentation du cordon néphrogène s'effectue selon un gradient caudo-céphalique</div>
+                                            <div class="qcm-item">E: Dans la région pelvienne, la segmentation du cordon néphrogène est à l'origine du rein définitif</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q20<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items A,B,C</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Le développement du système urinaire et de l'appareil génital</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">A: Le développement de l'appareil urinaire dépend de la mise en place du cordon néphrogène <span style="background: #3b82f6; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">B: Le cordon néphrogène dérive du mésoblaste para-axial <span style="background: #3b82f6; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">C: La segmentation du cordon néphrogène dans la région pelvienne est à l'origine du blastème métanéphrogène <span style="background: #3b82f6; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item">D: Le gène SRY est caractérisé comme étant la région minimale permettant une réversion de sexe <span style="background: #10b981; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; margin-left: 6px;">FC20</span></div>
+                                            <div class="qcm-item">E: Des mutations dans le gène SRY peuvent rendre ce gène non fonctionnel et aboutir à l'obtention d'individus XY de phénotype féminin <span style="background: #10b981; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; margin-left: 6px;">FC20</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q20<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items A,B,C,E</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">L'appareil urinaire et l'appareil génital [avec schéma d'un embryon ouvert]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">A: L'accolade indique la portion céphalique du cordon néphrogène. <span style="background: #3b82f6; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">B: Le cordon néphrogène dérive du mésoblaste para-axial. <span style="background: #3b82f6; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">C: L'accolade indique la région dans laquelle se développe le mésonéphros. <span style="background: #3b82f6; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item">D: Chez les individus de sexe féminin le mésonéphros est à l'origine du canal de Müller. <span style="background: #10b981; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; margin-left: 6px;">FC20</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">E: Chez les individus de sexe masculin, le mésonéphros persiste sous la forme de canal de Wolff. <span style="background: #3b82f6; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; margin-left: 6px;">FC19</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>🎯 QCM sur partie ciblée du cours - avec récurrence des items</td>
+                                <td>🔗 Cours appartenant à une suite logique (lié à FC20)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Ce tableau montre les thématiques tombées chaque année. FC19 est toujours associé à FC20 dans la Q20, sauf en 2021-2022 et 2022-2023 où un QCM était dédié uniquement à l'appareil urinaire.</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-2021</th>
+                                        <th>2021-2022</th>
+                                        <th>2022-2023</th>
+                                        <th>2023-2024</th>
+                                        <th>2024-2025</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Cordon néphrogène et dérivés</td>
+                                        <td class="qcm-cell">Q20 (2 items)</td>
+                                        <td class="qcm-cell">Q20</td>
+                                        <td class="qcm-cell">Q19</td>
+                                        <td class="qcm-cell">Q20 (3 items)</td>
+                                        <td class="qcm-cell">Q20 (4 items)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #e0f2fe; border-left: 3px solid #0369a1; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #0c4a6e;">
+                                <strong>📌 Note importante</strong> : FC19 et FC20 sont quasi-systématiquement mélangés dans le même QCM. Les items FC19 concernent exclusivement le cordon néphrogène et ses trois dérivés (pronéphros, mésonéphros, métanéphros).
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2</summary>
+                <div class="accordion-content">
+                    
+                    <div class="reco-item">
+                        <h4>Le cordon néphrogène et son origine</h4>
+                        <p>Savoir que le cordon néphrogène dérive du mésoblaste INTERMÉDIAIRE (pas para-axial !). Cette erreur est un piège récurrent. Le cordon s'étend de la région céphalique à la région caudale.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+                    
+                    <div class="reco-item">
+                        <h4>La segmentation du cordon néphrogène</h4>
+                        <p>Comprendre que la segmentation se fait selon un gradient CÉPHALO-CAUDAL (pas caudo-céphalique). Les segments sont appelés néphrotomes, sauf dans la région pelvienne où le tissu reste non divisé = blastème métanéphrogène.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+                    
+                    <div class="reco-item">
+                        <h4>Les trois systèmes rénaux successifs</h4>
+                        <p>Maîtriser la séquence : pronéphros (régresse à SD4), mésonéphros/corps de Wolff (à partir de SD4, régresse vers SD10), métanéphros (rein définitif). Le mésonéphros persiste chez l'homme sous forme de canal de Wolff.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+                    
+                    <div class="reco-item">
+                        <h4>L'origine du métanéphros</h4>
+                        <p>Savoir que le métanéphros dérive de DEUX structures : le blastème métanéphrogène ET le bourgeon urétéral. Attention : le bourgeon urétéral provient du canal de Wolff près du cloaque, pas du blastème.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+                    
+                    <div class="reco-item">
+                        <h4>Le devenir du mésonéphros selon le sexe</h4>
+                        <p>Chez la femme : disparition COMPLÈTE du mésonéphros. Chez l'homme : le canal de Wolff persiste et donne l'épididyme et le canal déférent. Attention : c'est le CANAL DE WOLFF qui donne ces structures, pas le bourgeon urétéral.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>💡 Recommandations Niveau 1</summary>
+                <div class="accordion-content">
+
+                    <div class="qcm-analyse">
+                        <h4>L'origine embryologique du cordon néphrogène</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q20 item B • <strong>2024-2025</strong> Q20 item B</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le même piège revient : "Le cordon néphrogène dérive du mésoblaste para-axial" - c'est FAUX. Il dérive du mésoblaste INTERMÉDIAIRE.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens cette distinction : mésoblaste para-axial = somites ; mésoblaste intermédiaire = cordon néphrogène.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Para-axial</strong> = à côté de l'axe (la chorde) = les somites.</p>
+                                <p><strong>Intermédiaire</strong> = entre le para-axial et la lame latérale = le cordon néphrogène.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Le gradient de segmentation du cordon</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q19 item D</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">L'item propose "gradient caudo-céphalique" alors que c'est un gradient CÉPHALO-CAUDAL.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends que la segmentation progresse de la tête vers le bas (comme la majorité des processus embryologiques).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>En embryologie, presque tout se développe selon un gradient <strong>céphalo-caudal</strong> (de la tête vers la queue). C'est le cas pour : la neurulation, les somites, le cordon néphrogène.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Le blastème métanéphrogène</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q19 item E • <strong>2023-2024</strong> Q20 item C</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">En 2022-2023, l'item dit que "la segmentation dans la région pelvienne est à l'origine du rein définitif" - c'est un piège car la région pelvienne ne se SEGMENTE PAS, elle reste en bloc et forme le blastème métanéphrogène.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que c'est justement l'ABSENCE de segmentation dans la région pelvienne qui forme le blastème métanéphrogène.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>La segmentation du cordon s'INTERROMPT dans la région pelvienne. Ce qui reste non segmenté = le blastème métanéphrogène = participe au rein définitif.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>L'origine du bourgeon urétéral</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q20 items C,E</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Deux pièges dans ce QCM : le bourgeon urétéral vient du canal de Wolff (pas du blastème), et c'est le canal de Wolff qui donne épididyme/canal déférent (pas le bourgeon urétéral).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les origines de chaque structure : canal de Wolff → bourgeon urétéral + épididyme/canal déférent.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Retiens cette chaîne : le canal de Wolff (mésonéphros) donne le bourgeon urétéral près du cloaque. Le bourgeon urétéral → uretère + bassinet + calices. Le canal de Wolff chez l'homme → épididyme + canal déférent.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Lecture de schéma du cordon néphrogène</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q20 • <strong>2024-2025</strong> Q20</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ces deux années comportent un schéma d'embryon avec des accolades/flèches indiquant les structures du cordon néphrogène. Il faut savoir identifier : la portion céphalique (pronéphros), la région du mésonéphros, et les structures gonadiques.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Revois le schéma du cours avec les 3 niveaux du cordon néphrogène. L'accolade représentant le pronéphros = portion céphalique.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>Sur un schéma d'embryon ouvert :</p>
+                                <ul>
+                                    <li>Partie haute (cervicale) = pronéphros = régresse</li>
+                                    <li>Partie moyenne (dorso-lombaire) = mésonéphros</li>
+                                    <li>Partie basse (pelvienne) = blastème métanéphrogène (non segmenté)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion mésoblaste para-axial / mésoblaste intermédiaire</h4>
+                        <p>Le piège le plus fréquent ! Le cordon néphrogène dérive du mésoblaste INTERMÉDIAIRE, pas para-axial. Le mésoblaste para-axial donne les somites. Cette erreur est tombée 2 fois en 2 ans.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion gradient céphalo-caudal / caudo-céphalique</h4>
+                        <p>La segmentation du cordon néphrogène se fait selon un gradient CÉPHALO-CAUDAL (de la tête vers la queue). Si on vous propose "caudo-céphalique", c'est faux.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion bourgeon urétéral / blastème métanéphrogène</h4>
+                        <p>Le bourgeon urétéral naît du canal de Wolff (près du cloaque), PAS du blastème. Le blastème est la partie non segmentée du cordon. Les deux contribuent au métanéphros mais ont des origines différentes.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion canal de Wolff / bourgeon urétéral pour les dérivés masculins</h4>
+                        <p>C'est le CANAL DE WOLFF qui donne l'épididyme et le canal déférent, pas le bourgeon urétéral. Le bourgeon urétéral donne l'uretère, le bassinet et les calices.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur la "segmentation" dans la région pelvienne</h4>
+                        <p>Dans la région pelvienne, la segmentation S'INTERROMPT, laissant un bloc non divisé. Si un item dit que "la segmentation dans la région pelvienne forme le rein définitif", c'est FAUX - c'est l'ABSENCE de segmentation qui forme le blastème métanéphrogène.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Devenir du mésonéphros selon le sexe</h4>
+                        <p>Chez la femme : disparition COMPLÈTE. Chez l'homme : persistance du canal de Wolff. Attention à l'item "le mésonéphros est à l'origine du canal de Müller" - c'est FAUX, le canal de Müller dérive de l'épithélium cœlomique, pas du mésonéphros.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    
+                    <!-- ALERTE STRATÉGIE -->
+                    <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 2px solid #ef4444; border-radius: 10px; padding: 15px; margin-bottom: 20px;">
+                        <p style="margin: 0; color: #991b1b; font-weight: 600;">
+                            ⚠️ <strong>ATTENTION - Stratégie Niveau 1 et 2 :</strong><br>
+                            <span style="font-weight: normal;">Ce chapitre est presque toujours associé à FC20 (Appareil génital) dans le même QCM. <strong>Apprenez les deux chapitres ensemble</strong>, sinon vous risquez de perdre le point du QCM si vous ne connaissez que la moitié des réponses !</span>
+                        </p>
+                    </div>
+                    
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">FC19 est un chapitre court mais piégeux. Le professeur utilise un nombre limité de pièges qui reviennent régulièrement. La récurrence des items est FORTE (environ 70%) : les mêmes erreurs sont testées d'une année sur l'autre, ce qui rend le Niveau 1 très viable.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Ce chapitre est court et peut être maîtrisé rapidement. Concentrez-vous sur la compréhension de la logique embryologique : les 3 systèmes successifs, les inductions réciproques bourgeon urétéral/blastème, et le lien avec FC20 (devenir du mésonéphros selon le sexe).</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Ciblez uniquement la partie 1 du cours (Le cordon néphrogène). Les voies urinaires hautes et basses ne sont jamais tombées. Maîtrisez parfaitement : l'origine (mésoblaste intermédiaire), le gradient (céphalo-caudal), les 3 dérivés et leurs devenirs.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Excellente stratégie pour ce chapitre ! Les mêmes pièges reviennent : "mésoblaste para-axial" (FAUX), "gradient caudo-céphalique" (FAUX), confusion bourgeon urétéral/canal de Wolff. Apprenez ces pièges par cœur, vous aurez très probablement 3-4 items corrects sur 5.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
