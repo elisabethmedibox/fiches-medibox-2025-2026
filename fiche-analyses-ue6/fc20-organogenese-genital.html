@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC20 - Organogenèse de l'appareil génital - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC20 - Organogenèse de l'appareil génital</h1>
+            <div class="meta">
+                <span>📚 UE6 - Embryologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <p style="background: #fef3c7; padding: 12px; border-radius: 8px; margin-bottom: 20px; color: #92400e;">
+                        <strong>⚠️ Note importante :</strong> FC20 est toujours dans la Q20, souvent mixte avec FC19 (appareil urinaire). Seuls les items FC20 sont présentés ci-dessous. Les QCM mixtes sont signalés.
+                    </p>
+
+                    <!-- GÈNE SRY ET INVERSIONS SEXUELLES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Gène SRY et inversions sexuelles (3 QCM dont 2 identiques)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q20<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items BCDE</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Le développement de l'appareil génital</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Dans le sexe féminin, le développement de la gonade féminine est lié à celui du pronéphros <span style="background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">B: Dans le sexe masculin, le développement de la gonade masculine est lié à celui du mésonéphros <span style="background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC20</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">C: Lors du développement de l'appareil génital, la différenciation gonadique précède celle du reste de l'appareil génital <span style="background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC20</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">D: Le gène SRY est caractérisé comme étant la région minimale permettant une réversion de sexe <span style="background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC20</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">E: Des mutations dans le gène SRY peuvent rendre ce gène non fonctionnel et aboutir à l'obtention d'individus XY de phénotype féminin <span style="background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC20</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="qcm-identique">
+                                    <td>2023-2024<br>Q20<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items DE</span><br><em>🔄 Items DE identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Le développement du système urinaire et de l'appareil génital</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le développement de l'appareil urinaire dépend de la mise en place du cordon néphrogène <span style="background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item">B: Le cordon néphrogène dérive du mésoblaste para-axial <span style="background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item">C: La segmentation du cordon néphrogène dans la région pelvienne est à l'origine du blastème métanéphrogène <span style="background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">D: Le gène SRY est caractérisé comme étant la région minimale permettant une réversion de sexe <span style="background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC20</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">E: Des mutations dans le gène SRY peuvent rendre ce gène non fonctionnel et aboutir à l'obtention d'individus XY de phénotype féminin <span style="background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC20</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- DIFFÉRENCIATION GONADIQUE ET VOIES GÉNITALES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Différenciation gonadique et voies génitales (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q20<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items CDE</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Le développement du système urinaire et de l'appareil génital (avec schéma)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La flèche A indique une structure à l'origine du corps de Wolff. <span style="background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item">B: La flèche B indique une structure dont la disparition est complète en ce qui concerne l'appareil génital féminin. <span style="background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">C: La lettre C indique une structure, qui jusqu'à la fin de la 6ème semaine de développement, a le même aspect morphologique dans les deux sexes. <span style="background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC20</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">D: Chez l'embryon génétiquement mâle, la sécrétion de testostérone permet le développement des canaux de Wolff <span style="background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC20</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">E: Un pseudo-hermaphrodisme masculin peut être la conséquence d'une insensibilité aux androgènes de la part des cellules cibles. <span style="background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC20</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q20<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">item D</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">L'appareil urinaire et l'appareil génital (avec schéma)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'accolade indique la portion céphalique du cordon néphrogène. <span style="background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item">B: Le cordon néphrogène dérive du mésoblaste para-axial. <span style="background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item">C: L'accolade indique la région dans laquelle se développe le mésonéphros. <span style="background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC19</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">D: Chez les individus de sexe féminin le mésonéphros est à l'origine du canal de Müller. <span style="background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC20</span></div>
+                                            <div class="qcm-item">E: Chez les individus de sexe masculin, le mésonéphros persiste sous la forme de canal de Wolff. <span style="background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC19</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année (4/5 ans)</td>
+                                <td>🎯 QCM sur partie ciblée du cours - avec récurrence des items</td>
+                                <td>🔗 Cours appartenant à une suite logique (FC19)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">FC20 est toujours dans la Q20, souvent mixte avec FC19. Le prof recycle fréquemment les mêmes items sur le gène SRY.</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-2021</th>
+                                        <th>2021-2022</th>
+                                        <th>2022-2023</th>
+                                        <th>2023-2024</th>
+                                        <th>2024-2025</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Gène SRY et réversion de sexe</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q20</td>
+                                        <td><span class="qcm-identique-cell">🔄 Q20</span></td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mutations gène SRY</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q20</td>
+                                        <td><span class="qcm-identique-cell">🔄 Q20</span></td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Différenciation gonadique</td>
+                                        <td class="qcm-cell">Q20</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q20</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rôle testostérone / canaux Wolff</td>
+                                        <td class="qcm-cell">Q20</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pseudo-hermaphrodisme / insensibilité androgènes</td>
+                                        <td class="qcm-cell">Q20</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mésonéphros et canaux selon sexe</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q20</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q20</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Légende séparée -->
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Items strictement identiques (même formulation) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item">
+                        <h4>Le gène SRY et son rôle dans la détermination du sexe</h4>
+                        <p>Localisation sur le chromosome Y, rôle comme région minimale permettant la réversion de sexe, conséquences des mutations (individus XY de phénotype féminin).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans (items identiques)</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le mésonéphros et sa relation avec le sexe</h4>
+                        <p>Dans le sexe masculin, le mésonéphros est lié au développement de la gonade et persiste sous forme de canal de Wolff. Dans le sexe féminin, le mésonéphros ne joue aucun rôle et disparaît totalement.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les canaux de Wolff et de Müller</h4>
+                        <p>Comprendre la différenciation selon le sexe : testostérone → développement canaux de Wolff, absence de testostérone → disparition canaux de Wolff et persistance canaux de Müller.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le pseudo-hermaphrodisme masculin</h4>
+                        <p>Connaître les deux causes principales : défaut de sécrétion de testostérone ou insensibilité des cellules cibles aux androgènes (testicule féminisant).</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La différenciation gonadique</h4>
+                        <p>Savoir que jusqu'à la fin de SD6, la gonade a le même aspect morphologique dans les deux sexes, et que la différenciation gonadique précède celle du reste de l'appareil génital.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM 1 : Gène SRY -->
+                    <div class="qcm-analyse">
+                        <h4>Gène SRY et réversion de sexe</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q20 | <strong>2023-2024</strong> Q20 (identiques)</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">L'item sur le gène SRY comme "région minimale permettant une réversion de sexe" est tombé à l'identique 2 années consécutives.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends la formulation exacte du cours sur le gène SRY. L'item "Le gène SRY est caractérisé comme étant la région minimale permettant une réversion de sexe" est un classique.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>Le gène SRY sur le chromosome Y détermine le développement masculin. Si SRY est présent → phénotype masculin (même avec caryotype XX). Si SRY est absent ou muté → phénotype féminin (même avec caryotype XY).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Mutations SRY -->
+                    <div class="qcm-analyse">
+                        <h4>Mutations du gène SRY</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q20 | <strong>2023-2024</strong> Q20 (identiques)</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">L'item sur les mutations du gène SRY aboutissant à des "individus XY de phénotype féminin" est tombé à l'identique 2 années consécutives.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que les mutations de SRY rendent le gène non fonctionnel, ce qui aboutit à un individu XY mais de phénotype féminin.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. La formulation exacte "Des mutations dans le gène SRY peuvent rendre ce gène non fonctionnel et aboutir à l'obtention d'individus XY de phénotype féminin" est à connaître.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Mésonéphros selon le sexe -->
+                    <div class="qcm-analyse">
+                        <h4>Mésonéphros et différenciation selon le sexe</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q20 | <strong>2024-2025</strong> Q20</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le rôle différent du mésonéphros selon le sexe est testé régulièrement, avec un piège fréquent sur les canaux de Müller.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Différencie bien : dans le sexe masculin, le mésonéphros est lié à la gonade et persiste (canal de Wolff → épididyme, canal déférent). Dans le sexe féminin, le mésonéphros ne joue aucun rôle et disparaît totalement.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Attention au piège !</strong> Le mésonéphros n'est PAS à l'origine du canal de Müller. Les canaux de Müller se forment à SD6 par invagination de l'épithélium coelomique. En 2024-2025, l'item D était un piège avec cette confusion.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Pseudo-hermaphrodisme -->
+                    <div class="qcm-analyse">
+                        <h4>Pseudo-hermaphrodisme et insensibilité aux androgènes</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q20</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le pseudo-hermaphrodisme masculin par insensibilité aux androgènes (testicule féminisant) a été testé une fois.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Connais les deux causes du pseudo-hermaphrodisme masculin : défaut de sécrétion de testostérone OU insensibilité des cellules cibles aux androgènes.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>Dans le testicule féminisant, les testicules sont présents et sécrètent de l'AMH (donc canaux de Müller régressent), mais les cellules cibles sont insensibles à la testostérone → canaux de Wolff dégénèrent → organes génitaux externes féminins.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion mésonéphros / canaux de Müller</h4>
+                        <p>Le mésonéphros n'est PAS à l'origine des canaux de Müller ! Les canaux de Müller se forment par invagination de l'épithélium coelomique à SD6. Le mésonéphros est lié aux canaux de Wolff (sexe masculin).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion pronéphros / mésonéphros</h4>
+                        <p>Dans le sexe féminin, le développement de la gonade n'est PAS lié au pronéphros (qui est transitoire et non fonctionnel). En fait, dans le sexe féminin, le mésonéphros ne joue aucun rôle. C'est dans le sexe masculin que le mésonéphros est lié à la gonade.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur le cordon néphrogène</h4>
+                        <p>Le cordon néphrogène dérive du mésoblaste INTERMÉDIAIRE, pas du mésoblaste para-axial. C'est un piège récurrent dans les QCM mixtes FC19/FC20.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Attention à SD6 pour la gonade indifférenciée</h4>
+                        <p>Jusqu'à la FIN de SD6 (pas jusqu'à SD6), la gonade a le même aspect morphologique dans les deux sexes. La différenciation testiculaire commence à SD7, la différenciation ovarienne à SD8.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>SRY n'est pas suffisant seul</h4>
+                        <p>Le gène SRY est la région MINIMALE permettant la réversion de sexe, mais d'autres gènes (SOX9, SF1) sont impliqués dans le développement mâle complet et la fertilité.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    
+                    <!-- SPOILER STRATÉGIQUE -->
+                    <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 2px solid #ef4444; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+                        <p style="margin: 0; color: #991b1b; font-weight: 600;">
+                            ⚠️ <strong>ATTENTION - Stratégie Niveau 1 et 2 :</strong><br>
+                            <span style="font-weight: normal;">Ce chapitre (FC20) est <strong>toujours associé à FC19</strong> dans la Q20. Vous devez apprendre les deux chapitres ensemble, sinon vous risquez de perdre le point du QCM si vous ne connaissez que la moitié des réponses.</span>
+                        </p>
+                    </div>
+                    
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Sur ce chapitre, le prof recycle fortement ses items sur le gène SRY (2 items identiques sur 2 années consécutives). Le reste des thématiques tourne entre les années. FC20 est toujours mixte avec FC19, il faut donc maîtriser les deux chapitres ensemble.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Révisez FC19 et FC20 ensemble car ils sont systématiquement mélangés dans la Q20. Portez une attention particulière aux gènes de détermination sexuelle (SRY, SOX9, SF1, DAX1, WNT4) et aux anomalies de différenciation sexuelle (syndromes de Turner et Klinefelter, pseudo-hermaphrodismes).</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur le gène SRY et ses mutations, le rôle du mésonéphros selon le sexe, et les canaux de Wolff/Müller. Ces thèmes couvrent l'essentiel des items tombés.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Récurrence FORTE sur ce chapitre ! Les items sur le gène SRY sont tombés à l'identique 2 années de suite. Apprenez par cœur les formulations exactes du cours sur SRY. Les 2 items identiques (2022-2023 et 2023-2024) sont une garantie de points si le prof continue ce pattern.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
