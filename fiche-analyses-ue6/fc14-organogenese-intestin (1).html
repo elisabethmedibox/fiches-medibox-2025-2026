@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC14 - Organogenèse de l'intestin primitif - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC14 - Organogenèse de l'intestin primitif</h1>
+            <div class="meta">
+                <span>📚 UE6 - Embryologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- Thématique 1 : Mise en place de l'intestin primitif -->
+                    <div class="qcm-thematique">
+                        <h4>🔹 Mise en place de l'intestin primitif (3 segments, cloaque, membrane pharyngienne)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q15</td>
+                                    <td>
+                                        <div class="qcm-enonce">Mise en place de l'intestin primitif :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'intestin primitif est divisé en 3 segments</div>
+                                            <div class="qcm-item">B: Les villosités intestinales régressent au cours des 9ème et 10ème semaines de développement sur toute la longueur de l'intestin</div>
+                                            <div class="qcm-item">C: L'œsophage s'individualise avec la formation du diverticule respiratoire au cours de la 4ème semaine de développement</div>
+                                            <div class="qcm-item">D: Le duodénum est formé par la partie terminale de l'intestin antérieur et par la partie la plus crâniale de l'intestin moyen</div>
+                                            <div class="qcm-item">E: L'intestin postérieur, après sa réunion avec l'origine du diverticule allantoïdien, forme le cloaque</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le tube digestif primitif :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La portion crâniale de l'intestin primitif est fermée à son extrémité céphalique par la membrane pharyngienne (ou pharyngée)</div>
+                                            <div class="qcm-item">B: L'intestin pharyngien correspond à la portion caudale de l'intestin antérieur</div>
+                                            <div class="qcm-item">C: La portion caudale de l'intestin postérieur forme après sa réunion avec l'origine du diverticule allantoïdien le cloaque</div>
+                                            <div class="qcm-item">D: À la 4ème semaine de développement le septum uro-rectal rejoint la membrane cloacale</div>
+                                            <div class="qcm-item">E: La réintégration de l'anse intestinale primitive dans la cavité abdominale débute à la 12ème semaine de développement avec la mise en place de l'iléon</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q17<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items A,B,C,D</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La mise en place de la face :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">A: La portion crâniale de l'intestin primitif est fermée par la membrane pharyngienne</div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">B: La membrane pharyngienne se résorbe au cours de la 3ème semaine de développement</div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">C: Après la résorption de la membrane pharyngienne, la lumière du tube digestif s'ouvre dans la cavité amniotique par le stomodæum</div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">D: Le stomodæum correspond à la bouche primitive</div>
+                                            <div class="qcm-item">E: À la fin de la 4ème semaine de développement l'ébauche de la face est centrée par le stomodæum <span style="background: #8b5cf6; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC16</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Thématique 2 : Intestin postérieur et cloaque -->
+                    <div class="qcm-thematique">
+                        <h4>🔹 Intestin postérieur, septum uro-rectal et cloaque</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q16<br><em>📷 Avec schéma</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">L'intestin postérieur - Schéma de la partie caudale de l'embryon :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La flèche A indique l'allantoïde</div>
+                                            <div class="qcm-item">B: À la 7ème semaine de développement, le septum uro-génital divise en deux la structure indiquée par la flèche C</div>
+                                            <div class="qcm-item">C: La flèche B indique la portion terminale de l'intestin postérieur</div>
+                                            <div class="qcm-item">D: La flèche C indique la membrane cloacale</div>
+                                            <div class="qcm-item">E: Le septum uro-rectal se développe de manière caudo-céphalique</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q19<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items A,B,C</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Le tube digestif primitif et le développement de la face :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">A: La portion caudale de l'intestin primitif forme, après sa réunion avec l'origine du diverticule allantoïdien, le cloaque</div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">B: L'intestin moyen est à l'origine de l'anse intestinale primitive</div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">C: Le segment crânial de l'intestin antérieur participe à l'appareil branchial</div>
+                                            <div class="qcm-item">D: Le bourgeon frontal dérive du premier arc branchial <span style="background: #8b5cf6; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC16</span></div>
+                                            <div class="qcm-item">E: Le bourgeon frontal présente sur chacun de ses côtés une placode olfactive <span style="background: #8b5cf6; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; margin-left: 6px;">FC16</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Thématique 3 : Devenir des segments intestinaux -->
+                    <div class="qcm-thematique">
+                        <h4>🔹 Devenir des segments intestinaux (antérieur, moyen, postérieur)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025<br>Q16</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le devenir du tube digestif primitif :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'œsophage dérive de l'intestin pharyngien</div>
+                                            <div class="qcm-item">B: L'estomac se développe depuis la portion caudale de l'intestin antérieur</div>
+                                            <div class="qcm-item">C: L'anse intestinale primitive dérive de l'intestin moyen</div>
+                                            <div class="qcm-item">D: L'intestin moyen communique avec le cœlome extra-embryonnaire</div>
+                                            <div class="qcm-item">E: L'allantoïde émane de l'intestin postérieur</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                                <td>🔗 Cours appartenant à une suite logique</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>6 QCM</strong> sur ce chapitre (dont 2 mixtes avec FC16), soit une moyenne de <strong>~1 QCM/an</strong>. En 2024-2025, attention : la Q17 est intitulée "face" mais contient des items sur l'intestin.</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-2021</th>
+                                        <th>2021-2022</th>
+                                        <th>2022-2023</th>
+                                        <th>2023-2024</th>
+                                        <th>2024-2025</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Mise en place intestin primitif</td>
+                                        <td class="qcm-cell">Q15</td>
+                                        <td class="qcm-cell">Q17</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q17</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Intestin postérieur / cloaque</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q16</td>
+                                        <td class="qcm-cell">Q19</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Devenir des segments</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q16</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Légende séparée -->
+                        <div style="margin-top: 15px; padding: 12px; background: #fff7ed; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #9a3412;">
+                                <strong>⚠️ Note</strong> : Q19 2023-2024 et Q17 2024-2025 sont des QCM mixtes avec FC16 (Face). Seuls certains items concernent FC14.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="reco-item">
+                        <h4>Les 3 segments de l'intestin primitif et leurs limites</h4>
+                        <p>Savoir distinguer l'intestin antérieur (pharyngien + œsophage + estomac + duodénum proximal), l'intestin moyen (duodénum distal → 2/3 côlon transverse) et l'intestin postérieur (1/3 distal côlon transverse → rectum).</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le cloaque et le septum uro-rectal</h4>
+                        <p>Comprendre la formation du cloaque (réunion intestin postérieur + allantoïde), le cloisonnement par le septum uro-rectal à SD7, et la division de la membrane cloacale en membrane anale et uro-génitale.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La membrane pharyngienne et le stomodæum</h4>
+                        <p>Connaître la position de la membrane pharyngienne (ferme l'extrémité crâniale de l'intestin primitif), sa résorption, et le rôle du stomodæum (bouche primitive) comme ouverture vers la cavité amniotique.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'anse intestinale primitive et sa réintégration</h4>
+                        <p>Savoir que l'anse intestinale primitive dérive de l'intestin moyen, fait une hernie physiologique (SD6-SD10), et connaître les rotations (90° puis 180° = 270° total).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="qcm-analyse">
+                        <h4>Formation du cloaque</h4>
+                        <div class="qcm-badge">Tombé en <strong>2020-2021, 2021-2022, 2023-2024</strong></div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat</div>
+                            <div class="qcm-section-content">
+                                L'item sur la formation du cloaque (réunion intestin postérieur + allantoïde) est testé régulièrement avec des formulations similaires.
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire</div>
+                            <div class="qcm-section-content">
+                                Mémoriser la définition exacte : "La portion caudale de l'intestin postérieur forme, après sa réunion avec l'origine du diverticule allantoïdien, le cloaque."
+                            </div>
+                        </div>
+                        
+                        <div class="cle-raisonnement">
+                            <p><strong>Clé de raisonnement :</strong></p>
+                            <p>Le cloaque est un carrefour : il reçoit l'intestin postérieur (voie digestive) ET l'allantoïde (future voie urinaire). C'est logique puisqu'il sera divisé en sinus uro-génital (antérieur) et canal ano-rectal (postérieur).</p>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Le septum uro-rectal et SD7</h4>
+                        <div class="qcm-badge">Tombé en <strong>2021-2022, 2022-2023</strong></div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat</div>
+                            <div class="qcm-section-content">
+                                Les items testent la chronologie du septum uro-rectal et son sens de développement.
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire</div>
+                            <div class="qcm-section-content">
+                                Retenir : le septum uro-rectal se développe en direction CÉPHALO-CAUDALE (descend) et rejoint la membrane cloacale à SD7.
+                            </div>
+                        </div>
+                        
+                        <div class="cle-raisonnement">
+                            <p><strong>Clé de raisonnement :</strong></p>
+                            <p>Attention au piège : l'item peut dire "caudo-céphalique" (FAUX) au lieu de "céphalo-caudale" (VRAI). Le septum "descend" vers le cloaque, donc il va de la tête vers la queue.</p>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>La membrane pharyngienne</h4>
+                        <div class="qcm-badge">Tombé en <strong>2021-2022, 2024-2025</strong></div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat</div>
+                            <div class="qcm-section-content">
+                                La membrane pharyngienne ferme l'extrémité crâniale de l'intestin primitif. Sa résorption permet l'ouverture du stomodæum.
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire</div>
+                            <div class="qcm-section-content">
+                                Mémoriser : membrane pharyngienne = limite CRÂNIALE de l'intestin primitif. Après résorption → ouverture vers cavité amniotique par le stomodæum (bouche primitive).
+                            </div>
+                        </div>
+                        
+                        <div class="connaissance-pure">
+                            C'est un QCM de connaissance pure. Attention à la chronologie de résorption (SD4, pas SD3).
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>L'origine de l'anse intestinale primitive</h4>
+                        <div class="qcm-badge">Tombé en <strong>2023-2024, 2024-2025</strong></div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat</div>
+                            <div class="qcm-section-content">
+                                L'item teste si l'anse intestinale primitive dérive bien de l'intestin MOYEN.
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire</div>
+                            <div class="qcm-section-content">
+                                Retenir : anse intestinale primitive = intestin MOYEN. Elle communique avec le cœlome extra-embryonnaire via le canal vitellin.
+                            </div>
+                        </div>
+                        
+                        <div class="connaissance-pure">
+                            C'est un QCM de connaissance pure. L'intestin moyen donne l'anse intestinale qui fait la hernie physiologique.
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+                    
+                    <div class="vigilance-item">
+                        <h4>Septum uro-RECTAL vs septum uro-GÉNITAL</h4>
+                        <p>Le septum uro-RECTAL divise le cloaque en sinus uro-génital et canal ano-rectal. Ne pas confondre avec d'autres structures. L'item de 2022-2023 piégeait avec "septum uro-génital".</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Direction du développement du septum</h4>
+                        <p>Le septum uro-rectal se développe en direction CÉPHALO-CAUDALE (il descend). Un item piège courant inverse cette direction.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Intestin pharyngien ≠ intestin antérieur</h4>
+                        <p>L'intestin pharyngien est la portion CRÂNIALE (et non caudale) de l'intestin antérieur. C'est un piège récurrent dans les QCM.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Chronologie de la résorption de la membrane pharyngienne</h4>
+                        <p>La membrane pharyngienne se résorbe à SD4 (et non SD3). Le stomodæum s'ouvre ensuite vers la cavité amniotique.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>QCM mixtes FC14/FC16</h4>
+                        <p>Certains QCM mélangent intestin et face. En 2024-2025, la Q17 intitulée "face" contient des items sur la membrane pharyngienne et le stomodæum qui relèvent de FC14.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    
+                    <!-- ALERTE STRATÉGIQUE -->
+                    <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border: 2px solid #ef4444; border-radius: 12px; padding: 15px 20px; margin-bottom: 20px;">
+                        <p style="margin: 0; font-weight: 700; color: #dc2626; font-size: 1rem;">
+                            🚨 ATTENTION - Stratégies Niveau 1 et 2
+                        </p>
+                        <p style="margin: 10px 0 0 0; color: #991b1b; font-size: 0.95rem; line-height: 1.5;">
+                            Ce chapitre est <strong>parfois associé à FC16 (Organogenèse de la face)</strong> dans les QCM mixtes. Si vous ne maîtrisez qu'un seul des deux chapitres, vous risquez de perdre le point du QCM car vous ne connaîtrez que la moitié des réponses. <strong>Travaillez FC14 et FC16 ensemble.</strong>
+                        </p>
+                    </div>
+                    
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">
+                            Ce chapitre tombe chaque année mais avec des angles variés. Le prof ne recycle pas les mêmes items d'une année sur l'autre, mais les thématiques sont stables : cloaque, septum uro-rectal, 3 segments intestinaux, membrane pharyngienne. Attention aux QCM mixtes avec FC16 (Face) qui partagent des notions communes (stomodæum, membrane pharyngienne).
+                        </p>
+
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Lire l'intégralité du cours en portant attention aux schémas de la partie caudale de l'embryon (cloaque, septum). Bien comprendre la chronologie SD4-SD7 et les dérivés de chaque segment intestinal.</p>
+
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Se concentrer sur les 4 thèmes prioritaires : (1) les 3 segments et leurs limites, (2) le cloaque et sa formation, (3) le septum uro-rectal et SD7, (4) la membrane pharyngienne/stomodæum. Le reste du cours (détails sur l'estomac, foie, pancréas) est moins testé.</p>
+
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        La récurrence des items est FAIBLE sur ce chapitre (~20-25%). Les items ne se répètent pas à l'identique. Mémorise les formulations exactes des items déjà tombés, mais sache qu'il y a un risque de voir de nouveaux angles. Ce n'est pas le meilleur chapitre pour une stratégie purement annales.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
