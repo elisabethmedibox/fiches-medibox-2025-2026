@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC6 - Électrophysiologie cardiaque - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        .diagnostic-table tr:nth-child(even) td {
+            background: #f8fafc;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* Cartes niveau 1 */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 15px;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #10b981;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 10px 0;
+            color: #065f46;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #065f46;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #ef4444;
+        }
+        
+        .vigilance-item h4 {
+            color: #dc2626;
+            margin: 0 0 10px 0;
+        }
+        
+        .vigilance-item p {
+            color: #4a5568;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #7c3aed;
+        }
+        
+        .tuteur-zone p {
+            color: #5b21b6;
+            line-height: 1.7;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+        
+        /* Container principal */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: white;
+            margin-bottom: 5px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .accordion-content {
+                padding: 15px;
+            }
+            
+            .main-accordion summary {
+                padding: 15px;
+                font-size: 1rem;
+            }
+            
+            .qcm-table {
+                font-size: 0.75rem;
+            }
+            
+            .qcm-table th, .qcm-table td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC6 - Électrophysiologie cardiaque</h1>
+            <div class="meta">
+                <span>📚 UE7 - Physiologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- Thématique 1 : Électrophysiologie des cellules contractiles -->
+                    <div class="qcm-thematique">
+                        <h4>Thématique 1 : Électrophysiologie des cellules cardiaques contractiles</h4>
+                        
+                        <div class="table-wrapper">
+                            <table class="qcm-table">
+                                <thead>
+                                    <tr>
+                                        <th>Année</th>
+                                        <th>Contenu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="qcm-identique">
+                                        <td>2020-2021 Q11<br>2023-2024 Q11</td>
+                                        <td>
+                                            <div class="qcm-enonce">À propos de l'électrophysiologie des cellules cardiaques spécialisées dans la contraction.</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A: Elles ont un potentiel de repos instable de l'ordre de -60 millivolts.</div>
+                                                <div class="qcm-item">B: Une stimulation électrique est nécessaire pour déclencher un potentiel d'action.</div>
+                                                <div class="qcm-item">C: La phase ascendante du potentiel d'action est due à l'ouverture des canaux potassiques K+.</div>
+                                                <div class="qcm-item">D: La phase de plateau du potentiel d'action est due à l'ouverture des canaux calciques Ca2+.</div>
+                                                <div class="qcm-item">E: La repolarisation est due à la fermeture des canaux K+.</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2021-2022 Q14</td>
+                                        <td>
+                                            <div class="qcm-enonce">À propos de l'électrophysiologie des cellules cardiaques spécialisées dans la contraction.</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A: Elles ont un potentiel de repos stable de l'ordre de -90 millivolts.</div>
+                                                <div class="qcm-item">B: Elles se dépolarisent spontanément.</div>
+                                                <div class="qcm-item">C: La phase ascendante du potentiel d'action est due à l'ouverture des canaux sodiques Na+.</div>
+                                                <div class="qcm-item">D: La phase de plateau du potentiel d'action est due à l'ouverture des canaux calciques Ca++.</div>
+                                                <div class="qcm-item">E: La repolarisation est due à la fermeture des canaux K+.</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2023-2024 Q11</td>
+                                        <td>
+                                            <div class="qcm-enonce">À propos de l'électrophysiologie des cellules cardiaques spécialisées dans la contraction (cardiomyocyte contractile).</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A: Elles ont un potentiel de repos instable de l'ordre de -160 millivolts.</div>
+                                                <div class="qcm-item">B: Une stimulation électronique est nécessaire pour déclencher un potentiel d'action.</div>
+                                                <div class="qcm-item">C: La phase ascendante du potentiel d'action est due à l'ouverture des canaux potassiques K+.</div>
+                                                <div class="qcm-item">D: La phase de plateau du potentiel d'action est due à l'ouverture des canaux calciques Na+.</div>
+                                                <div class="qcm-item">E: La repolarisation est due à l'ouverture de canaux K+.</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024-2025 Q11</td>
+                                        <td>
+                                            <div class="qcm-enonce">À propos de l'électrophysiologie des cellules cardiaques spécialisées dans la contraction.</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A: Elles ont un potentiel de repos de l'ordre de -60 millivolts.</div>
+                                                <div class="qcm-item">B: Une stimulation électrique est nécessaire pour déclencher un potentiel d'action (PA).</div>
+                                                <div class="qcm-item">C: La phase ascendante du PA est due à l'ouverture des canaux [sodiques Na+].</div>
+                                                <div class="qcm-item">D: La phase de plateau du PA est due à l'ouverture des canaux [calciques Ca++].</div>
+                                                <div class="qcm-item">E: La repolarisation est due à la fermeture des canaux [K+].</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Thématique 2 : Électrophysiologie des cellules nodales -->
+                    <div class="qcm-thematique">
+                        <h4>Thématique 2 : Électrophysiologie des cellules nodales (automaticité)</h4>
+                        
+                        <div class="table-wrapper">
+                            <table class="qcm-table">
+                                <thead>
+                                    <tr>
+                                        <th>Année</th>
+                                        <th>Contenu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2022-2023 Q14</td>
+                                        <td>
+                                            <div class="qcm-enonce">À propos de l'électrophysiologie des cellules cardiaques nodales, spécialisées dans l'automaticité cardiaque.</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A: Elles ont un potentiel de repos stable de l'ordre de -90 mV.</div>
+                                                <div class="qcm-item">B: Elles se dépolarisent spontanément à partir d'un potentiel initial de l'ordre de -60 mV.</div>
+                                                <div class="qcm-item">C: La phase ascendante du potentiel d'action est due à l'ouverture de canaux sodiques Na+.</div>
+                                                <div class="qcm-item">D: La repolarisation est due à un courant sortant Ca++.</div>
+                                                <div class="qcm-item">E: Plus la pente de dépolarisation est élevée, plus la fréquence de dépolarisation et la fréquence cardiaque sont grandes.</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Thématique 3 : Couplage excitation-contraction -->
+                    <div class="qcm-thematique">
+                        <h4>Thématique 3 : Couplage excitation-contraction</h4>
+                        
+                        <div class="table-wrapper">
+                            <table class="qcm-table">
+                                <thead>
+                                    <tr>
+                                        <th>Année</th>
+                                        <th>Contenu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="qcm-identique">
+                                        <td>2020-2021 Q12<br>2023-2024 Q12</td>
+                                        <td>
+                                            <div class="qcm-enonce">À propos du couplage excitation-contraction des cellules cardiaques spécialisées dans la contraction.</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A: La concentration de calcium Ca2+ cytosolique de la cellule au repos est 100 à 200 fois plus faible que celle du milieu extracellulaire.</div>
+                                                <div class="qcm-item">B: L'entrée de Ca2+ pendant le plateau du potentiel d'action initie la contraction cellulaire.</div>
+                                                <div class="qcm-item">C: Le calcium Ca2+ se fixe aux récepteurs à la ryanodine du réticulum sarcoplasmique et provoque une libération massive de calcium dans le cytosol à l'origine de la contraction.</div>
+                                                <div class="qcm-item">D: La pompe calcique du réticulum sarcoplasmique est une ATPase.</div>
+                                                <div class="qcm-item">E: La recapture du calcium cytosolique se fait principalement par l'échangeur Na+/Ca2+ (NCX) du sarcolemme.</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2021-2022 Q15</td>
+                                        <td>
+                                            <div class="qcm-enonce">À propos du couplage excitation-contraction des cellules cardiaques spécialisées dans la contraction.</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A: L'entrée de Ca++ pendant le plateau du potentiel d'action initie la contraction cellulaire.</div>
+                                                <div class="qcm-item">B: La fixation de calcium Ca++ sur les récepteurs à la ryanodine du réticulum sarcoplasmique provoque une libération massive de calcium dans le cytosol à l'origine de la contraction.</div>
+                                                <div class="qcm-item">C: La pompe calcique du réticulum sarcoplasmique (SERCA) est une ATPase.</div>
+                                                <div class="qcm-item">D: La phosphorylation du phospholambane s'accompagne d'une levée d'inhibition de l'activité SERCA et augmente la force de contraction.</div>
+                                                <div class="qcm-item">E: La recapture du calcium cytosolique se fait principalement par l'échangeur Na+ Ca++ (NCX), du sarcolemme.</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2022-2023 Q15</td>
+                                        <td>
+                                            <div class="qcm-enonce">À propos du couplage excitation-contraction des cellules cardiaques spécialisées dans la contraction.</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A: L'entrée de Ca++ pendant le plateau du potentiel d'action initie la contraction cellulaire.</div>
+                                                <div class="qcm-item">B: La fixation de calcium Ca++ sur les récepteurs à la ryanodine du réticulum sarcoplasmique provoque une libération massive de calcium dans le cytosol à l'origine de la contraction.</div>
+                                                <div class="qcm-item">C: La pompe calcique du réticulum sarcoplasmique (SERCA) est une GTPase.</div>
+                                                <div class="qcm-item">D: La phosphorylation du phospholambane s'accompagne d'une levée d'inhibition de l'activité SERCA et augmente la force de contraction.</div>
+                                                <div class="qcm-item">E: L'expulsion extracellulaire du calcium cytosolique pendant la diastole se fait grâce à l'action de l'échangeur Na+/Ca++ (NCX) du sarcolemme.</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024-2025 Q12</td>
+                                        <td>
+                                            <div class="qcm-enonce">À propos du couplage excitation-contraction des cellules cardiaques spécialisées dans la contraction.</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A: La concentration de calcium cytosolique de la cellule au repos est extrêmement faible par rapport au milieu extracellulaire.</div>
+                                                <div class="qcm-item">B: L'entrée de [Ca++] pendant le plateau du potentiel d'action initie la contraction cellulaire.</div>
+                                                <div class="qcm-item">C: Le calcium se fixe aux récepteurs à la ryanodine du réticulum sarcoplasmique et provoque une libération massive de calcium dans le cytosol à l'origine de la contraction.</div>
+                                                <div class="qcm-item">D: La pompe calcique du réticulum sarcoplasmique est une ATPase.</div>
+                                                <div class="qcm-item">E: La recapture du calcium cytosolique se fait principalement par l'échangeur (NCX), du sarcolemme.</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année (2 QCM/an)</td>
+                                <td>📚 1 QCM électrophysio + 1 QCM couplage</td>
+                                <td>😺 Partiellement indépendant (lien FC5)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>10 QCM</strong> sur ce chapitre (exactement 2/an). Ces QCM se regroupent en <strong>3 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Électrophysio cellules contractiles</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q11</span></td>
+                                    <td class="qcm-cell">Q14</td>
+                                    <td class="empty-cell">—</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q11</span></td>
+                                    <td class="qcm-cell">Q11</td>
+                                </tr>
+                                <tr>
+                                    <td>Électrophysio cellules nodales</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q14</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Couplage excitation-contraction</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q12</span></td>
+                                    <td class="qcm-cell">Q15</td>
+                                    <td class="qcm-cell">Q15</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q12</span></td>
+                                    <td class="qcm-cell">Q12</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre. Les QCM 2020-2021 et 2023-2024 sont identiques pour les 2 questions !
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>Électrophysiologie des cellules contractiles</h4>
+                        <p>Cible les sections 1.1 et 1.3 du cours : caractéristiques du potentiel de repos (-90 mV, stable), nécessité d'une stimulation externe, et les 5 phases du PA (phase 0 = Na+, phase 2 plateau = Ca++, phase 3 repolarisation = ouverture K+).</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Couplage excitation-contraction</h4>
+                        <p>Cible les sections 2.1 à 2.2 du cours : la gâchette calcique (entrée Ca++ pendant le plateau), fixation sur récepteur à la ryanodine (Ryr2), libération massive de Ca++ du réticulum sarcoplasmique, SERCA (ATPase, 80% recapture) vs NCX (20% expulsion).</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Cellules nodales et automaticité</h4>
+                        <p>Cible les sections 1.2 et 1.4 : potentiel de repos instable (-50/-60 mV), dépolarisation spontanée, courants If et ICaT responsables de la dérive diastolique, lien pente de dépolarisation / fréquence cardiaque.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Phospholamban et régulation SERCA</h4>
+                        <p>Cible les sections 2.2-2.3 : phospholamban inhibe SERCA quand non phosphorylé. La phosphorylation (par PKA suite à stimulation β-adrénergique) = levée d'inhibition = meilleure recapture = meilleure relaxation = meilleure contraction suivante.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🔍 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM 1 : Électrophysiologie contractiles -->
+                    <div class="qcm-analyse">
+                        <h4>Électrophysiologie des cellules contractiles</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q11 | <strong>2021-2022</strong> Q14 | <strong>2023-2024</strong> Q11 | <strong>2024-2025</strong> Q11</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la connaissance des caractéristiques électrophysiologiques des cardiomyocytes contractiles : valeur et stabilité du potentiel de repos, nécessité d'une stimulation, et les canaux impliqués dans chaque phase du PA.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends par cœur : potentiel de repos STABLE à -90 mV, stimulation NÉCESSAIRE (pas de dépolarisation spontanée), phase ascendante = canaux Na+, plateau = canaux Ca++, repolarisation = OUVERTURE des canaux K+ (pas fermeture !).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Mémorisation par opposition aux cellules nodales :</strong></p>
+                                <ul>
+                                    <li>Cellules contractiles : -90 mV, STABLE, stimulation nécessaire</li>
+                                    <li>Cellules nodales : -60 mV, INSTABLE, dépolarisation spontanée</li>
+                                </ul>
+                                <p><strong>Attention au piège "fermeture vs ouverture" :</strong> la repolarisation est due à l'OUVERTURE des canaux K+ lents, pas à leur fermeture !</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Couplage excitation-contraction -->
+                    <div class="qcm-analyse">
+                        <h4>Couplage excitation-contraction</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q12 | <strong>2021-2022</strong> Q15 | <strong>2022-2023</strong> Q15 | <strong>2023-2024</strong> Q12 | <strong>2024-2025</strong> Q12</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste le mécanisme de couplage : gradient calcique, rôle de la gâchette pendant le plateau, fixation sur ryanodine, et surtout la distinction SERCA (80%, ATPase) vs NCX (20%, expulsion).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Mémorise la séquence : entrée Ca++ (gâchette pendant plateau) → fixation sur ryanodine (Ryr2) → libération MASSIVE de Ca++ du RS → contraction. Puis recapture : SERCA = 80% (ATPase, pas GTPase !), NCX = 20% (expulsion, pas recapture principale).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Le piège SERCA = ATPase :</strong></p>
+                                <ul>
+                                    <li>2022-2023 : l'item C dit "GTPase" → FAUX, c'est une ATPase</li>
+                                    <li>SERCA = Sarco-Endoplasmic Reticulum Calcium ATPase</li>
+                                </ul>
+                                <p><strong>Le piège NCX :</strong></p>
+                                <ul>
+                                    <li>NCX = 20% seulement (expulsion vers l'extérieur)</li>
+                                    <li>SERCA = 80% (recapture vers le RS)</li>
+                                    <li>Si l'item dit "principalement par NCX" → FAUX</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Cellules nodales -->
+                    <div class="qcm-analyse">
+                        <h4>Cellules nodales (automaticité)</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q14</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM n'est tombé qu'une fois mais peut revenir. Il teste les caractéristiques spécifiques des cellules nodales : potentiel instable, dépolarisation spontanée, rôle des courants calciques (pas sodiques !), relation pente/fréquence.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les différences avec les cellules contractiles. Retiens que la dépolarisation des cellules nodales est liée à des courants CALCIQUES (If, ICaT, ICaL), pas sodiques comme pour les cellules contractiles.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Cellules nodales = CALCIUM, pas sodium</strong></p>
+                                <ul>
+                                    <li>Dérive diastolique = courants If + ICaT (entrants)</li>
+                                    <li>Phase ascendante = ICaL (calcique, pas sodique)</li>
+                                    <li>Repolarisation = courant sortant K+ (comme les contractiles)</li>
+                                </ul>
+                                <p><strong>Plus la pente est grande, plus la fréquence est élevée</strong> (relation directe)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Phospholamban -->
+                    <div class="qcm-analyse">
+                        <h4>Phospholamban et régulation de SERCA</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q15 | <strong>2022-2023</strong> Q15</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Cet item teste la compréhension du mécanisme de régulation de SERCA par le phospholamban, et son lien avec la force de contraction via les récepteurs β-adrénergiques.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Mémorise : phospholamban non phosphorylé = INHIBE SERCA. Phosphorylation du phospholamban = levée d'inhibition = SERCA plus actif = meilleure recapture = meilleure relaxation = meilleure contraction (effet inotrope positif).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                Double négation à comprendre : phospholamban inhibe SERCA → phosphorylation du phospholamban = levée d'inhibition = activation indirecte de SERCA. La chaîne : adrénaline → récepteur β → AMPc → PKA → phosphorylation phospholamban → levée inhibition SERCA → ↑ recapture Ca++ → meilleure relaxation → meilleure contraction.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion cellules contractiles / cellules nodales</h4>
+                        <p>Le piège classique : attribuer les caractéristiques d'un type cellulaire à l'autre. Contractiles = -90 mV stable, stimulation nécessaire. Nodales = -60 mV instable, dépolarisation spontanée. Ne jamais intervertir !</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège "ouverture vs fermeture" des canaux K+</h4>
+                        <p>La repolarisation est due à l'OUVERTURE des canaux K+ (sortie de K+ = négativation du milieu intracellulaire), PAS à leur fermeture. C'est la fermeture des canaux Ca++ qui participe aussi à la repolarisation, mais pas la fermeture des K+.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège SERCA = ATPase, pas GTPase</h4>
+                        <p>En 2022-2023, l'item C dit "GTPase" au lieu d'"ATPase". SERCA signifie Sarco-Endoplasmic Reticulum Calcium ATPase. C'est une pompe qui consomme de l'ATP, jamais du GTP.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège NCX = 20% seulement</h4>
+                        <p>NCX assure seulement 20% de l'élimination du calcium (par expulsion vers l'extérieur). SERCA assure 80% (par recapture vers le réticulum sarcoplasmique). Si l'item dit "principalement par NCX", c'est FAUX.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège gradient calcique</h4>
+                        <p>La concentration intracellulaire de Ca++ au repos est environ 10 000 à 20 000 fois plus FAIBLE qu'en extracellulaire (50-100 nM vs 2 mM). Les items parlant de "100 à 200 fois" sous-estiment le gradient réel. Attention au piège d'inversion !</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion courants sodiques / calciques selon le type cellulaire</h4>
+                        <p>Phase ascendante des cellules CONTRACTILES = canaux SODIQUES Na+. Phase ascendante des cellules NODALES = canaux CALCIQUES (ICaL). Ne pas intervertir les courants selon le type de cellule interrogé !</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Attention à "électronique" vs "électrique"</h4>
+                        <p>En 2023-2024 Q11, l'item B parle de "stimulation électronique" au lieu de "stimulation électrique". C'est probablement une coquille, mais méfiez-vous des termes inhabituels.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre est un cadeau pour les étudiants bien préparés. Avec exactement 2 QCM par an depuis 5 ans et des questions très similaires d'une année à l'autre, le rendement temps/points est excellent.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Maîtrisez parfaitement les deux types de cellules (contractiles et nodales) et leurs différences. Approfondissez le mécanisme des récepteurs β-adrénergiques et la cascade AMPc → PKA → phospholamban. Le professeur pourrait introduire des questions sur la régulation sympathique/parasympathique.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les sections 1.1, 1.3 et 2.1-2.2 du cours. Le binôme "électrophysio + couplage" est garanti chaque année. Apprenez les valeurs clés : -90 mV stable, SERCA = 80%, NCX = 20%, et la séquence gâchette → ryanodine → libération Ca++.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Les QCM de 2020-2021 et 2023-2024 sont strictement IDENTIQUES. Apprenez-les par cœur. Les variations portent sur des inversions d'items (ATPase→GTPase, ouverture→fermeture, SERCA principal→NCX principal). Repérez ces pièges et vous avez 2 points quasi assurés.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
