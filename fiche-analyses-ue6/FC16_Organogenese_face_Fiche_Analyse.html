@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC16 - Organogenèse de la face - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        .qcm-item-highlight {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .tag-fc {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        .tag-fc14 {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-mixte-cell {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #92400e;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .qcm-image-cell {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            color: #1e40af;
+            font-weight: 600;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC16 - Organogenèse de la face</h1>
+            <div class="meta">
+                <span>📚 UE6 - Embryologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- MISE EN PLACE DE LA FACE - GÉNÉRALITÉS -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Mise en place de la face - Généralités (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">La mise en place de la face.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La mise en place de la face débute dès la 4ème semaine de développement cependant, la face acquière ses caractéristiques humaines uniquement vers la 10ème semaine de développement.</div>
+                                            <div class="qcm-item">B: La face est formée de deux parties embryologiques distinctes</div>
+                                            <div class="qcm-item">C: La partie supérieure de la face dérive du premier arc branchial ou arc pharyngé et la partie inférieure de la face dérive du bourgeon frontal</div>
+                                            <div class="qcm-item">D: A la fin de la quatrième semaine de développement, l'ébauche de la face est centrée par le stomodeum.</div>
+                                            <div class="qcm-item">E: Le cloisonnement du stomodeum conduit à la formation de la bouche, et des deux fosses nasales.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">La mise en place de la face</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La portion crâniale de l'intestin primitif est fermée à son extrémité céphalique par la membrane pharyngienne.</div>
+                                            <div class="qcm-item">B: La membrane pharyngienne se résorbe dès la 3ème semaine de développement.</div>
+                                            <div class="qcm-item">C: Une fois la membrane pharyngienne résorbée la lumière digestive s'ouvre dans la cavité amniotique par l'intermédiaire du stomodæum.</div>
+                                            <div class="qcm-item">D: Le stomodæum correspond à la bouche primitive.</div>
+                                            <div class="qcm-item">E: À la fin de la 4ème semaine de développement, l'ébauche de la face est centrée par le stomodæum.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- BOURGEONS FACIAUX - AVEC IMAGE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Bourgeons faciaux primordiaux - avec schéma (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q18<br>🖼️ Image</td>
+                                    <td>
+                                        <div class="qcm-enonce">La face (avec schéma des bourgeons faciaux primordiaux)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La partie supérieure de la face dérive du premier arc branchial (ou arc pharyngé)</div>
+                                            <div class="qcm-item">B: Le premier arc branchial (ou arc pharyngé) se forme vers le 22ème jour de développement</div>
+                                            <div class="qcm-item">C: Les flèches A indiquent des structures fusionnées qui proviennent des extrémités ventrales du premier arc branchial (ou arc pharyngé).</div>
+                                            <div class="qcm-item">D: Les flèches A, B et C indiquent les bourgeons faciaux primordiaux.</div>
+                                            <div class="qcm-item">E: Le cloisonnement de la structure indiquée par la flèche D va conduire à la formation de la bouche et des deux fosses nasales.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q17<br>🖼️ Image</td>
+                                    <td>
+                                        <div class="qcm-enonce">La formation de la face (avec schéma des bourgeons faciaux primordiaux)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La partie supérieure de la face, du front jusqu'à la lèvre supérieure, dérive de structure indiquée par la flèche A</div>
+                                            <div class="qcm-item">B: La flèche B indique la membrane pharyngée (ou membrane pharyngienne) qui à ce stade du développement obstrue le stomodaeum</div>
+                                            <div class="qcm-item">C: La membrane pharyngée (ou pharyngienne) est composée de cellules mésoblastiques qui ont migrées au travers du Nœud de Hensen</div>
+                                            <div class="qcm-item">D: Les flèches C et D indiquent des structures qui dérivent du 1er arc branchial (ou pharyngé)</div>
+                                            <div class="qcm-item">E: Lorsque les structures indiquées par les flèches D se rejoindront sur la ligne médiane, elles formeront, entre autres, la lèvre inférieure</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- QCM MIXTE FC14+FC16 -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 QCM mixte FC14 + FC16 (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2023-2024<br>Q19<br>⚠️ Mixte</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le tube digestif primitif et le développement de la face</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La portion caudale de l'intestin primitif forme, après sa réunion avec l'origine du diverticule allantoïdien, le cloaque <span class="tag-fc tag-fc14">FC14</span></div>
+                                            <div class="qcm-item">B: L'intestin moyen est à l'origine de l'anse intestinale primitive <span class="tag-fc tag-fc14">FC14</span></div>
+                                            <div class="qcm-item">C: Le segment crânial de l'intestin antérieur participe à l'appareil branchial <span class="tag-fc tag-fc14">FC14</span></div>
+                                            <div class="qcm-item qcm-item-highlight">D: Le bourgeon frontal dérive du premier arc branchial</div>
+                                            <div class="qcm-item qcm-item-highlight">E: Le bourgeon frontal présente sur chacun de ses côtés une placode olfactive</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>🎯 QCM sur partie ciblée du cours - avec récurrence des items</td>
+                                <td>🔗 Cours appartenant à une suite logique</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>4,5 QCM</strong> sur ce chapitre (moyenne 0,9/an). Ces QCM se regroupent en <strong>2 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mise en place de la face (généralités)</td>
+                                    <td class="qcm-cell">Q17</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q17</td>
+                                </tr>
+                                <tr>
+                                    <td>Bourgeons faciaux (avec schéma)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-image-cell">Q18 🖼️</td>
+                                    <td class="qcm-image-cell">Q17 🖼️</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Mixte FC14+FC16 (intestin + face)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-mixte-cell">Q19 (D,E)</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #92400e;">
+                                <strong>⚠️ QCM mixte</strong> : En 2023-2024, la Q19 mélange FC14 (intestin primitif) et FC16 (face). Les items D et E portent sur le bourgeon frontal et la placode olfactive (FC16).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>Le stomodeum et ses limites</h4>
+                        <p>Savoir que le stomodeum est la cavité buccale primitive, centrée à la fin de SD4, et qu'il est limité par le bourgeon frontal (en haut), les bourgeons mandibulaires (en bas), et les bourgeons maxillaires (latéralement).</p>
+                        <span class="frequence">Testé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les 5 bourgeons faciaux primordiaux</h4>
+                        <p>Connaître les 5 bourgeons : bourgeon frontal (1), bourgeons mandibulaires (2), bourgeons maxillaires (2). Savoir lesquels dérivent du 1er arc branchial (mandibulaires et maxillaires) et lequel n'en dérive pas (frontal).</p>
+                        <span class="frequence">Testé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'origine des parties de la face</h4>
+                        <p>Partie supérieure (front → lèvre supérieure) = bourgeon frontal. Partie inférieure (lèvre inférieure → menton) = 1er arc branchial. Attention à l'inversion fréquente dans les QCM !</p>
+                        <span class="frequence">Testé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le 1er arc branchial et sa chronologie</h4>
+                        <p>Le 1er arc branchial se forme vers le 22ème jour. Les bourgeons mandibulaires fusionnent pour former le plancher du stomodeum et la lèvre inférieure.</p>
+                        <span class="frequence">Testé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le bourgeon frontal et la placode olfactive</h4>
+                        <p>Le bourgeon frontal est une structure impaire, médiane, soulevée par l'extrémité céphalique du tube neural. Il présente de chaque côté la placode olfactive.</p>
+                        <span class="frequence">Testé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La membrane pharyngienne</h4>
+                        <p>Elle obstrue le stomodeum et se résorbe. Attention : elle est composée d'ectoderme et d'endoderme, PAS de mésoblaste.</p>
+                        <span class="frequence">Testé 2 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- QCM 1 : Stomodeum et mise en place -->
+                    <div class="qcm-analyse">
+                        <h4>Le stomodeum et la mise en place de la face</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q17 | <strong>2024-2025</strong> Q17</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la connaissance des dates clés et des structures impliquées dans la mise en place de la face. Le stomodeum et son cloisonnement sont systématiquement interrogés.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les dates (SD4 → SD10), le rôle du stomodeum, et la distinction entre les deux parties embryologiques de la face.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Dates à retenir :</strong></p>
+                                <ul>
+                                    <li>SD4 : début de la mise en place de la face</li>
+                                    <li>SD10 : la face acquiert ses caractéristiques humaines</li>
+                                    <li>Fin de SD4 : l'ébauche est centrée par le stomodeum</li>
+                                </ul>
+                                <p><strong>Le cloisonnement du stomodeum</strong> conduit à la formation de la bouche ET des deux fosses nasales.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Schéma des bourgeons -->
+                    <div class="qcm-analyse">
+                        <h4>Le schéma des bourgeons faciaux primordiaux</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q18 | <strong>2022-2023</strong> Q17</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM utilise un schéma récurrent des bourgeons faciaux avec des flèches à identifier. Il teste la reconnaissance des structures et leur origine embryologique.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Maîtrise le schéma du cours avec les 5 bourgeons. Sache identifier : bourgeon frontal (en haut), bourgeons mandibulaires (fusionnés en bas), bourgeons maxillaires (latéraux), et le stomodeum (cavité centrale).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Sur le schéma, retiens :</strong></p>
+                                <ul>
+                                    <li>Bourgeon frontal = partie SUPÉRIEURE de la face (front → lèvre sup)</li>
+                                    <li>Bourgeons mandibulaires = fusionnent → lèvre INFÉRIEURE + menton</li>
+                                    <li>Bourgeons maxillaires = limitent LATÉRALEMENT le stomodeum</li>
+                                    <li>Le 1er arc branchial donne les bourgeons mandibulaires ET maxillaires</li>
+                                    <li>Le bourgeon frontal ne dérive PAS du 1er arc branchial</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Origine des structures -->
+                    <div class="qcm-analyse">
+                        <h4>L'origine embryologique des structures</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q17 | <strong>2021-2022</strong> Q18 | <strong>2022-2023</strong> Q17 | <strong>2023-2024</strong> Q19</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le piège récurrent est l'INVERSION entre ce qui dérive du bourgeon frontal et ce qui dérive du 1er arc branchial. C'est testé presque chaque année.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends par cœur cette distinction et vérifie systématiquement si l'item inverse les origines.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                <strong>⚠️ PIÈGE CLASSIQUE :</strong><br>
+                                "La partie supérieure de la face dérive du 1er arc branchial" = FAUX<br>
+                                "Le bourgeon frontal dérive du 1er arc branchial" = FAUX<br><br>
+                                <strong>VRAI :</strong> Partie sup = bourgeon frontal (pas un arc branchial). Partie inf = 1er arc branchial.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Inversion bourgeon frontal / 1er arc branchial</h4>
+                        <p>C'est LE piège récurrent de ce chapitre. La partie SUPÉRIEURE de la face (front → lèvre supérieure) dérive du BOURGEON FRONTAL, pas du 1er arc branchial. La partie INFÉRIEURE (lèvre inférieure → menton) dérive du 1er arc branchial. Ne te fais pas avoir par l'inversion !</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le bourgeon frontal n'est PAS un dérivé d'arc branchial</h4>
+                        <p>Le bourgeon frontal est soulevé par l'extrémité céphalique du tube neural. Il ne dérive PAS du 1er arc branchial. Seuls les bourgeons mandibulaires et maxillaires proviennent du 1er arc.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>La membrane pharyngienne n'est PAS mésoblastique</h4>
+                        <p>En 2022-2023, l'item C affirmait que "la membrane pharyngienne est composée de cellules mésoblastiques". C'est FAUX. Elle est constituée de deux feuillets : ectoderme et endoderme accolés.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion stomodeum / bouche définitive</h4>
+                        <p>Le stomodeum est la bouche PRIMITIVE. Son cloisonnement donne la bouche définitive ET les fosses nasales. Ne confonds pas le stomodeum (structure embryonnaire) avec la bouche finale.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Date du 1er arc branchial : 22ème jour</h4>
+                        <p>Le 1er arc branchial se forme vers le 22ème jour de développement. Cette date précise est tombée en 2021-2022.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Lien avec FC14 (intestin primitif)</h4>
+                        <p>En 2023-2024, un QCM mixte associe FC14 et FC16 via l'appareil branchial. La portion crâniale de l'intestin antérieur (intestin pharyngien) participe à l'appareil branchial. Attention à ce lien anatomique !</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">FC16 est un chapitre court mais piégeux. Le prof adore l'inversion bourgeon frontal / 1er arc branchial. Les QCM avec schéma sont fréquents et utilisent toujours le même type d'image.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Maîtrisez parfaitement le schéma des bourgeons faciaux et toutes les notions du cours. Attention au lien avec FC14 (appareil branchial) qui peut donner lieu à des questions mixtes.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur : 1) Les 5 bourgeons et leur origine, 2) Le stomodeum et ses limites, 3) Les dates clés (SD4-SD10, 22ème jour). Maîtrisez le schéma du cours.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Apprenez par cœur les 5 QCM tombés. Le piège de l'inversion est présent dans quasiment tous les QCM, donc si vous retenez bien cette règle (partie sup = bourgeon frontal, partie inf = 1er arc), vous marquerez des points. Les QCM de 2020-2021 et 2024-2025 sont quasi identiques sur le stomodeum.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
