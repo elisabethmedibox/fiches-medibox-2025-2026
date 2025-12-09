@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC12 - Mécanismes moléculaires - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC12 - Mécanismes moléculaires du développement embryonnaire et de l'organogenèse</h1>
+            <div class="meta">
+                <span>📚 UE6 - Embryologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- GÈNES DE DÉVELOPPEMENT -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Gènes de développement - Expression et caractéristiques (3 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q15</td>
+                                    <td>
+                                        <div class="qcm-enonce">Les gènes de développement</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les gènes de développement exercent leur effet depuis la fécondation jusqu'à la fin de l'organogenèse</div>
+                                            <div class="qcm-item">B: Les gènes de développement ont une expression spatio-temporelle restreinte</div>
+                                            <div class="qcm-item">C: Les facteurs morphogènes se fixent aux niveaux des régions promotrices des gènes modifient directement la transcription de leurs gènes cibles</div>
+                                            <div class="qcm-item">D: Les gènes qui codent pour des facteurs de transcription sont des gènes impliqués dans le positionnement antéro-postérieur des segments du corps</div>
+                                            <div class="qcm-item">E: Les gènes Wnt sont un exemple de gènes qui codent pour des facteurs de transcription</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q18</td>
+                                    <td>
+                                        <div class="qcm-enonce">Les gènes de développement</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les facteurs morphogènes font partie de la famille des gènes de développement</div>
+                                            <div class="qcm-item">B: Les facteurs morphogènes agissent sur un récepteur membranaire situé à la surface d'une cellule cible</div>
+                                            <div class="qcm-item">C: Une caractéristique importante de la réponse tissulaire à l'action d'un morphogène est la réponse par palier</div>
+                                            <div class="qcm-item">D: Les facteurs de transcription agissent par diffusion</div>
+                                            <div class="qcm-item">E: Les facteurs de transcription modifient indirectement la transcription de gènes cibles</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q14</td>
+                                    <td>
+                                        <div class="qcm-enonce">Les mécanismes moléculaires du développement</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les gènes de développement exercent leur effet depuis la fécondation jusqu'à la fin de l'organogenèse</div>
+                                            <div class="qcm-item">B: Les gènes de développement ont une expression spatio-temporelle restreinte</div>
+                                            <div class="qcm-item">C: Les gènes de développement peuvent coder pour des protéines qui agissent comme des facteurs de transcription</div>
+                                            <div class="qcm-item">D: Un facteur de transcription module l'expression de gènes cibles en se fixant sur le récepteur d'une cellule cible</div>
+                                            <div class="qcm-item">E: Un facteur morphogène agit par diffusion</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>🔵 Revient souvent (3x sur 5 ans)</td>
+                                <td>💡 QCM avec items récurrents</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>3 QCM</strong> sur ce chapitre (moyenne 0,6/an). Ce chapitre n'a commencé à être testé qu'à partir de 2022-2023. Les QCM portent tous sur <strong>une seule thématique</strong> : la distinction facteurs de transcription / morphogènes.</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Gènes de développement (expression, morphogènes, facteurs de transcription)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q15</td>
+                                    <td class="qcm-cell">Q18</td>
+                                    <td class="qcm-cell">Q14</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #e0f2fe; border-left: 3px solid #0ea5e9; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #0369a1;">
+                                <strong>📈 Tendance</strong> : Ce chapitre est apparu dans les annales seulement depuis 2022-2023 et tombe chaque année depuis. C'est un chapitre "nouveau" qui semble s'installer durablement.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2</summary>
+                <div class="accordion-content">
+                    
+                    <div class="reco-item">
+                        <h4>La distinction facteurs de transcription / morphogènes</h4>
+                        <p>Comprendre les deux modes d'action des gènes de développement : les facteurs de transcription qui se fixent sur l'ADN, et les morphogènes qui agissent par diffusion via un récepteur membranaire.</p>
+                        <span class="frequence">Tombé 3 fois en 3 ans (depuis 2022)</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'expression spatio-temporelle des gènes de développement</h4>
+                        <p>Savoir que les gènes de développement exercent leur effet de la fécondation à la fin de l'organogenèse, avec une expression limitée dans le temps et l'espace.</p>
+                        <span class="frequence">Tombé 3 fois en 3 ans (depuis 2022)</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le concept de réponse par paliers des morphogènes</h4>
+                        <p>Comprendre que la concentration du morphogène détermine son effet et qu'une valeur seuil induit un type cellulaire différent.</p>
+                        <span class="frequence">Tombé 1 fois en 3 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les exemples de gènes : Wnt, Shh, BMP4, etc.</h4>
+                        <p>Connaître les exemples de morphogènes (Wnt, Shh, BMP4, FGF) vs facteurs de transcription (gènes Hox). Wnt est un morphogène, pas un facteur de transcription.</p>
+                        <span class="frequence">Tombé 1 fois en 3 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM 1 : Expression et caractéristiques -->
+                    <div class="qcm-analyse">
+                        <h4>Expression et caractéristiques des gènes de développement</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q15 | <strong>2023-2024</strong> Q18 | <strong>2024-2025</strong> Q14</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM tombe chaque année depuis 2022. Les items A et B sont quasi identiques d'une année sur l'autre : "Les gènes de développement exercent leur effet depuis la fécondation jusqu'à la fin de l'organogenèse" et "Les gènes de développement ont une expression spatio-temporelle restreinte".</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends ces deux caractéristiques par cœur : effet de la fécondation à la fin de l'organogenèse + expression spatio-temporelle restreinte. Ces items sont récurrents et constituent des points quasi garantis.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure pour les items A et B. Apprends par cœur ces deux propriétés fondamentales car elles reviennent chaque année.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Morphogènes vs Facteurs de transcription -->
+                    <div class="qcm-analyse">
+                        <h4>Morphogènes vs Facteurs de transcription</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q15 | <strong>2023-2024</strong> Q18 | <strong>2024-2025</strong> Q14</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof teste systématiquement la distinction entre ces deux familles. Les pièges portent sur les inversions : dire qu'un morphogène se fixe sur l'ADN (FAUX) ou qu'un facteur de transcription agit par diffusion (FAUX).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Maîtrise parfaitement le tableau de comparaison : Facteur de transcription = se fixe sur l'ADN (régions promotrices) = modifie DIRECTEMENT la transcription. Morphogène = agit par DIFFUSION = se lie à un RÉCEPTEUR MEMBRANAIRE = modifie INDIRECTEMENT la transcription.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Facteur de transcription :</strong></p>
+                                <ul>
+                                    <li>Se fixe sur l'ADN (régions promotrices des gènes)</li>
+                                    <li>Modifie DIRECTEMENT la transcription</li>
+                                    <li>Impliqué dans le positionnement antéro-postérieur</li>
+                                    <li>Exemple : gènes Hox</li>
+                                </ul>
+                                <p style="margin-top: 10px;"><strong>Morphogène :</strong></p>
+                                <ul>
+                                    <li>Agit par DIFFUSION depuis la cellule qui le produit</li>
+                                    <li>Se lie à un RÉCEPTEUR MEMBRANAIRE sur une cellule cible</li>
+                                    <li>Modifie INDIRECTEMENT la transcription</li>
+                                    <li>Réponse par PALIERS (concentration = effet)</li>
+                                    <li>Exemples : Wnt, Shh, BMP4, FGF</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Exemples de gènes -->
+                    <div class="qcm-analyse">
+                        <h4>Classification des gènes (Wnt, Shh, Hox...)</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q15</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">En 2022-2023, l'item E piégeait en affirmant que "Wnt est un facteur de transcription". C'est FAUX : Wnt est un morphogène. Ce type de piège peut revenir.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que Wnt, Shh, BMP4 et FGF sont des morphogènes. Les gènes Hox codent pour des facteurs de transcription.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Apprends la liste : MORPHOGÈNES = Wnt, Shh, BMP4, FGF, Nodal, Lefty | FACTEURS DE TRANSCRIPTION = gènes Hox, OTX2, Brachyury, MyoD, Pax6.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion morphogène / facteur de transcription</h4>
+                        <p>Un morphogène N'agit PAS directement sur l'ADN : il passe par un récepteur membranaire. Un facteur de transcription NE diffuse PAS : il se fixe directement sur les régions promotrices de l'ADN. Attention aux inversions de caractéristiques dans les items.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le piège du mot "directement" vs "indirectement"</h4>
+                        <p>Facteur de transcription = modifie DIRECTEMENT la transcription (il se lie à l'ADN). Morphogène = modifie INDIRECTEMENT la transcription (il passe par un récepteur, puis une cascade de signalisation).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Wnt n'est PAS un facteur de transcription</h4>
+                        <p>Wnt, Shh, BMP4 et FGF sont des morphogènes (ils diffusent et agissent via un récepteur). Seuls les gènes Hox codent pour des facteurs de transcription qui se lient à l'ADN.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Expression spatio-temporelle = limitée, pas illimitée</h4>
+                        <p>Les gènes de développement ont une expression RESTREINTE dans le temps et l'espace. C'est ce qui permet la spécification des territoires. Ne confonds pas avec une expression ubiquitaire.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>La réponse par paliers est caractéristique des morphogènes</h4>
+                        <p>C'est le morphogène (pas le facteur de transcription) qui provoque une réponse par paliers selon sa concentration. Chaque seuil de concentration induit un type cellulaire différent.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre est un "nouveau venu" dans les annales : il n'apparaît qu'à partir de 2022-2023, mais tombe chaque année depuis avec des items très similaires. Le prof semble avoir identifié une thématique précise qu'il recycle : la distinction morphogène / facteur de transcription. C'est un chapitre très rentable car les items sont prévisibles.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Lisez tout le cours en portant attention aux exemples de gènes cités (Wnt, Shh, BMP4, Hox, etc.) et à la partie sur l'asymétrie droite-gauche (centre nodal, dynéine, cils) qui pourrait être testée à l'avenir.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les sections 4.1 et 4.2 du cours (Expression des gènes de développement + Facteurs de transcription et Morphogènes). C'est là que se trouvent 100% des items tombés. Le reste du cours peut être survolé.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        C'est un chapitre idéal pour le Niveau 1 : les items A et B ("fécondation jusqu'à organogenèse" + "expression spatio-temporelle restreinte") sont strictement identiques sur les 3 années. Apprenez-les par cœur. Maîtrisez aussi le tableau morphogène/facteur de transcription : 1 point presque garanti chaque année.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
