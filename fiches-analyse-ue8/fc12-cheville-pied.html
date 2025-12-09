@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC12/29 - Cheville et Pied - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC12/29 - Le membre pelvien - La cheville et le pied</h1>
+            <div class="meta">
+                <span>📚 UE8 - Anatomie Générale</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- ARTICULATION DE LA CHEVILLE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Articulation de la cheville (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur le membre pelvien, la cheville :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'articulation tibio-fibulaire distal est une syndesmose.</div>
+                                            <div class="qcm-item">B: Le ligament collatéral médial présente 2 couches.</div>
+                                            <div class="qcm-item">C: L'angle de déclinaison du talus est de 150°.</div>
+                                            <div class="qcm-item">D: Le tendon du court fibulaire passe contre la face dorsale de la malléole latérale.</div>
+                                            <div class="qcm-item">E: Le tendon du court fibulaire passe au-dessus de la trochlée des fibulaires.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'articulation de la cheville :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'articulation talo-crurale est une articulation de type ginglyme (tenon/mortaise).</div>
+                                            <div class="qcm-item">B: Le ligament collatéral médial présente 2 plans.</div>
+                                            <div class="qcm-item">C: Le faisceau tibio-talaire postérieur du ligament collatéral médial fait partie du plan profond.</div>
+                                            <div class="qcm-item">D: Le faisceau tibio-calcanéen postérieur du ligament collatéral médial fait partie du plan profond.</div>
+                                            <div class="qcm-item">E: Le ligament collatéral latéral présente un faisceau entre la pointe de la malléole latérale et le cuboïde.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Format QCM</th>
+                                <th>Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>⚠️ Tombe rarement (2x en 5 ans)</td>
+                                <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>2 QCM</strong> sur ce chapitre (moyenne 0,4/an). Ces QCM portent sur <strong>1 grande thématique</strong> : l'articulation de la cheville.</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Articulation de la cheville</td>
+                                    <td class="qcm-cell">Q7</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q6</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #92400e;">
+                                <strong>⚠️ Remarque</strong> : Ce chapitre tombe de manière irrégulière (2 fois en 5 ans avec 3 ans sans question). Quand il tombe, les questions portent sur l'arthrologie de la cheville.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>Le ligament collatéral médial et ses faisceaux</h4>
+                        <p>Connaître la structure en 2 plans (superficiel et profond), les faisceaux superficiels (tibio-naviculaire, tibio-calcanéen) et les faisceaux profonds (tibio-talaire antérieur et postérieur).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le ligament collatéral latéral et ses 3 faisceaux</h4>
+                        <p>Connaître les 3 faisceaux : talo-fibulaire antérieur (ligament de l'entorse), calcanéo-fibulaire, talo-fibulaire postérieur. Aucun faisceau ne va vers le cuboïde.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'articulation tibio-fibulaire distale</h4>
+                        <p>Savoir que c'est une syndesmose (pas de cartilage), stabilisée par les ligaments tibio-fibulaires antérieur, postérieur et inter-osseux.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'angle de déclinaison du talus</h4>
+                        <p>Connaître la valeur de 150° ouvert en dedans, correspondant à l'angle entre l'axe du corps du talus et l'axe du col du talus.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le trajet des tendons fibulaires</h4>
+                        <p>Savoir que le court fibulaire passe contre la face postérieure de la malléole latérale et AU-DESSUS de la trochlée des fibulaires, alors que le long fibulaire passe SOUS la trochlée.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : ANALYSE DES QCM -->
+            <details class="main-accordion">
+                <summary>🔍 Analyse des QCM</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM 1 : 2020-2021 -->
+                    <div class="qcm-analyse">
+                        <h4>Articulation de la cheville - Syndesmose, ligaments et tendons</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q7</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste des connaissances variées sur la cheville : le type d'articulation tibio-fibulaire distale, la structure du ligament collatéral médial, l'angle de déclinaison du talus et le trajet des tendons fibulaires.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois savoir :</div>
+                            <div class="qcm-section-content">
+                                <strong>Item A :</strong> L'articulation tibio-fibulaire distale est bien une syndesmose (articulation fibreuse sans cartilage), stabilisée par les ligaments tibio-fibulaires antérieur, postérieur et inter-osseux.<br><br>
+                                <strong>Item B :</strong> Le ligament collatéral médial présente effectivement 2 couches/plans : un plan superficiel (faisceaux tibio-naviculaire et tibio-calcanéen) et un plan profond (faisceaux tibio-talaire antérieur et postérieur).<br><br>
+                                <strong>Item C :</strong> L'angle de déclinaison du talus est de 150° ouvert en dedans. C'est l'angle entre l'axe du corps du talus et l'axe du col du talus.<br><br>
+                                <strong>Item D :</strong> Le tendon du court fibulaire passe contre la face POSTÉRIEURE de la malléole latérale (pas dorsale). Il est maintenu par le rétinaculum des muscles fibulaires.<br><br>
+                                <strong>Item E :</strong> Le court fibulaire passe AU-DESSUS de la trochlée des fibulaires, alors que le long fibulaire passe SOUS la trochlée pour aller vers la face plantaire du premier métatarsien.
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Pour les tendons fibulaires :</strong></p>
+                                <ul>
+                                    <li>Court fibulaire = insertion sur M5 = trajet COURT = passe AU-DESSUS de la trochlée</li>
+                                    <li>Long fibulaire = insertion sur M1 = trajet LONG = passe SOUS la trochlée pour traverser la plante du pied</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : 2024-2025 -->
+                    <div class="qcm-analyse">
+                        <h4>Articulation de la cheville - Type articulaire et ligaments</h4>
+                        <div class="qcm-badge">📋 <strong>2024-2025</strong> Q6</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la connaissance du type d'articulation talo-crurale, la structure détaillée du ligament collatéral médial (plans et faisceaux) et les faisceaux du ligament collatéral latéral.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois savoir :</div>
+                            <div class="qcm-section-content">
+                                <strong>Item A :</strong> L'articulation talo-crurale unit le talus au segment crural (tibia + fibula). Le cours ne précise pas explicitement le type "ginglyme" mais décrit une articulation en mortaise (tenon/mortaise).<br><br>
+                                <strong>Item B :</strong> Le ligament collatéral médial présente bien 2 plans : un plan superficiel (ligament deltoïdien avec faisceaux tibio-naviculaire et tibio-calcanéen) et un plan profond (faisceaux tibio-talaires).<br><br>
+                                <strong>Item C :</strong> Le faisceau tibio-talaire POSTÉRIEUR fait partie du plan/chef PROFOND du ligament collatéral médial. Il s'insère sur la face médiale du corps du talus.<br><br>
+                                <strong>Item D :</strong> ATTENTION PIÈGE : Il n'existe PAS de "faisceau tibio-calcanéen POSTÉRIEUR". Le faisceau tibio-calcanéen est un faisceau SUPERFICIEL qui s'insère sur le sustentaculum tali. C'est une confusion avec le faisceau tibio-talaire postérieur (profond).<br><br>
+                                <strong>Item E :</strong> Le ligament collatéral latéral a 3 faisceaux : talo-fibulaire antérieur, calcanéo-fibulaire et talo-fibulaire postérieur. AUCUN faisceau ne va vers le cuboïde.
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Structure du ligament collatéral médial :</strong></p>
+                                <ul>
+                                    <li>Plan SUPERFICIEL = faisceaux tibio-NAVICULAIRE et tibio-CALCANÉEN</li>
+                                    <li>Plan PROFOND = faisceaux tibio-TALAIRE antérieur et tibio-TALAIRE postérieur</li>
+                                </ul>
+                                <p><strong>Attention :</strong> "tibio-calcanéen" = superficiel ≠ "tibio-talaire" = profond</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion tibio-calcanéen / tibio-talaire</h4>
+                        <p>Le faisceau tibio-calcanéen est SUPERFICIEL (s'insère sur le sustentaculum tali). Les faisceaux tibio-talaires (antérieur et postérieur) sont PROFONDS (s'insèrent sur le talus). Ne pas confondre "tibio-calcanéen" avec un hypothétique "tibio-calcanéen postérieur" qui n'existe pas.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion face dorsale / face postérieure de la malléole latérale</h4>
+                        <p>Le tendon du court fibulaire passe contre la face POSTÉRIEURE de la malléole latérale (pas "dorsale"). En anatomie du pied, "dorsal" = dessus du pied, ce qui n'a pas de sens pour la malléole.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Trajet des tendons fibulaires par rapport à la trochlée</h4>
+                        <p>Le court fibulaire passe AU-DESSUS de la trochlée des fibulaires (insertion sur M5). Le long fibulaire passe SOUS la trochlée (insertion sur M1, traversant la plante du pied). Ne pas inverser !</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Faisceaux du ligament collatéral latéral</h4>
+                        <p>Le ligament collatéral latéral a 3 faisceaux qui vont vers le TALUS ou le CALCANÉUS : talo-fibulaire antérieur, calcanéo-fibulaire, talo-fibulaire postérieur. AUCUN faisceau ne va vers le cuboïde.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Angles du talus : 150° vs 115° vs 45°</h4>
+                        <p>L'angle de DÉCLINAISON du talus = 150° ouvert en dedans (entre axe du corps et axe du col). L'angle d'INCLINAISON = 115°. L'angle de rotation de la tête du talus = 45°. Ne pas confondre ces valeurs.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Syndesmose vs synoviale</h4>
+                        <p>L'articulation tibio-fibulaire DISTALE est une syndesmose (articulation fibreuse, pas de cartilage). L'articulation tibio-fibulaire PROXIMALE est une synoviale plane. Ne pas confondre ces deux articulations.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre tombe de façon irrégulière (2 QCM en 5 ans, avec 3 années sans question). Quand il tombe, les questions portent exclusivement sur l'arthrologie de la cheville (ligaments collatéraux, type d'articulation). Récurrence FAIBLE (20%) : seul l'item sur les "2 couches/plans" du ligament collatéral médial est revenu.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Apprenez l'ensemble du cours, en particulier la structure des ligaments collatéraux médial et latéral, les différentes articulations du pied (talo-crurale, sub-talaire, transverse du tarse...) et les insertions musculaires. Le professeur peut introduire des items sur l'ostéologie ou la myologie du pied.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur le ligament collatéral médial (2 plans, 4 faisceaux), le ligament collatéral latéral (3 faisceaux), l'articulation tibio-fibulaire distale (syndesmose) et l'angle de déclinaison du talus (150°). Ce sont les éléments qui sont tombés aux annales.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Ce chapitre est à faible rentabilité (0,4 QCM/an en moyenne) et à récurrence faible (20%). Seul l'item "ligament collatéral médial = 2 couches/plans" est revenu à l'identique. Les autres items varient d'une année à l'autre. Si vous manquez de temps, ce chapitre peut être une impasse calculée, mais si vous le révisez, apprenez les 2 QCM par cœur en comprenant bien la structure du ligament collatéral médial.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
