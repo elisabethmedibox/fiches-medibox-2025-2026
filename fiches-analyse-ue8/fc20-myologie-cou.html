@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC20 - Myologie tête et cou - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC20 - Myologie de la tête et du cou</h1>
+            <div class="meta">
+                <span>📚 UE8 - Anatomie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- MUSCLES SCALÈNES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Muscles scalènes (3 QCM dont 2 identiques)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q18<br>2021-2022 Q18<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur les muscles antérieurs du cou et viscères, les vaisseaux antérieurs du cou et de la face, les muscles antérieurs du cou :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les muscles scalènes sont recouverts par la lame superficielle du fascia cervical.</div>
+                                            <div class="qcm-item">B: Les muscles scalènes sont tendus du rachis cervical aux 2 premières côtes.</div>
+                                            <div class="qcm-item">C: Les scalènes sont innervés par le nerf axillaire.</div>
+                                            <div class="qcm-item">D: Ils sont expirateurs accessoires.</div>
+                                            <div class="qcm-item">E: Le plexus brachial chemine entre scalène postérieur et scalène moyen.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q19</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les muscles du cou :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Il existe 3 muscles scalènes.</div>
+                                            <div class="qcm-item">B: Le scalène antérieur s'insère sur la 1ère côte.</div>
+                                            <div class="qcm-item">C: Le muscle trapèze est enveloppé par la lame superficielle du fascia cervical.</div>
+                                            <div class="qcm-item">D: Le muscle sterno-cléido-mastoïdien est enveloppé par la lame superficielle du fascia cervical.</div>
+                                            <div class="qcm-item">E: Le muscle sterno-cléido-mastoïdien a une insertion sur le manubrium sternal.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- STERNO-CLÉIDO-MASTOÏDIEN -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Sterno-cléido-mastoïdien (4 QCM dont 2 identiques)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q19<br>2021-2022 Q19<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur les muscles antérieurs du cou et viscères, les vaisseaux antérieurs du cou et de la face, le sterno-cléïdo-mastoïdien :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Il s'insère sur la face ventrale du manubrium sternal et sur le 1/3 médial de la face crâniale de la clavicule.</div>
+                                            <div class="qcm-item">B: La petite fosse supra-claviculaire est déterminée par son chef sternal et son chef claviculaire.</div>
+                                            <div class="qcm-item">C: Il se termine sur le pourtour du processus mastoïde de l'os temporal.</div>
+                                            <div class="qcm-item">D: Il est innervé par le nerf accessoire (XIème paire de nerf crânien) et le plexus cervical.</div>
+                                            <div class="qcm-item">E: Sa contraction bilatérale entraine l'extension de la tête et du rachis cervical.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q19</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les muscles antérieurs du cou: le muscle sterno-cléido-mastoïdien :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: C'est un muscle infra-hyoïdiens.</div>
+                                            <div class="qcm-item">B: Son corps musculaire est palpable au niveau du cou.</div>
+                                            <div class="qcm-item">C: C'est un muscle souvent inconstant.</div>
+                                            <div class="qcm-item">D: Il présente une insertion au niveau de la face dorsale au niveau du manubrium sternale.</div>
+                                            <div class="qcm-item">E: C'est le muscle du torticolis.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- THYROÏDE ET PARATHYROÏDES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Thyroïde et parathyroïdes (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q18</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question sur les viscères du cou: Thyroïde et parathyroïde.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Elles sont situées au 1/3 inférieur du cou.</div>
+                                            <div class="qcm-item">B: La glande thyroïde a une forme d'anneau concave en arrière.</div>
+                                            <div class="qcm-item">C: La thyroïde est fixée à la trachée.</div>
+                                            <div class="qcm-item">D: Les parathyroïdes sont situées à la face postérieure des lobes thyroïdiens.</div>
+                                            <div class="qcm-item">E: Les parathyroïdes pèsent environ 40 mg.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- VAISSEAUX DU COU -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Vaisseaux du cou (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2023-2024<br>Q18</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les vaisseaux du cou :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les artères de la tête et du cou proviennent de l'arc aortique.</div>
+                                            <div class="qcm-item">B: L'artère carotide interne donne des branches pour la face.</div>
+                                            <div class="qcm-item">C: L'artère carotide interne donne des branches pour la langue.</div>
+                                            <div class="qcm-item">D: L'artère carotide externe donne l'artère ophtalmique.</div>
+                                            <div class="qcm-item">E: L'artère carotide interne donne des branches pour la thyroïde.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q19</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les vaisseaux du cou :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'artère carotide interne se termine en artère temporale superficielle et maxillaire.</div>
+                                            <div class="qcm-item">B: La veine jugulaire interne est une veine grêle.</div>
+                                            <div class="qcm-item">C: L'artère carotide commune se divise au niveau du bord inférieur du cartilage carotide.</div>
+                                            <div class="qcm-item">D: L'artère faciale est une branche de l'artère carotide interne.</div>
+                                            <div class="qcm-item">E: L'artère vertébrale est une branche de l'artère subclavière.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Moyenne QCM/an</th>
+                                <th>Format</th>
+                                <th>Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>1,8 QCM/an</td>
+                                <td>🟢 QCM sur parties ciblées - sans récurrence</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>9 QCM</strong> sur ce chapitre (moyenne 1,8/an). Ces QCM se regroupent en <strong>4 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Muscles scalènes</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q18</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q18</span></td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q19</td>
+                                </tr>
+                                <tr>
+                                    <td>Sterno-cléido-mastoïdien</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q19</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q19</span></td>
+                                    <td class="qcm-cell">Q19</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q19</td>
+                                </tr>
+                                <tr>
+                                    <td>Thyroïde / Parathyroïdes</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q18</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Vaisseaux du cou</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q18, Q19</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>Le muscle sterno-cléido-mastoïdien (SCM)</h4>
+                        <p>Connaître ses insertions (manubrium sternal face ventrale, 1/3 médial de la clavicule, processus mastoïde), son innervation (nerf accessoire XI + plexus cervical), et ses actions (extension bilatérale, muscle du torticolis).</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les muscles scalènes</h4>
+                        <p>Savoir qu'il existe 3 scalènes, leurs insertions sur les 2 premières côtes, leur couverture par le fascia cervical, leur rôle d'inspirateurs accessoires, et le passage du plexus brachial entre scalène antérieur et moyen.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les vaisseaux du cou : artères carotides</h4>
+                        <p>Distinguer carotide interne (pas de collatérales cervicales, donne l'artère ophtalmique) et carotide externe (7 collatérales dont thyroïdienne supérieure, linguale, faciale ; branches terminales : temporale superficielle et maxillaire).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les glandes thyroïde et parathyroïdes</h4>
+                        <p>Connaître la localisation (1/3 inférieur du cou), la forme (anneau concave en arrière), la fixation à la trachée, et le poids des parathyroïdes (40 mg).</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🔍 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- QCM 1 : SCM -->
+                    <div class="qcm-analyse">
+                        <h4>Sterno-cléido-mastoïdien</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q19 | <strong>2021-2022</strong> Q19 | <strong>2022-2023</strong> Q19 | <strong>2024-2025</strong> Q19</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">C'est LA thématique incontournable du chapitre. Le QCM 2020-2021 a été redonné identique en 2021-2022. En 2022-2023 et 2024-2025, le format change mais les notions restent les mêmes.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends par cœur les insertions exactes du SCM et son innervation. Retiens que c'est le muscle du torticolis et qu'il est enveloppé par la lame superficielle du fascia cervical.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Insertions :</strong> face VENTRALE du manubrium (pas dorsale), 1/3 médial de la clavicule, processus mastoïde.</p>
+                                <p><strong>Innervation :</strong> nerf accessoire (XI) + plexus cervical.</p>
+                                <p><strong>Action :</strong> contraction bilatérale = extension de la tête.</p>
+                                <p>⚠️ Ce n'est PAS un muscle infra-hyoïdien, et il est CONSTANT (pas inconstant).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Scalènes -->
+                    <div class="qcm-analyse">
+                        <h4>Muscles scalènes</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q18 | <strong>2021-2022</strong> Q18 | <strong>2024-2025</strong> Q19</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le QCM 2020-2021 a été redonné strictement identique en 2021-2022. En 2024-2025, les scalènes sont intégrés dans un QCM mixte avec le SCM.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens les 5 notions clés : nombre (3), insertions (2 premières côtes), fascia (lame superficielle), fonction (inspirateurs accessoires), et défilé des scalènes (plexus brachial entre antérieur et moyen).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>3 scalènes :</strong> antérieur (1ère côte), moyen (1ère côte), postérieur (2ème côte).</p>
+                                <p><strong>Innervation :</strong> plexus cervical et brachial (PAS le nerf axillaire).</p>
+                                <p><strong>Fonction :</strong> INSPIRATEURS accessoires (pas expirateurs).</p>
+                                <p><strong>Défilé :</strong> entre scalène ANTÉRIEUR et MOYEN (pas postérieur).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Vaisseaux -->
+                    <div class="qcm-analyse">
+                        <h4>Vaisseaux du cou</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q18 | <strong>2023-2024</strong> Q19</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Cette thématique est apparue en 2023-2024 avec 2 QCM. Elle teste la distinction entre carotide interne et externe et leurs branches.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Mémorise la règle : carotide interne = pas de branches cervicales (sauf ophtalmique à la base du crâne) ; carotide externe = toutes les branches pour la face, la langue, la thyroïde.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Carotide INTERNE :</strong> pas de branches cervicales, donne l'artère ophtalmique, se termine en artères cérébrales antérieure et moyenne.</p>
+                                <p><strong>Carotide EXTERNE :</strong> 7 collatérales (thyroïdienne sup, linguale, faciale...), se termine en temporale superficielle + maxillaire.</p>
+                                <p><strong>Veine jugulaire interne :</strong> plus volumineuse veine du cou (PAS grêle).</p>
+                                <p><strong>Artère vertébrale :</strong> branche de la subclavière.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Thyroïde -->
+                    <div class="qcm-analyse">
+                        <h4>Thyroïde et parathyroïdes</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q18</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Cette thématique n'est tombée qu'une fois en 5 ans.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les items tombés : localisation 1/3 inférieur du cou, forme anneau concave en arrière, fixation à la trachée, parathyroïdes à la face postérieure, poids 40 mg.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Les 5 items testés sont des faits anatomiques à mémoriser sans logique particulière.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion face ventrale / dorsale du manubrium</h4>
+                        <p>Le SCM s'insère sur la face VENTRALE du manubrium sternal. C'est un piège classique : si l'item dit "face dorsale", c'est faux.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion inspirateurs / expirateurs accessoires</h4>
+                        <p>Les scalènes sont INSPIRATEURS accessoires (ils élèvent les 2 premières côtes). Si l'item dit "expirateurs", c'est faux.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion scalène antérieur / postérieur pour le défilé</h4>
+                        <p>Le plexus brachial et l'artère subclavière passent entre scalène ANTÉRIEUR et MOYEN. Si l'item dit "scalène postérieur", c'est faux.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion carotide interne / externe</h4>
+                        <p>La carotide INTERNE ne donne PAS de branches pour la face, la langue ou la thyroïde. Elle ne donne que l'artère ophtalmique (à la base du crâne). Les branches pour la face viennent de la carotide EXTERNE.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion artère ophtalmique</h4>
+                        <p>L'artère ophtalmique est une branche de la carotide INTERNE, pas de l'externe. C'est un piège fréquent.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion innervation des scalènes</h4>
+                        <p>Les scalènes sont innervés par le plexus cervical et brachial, PAS par le nerf axillaire. Le nerf axillaire innerve le deltoïde et le petit rond.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Veine jugulaire interne : pas grêle</h4>
+                        <p>La veine jugulaire interne est la plus VOLUMINEUSE veine du cou. Si l'item dit qu'elle est "grêle", c'est faux.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">⚠️ Évolution importante : le prof recyclait ses QCM identiques il y a 4-5 ans (scalènes, SCM), mais cette tendance a DISPARU depuis 3 ans. Il recycle désormais les THÉMATIQUES (SCM, scalènes, vaisseaux) mais PAS les items. Récurrence des items FAIBLE depuis 2022-2023.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Maîtrisez l'ensemble du cours, notamment les vaisseaux du cou qui semblent prendre de l'importance. N'oubliez pas l'articulation temporo-mandibulaire et les muscles masticateurs qui n'ont pas encore été testés mais font partie du cours.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les thématiques récurrentes : SCM (4 fois), scalènes (3 fois), vaisseaux du cou (2 fois). Le prof varie les angles d'attaque sur ces thèmes, donc apprenez le cours sur ces parties, pas seulement les items tombés.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Stratégie Niveau 1 RISQUÉE sur ce chapitre. Le prof ne redonne plus les mêmes items depuis 3 ans. Apprenez les pièges classiques (face ventrale/dorsale, inspirateurs/expirateurs, défilé antérieur-moyen) mais sachez que de nouveaux items peuvent apparaître sur les mêmes thématiques.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
