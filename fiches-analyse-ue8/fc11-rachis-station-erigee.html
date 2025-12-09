@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC11 - Rachis et station érigée - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC11 - Rachis et station érigée</h1>
+            <div class="meta">
+                <span>📚 UE8 - Anatomie Générale</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- LE PETIT CHIEN + VERTÈBRE THORACIQUE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Le petit chien et vertèbre thoracique (2 QCM identiques)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q8<br>2021-2022 Q8<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur la colonne vertébrale, le rachis :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'image du petit chien au niveau du rachis lombaire se lit sur une radiographie de 3/4.</div>
+                                            <div class="qcm-item">B: Le collier du petit chien représente l'isthme vertébral.</div>
+                                            <div class="qcm-item">C: L'œil du petit chien représente le pédicule.</div>
+                                            <div class="qcm-item">D: L'oreille du petit chien est représentée par le processus articulaire supérieur.</div>
+                                            <div class="qcm-item">E: La fossette costale transversaire est située au niveau de la face dorsale du processus transverse d'une vertèbre thoracique.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ATLAS / PARS DENTIS / NERVOSA -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Atlas, pars dentis et pars nervosa (2 QCM identiques)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q9<br>2021-2022 Q9<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur la colonne vertébrale, le rachis :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'atlas est la 1ère vertèbre cervicale.</div>
+                                            <div class="qcm-item">B: L'artère vertébrale passe dans le foramen transversaire de l'atlas.</div>
+                                            <div class="qcm-item">C: La pars dentis est située en avant de la pars nervosa.</div>
+                                            <div class="qcm-item">D: Le ligament transverse de l'atlas stabilise la dent.</div>
+                                            <div class="qcm-item">E: Le ligament transverse sépare la pars dentis de la pars nervosa.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- DISQUE INTERVERTÉBRAL -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Disque intervertébral (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q8</td>
+                                    <td>
+                                        <div class="qcm-enonce">QUESTIONS PORTANT SUR LA COLONNE VERTEBRALE :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le disque intervertébral est un fibrocartilage.</div>
+                                            <div class="qcm-item">B: Il y'a 35 disques intervertébraux.</div>
+                                            <div class="qcm-item">C: Le disque intervertébral a un role d'amortisseur.</div>
+                                            <div class="qcm-item">D: Le disque intervertébral a un rôle de stabilisation du rachis.</div>
+                                            <div class="qcm-item">E: Le nucleus pulposus est situé en périphérie de la structure du disque intervertébral.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q9</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le rachis :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le ligament longitudinal dorsal a un rôle dans la stabilité du rachis.</div>
+                                            <div class="qcm-item">B: Le ligament longitudinal dorsal est situé dans le foramen vertébral.</div>
+                                            <div class="qcm-item">C: Le ligament longitudinal dorsal est appliqué à la face ventrale des corps vertébraux.</div>
+                                            <div class="qcm-item">D: Le ligament transverse de l'atlas et le ligament longitudinal dorsal sont des termes synonymes.</div>
+                                            <div class="qcm-item">E: Le ligament longitudinal dorsal s'étend jusqu'au coccyx.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- GÉNÉRALITÉS RACHIS -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Généralités sur le rachis (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2023-2024<br>Q8</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le rachis :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La charnière lombo-sacrée présente peu de mobilité.</div>
+                                            <div class="qcm-item">B: Les processus articulaires crâniaux des vertèbres thoraciques regardent en avant.</div>
+                                            <div class="qcm-item">C: Les ostéophytes représentent des signes d'arthroses.</div>
+                                            <div class="qcm-item">D: Il n'y a pas de disque intervertébral entre S1 et S2.</div>
+                                            <div class="qcm-item">E: Au niveau d'une vertèbre thoracique le foramen vertébral est réniforme.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q9</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le rachis :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Il existe une cyphose au niveau du rachis thoracique.</div>
+                                            <div class="qcm-item">B: Au niveau des foramens transversaires passe l'artère carotide interne.</div>
+                                            <div class="qcm-item">C: La 1ère vertèbre cervicale est bien visible sur un cliché simple de face du rachis cervical.</div>
+                                            <div class="qcm-item">D: Il existe des uncus au niveau des vertèbres thoraciques.</div>
+                                            <div class="qcm-item">E: L'atlas présente un volumineux corps vertébral.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- VERTÈBRE CERVICALE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Vertèbre cervicale et Atlas (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025<br>Q9</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le rachis :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les termes corps vertébral ou spondyle sont synonymes.</div>
+                                            <div class="qcm-item">B: L'arc neural est uni au corps vertébral par les lames.</div>
+                                            <div class="qcm-item">C: Le corps vertébral de la vertèbre "type" C4 est ovalaire.</div>
+                                            <div class="qcm-item">D: L'uncus ou processus unciforme existe au niveau de toutes les vertèbres.</div>
+                                            <div class="qcm-item">E: Le rachis cervical supérieur comporte 2 vertèbres.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q10</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le rachis: la vertèbre C1</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Elle présente 1 corps vertébral comme toutes les vertèbres.</div>
+                                            <div class="qcm-item">B: L'arc antérieur de C1 présente à sa face dorsale une surface articulaire pour la dent.</div>
+                                            <div class="qcm-item">C: La dent de C2 passe au niveau du foramen vertébral de C1.</div>
+                                            <div class="qcm-item">D: Le tubercule infra-glénoïdal de C1 donne insertion au ligament rond.</div>
+                                            <div class="qcm-item">E: La surface dévolue à la pars dentis au niveau du foramen vertébral de C1 est plus importante que celle de la pars nervosa.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Format QCM</th>
+                                <th>Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items<br><em style="font-size: 0.85rem; color: #059669;">⚠️ Exception : 2 QCM identiques recyclés (2020→2021)</em></td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Ce chapitre est très stable avec exactement 2 QCM chaque année. Le professeur a recyclé 2 fois le même QCM (2020-2021 et 2021-2022). Les thématiques tournent : petit chien, Atlas/C1, disque intervertébral, généralités du rachis.</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                                <tr>
+                                    <td>Petit chien + vertèbre thoracique</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q8</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q8</span></td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Atlas / pars dentis / nervosa</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q9</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q9</span></td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q10</td>
+                                </tr>
+                                <tr>
+                                    <td>Disque intervertébral / ligaments</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q8, Q9</td>
+                                    <td class="qcm-cell">Q8</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Généralités rachis / courbures</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q9</td>
+                                    <td class="qcm-cell">Q9</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item">
+                        <h4>L'Atlas (C1) et ses particularités</h4>
+                        <p>Savoir que l'Atlas n'a PAS de corps vertébral, connaître la pars dentis et la pars nervosa, le rôle du ligament transverse qui sépare ces deux zones et stabilise la dent de C2.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le petit chien (rachis lombaire)</h4>
+                        <p>Connaître les éléments constitutifs du petit chien sur une radiographie de 3/4 : œil = pédicule, oreille = processus articulaire supérieur, collier = isthme vertébral, museau = processus costiforme, pattes = processus articulaire inférieur.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans (QCM identiques)</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le disque intervertébral</h4>
+                        <p>Savoir que le DIV est un fibrocartilage avec un rôle d'amortisseur et de stabilisation, que le nucleus pulposus est au CENTRE (pas en périphérie), connaître les ligaments longitudinaux ventral et dorsal.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les formes des foramens vertébraux</h4>
+                        <p>Foramen triangulaire au niveau cervical, circulaire au niveau thoracique, coraliforme (en forme de cœur) au niveau lombaire. Attention au piège : réniforme = forme du CORPS vertébral lombaire, pas du foramen.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les courbures du rachis</h4>
+                        <p>Lordose cervicale, cyphose thoracique, lordose lombaire, cyphose sacrée. L'uncus n'existe qu'au niveau des vertèbres CERVICALES (pas thoraciques).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La vertèbre cervicale type (C4)</h4>
+                        <p>Corps vertébral QUADRANGULAIRE (pas ovalaire), présence de l'uncus/processus unciforme, foramen transversaire où passe l'artère vertébrale (pas la carotide interne).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🔍 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM 1 : Petit chien -->
+                    <div class="qcm-analyse">
+                        <h4>Le petit chien</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q8 | <strong>2021-2022</strong> Q8 (identiques)</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM est tombé 2 fois de façon strictement identique. Il teste la connaissance des éléments du petit chien sur une radiographie de 3/4 du rachis lombaire, ainsi qu'un item sur la vertèbre thoracique.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends par cœur chaque élément du petit chien et la localisation de la fossette costale transversaire sur la vertèbre thoracique.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Mémorise : œil = pédicule, oreille = processus articulaire supérieur, collier = isthme vertébral. La fossette costale transversaire est sur la face DORSALE du processus transverse.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Atlas / pars dentis -->
+                    <div class="qcm-analyse">
+                        <h4>Atlas et pars dentis/nervosa</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q9 | <strong>2021-2022</strong> Q9 (identiques) | <strong>2024-2025</strong> Q10</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce thème est tombé 3 fois en 5 ans, dont 2 fois de façon identique. Il teste les particularités de C1 (Atlas), la pars dentis/nervosa, et le ligament transverse.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que l'Atlas N'A PAS de corps vertébral, que le ligament transverse sépare la pars dentis (en avant) de la pars nervosa (en arrière), et que la pars nervosa est PLUS GRANDE que la pars dentis.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>La pars dentis est TOUJOURS en AVANT de la pars nervosa. Pense à "Dentis = Dent = Devant".</p>
+                                <p>Le ligament transverse stabilise la dent ET sépare les deux pars. Attention : le tubercule infra-glénoïdal donne insertion au ligament TRANSVERSE (pas au ligament rond).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Disque intervertébral -->
+                    <div class="qcm-analyse">
+                        <h4>Disque intervertébral et ligaments</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q8, Q9 | <strong>2023-2024</strong> Q8</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce thème a été testé 3 fois avec des questions sur la structure du DIV, le nucleus pulposus, et les ligaments longitudinaux.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que le DIV est un fibrocartilage, qu'il a un rôle d'amortisseur ET de stabilisation, que le nucleus pulposus est au CENTRE, et les caractéristiques du ligament longitudinal dorsal.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>Le ligament longitudinal DORSAL est situé dans le foramen vertébral, appliqué à la face DORSALE des corps vertébraux, et s'étend jusqu'au coccyx.</p>
+                                <p>Attention : il n'y a PAS de DIV entre S1 et S2 (vertèbres sacrées soudées), et la charnière lombo-sacrée présente un MAXIMUM de mobilité (pas peu).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Généralités rachis -->
+                    <div class="qcm-analyse">
+                        <h4>Généralités sur le rachis</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q9 | <strong>2024-2025</strong> Q9</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ces QCM testent les connaissances générales : courbures, formes des vertèbres selon les étages, nomenclature (spondyle), particularités par étage.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les courbures (cyphose thoracique), la forme du corps vertébral C4 (quadrangulaire), que l'uncus n'existe qu'au niveau cervical, et que le rachis cervical supérieur = 2 vertèbres (C1+C2).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>Corps vertébral = spondyle. Arc neural uni au corps par les PÉDICULES (pas les lames).</p>
+                                <p>L'artère VERTÉBRALE passe dans le foramen transversaire (pas la carotide interne). C1 n'est PAS visible sur un cliché de face (il faut un cliché bouche ouverte).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion pars dentis / pars nervosa</h4>
+                        <p>La pars dentis est TOUJOURS en AVANT, la pars nervosa en ARRIÈRE. Moyen mnémotechnique : "Dentis = Dent = Devant". La pars nervosa est PLUS GRANDE que la pars dentis pour laisser passer la moelle.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>L'Atlas n'a PAS de corps vertébral</h4>
+                        <p>C'est une particularité fondamentale de C1. Si un item dit "C1 présente un corps vertébral comme toutes les vertèbres", c'est FAUX. Le tubercule ventral est un RELIQUAT du corps vertébral.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Foramen réniforme vs coraliforme</h4>
+                        <p>Le foramen vertébral LOMBAIRE est CORALIFORME (en forme de cœur). RÉNIFORME (en forme de rein) décrit le CORPS vertébral lombaire, pas le foramen. Le foramen THORACIQUE est CIRCULAIRE.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>L'uncus n'existe qu'au niveau CERVICAL</h4>
+                        <p>Si un item dit qu'il existe des uncus au niveau des vertèbres thoraciques ou lombaires, c'est FAUX. L'uncus (processus unciforme) est une particularité des vertèbres cervicales uniquement.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Artère vertébrale vs carotide interne</h4>
+                        <p>C'est l'artère VERTÉBRALE qui passe dans les foramens transversaires (depuis C6). La carotide interne ne passe PAS par les foramens transversaires.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Arc neural uni au corps par les PÉDICULES</h4>
+                        <p>L'arc neural est uni au corps vertébral (spondyle) par les PÉDICULES, pas par les lames. Les lames unissent les pédicules au processus épineux en arrière.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>C1 invisible sur cliché de face</h4>
+                        <p>La 1ère vertèbre cervicale (Atlas) n'est PAS visible sur un cliché simple de face car elle est masquée par la mandibule. Il faut un cliché "bouche ouverte" pour voir C1 et C2.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Sur ce chapitre, le professeur recycle parfois les mêmes QCM (2020-2021 = 2021-2022) et fait tourner les thématiques. Les 4 grandes thématiques sont : le petit chien, l'Atlas/C1, le disque intervertébral et les ligaments, les généralités du rachis. Le chapitre est stable avec 2 QCM/an.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Travaillez l'ensemble du cours, notamment les parties sur le sacrum et l'arthrologie qui n'ont pas encore été testées. Soyez attentifs aux variations de vertèbres selon les étages (T1/T10/T11/T12 vs T6 type) et aux articulations particulières (unco-vertébrale, atlanto-occipitale).</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les 4 thématiques déjà tombées. Pour les parties non testées (sacrum, myologie), apprenez uniquement les éléments avec des étoiles (✭) dans le cours. Le petit chien et l'Atlas sont des valeurs sûres.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        <strong>Récurrence FAIBLE (~20%)</strong> hors QCM identiques : le prof renouvelle ses items d'une année sur l'autre. MAIS le recyclage de 2 QCM identiques (2020-2021 et 2021-2022) est une aubaine à exploiter. Apprenez par cœur les 10 QCM déjà tombés, en particulier les QCM sur le petit chien et l'Atlas/pars dentis/nervosa. Si le prof recycle encore, vous avez 2 points assurés. Stratégie risquée sur les nouvelles questions.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
