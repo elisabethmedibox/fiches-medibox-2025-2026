@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC16 - Appareil respiratoire - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC16 - Appareil respiratoire</h1>
+            <div class="meta">
+                <span>📚 UE8 - Anatomie Générale</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- LARYNX ET VOIES AÉRIENNES SUPÉRIEURES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Larynx et voies aériennes supérieures (5 QCM - dont 3 identiques)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q12<br>2021-2022 Q12<br>2022-2023 Q12<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur l'appareil respiratoire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le larynx est l'organe vocal.</div>
+                                            <div class="qcm-item">B: Le cartilage cricoïde rentre dans la constitution du larynx.</div>
+                                            <div class="qcm-item">C: Le cartilage thyroïde rentre dans la constitution du larynx.</div>
+                                            <div class="qcm-item">D: Les cavités nasales font partie de l'appareil respiratoire.</div>
+                                            <div class="qcm-item">E: La cavité laryngée présente 3 régions étagées.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q12</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'appareil respiratoire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les cavités nasales s'ouvrent dans le nasopharynx par l'intermédiaire des choanes.</div>
+                                            <div class="qcm-item">B: Le pharynx présente 3 parties.</div>
+                                            <div class="qcm-item">C: Le larynx est un organe vocal.</div>
+                                            <div class="qcm-item">D: Le larynx a une structure osseuse.</div>
+                                            <div class="qcm-item">E: L'os hyoïde fait partie de la constitution du larynx.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- MÉDIASTIN ET CÔTES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Médiastin et côtes (3 QCM - dont 2 identiques)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q13<br>2021-2022 Q13<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur l'appareil respiratoire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Il existe 2 paires de côtes asternales ou flottantes.</div>
+                                            <div class="qcm-item">B: Il y a 3 fausses côtes de chaque côté.</div>
+                                            <div class="qcm-item">C: Le médiastin inférieur est divisé en 3 parties.</div>
+                                            <div class="qcm-item">D: Le médiastin supérieur est situé au-dessus d'un plan tangent au péricarde et passant par l'angle sternal et le disque intervertébral T4-T5.</div>
+                                            <div class="qcm-item">E: La partie antérieure du médiastin inférieur contient les vaisseaux thoraciques internes.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q13</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'appareil respiratoire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le médiastin est situé au niveau de la partie moyenne du thorax.</div>
+                                            <div class="qcm-item">B: Il existe 2 côtes asternales à droite et à gauche.</div>
+                                            <div class="qcm-item">C: La trachée mesure environ 11 cm de long.</div>
+                                            <div class="qcm-item">D: La trachée est formée d'anneaux incomplets de cartilage hyalin.</div>
+                                            <div class="qcm-item">E: La capacité respiratoire moyenne est de 10 litres.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- STERNUM ET CÔTES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Sternum et côtes (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q13</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'appareil respiratoire : sternum et côtes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le sternum est composé de 3 parties.</div>
+                                            <div class="qcm-item">B: Le muscle grand pectoral s'insère sur la face antérieure du corps du sternum.</div>
+                                            <div class="qcm-item">C: Le bord latéral du sternum présente 7 incisures costales.</div>
+                                            <div class="qcm-item">D: La tête des côtes est articulaire avec les parties postérieures des corps vertébraux.</div>
+                                            <div class="qcm-item">E: La 1ère côte donne insertion au scalène ventral.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- TRACHÉE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Trachée (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2023-2024<br>Q12</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'appareil respiratoire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La trachée prolonge le larynx.</div>
+                                            <div class="qcm-item">B: La trachée présente 2 parties.</div>
+                                            <div class="qcm-item">C: La trachée présente une partie cervicale.</div>
+                                            <div class="qcm-item">D: La trachée présente une partie thoracique.</div>
+                                            <div class="qcm-item">E: La trachée est constituée uniquement d'éléments fibreux.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- BRONCHES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Bronches et rapports (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2023-2024<br>Q13</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'appareil respiratoire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La bronche principale droite est horizontale.</div>
+                                            <div class="qcm-item">B: La bronche principale droite mesure environ 6 cm.</div>
+                                            <div class="qcm-item">C: L'arc aortique passe au-dessus de la bronche principale droite.</div>
+                                            <div class="qcm-item">D: L'œsophage se situe en arrière de la trachée.</div>
+                                            <div class="qcm-item">E: L'arc de la veine azygos passe au-dessous de la bronche principale gauche.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Format QCM</th>
+                                <th>Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année (2 QCM/an)</td>
+                                <td>🎯 QCM sur partie ciblée du cours - avec récurrence des items</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>10 QCM</strong> sur ce chapitre (moyenne 2/an). Ces QCM se regroupent en <strong>5 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Larynx et voies aériennes sup.</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q12</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q12</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q12</span></td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q12</td>
+                                </tr>
+                                <tr>
+                                    <td>Médiastin et côtes</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q13</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q13</span></td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q13</td>
+                                </tr>
+                                <tr>
+                                    <td>Sternum et côtes</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q13</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Trachée</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q12</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Bronches et rapports</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q13</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>Le larynx : constitution et fonction</h4>
+                        <p>Savoir que le larynx est l'organe vocal, connaître les cartilages qui le constituent (thyroïde, cricoïde, aryténoïde, épiglottique) et les 3 régions de la cavité laryngée.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les cavités nasales et le pharynx</h4>
+                        <p>Connaître les choanes (ouverture vers le nasopharynx) et les 3 parties du pharynx (nasopharynx, oropharynx, laryngopharynx).</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le médiastin : division et contenu</h4>
+                        <p>Maîtriser la division du médiastin (supérieur/inférieur) et les limites du médiastin supérieur (plan passant par angle sternal et DIV T4-T5).</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les côtes : vraies, fausses et asternales</h4>
+                        <p>Distinguer les 7 vraies côtes, les 3 fausses côtes et les 2 côtes asternales (flottantes : 11ème et 12ème).</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La trachée : description et structure</h4>
+                        <p>Connaître les caractéristiques de la trachée : prolonge le larynx, 2 parties (cervicale et thoracique), 11 cm de long, anneaux incomplets de cartilage hyalin.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les bronches et leurs rapports</h4>
+                        <p>Connaître l'orientation des bronches principales (droite plus verticale), leurs rapports avec l'arc aortique, l'arc de la veine azygos et l'œsophage.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🔍 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM 1 : Larynx et voies aériennes supérieures -->
+                    <div class="qcm-analyse">
+                        <h4>Larynx et voies aériennes supérieures</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q12 | <strong>2021-2022</strong> Q12 | <strong>2022-2023</strong> Q12 | <strong>2024-2025</strong> Q12</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le même QCM a été posé 3 années consécutives (2020-2023) sur le larynx et ses cartilages. En 2024-2025, le QCM a été renouvelé avec des items sur le pharynx et les choanes, mais teste toujours la fonction vocale du larynx.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les items du QCM identique qui est retombé 3 fois. Mémorise aussi les nouveaux items de 2024-2025 sur le pharynx (3 parties) et les choanes.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>Le larynx est un organe <strong>VOCAL</strong> (il contient les cordes vocales) mais sa structure est <strong>CARTILAGINEUSE</strong>, pas osseuse.</p>
+                                <p><strong>Attention au piège :</strong> L'os hyoïde ne fait PAS partie de la constitution du larynx, même s'il est proche anatomiquement.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Médiastin et côtes -->
+                    <div class="qcm-analyse">
+                        <h4>Médiastin et côtes</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q13 | <strong>2021-2022</strong> Q13 | <strong>2024-2025</strong> Q13</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le QCM sur le médiastin et les côtes est tombé 2 fois de manière identique (2020-2022), puis a été renouvelé en 2024-2025 avec des items sur la trachée et la capacité respiratoire.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Mémorise la classification des côtes (7 vraies, 3 fausses, 2 asternales) et les caractéristiques du médiastin. Retiens aussi que la capacité respiratoire est d'environ 5 litres (pas 10).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Pour les côtes :</strong> 7 vraies (cartilage propre) + 3 fausses (même cartilage que la 7ème) + 2 asternales/flottantes (11ème et 12ème) = 12 côtes de chaque côté.</p>
+                                <p><strong>Pour le médiastin supérieur :</strong> Au-dessus du plan passant par l'angle sternal et le DIV T4-T5.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Sternum et côtes -->
+                    <div class="qcm-analyse">
+                        <h4>Sternum et côtes</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q13</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste des connaissances spécifiques sur le sternum (3 parties, 7 incisures costales) et les insertions musculaires associées.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les items tombés : sternum en 3 parties, 7 incisures costales, insertion du grand pectoral et du scalène ventral sur la 1ère côte.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Apprends les items déjà tombés sur le sternum et ses rapports.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Trachée -->
+                    <div class="qcm-analyse">
+                        <h4>Trachée</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q12</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste les caractéristiques anatomiques de la trachée : continuité avec le larynx, division en 2 parties (cervicale et thoracique), constitution.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Mémorise que la trachée prolonge le larynx, présente 2 parties (cervicale et thoracique), et qu'elle n'est PAS constituée uniquement d'éléments fibreux (elle a des anneaux cartilagineux).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>La trachée est un conduit <strong>musculo-cartilagineux</strong> (anneaux de cartilage hyalin ouverts en arrière + muscle trachéal).</p>
+                                <p>Elle débute en <strong>C6</strong> (partie cervicale) et se termine en <strong>T5</strong> (partie thoracique).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 5 : Bronches et rapports -->
+                    <div class="qcm-analyse">
+                        <h4>Bronches et rapports</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q13</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste les caractéristiques des bronches principales et leurs rapports anatomiques avec les gros vaisseaux.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends l'orientation des bronches (droite plus verticale, pas horizontale), leurs dimensions (droite 2,5 cm, gauche 5 cm), et les rapports avec l'arc aortique (au-dessus de la bronche gauche) et l'arc de la veine azygos (au-dessus de la bronche droite).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Bronche droite :</strong> presque verticale (corps étrangers ++), 2,5 cm, arc de la veine azygos au-dessus.</p>
+                                <p><strong>Bronche gauche :</strong> plus horizontale, 5 cm, arc aortique au-dessus.</p>
+                                <p><strong>L'œsophage</strong> est bien situé en arrière de la trachée.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion larynx cartilagineux / larynx osseux</h4>
+                        <p>Le larynx a une structure CARTILAGINEUSE (cartilages thyroïde, cricoïde, aryténoïde, épiglottique), pas osseuse. L'os hyoïde est proche mais ne fait PAS partie de la constitution du larynx.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion côtes asternales / fausses côtes</h4>
+                        <p>Les côtes asternales (ou flottantes) sont la 11ème et la 12ème côte (2 paires). Les fausses côtes sont les 8ème, 9ème et 10ème (3 paires). Ne pas confondre ces deux catégories.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur la capacité respiratoire</h4>
+                        <p>La capacité respiratoire moyenne est d'environ 5 litres, PAS 10 litres. Ce piège est tombé en 2024-2025.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion bronche droite / bronche gauche</h4>
+                        <p>La bronche principale DROITE est presque verticale (pas horizontale) et mesure 2,5 cm. La bronche GAUCHE est plus longue (5 cm). L'arc de la veine azygos passe au-dessus de la bronche DROITE, l'arc aortique au-dessus de la GAUCHE.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Constitution de la trachée</h4>
+                        <p>La trachée n'est PAS constituée uniquement d'éléments fibreux. Elle possède des anneaux incomplets de cartilage hyalin (16-20 anneaux) ouverts en arrière, complétés par le muscle trachéal.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Limite du médiastin supérieur</h4>
+                        <p>Le médiastin supérieur est situé au-dessus d'un plan passant par l'angle sternal ET le disque intervertébral T4-T5. Les deux repères sont nécessaires pour définir cette limite.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Sur ce chapitre, le professeur a tendance à recycler les mêmes QCM pendant plusieurs années consécutives. On observe 3 années de QCM strictement identiques sur le larynx (2020-2023) et 2 années sur le médiastin (2020-2022). Depuis 2023-2024, les QCM ont été renouvelés avec de nouvelles thématiques (trachée, bronches). Récurrence des items : MOYENNE à FORTE (55%) mais avec recyclage massif de QCM complets.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Ce chapitre est vaste mais les QCM restent concentrés sur quelques thématiques clés. Maîtrisez l'ensemble du cours en insistant sur le larynx, le médiastin, la trachée et les bronches. Attention aux détails comme les rapports anatomiques des bronches avec les gros vaisseaux.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les 6 thématiques identifiées dans les recommandations. Le larynx et le médiastin sont les plus rentables. Pour les poumons et la plèvre qui ne sont jamais tombés, contentez-vous d'une lecture rapide du diaporama.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Ce chapitre est une mine d'or pour vous grâce au recyclage des QCM complets. Le QCM sur le larynx tombé 3 fois de suite (identique à 100%) et celui sur le médiastin tombé 2 fois (identique) représentent 5 années de points faciles à mémoriser. Récurrence moyenne (55%) sur les items individuels, mais le recyclage de QCM entiers compense largement. Apprenez par cœur les QCM identiques en priorité absolue : même si renouvelés depuis 2023-2024, les anciens peuvent revenir.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
