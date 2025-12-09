@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC13 - Cœur et vaisseaux - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC13 - Cœur et vaisseaux</h1>
+            <div class="meta">
+                <span>📚 UE8 - Anatomie Générale</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- CONFIGURATION DU CŒUR -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Configuration du cœur (4 QCM - identiques)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q10<br>2021-2022 Q10<br>2022-2023 Q10<br>2023-2024 Q10<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur l'appareil circulatoire (cœur et vaisseaux) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le sillon interventriculaire antérieur sépare le ventricule droit du gauche.</div>
+                                            <div class="qcm-item">B: Le cœur présente une face diaphragmatique.</div>
+                                            <div class="qcm-item">C: L'atrium droit reçoit la veine cave supérieure et inférieure.</div>
+                                            <div class="qcm-item">D: Le cœur se situe dans le médiastin.</div>
+                                            <div class="qcm-item">E: L'épicarde est le feuillet du péricarde séreux.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- INNERVATION ET AORTE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Innervation du cœur et aorte (5 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q11<br>2021-2022 Q11<br>2022-2023 Q11<br>2023-2024 Q11<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur l'appareil circulatoire (cœur et vaisseaux) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le cœur présente 2 systèmes d'innervation : le système cardionecteur et les nerfs cardiaques.</div>
+                                            <div class="qcm-item">B: L'apex du cœur se projette dans le 6ème espace intercostal.</div>
+                                            <div class="qcm-item">C: L'apex du cœur se projette à droite de la ligne médio-claviculaire.</div>
+                                            <div class="qcm-item">D: Le tronc cœliaque présente 3 branches terminales.</div>
+                                            <div class="qcm-item">E: L'aorte se termine en regard de L4.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q11</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'appareil circulatoire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le cœur présente 2 systèmes d'innervation : le système cardionecteur et les nerfs cardiaques.</div>
+                                            <div class="qcm-item">B: L'aorte naît au niveau du hiatus aortique en regard du bord inférieur du corps de T12 (12ème vertèbre thoracique).</div>
+                                            <div class="qcm-item">C: L'aorte et la veine cave inférieure passent à travers le même hiatus : le hiatus aortique.</div>
+                                            <div class="qcm-item">D: Le tronc cœliaque naît de la face ventrale de l'aorte en regard du bord inférieur de L4 (4ème vertèbre lombaire).</div>
+                                            <div class="qcm-item">E: L'aorte se situe en avant de la bourse omentale.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Format QCM</th>
+                                <th>Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>💡 QCM avec items récurrents</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Ce chapitre présente une particularité remarquable : les QCM sont strictement identiques d'une année sur l'autre (2020 à 2024). En 2024-2025, le format a légèrement changé avec une question différente sur l'aorte.</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-2021</th>
+                                        <th>2021-2022</th>
+                                        <th>2022-2023</th>
+                                        <th>2023-2024</th>
+                                        <th>2024-2025</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Configuration du cœur</td>
+                                        <td><span class="qcm-identique-cell">🔄 Q10</span></td>
+                                        <td><span class="qcm-identique-cell">🔄 Q10</span></td>
+                                        <td><span class="qcm-identique-cell">🔄 Q10</span></td>
+                                        <td><span class="qcm-identique-cell">🔄 Q10</span></td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Innervation + Aorte</td>
+                                        <td><span class="qcm-identique-cell">🔄 Q11</span></td>
+                                        <td><span class="qcm-identique-cell">🔄 Q11</span></td>
+                                        <td><span class="qcm-identique-cell">🔄 Q11</span></td>
+                                        <td><span class="qcm-identique-cell">🔄 Q11</span></td>
+                                        <td class="qcm-cell">Q11</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item">
+                        <h4>Configuration interne du cœur</h4>
+                        <p>Connaître les faces du cœur (sterno-costale, diaphragmatique, pulmonaire), la position dans le médiastin, les sillons (interventriculaire antérieur et postérieur, coronaire), et les 3 couches (myocarde, endocarde, épicarde).</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les 2 systèmes d'innervation du cœur</h4>
+                        <p>Distinguer le système cardionecteur (système de conduction interne : nœud sino-atrial, nœud atrio-ventriculaire, faisceau de His, réseau de Purkinje) des nerfs cardiaques (sympathique et parasympathique).</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'apex du cœur et les aires d'auscultation</h4>
+                        <p>Savoir que l'apex se projette au niveau du 5ème espace intercostal (attention : le cours mentionne aussi le 6ème par erreur). Connaître la position des foyers d'auscultation (aortique, pulmonaire, tricuspidien, mitral).</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'aorte : terminaison et tronc cœliaque</h4>
+                        <p>L'aorte se termine en L4. Le tronc cœliaque naît de l'aorte et présente 3 branches terminales (artère gastrique gauche, artère splénique, artère hépatique commune).</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'atrium droit et les veines caves</h4>
+                        <p>L'atrium droit reçoit la veine cave supérieure (en haut) et la veine cave inférieure (en bas). Connaître le sinus coronaire qui s'ouvre dans l'atrium droit.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🔍 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM Configuration du cœur -->
+                    <div class="qcm-analyse">
+                        <h4>Configuration du cœur</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q10 | <strong>2021-2022</strong> Q10 | <strong>2022-2023</strong> Q10 | <strong>2023-2024</strong> Q10</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM est strictement identique sur 4 années consécutives. Il teste des notions fondamentales sur la configuration du cœur : sillon interventriculaire, face diaphragmatique, atrium droit, médiastin et épicarde.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends par cœur les 5 items de ce QCM. Ils testent des connaissances de base qui sont toutes vraies dans le cours.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Apprends les items déjà tombés : le sillon interventriculaire antérieur sépare les ventricules, le cœur a une face diaphragmatique, l'atrium droit reçoit les veines caves, le cœur est dans le médiastin, l'épicarde est le feuillet viscéral du péricarde séreux.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM Innervation et aorte -->
+                    <div class="qcm-analyse">
+                        <h4>Innervation du cœur et aorte</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q11 | <strong>2021-2022</strong> Q11 | <strong>2022-2023</strong> Q11 | <strong>2023-2024</strong> Q11 | <strong>2024-2025</strong> Q11</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste les 2 systèmes d'innervation du cœur, la projection de l'apex, le tronc cœliaque et la terminaison de l'aorte. Le QCM 2024-2025 a été modifié avec des items différents sur l'aorte.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les 2 versions de ce QCM. Pour la version classique : innervation, apex, tronc cœliaque, terminaison de l'aorte. Pour la version 2024-2025 : distingue le hiatus aortique (T12) de l'origine du tronc cœliaque.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Innervation :</strong> Le cœur a bien 2 systèmes d'innervation distincts : le système cardionecteur (interne, autonome) et les nerfs cardiaques (externe, sympathique/parasympathique).</p>
+                                <p><strong>Apex :</strong> Attention au piège ! Le cours dit parfois 5ème, parfois 6ème espace intercostal. La réponse attendue aux annales semble être le 6ème, mais la valeur anatomique correcte est le 5ème. L'apex est à GAUCHE de la ligne médio-claviculaire, pas à droite.</p>
+                                <p><strong>Aorte :</strong> L'aorte se termine en L4 (pas T12 qui est le hiatus aortique). Le tronc cœliaque naît en T12/L1, pas en L4.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion apex 5ème vs 6ème espace intercostal</h4>
+                        <p>Le cours du Dr Uzel mentionne les deux valeurs à différents endroits. Anatomiquement, c'est le 5ème espace intercostal qui est correct. Dans les QCM des annales, le 6ème espace est proposé. Sois attentif à la formulation exacte de la question.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion droite/gauche pour l'apex</h4>
+                        <p>L'apex se projette à GAUCHE de la ligne médio-claviculaire (9-10 cm à gauche de la ligne médiane), jamais à droite. C'est un piège classique présent dans tous les QCM.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion hiatus aortique / terminaison de l'aorte</h4>
+                        <p>Le hiatus aortique est en T12 (là où l'aorte traverse le diaphragme). La terminaison de l'aorte est en L4 (là où elle se divise en artères iliaques). Ne confonds pas les deux.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion origine du tronc cœliaque</h4>
+                        <p>Le tronc cœliaque naît en regard de T12/L1 (juste après le hiatus aortique), PAS en L4. Le QCM 2024-2025 teste cette confusion avec l'item D.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion système cardionecteur / nerfs cardiaques</h4>
+                        <p>Le système cardionecteur (ou cardioconducteur) est le système de conduction INTERNE du cœur (nœuds, faisceaux). Les nerfs cardiaques sont l'innervation EXTERNE par le sympathique et le parasympathique. Ce sont deux choses différentes.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Hiatus aortique ≠ Hiatus de la VCI</h4>
+                        <p>L'aorte et la veine cave inférieure ne passent PAS par le même hiatus. L'aorte passe par le hiatus aortique (T12), la VCI passe par le foramen de la veine cave (T8-T9).</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre est exceptionnel dans son fonctionnement : le professeur recycle les mêmes QCM d'année en année (4 années consécutives avec des QCM strictement identiques). En 2024-2025, le format a légèrement évolué avec une question modifiée sur l'aorte.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>📊 Récurrence des items : TRÈS FORTE (91%)</strong><br>
+                        Les QCM de ce chapitre sont quasiment toujours identiques. De 2020 à 2024, les items sont strictement les mêmes. En 2024-2025, seul 1 item sur 5 est resté identique au Q11, mais le Q10 n'est pas tombé cette année.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Le cours est dense (36 pages) et couvre le cœur, les artères, les veines et le système lymphatique. Cependant, seules quelques notions très ciblées tombent aux examens. Maîtrisez l'ensemble du cours, mais sachez que les thématiques testées sont très restreintes.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur : la configuration interne du cœur, les 2 systèmes d'innervation, l'apex et les aires d'auscultation, le tronc cœliaque et la terminaison de l'aorte. Ces thèmes représentent 100% des QCM tombés.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Ce chapitre est IDÉAL pour la stratégie Niveau 1 grâce à sa récurrence très forte (91%). Apprenez PAR CŒUR les 2 QCM qui tombent chaque année (Q10 et Q11). Ils sont quasiment identiques depuis 4 ans. C'est 2 points quasi garantis si vous connaissez les items exacts. Attention toutefois à la nouvelle version 2024-2025 qui introduit des variantes sur l'aorte - signe que le prof commence peut-être à modifier ses questions.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
