@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC10 - SD3 (3ème semaine de développement) - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Légende */
+        .legende {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+        }
+        
+        .legende-title {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .legende-item {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .legende-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 FC10 - SD3 : 3ème Semaine de Développement</h1>
+            <p>Fiche d'Analyse des Annales • UE6 Embryologie • PASS/LAS Antilles-Guyane</p>
+        </div>
+        
+        <div class="content">
+            
+            <!-- ACCORDÉON 1 : QCM TOMBÉS -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- GASTRULATION ET LIGNE PRIMITIVE -->
+                    <div class="qcm-thematique">
+                        <h4>🔬 Gastrulation et ligne primitive (5 QCM)</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q13</td>
+                                    <td>
+                                        <div class="qcm-enonce">La troisième semaine de développement.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Vers le 16ème jour de développement, la répression de l'expression des Cadhérines modifient les propriétés d'adhérence des cellules épiblastiques.</div>
+                                            <div class="qcm-item">B: La migration des cellules d'origine épiblastique est sous le contrôle du facteur 8 de croissance fibroblastique (FGF-8).</div>
+                                            <div class="qcm-item">C: L'invagination des cellules d'origine épiblastique, assure la mise en place de mésoblaste intra-embryonnaire au niveau de la membrane pharyngée et de la membrane cloacale.</div>
+                                            <div class="qcm-item">D: La gastrulation progresse selon un gradient céphalo-caudal, qui induit une avance de développement de la région céphalique par rapport à la région caudale.</div>
+                                            <div class="qcm-item">E: La gastrulation dépend de l'expression de gènes comme Nodal et HNF-3 béta.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q13</td>
+                                    <td>
+                                        <div class="qcm-enonce">La troisième semaine de développement :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La gastrulation débute avec la mise en place de la ligne primitive au niveau de l'extrémité caudale de l'embryon, sur le feuillet épiblastique.</div>
+                                            <div class="qcm-item">B: La ligne primitive se termine à son extrémité caudale par le nœud de Hensen.</div>
+                                            <div class="qcm-item">C: La mise en place de la ligne primitive est sous la dépendance de l'expression du gène Nodal.</div>
+                                            <div class="qcm-item">D: HNF-3 béta assure le développement du nœud de Hensen.</div>
+                                            <div class="qcm-item">E: Au 16ème jour de développement l'allantoïde se met en place.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q11</td>
+                                    <td>
+                                        <div class="qcm-enonce">La troisième semaine de développement</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La ligne primitive se met en place sur le feuillet dorsal de l'embryon</div>
+                                            <div class="qcm-item">B: La mise en place de la ligne primitive marque le début de la gastrulation</div>
+                                            <div class="qcm-item">C: La gastrulation se déroule du 15ème au 18ème jour de développement</div>
+                                            <div class="qcm-item">D: Les courants migratoires de la gastrulation mettent en place le mésoblaste intra-embryonnaire dorsal et le mésoblaste intra-embryonnaire latéro-ventral</div>
+                                            <div class="qcm-item">E: BMP-4 et FGF ont une action dorsalisation sur le mésoblaste intra-embryonnaire</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q15</td>
+                                    <td>
+                                        <div class="qcm-enonce">La troisième semaine de développement</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Au cours de la troisième semaine de développement se déroule la gastrulation</div>
+                                            <div class="qcm-item">B: La ligne primitive apparaît au niveau du pôle caudal de l'embryon</div>
+                                            <div class="qcm-item">C: Les cellules à l'origine du mésoblaste para-axial sont situées plus crânialement sur la ligne primitive que les cellules à l'origine du mésoblaste latéral</div>
+                                            <div class="qcm-item">D: Le stade de canal choral précède le stade de plaque chordale</div>
+                                            <div class="qcm-item">E: Au stade de plaque chordale, le canal neurentérique établit une communication entre la cavité amniotique et la cavité choriale</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q11<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">🖼️ avec image</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">La troisième semaine de développement (Vos connaissances et le schéma ci-dessous permettront de répondre aux items du QCM.)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les flèches A et B indiquent du mésoblaste extra-embryonnaire.</div>
+                                            <div class="qcm-item">B: La flèche C indique une structure qui s'est mise en place au 16ème jour de développement.</div>
+                                            <div class="qcm-item">C: La flèche D indique du mésoblaste para-axial.</div>
+                                            <div class="qcm-item">D: Au stade de la mise en place de la structure indiquée par la flèche D, la communication présente entre la cavité amniotique et la vésicule vitelline secondaire se nomme le canal neural.</div>
+                                            <div class="qcm-item">E: La flèche E indique une structure qui se met en place grâce à la migration de cellules d'origine épiblastique et à leur pénétration dans la ligne primitive au niveau crânial du nœud de Hensen.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                    <!-- NOTOCHORDE ET CANAL CHORDAL -->
+                    <div class="qcm-thematique">
+                        <h4>🧬 Notochorde et canal chordal (2 QCM)</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q12</td>
+                                    <td>
+                                        <div class="qcm-enonce">Au cours de la troisième semaine de développement</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le canal chordal se met en place à partir de cellules d'origine épiblastique qui migrent à partir du Nœud de Hensen en direction céphalique et le long de l'axe médian</div>
+                                            <div class="qcm-item">B: Au 17ème jour de développement, les gonocytes primordiaux s'individualisent</div>
+                                            <div class="qcm-item">C: Le canal neurectodermique est visible dès la 3ème semaine du canal chordal</div>
+                                            <div class="qcm-item">D: L'allantoïde se met en place à partir du 16ème jour de développement</div>
+                                            <div class="qcm-item">E: A la fin de la 3ème semaine de développement, l'ectoblaste dans sa partie axiale fournie la première ébauche du système nerveux</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q12<br><span style="background: #fff3cd; color: #856404; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">⚠️ Mixte FC10/FC11</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Le mésoblaste intra-embryonnaire (Sur le schéma, la lettre A indique le tube neural. Vos connaissances et le schéma permettront de répondre aux items du QCM.)</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">A: Les flèches B indiquent une structure qui s'est mise en place à partir de cellules d'origine épiblastique qui ont migré au travers de la partie moyenne de la ligne primitive.</div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">B: BMP-4 et le facteur de croissance fibroblastique permettent d'individualiser les structures indiquées par les flèches B, D et E.</div>
+                                            <div class="qcm-item">C: A la fin de la 3ème semaine de développement, la structure indiquée par les flèches C se segmente dans le sens cranio-caudal, en massifs cellulaires distincts et donnent les somites. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; margin-left: 5px;">FC11</span></div>
+                                            <div class="qcm-item">D: Lors de la délimitation les structures indiquées par les flèches E délimiteront une nouvelle cavité dénommée cœlome interne ou cœlome intra-embryonnaire. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; margin-left: 5px;">FC11</span></div>
+                                            <div class="qcm-item">E: L'évolution du mésoblaste commence vers le milieu de la troisième semaine de développement et se poursuit au-delà de la quatrième semaine de développement. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; margin-left: 5px;">FC11</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                    <table class="diagnostic-table">
+                        <thead>
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Moyenne QCM/an</th>
+                                <th>Format</th>
+                                <th>Dépendance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>1,3 QCM/an</td>
+                                <td>🎯 QCM sur parties ciblées - avec récurrence des items</td>
+                                <td>🔗 Cours appartenant à une suite logique (SD2 → SD3 → SD4)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📅 Vue d'ensemble des QCM par année</h4>
+                        <p class="vue-ensemble-intro">Ce tableau te permet de visualiser la répartition des QCM sur les 5 dernières années et d'identifier les thématiques récurrentes.</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Gastrulation / Ligne primitive</td>
+                                    <td class="qcm-cell">Q13</td>
+                                    <td class="qcm-cell">Q13</td>
+                                    <td class="qcm-cell">Q11</td>
+                                    <td class="qcm-cell">Q15</td>
+                                    <td class="qcm-cell">Q11</td>
+                                </tr>
+                                <tr>
+                                    <td>Notochorde / Canal chordal</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q12</td>
+                                    <td class="qcm-cell">Q15 (items)</td>
+                                    <td class="qcm-cell"><span style="background: #fef3c7; padding: 2px 6px; border-radius: 4px; border: 1px solid #f59e0b;">Q12</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Gènes de développement (Nodal, HNF-3β, BMP-4, FGF)</td>
+                                    <td class="qcm-cell">Q13</td>
+                                    <td class="qcm-cell">Q13</td>
+                                    <td class="qcm-cell">Q11</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q12</td>
+                                </tr>
+                                <tr>
+                                    <td>Allantoïde / Gonocytes primordiaux</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q13</td>
+                                    <td class="qcm-cell">Q12</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q11</td>
+                                </tr>
+                                <tr>
+                                    <td>Mésoblaste intra-embryonnaire (répartition)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q11</td>
+                                    <td class="qcm-cell">Q15</td>
+                                    <td class="qcm-cell"><span style="background: #fef3c7; padding: 2px 6px; border-radius: 4px; border: 1px solid #f59e0b;">Q12</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div class="legende">
+                            <div class="legende-title">Légende :</div>
+                            <span class="legende-item"><span class="legende-color" style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border: 2px solid #10b981;"></span> QCM identiques</span>
+                            <span class="legende-item"><span class="legende-color" style="background: #fef3c7; border: 1px solid #f59e0b;"></span> QCM avec image</span>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item">
+                        <h4>Gastrulation et ligne primitive</h4>
+                        <p>C'est LE thème central de la SD3, tombé chaque année sur 5 ans. Les items portent sur : la localisation de la ligne primitive (extrémité caudale, feuillet épiblastique/dorsal), le nœud de Hensen (son extrémité CRÂNIALE, pas caudale), les dates clés (J15-J18), et le gradient céphalo-caudal de la gastrulation.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Gènes de développement de la gastrulation</h4>
+                        <p>Les gènes Nodal et HNF-3β (ligne primitive et nœud de Hensen) reviennent régulièrement. Attention au piège BMP-4/FGF : ils ont une action VENTRALISANTE sur le mésoblaste, pas dorsalisante. Les facteurs chordin, noggin, follistatin inhibent BMP-4 pour permettre la dorsalisation.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Notochorde et canal chordal</h4>
+                        <p>Maîtrise la chronologie : canal chordal → plaque chordale → notochorde. Le canal chordal se forme à partir de cellules épiblastiques migrant du nœud de Hensen vers la direction CÉPHALIQUE. Le canal neurentérique communique cavité amniotique et vésicule vitelline secondaire (pas la cavité choriale).</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Répartition du mésoblaste intra-embryonnaire</h4>
+                        <p>Mémorise l'ordre de migration : plus on est caudal sur la ligne primitive, plus le mésoblaste est latéral. Les cellules du nœud de Hensen → mésoblaste axial (notochorde). Zone crâniale de la ligne primitive → mésoblaste para-axial. Partie moyenne → mésoblaste intermédiaire. Partie caudale → lame latérale.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Allantoïde et gonocytes primordiaux</h4>
+                        <p>Dates clés à retenir : allantoïde = J16 (pas J15, pas J17). Gonocytes primordiaux = J20 (pas J17, pas J21). L'allantoïde est un diverticule de la vésicule vitelline, localisé en arrière de la membrane cloacale.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🏆 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM 1 : Ligne primitive et nœud de Hensen -->
+                    <div class="qcm-analyse">
+                        <h4>Ligne primitive et localisation du nœud de Hensen</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q13 • <strong>2021-2022</strong> Q13 • <strong>2022-2023</strong> Q11 • <strong>2023-2024</strong> Q15</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Chaque année, le prof teste la localisation de la ligne primitive (extrémité CAUDALE, feuillet DORSAL/épiblastique) et la position du nœud de Hensen (extrémité CRÂNIALE de la ligne primitive, PAS caudale). Le piège "le nœud de Hensen est à l'extrémité caudale" est tombé en 2021-2022.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends par cœur : ligne primitive = extrémité caudale du disque, sur l'épiblaste (= feuillet dorsal). Nœud de Hensen = extrémité CRÂNIALE/antérieure de la ligne primitive.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>La ligne primitive <strong>progresse</strong> du caudal vers le crânial. Elle <strong>débute</strong> au pôle caudal et <strong>se termine</strong> au niveau du nœud de Hensen (= extrémité crâniale/antérieure). Ne pas confondre "où elle apparaît" (caudal) et "où elle se termine" (nœud de Hensen = crânial).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Gènes Nodal et HNF-3β -->
+                    <div class="qcm-analyse">
+                        <h4>Gènes Nodal et HNF-3β</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q13 • <strong>2021-2022</strong> Q13 • <strong>2022-2023</strong> Q11</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ces deux gènes sont testés ensemble quasi systématiquement. Nodal = mise en place de la ligne primitive. HNF-3β = développement du nœud de Hensen. Les items affirment généralement que "la gastrulation dépend de Nodal et HNF-3β" → VRAI.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens l'association : Nodal → ligne primitive / HNF-3β → nœud de Hensen. Ces deux gènes sont complémentaires pour la gastrulation.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Retiens simplement : Nodal = ligne primitive, HNF-3β = nœud de Hensen. Les deux interviennent dans la gastrulation.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : BMP-4 et FGF -->
+                    <div class="qcm-analyse">
+                        <h4>Action de BMP-4 et FGF sur le mésoblaste</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q11 • <strong>2024-2025</strong> Q12</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le piège majeur de ce chapitre : BMP-4 et FGF ont une action VENTRALISANTE, pas dorsalisante. En 2022-2023 Q11, l'item "BMP-4 et FGF ont une action dorsalisation sur le mésoblaste" était proposé → FAUX.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">BMP-4 et FGF = action VENTRALISANTE. Pour la dorsalisation, il faut l'inhibition de BMP-4 par chordin, noggin, follistatin (sécrétés par le nœud de Hensen).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>BMP-4 = Ventral.</strong> Si BMP-4 agissait seul, tout le mésoblaste serait ventral. Pour faire du dorsal (notochorde), il faut INHIBER BMP-4. Cette inhibition vient du nœud de Hensen via chordin, noggin, follistatin.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Canal neurentérique -->
+                    <div class="qcm-analyse">
+                        <h4>Canal neurentérique et communications</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q15 • <strong>2024-2025</strong> Q11</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le canal neurentérique est testé avec des pièges sur les cavités qu'il relie. En 2023-2024 : "le canal neurentérique établit une communication entre la cavité amniotique et la cavité choriale" → FAUX (c'est la vésicule vitelline secondaire). En 2024-2025 : "se nomme le canal neural" → FAUX.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Canal neurentérique = communication entre cavité amniotique et vésicule vitelline SECONDAIRE (au stade plaque chordale). Attention : ≠ canal neural !</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Canal NEURentérique</strong> = "neur" (neural) + "entérique" (digestif/vésicule vitelline). Il relie donc le côté neural (cavité amniotique, côté dorsal) au côté digestif (vésicule vitelline, côté ventral). La cavité choriale est AUTOUR de l'embryon, pas reliée directement.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 5 : Dates clés -->
+                    <div class="qcm-analyse">
+                        <h4>Dates clés de la SD3</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q13 • <strong>2022-2023</strong> Q11, Q12 • <strong>2024-2025</strong> Q11</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Les dates sont testées avec des pièges de ±1 jour. Gastrulation = J15-J18 (pas J12-J23). Allantoïde = J16. Gonocytes primordiaux = J20 (pas J17). Canal chordal = vers J19.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les dates exactes : J15 = début gastrulation. J16 = allantoïde. J19 = canal chordal. J20 = gonocytes primordiaux.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure sur les dates. La prof teste au jour près. J15 (gastrulation), J16 (allantoïde), J19 (canal chordal), J20 (gonocytes). Mémorise cette séquence.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion nœud de Hensen crânial/caudal</h4>
+                        <p>Le nœud de Hensen est à l'extrémité CRÂNIALE (= antérieure) de la ligne primitive, pas à l'extrémité caudale. La ligne primitive APPARAÎT au pôle caudal et PROGRESSE vers le crânial. Le nœud de Hensen marque l'extrémité de cette progression. Piège tombé en 2021-2022.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion BMP-4 ventralisant/dorsalisant</h4>
+                        <p>BMP-4 et FGF ont une action VENTRALISANTE sur le mésoblaste. Pour la dorsalisation (notochorde), il faut INHIBER BMP-4 grâce à chordin, noggin, follistatin sécrétés par le nœud de Hensen. Piège tombé en 2022-2023.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion canal neurentérique / canal neural</h4>
+                        <p>Le canal neurentérique (communication cavité amniotique ↔ vésicule vitelline secondaire) n'est PAS le canal neural. Ne pas confondre avec le tube neural qui se forme plus tard. Piège tombé en 2024-2025.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion des cavités reliées par le canal neurentérique</h4>
+                        <p>Le canal neurentérique relie la cavité amniotique à la vésicule vitelline SECONDAIRE (pas la cavité choriale, pas la cavité exocœlomique). Piège tombé en 2023-2024.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège des dates ±1 jour</h4>
+                        <p>La prof teste au jour près : gonocytes = J20 (pas J17 ni J21), allantoïde = J16 (pas J15). Attention aux items qui décalent d'un jour.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Absence de mésoblaste aux membranes pharyngienne et cloacale</h4>
+                        <p>Le mésoblaste intra-embryonnaire ne s'interpose PAS entre ectoblaste et entoblaste au niveau des membranes pharyngienne et cloacale. Ces zones restent didermiques. Piège tombé en 2020-2021.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre tombe CHAQUE ANNÉE avec un fort taux de récurrence des items. Les mêmes notions sont testées d'une année à l'autre : ligne primitive, nœud de Hensen, gènes Nodal/HNF-3β, action de BMP-4/FGF, et canal neurentérique. Les pièges sont prévisibles car ils reviennent régulièrement.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Ce chapitre est fondamental car il prépare la SD4. Maîtrisez la répartition du mésoblaste intra-embryonnaire (axial, para-axial, intermédiaire, latéral) car ce concept reviendra en SD4 avec les somites et le cœlome. Attention aux schémas : le prof a introduit des QCM avec images en 2024-2025.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Ciblez la gastrulation (dates J15-J18), les gènes (Nodal, HNF-3β, BMP-4, FGF), et le canal neurentérique. Ces trois thèmes représentent l'essentiel des points. Passez moins de temps sur les détails de la plaque chordale et de la notochorde si vous manquez de temps.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Concentrez-vous sur les pièges récurrents : nœud de Hensen = extrémité CRÂNIALE (pas caudale), BMP-4/FGF = VENTRALISANT (pas dorsalisant), canal neurentérique relie amnios et vésicule vitelline SECONDAIRE (pas cavité choriale). Ces trois pièges représentent des points quasi assurés car le prof les reteste régulièrement.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
