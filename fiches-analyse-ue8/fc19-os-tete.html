@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC19 - Os de la tête - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC19 - Os de la tête et du crâne</h1>
+            <div class="meta">
+                <span>📚 UE8 - Anatomie Générale</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- ARTICULATIONS DES OS DU CRÂNE ET DE LA FACE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Articulations des os du crâne et de la face (2 QCM - identiques)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q20<br>2021-2022 Q20<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur le squelette crânio-facial :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'os zygomatique est articulaire avec l'os frontal.</div>
+                                            <div class="qcm-item">B: L'os éthmoïde participe à la formation de la pommette.</div>
+                                            <div class="qcm-item">C: Le vomer est un os pair.</div>
+                                            <div class="qcm-item">D: Le sphénoïde est articulaire avec l'os temporal.</div>
+                                            <div class="qcm-item">E: L'os palatin est articulaire avec l'os maxillaire et participe à la constitution du palais dure.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- OSSIFICATION ET FONTANELLES -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Ossification et fontanelles (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q20</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le squelette crânio-facial:</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La calvaria présente une ossification membraneuse.</div>
+                                            <div class="qcm-item">B: Le crâne du nouveau-né présente des zones non ossifiées</div>
+                                            <div class="qcm-item">C: Les fontanelles sont présentes chez l'enfant et l'adulte.</div>
+                                            <div class="qcm-item">D: L'os frontal est articulaire avec l'os pariétal.</div>
+                                            <div class="qcm-item">E: L'os temporal est articulaire avec l'os pariétal.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- CAVITÉS ET SINUS -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Cavités et sinus de la tête (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2023-2024<br>Q20</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le squelette cranio-facial :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La cavité nasale contient l'organe olfactif</div>
+                                            <div class="qcm-item">B: Les sinus frontaux sont toujours symétriques</div>
+                                            <div class="qcm-item">C: Il existe un sinus sphénoïdal</div>
+                                            <div class="qcm-item">D: L'orbite présente 4 parois</div>
+                                            <div class="qcm-item">E: La mandibule est le seul os mobile du squelette craniofacial</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- OS DU CRÂNE - GÉNÉRALITÉS -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Os du crâne - Généralités (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025<br>Q18</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les os du crâne :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La calvaria présente une ossification membraneuse.</div>
+                                            <div class="qcm-item">B: Les osselets pour l'audition sont situés dans la partie pétreuse de l'os temporal.</div>
+                                            <div class="qcm-item">C: Le vomer est un os pair.</div>
+                                            <div class="qcm-item">D: L'os hyoïde est un os pair.</div>
+                                            <div class="qcm-item">E: L'os éthmoïde participe à la formation des cavités orbitaires et des cavités nasales.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Format QCM</th>
+                                <th>Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>🎯 QCM sur partie ciblée du cours - avec récurrence des items</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>5 QCM</strong> sur ce chapitre (moyenne 1/an). Ces QCM se regroupent en <strong>4 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Articulations des os</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q20</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q20</span></td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Ossification / Fontanelles</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q20</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Cavités et sinus</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q20</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Os du crâne - Généralités</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q18</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>Les articulations entre les os du crâne et de la face</h4>
+                        <p>Savoir quels os s'articulent entre eux : zygomatique-frontal, sphénoïde-temporal, palatin-maxillaire, frontal-pariétal, temporal-pariétal.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La nature pair/impair des os de la face</h4>
+                        <p>Distinguer les os pairs (zygomatique, maxillaire, palatin, lacrymal, nasal, cornet nasal inférieur) des os impairs (vomer, mandibule, hyoïde).</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'ossification de la calvaria et les fontanelles</h4>
+                        <p>Connaître le type d'ossification (membraneuse pour la calvaria) et le rôle des fontanelles chez le nouveau-né.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les fonctions des os de la face (ethmoïde, zygomatique)</h4>
+                        <p>Savoir ce que forme chaque os : ethmoïde → orbites et cavités nasales, zygomatique → pommette.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les cavités et sinus de la tête osseuse</h4>
+                        <p>Connaître les principales cavités (nasale, orbitaire) et les sinus para-nasaux (frontal, maxillaire, sphénoïdal, ethmoïdal).</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La localisation des osselets de l'ouïe</h4>
+                        <p>Savoir que les osselets (malleus, incus, stapes) sont situés dans la partie pétreuse de l'os temporal.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🔍 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- QCM 1 : Articulations des os -->
+                    <div class="qcm-analyse">
+                        <h4>Articulations des os du crâne et de la face</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q20 | <strong>2021-2022</strong> Q20</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la connaissance des articulations entre les os du crâne et de la face, ainsi que la nature pair/impair de certains os. La question 2021-2022 est strictement identique à celle de 2020-2021.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les articulations clés testées aux annales et mémorise la nature pair/impair des os concernés.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Articulations vraies :</strong> zygomatique-frontal, sphénoïde-temporal, palatin-maxillaire.</p>
+                                <p><strong>Os impairs à retenir :</strong> le vomer est IMPAIR (pas pair !), l'hyoïde est IMPAIR.</p>
+                                <p><strong>Piège classique :</strong> L'ethmoïde ne forme PAS la pommette (c'est le zygomatique), mais il participe aux orbites et cavités nasales.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Ossification et fontanelles -->
+                    <div class="qcm-analyse">
+                        <h4>Ossification et fontanelles</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q20</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la connaissance du type d'ossification de la calvaria, les fontanelles du nouveau-né et les articulations entre les os du crâne.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les caractéristiques de l'ossification crânienne et les articulations entre frontal-pariétal et temporal-pariétal.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Ossification membraneuse</strong> = calvaria et face.</p>
+                                <p><strong>Fontanelles</strong> = zones non ossifiées chez le nouveau-né qui disparaissent chez l'adulte (donc PAS présentes chez l'adulte).</p>
+                                <p><strong>Articulations vraies :</strong> frontal-pariétal et temporal-pariétal.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Cavités et sinus -->
+                    <div class="qcm-analyse">
+                        <h4>Cavités et sinus de la tête</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q20</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste les connaissances sur les cavités (nasale, orbitaire), les sinus et la mandibule comme seul os mobile.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les caractéristiques des cavités et sinus, notamment l'asymétrie des sinus frontaux.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Cavité nasale</strong> = contient l'organe olfactif (VRAI).</p>
+                                <p><strong>Sinus frontaux</strong> = souvent ASYMÉTRIQUES (donc "toujours symétriques" = FAUX).</p>
+                                <p><strong>Orbite</strong> = 4 parois (supérieure, inférieure, médiale, latérale).</p>
+                                <p><strong>Mandibule</strong> = seul os mobile du massif craniofacial.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Os du crâne généralités -->
+                    <div class="qcm-analyse">
+                        <h4>Os du crâne - Généralités</h4>
+                        <div class="qcm-badge">📋 <strong>2024-2025</strong> Q18</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM mélange plusieurs notions : ossification, localisation des osselets, nature pair/impair des os, et fonctions de l'ethmoïde.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Révise l'ensemble des notions clés du chapitre car ce QCM balaie plusieurs thématiques.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Calvaria</strong> = ossification membraneuse (VRAI).</p>
+                                <p><strong>Osselets</strong> = dans la partie pétreuse du temporal (VRAI).</p>
+                                <p><strong>Vomer</strong> = os IMPAIR (donc "os pair" = FAUX).</p>
+                                <p><strong>Hyoïde</strong> = os IMPAIR (donc "os pair" = FAUX).</p>
+                                <p><strong>Ethmoïde</strong> = participe aux orbites ET aux cavités nasales (VRAI).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion vomer pair/impair</h4>
+                        <p>Le vomer est un os IMPAIR (médian, forme la partie postéro-inférieure du septum nasal). C'est un piège récurrent : il est tombé comme faux dans 3 QCM sur 5.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion hyoïde pair/impair</h4>
+                        <p>L'os hyoïde est également IMPAIR, médian et symétrique. Ne pas confondre avec les os pairs de la face.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>L'ethmoïde ne forme pas la pommette</h4>
+                        <p>L'ethmoïde participe à la formation des ORBITES et des CAVITÉS NASALES. C'est l'os ZYGOMATIQUE qui forme la pommette.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Les fontanelles disparaissent chez l'adulte</h4>
+                        <p>Les fontanelles sont des zones non ossifiées présentes chez le nouveau-né. Elles se ferment progressivement et ne sont PAS présentes chez l'adulte.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Asymétrie des sinus frontaux</h4>
+                        <p>Les sinus frontaux sont souvent ASYMÉTRIQUES (le droit est généralement plus volumineux que le gauche). L'item "toujours symétriques" est donc FAUX.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Articulation palatin-maxillaire pour le palais dur</h4>
+                        <p>L'os palatin s'articule avec le maxillaire et participe à la constitution du palais DUR (pas mou). Le palatin forme la partie postérieure du palais dur.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Sur ce chapitre, le professeur recycle régulièrement certains items d'une année sur l'autre. Récurrence FORTE : le QCM de 2020-2021 a été redonné à l'identique en 2021-2022, et certains pièges (vomer pair, ethmoïde/pommette, ossification membraneuse) reviennent fréquemment, mais les QCM ne sont pas tous identiques.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Ne faites aucune impasse sur ce chapitre. Apprenez les articulations entre tous les os du crâne et de la face visibles sur les schémas. Maîtrisez l'ensemble des caractéristiques de chaque os (pair/impair, fonction, localisation).</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les articulations déjà tombées (zygomatique-frontal, sphénoïde-temporal, palatin-maxillaire, frontal-pariétal, temporal-pariétal), la nature pair/impair des os testés, et les caractéristiques de l'ethmoïde.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Ce chapitre est favorable au Niveau 1 : certains items reviennent régulièrement. Apprenez par cœur tous les QCM tombés. Les pièges classiques se répètent : vomer = IMPAIR, hyoïde = IMPAIR, ethmoïde ≠ pommette, fontanelles absentes chez l'adulte, sinus frontaux asymétriques. Le QCM de 2020-2021 a été redonné strictement identique en 2021-2022 : c'est un point quasi garanti si tu le connais.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
