@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC10/27 - La Cuisse - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC10/27 - Membre pelvien : La Cuisse</h1>
+            <div class="meta">
+                <span>📚 UE8 - Anatomie Générale</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- LOGE VENTRALE - SARTORIUS -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Loge ventrale - Sartorius (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur le membre pelvien, le muscle sartorius :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: A une insertion proximale en avant et en dedans de celle du tenseur du fascia lata.</div>
+                                            <div class="qcm-item">B: Son insertion proximale se situe au niveau de l'épine iliaque antéro-inférieure.</div>
+                                            <div class="qcm-item">C: Est un muscle court.</div>
+                                            <div class="qcm-item">D: Est innervé par le nerf obturateur.</div>
+                                            <div class="qcm-item">E: Fait partie de la patte d'oie.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- LOGE VENTRALE - QUADRICEPS -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Loge ventrale - Quadriceps (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025<br>Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le muscle quadriceps :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Il est innervé par le nerf sciatique.</div>
+                                            <div class="qcm-item">B: C'est un muscle inconstant.</div>
+                                            <div class="qcm-item">C: Le chef vaste médial prend insertion sur la lèvre latérale de la ligne âpre.</div>
+                                            <div class="qcm-item">D: Le muscle sartorius est l'un de ses faisceaux.</div>
+                                            <div class="qcm-item">E: Le chef droit fémoral présente 3 tendons d'insertions proximales.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- LOGE DORSALE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Loge dorsale - Ischio-jambiers (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la loge dorsale de la cuisse:</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: les muscles de cette loge sont innervés par le nerf fémoral.</div>
+                                            <div class="qcm-item">B: Le muscle droit fémoral y est localisé.</div>
+                                            <div class="qcm-item">C: Le muscle Sartorius y est localisé.</div>
+                                            <div class="qcm-item">D: Elle présente 2 muscles.</div>
+                                            <div class="qcm-item">E: Elle comprend le muscle semi-tendineux.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q8</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les muscles de la loge dorsale de la cuisse :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Ils sont innervés par le nerf fémoral.</div>
+                                            <div class="qcm-item">B: Le faisceau réfléchi du tendon terminal du muscle semi-membraneux passe sous le ligament collatéral latéral.</div>
+                                            <div class="qcm-item">C: Ils sont extenseurs du genou.</div>
+                                            <div class="qcm-item">D: Ils ont un tendon commun qui s'insère sur la symphyse pubienne.</div>
+                                            <div class="qcm-item">E: Le faisceau récurrent du tendon terminal du muscle semi-membraneux renforce la coque condylaire latérale.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Format QCM</th>
+                                <th>Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>🔵 Revient souvent (4x/5 ans)</td>
+                                <td>🟢 QCM sur parties ciblées - sans récurrence des items</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>4 QCM</strong> sur ce chapitre (moyenne 0,8/an). Ces QCM se regroupent en <strong>3 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sartorius (loge ventrale)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q7</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Quadriceps (loge ventrale)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q7</td>
+                                </tr>
+                                <tr>
+                                    <td>Loge dorsale (ischio-jambiers)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q6</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q8</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>📌 À noter</strong> : La loge dorsale (ischio-jambiers) est la thématique la plus testée avec 2 QCM sur 5 ans. Le semi-membraneux et ses 3 tendons sont particulièrement ciblés.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item">
+                        <h4>La loge dorsale et les ischio-jambiers</h4>
+                        <p>Connaître les 3 muscles (semi-membraneux, semi-tendineux, biceps fémoral), leur innervation par le nerf sciatique, et leurs actions (extension hanche, flexion genou). Le semi-membraneux avec ses 3 tendons (direct, réfléchi, récurrent) est particulièrement important.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le muscle sartorius</h4>
+                        <p>Retenir son insertion proximale (épine iliaque antéro-supérieure, PAS antéro-inférieure), son innervation (nerf fémoral, PAS obturateur), et sa terminaison à la patte d'oie. Attention : il fait partie de la loge ventrale mais n'appartient PAS au quadriceps.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le muscle quadriceps</h4>
+                        <p>Connaître les 4 chefs (droit fémoral, vaste médial, vaste latéral, vaste intermédiaire), l'innervation par le nerf fémoral, et les insertions. Le droit fémoral avec ses 3 tendons d'insertion proximale est un point clé.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les innervations des 3 loges</h4>
+                        <p>Loge ventrale = nerf fémoral, Loge médiale = nerf obturateur, Loge dorsale = nerf sciatique. C'est un classique des pièges aux QCM.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🔍 Recommandations Niveau 1</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM 1 : Sartorius -->
+                    <div class="qcm-analyse">
+                        <h4>Le muscle sartorius</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q7</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la connaissance précise du sartorius : son insertion proximale, son innervation et sa terminaison. Les pièges portent sur la confusion avec l'épine iliaque antéro-inférieure et le nerf obturateur.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les caractéristiques du sartorius : épine iliaque antéro-SUPÉRIEURE, nerf FÉMORAL, patte d'oie. Retiens aussi qu'il est bi-articulaire et en forme de S.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Sartorius = loge VENTRALE = nerf FÉMORAL</strong></p>
+                                <p>Le nerf obturateur innerve la loge MÉDIALE (adducteurs). Si tu vois "nerf obturateur" pour un muscle de la loge ventrale → c'est faux.</p>
+                                <p>Épine iliaque antéro-SUPÉRIEURE = sartorius. Épine iliaque antéro-INFÉRIEURE = droit fémoral.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Loge dorsale 2022-2023 -->
+                    <div class="qcm-analyse">
+                        <h4>La loge dorsale de la cuisse</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q6</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la localisation des muscles dans les loges et l'innervation. Les pièges consistent à placer des muscles de la loge ventrale (droit fémoral, sartorius) dans la loge dorsale.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends la composition de chaque loge : dorsale = 3 muscles (semi-membraneux, semi-tendineux, biceps fémoral), innervés par le nerf sciatique.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Loge dorsale = ischio-jambiers = nerf SCIATIQUE</strong></p>
+                                <ul>
+                                    <li>Semi-membraneux, semi-tendineux → rotateurs MÉDIAUX du genou</li>
+                                    <li>Biceps fémoral → rotateur LATÉRAL du genou</li>
+                                </ul>
+                                <p>Le nerf fémoral innerve la loge VENTRALE. Si tu vois "nerf fémoral" pour la loge dorsale → c'est faux.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Quadriceps -->
+                    <div class="qcm-analyse">
+                        <h4>Le muscle quadriceps</h4>
+                        <div class="qcm-badge">📋 <strong>2024-2025</strong> Q7</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste les connaissances sur le quadriceps : innervation, composition, insertions des différents chefs. Les pièges portent sur la confusion sartorius/quadriceps et les insertions du vaste médial.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que le quadriceps a 4 chefs (pas le sartorius !), qu'il est innervé par le nerf fémoral, et que le droit fémoral a 3 tendons d'insertion proximale (direct, réfléchi, récurrent).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Quadriceps = 4 chefs (droit fémoral + 3 vastes) = nerf FÉMORAL</strong></p>
+                                <p>Le sartorius est dans la loge ventrale MAIS n'est PAS un chef du quadriceps.</p>
+                                <p>Vaste médial → lèvre MÉDIALE de la ligne âpre (pas latérale).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Loge dorsale 2024-2025 -->
+                    <div class="qcm-analyse">
+                        <h4>Les muscles de la loge dorsale (détails)</h4>
+                        <div class="qcm-badge">📋 <strong>2024-2025</strong> Q8</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM va plus loin dans les détails du semi-membraneux : ses 3 tendons terminaux (direct, réfléchi, récurrent) et leurs terminaisons respectives. C'est un QCM de précision anatomique.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les 3 tendons du semi-membraneux : le tendon réfléchi passe sous le ligament collatéral TIBIAL (pas latéral), le tendon récurrent (= ligament poplité oblique) renforce la coque condylaire LATÉRALE et se termine sur la fabella.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Semi-membraneux = 3 tendons terminaux</strong></p>
+                                <ul>
+                                    <li>Tendon DIRECT → angle supéro-médial du tibia</li>
+                                    <li>Tendon RÉFLÉCHI → passe sous le ligament collatéral TIBIAL</li>
+                                    <li>Tendon RÉCURRENT = LPO → coque condylaire LATÉRALE → fabella</li>
+                                </ul>
+                                <p>Attention : réfléchi = côté TIBIAL (médial), récurrent = côté LATÉRAL.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion sartorius / quadriceps</h4>
+                        <p>Le sartorius fait partie de la loge ventrale de la cuisse mais n'est PAS un chef du quadriceps. Le quadriceps a 4 chefs : droit fémoral, vaste médial, vaste latéral, vaste intermédiaire. Le sartorius est un muscle à part, bi-articulaire et en forme de S.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion épine iliaque antéro-supérieure / antéro-inférieure</h4>
+                        <p>Le sartorius s'insère sur l'épine iliaque antéro-SUPÉRIEURE. Le droit fémoral (chef du quadriceps) s'insère sur l'épine iliaque antéro-INFÉRIEURE. C'est un piège classique.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion des innervations entre loges</h4>
+                        <p>Loge ventrale = nerf FÉMORAL. Loge médiale = nerf OBTURATEUR. Loge dorsale = nerf SCIATIQUE. Le nerf fémoral n'innerve JAMAIS la loge dorsale, et le nerf sciatique n'innerve JAMAIS la loge ventrale.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion vaste médial / vaste latéral</h4>
+                        <p>Le vaste MÉDIAL s'insère sur la lèvre MÉDIALE de la ligne âpre. Le vaste LATÉRAL s'insère sur la face ventrale du grand trochanter. Ne pas inverser médial/latéral dans les items.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion tendon réfléchi / tendon récurrent du semi-membraneux</h4>
+                        <p>Le tendon RÉFLÉCHI passe sous le ligament collatéral TIBIAL (côté médial). Le tendon RÉCURRENT (= ligament poplité oblique) va vers la coque condylaire LATÉRALE et la fabella. Ce sont deux directions opposées.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Nombre de muscles par loge</h4>
+                        <p>La loge dorsale comprend 3 muscles (semi-membraneux, semi-tendineux, biceps fémoral), pas 2. Si un item dit "2 muscles" pour la loge dorsale, c'est faux.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Sur ce chapitre, le professeur teste quasi exclusivement la myologie (les 3 loges et leurs muscles). L'ostéologie du fémur et l'arthrologie ne sont pas tombées ces 5 dernières années. La loge dorsale (ischio-jambiers) est la thématique la plus récurrente avec un focus particulier sur le semi-membraneux et ses 3 tendons.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Maîtrisez l'ensemble du chapitre mais concentrez-vous sur la myologie. Connaissez les insertions précises de chaque muscle, leur innervation et leur action. Le semi-membraneux avec ses 3 tendons terminaux est un point de détail important à ne pas négliger.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Focalisez-vous sur la partie III (Myologie) du cours. Apprenez par cœur les 3 loges, leurs muscles, leurs innervations et leurs actions. L'ostéologie du fémur peut être survolée sur le diaporama.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Récurrence FAIBLE (20%) : seul le piège de l'innervation (nerf fémoral vs sciatique) revient d'une année sur l'autre. Le professeur renouvelle ses items, passant de questions générales sur la composition des loges (2022-2023) à des détails précis sur le semi-membraneux (2024-2025). Apprendre les QCM tombés reste utile mais ne garantit pas de retrouver les mêmes items. Niveau 1 risqué sur ce chapitre.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
