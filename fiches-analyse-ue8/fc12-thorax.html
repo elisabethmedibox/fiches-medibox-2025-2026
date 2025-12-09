@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC12 - Thorax - Fiche de Synthèse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+
+        /* Alerte spéciale */
+        .alerte-special {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .alerte-special h3 {
+            color: #92400e;
+            margin: 0 0 10px 0;
+            border: none;
+            padding: 0;
+        }
+
+        .alerte-special p {
+            color: #92400e;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Synthèse thématique */
+        .synthese-item {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .synthese-item h4 {
+            margin: 0 0 12px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .synthese-item .content-list {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .synthese-item .content-list ul {
+            margin: 10px 0 10px 20px;
+            padding: 0;
+        }
+
+        .synthese-item .content-list li {
+            margin-bottom: 6px;
+        }
+
+        .synthese-item .point-cle {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 12px;
+            color: #166534;
+        }
+
+        .synthese-item .point-cle strong {
+            color: #065f46;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC12 - Thorax</h1>
+            <div class="meta">
+                <span>📚 UE8 - Anatomie Générale</span>
+                <span>🎯 Fiche de Synthèse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="alerte-special">
+                        <h3>⚠️ CHAPITRE JAMAIS INTERROGÉ</h3>
+                        <p>Ce chapitre n'a fait l'objet d'aucun QCM aux sessions 1 de 2020-2021 à 2024-2025 (0 QCM sur 5 ans).</p>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Format QCM</th>
+                                <th>Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>😎 Jamais tombé</td>
+                                <td>⚫ Pas de QCM sur ce cours</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Historique des QCM</h4>
+                        <p class="vue-ensemble-intro">Aucun QCM n'a été posé sur ce chapitre depuis 5 ans. Les notions sur les côtes et le sternum qui apparaissent parfois aux annales relèvent du chapitre FC16 - Appareil respiratoire.</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>20-21</th>
+                                    <th>21-22</th>
+                                    <th>22-23</th>
+                                    <th>23-24</th>
+                                    <th>24-25</th>
+                                </tr>
+                                <tr>
+                                    <td>Ostéologie du thorax</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Arthrologie du thorax</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Myologie du thorax</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : SYNTHÈSE DU COURS -->
+            <details class="main-accordion">
+                <summary>📖 Synthèse du cours - Points clés à retenir</summary>
+                <div class="accordion-content">
+
+                    <div class="synthese-item">
+                        <h4>Partie 1 : Ostéologie du Thorax</h4>
+                        <div class="content-list">
+                            <p><strong>Constitution du thorax :</strong></p>
+                            <ul>
+                                <li>12 anneaux métamériques = vertèbre thoracique + côte + sternèbre</li>
+                                <li><strong>7 vraies côtes</strong> (1 à 7) : reliées au sternum par cartilage propre</li>
+                                <li><strong>3 fausses côtes</strong> (8, 9, 10) : reliées au cartilage de la 7ème côte</li>
+                                <li><strong>2 côtes flottantes/asternales</strong> (11 et 12) : pas de liaison au sternum</li>
+                            </ul>
+                            <p><strong>Caractéristiques :</strong></p>
+                            <ul>
+                                <li>Longueur des côtes augmente jusqu'à la 7ème, puis diminue</li>
+                                <li>10 premières côtes : 4/5 dorsaux osseux, 1/5 ventral cartilagineux</li>
+                                <li>Cartilage costal peut se calcifier avec l'âge (surtout chez l'homme)</li>
+                                <li>Ouverture supérieure étroite (ouverte sur le cou), ouverture inférieure fermée par le diaphragme</li>
+                            </ul>
+                        </div>
+                        <div class="point-cle">
+                            <strong>🎯 Point clé :</strong> Le diaphragme est innervé par le nerf phrénique (C3-C4) = muscle inspirateur PRINCIPAL.
+                        </div>
+                    </div>
+
+                    <div class="synthese-item">
+                        <h4>Partie 2 : Arthrologie du Thorax</h4>
+                        <div class="content-list">
+                            <p><strong>Articulations côtes-vertèbres :</strong></p>
+                            <ul>
+                                <li><strong>Costo-vertébrales</strong> = synoviales planes doubles (tête des côtes avec spondyles)</li>
+                                <li><strong>Costo-transversaires</strong> = synoviales trochoïdes (tubercule costal avec processus transverse)</li>
+                                <li>Particularité : C1, C11, C12 s'articulent avec 1 seul spondyle (pas de ligament intra-articulaire)</li>
+                            </ul>
+                            <p><strong>Articulations des cartilages costaux :</strong></p>
+                            <ul>
+                                <li><strong>Chondro-costales</strong> = synchondrose</li>
+                                <li><strong>Inter-chondrales</strong> = cartilages des fausses côtes entre eux (7, 8, 9, 10)</li>
+                                <li><strong>Chondro-sternales</strong> = synoviales planes (vraies côtes 1 à 7 avec sternum)</li>
+                            </ul>
+                            <p><strong>Articulations particulières :</strong></p>
+                            <ul>
+                                <li>1ère côte avec sternum = synchondrose (fibreuse)</li>
+                                <li>Clavicule avec sternum = sterno-claviculaire (synoviale en selle)</li>
+                                <li>Pièces sternales entre elles = symphyse manubrio-sternale + synchondrose xipho-sternale</li>
+                            </ul>
+                        </div>
+                        <div class="point-cle">
+                            <strong>🎯 Point clé :</strong> La membrane sternale (fusion des ligaments sterno-costaux radiés antérieurs) donne insertion au muscle grand pectoral.
+                        </div>
+                    </div>
+
+                    <div class="synthese-item">
+                        <h4>Partie 3 : Myologie du Thorax</h4>
+                        <div class="content-list">
+                            <p><strong>Muscles intercostaux :</strong></p>
+                            <ul>
+                                <li><strong>Intercostal externe</strong> = élévateur des côtes = INSPIRATEUR accessoire</li>
+                                <li><strong>Intercostaux interne et intime</strong> = abaisseurs des côtes = EXPIRATEURS accessoires</li>
+                            </ul>
+                            <p><strong>Autres muscles :</strong></p>
+                            <ul>
+                                <li><strong>Élévateurs des côtes</strong> : innervés par rameaux dorsaux des nerfs spinaux thoraciques = inspirateurs accessoires</li>
+                                <li><strong>Transverse du thorax</strong> : abaisseur des côtes = expirateur</li>
+                            </ul>
+                        </div>
+                        <div class="point-cle">
+                            <strong>🎯 Moyen mnémotechnique :</strong> Élévation = Inspiration / Abaissement = Expiration
+                        </div>
+                    </div>
+
+                    <div class="synthese-item">
+                        <h4>Muscles pectoraux et dentelé antérieur</h4>
+                        <div class="content-list">
+                            <p><strong>Grand pectoral :</strong></p>
+                            <ul>
+                                <li>Innervation : C5 à T1 via nerfs pectoraux latéral et médial (anse des pectoraux)</li>
+                                <li>Actions : adducteur du bras, rotateur médial, antépulseur, abaisseur de l'épaule, inspirateur accessoire</li>
+                                <li>Pathologies : mastectomie (cancer du sein), syndrome de POLAND (agénésie), rupture du tendon</li>
+                            </ul>
+                            <p><strong>Petit pectoral :</strong></p>
+                            <ul>
+                                <li>Actions : abaisseur du moignon de l'épaule, fixateur de la scapula, inspirateur accessoire</li>
+                            </ul>
+                            <p><strong>Dentelé antérieur (serratus antérieur) :</strong></p>
+                            <ul>
+                                <li>Innervation : nerf thoracique long (C5-C6-C7)</li>
+                                <li>Actions : attire la scapula en avant et en bas, abducteur de l'épaule au-delà de 90°, inspirateur accessoire</li>
+                                <li>Pathologie : paralysie → scapula ailée (décollement du bord spinal)</li>
+                            </ul>
+                        </div>
+                        <div class="point-cle">
+                            <strong>🎯 Point clé :</strong> Paralysie du dentelé antérieur = SCAPULA AILÉE (signe clinique important)
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : THÈMES À RISQUE -->
+            <details class="main-accordion">
+                <summary>🎯 Thèmes à risque pour les annales futures</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item">
+                        <h4>Classification des côtes</h4>
+                        <p>Savoir distinguer vraies côtes, fausses côtes et côtes flottantes. Connaître le nombre exact de chaque type et leur mode d'attache au sternum.</p>
+                        <span class="frequence">Risque potentiel - Notion de base</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Types d'articulations du thorax</h4>
+                        <p>Maîtriser les différents types articulaires : synoviales planes, synchondroses, symphyses. Savoir quelle articulation correspond à quel type.</p>
+                        <span class="frequence">Risque potentiel - Arthrologie</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Muscles inspirateurs vs expirateurs</h4>
+                        <p>Distinguer les muscles élévateurs (inspirateurs) des muscles abaisseurs (expirateurs). Retenir que le diaphragme est l'inspirateur principal.</p>
+                        <span class="frequence">Risque potentiel - Physiologie</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Innervations des muscles du thorax</h4>
+                        <p>Connaître l'innervation du grand pectoral (C5-T1), du dentelé antérieur (nerf thoracique long C5-C6-C7), du diaphragme (nerf phrénique C3-C4).</p>
+                        <span class="frequence">Risque potentiel - Innervation</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Pathologies et signes cliniques</h4>
+                        <p>Retenir : scapula ailée (paralysie du dentelé), syndrome de Poland (agénésie du grand pectoral), luxation sterno-claviculaire (antérieure vs postérieure).</p>
+                        <span class="frequence">Risque potentiel - Pathologie</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion côtes flottantes / fausses côtes</h4>
+                        <p>Les côtes flottantes (11 et 12) sont aussi appelées asternales car elles n'ont aucun lien avec le sternum. Les fausses côtes (8, 9, 10) sont reliées au cartilage de la 7ème côte. Ne pas confondre les deux groupes.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Intercostal externe ≠ intercostaux interne/intime</h4>
+                        <p>L'intercostal externe est INSPIRATEUR (élève les côtes), tandis que les intercostaux interne et intime sont EXPIRATEURS (abaissent les côtes). L'action est opposée selon la couche musculaire.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>1ère articulation costo-sternale = synchondrose</h4>
+                        <p>La 1ère côte s'articule avec le sternum par une synchondrose (fibreuse), alors que les autres côtes (2 à 7) forment des articulations synoviales planes. C'est une exception à retenir.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Nerf thoracique long → dentelé antérieur</h4>
+                        <p>Ne pas confondre avec le nerf phrénique (diaphragme) ou les nerfs pectoraux (pectoraux). Le dentelé antérieur est innervé par le nerf thoracique long issu de C5-C6-C7.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Luxation sterno-claviculaire postérieure = grave</h4>
+                        <p>La luxation postérieure est plus grave que l'antérieure car elle peut léser les gros vaisseaux en arrière (veine cave supérieure, sub-clavière droite, jugulaire interne droite). Scanner avec injection nécessaire.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre n'a jamais été interrogé en 5 ans d'annales, ce qui est remarquable. Cela peut signifier soit que le professeur ne considère pas ce chapitre comme prioritaire, soit qu'une question pourrait apparaître prochainement. Le cours lui-même mentionne qu'il est "court" et permet de faire le lien entre ceinture scapulaire, colonne et sternum.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Lisez ce chapitre pour avoir une vision globale de l'anatomie thoracique et faire le lien avec les autres régions. Concentrez-vous sur les points marqués 🎯 dans le cours. Ce chapitre est particulièrement utile pour les futurs kinésithérapeutes.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Survolez rapidement ce chapitre en retenant les grandes notions : classification des côtes, types d'articulations, muscles inspirateurs vs expirateurs. Ne passez pas trop de temps dessus vu l'absence de QCM aux annales.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Ce chapitre peut être mis de côté dans un premier temps. Aucun QCM n'est tombé en 5 ans. Priorisez les chapitres qui tombent régulièrement. Attention cependant : certaines notions sur les côtes et le sternum peuvent apparaître dans les questions sur l'appareil respiratoire (FC16).</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche de synthèse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
