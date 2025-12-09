@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC15 - Organogenèse de l'appareil respiratoire - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Alerte chapitre jamais tombé */
+        .alerte-jamais-tombe {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .alerte-jamais-tombe h3 {
+            color: #92400e;
+            margin: 0 0 10px 0;
+            border: none;
+            padding: 0;
+        }
+        
+        .alerte-jamais-tombe p {
+            color: #92400e;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        /* Concepts du cours */
+        .concept-item {
+            background: white;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .concept-item h4 {
+            margin: 0 0 8px 0;
+            color: #1e40af;
+        }
+        
+        .concept-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC15 - Organogenèse de l'appareil respiratoire</h1>
+            <div class="meta">
+                <span>📚 UE6 - Embryologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <div class="alerte-jamais-tombe">
+                        <h3>😎 Chapitre jamais interrogé en 5 ans</h3>
+                        <p>Aucun QCM sur l'organogenèse de l'appareil respiratoire n'est apparu dans les annales de 2020-2021 à 2024-2025. Ce chapitre reste cependant au programme et pourrait être interrogé à l'avenir.</p>
+                    </div>
+                    
+                    <h3>📖 Concepts clés du cours</h3>
+                    <p style="color: #4a5568; margin-bottom: 20px;">Voici les notions essentielles du cours qui pourraient faire l'objet de QCM :</p>
+                    
+                    <div class="concept-item">
+                        <h4>1. Formation du diverticule respiratoire (J22)</h4>
+                        <p>Évagination ventrale de l'endoblaste de l'intestin antérieur. Localisation déterminée par un facteur de transcription induisant formation, croissance et différenciation.</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h4>2. Séparation œsophage / bourgeon trachéobronchique</h4>
+                        <p>Le diverticule respiratoire progresse ventro-caudalement. Deux crêtes latérales fusionnent pour former un septum divisant l'intestin antérieur en partie dorsale (œsophage) et ventrale (bourgeon trachéobronchique).</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h4>3. Structures dérivées de l'extrémité crâniale</h4>
+                        <p>L'extrémité crâniale du diverticule respiratoire donne : trachée → larynx → pharynx via glotte.</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h4>4. Bifurcation et bourgeons bronchiques primaires (J26-J28)</h4>
+                        <p>L'extrémité caudale du diverticule respiratoire se divise en bourgeon bronchique primaire gauche et droit.</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h4>5. Bourgeons bronchiques secondaires (SD5)</h4>
+                        <p>Ramification des bourgeons primaires : 3 bourgeons secondaires à droite, 2 à gauche → donnent les lobes pulmonaires (3 poumon droit, 2 poumon gauche).</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h4>6. Bourgeons bronchiques tertiaires (SD6)</h4>
+                        <p>Les bourgeons secondaires se ramifient en bourgeons tertiaires → segments broncho-pulmonaires du poumon mature.</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h4>7. Bronchioles terminales (SD6-SD16)</h4>
+                        <p>Les ramifications se poursuivent pour former l'arbre respiratoire avec les bronchioles terminales.</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h4>8. Vascularisation des bronchioles (SD16-SD18)</h4>
+                        <p>Mise en place de la vascularisation des bronchioles.</p>
+                    </div>
+                    
+                    <div class="concept-item">
+                        <h4>9. Synthèse du surfactant (SD20-SD35)</h4>
+                        <p>Début de synthèse à SD20, mais production faible jusqu'à SD34-SD35. Le surfactant est une substance tensio-active empêchant l'affaissement des alvéoles à l'expiration. Possibilité d'accélérer la maturation pulmonaire en cas de menace d'accouchement prématuré.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>😎 Jamais tombé (0 QCM en 5 ans)</td>
+                                <td>⚫ Pas de QCM sur ce cours</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>0 QCM</strong> sur ce chapitre. L'organogenèse de l'appareil respiratoire n'a jamais été interrogée.</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Diverticule respiratoire</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Bourgeons bronchiques</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Lobes pulmonaires</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Surfactant</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #92400e;">
+                                <strong>⚠️ Attention</strong> : L'absence de QCM sur 5 ans ne garantit pas que ce chapitre ne tombera pas. Le professeur peut décider d'interroger ce cours à tout moment.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    
+                    <p style="color: #4a5568; margin-bottom: 20px;">En l'absence de QCM passés, voici les thématiques à cibler en priorité basées sur le contenu du cours :</p>
+                    
+                    <div class="reco-item">
+                        <h4>La chronologie du développement pulmonaire</h4>
+                        <p>Maîtriser les dates clés : J22 (diverticule respiratoire), J26-J28 (bifurcation), SD5 (bourgeons secondaires), SD6 (tertiaires), SD16-SD18 (vascularisation), SD20-SD35 (surfactant).</p>
+                        <span class="frequence">Concept central du cours</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'asymétrie droite/gauche</h4>
+                        <p>Retenir que le côté droit a 3 bourgeons secondaires (donc 3 lobes) et le côté gauche en a 2 (donc 2 lobes).</p>
+                        <span class="frequence">Donnée chiffrée importante</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le surfactant et la prématurité</h4>
+                        <p>Comprendre le rôle du surfactant (empêcher l'affaissement des alvéoles), sa production tardive (faible jusqu'à SD34-35) et les implications cliniques pour les prématurés.</p>
+                        <span class="frequence">Application clinique</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La séparation œsophage/trachée</h4>
+                        <p>Comprendre le mécanisme des deux crêtes latérales qui fusionnent pour former le septum divisant l'intestin antérieur.</p>
+                        <span class="frequence">Mécanisme embryologique</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <div class="qcm-analyse">
+                        <h4>Stratégie pour un chapitre jamais tombé</h4>
+                        <div class="qcm-badge">📋 <strong>0 QCM</strong> en 5 ans</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">L'organogenèse de l'appareil respiratoire n'a jamais été interrogée aux examens sur les 5 dernières années. C'est un chapitre court (2 pages de contenu) avec peu de notions à retenir.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Si tu manques de temps, ce chapitre peut être mis en priorité basse. Cependant, si tu souhaites le couvrir, concentre-toi sur les données chiffrées (dates, nombre de lobes) et le surfactant qui sont les notions les plus susceptibles d'être testées.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un chapitre de connaissance pure basé sur la chronologie. Il faut mémoriser les dates et les chiffres clés. Aucune logique de raisonnement particulière n'est nécessaire.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-analyse">
+                        <h4>Données chiffrées à connaître en priorité</h4>
+                        <div class="qcm-badge">📋 <strong>Mémorisation</strong> minimale</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Les essentiels :</div>
+                            <div class="cle-raisonnement">
+                                <ul>
+                                    <li><strong>J22</strong> : Formation du diverticule respiratoire</li>
+                                    <li><strong>J26-J28</strong> : Bifurcation en bourgeons bronchiques primaires</li>
+                                    <li><strong>SD5</strong> : Bourgeons secondaires (3 droite, 2 gauche)</li>
+                                    <li><strong>SD6</strong> : Bourgeons tertiaires</li>
+                                    <li><strong>SD20</strong> : Début synthèse surfactant</li>
+                                    <li><strong>SD34-35</strong> : Surfactant en quantité suffisante</li>
+                                    <li><strong>3 lobes</strong> à droite, <strong>2 lobes</strong> à gauche</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion diverticule respiratoire / bourgeon bronchique primaire</h4>
+                        <p>Le diverticule respiratoire apparaît à J22, mais les bourgeons bronchiques primaires n'apparaissent qu'après la bifurcation à J26-J28. Ce sont deux stades différents du développement.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Asymétrie droite/gauche</h4>
+                        <p>Ne pas inverser : 3 bourgeons secondaires à DROITE (3 lobes), 2 à GAUCHE (2 lobes). Le cœur prend de la place à gauche, d'où 1 lobe de moins.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion secondaire/tertiaire</h4>
+                        <p>Les bourgeons secondaires (SD5) donnent les LOBES pulmonaires. Les bourgeons tertiaires (SD6) donnent les SEGMENTS broncho-pulmonaires. Ce n'est pas la même chose.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le surfactant n'est pas mature à SD20</h4>
+                        <p>La synthèse COMMENCE à SD20, mais reste FAIBLE jusqu'à SD34-35. Un prématuré avant SD34 risque une détresse respiratoire par insuffisance en surfactant.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Origine embryologique</h4>
+                        <p>Le diverticule respiratoire est une évagination de l'ENDOBLASTE de l'intestin ANTÉRIEUR, pas de l'intestin postérieur ou du mésoblaste.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Partie dorsale vs ventrale</h4>
+                        <p>Le septum divise l'intestin antérieur en partie DORSALE (œsophage) et VENTRALE (bourgeon trachéobronchique). L'appareil respiratoire est donc ventral, pas dorsal.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre n'a jamais été interrogé en 5 ans. C'est un cours court avec peu de contenu, ce qui peut expliquer son absence des examens. Cependant, il reste au programme et pourrait apparaître à tout moment.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Lisez le cours une fois et retenez les dates clés et l'asymétrie droite/gauche. Ce chapitre est rapide à maîtriser et vous permet de couvrir une éventuelle surprise.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur la chronologie (J22, J26-28, SD5, SD6, SD20, SD34-35) et le nombre de lobes (3 droite, 2 gauche). Ces données chiffrées sont les plus susceptibles d'être testées si le chapitre tombe.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        En l'absence de QCM passés, ce chapitre peut être placé en dernière priorité. Si vous avez le temps, retenez uniquement : J22 = diverticule, 3 lobes droite / 2 lobes gauche, surfactant mature à SD34-35. Mais statistiquement, investir votre temps sur des chapitres qui tombent régulièrement sera plus rentable.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
