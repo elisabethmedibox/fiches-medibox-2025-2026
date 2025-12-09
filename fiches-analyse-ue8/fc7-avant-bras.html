@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC7/24 - L'avant-bras - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC7/24 : Membre Thoracique - L'avant-bras</h1>
+            <p class="subtitle">Fiche d'analyse pour révisions ciblées</p>
+        </div>
+
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+
+                    <!-- Thématique : Ostéologie de l'avant-bras -->
+                    <div class="qcm-thematique">
+                        <h4>🦴 Ostéologie de l'avant-bras (Ulna)</h4>
+                        <div class="table-wrapper">
+                            <table class="qcm-table">
+                                <thead>
+                                    <tr>
+                                        <th>Année</th>
+                                        <th>Question</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2022-2023 Q2</td>
+                                        <td>
+                                            <div class="qcm-enonce">Sur l'ulna :</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A: L'incisure trochléaire comprend la face dorsale de l'olécrane.</div>
+                                                <div class="qcm-item">B: L'ulna est un long.</div>
+                                                <div class="qcm-item">C: Le bord dorsal de l'ulna est palpable.</div>
+                                                <div class="qcm-item">D: Le muscle triceps s'insère sur la face dorsale de l'olécrane.</div>
+                                                <div class="qcm-item">E: L'extenseur ulnaire du carpe s'insère sur la face crâniale de l'olécrane.</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Thématique : Muscles de l'avant-bras - Loge ventrale -->
+                    <div class="qcm-thematique">
+                        <h4>💪 Muscles de l'avant-bras - Loge ventrale</h4>
+                        <div class="table-wrapper">
+                            <table class="qcm-table">
+                                <thead>
+                                    <tr>
+                                        <th>Année</th>
+                                        <th>Question</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2023-2024 Q3</td>
+                                        <td>
+                                            <div class="qcm-enonce">Sur la loge antérieure de l'avant-bras :</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A: Le muscle fléchisseur ulnaire du carpe en fait partie</div>
+                                                <div class="qcm-item">B: Le muscle fléchisseur radial du carpe en fait partie</div>
+                                                <div class="qcm-item">C: Le nerf médian y est situé</div>
+                                                <div class="qcm-item">D: Le nerf ulnaire y est situé</div>
+                                                <div class="qcm-item">E: Le long palmaire en fait partie</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Thématique : Muscles de l'avant-bras - Loge latérale -->
+                    <div class="qcm-thematique">
+                        <h4>💪 Muscles de l'avant-bras - Loge latérale</h4>
+                        <div class="table-wrapper">
+                            <table class="qcm-table">
+                                <thead>
+                                    <tr>
+                                        <th>Année</th>
+                                        <th>Question</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2024-2025 Q4</td>
+                                        <td>
+                                            <div class="qcm-enonce">Sur le muscle brachio-radial :</div>
+                                            <div class="qcm-items">
+                                                <div class="qcm-item">A: Il se termine sur le processus ulnaire.</div>
+                                                <div class="qcm-item">B: Il est innervé par le nerf ulnaire.</div>
+                                                <div class="qcm-item">C: Il est fléchisseur du coude.</div>
+                                                <div class="qcm-item">D: C'est un muscle grêle.</div>
+                                                <div class="qcm-item">E: Son corps musculaire proximal n'est pas palpable.</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Format QCM</th>
+                                <th>Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>⚠️ Tombe rarement (3x en 5 ans)</td>
+                                <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Ce chapitre est relativement peu tombé aux examens. Il n'y a eu aucun QCM sur l'avant-bras en 2020-2021 et 2021-2022. Depuis 2022-2023, le professeur pose 1 QCM par an sur ce chapitre, en variant les thématiques (ostéologie, loge ventrale, loge latérale).</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-2021</th>
+                                        <th>2021-2022</th>
+                                        <th>2022-2023</th>
+                                        <th>2023-2024</th>
+                                        <th>2024-2025</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Ostéologie (Ulna)</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q2</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Loge ventrale</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q3</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Loge latérale (Brachio-radial)</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Loge dorsale</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Articulations radio-ulnaires</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item">
+                        <h4>L'ulna : description générale et structures palpables</h4>
+                        <p>Savoir que l'ulna est un os long, que son bord dorsal est saillant et palpable, et connaître les structures de l'extrémité proximale (olécrane, processus coronoïde, incisure trochléaire).</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La loge ventrale de l'avant-bras : composition et innervation</h4>
+                        <p>Connaître les 8 muscles de la loge ventrale, leur répartition en 4 plans, et savoir que le nerf médian y chemine (mais pas le nerf ulnaire qui passe en arrière de l'épicondyle médial).</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le muscle brachio-radial : action et innervation paradoxale</h4>
+                        <p>Retenir que le brachio-radial est fléchisseur du coude mais innervé par le nerf radial (nerf de l'extension). C'est un muscle volumineux et palpable.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les insertions musculaires sur l'olécrane</h4>
+                        <p>Le triceps s'insère sur la face crâniale de l'olécrane (pas dorsale). L'extenseur ulnaire du carpe s'insère sur le bord dorsal de l'ulna (crête ulnaire), pas sur l'olécrane.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La loge dorsale de l'avant-bras (à anticiper)</h4>
+                        <p>Connaître les 8 muscles de la loge dorsale (épicondyliens latéraux + muscles du pouce et de l'index) et leur innervation par le nerf radial.</p>
+                        <span class="frequence">Jamais tombé - À anticiper</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🔍 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM 1 : Ulna -->
+                    <div class="qcm-analyse">
+                        <h4>Ostéologie de l'ulna</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q2</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste les connaissances de base sur l'ulna : type d'os, structures palpables, et insertions musculaires sur l'olécrane.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les caractéristiques générales de l'ulna et distingue bien les insertions du triceps (face crâniale de l'olécrane) de celles de l'extenseur ulnaire du carpe (crête dorsale de l'ulna).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>L'ulna est un os long</strong> (pas "un long" tout court, l'item B est incomplet mais vrai sur le fond).</p>
+                                <p><strong>Le bord dorsal est saillant et palpable</strong> sur toute sa longueur.</p>
+                                <p><strong>Le triceps s'insère sur la face CRÂNIALE de l'olécrane</strong>, pas dorsale. L'extenseur ulnaire du carpe s'insère sur la crête dorsale de l'ulna, pas sur l'olécrane.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Loge antérieure -->
+                    <div class="qcm-analyse">
+                        <h4>Loge antérieure de l'avant-bras</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q3</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la composition de la loge ventrale de l'avant-bras et le trajet des nerfs. Le piège porte sur le nerf ulnaire qui ne fait PAS partie de la loge antérieure.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens les muscles de la loge ventrale (dont le fléchisseur ulnaire du carpe, le fléchisseur radial du carpe, le long palmaire) et le trajet du nerf médian (dans la loge) vs nerf ulnaire (en arrière de l'épicondyle médial).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Le nerf médian</strong> passe dans la loge antérieure, entre les chefs du rond pronateur ("cavalier de Farabeuf").</p>
+                                <p><strong>Le nerf ulnaire</strong> chemine en ARRIÈRE de l'épicondyle médial, sous l'arcade du fléchisseur ulnaire du carpe. Il n'est donc PAS dans la loge antérieure.</p>
+                                <p>Tous les muscles cités (FUC, FRC, long palmaire) sont bien des muscles de la loge ventrale.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Brachio-radial -->
+                    <div class="qcm-analyse">
+                        <h4>Muscle brachio-radial</h4>
+                        <div class="qcm-badge">📋 <strong>2024-2025</strong> Q4</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste les caractéristiques du brachio-radial : terminaison, innervation, action, morphologie et palpabilité. C'est un muscle "paradoxal" car fléchisseur mais innervé par le nerf radial.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que le brachio-radial se termine sur le processus styloïde du RADIUS (pas ulnaire), est innervé par le nerf RADIAL, est fléchisseur du coude, et forme le relief de l'avant-bras (donc volumineux et palpable).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Terminaison</strong> : processus styloïde du RADIUS (pas ulnaire).</p>
+                                <p><strong>Innervation</strong> : nerf RADIAL (pas ulnaire). C'est le seul fléchisseur innervé par le nerf radial.</p>
+                                <p><strong>Action</strong> : FLÉCHISSEUR du coude (on le teste coude fléchi à 90°).</p>
+                                <p><strong>Morphologie</strong> : muscle VOLUMINEUX qui forme le relief de l'avant-bras, donc palpable.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion face crâniale / face dorsale de l'olécrane</h4>
+                        <p>Le triceps s'insère sur la face CRÂNIALE de l'olécrane, pas sur la face dorsale. Cette confusion est un piège classique dans les QCM sur l'ulna.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Trajet du nerf ulnaire vs nerf médian</h4>
+                        <p>Le nerf médian passe dans la loge antérieure de l'avant-bras. Le nerf ulnaire passe en ARRIÈRE de l'épicondyle médial et n'appartient pas à la loge antérieure. Ne pas confondre leur trajet.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le brachio-radial : fléchisseur innervé par le nerf radial</h4>
+                        <p>Bien que le nerf radial soit le "nerf de l'extension", le brachio-radial (innervé par le nerf radial) est FLÉCHISSEUR du coude. C'est une exception importante à retenir.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Terminaison sur le radius vs l'ulna</h4>
+                        <p>Le brachio-radial se termine sur le processus styloïde du RADIUS. Ne pas confondre avec le processus styloïde de l'ulna. Le nom "brachio-RADIAL" aide à retenir.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Muscles volumineux vs grêles</h4>
+                        <p>Le brachio-radial est un muscle volumineux qui forme le relief de l'avant-bras. Ne pas le confondre avec des muscles grêles comme le long palmaire (inconstant dans 10-20% des cas).</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre est relativement peu tombé aux examens (0 QCM pendant 2 ans, puis 1 QCM/an depuis 2022-2023). Le professeur fait tourner les thématiques : ostéologie, puis loge ventrale, puis loge latérale. La loge dorsale et les articulations radio-ulnaires n'ont jamais été testées.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Ce chapitre est dense avec 20 muscles à connaître. Travaillez par loge et par plan. Maîtrisez particulièrement les insertions, les innervations (nerf médian vs ulnaire vs radial), et les structures palpables. N'oubliez pas les articulations radio-ulnaires et la prono-supination.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur ce qui est déjà tombé : l'ulna (structures palpables, insertions sur l'olécrane), la loge ventrale (composition, trajet du nerf médian), et le brachio-radial. Pour le reste, travaillez uniquement sur le diaporama du professeur.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        <strong>Récurrence NON CALCULABLE</strong> : chaque thématique n'est tombée qu'une seule fois, donc il n'y a pas de récurrence d'items à exploiter. Avec seulement 3 QCM en 5 ans sur des thématiques différentes à chaque fois, ce chapitre est statistiquement peu rentable pour une stratégie annales pure. Apprenez les 3 QCM tombés et leurs pièges (face crâniale vs dorsale olécrane, trajet du nerf ulnaire, brachio-radial paradoxal), mais sans garantie que ces thématiques retombent.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
