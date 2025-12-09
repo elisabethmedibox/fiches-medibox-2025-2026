@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC11 - SD4 - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        .qcm-mixte {
+            background: white;
+            border-left: 4px solid #e2e8f0;
+        }
+        
+        .item-fc11 {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 2px 4px;
+            border-radius: 4px;
+            margin-bottom: 4px;
+        }
+        
+        .item-autre {
+            margin-bottom: 4px;
+        }
+        
+        .tag-fc {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 6px;
+            font-weight: 600;
+        }
+        
+        .tag-fc10 {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .tag-fc13 {
+            background: #f3e8ff;
+            color: #7c3aed;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        .vue-tableau .qcm-mixte-cell {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #92400e;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #f59e0b;
+            font-size: 0.8rem;
+        }
+        
+        .vue-tableau .qcm-image-cell {
+            background: linear-gradient(135deg, #eafaf1 0%, #d1fae5 100%);
+            color: #065f46;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #58d68d;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                font-size: 0.7rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC11 - SD4 (4ème semaine de développement)</h1>
+            <div class="meta">
+                <span>📚 UE6 - Embryologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- DÉLIMITATION -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 La délimitation de l'embryon (4 QCM - dont 2 quasi-identiques)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021<br>Q14<br>📷 Image</td>
+                                    <td>
+                                        <div class="qcm-enonce">La délimitation de l'embryon :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les structures indiquées par les flèches A se sont mises en place grâce à des cellules d'origine épiblastique qui ont pénétré et migré par l'extrémité caudale de la ligne primitive.</div>
+                                            <div class="qcm-item">B: Les structures indiquées par les flèches A apparaissent successivement dans le sens céphalo-caudal.</div>
+                                            <div class="qcm-item">C: BMP-4 et le facteur de croissance fibroblastique (FGF) permettent d'individualiser les structures indiquées par les flèches B et C.</div>
+                                            <div class="qcm-item">D: La flèche B indique la somatopleure intra-embryonnaire.</div>
+                                            <div class="qcm-item">E: La flèche D indique une structure qui s'est mise en place par la pénétration et la migration de cellules d'origine épiblastique dans le secteur crânial du nœud de Hensen.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="qcm-identique">
+                                    <td>2021-2022<br>Q14<br>📷 Image<br><em style="font-size: 0.75rem; color: #065f46;">Seul l'item C diffère</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">La délimitation :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les structures indiquées par les flèches A se sont mises en place grâce à des cellules d'origine épiblastique qui ont pénétré et migré par l'extrémité caudale de la ligne primitive.</div>
+                                            <div class="qcm-item">B: Les structures indiquées par les flèches A apparaissent successivement dans le sens céphalo-caudal.</div>
+                                            <div class="qcm-item">C: Les flèches B et C indiquent des structures qui dérivent du mésoblaste intermédiaire.</div>
+                                            <div class="qcm-item">D: La flèche B indique la somatopleure intra-embryonnaire.</div>
+                                            <div class="qcm-item">E: La flèche D indique une structure qui s'est mise en place par l'invagination et la migration de cellules épiblastiques au niveau du nœud de Hensen.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q13</td>
+                                    <td>
+                                        <div class="qcm-enonce">La délimitation du disque embryonnaire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le mouvement de plicature débute dès le 23ème jour de développement dans tout l'embryon.</div>
+                                            <div class="qcm-item">B: Au moment de la délimitation, la croissance du disque embryonnaire est très faible.</div>
+                                            <div class="qcm-item">C: À l'extrémité céphalique, la plicature longitudinale positionne l'aire cardiaque dans la future région thoracique intercalée entre la membrane pharyngienne et le septum transversum.</div>
+                                            <div class="qcm-item">D: À l'extrémité caudale, la plicature longitudinale amène l'allantoïde et le pédicule embryonnaire en avant au contact de la vésicule vitelline secondaire et contribuent au futur cordon ombilical.</div>
+                                            <div class="qcm-item">E: À la fin de la délimitation, l'embryon délimité par l'amnios baigne dans le cœlome externe.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q16</td>
+                                    <td>
+                                        <div class="qcm-enonce">Lors de la quatrième semaine de développement :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les plicatures de l'embryon sont dues, entre autres, à la croissance de la cavité amniotique.</div>
+                                            <div class="qcm-item">B: La croissance rapide du disque embryonnaire est liée à la croissance du système nerveux et à la croissance rapide des somites.</div>
+                                            <div class="qcm-item">C: La plicature de l'extrémité caudale s'effectue avant celle de l'extrémité céphalique.</div>
+                                            <div class="qcm-item">D: À la fin de la délimitation, l'embryon délimité par l'ectoblaste, baigne dans la cavité amniotique.</div>
+                                            <div class="qcm-item">E: La mise en place du cordon ombilical va permettre au cœlome externe de se développer.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- NEURULATION PRIMAIRE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 La neurulation primaire (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q15</td>
+                                    <td>
+                                        <div class="qcm-enonce">La neurulation primaire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Se met en place au 21ème jour du développement.</div>
+                                            <div class="qcm-item">B: Se déroule dans la région dorsale du disque embryonnaire.</div>
+                                            <div class="qcm-item">C: Est marquée par la disparition du neuroépithélium.</div>
+                                            <div class="qcm-item">D: Permet l'internalisation et l'isolement du tube neural primitif.</div>
+                                            <div class="qcm-item">E: Est terminée lorsque la neurulation secondaire commence.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="qcm-mixte">
+                                    <td>2022-2023<br>Q14<br>📷 Image</td>
+                                    <td>
+                                        <div class="qcm-enonce">La mise en place du tube neural - Schéma d'un embryon au stade feuillet tridermique vue par sa face dorsale :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item item-fc11">A: La structure indiquée par la flèche A correspond à un épaississement localisé de l'ectoblaste en avant du Nœud de Hensen.</div>
+                                            <div class="qcm-item item-fc11">B: La corde dorsale (ou notochorde) induit la différenciation et la mise en place de la structure indiquée par la flèche A.</div>
+                                            <div class="qcm-item item-fc11">C: La structure indiquée par la flèche A permet la mise en place de la plaque neurale.</div>
+                                            <div class="qcm-item item-fc11">D: Vers le 19ème jour de développement, la plaque neurale se déprime en gouttière neurale.</div>
+                                            <div class="qcm-item item-autre">E: Lorsque la gouttière neurale se ferme pour donner le tube neural, la polarité antéro-postérieure du tube neural se met en place. <span class="tag-fc tag-fc13">FC13</span></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- DÉRIVÉS DU MÉSOBLASTE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Les dérivés du mésoblaste / Somites (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-mixte">
+                                    <td>2024-2025<br>Q12<br>📷 Image</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le mésoblaste intra-embryonnaire - Sur le schéma, la lettre A indique le tube neural :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item item-autre">A: Les flèches indiquent une structure qui s'est mise en place à partir de cellules d'origine épiblastique qui ont migré au travers de la partie moyenne de la ligne primitive. <span class="tag-fc tag-fc10">FC10</span></div>
+                                            <div class="qcm-item item-autre">B: BMP-4 et le facteur de croissance fibroblastique permettent d'individualiser les structures indiquées par les flèches et. <span class="tag-fc tag-fc10">FC10</span></div>
+                                            <div class="qcm-item item-fc11">C: À la fin de la semaine de développement, la structure indiquée par les flèches se segmente dans le sens cranio-caudal, en massifs cellulaires distincts et donnent les somites.</div>
+                                            <div class="qcm-item item-fc11">D: Lors de la délimitation les structures indiquées par les flèches E délimiteront une nouvelle cavité dénommée cœlome interne ou cœlome intra-embryonnaire.</div>
+                                            <div class="qcm-item item-fc11">E: L'évolution du mésoblaste commence vers le milieu de la troisième semaine de développement et se poursuit au-delà de la quatrième semaine de développement.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q13</td>
+                                    <td>
+                                        <div class="qcm-enonce">La quatrième semaine de développement :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La gastrulation correspond à un mouvement de plicature du disque embryonnaire.</div>
+                                            <div class="qcm-item">B: Le mouvement de plicatures débute en région céphalique.</div>
+                                            <div class="qcm-item">C: Les mouvements à l'origine de ce phénomène de plicatures sont dus à une différence de croissance entre la stagnation de croissance de la vésicule vitelline secondaire, la croissance rapide du disque embryonnaire et la croissance rapide de la cavité amniotique.</div>
+                                            <div class="qcm-item">D: La croissance rapide du disque embryonnaire est liée à la croissance du système nerveux et à la croissance des somites.</div>
+                                            <div class="qcm-item">E: À la fin des mouvements de plicature, l'embryon délimité par le mésoblaste, baigne dans la cavité choriale.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année (1-2 QCM/an)</td>
+                                <td>📷 QCM sur partie ciblée - avec récurrence des items</td>
+                                <td>⚠️ Lié à FC10 et FC13</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>7 QCM</strong> purs ou partiellement FC11 sur ce chapitre (moyenne 1,4/an). Ces QCM se regroupent en <strong>3 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Délimitation de l'embryon</td>
+                                    <td><span class="qcm-image-cell">📷 Q14</span></td>
+                                    <td><span class="qcm-image-cell">📷 Q14</span></td>
+                                    <td class="qcm-cell">Q13</td>
+                                    <td class="qcm-cell">Q16</td>
+                                    <td class="qcm-cell">Q13</td>
+                                </tr>
+                                <tr>
+                                    <td>Neurulation primaire</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q15</td>
+                                    <td><span class="qcm-mixte-cell">📷 Q14 (mixte)</span></td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Dérivés du mésoblaste / Somites</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td><span class="qcm-mixte-cell">📷 Q12 (mixte)</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM quasi-identiques</strong> : Q14 2020-2021 et Q14 2021-2022 partagent les items A, B, D et E (même énoncé, même schéma)<br>
+                                <strong>📷 Image</strong> : Questions associées à un schéma (souvent le schéma de la coupe transversale avec les dérivés du mésoblaste)
+                            </p>
+                        </div>
+                        
+                        <div style="margin-top: 10px; padding: 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #92400e;">
+                                <strong>⚠️ QCM mixtes</strong> : FC11 est parfois associé à FC10 (SD3) ou FC13 (Organogenèse SNC). Maîtriser les chapitres voisins est essentiel.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>La délimitation de l'embryon : mécanismes et résultats</h4>
+                        <p>Comprendre les plicatures longitudinales et transversales, leur chronologie (début en région céphalique), et les structures repositionnées (aire cardiaque, septum transversum, membrane pharyngienne, allantoïde, cordon ombilical).</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le schéma des dérivés du mésoblaste (coupe transversale)</h4>
+                        <p>Savoir identifier et nommer sur un schéma : mésoblaste para-axial, mésoblaste intermédiaire, mésoblaste latéral, somatopleure intra-embryonnaire, splanchnopleure intra-embryonnaire, cœlome interne. Connaître l'origine épiblastique et le trajet migratoire des cellules.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans (avec image)</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les somites : mise en place et segmentation</h4>
+                        <p>Connaître le gradient de segmentation cranio-caudal du mésoblaste para-axial, le nombre de somites (42-44 paires à la fin de SD5), et le rôle des somites dans l'épaisseur de l'embryon.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La neurulation primaire : étapes et chronologie</h4>
+                        <p>Maîtriser les 3 étapes (plaque neurale → gouttière neurale → tube neural), la chronologie (J19 gouttière, J21 fermeture en région cervicale), et le concept d'internalisation/isolement du tube neural.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les facteurs moléculaires du mésoblaste</h4>
+                        <p>Retenir que BMP-4 et FGF individualisent les différentes portions du mésoblaste (effet ventro-latéralisant).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- QCM 1 : Délimitation avec schéma -->
+                    <div class="qcm-analyse">
+                        <h4>Délimitation de l'embryon (avec schéma)</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q14 | <strong>2021-2022</strong> Q14</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ces deux QCM sont quasi-identiques (même schéma, 4 items sur 5 identiques). Le schéma montre une coupe transversale avec les dérivés du mésoblaste après délimitation.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprendre par cœur le schéma du cours avec les flèches A (somites), B (somatopleure), C (splanchnopleure), D (notochorde). Mémoriser l'origine épiblastique des structures et leur trajet migratoire.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>Les items récurrents testent toujours :</p>
+                                <ul>
+                                    <li><strong>Flèches A (somites)</strong> : origine épiblastique, migration par l'extrémité CAUDALE de la ligne primitive, apparition dans le sens CÉPHALO-CAUDAL</li>
+                                    <li><strong>Flèche B (somatopleure)</strong> : proche de l'amnios</li>
+                                    <li><strong>Flèche D (notochorde)</strong> : migration par le nœud de HENSEN (partie CRÂNIALE)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Délimitation sans schéma -->
+                    <div class="qcm-analyse">
+                        <h4>Délimitation : mécanismes de plicature</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q13 | <strong>2023-2024</strong> Q16 | <strong>2024-2025</strong> Q13</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ces QCM testent la compréhension des mécanismes de plicature : chronologie, causes, et résultat final. Les mêmes notions reviennent avec des formulations différentes.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Mémoriser les causes de la plicature, l'ordre des événements (céphalique AVANT caudale), et ce qui délimite l'embryon à la fin.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Causes de la plicature :</strong> croissance rapide du disque (système nerveux + somites) + croissance cavité amniotique + stagnation vésicule vitelline.</p>
+                                <p><strong>Ordre :</strong> La plicature CÉPHALIQUE s'effectue AVANT la caudale (gradient céphalo-caudal).</p>
+                                <p><strong>Résultat :</strong> À la fin, l'embryon délimité par l'AMNIOS baigne dans la cavité AMNIOTIQUE (pas le cœlome externe, pas l'ectoblaste).</p>
+                                <p><strong>Piège récurrent :</strong> "La gastrulation correspond à un mouvement de plicature" → FAUX (gastrulation = mise en place des feuillets, délimitation = plicature)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Neurulation primaire -->
+                    <div class="qcm-analyse">
+                        <h4>Neurulation primaire</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q15 | <strong>2022-2023</strong> Q14</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ces QCM testent les étapes de la neurulation primaire et sa définition. Les items A, B, D de 2021-2022 sont des connaissances pures.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Mémoriser la définition exacte de la neurulation primaire, les dates clés (J19, J21), et la localisation (région DORSALE).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Définition clé :</strong> La neurulation primaire permet l'INTERNALISATION et l'ISOLEMENT du tube neural primitif.</p>
+                                <p><strong>Dates :</strong> J19 = gouttière neurale, J21 = début fermeture (région cervicale)</p>
+                                <p><strong>Localisation :</strong> Région DORSALE du disque embryonnaire</p>
+                                <p><strong>Attention :</strong> La polarité antéro-postérieure se détermine au stade PLAQUE NEURALE, pas lors de la fermeture du tube (item E de 2022-2023 = piège FC13)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Mésoblaste et somites -->
+                    <div class="qcm-analyse">
+                        <h4>Mésoblaste et somites</h4>
+                        <div class="qcm-badge">📋 <strong>2024-2025</strong> Q12</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM mixte FC10/FC11 teste les connaissances sur la différenciation du mésoblaste et la mise en place des somites et du cœlome.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Maîtriser l'évolution temporelle du mésoblaste (SD3 → SD4+), la segmentation des somites, et la formation du cœlome intra-embryonnaire.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Segmentation des somites :</strong> Sens CRANIO-CAUDAL (fin SD3 → au-delà de SD4)</p>
+                                <p><strong>Cœlome intra-embryonnaire :</strong> Délimité par somatopleure et splanchnopleure</p>
+                                <p><strong>Chronologie :</strong> L'évolution du mésoblaste commence milieu SD3 et se poursuit au-delà de SD4</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion gastrulation / délimitation</h4>
+                        <p>La GASTRULATION (SD3) = mise en place des 3 feuillets par migration cellulaire via la ligne primitive. La DÉLIMITATION (SD4) = plicature de l'embryon pour passer du disque au cylindre. Ce sont deux phénomènes distincts ! L'item "La gastrulation correspond à un mouvement de plicature" est FAUX.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion sur ce qui délimite l'embryon</h4>
+                        <p>À la fin de la délimitation, l'embryon est délimité par l'AMNIOS et baigne dans la cavité AMNIOTIQUE. Attention aux pièges : "délimité par l'ectoblaste" (FAUX - l'ectoblaste est un feuillet, pas une membrane), "baigne dans le cœlome externe" (FAUX - le cœlome externe est la cavité choriale).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion cranio-caudal vs céphalo-caudal</h4>
+                        <p>Les deux termes sont souvent utilisés de façon interchangeable. Mais attention au SENS : les somites apparaissent dans le sens CÉPHALO-CAUDAL (du haut vers le bas), et le mésoblaste para-axial se segmente aussi dans ce sens.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion somatopleure / splanchnopleure</h4>
+                        <p>SOMATO-pleure (du grec "soma" = corps) = proche de la paroi du corps = proche de l'AMNIOS. SPLANCHNO-pleure (du grec "splanchnon" = viscère) = proche des viscères = proche de l'INTESTIN PRIMITIF (ex-vésicule vitelline).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège sur l'origine des structures via la ligne primitive</h4>
+                        <p>Les cellules migrent par DIFFÉRENTES parties de la ligne primitive selon leur destination : partie CAUDALE → mésoblaste latéral (somites), nœud de HENSEN (partie crâniale) → notochorde. Ne pas confondre les trajets !</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion neurulation primaire / secondaire</h4>
+                        <p>La neurulation PRIMAIRE = internalisation du tube neural, région dorsale, SD3-SD4. La neurulation SECONDAIRE = formation de l'éminence caudale, région caudale, SD4-SD7. Les deux ne sont pas simultanées.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Chronologie de l'ordre des plicatures</h4>
+                        <p>La plicature CÉPHALIQUE s'effectue AVANT la caudale (pas l'inverse). C'est cohérent avec le gradient de développement céphalo-caudal.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre présente une FORTE RÉCURRENCE DES ITEMS (environ 60-70%). Les mêmes notions sont retestées régulièrement, notamment sur le schéma de coupe transversale et les mécanismes de délimitation. C'est un chapitre stratégique pour le Niveau 1.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Maîtrisez l'ensemble du cours, y compris les parties moins interrogées comme la vasculogenèse/angiogenèse (VEGF), les dérivés des somites (sclérotome, dermomyotome), et les crêtes neurales. Ces notions pourraient apparaître dans de nouvelles questions. Attention particulière aux liens avec FC10 (gastrulation) et FC13 (organogenèse SNC).</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les 5 thématiques recommandées. Le schéma de la coupe transversale doit être parfaitement maîtrisé (tombage récurrent avec image). Apprenez les formulations exactes du cours sur la délimitation et la neurulation.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        <strong>BONNE NOUVELLE :</strong> La récurrence est forte, les mêmes items reviennent régulièrement. Apprenez par cœur les QCM 2020-2021 et 2021-2022 sur la délimitation (quasi-identiques). Mémorisez les clés de raisonnement : origine épiblastique via ligne primitive caudale pour les somites, via nœud de Hensen pour la notochorde. Retenez que la délimitation ≠ gastrulation, et que l'embryon délimité baigne dans la cavité amniotique (pas le cœlome externe). <strong>ATTENTION :</strong> FC11 est parfois mélangé avec FC10 ou FC13, donc une connaissance minimale de ces chapitres voisins reste nécessaire.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement" style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 15px 20px; margin-top: 20px; font-size: 0.8rem; color: #92400e; line-height: 1.5;">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
