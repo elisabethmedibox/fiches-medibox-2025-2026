@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC18 - Appareil uro-génital - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC18 - Appareil uro-génital</h1>
+            <div class="meta">
+                <span>📚 UE8 - Anatomie générale</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- LE REIN -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Le rein (8 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q16</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur l'appareil uro-génital, le rein :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le rein a une forme de haricot.</div>
+                                            <div class="qcm-item">B: Le rein est un organe rétro-péritonéal situé dans la région lombaire.</div>
+                                            <div class="qcm-item">C: Le parenchyme rénal comprend 2 parties.</div>
+                                            <div class="qcm-item">D: Les reins mesurent environ 12 cm de long et 6 cm de large.</div>
+                                            <div class="qcm-item">E: Le rein et la surrénale sont enveloppés par le fascia rénal.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q16</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur l'appareil uro-génital, le rein :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les reins sont des organes rétro-péritonéaux situés dans la région lombaire.</div>
+                                            <div class="qcm-item">B: Ils ont un rôle mineur dans la régulation de l'homéostasie.</div>
+                                            <div class="qcm-item">C: Ils ont une forme de haricot.</div>
+                                            <div class="qcm-item">D: Ils mesurent environ 12 cm de long.</div>
+                                            <div class="qcm-item">E: Ils présentent 2 faces antérieure et postérieure.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur l'appareil uro-génital, le rein :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: C'est un organe glandulaire pair.</div>
+                                            <div class="qcm-item">B: Le fascia rénal n'existe pas.</div>
+                                            <div class="qcm-item">C: Le rein gauche se situe en avant de la rate.</div>
+                                            <div class="qcm-item">D: Les reins sont situés en avant du colon transverse.</div>
+                                            <div class="qcm-item">E: Ils pèsent environ 500g.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q16</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le rein :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les reins se situent en avant des muscles carrés des lombes.</div>
+                                            <div class="qcm-item">B: Les reins se situent latéralement par rapport à l'aorte et à la veine cave inférieure.</div>
+                                            <div class="qcm-item">C: Les artères rénales naissent de l'aorte en regard de la 3e vertèbre lombaire.</div>
+                                            <div class="qcm-item">D: il pèse environ 250 g chacun.</div>
+                                            <div class="qcm-item">E: La médulla est la partie externe du parenchyme rénal.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q16</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le rein :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les reins sont rétro péritonéaux</div>
+                                            <div class="qcm-item">B: Les reins et les surrénales sont enveloppés par le fascia rénal</div>
+                                            <div class="qcm-item">C: Les artères rénales naissent au-dessus du tronc coeliaque</div>
+                                            <div class="qcm-item">D: La veine cave inférieure est plus proche du rein gauche que du rein droit</div>
+                                            <div class="qcm-item">E: Les artères rénales se divisent au niveau du hile du rein en branches supérieure et inférieure</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q16</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le rein :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les reins présentent un bord médial concave.</div>
+                                            <div class="qcm-item">B: Les reins présentent 2 faces.</div>
+                                            <div class="qcm-item">C: Le rein et la surrénale sont enveloppés par le fascia rénal.</div>
+                                            <div class="qcm-item">D: Au niveau du hile l'artère rénale se divise en 3 branches supérieure, moyenne et inférieure.</div>
+                                            <div class="qcm-item">E: Les reins présentent 10 segments chacun.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- VOIE EXCRÉTRICE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Voie excrétrice : uretère, vessie, urètre (4 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur l'appareil uro-génital, la voie excrétrice :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'uretère présente souvent un trajet sinueux sur les imageries par injection.</div>
+                                            <div class="qcm-item">B: L'uretère est rétro-péritonéal et sous péritonéal.</div>
+                                            <div class="qcm-item">C: C'est un conduit excréteur du rein de 25 cm de long environ.</div>
+                                            <div class="qcm-item">D: La capacité de la vessie est de l'ordre de 200 à 350 cm3.</div>
+                                            <div class="qcm-item">E: La musculeuse de la vessie est le détrusor.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la voie excrétrice :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'uretère mesure environ 25 cm de long.</div>
+                                            <div class="qcm-item">B: La partie abdominale de l'uretère est divisée en 2 segments.</div>
+                                            <div class="qcm-item">C: L'urètre chez la femme mesure 3 à 4 cm de long.</div>
+                                            <div class="qcm-item">D: la vessie est sous péritonéale.</div>
+                                            <div class="qcm-item">E: Les uretères passent en arrière des vaisseaux iliaques externe.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la voie excrétrice :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'uretère ne se contracte pas</div>
+                                            <div class="qcm-item">B: L'urètre a un trajet sinueux lors de son opacification</div>
+                                            <div class="qcm-item">C: Le pelvis du rein se poursuit par l'urètre</div>
+                                            <div class="qcm-item">D: La partie abdominale de l'urètre est divisé en 2 segments</div>
+                                            <div class="qcm-item">E: La vessie a des propriétés contractiles</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- APPAREIL GÉNITAL MASCULIN -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Appareil génital masculin (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025<br>Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'appareil génital masculin :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le testicule secrète les hormones sexuelles.</div>
+                                            <div class="qcm-item">B: Le testicule mesure 4 cm de long environ.</div>
+                                            <div class="qcm-item">C: Le testicule pèse environ 14 à 20 g.</div>
+                                            <div class="qcm-item">D: Le parenchyme testiculaire est enveloppé par l'albuginée et la tunique vasculaire.</div>
+                                            <div class="qcm-item">E: Le conduit déférent présente 5 segments.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Format QCM</th>
+                                <th>Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>10 QCM</strong> sur ce chapitre (moyenne 2/an). Ces QCM se regroupent en <strong>3 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Le rein</td>
+                                    <td class="qcm-cell">Q16</td>
+                                    <td class="qcm-cell">Q16, Q17</td>
+                                    <td class="qcm-cell">Q16</td>
+                                    <td class="qcm-cell">Q16</td>
+                                    <td class="qcm-cell">Q16</td>
+                                </tr>
+                                <tr>
+                                    <td>Voie excrétrice</td>
+                                    <td class="qcm-cell">Q17</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q17</td>
+                                    <td class="qcm-cell">Q17</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Appareil génital masculin</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q17</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item">
+                        <h4>Caractéristiques morphologiques du rein</h4>
+                        <p>Forme de haricot, bord médial concave, 2 faces (antérieure et postérieure), dimensions 12x6x3 cm, poids 140g (homme) / 125g (femme).</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Position anatomique du rein</h4>
+                        <p>Organe rétro-péritonéal situé dans la région lombaire, en arrière du péritoine, latéralement par rapport à l'aorte et à la VCI.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le fascia rénal</h4>
+                        <p>Le rein ET la surrénale sont enveloppés par le fascia rénal. C'est une loge entièrement close.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Vascularisation rénale</h4>
+                        <p>L'artère rénale se divise en branche antérieure et postérieure (et non 3 branches). Le rein a 5 segments vasculaires.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Caractéristiques de l'uretère et de la vessie</h4>
+                        <p>Uretère : 25 cm, trajet sinueux, contractions rythmiques. Vessie : organe sous-péritonéal, capacité 200-350 cm³, muscle détrusor.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Longueur de l'urètre selon le sexe</h4>
+                        <p>Urètre féminin : 3-4 cm. Urètre masculin : 16-18 cm (3 portions : prostatique, membraneuse, spongieuse).</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Appareil génital masculin : testicule et conduit déférent</h4>
+                        <p>Testicule : 4 cm de long, 14-20g, enveloppé par l'albuginée et la tunique vasculaire. Conduit déférent : 5 segments.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🔍 Recommandations Niveau 1</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM 1 : Le rein - morphologie et position -->
+                    <div class="qcm-analyse">
+                        <h4>Le rein : morphologie et position</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q16 | <strong>2021-2022</strong> Q16, Q17 | <strong>2022-2023</strong> Q16 | <strong>2023-2024</strong> Q16 | <strong>2024-2025</strong> Q16</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le rein tombe chaque année avec des questions très similaires sur sa forme, ses dimensions, sa position et ses caractéristiques générales.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les caractéristiques de base du rein : forme de haricot, 12x6x3 cm, 140g/125g, organe rétro-péritonéal, 2 faces, bord médial concave avec le hile.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Les items testent la mémorisation des chiffres et caractéristiques anatomiques. Retiens les pièges : le rein pèse 140g (pas 250g ni 500g), il a 5 segments (pas 10), et il joue un rôle CAPITAL (pas mineur) dans l'homéostasie.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Le fascia rénal -->
+                    <div class="qcm-analyse">
+                        <h4>Le fascia rénal</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q16 | <strong>2021-2022</strong> Q17 | <strong>2023-2024</strong> Q16 | <strong>2024-2025</strong> Q16</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le fascia rénal est testé très régulièrement. La question récurrente : est-ce que le rein ET la surrénale sont enveloppés par le fascia rénal ?</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que le fascia rénal enveloppe à la fois le rein ET la surrénale. C'est une loge entièrement close.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p>La réponse est toujours OUI : le fascia rénal enveloppe le rein ET la surrénale ensemble.</p>
+                                <p><strong>Piège classique :</strong> "Le fascia rénal n'existe pas" → FAUX (il existe bien).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Vascularisation rénale -->
+                    <div class="qcm-analyse">
+                        <h4>Vascularisation rénale</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q16 | <strong>2023-2024</strong> Q16 | <strong>2024-2025</strong> Q16</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Les questions sur la vascularisation testent la division de l'artère rénale et le nombre de segments.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends que l'artère rénale se divise en branche antérieure et postérieure (2 branches, pas 3). Le rein a 5 segments vasculaires.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Division artérielle :</strong> 2 branches (antérieure et postérieure), pas 3.</p>
+                                <p><strong>Segments :</strong> 5 segments (supérieur, inférieur, antéro-supérieur, antéro-inférieur, postérieur), pas 10.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : Voie excrétrice -->
+                    <div class="qcm-analyse">
+                        <h4>Voie excrétrice : uretère et vessie</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q17 | <strong>2022-2023</strong> Q17 | <strong>2023-2024</strong> Q17</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Les questions portent sur les caractéristiques de l'uretère (longueur, trajet, contractions) et de la vessie (position, capacité, muscle).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens : uretère = 25 cm, trajet sinueux, SE CONTRACTE. Vessie = sous-péritonéale, 200-350 cm³, muscle détrusor.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Attention à la confusion uretère/urètre :</strong></p>
+                                <ul>
+                                    <li>UretÈRE = conduit du rein vers la vessie (25 cm, trajet sinueux)</li>
+                                    <li>UrÈTRE = conduit de la vessie vers l'extérieur (3-4 cm femme, 16-18 cm homme)</li>
+                                </ul>
+                                <p><strong>Piège :</strong> "L'uretère ne se contracte pas" → FAUX (il a des contractions rythmiques).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 5 : Appareil génital masculin -->
+                    <div class="qcm-analyse">
+                        <h4>Appareil génital masculin</h4>
+                        <div class="qcm-badge">📋 <strong>2024-2025</strong> Q17</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Nouveau thème apparu en 2024-2025. Teste les caractéristiques du testicule et du conduit déférent.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les caractéristiques du testicule (4 cm, 14-20g, albuginée) et les 5 segments du conduit déférent.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure sur les chiffres et structures anatomiques. Le testicule sécrète les hormones sexuelles ET produit les spermatozoïdes. Le conduit déférent a 5 segments : scrotal, funiculaire, inguinal, pelvien, rétro-vésical.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion uretère / urètre</h4>
+                        <p>L'uretÈRE (avec un È) est le conduit qui va du rein à la vessie (25 cm). L'urÈTRE (avec un È aussi mais différent) est le conduit qui va de la vessie vers l'extérieur (3-4 cm chez la femme, 16-18 cm chez l'homme). Cette confusion est très fréquente dans les QCM.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Poids du rein</h4>
+                        <p>Le rein pèse environ 140g chez l'homme et 125g chez la femme. Les QCM proposent souvent des poids erronés comme 250g ou 500g. Retiens : environ 140g, jamais plus de 150g.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Nombre de segments du rein</h4>
+                        <p>Le rein a 5 segments vasculaires (pas 10). Les 5 segments sont : supérieur, inférieur, antéro-supérieur, antéro-inférieur, postérieur.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Division de l'artère rénale</h4>
+                        <p>L'artère rénale se divise en 2 branches (antérieure et postérieure), pas en 3. La branche antérieure vascularise 4 segments, la postérieure 1 seul.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Rôle du rein dans l'homéostasie</h4>
+                        <p>Le rein joue un rôle CAPITAL (pas mineur) dans la régulation de l'homéostasie. C'est un organe qui épure le sang.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Contractions de l'uretère</h4>
+                        <p>L'uretère SE CONTRACTE (contractions rythmiques qui font progresser l'urine). "L'uretère ne se contracte pas" est FAUX.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Position péritonéale</h4>
+                        <p>Le rein est RÉTRO-péritonéal (en arrière du péritoine). La vessie est SOUS-péritonéale. Ne pas confondre ces deux positions.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Sur ce chapitre, le professeur teste principalement le rein avec des questions sur les mêmes thématiques chaque année (morphologie, fascia rénal, position). Cependant, les items varient : récurrence FAIBLE (16%). Le prof renouvelle régulièrement ses propositions tout en restant sur les mêmes sujets. L'appareil génital masculin est apparu pour la première fois en 2024-2025.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Maîtrisez l'ensemble du cours, y compris l'appareil génital féminin qui n'est pas encore tombé mais pourrait l'être. Soyez attentifs aux rapports anatomiques du rein et à sa vascularisation détaillée.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur le rein (morphologie, fascia, position, vascularisation) et la voie excrétrice. Apprenez les caractéristiques de base de l'appareil génital masculin vu l'apparition de ce thème en 2024-2025.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Récurrence faible (16%) : les thématiques sont prévisibles (rein, voie excrétrice) mais les items changent. Apprenez les notions qui reviennent : forme haricot, rétro-péritonéal, fascia rénal (rein + surrénale), 2 faces, 12 cm, uretère 25 cm. Attention, le travail exclusif sur annales est risqué car le prof introduit de nouveaux items chaque année.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
