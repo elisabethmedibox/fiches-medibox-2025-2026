@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC15 - Veine Cave Inférieure - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+
+        /* Message spécial chapitre peu tombé */
+        .chapitre-rare {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .chapitre-rare h4 {
+            color: #92400e;
+            margin: 0 0 10px 0;
+        }
+
+        .chapitre-rare p {
+            color: #78350f;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC15 - Veine Cave Inférieure</h1>
+            <div class="meta">
+                <span>📚 UE8 - Anatomie Générale</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <div class="chapitre-rare">
+                        <h4>⚠️ Chapitre très peu interrogé</h4>
+                        <p>Ce chapitre n'a fait l'objet que d'<strong>1 seul item en 5 ans</strong> (2024-2025), et cet item était commun avec le chapitre sur l'Aorte Abdominale. Il n'existe pas de QCM dédié exclusivement à la VCI.</p>
+                    </div>
+
+                    <!-- PASSAGE DE LA VCI À TRAVERS LE DIAPHRAGME -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Passage de la VCI à travers le diaphragme (1 item)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025<br>Q11 (item C)</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'appareil circulatoire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Le coeur présente 2 systèmes d'innervation : le système cardionecteur et les nerfs cardiaques.</div>
+                                            <div class="qcm-item">B : L'aorte naît au niveau du hiatus aortique en regard du bord inférieur du corps de T12 (12ème vertèbre thoracique).</div>
+                                            <div class="qcm-item"><strong>C : L'aorte et la veine cave inférieure passent à travers le même hiatus : le hiatus aortique.</strong></div>
+                                            <div class="qcm-item">D : Le tronc coeliaque naît de la face ventrale de l'aorte en regard du bord inférieur de L4 (4ème vertèbre lombaire).</div>
+                                            <div class="qcm-item">E : L'aorte se situe en avant de la bourse omentale.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Format QCM</th>
+                                <th>Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>⚠️ Tombe rarement (1x en 5 ans)</td>
+                                <td>⚫ Pas de QCM dédié à ce cours</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Ce tableau montre la répartition des QCM par thématique et par année. Le chapitre VCI est le moins interrogé de l'UE8.</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-2021</th>
+                                        <th>2021-2022</th>
+                                        <th>2022-2023</th>
+                                        <th>2023-2024</th>
+                                        <th>2024-2025</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Passage diaphragmatique (hiatus)</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q11 (item C)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #92400e;">
+                                <strong>⚠️ Attention</strong> : L'item Q11-C de 2024-2025 est partagé avec le chapitre Aorte Abdominale. Il n'existe pas de QCM 100% dédié à la VCI.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item">
+                        <h4>Le passage de la VCI à travers le diaphragme</h4>
+                        <p>Savoir que la VCI traverse le centre tendineux du diaphragme et NON le hiatus aortique. C'est le seul point testé en 5 ans.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Trajet et dimensions de la VCI</h4>
+                        <p>Connaître l'origine (union des veines iliaques communes en L5), le trajet vertical à droite du rachis, les dimensions (20 cm de long, 22 mm de diamètre) et la dilatation ampoulaire de 30 mm.</p>
+                        <span class="frequence">Non tombé mais marqué 🎯 dans le cours</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les veines rénales</h4>
+                        <p>Retenir les caractéristiques : 8-10 mm de diamètre, VRG plus longue (75 mm) que VRD (25 mm), VRG passe en avant de l'aorte.</p>
+                        <span class="frequence">Non tombé mais marqué 🎯 dans le cours</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La différence d'abouchement des veines testiculaires/ovariques</h4>
+                        <p>La veine testiculaire/ovarique droite s'abouche dans la VCI, alors que la gauche s'abouche dans la veine rénale gauche. Cette différence explique les varicocèles à gauche.</p>
+                        <span class="frequence">Non tombé mais marqué 🎯🎯 dans le cours</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le plexus pampiniforme</h4>
+                        <p>Rôle d'échangeur thermique qui abaisse la température du testicule de 2 à 4°C.</p>
+                        <span class="frequence">Non tombé mais marqué 🎯🎯 dans le cours</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🔍 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <div class="qcm-analyse">
+                        <h4>Passage de la VCI à travers le diaphragme</h4>
+                        <div class="qcm-badge">📋 <strong>2024-2025</strong> Q11 (item C uniquement)</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Cet item teste la distinction entre le passage de l'aorte (hiatus aortique) et celui de la VCI (centre tendineux du diaphragme). L'item affirme à tort qu'ils passent par le même hiatus.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends que l'aorte passe par le hiatus aortique (en arrière, au niveau de T12) tandis que la VCI passe par le centre tendineux du diaphragme (en avant, au niveau de T9). Ce sont deux structures distinctes.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Aorte = HIATUS AORTIQUE</strong> (postérieur, T12)</p>
+                                <p><strong>VCI = CENTRE TENDINEUX</strong> (antérieur, T9)</p>
+                                <p>Moyen mnémotechnique : "La VCI est plus haute (T9) et plus centrale (centre tendineux)"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion hiatus aortique / centre tendineux</h4>
+                        <p>L'aorte traverse le hiatus aortique (en arrière, niveau T12) alors que la VCI traverse le centre tendineux du diaphragme (plus en avant, niveau T9). Ne pas les confondre.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Position de la VCI par rapport à l'aorte</h4>
+                        <p>La VCI est à DROITE du rachis, l'aorte est à GAUCHE. C'est un repère important sur les coupes scanner.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Abouchement des veines testiculaires/ovariques</h4>
+                        <p>Droite → VCI directement. Gauche → veine rénale gauche (et non la VCI). Cette différence explique pourquoi les varicocèles sont plus fréquentes à gauche.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Longueur des veines rénales</h4>
+                        <p>La VRG est 3 fois plus longue que la VRD (75 mm vs 25 mm) car la VCI est située à droite. Ne pas inverser les valeurs.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Adhérence de la VCI au diaphragme</h4>
+                        <p>La VCI adhère au bord du foramen du centre tendineux. Cette fixité rend difficile les interventions chirurgicales en cas de traumatisme hépatique (technique du packing).</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre est le moins interrogé de l'UE8 avec seulement 1 item en 5 ans, et cet item était partagé avec le chapitre Aorte. Le professeur semble considérer ce cours comme secondaire pour le concours, mais l'a tout de même intégré en 2024-2025 après 4 années sans question. Récurrence non calculable (1 seul item, pas de thématique tombée ≥2 fois).</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Ne faites pas d'impasse totale. Le fait qu'un item soit tombé en 2024-2025 suggère que le professeur pourrait continuer à tester ce chapitre. Concentrez-vous sur les points marqués 🎯 dans le cours : trajet, dimensions, veines affluentes et leurs particularités.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Ciblez uniquement les points déjà tombés (distinction hiatus aortique / centre tendineux) et les éléments marqués double cible 🎯🎯 dans le cours (plexus pampiniforme, différence d'abouchement des veines testiculaires). Le reste peut être survolé rapidement.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Avec 1 seul item en 5 ans et aucune récurrence calculable, ce chapitre n'est pas rentable pour une stratégie annales. Apprenez uniquement la distinction aorte/VCI au niveau du diaphragme (seul point tombé). Si vous manquez de temps, ce chapitre peut être sacrifié en dernier recours, mais gardez au moins cette notion en tête car elle pourrait être re-testée.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
