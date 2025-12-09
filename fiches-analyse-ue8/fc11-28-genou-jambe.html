@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC11/28 - Genou et Jambe - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC11/28 - Le genou et la jambe</h1>
+            <div class="meta">
+                <span>📚 UE8 - Anatomie Générale</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- ARTICULATION DU GENOU -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Articulation du genou (3 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur le membre pelvien, le genou :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La patela bipartita est un diagnostic différentiel de fracture.</div>
+                                            <div class="qcm-item">B: L'aire inter-condylaire antérieure donne insertion au ligament croisé postérieur.</div>
+                                            <div class="qcm-item">C: Le muscle semi-membraneux a un tendon récurrent qui se termine sur la fibula.</div>
+                                            <div class="qcm-item">D: La tête de la fibula donne insertion au tendon du muscle biceps.</div>
+                                            <div class="qcm-item">E: La surface patellaire du fémur présente 2 Joues cartilaginouses symétriques.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur le membre pelvien, le genou :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le ménisque médial a la forme d'un O.</div>
+                                            <div class="qcm-item">B: Les coques condylaires renforcent la capsule en arrière.</div>
+                                            <div class="qcm-item">C: Le ligament collatéral fibulaire se termine sur la tubérosité supracondylaire du fémur.</div>
+                                            <div class="qcm-item">D: Le ligament collatéral tibial se termine sur le tibia en arrière de la patte d'oie.</div>
+                                            <div class="qcm-item">E: Les ligaments croisés se terminent sur la fibula.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'articulation du genou :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Il s'agit d'une articulation de type sphéroïde.</div>
+                                            <div class="qcm-item">B: L'aire inter-condylaire antérieure donne insertion au ligament croisé postérieur.</div>
+                                            <div class="qcm-item">C: Les ménisques sont triangulaires à la coupe.</div>
+                                            <div class="qcm-item">D: Le condyle latéral du fémur est plus long que le médial.</div>
+                                            <div class="qcm-item">E: La face postérieure de la patella présente des surfaces cartilagineuses médiale et latérale symétriques.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- OSTÉOLOGIE : TIBIA ET FIBULA -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Ostéologie : Tibia et Fibula (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le tibia:</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Il présente 3 faces.</div>
+                                            <div class="qcm-item">B: La facette de la fibula de l'extrémité proximale du tibia est en situation postéro-médiale.</div>
+                                            <div class="qcm-item">C: La ligne soléaire est situé à la face ventrale du tibia.</div>
+                                            <div class="qcm-item">D: Le muscle tibial antérieur s'insère sur la face médiale du tibia.</div>
+                                            <div class="qcm-item">E: le tractus ilio-tibial s'insère sur la tubérosité tibiale antérieure du tibia</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la fibula :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Il présente une torsion sur son axe</div>
+                                            <div class="qcm-item">B: Elle présente 3 faces</div>
+                                            <div class="qcm-item">C: Le tendon du semi membraneux s'insère sur la tête de la fibula</div>
+                                            <div class="qcm-item">D: Le tendon du semi tendineux s'insère sur la tête de la fibula</div>
+                                            <div class="qcm-item">E: Le nerf tibial chemine au niveau du col de la fibula</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- MYOLOGIE DE LA JAMBE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Myologie de la jambe (3 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le muscle tibial postérieur :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Il est situé dans la loge ventral de la jambe.</div>
+                                            <div class="qcm-item">B: C'est un muscle inconstant et au tendon grêle.</div>
+                                            <div class="qcm-item">C: Est innervé par le nerf fibulaire commun.</div>
+                                            <div class="qcm-item">D: Est innervé par le nerf tibial.</div>
+                                            <div class="qcm-item">E: Fait partie de la patte d'oie.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la loge dorsale de la jambe :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Il y a 2 sous loges</div>
+                                            <div class="qcm-item">B: Le soléaire est un muscle de cette loge</div>
+                                            <div class="qcm-item">C: Le nerf tibial est un nerf de cette loge</div>
+                                            <div class="qcm-item">D: Les muscles gastrocnémiens forment avec le soléaire le triceps sural</div>
+                                            <div class="qcm-item">E: Le muscle tibial postérieur est inverseur du pied</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le muscle long fléchisseur de l'hallux :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Il est situé dans la loge ventrale de jambe</div>
+                                            <div class="qcm-item">B: C'est un muscle inconstant</div>
+                                            <div class="qcm-item">C: Est innervé par le nerf fibulaire commun</div>
+                                            <div class="qcm-item">D: Se termine sur la base du 1er métatarsien</div>
+                                            <div class="qcm-item">E: Il a une insertion sur la fibula</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Format QCM</th>
+                                <th>Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Ce chapitre est testé régulièrement avec une nette augmentation en 2023-2024 (3 QCM). Les thématiques tournent entre l'articulation du genou, l'ostéologie (tibia/fibula) et la myologie de la jambe.</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                                <tr>
+                                    <td>Articulation du genou</td>
+                                    <td class="qcm-cell">Q6</td>
+                                    <td class="qcm-cell">Q6</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q5</td>
+                                </tr>
+                                <tr>
+                                    <td>Ostéologie (Tibia/Fibula)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q5</td>
+                                    <td class="qcm-cell">Q5</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Myologie de la jambe</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q7</td>
+                                    <td class="qcm-cell">Q6, Q7</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item">
+                        <h4>L'articulation du genou : type et caractéristiques</h4>
+                        <p>Connaître le type d'articulation (ginglyme bi-ellipsoïde), les caractéristiques des surfaces articulaires (joues asymétriques de la patella, condyles du tibia), et les insertions des ligaments croisés.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les ménisques du genou</h4>
+                        <p>Savoir distinguer la forme des ménisques : médial en C, latéral en O (plus fermé et plus étendu). Connaître leur aspect triangulaire à la coupe.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les ligaments croisés et collatéraux</h4>
+                        <p>Maîtriser les insertions : LCA sur l'aire inter-condylaire antérieure, LCP sur l'aire postérieure. Ligament collatéral tibial en arrière de la patte d'oie, ligament collatéral fibulaire sur la tête de la fibula.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La loge dorsale de la jambe et le triceps sural</h4>
+                        <p>Connaître les 2 sous-loges (superficielle et profonde), les muscles du triceps sural (soléaire + gastrocnémiens), et l'innervation par le nerf tibial.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les muscles de la loge profonde : tibial postérieur et long fléchisseur de l'hallux</h4>
+                        <p>Retenir leurs insertions (tibial postérieur sur tibia/fibula/membrane interosseuse, long fléchisseur de l'hallux sur la fibula), leur innervation par le nerf tibial, et leurs actions (inverseur pour le tibial postérieur).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Ostéologie du tibia et de la fibula</h4>
+                        <p>Connaître les 3 faces du tibia et de la fibula, la torsion de la fibula sur son axe, la ligne soléaire (face dorsale du tibia), et le passage du nerf fibulaire commun au col de la fibula.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🔍 Recommandations Niveau 1</summary>
+                <div class="accordion-content">
+
+                    <!-- Articulation du genou -->
+                    <div class="qcm-analyse">
+                        <h4>Articulation du genou</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q6 | <strong>2021-2022</strong> Q6 | <strong>2024-2025</strong> Q5</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">C'est la thématique la plus récurrente du chapitre, testée 3 fois en 5 ans. Les questions portent sur le type d'articulation, les ménisques, les ligaments croisés/collatéraux, et les structures péri-articulaires (patella, coques condylaires, patte d'oie).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les caractéristiques clés : type d'articulation (ginglyme bi-ellipsoïde, PAS sphéroïde), forme des ménisques (médial en C, latéral en O), insertions des ligaments croisés (LCA = aire inter-condylaire ANTÉRIEURE), et les structures stabilisatrices (coques condylaires en arrière, patte d'oie en médial).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Pour les ligaments croisés :</strong> retiens "LCA = Antérieur, s'insère en Avant" et "LCP = Postérieur, s'insère en arrière".</p>
+                                <p><strong>Pour les ménisques :</strong> le médial ressemble à un C (comme Médial commence par la même lettre que "moins fermé"), le latéral est en O (plus fermé, plus étendu).</p>
+                                <p><strong>Attention au piège récurrent :</strong> les joues de la patella sont ASYMÉTRIQUES (latérale plus large).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ostéologie tibia/fibula -->
+                    <div class="qcm-analyse">
+                        <h4>Ostéologie du tibia et de la fibula</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q5 | <strong>2023-2024</strong> Q5</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ces 2 QCM testent les caractéristiques osseuses : nombre de faces, situation de la facette fibulaire, ligne soléaire, torsion de la fibula, et les structures qui passent au col de la fibula.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que tibia ET fibula ont 3 faces. La ligne soléaire est à la face DORSALE (postérieure) du tibia, pas ventrale. La facette de la fibula est en situation postéro-LATÉRALE (pas médiale). La fibula présente une torsion sur son axe. Le nerf fibulaire COMMUN (pas tibial) passe au col de la fibula.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Pour la ligne soléaire :</strong> le muscle soléaire est un muscle de la loge DORSALE, donc sa ligne d'insertion est à la face dorsale du tibia.</p>
+                                <p><strong>Pour le nerf au col de la fibula :</strong> c'est le nerf fibulaire COMMUN (logique : il porte le nom de l'os qu'il longe).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Muscle tibial postérieur -->
+                    <div class="qcm-analyse">
+                        <h4>Muscle tibial postérieur</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q7 | <strong>2023-2024</strong> Q6</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce muscle est testé 2 fois, toujours avec des pièges sur sa localisation (loge dorsale, pas ventrale), son innervation (nerf tibial), et ses caractéristiques (muscle constant, inverseur du pied).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens : loge DORSALE profonde (pas ventrale), innervé par le nerf TIBIAL (pas fibulaire), muscle CONSTANT (pas inconstant), action = INVERSEUR et extenseur du pied. Ne fait PAS partie de la patte d'oie (qui est sartorius, gracile, semi-tendineux).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Pour l'innervation :</strong> les muscles de la loge dorsale sont innervés par le nerf tibial. Seuls les muscles des loges ventrale et latérale sont innervés par les nerfs fibulaires.</p>
+                                <p><strong>Pour la patte d'oie :</strong> retiens "SGS" = Sartorius, Gracile, Semi-tendineux. Le tibial postérieur n'en fait pas partie.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Loge dorsale et triceps sural -->
+                    <div class="qcm-analyse">
+                        <h4>Loge dorsale de la jambe et triceps sural</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q6</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste l'organisation de la loge dorsale (2 sous-loges), la composition du triceps sural, et l'innervation.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens : 2 sous-loges (superficielle et profonde), triceps sural = soléaire + 2 gastrocnémiens, innervation par le nerf tibial, tibial postérieur = inverseur du pied.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Apprends la composition du triceps sural (3 muscles = "tri") et retiens que toute la loge dorsale est innervée par le nerf tibial.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Long fléchisseur de l'hallux -->
+                    <div class="qcm-analyse">
+                        <h4>Long fléchisseur de l'hallux</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q7</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la localisation, les insertions et l'innervation du long fléchisseur de l'hallux.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens : loge dorsale PROFONDE (pas ventrale), muscle CONSTANT, s'insère sur la FIBULA, se termine sur la base de P2 de l'hallux (pas sur M1), innervé par le nerf TIBIAL (pas fibulaire commun).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Attention au piège de la terminaison :</strong> le long fléchisseur de l'hallux se termine sur P2 (phalange), pas sur M1 (métatarsien). C'est un FLÉCHISSEUR des phalanges.</p>
+                                <p><strong>Pour l'insertion :</strong> il s'insère sur la fibula (c'est le seul muscle de la loge profonde dorsale à s'insérer principalement sur la fibula).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion type d'articulation du genou</h4>
+                        <p>Le genou est une articulation de type ginglyme bi-ellipsoïde, PAS sphéroïde. L'articulation sphéroïde (ou énarthrose) est celle de la hanche. Ce piège est tombé en 2024-2025.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion aire inter-condylaire antérieure / postérieure</h4>
+                        <p>Le LCA (ligament croisé ANTÉRIEUR) s'insère sur l'aire inter-condylaire ANTÉRIEURE. Le LCP s'insère sur l'aire POSTÉRIEURE. Ne pas inverser ! Ce piège est tombé 2 fois (2020-2021 et 2024-2025).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion forme des ménisques</h4>
+                        <p>Le ménisque MÉDIAL a la forme d'un C (plus ouvert). Le ménisque LATÉRAL a la forme d'un O (plus fermé, plus étendu). Ne pas inverser ! Piège tombé en 2021-2022.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion ligne soléaire : face dorsale, pas ventrale</h4>
+                        <p>La ligne soléaire est située à la face DORSALE (postérieure) du tibia, pas à la face ventrale. Le soléaire est un muscle de la loge dorsale, donc logiquement sa ligne d'insertion est dorsale.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion nerf au col de la fibula</h4>
+                        <p>C'est le nerf fibulaire COMMUN qui passe au col de la fibula (pas le nerf tibial). Après ce passage, il se divise en nerf fibulaire superficiel et profond.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion innervation de la loge dorsale</h4>
+                        <p>Tous les muscles de la loge dorsale sont innervés par le nerf TIBIAL (pas par le nerf fibulaire). Le nerf fibulaire profond innerve la loge ventrale, le fibulaire superficiel innerve la loge latérale.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion patte d'oie</h4>
+                        <p>La patte d'oie = Sartorius + Gracile + Semi-tendineux (SGS). Le tibial postérieur n'en fait PAS partie. Le ligament collatéral tibial s'insère EN ARRIÈRE de la patte d'oie.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Sur ce chapitre, le professeur alterne entre les trois grandes thématiques : articulation du genou, ostéologie (tibia/fibula), et myologie de la jambe. L'articulation du genou reste la plus régulièrement testée. On note une augmentation significative du nombre de QCM en 2023-2024 (3 QCM), ce qui suggère un intérêt croissant pour ce chapitre. Récurrence FAIBLE (12,5%) : le professeur renouvelle largement ses items d'une année sur l'autre, seuls quelques pièges classiques reviennent (insertion LCA, symétrie des joues de la patella, innervation par le nerf tibial).</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Ce chapitre nécessite une maîtrise détaillée de l'anatomie du genou et de la jambe. Portez une attention particulière aux insertions musculaires, aux innervations des différentes loges, et aux caractéristiques précises de l'articulation du genou (type, ménisques, ligaments). Les coupes axiales de la jambe peuvent aussi être testées.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les thèmes déjà tombés : l'articulation du genou (type, ménisques, ligaments croisés et collatéraux), les caractéristiques du tibia et de la fibula (3 faces, ligne soléaire, torsion), et les muscles de la loge dorsale (triceps sural, tibial postérieur, long fléchisseur de l'hallux). Pour les autres parties du cours, apprenez sur le diaporama du professeur.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Attention : récurrence faible (12,5%). Le professeur introduit beaucoup de nouveaux items chaque année. Toutefois, certains pièges reviennent : l'insertion du LCA sur l'aire inter-condylaire antérieure (pas postérieure), l'asymétrie des joues de la patella, l'innervation de la loge dorsale par le nerf tibial (pas fibulaire). Apprenez ces pièges classiques, mais sachez que le Niveau 1 est risqué sur ce chapitre car la prévisibilité est faible.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
