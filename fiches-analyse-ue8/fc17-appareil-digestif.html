@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC17 - Appareil digestif - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC17 - Appareil digestif</h1>
+            <div class="meta">
+                <span>📚 UE8 - Anatomie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- TOPOGRAPHIE ABDOMINALE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Topographie abdominale / Cavité abdominale (5 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q14</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur l'appareil digestif et le péritoine, la cavité abdominale :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Les hypochondre droit et gauche se situent de part et d'autre de l'épigastre.</div>
+                                            <div class="qcm-item">B : La région épigastrique est située au-dessus de la région ombilicale.</div>
+                                            <div class="qcm-item">C : La région ombilicale est située au-dessus de la région pubienne.</div>
+                                            <div class="qcm-item">D : Les flancs droit et gauches se situent de part et d'autre de la région pubienne.</div>
+                                            <div class="qcm-item">E : Les régions inguinales droite et gauche se situent au-dessus des flancs.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="qcm-identique">
+                                    <td>2022-2023 Q14<br>2023-2024 Q14<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Questions portant sur l'appareil digestif et le péritoine :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La rate se situe dans l'hypochondre droit.</div>
+                                            <div class="qcm-item">B: Le foie se situe dans l'hypochondre droit.</div>
+                                            <div class="qcm-item">C: La région ombilicale est située au-dessous de l'épigastre.</div>
+                                            <div class="qcm-item">D: L'estomac est situé dans l'hypochondre droit.</div>
+                                            <div class="qcm-item">E: Les régions inguinales droite et gauche se situent de part et d'autre de la région pubienne.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q14</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la cavité abdominale :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : La région pubienne est plus caudale que la région ombilicale.</div>
+                                            <div class="qcm-item">B : L'hypochondre droit et gauche sont en rapport avec les mêmes organes sous-jacents.</div>
+                                            <div class="qcm-item">C : La région pubienne est en rapport avec la rate.</div>
+                                            <div class="qcm-item">D : Le côlon ascendant se situe dans la région latérale gauche.</div>
+                                            <div class="qcm-item">E : L'œsophage présente 3 parties.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- ESTOMAC ET FOIE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Estomac et foie (3 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q14</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur l'appareil digestif et le péritoine :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Au niveau de la région de l'hypochondre droit on peut palper le foie en cas d'hépatomégalie.</div>
+                                            <div class="qcm-item">B: Le foie est protégé en grande partie par le grill costal.</div>
+                                            <div class="qcm-item">C: Le 1/3 inférieur de l'estomac est situé dans l'épigastre.</div>
+                                            <div class="qcm-item">D: L'estomac commence au cardia et se termine au pylore.</div>
+                                            <div class="qcm-item">E: La vascularisation de l'estomac se fait par les cercles artériels de la petite et de la grande courbure.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q15</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur l'appareil digestif et le péritoine, l'estomac :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : C'est la portion la plus dilatée du tube digestif.</div>
+                                            <div class="qcm-item">B : C'est un organe thoraco-abdominal.</div>
+                                            <div class="qcm-item">C : Debout l'estomac a la forme de cornemuse.</div>
+                                            <div class="qcm-item">D : Il présente 2 bords : la grande et la petite courbure.</div>
+                                            <div class="qcm-item">E : Il est presque entièrement situé à gauche de la ligne médiane.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q15</td>
+                                    <td>
+                                        <div class="qcm-enonce">Concernant l'estomac :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : L'estomac est la portion la plus dilatée du tube digestif.</div>
+                                            <div class="qcm-item">B : L'estomac présente une musculature puissante.</div>
+                                            <div class="qcm-item">C : Les supérieurs de l'estomac sont situés dans l'hypochondre droit.</div>
+                                            <div class="qcm-item">D : L'estomac commence au cardia.</div>
+                                            <div class="qcm-item">E : L'estomac a une capacité de 10 litres en moyenne.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- INTESTIN GRÊLE ET DUODÉNUM -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Intestin grêle et duodénum (3 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q15</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur l'appareil digestif et le péritoine :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La vésicule biliaire présente 3 parties.</div>
+                                            <div class="qcm-item">B: L'appareil excréteur de la bile draine la bile sécrétée par le foie dans le duodénum.</div>
+                                            <div class="qcm-item">C: Le conduit cholédoque s'abouche au niveau de la papille majeure.</div>
+                                            <div class="qcm-item">D: L'intestin grêle mobile c'est le jéjuno-iléon</div>
+                                            <div class="qcm-item">E: Le duodénum est l'intestin grêle fixe.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="qcm-identique">
+                                    <td>2022-2023 Q15<br>2023-2024 Q15<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">Concernant l'intestin grêle :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'intestin grêle présente 2 portions le duodénum fixe et le jéjunum et l'iléum mobile.</div>
+                                            <div class="qcm-item">B: L'estomac fait partie de l'intestin grêle.</div>
+                                            <div class="qcm-item">C: La 3ème portion du duodénum se situe en regard de T 12 ( 12ème vertèbre thoracique ).</div>
+                                            <div class="qcm-item">D: L'ampoule hépato-pancréatique s'abouche dans la 1ère portion du duodénum.</div>
+                                            <div class="qcm-item">E: Le jéjuno-iléon mesure 1.5 mètre de long.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Format QCM</th>
+                                <th>Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année (2 QCM/an)</td>
+                                <td>🟢 QCM sur parties ciblées du cours - sans récurrence des items</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Répartition des QCM par thématique et par année. Les QCM identiques sont signalés en vert.</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-2021</th>
+                                        <th>2021-2022</th>
+                                        <th>2022-2023</th>
+                                        <th>2023-2024</th>
+                                        <th>2024-2025</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Topographie abdominale</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q14</td>
+                                        <td><span class="qcm-identique-cell">🔄 Q14</span></td>
+                                        <td><span class="qcm-identique-cell">🔄 Q14</span></td>
+                                        <td class="qcm-cell">Q14</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Estomac et foie</td>
+                                        <td class="qcm-cell">Q14</td>
+                                        <td class="qcm-cell">Q15</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q15</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Intestin grêle / Duodénum</td>
+                                        <td class="qcm-cell">Q15</td>
+                                        <td class="empty-cell">—</td>
+                                        <td><span class="qcm-identique-cell">🔄 Q15</span></td>
+                                        <td><span class="qcm-identique-cell">🔄 Q15</span></td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item">
+                        <h4>La topographie abdominale et les régions</h4>
+                        <p>Savoir situer les 6 régions abdominales (épigastre, ombilicale, pubienne, hypochondres, flancs/régions latérales, régions inguinales) et connaître les organes sous-jacents à chaque région.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les caractéristiques de l'estomac</h4>
+                        <p>Connaître la localisation (hypochondre gauche + épigastre), la forme (cornemuse), les repères (cardia → pylore), la capacité (1-5L), la vascularisation (cercles artériels), et la position par rapport à la ligne médiane.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'intestin grêle : duodénum fixe vs jéjuno-iléon mobile</h4>
+                        <p>Distinguer le duodénum (fixe, 4 portions, D3 en regard de L4) du jéjuno-iléon (mobile, 6,5-8m). Connaître l'abouchement de l'ampoule hépato-pancréatique dans D2.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le foie et les voies biliaires</h4>
+                        <p>Connaître la localisation du foie (hypochondre droit), la vésicule biliaire (3 parties : fond, corps, col), et le trajet de la bile jusqu'à la papille duodénale majeure.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🔍 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- Topographie abdominale -->
+                    <div class="qcm-analyse">
+                        <h4>Topographie abdominale / Cavité abdominale</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q14 | <strong>2022-2023</strong> Q14 | <strong>2023-2024</strong> Q14 | <strong>2024-2025</strong> Q14</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce thème tombe chaque année depuis 2021-2022. Les QCM 2022-2023 et 2023-2024 sont strictement identiques. Les questions testent la connaissance des régions abdominales et des organes sous-jacents.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends par cœur les 6 régions et leur disposition relative. Retiens que le foie est à droite et la rate à gauche (hypochondres), que l'estomac est à gauche (pas à droite), et les rapports verticaux entre épigastre, ombilicale et pubienne.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Disposition verticale :</strong> Épigastre (haut) → Ombilicale (milieu) → Pubienne (bas/caudale)</p>
+                                <p><strong>Disposition latérale :</strong> Les hypochondres sont de part et d'autre de l'épigastre. Les flancs/régions latérales sont de part et d'autre de l'ombilicale. Les régions inguinales sont de part et d'autre de la pubienne.</p>
+                                <p><strong>Organes clés :</strong> Foie = hypochondre DROIT. Rate = hypochondre GAUCHE. Estomac = hypochondre GAUCHE (pas droit !).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estomac -->
+                    <div class="qcm-analyse">
+                        <h4>Estomac et foie</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q14 | <strong>2021-2022</strong> Q15 | <strong>2024-2025</strong> Q15</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Les QCM sur l'estomac reviennent régulièrement et testent toujours les mêmes notions : portion la plus dilatée, forme de cornemuse, capacité, localisation (gauche de la ligne médiane, 2/3 hypochondre gauche, 1/3 épigastre), repères cardia-pylore, vascularisation.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends les items déjà tombés. Attention au piège de la capacité : c'est 1 à 5 litres, pas 10 litres. L'estomac n'est PAS un organe thoraco-abdominal (il est abdominal).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Retiens : estomac = portion la plus dilatée, forme de cornemuse, cardia → pylore, capacité 1-5L, à GAUCHE de la ligne médiane, vascularisation par cercles artériels (petite et grande courbure).
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Intestin grêle -->
+                    <div class="qcm-analyse">
+                        <h4>Intestin grêle et duodénum</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q15 | <strong>2022-2023</strong> Q15 | <strong>2023-2024</strong> Q15</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Les QCM 2022-2023 et 2023-2024 sont strictement identiques. Les questions testent la distinction duodénum fixe / jéjuno-iléon mobile, les dimensions, et l'abouchement de l'ampoule hépato-pancréatique.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens les pièges : D3 est en regard de L4 (pas T12), l'ampoule s'abouche dans D2 (pas D1), le jéjuno-iléon mesure 6,5-8m (pas 1,5m). L'estomac ne fait PAS partie de l'intestin grêle.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Intestin grêle = duodénum + jéjuno-iléon</strong></p>
+                                <ul>
+                                    <li>Duodénum = FIXE, 4 portions (D1 bulbe, D2 vertical, D3 horizontal en L4, D4)</li>
+                                    <li>Jéjuno-iléon = MOBILE, 6,5 à 8 mètres</li>
+                                    <li>Ampoule hépato-pancréatique → s'abouche dans D2 (pas D1)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion hypochondre droit / gauche</h4>
+                        <p>Le FOIE est dans l'hypochondre DROIT, la RATE est dans l'hypochondre GAUCHE, l'ESTOMAC est dans l'hypochondre GAUCHE. L'estomac n'est PAS à droite. Moyen mnémotechnique : "Le FOIE est à drOItE, la rAte est à gAuche".</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion D3 en T12 vs L4</h4>
+                        <p>La 3ème portion du duodénum (D3, horizontale) est en regard de L4, pas de T12. C'est un piège récurrent dans les annales.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion D1 vs D2 pour l'ampoule hépato-pancréatique</h4>
+                        <p>L'ampoule hépato-pancréatique (conduit cholédoque + conduit pancréatique) s'abouche dans D2 (partie verticale du duodénum), pas dans D1 (le bulbe).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Longueur du jéjuno-iléon</h4>
+                        <p>Le jéjuno-iléon mesure 6,5 à 8 mètres, pas 1,5 mètre. La longueur de 1,5m est celle du côlon. Le tube digestif total fait environ 10 mètres.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Capacité de l'estomac</h4>
+                        <p>L'estomac a une capacité de 1 à 5 litres, pas 10 litres. Un item proposant 10 litres est faux.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>L'estomac n'est pas thoraco-abdominal</h4>
+                        <p>L'estomac est un organe purement abdominal. Il n'est pas "thoraco-abdominal". L'œsophage, lui, traverse bien le thorax.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Sur ce chapitre, le prof recycle beaucoup ses questions. On a 2 paires de QCM strictement identiques sur 5 ans (2022-2023 et 2023-2024). Les thèmes principaux sont la topographie abdominale, l'estomac et l'intestin grêle. Les questions testent des connaissances factuelles précises.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Apprenez l'ensemble du cours, notamment les parties sur le péritoine, les organes rétro-péritonéaux, et la vascularisation de l'appareil digestif qui n'ont pas encore été testées mais pourraient l'être.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les 3 thèmes déjà tombés : topographie abdominale (régions et organes), caractéristiques de l'estomac, et intestin grêle (duodénum fixe / jéjuno-iléon mobile). Pour le reste, survolez les diapos.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Récurrence MOYENNE (≈31%) : certains items reviennent (position relative des régions abdominales, "portion la plus dilatée", "cardia", "duodénum fixe / jéjuno-iléon mobile") mais le prof introduit aussi de nouveaux items à chaque session. Les QCM identiques 2022-2023 et 2023-2024 sont une garantie de points si le prof recycle. Mémorisez les pièges classiques : D3 en L4 (pas T12), ampoule dans D2 (pas D1), estomac à gauche (pas à droite). Niveau 1 possible mais avec risques sur les nouveaux items.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
