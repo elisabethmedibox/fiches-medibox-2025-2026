@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC1 - Le noyau atomique - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .qcm-table th:first-child {
+            width: 130px;
+        }
+
+        .qcm-table th:last-child {
+            width: 150px;
+        }
+
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+
+        /* Références récurrence - colonne 3 */
+        .qcm-ref {
+            font-size: 0.75rem;
+            color: #1a365d;
+            font-style: italic;
+        }
+
+        .qcm-ref ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .qcm-ref li {
+            margin-bottom: 3px;
+        }
+
+        .ref-identique::before {
+            content: "= ";
+        }
+
+        .ref-quasi::before {
+            content: "≈ ";
+        }
+
+        /* Tag FC pour items d'autres cours */
+        .fc-tag {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 5px;
+            color: white;
+        }
+
+        .fc-tag-fc4 { background-color: #8b5cf6; }
+        .fc-tag-fc1 { background-color: #06b6d4; }
+        .fc-tag-fc3 { background-color: #f59e0b; }
+
+        /* Note image */
+        .image-note {
+            display: block;
+            font-size: 0.7rem;
+            color: #6b7280;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px dashed #0284c7;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .tuteur-zone p {
+            margin: 0;
+            color: #0c4a6e;
+        }
+
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px; }
+            .qcm-thematique { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .qcm-table { min-width: 750px; font-size: 0.7rem !important; }
+            .vue-tableau { min-width: 600px; }
+            .diagnostic-table { min-width: 500px; }
+        }
+
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC1 - Le noyau atomique</h1>
+            <div class="meta">
+                <span>UE4 - Rayonnements et Santé</span>
+                <span>Fiche d'Analyse</span>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+
+                    <!-- THÈME 1 : NOMENCLATURE NUCLÉAIRE -->
+                    <div class="qcm-thematique">
+                        <h4>Nomenclature nucléaire (A, Z, N) - 4 ans / 5</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                    <th>Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 2022-2023 Q1 et 2024-2025 Q1 = QUASI-IDENTIQUES -->
+                                <tr>
+                                    <td>2022-2023 Q1</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'atome et le noyau atomique. Le fluor <sup>18</sup>F est un radionucléide utilisé en imagerie nucléaire. 18 correspond à :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Son nombre de masse.</div>
+                                            <div class="qcm-item">B: Son nombre de nucléons.</div>
+                                            <div class="qcm-item">C: Son nombre de protons.</div>
+                                            <div class="qcm-item">D: Son nombre de neutrons.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2024-25 Q1</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2024-2025 Q1</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'atome et le noyau atomique, le fluor <sup>18</sup>F est un radionucléide utilisé en imagerie nucléaire. 18 correspond à :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Son nombre de protons.</div>
+                                            <div class="qcm-item">B: Son nombre de nucléons.</div>
+                                            <div class="qcm-item">C: Son nombre d'électrons.</div>
+                                            <div class="qcm-item">D: Son nombre de neutrons.</div>
+                                            <div class="qcm-item">E: Son nombre de masse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2022-23 Q1</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <!-- 2023-2024 Q1 = VARIANTE avec 99mTc -->
+                                <tr>
+                                    <td>2023-2024 Q1</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'atome et le noyau atomique. Le technétium <sup>99m</sup>Tc est un radionucléide utilisé en médecine nucléaire, qui comprend :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: 99 protons.</div>
+                                            <div class="qcm-item">B: 99 neutrons.</div>
+                                            <div class="qcm-item">C: 99 électrons.</div>
+                                            <div class="qcm-item">D: 99 nucléons.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2022-23 Q1</em></li>
+                                            <li class="ref-quasi"><em>2024-25 Q1</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <!-- 2021-2022 Q1 = QCM PLUS COMPLET (le plus difficile) -->
+                                <tr>
+                                    <td>2021-2022 Q1</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'atome et le noyau atomique :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le nombre de protons détermine le symbole chimique de l'élément.</div>
+                                            <div class="qcm-item">B: A correspond au nombre de neutrons.</div>
+                                            <div class="qcm-item">C: Les isotopes ont le même nombre de nucléons.</div>
+                                            <div class="qcm-item">D: Les électrons les plus périphériques d'un atome sont les moins liés.</div>
+                                            <div class="qcm-item">E: Une masse atomique peut se transformer en un équivalent énergétique.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        -
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>Rappel diagnostic</summary>
+                <div class="accordion-content">
+
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table" style="table-layout: fixed; width: 100%;">
+                            <tr>
+                                <th style="text-align: center; width: 20%;">Fréquence</th>
+                                <th style="text-align: center; width: 20%;">Moyenne QCM/an</th>
+                                <th style="text-align: center; width: 20%;">SRT</th>
+                                <th style="text-align: center; width: 20%;">SRI</th>
+                                <th style="text-align: center; width: 20%;">Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    4 années sur 5<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Non tombé 2020-21</span>
+                                </td>
+                                <td style="text-align: center;">1</td>
+                                <td style="text-align: center;">
+                                    85%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Récurrence Thématique</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    ~65%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Récurrence Items</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    Chapitre introductif<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Base pour FC2 et suivants</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div class="vue-ensemble">
+                        <h4>Vue d'ensemble des QCM par thématique</h4>
+                        <p class="vue-ensemble-intro">Ce chapitre tombe systématiquement avec UN type de QCM : "que représente le chiffre X dans la notation nucléaire ?". Les 3 dernières années (2022-2025) posent quasi exactement la même question avec <sup>18</sup>F ou <sup>99m</sup>Tc.</p>
+
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-21</th>
+                                        <th>2021-22</th>
+                                        <th>2022-23</th>
+                                        <th>2023-24</th>
+                                        <th>2024-25</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Nomenclature (A, Z, N)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q1(AB)</td>
+                                        <td><span class="fc-tag" style="background-color: #8b5cf6;">Q1(ABCD)</span></td>
+                                        <td><span class="fc-tag" style="background-color: #8b5cf6;">Q1(ABCD)</span></td>
+                                        <td><span class="fc-tag" style="background-color: #8b5cf6;">Q1(ABCDE)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Isotopes</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q1(C)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Electrons</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q1(D)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Équivalence masse-énergie</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q1(E)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Énergie de liaison</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Stabilité/instabilité</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>1) La nomenclature nucléaire (A, Z, N)</h4>
+                        <p><strong>Objectif :</strong> Savoir identifier ce que représente chaque nombre dans la notation d'un noyau.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>A = nombre de masse = nombre de nucléons</strong><br>
+                            <span style="color: #64748b;">C'est le chiffre en exposant (haut). A = Z + N. Représente le nombre total de protons + neutrons.</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><strong>Z = numéro atomique = nombre de protons</strong><br>
+                            <span style="color: #64748b;">C'est le chiffre en indice (bas). Détermine l'élément chimique (symbole).</span></p>
+
+                            <p style="margin: 0;"><strong>N = nombre de neutrons = A - Z</strong><br>
+                            <span style="color: #64748b;">Se calcule par différence. N'apparaît pas directement dans la notation.</span></p>
+                        </div>
+                        <span class="frequence">Tombé 4 ans / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>2) Les isotopes</h4>
+                        <p><strong>Objectif :</strong> Distinguer les isotopes des autres notions.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Isotopes = même Z (même élément), différent A</strong><br>
+                            <span style="color: #64748b;">Même nombre de protons, mais nombre de neutrons différent. Exemple : <sup>12</sup>C et <sup>14</sup>C sont isotopes (même élément carbone).</span></p>
+
+                            <p style="margin: 0;"><strong>Attention au piège :</strong><br>
+                            <span style="color: #64748b;">"Les isotopes ont le même nombre de nucléons" est FAUX. Ils ont le même Z, pas le même A.</span></p>
+                        </div>
+                        <span class="frequence">Tombé 1 an / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>3) Les électrons et leur organisation</h4>
+                        <p><strong>Objectif :</strong> Comprendre la liaison des électrons.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Électrons périphériques = moins liés</strong><br>
+                            <span style="color: #64748b;">Plus un électron est loin du noyau, moins il est lié. Les électrons de valence (couche externe) sont les plus faciles à arracher.</span></p>
+
+                            <p style="margin: 0;"><strong>Nombre d'électrons = Z (atome neutre)</strong><br>
+                            <span style="color: #64748b;">Dans un atome neutre, le nombre d'électrons égale le nombre de protons.</span></p>
+                        </div>
+                        <span class="frequence">Tombé 1 an / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>4) Équivalence masse-énergie</h4>
+                        <p><strong>Objectif :</strong> Retenir le principe de la relation d'Einstein.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0;"><strong>E = mc<sup>2</sup></strong><br>
+                            <span style="color: #64748b;">La masse peut être convertie en énergie et vice-versa. 1 u (unité de masse atomique) = 931,5 MeV. Cette relation est à la base de l'énergie nucléaire.</span></p>
+                        </div>
+                        <span class="frequence">Tombé 1 an / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; border-left-color: #94a3b8;">
+                        <h4>Thèmes jamais tombés (à surveiller)</h4>
+                        <div style="margin-top: 15px; color: #64748b;">
+                            <p style="margin: 0 0 8px 0;">- Défaut de masse et énergie de liaison</p>
+                            <p style="margin: 0 0 8px 0;">- Courbe d'Aston</p>
+                            <p style="margin: 0 0 8px 0;">- Stabilité et instabilité nucléaire</p>
+                            <p style="margin: 0;">- Diagramme N-Z (vallée de stabilité)</p>
+                        </div>
+                        <p style="margin-top: 15px; font-style: italic; color: #94a3b8;">Ces thèmes n'ont pas été interrogés sur les 5 dernières années mais font partie du programme.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 8px; color: #166534;">
+                        <strong>Point donné.</strong> La prof pose quasiment toujours la même question depuis 3 ans, et la tendance est à la simplification. En 2021-22, le QCM était plus complexe (plusieurs thèmes). Depuis 2022, c'est toujours : "que représente le chiffre X dans la notation nucléaire ?" Il te suffit de retenir UNE seule règle.
+                    </p>
+
+                    <!-- QCM UNIQUE -->
+                    <div class="qcm-analyse">
+                        <h4>Le QCM qui tombe - "Que représente X dans <sup>X</sup>Y ?"</h4>
+                        <div class="qcm-badge">Tombé en <strong>2022-23</strong>, <strong>2023-24</strong>, <strong>2024-25</strong> - quasi-identique chaque année</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois savoir (30 secondes) :</div>
+                            <div class="cle-raisonnement">
+                                <p style="font-size: 1.1rem;"><strong>Le chiffre en HAUT = A = nombre de masse = nombre de nucléons</strong></p>
+                                <p style="margin-top: 15px;">Retiens ces deux termes (masse et nucléons) car les deux sont proposés en VRAI dans les QCM.</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Comment ça tombe :</div>
+                            <div class="qcm-section-content">
+                                On te donne un radionucléide médical (<sup>18</sup>F ou <sup>99m</sup>Tc) et on te demande ce que représente le chiffre.<br><br>
+                                <strong>Réponses VRAIES :</strong> "nombre de masse" et "nombre de nucléons" (c'est la même chose)<br>
+                                <strong>Réponses FAUSSES :</strong> protons, neutrons, électrons (ce sont des pièges)
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Moyen mnémotechnique :</div>
+                            <div class="connaissance-pure">
+                                <p><strong>A</strong> en haut = <strong>A</strong> = m<strong>A</strong>sse = nucléons</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">⚠️ Les pièges (tous les ans) :</div>
+                            <div class="qcm-section-content" style="color: #dc2626;">
+                                <ul style="margin: 0; padding-left: 20px;">
+                                    <li>"X = nombre de protons" → FAUX</li>
+                                    <li>"X = nombre de neutrons" → FAUX</li>
+                                    <li>"X = nombre d'électrons" → FAUX</li>
+                                </ul>
+                                <p style="margin-top: 10px; color: #64748b;">Peu importe le radionucléide (<sup>18</sup>F, <sup>99m</sup>Tc...), la réponse est toujours la même : le chiffre en haut = nucléons.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 12px; background: #fef3c7; border-radius: 8px; font-size: 0.85rem; color: #92400e;">
+                        ⚠️ Les pièges ci-dessous sont issus des <strong>annales des 5 dernières années</strong>.
+                    </p>
+
+                    <div class="vigilance-item">
+                        <h4>Piège tombé : "A = nombre de neutrons"</h4>
+                        <p><strong>Année :</strong> 2021-22 Q1B<br>
+                        <strong>Réponse :</strong> FAUX. A = nombre de NUCLÉONS (protons + neutrons). Le nombre de neutrons est N = A - Z.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège tombé : "Les isotopes ont le même nombre de nucléons"</h4>
+                        <p><strong>Année :</strong> 2021-22 Q1C<br>
+                        <strong>Réponse :</strong> FAUX. Les isotopes ont le même Z (même élément) mais des A différents. Ils n'ont donc PAS le même nombre de nucléons.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège tombé : "18 = nombre de protons" (pour <sup>18</sup>F)</h4>
+                        <p><strong>Années :</strong> 2022-23 Q1C, 2024-25 Q1A<br>
+                        <strong>Réponse :</strong> FAUX. 18 est le nombre de MASSE (A). Le fluor a Z = 9 protons.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège tombé : "18 = nombre de neutrons" (pour <sup>18</sup>F)</h4>
+                        <p><strong>Années :</strong> 2022-23 Q1D, 2024-25 Q1D<br>
+                        <strong>Réponse :</strong> FAUX. N = A - Z = 18 - 9 = 9 neutrons.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège tombé : "99 = nombre de protons/neutrons/électrons" (pour <sup>99m</sup>Tc)</h4>
+                        <p><strong>Année :</strong> 2023-24 Q1ABC<br>
+                        <strong>Réponse :</strong> FAUX. 99 = nombre de NUCLÉONS. Le technétium a Z = 43, donc 43 protons et 56 neutrons.</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #94a3b8; background: #f8fafc;">
+                        <h4>Piège possible (non tombé mais plausible) :</h4>
+                        <p>Confusion entre "nombre de masse" et "masse atomique". Le nombre de masse (A) est un entier (nombre de nucléons), tandis que la masse atomique est exprimée en u et peut être décimale à cause du défaut de masse.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 18px; font-weight: 600; color: #1a365d; font-size: 1.05rem;">
+                            Ce chapitre est un chapitre introductif, peu interrogé en tant que tel. Mais c'est la base indispensable pour comprendre toute la suite de l'UE4. Voici mon analyse selon ton niveau.
+                        </p>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 3 - tu maitrises le cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Tu dois <strong>maîtriser</strong> l'ensemble du chapitre : structure de l'atome, nomenclature complète (A, Z, N, isotopes, isobares, isotones), les différentes particules (protons, neutrons, électrons), les unités (u, MeV), le défaut de masse, l'énergie de liaison, et la notion de stabilité/instabilité nucléaire.<br><br>
+                                <em style="color: #64748b;">À noter :</em> L'énergie de liaison, le défaut de masse et la stabilité nucléaire n'ont pas été interrogés ces 5 dernières années - mais ils font partie du programme et sont essentiels pour comprendre pourquoi certains noyaux sont radioactifs.
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #d97706;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #d97706;">Niveau 2 - tu cibles les parties du cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Concentre-toi sur la <strong>nomenclature nucléaire</strong> (A, Z, N) qui est le seul thème véritablement récurrent :<br>
+                                • Savoir que A = nombre de masse = nucléons (en haut)<br>
+                                • Savoir que Z = numéro atomique = protons (en bas)<br>
+                                • Savoir calculer N = A - Z<br>
+                                • Connaître la définition des isotopes (même Z, différent A)<br><br>
+                                Tu peux survoler rapidement les notions d'énergie de liaison et de stabilité nucléaire.
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 1 - tu travailles quasi exclusivement sur les annales</p>
+                            <p style="margin: 0 0 12px 0; padding: 10px; background: #dcfce7; border-radius: 6px; color: #166534;">
+                                <strong>Point donné.</strong> La prof pose la même question depuis 3 ans et la tendance est à la simplification. En 2021-22, le QCM était plus complexe ; depuis 2022, c'est toujours "que représente X dans <sup>X</sup>Y ?". Si la prof reste dans le même mood, tu gagnes 1 point en 30 secondes.
+                            </p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                <strong>Concrètement :</strong> retiens juste "A en haut = nombre de masse = nucléons" et tu réponds correctement. Les pièges sont toujours les mêmes (protons, neutrons, électrons = faux).<br><br>
+                                <strong>Pour aller plus loin :</strong> ce chapitre reste la base de l'UE4. Si tu as 30 min, comprends aussi que Z = protons et que les isotopes ont le même Z mais un A différent - ça t'aidera pour FC2 et la suite.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </details>
+
+        </div>
+
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours.
+        </div>
+    </div>
+</body>
+</html>
