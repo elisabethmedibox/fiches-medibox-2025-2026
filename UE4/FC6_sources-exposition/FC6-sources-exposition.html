@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC6 - Sources d'exposition et risques associés | UE4</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f4f8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .stats-banner {
+            display: flex;
+            justify-content: space-around;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 10px 15px;
+        }
+
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .accordion {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            opacity: 0.95;
+        }
+
+        .accordion-header h2 {
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .accordion-header .icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion.active .accordion-header .icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion.active .accordion-content {
+            max-height: 5000px;
+        }
+
+        .accordion-inner {
+            padding: 20px;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #e0e7ff 0%, #f0e6ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .key-point-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .formula-box {
+            background: #1a1a2e;
+            color: #00ff88;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .mnemonic-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .mnemonic-title {
+            color: #e65100;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border: 2px solid #f44336;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .warning-title {
+            color: #c62828;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qcm-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .qcm-title {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qcm-question {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .qcm-answer {
+            color: #1b5e20;
+            font-weight: 500;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #4caf50;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #fff59d 0%, #fff176 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .important-value {
+            color: #d32f2f;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        ul, ol {
+            margin: 10px 0 10px 20px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .sub-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .sub-section-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .value-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-top: 4px solid #667eea;
+        }
+
+        .value-card .value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .value-card .label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .value-card.natural {
+            border-top-color: #4caf50;
+        }
+
+        .value-card.natural .value {
+            color: #4caf50;
+        }
+
+        .value-card.artificial {
+            border-top-color: #ff9800;
+        }
+
+        .value-card.artificial .value {
+            color: #ff9800;
+        }
+
+        .value-card.radon {
+            border-top-color: #f44336;
+        }
+
+        .value-card.radon .value {
+            color: #f44336;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.4em;
+            }
+
+            .accordion-header h2 {
+                font-size: 1em;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FC6 - Sources d'exposition et risques associés</h1>
+            <div class="subtitle">UE4 : Rayonnements et Santé</div>
+        </header>
+
+        <div class="stats-banner">
+            <div class="stat-item">
+                <div class="stat-value">4</div>
+                <div class="stat-label">QCMs (5 ans)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">80%</div>
+                <div class="stat-label">SRT (Score Récurrence Thématique)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">75%</div>
+                <div class="stat-label">SRI (Score Récurrence Items)</div>
+            </div>
+        </div>
+
+        <!-- ACCORDION 1: Valeurs clés d'exposition -->
+        <div class="accordion active">
+            <div class="accordion-header">
+                <h2><span>📊</span> Valeurs clés d'exposition en France</h2>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <div class="warning-box">
+                        <div class="warning-title">⚠️ Valeurs tombées CHAQUE ANNÉE au concours</div>
+                        <p>Ces valeurs sont systématiquement testées. Attention aux pièges sur les proportions !</p>
+                    </div>
+
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value">4,5 mSv/an</div>
+                            <div class="label">Dose totale moyenne</div>
+                        </div>
+                        <div class="value-card natural">
+                            <div class="value">2,9 mSv/an</div>
+                            <div class="label">Origine naturelle (~2/3)</div>
+                        </div>
+                        <div class="value-card artificial">
+                            <div class="value">1,6 mSv/an</div>
+                            <div class="label">Origine artificielle (~1/3)</div>
+                        </div>
+                        <div class="value-card radon">
+                            <div class="value">1,5 mSv/an</div>
+                            <div class="label">Radon (1/3 dose totale)</div>
+                        </div>
+                    </div>
+
+                    <div class="key-point">
+                        <div class="key-point-title">🎯 Points essentiels</div>
+                        <ul>
+                            <li><span class="highlight">~2/3 de l'exposition = radioactivité naturelle</span></li>
+                            <li><span class="highlight">~1/3 de l'exposition = radioactivité artificielle</span> (essentiellement médicale : 35%)</li>
+                            <li>Le <span class="important-value">radon = 1/3 de la dose totale</span> (source naturelle la plus importante)</li>
+                            <li>Ces valeurs excluent l'activité professionnelle et la radiothérapie</li>
+                        </ul>
+                    </div>
+
+                    <div class="mnemonic-box">
+                        <div class="mnemonic-title">💡 Moyen mnémotechnique : "4,5 = 3 + 1,5"</div>
+                        <ul>
+                            <li><strong>4,5</strong> mSv/an = dose totale</li>
+                            <li><strong>~3</strong> mSv/an = naturelle (2,9 exactement)</li>
+                            <li><strong>1,5</strong> mSv/an = radon (c'est 1/3 du total)</li>
+                            <li><strong>~1,5</strong> mSv/an = artificielle (1,6 exactement)</li>
+                        </ul>
+                    </div>
+
+                    <div class="warning-box">
+                        <div class="warning-title">⚠️ Piège fréquent au concours</div>
+                        <p>La prof dit que "le radon constitue 1/3 de l'exposition naturelle" mais le schéma montre clairement que c'est <strong>1/3 de l'exposition TOTALE</strong>. En 2024-2025, cette ambiguïté a posé problème. Retenez : <span class="highlight">Radon = 1/3 de la dose TOTALE = 1,5 mSv/an</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCORDION 2: Exposition naturelle -->
+        <div class="accordion">
+            <div class="accordion-header">
+                <h2><span>🌍</span> Exposition à la radioactivité naturelle</h2>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <div class="key-point">
+                        <div class="key-point-title">🎯 L'essentiel</div>
+                        <p>Environ <span class="highlight">20 radionucléides naturels</span> constituent l'essentiel de la radioactivité de l'environnement.</p>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">1. Rayonnements cosmiques (~7% de la dose totale = 0,3 mSv/an)</div>
+
+                        <table class="comparison-table">
+                            <tr>
+                                <th>Type</th>
+                                <th>Caractéristiques</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Primaires</strong></td>
+                                <td>Origine galactique : <span class="highlight">80% protons + 12% particules α</span><br>Énergie max : 10<sup>20</sup> eV</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Secondaires</strong></td>
+                                <td>Radionucléides cosmogéniques créés dans la haute atmosphère<br>Tritium (³H), Carbone 14, Béryllium 7, Sodium 22</td>
+                            </tr>
+                        </table>
+
+                        <div class="warning-box">
+                            <div class="warning-title">⚠️ Effet de l'altitude (tombé au concours)</div>
+                            <p>Les rayonnements cosmiques sont <span class="important-value">multipliés par 2 tous les 500 mètres</span> d'altitude.</p>
+                            <ul>
+                                <li>Montagnard à 1000m : dose +20% vs niveau de la mer</li>
+                                <li>Avion en croisière : 150 fois plus qu'au niveau de la mer</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">2. Rayonnements telluriques (~14% de la dose hors radon = 0,6 mSv/an)</div>
+
+                        <div class="key-point">
+                            <div class="key-point-title">🎯 Radionucléides primordiaux</div>
+                            <ul>
+                                <li><strong>Uranium 238</strong> : T<sub>1/2</sub> = 4,5 milliards d'années</li>
+                                <li><strong>Thorium 232</strong> : T<sub>1/2</sub> = 14 milliards d'années</li>
+                                <li><strong>Potassium 40</strong> : T<sub>1/2</sub> = 1,25 milliards d'années</li>
+                            </ul>
+                        </div>
+
+                        <div class="mnemonic-box">
+                            <div class="mnemonic-title">💡 Radioactivité des roches (du - au + radioactif)</div>
+                            <p><strong>Argile → Granit → Pechblende</strong></p>
+                            <ul>
+                                <li>Argile : ~3 g U/tonne = 1000 Bq/kg</li>
+                                <li>Granit : ~20 g U/tonne = 3000 Bq/kg</li>
+                                <li>Pechblende : ~1 kg U/tonne = 10 000 Bq/kg</li>
+                            </ul>
+                        </div>
+
+                        <div class="key-point">
+                            <div class="key-point-title">🎯 Variations géographiques</div>
+                            <p>L'exposition tellurique est <span class="highlight">plus importante dans les régions granitiques</span>.</p>
+                            <ul>
+                                <li>France : ~0,6 mSv/an (0,14 à 1,7)</li>
+                                <li>Brésil : ~10 mSv/an</li>
+                                <li>Inde : ~70 mSv/an (thorium)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">3. Le Radon (1/3 de la dose totale = 1,5 mSv/an)</div>
+
+                        <div class="warning-box">
+                            <div class="warning-title">⚠️ Source naturelle la plus importante !</div>
+                            <p>Le <strong>Radon 222</strong> est la cause la plus importante d'exposition naturelle.</p>
+                        </div>
+
+                        <div class="key-point">
+                            <div class="key-point-title">🎯 Caractéristiques du Radon 222</div>
+                            <ul>
+                                <li><strong>Émetteur α</strong> sous forme gazeuse</li>
+                                <li>Période : <span class="highlight">3,82 jours</span></li>
+                                <li>Provient du Radium 226 (chaîne de l'U-238)</li>
+                                <li>Origine : sous-sols <span class="highlight">granitiques et volcaniques</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="warning-box">
+                            <div class="warning-title">⚠️ Mode de contamination (TRÈS IMPORTANT)</div>
+                            <p>Contamination <span class="important-value">INTERNE par INHALATION</span></p>
+                            <p>→ Risque <strong>cancérigène pulmonaire</strong></p>
+                            <p>→ Dépistage <strong>obligatoire</strong> dans les lieux publics à séjour prolongé</p>
+                        </div>
+
+                        <div class="mnemonic-box">
+                            <div class="mnemonic-title">💡 Trois isotopes naturels du radon</div>
+                            <p>Radon 219, Radon 220, <strong>Radon 222</strong> (le plus présent dans l'atmosphère)</p>
+                        </div>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">4. Eaux et aliments (~12% de la dose = 0,5 mSv/an)</div>
+
+                        <div class="key-point">
+                            <div class="key-point-title">🎯 Mode de contamination</div>
+                            <p>Contamination <span class="highlight">INTERNE par INGESTION</span></p>
+                        </div>
+
+                        <ul>
+                            <li>Eaux destinées à la consommation : &lt; 0,1 Bq/L (activité α)</li>
+                            <li>Dose indicative (DTI) : &lt; 0,1 mSv/an</li>
+                            <li>Thé : 740 Bq/kg (le plus radioactif des aliments courants)</li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">5. Radioactivité du corps humain</div>
+
+                        <div class="formula-box">
+                            Radioactivité corps humain ≈ 120 Bq/kg → ~8400 Bq pour 70 kg
+                        </div>
+
+                        <ul>
+                            <li><strong>Potassium 40</strong> : 4500 Bq (le plus présent)</li>
+                            <li><strong>Carbone 14</strong> : 3700 Bq</li>
+                            <li><strong>Radium 226</strong> : 13 Bq</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCORDION 3: Exposition artificielle -->
+        <div class="accordion">
+            <div class="accordion-header">
+                <h2><span>⚗️</span> Exposition à la radioactivité artificielle</h2>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <div class="key-point">
+                        <div class="key-point-title">🎯 L'essentiel</div>
+                        <p><span class="highlight">1/3 de la dose totale = 1,6 mSv/an</span></p>
+                        <p><strong>Essentiellement d'origine médicale</strong> (35% de la dose totale)</p>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">Répartition de l'exposition artificielle</div>
+
+                        <table class="comparison-table">
+                            <tr>
+                                <th>Source</th>
+                                <th>Part</th>
+                                <th>Mode d'exposition</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Activités médicales</strong></td>
+                                <td><span class="important-value">35%</span></td>
+                                <td>Variable selon l'examen</td>
+                            </tr>
+                            <tr>
+                                <td>Installations nucléaires</td>
+                                <td>&lt; 1%</td>
+                                <td>Externe</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">Exposition médicale (0 à 15 mSv, moyenne 1,6 mSv/an)</div>
+
+                        <table class="comparison-table">
+                            <tr>
+                                <th>Type d'examen</th>
+                                <th>Dose</th>
+                                <th>Mode d'exposition</th>
+                            </tr>
+                            <tr>
+                                <td>Radiographie pulmonaire</td>
+                                <td>~0,1 mSv</td>
+                                <td rowspan="3"><strong>EXTERNE</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Radiographie dentaire panoramique</td>
+                                <td>~0,006 mSv</td>
+                            </tr>
+                            <tr>
+                                <td>Scanner abdomen/thorax</td>
+                                <td>~10 mSv</td>
+                            </tr>
+                            <tr>
+                                <td>Scintigraphie myocardique (Tl-201)</td>
+                                <td>~20 mSv</td>
+                                <td><strong>INTERNE</strong> (injection)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">Utilisations industrielles</div>
+                        <ul>
+                            <li><strong>Irradiation agroalimentaire</strong> : empêcher germination, éliminer parasites/bactéries</li>
+                            <li><strong>Stérilisation</strong> : matériel médical, protection du patrimoine</li>
+                            <li><strong>Radiographies industrielles</strong> : vérification de soudures</li>
+                            <li><strong>Datation archéologique</strong> au Carbone 14</li>
+                        </ul>
+                        <p>Surveillance réglementaire sous le contrôle de l'<strong>ASN</strong> (Autorité de Sûreté Nucléaire)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCORDION 4: Exposition accidentelle -->
+        <div class="accordion">
+            <div class="accordion-header">
+                <h2><span>☢️</span> Exposition accidentelle</h2>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <div class="key-point">
+                        <div class="key-point-title">🎯 Les deux accidents majeurs</div>
+                        <ul>
+                            <li><strong>Tchernobyl</strong> : <span class="highlight">26 avril 1986</span></li>
+                            <li><strong>Fukushima</strong> : <span class="highlight">11 mars 2011</span></li>
+                        </ul>
+                    </div>
+
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Critère</th>
+                            <th>Tchernobyl (1986)</th>
+                            <th>Fukushima (2011)</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Origine</strong></td>
+                            <td>Réaction nucléaire x100 → explosion</td>
+                            <td>Perte alimentation électrique → fusion 3 réacteurs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rejets</strong></td>
+                            <td>Continus pendant 10 jours</td>
+                            <td>Discontinus pendant 2 semaines</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Étendue</strong></td>
+                            <td>Échelle continentale (Europe)</td>
+                            <td>Échelle régionale (~250 km)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contamination Cs-137</strong></td>
+                            <td>&gt; 600 000 Bq/m²</td>
+                            <td>&gt; 600 000 Bq/m²</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Évacuations</strong></td>
+                            <td>~270 000 personnes</td>
+                            <td>~150 000 personnes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Solution</strong></td>
+                            <td>Sarcophage</td>
+                            <td>Refroidissement à l'eau + démantèlement</td>
+                        </tr>
+                    </table>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">Radioécologie</div>
+                        <p>Objectif : évaluer l'impact de la radioactivité sur l'environnement (impact radioécologique) et sur la population (impact dosimétrique).</p>
+                        <p>Études sur les 3 milieux de la biosphère :</p>
+                        <ul>
+                            <li>Aquatique marin</li>
+                            <li>Aquatique continental</li>
+                            <li>Terrestre</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCORDION 5: Tableau récapitulatif -->
+        <div class="accordion">
+            <div class="accordion-header">
+                <h2><span>📋</span> Tableau récapitulatif des expositions</h2>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Source</th>
+                            <th>% dose totale</th>
+                            <th>mSv/an</th>
+                            <th>Mode contamination</th>
+                        </tr>
+                        <tr style="background: #e8f5e9;">
+                            <td colspan="4"><strong>NATURELLE (~2/3 = 2,9 mSv/an)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Radon</td>
+                            <td><span class="important-value">~33%</span></td>
+                            <td>1,5</td>
+                            <td>Interne (inhalation)</td>
+                        </tr>
+                        <tr>
+                            <td>Telluriques (hors radon)</td>
+                            <td>~14%</td>
+                            <td>0,6</td>
+                            <td>Externe</td>
+                        </tr>
+                        <tr>
+                            <td>Eaux et aliments</td>
+                            <td>~12%</td>
+                            <td>0,5</td>
+                            <td>Interne (ingestion)</td>
+                        </tr>
+                        <tr>
+                            <td>Cosmiques</td>
+                            <td>~7%</td>
+                            <td>0,3</td>
+                            <td>Externe</td>
+                        </tr>
+                        <tr style="background: #fff3e0;">
+                            <td colspan="4"><strong>ARTIFICIELLE (~1/3 = 1,6 mSv/an)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Médicale</td>
+                            <td><span class="important-value">~35%</span></td>
+                            <td>~1,6</td>
+                            <td>Externe ou interne</td>
+                        </tr>
+                        <tr>
+                            <td>Industrielle/nucléaire</td>
+                            <td>&lt; 1%</td>
+                            <td>&lt; 0,01</td>
+                            <td>Externe</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCORDION 6: QCMs -->
+        <div class="accordion">
+            <div class="accordion-header">
+                <h2><span>✅</span> QCMs d'entraînement type concours</h2>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <div class="qcm-box">
+                        <div class="qcm-title">📝 QCM 1 - Valeurs d'exposition (2024-2025)</div>
+                        <div class="qcm-question">
+                            <p>Concernant l'exposition aux rayonnements ionisants en France :</p>
+                            <p>A. La dose efficace moyenne est d'environ 4,5 mSv/an</p>
+                            <p>B. L'exposition naturelle représente environ 1/3 de la dose totale</p>
+                            <p>C. L'exposition artificielle est d'environ 1,6 mSv/an</p>
+                            <p>D. Le radon représente 1/3 de l'exposition naturelle</p>
+                            <p>E. L'exposition médicale représente environ 35% de la dose totale</p>
+                            <div class="qcm-answer">
+                                <strong>Réponses : A, C, E</strong><br>
+                                B est FAUX : la naturelle = ~2/3 (pas 1/3)<br>
+                                D est AMBIGU : le radon = 1/3 de l'exposition TOTALE (pas naturelle). Attention, la prof a dit "naturelle" mais le schéma montre "totale".
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-box">
+                        <div class="qcm-title">📝 QCM 2 - Radon (2022-2023)</div>
+                        <div class="qcm-question">
+                            <p>Concernant le radon :</p>
+                            <p>A. C'est la source naturelle d'exposition la plus importante</p>
+                            <p>B. Le Rn-222 est un émetteur β</p>
+                            <p>C. La contamination se fait par inhalation</p>
+                            <p>D. Il provient principalement des sous-sols granitiques</p>
+                            <p>E. La période du Rn-222 est de 3,82 jours</p>
+                            <div class="qcm-answer">
+                                <strong>Réponses : A, C, D, E</strong><br>
+                                B est FAUX : le Rn-222 est un émetteur α (pas β)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-box">
+                        <div class="qcm-title">📝 QCM 3 - Rayonnements cosmiques (2020-2021)</div>
+                        <div class="qcm-question">
+                            <p>Concernant les rayonnements cosmiques :</p>
+                            <p>A. Les primaires sont composés de 80% de protons</p>
+                            <p>B. Ils représentent environ 7% de la dose totale</p>
+                            <p>C. Ils sont multipliés par 2 tous les 1000 mètres d'altitude</p>
+                            <p>D. L'exposition tellurique est plus importante dans les régions granitiques</p>
+                            <p>E. Le pechblende est moins radioactif que le granit</p>
+                            <div class="qcm-answer">
+                                <strong>Réponses : A, B, D</strong><br>
+                                C est FAUX : multipliés par 2 tous les 500 mètres (pas 1000)<br>
+                                E est FAUX : pechblende > granit > argile
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-box">
+                        <div class="qcm-title">📝 QCM 4 - Accidents nucléaires</div>
+                        <div class="qcm-question">
+                            <p>Concernant les accidents nucléaires :</p>
+                            <p>A. Tchernobyl est survenu en avril 1986</p>
+                            <p>B. Fukushima est survenu en mars 2011</p>
+                            <p>C. Tchernobyl a touché uniquement l'Ukraine</p>
+                            <p>D. Les rejets de Fukushima ont été discontinus pendant 2 semaines</p>
+                            <p>E. Plus de 150 000 personnes ont été évacuées à Fukushima</p>
+                            <div class="qcm-answer">
+                                <strong>Réponses : A, B, D, E</strong><br>
+                                C est FAUX : Tchernobyl a touché l'ensemble de l'Europe (échelle continentale)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const accordion = header.parentElement;
+                accordion.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
