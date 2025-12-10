@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC3 - Interactions rayonnements & Matière - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .qcm-table th:first-child {
+            width: 130px;
+        }
+
+        .qcm-table th:last-child {
+            width: 150px;
+        }
+
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+
+        /* Références récurrence - colonne 3 */
+        .qcm-ref {
+            font-size: 0.75rem;
+            color: #1a365d;
+            font-style: italic;
+        }
+
+        .qcm-ref ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .qcm-ref li {
+            margin-bottom: 3px;
+        }
+
+        .ref-identique::before {
+            content: "= ";
+        }
+
+        .ref-quasi::before {
+            content: "≈ ";
+        }
+
+        /* Tag FC pour items d'autres cours */
+        .fc-tag {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 5px;
+            color: white;
+        }
+
+        .fc-tag-fc4 { background-color: #8b5cf6; }
+        .fc-tag-fc1 { background-color: #06b6d4; }
+        .fc-tag-fc3 { background-color: #f59e0b; }
+
+        /* Note image */
+        .image-note {
+            display: block;
+            font-size: 0.7rem;
+            color: #6b7280;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px dashed #0284c7;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .tuteur-zone p {
+            margin: 0;
+            color: #0c4a6e;
+        }
+
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px; }
+            .qcm-thematique { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .qcm-table { min-width: 750px; font-size: 0.7rem !important; }
+            .vue-tableau { min-width: 600px; }
+            .diagnostic-table { min-width: 500px; }
+        }
+
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC3 - Interactions rayonnements & Matiere</h1>
+            <div class="meta">
+                <span>UE4 - Rayonnements et Sante</span>
+                <span>Fiche d'Analyse</span>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- ACCORDEON 1 : QCM TOMBES AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>QCM tombes aux sessions 1</summary>
+                <div class="accordion-content">
+
+                    <!-- THEME 1 : CDA / ATTENUATION -->
+                    <div class="qcm-thematique">
+                        <h4>CDA et loi d'attenuation - 5 ans / 5 (TOMBE CHAQUE ANNEE)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Annee - QCM</th>
+                                    <th>Enonce et items</th>
+                                    <th>Recurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 2021-22 Q13 et 2024-25 Q13 = QUASI-IDENTIQUES -->
+                                <tr>
+                                    <td>2021-2022 Q13</td>
+                                    <td>
+                                        <div class="qcm-enonce">L'attenuation du rayonnement X augmente :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Quand l'epaisseur augmente.</div>
+                                            <div class="qcm-item">B: Quand la densite radiologique augmente.</div>
+                                            <div class="qcm-item">C: Quand l'epaisseur diminue.</div>
+                                            <div class="qcm-item">D: Quand l'energie du rayonnement diminue.</div>
+                                            <div class="qcm-item">E: Aucune reponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2024-25 Q13</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2024-2025 Q13</td>
+                                    <td>
+                                        <div class="qcm-enonce">L'attenuation du rayonnement X augmente dans les situations suivantes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Quand l'epaisseur augmente.</div>
+                                            <div class="qcm-item">B: Quand la densite radiologique augmente.</div>
+                                            <div class="qcm-item">C: Quand l'epaisseur diminue.</div>
+                                            <div class="qcm-item">D: Quand l'energie du rayonnement diminue.</div>
+                                            <div class="qcm-item">E: Aucune reponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2021-22 Q13</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <!-- CDA avec graphique -->
+                                <tr>
+                                    <td>2020-2021 Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le graphique ci-dessous correspond a l'attenuation d'un faisceau de particules donnees par un ecran de platine.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La CDA de cet ecran de platine est superieure a 0,25 cm.</div>
+                                            <div class="qcm-item">B: Il faut 4 CDA pour attenuer le faisceau de 75%.</div>
+                                            <div class="qcm-item">C: Le coefficient lineique d'attenuation est de l'ordre de 4 cm<sup>-1</sup>.</div>
+                                            <div class="qcm-item">D: Une epaisseur de 3 mm d'ecran absorbe plus de...</div>
+                                            <div class="qcm-item">E: ...</div>
+                                        </div>
+                                        <span class="image-note">QCM avec graphique - necessite ED tuteur</span>
+                                    </td>
+                                    <td class="qcm-ref">-</td>
+                                </tr>
+
+                                <tr>
+                                    <td>2021-2022 Q9</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la loi d'attenuation des rayonnements. Le graphe ci-dessous represente l'attenuation d'un faisceau de photons par un ecran de plomb.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La CDA de cet ecran de plomb est inferieure a 2 cm.</div>
+                                            <div class="qcm-item">B: La CDA de cet ecran de plomb est superieure a 2 cm.</div>
+                                            <div class="qcm-item">C: Une epaisseur de 2 cm d'ecran absorbe moins de 90% du faisceau.</div>
+                                            <div class="qcm-item">D: Une epaisseur de 2 cm d'ecran absorbe plus de 90% du faisceau.</div>
+                                            <div class="qcm-item">E: L'epaisseur d'ecran pour avoir une attenuation d'un facteur 1000 est de 10 cm.</div>
+                                        </div>
+                                        <span class="image-note">QCM avec graphique</span>
+                                    </td>
+                                    <td class="qcm-ref">-</td>
+                                </tr>
+
+                                <!-- CDA calcul -->
+                                <tr>
+                                    <td>2023-2024 Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la loi d'attenuation des rayonnements. Soit un ecran qui permet de reduire l'intensite d'un faisceau de photons par 8. Cet ecran a une epaisseur egale a :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: sa CDA.</div>
+                                            <div class="qcm-item">B: 2 fois sa CDA.</div>
+                                            <div class="qcm-item">C: 3 fois sa CDA.</div>
+                                            <div class="qcm-item">D: 8 fois sa CDA.</div>
+                                            <div class="qcm-item">E: Aucune reponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">-</td>
+                                </tr>
+
+                                <tr>
+                                    <td>2024-2025 Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la loi d'attenuation des rayonnements, soit un faisceau de photons qui traverse un ecran compose d'une plaque de plexiglass de 4 cm d'epaisseur et d'une plaque de plomb de 6mm. La CDA du plexiglass est de 2 cm et celle du plomb est de 2mm. Quel est le coefficient d'attenuation total du faisceau ?</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: 4</div>
+                                            <div class="qcm-item">B: 6</div>
+                                            <div class="qcm-item">C: 12</div>
+                                            <div class="qcm-item">D: 24</div>
+                                            <div class="qcm-item">E: 32</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- THEME 2 : PARTICULES CHARGEES -->
+                    <div class="qcm-thematique">
+                        <h4>Particules chargees (alpha, beta) - 2 ans / 5</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Annee - QCM</th>
+                                    <th>Enonce et items</th>
+                                    <th>Recurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">Concernant les propositions suivantes, indiquez laquelle (ou lesquelles) est (ou sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La trajectoire des particules legeres est rectiligne.</div>
+                                            <div class="qcm-item">B: Les particules alpha ont un tres grand pouvoir ionisant, surtout en fin de parcours.</div>
+                                            <div class="qcm-item">C: Dans l'effet Compton, une partie de l'energie du photon incident est transferee a l'electron.</div>
+                                            <div class="qcm-item">D: Plus le TLE d'une particule est eleve, plus les degats biologiques seront importants.</div>
+                                            <div class="qcm-item">E: Une particule chargee peut etre totalement arretee par un ecran.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2022-23 Q5</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2022-2023 Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les interactions des rayonnements ionisants avec la matiere :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Les particules alpha ont un tres grand pouvoir ionisant, surtout en fin de parcours.</div>
+                                            <div class="qcm-item">B: La trajectoire des particules legeres est rectiligne.</div>
+                                            <div class="qcm-item">C: La longueur de la trajectoire des particules beta est plus courte que leur parcours.</div>
+                                            <div class="qcm-item">D: La trajectoire d'un electron correspond a sa profondeur de penetration dans les tissus.</div>
+                                            <div class="qcm-item">E: Aucune reponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2020-21 Q4</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>Rappel diagnostic</summary>
+                <div class="accordion-content">
+
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table" style="table-layout: fixed; width: 100%;">
+                            <tr>
+                                <th style="text-align: center; width: 20%;">Frequence</th>
+                                <th style="text-align: center; width: 20%;">Moyenne QCM/an</th>
+                                <th style="text-align: center; width: 20%;">SRT</th>
+                                <th style="text-align: center; width: 20%;">SRI</th>
+                                <th style="text-align: center; width: 20%;">Dependance</th>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    5 annees sur 5<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">CDA tombe chaque annee</span>
+                                </td>
+                                <td style="text-align: center;">1.6</td>
+                                <td style="text-align: center;">
+                                    ~57%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Recurrence Thematique</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    ~50%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Recurrence Items</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    Chapitre technique<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Base pour radioprotection</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div class="vue-ensemble">
+                        <h4>Vue d'ensemble des QCM par thematique</h4>
+                        <p class="vue-ensemble-intro">La CDA (Couche de Demi-Attenuation) est LE theme central de ce chapitre : il tombe TOUS les ans depuis 5 ans. Q13 sur "l'attenuation augmente quand..." est quasi-identique entre 2021-22 et 2024-25.</p>
+
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thematique</th>
+                                        <th>2020-21</th>
+                                        <th>2021-22</th>
+                                        <th>2022-23</th>
+                                        <th>2023-24</th>
+                                        <th>2024-25</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>CDA / Attenuation</td>
+                                        <td>Q5</td>
+                                        <td>Q9, Q13</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q6</td>
+                                        <td>Q6, <span class="fc-tag" style="background-color: #8b5cf6;">Q13</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Particules alpha</td>
+                                        <td>Q4(B)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q5(A)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Effet Compton</td>
+                                        <td>Q4(C)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TLE</td>
+                                        <td>Q4(D)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trajectoire/Parcours beta</td>
+                                        <td>Q4(A)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q5(BCD)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Effet photoelectrique</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Creation de paires</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px; border-left-color: #dc2626;">
+                        <h4>1) La CDA et la loi d'attenuation (PRIORITE ABSOLUE)</h4>
+                        <p><strong>Objectif :</strong> Maitriser les calculs d'attenuation avec la CDA.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>La formule fondamentale :</strong><br>
+                            <span style="font-size: 1.2rem; color: #dc2626;">N = N<sub>0</sub> / 2<sup>n</sup></span><br>
+                            <span style="color: #64748b;">ou n = nombre de CDA traversees = epaisseur / CDA</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><strong>Facteur d'attenuation = 2<sup>n</sup></strong><br>
+                            <span style="color: #64748b;">1 CDA = facteur 2 | 2 CDA = facteur 4 | 3 CDA = facteur 8 | etc.</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><strong>Relation CDA / coefficient lineique :</strong><br>
+                            <span style="color: #64748b;">CDA = ln(2) / mu = 0,693 / mu</span></p>
+
+                            <p style="margin: 0;"><strong>L'attenuation AUGMENTE quand :</strong><br>
+                            <span style="color: #64748b;">- l'epaisseur augmente<br>- la densite radiologique augmente<br>- l'energie du rayonnement diminue (plus facile a arreter)</span></p>
+                        </div>
+                        <span class="frequence" style="background: #fee2e2; color: #dc2626;">Tombe 5 ans / 5 - INCONTOURNABLE</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>2) Les particules alpha</h4>
+                        <p><strong>Objectif :</strong> Retenir les caracteristiques cles des particules alpha.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Tres grand pouvoir ionisant EN FIN DE PARCOURS</strong><br>
+                            <span style="color: #64748b;">C'est le "pic de Bragg" : l'alpha ralentit et ionise de plus en plus avant de s'arreter.</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><strong>Trajectoire RECTILIGNE (particule lourde)</strong><br>
+                            <span style="color: #64748b;">Contrairement aux electrons (legers) qui ont une trajectoire sinueuse.</span></p>
+
+                            <p style="margin: 0;"><strong>Parcours tres court (quelques cm dans l'air)</strong><br>
+                            <span style="color: #64748b;">Arretee par une feuille de papier, mais tres dangereuse en contamination interne.</span></p>
+                        </div>
+                        <span class="frequence">Tombe 2 ans / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>3) Trajectoire vs Parcours (particules beta)</h4>
+                        <p><strong>Objectif :</strong> Distinguer ces deux notions.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Trajectoire = distance totale reellement parcourue (sinueuse)</strong><br>
+                            <span style="color: #64748b;">C'est le "chemin" de la particule avec tous ses changements de direction.</span></p>
+
+                            <p style="margin: 0;"><strong>Parcours = profondeur de penetration (en ligne droite)</strong><br>
+                            <span style="color: #64748b;">Distance entre le point d'entree et le point d'arret. Parcours &lt; Trajectoire.</span></p>
+                        </div>
+                        <span class="frequence">Tombe 2 ans / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>4) L'effet Compton</h4>
+                        <p><strong>Objectif :</strong> Comprendre le principe de base.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Une PARTIE de l'energie du photon est transferee a l'electron</strong><br>
+                            <span style="color: #64748b;">Le photon incident est diffuse (change de direction) avec une energie reduite.</span></p>
+
+                            <p style="margin: 0;"><strong>Domine aux energies intermediaires</strong><br>
+                            <span style="color: #64748b;">C'est l'effet predominant en radiologie diagnostique.</span></p>
+                        </div>
+                        <span class="frequence">Tombe 1 an / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>5) Le TLE (Transfert Lineique d'Energie)</h4>
+                        <p><strong>Objectif :</strong> Retenir la relation TLE / degats biologiques.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Plus le TLE est eleve = plus les degats biologiques sont importants</strong><br>
+                            <span style="color: #64748b;">TLE = energie deposee par unite de longueur (keV/microm).</span></p>
+
+                            <p style="margin: 0;"><strong>Ordre de grandeur :</strong><br>
+                            <span style="color: #64748b;">Alpha : TLE eleve (~100 keV/microm) | Beta/gamma : TLE faible (~0.2 keV/microm)</span></p>
+                        </div>
+                        <span class="frequence">Tombe 1 an / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; border-left-color: #94a3b8;">
+                        <h4>Themes jamais tombes (a surveiller)</h4>
+                        <div style="margin-top: 15px; color: #64748b;">
+                            <p style="margin: 0 0 8px 0;">- Effet photoelectrique (absorption totale du photon)</p>
+                            <p style="margin: 0 0 8px 0;">- Creation de paires (seuil 1,022 MeV)</p>
+                            <p style="margin: 0 0 8px 0;">- Diffusion de Rayleigh (elastique)</p>
+                            <p style="margin: 0;">- Formules detaillees de calcul des parcours</p>
+                        </div>
+                        <p style="margin-top: 15px; font-style: italic; color: #94a3b8;">Ces themes n'ont pas ete interroges sur les 5 dernieres annees mais font partie du programme.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>Recommandations Niveau 1 (strategie annales)</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 8px; color: #166534;">
+                        <strong>Point donne sur la CDA.</strong> Ce chapitre tombe TOUS les ans avec au moins un QCM sur la CDA. La formule N = N<sub>0</sub>/2<sup>n</sup> te permet de repondre correctement en 30 secondes. Le Q13 sur "l'attenuation augmente quand..." est quasi-identique entre 2021-22 et 2024-25.
+                    </p>
+
+                    <!-- QCM TYPE 1 : CDA CALCUL -->
+                    <div class="qcm-analyse">
+                        <h4>QCM TYPE 1 - Calcul avec la CDA</h4>
+                        <div class="qcm-badge">Tombe en <strong>2020-21</strong>, <strong>2021-22</strong>, <strong>2023-24</strong>, <strong>2024-25</strong></div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois savoir (1 minute) :</div>
+                            <div class="cle-raisonnement">
+                                <p style="font-size: 1.1rem;"><strong>Facteur d'attenuation = 2<sup>n</sup> avec n = nombre de CDA</strong></p>
+                                <ul>
+                                    <li>1 CDA = divise par 2</li>
+                                    <li>2 CDA = divise par 4</li>
+                                    <li>3 CDA = divise par 8</li>
+                                    <li>n CDA = divise par 2<sup>n</sup></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Exemple type (2023-24 Q6) :</div>
+                            <div class="qcm-section-content">
+                                "Un ecran reduit l'intensite par 8. Combien de CDA ?"<br>
+                                <strong>Reponse :</strong> 8 = 2<sup>3</sup> donc 3 CDA
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Exemple avance (2024-25 Q6) :</div>
+                            <div class="qcm-section-content">
+                                "Plexiglass 4cm (CDA=2cm) + Plomb 6mm (CDA=2mm). Facteur d'attenuation total ?"<br>
+                                <strong>Calcul :</strong><br>
+                                - Plexiglass : n = 4/2 = 2 CDA => facteur 2<sup>2</sup> = 4<br>
+                                - Plomb : n = 6/2 = 3 CDA => facteur 2<sup>3</sup> = 8<br>
+                                - <strong>Total : 4 x 8 = 32</strong>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Moyen mnemotechnique :</div>
+                            <div class="connaissance-pure">
+                                <p><strong>CDA = Coupe De moitie A chaque fois</strong><br>
+                                1 CDA = /2 | 2 CDA = /4 | 3 CDA = /8 | ...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM TYPE 2 : ATTENUATION AUGMENTE -->
+                    <div class="qcm-analyse">
+                        <h4>QCM TYPE 2 - "L'attenuation augmente quand..."</h4>
+                        <div class="qcm-badge">Tombe en <strong>2021-22 Q13</strong> et <strong>2024-25 Q13</strong> - QUASI-IDENTIQUE</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois savoir :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>L'attenuation AUGMENTE quand :</strong></p>
+                                <ul>
+                                    <li>L'epaisseur AUGMENTE (plus de matiere a traverser)</li>
+                                    <li>La densite radiologique AUGMENTE (plus d'atomes a rencontrer)</li>
+                                    <li>L'energie du rayonnement DIMINUE (moins penetrant)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Les pièges :</div>
+                            <div class="qcm-section-content" style="color: #dc2626;">
+                                <ul style="margin: 0; padding-left: 20px;">
+                                    <li>"Quand l'epaisseur diminue" = FAUX (c'est l'inverse)</li>
+                                    <li>"Quand l'energie augmente" = FAUX (les rayons tres energetiques traversent plus facilement)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 12px; background: #fef3c7; border-radius: 8px; font-size: 0.85rem; color: #92400e;">
+                        Les pieges ci-dessous sont issus des <strong>annales des 5 dernieres annees</strong>.
+                    </p>
+
+                    <div class="vigilance-item">
+                        <h4>Piege tombe : "La trajectoire des particules legeres est rectiligne"</h4>
+                        <p><strong>Annee :</strong> 2020-21 Q4A, 2022-23 Q5B<br>
+                        <strong>Reponse :</strong> FAUX. Les particules LEGERES (beta, electrons) ont une trajectoire SINUEUSE. Ce sont les particules LOURDES (alpha) qui ont une trajectoire rectiligne.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piege tombe : "La longueur de la trajectoire est plus courte que le parcours"</h4>
+                        <p><strong>Annee :</strong> 2022-23 Q5C<br>
+                        <strong>Reponse :</strong> FAUX. C'est l'INVERSE ! La trajectoire (chemin sinueux) est PLUS LONGUE que le parcours (profondeur en ligne droite).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piege tombe : "La trajectoire = profondeur de penetration"</h4>
+                        <p><strong>Annee :</strong> 2022-23 Q5D<br>
+                        <strong>Reponse :</strong> FAUX. La profondeur de penetration = PARCOURS, pas trajectoire. La trajectoire est le chemin total parcouru.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piege tombe : Confondre les facteurs de CDA</h4>
+                        <p><strong>Annee :</strong> 2023-24 Q6<br>
+                        <strong>Attention :</strong> "Reduire par 8" = 3 CDA (car 8 = 2<sup>3</sup>), pas 8 CDA ! Le piege propose souvent "8 fois sa CDA".</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piege tombe : "Il faut 4 CDA pour attenuer de 75%"</h4>
+                        <p><strong>Annee :</strong> 2020-21 Q5B<br>
+                        <strong>Reponse :</strong> FAUX. 4 CDA = attenuation de 93,75% (1 - 1/16). Pour 75% (facteur 4), il faut 2 CDA.</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #94a3b8; background: #f8fafc;">
+                        <h4>Pieges possibles (non tombes mais plausibles) :</h4>
+                        <p>- Confondre TLE et pouvoir ionisant (lies mais differents)<br>
+                        - Confondre effet Compton et effet photoelectrique (Compton = transfert partiel, photo = absorption totale)<br>
+                        - Oublier que l'attenuation depend de Z du materiau (plomb > aluminium)</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 18px; font-weight: 600; color: #1a365d; font-size: 1.05rem;">
+                            Ce chapitre est technique mais TRES rentable : la CDA tombe TOUS les ans et la formule est simple. Voici mon analyse selon ton niveau.
+                        </p>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 3 - tu maitrises le cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Tu dois <strong>maitriser</strong> l'ensemble du chapitre : classification des rayonnements (directement/indirectement ionisants), interactions des particules chargees (alpha, beta), TLE, pic de Bragg, tous les effets des photons (Compton, photoelectrique, creation de paires, Rayleigh), loi d'attenuation exponentielle, CDA et coefficient lineique.<br><br>
+                                <em style="color: #64748b;">A noter :</em> L'effet photoelectrique et la creation de paires n'ont pas ete interroges ces 5 dernieres annees - mais ils sont importants pour comprendre les differences d'interaction selon l'energie.
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #d97706;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #d97706;">Niveau 2 - tu cibles les parties du cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Concentre-toi sur :<br>
+                                - La <strong>CDA et la loi d'attenuation</strong> (tombe TOUS les ans) : N = N<sub>0</sub>/2<sup>n</sup><br>
+                                - Les <strong>particules alpha</strong> : grand pouvoir ionisant en fin de parcours, trajectoire rectiligne<br>
+                                - La difference <strong>trajectoire vs parcours</strong> pour les beta<br>
+                                - L'<strong>effet Compton</strong> : transfert partiel d'energie<br>
+                                - Le <strong>TLE</strong> : plus eleve = plus de degats biologiques<br><br>
+                                Tu peux survoler rapidement les effets photoelectrique et creation de paires.
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 1 - tu travailles quasi exclusivement sur les annales</p>
+                            <p style="margin: 0 0 12px 0; padding: 10px; background: #dcfce7; border-radius: 6px; color: #166534;">
+                                <strong>Point donne sur la CDA.</strong> Ce chapitre tombe TOUS les ans (5/5) avec au moins un QCM CDA. La formule est simple : facteur = 2<sup>n</sup> avec n = nombre de CDA. Le Q13 "l'attenuation augmente quand..." est quasi-identique 2021-22 et 2024-25.
+                            </p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                <strong>Concretement :</strong> retiens "CDA = Coupe De moitie A chaque fois" et "l'attenuation augmente si epaisseur augmente, densite augmente, energie diminue". Avec ces 2 regles, tu reponds a 80% des QCM de ce chapitre.<br><br>
+                                <strong>Pour aller plus loin :</strong> si tu as 15 min, ajoute les particules alpha (grand pouvoir ionisant en fin de parcours) et la distinction trajectoire/parcours.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </details>
+
+        </div>
+
+        <div class="footer">
+            <strong>Creation originale de E. Schaeffer</strong><br>
+            Soumis a droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prepa encourage chaque etudiant a maitriser l'integralite de son programme. Cette ressource est destinee uniquement aux etudiants en retard quelques semaines avant l'examen, en dernier recours.
+        </div>
+    </div>
+</body>
+</html>
