@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC2 - Transformations radioactives - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .qcm-table th:first-child {
+            width: 130px;
+        }
+
+        .qcm-table th:last-child {
+            width: 150px;
+        }
+
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+
+        /* Références récurrence - colonne 3 */
+        .qcm-ref {
+            font-size: 0.75rem;
+            color: #1a365d;
+            font-style: italic;
+        }
+
+        .qcm-ref ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .qcm-ref li {
+            margin-bottom: 3px;
+        }
+
+        .ref-identique::before {
+            content: "= ";
+        }
+
+        .ref-quasi::before {
+            content: "≈ ";
+        }
+
+        /* Tag FC pour items d'autres cours */
+        .fc-tag {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 5px;
+            color: white;
+        }
+
+        .fc-tag-fc4 { background-color: #8b5cf6; }
+        .fc-tag-fc1 { background-color: #06b6d4; }
+        .fc-tag-fc3 { background-color: #f59e0b; }
+
+        /* Note image */
+        .image-note {
+            display: block;
+            font-size: 0.7rem;
+            color: #6b7280;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px dashed #0284c7;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .tuteur-zone p {
+            margin: 0;
+            color: #0c4a6e;
+        }
+
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px; }
+            .qcm-thematique { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .qcm-table { min-width: 750px; font-size: 0.7rem !important; }
+            .vue-tableau { min-width: 600px; }
+            .diagnostic-table { min-width: 500px; }
+        }
+
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC2 - Transformations radioactives</h1>
+            <div class="meta">
+                <span>UE4 - Rayonnements et Santé</span>
+                <span>Fiche d'Analyse</span>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+
+                    <!-- THÈME 1 : MODES DE DÉSINTÉGRATION -->
+                    <div class="qcm-thematique">
+                        <h4>Modes de désintégration (α, β<sup>+</sup>, β<sup>−</sup>, CE) - 5 ans / 5</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                    <th>Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 2020-2021 Q1 -->
+                                <tr>
+                                    <td>2020-2021 Q1</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le technétium <sup>99m</sup>Tc est obtenu à partir du Molybdène (Mo) par émission β<sup>−</sup> dans un générateur. Cochez les propositions exactes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le nombre de masse du Mo est 99. <span class="fc-tag fc-tag-fc4">FC4</span></div>
+                                            <div class="qcm-item">B: Dans un générateur, la période physique du radionucléide père est supérieure à celle du radionucléide fils. <span class="fc-tag fc-tag-fc4">FC4</span></div>
+                                            <div class="qcm-item">C: L'émission β<sup>−</sup> est le mode de désintégration que subissent les noyaux présentant un excès de protons.</div>
+                                            <div class="qcm-item">D: La capture électronique intervient en concurrence avec l'émission β<sup>−</sup>.</div>
+                                            <div class="qcm-item">E: La désintégration β<sup>−</sup> est une transformation isomérique.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2021-22 Q2</em></li>
+                                            <li class="ref-quasi"><em>2023-24 Q2</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <!-- 2021-2022 Q2 -->
+                                <tr>
+                                    <td>2021-2022 Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les transformations radioactives :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Du thorium 234 (<sup>234</sup><sub>90</sub>Th) peut être obtenu à partir de l'uranium 238 (<sup>238</sup><sub>92</sub>U) par émission α.</div>
+                                            <div class="qcm-item">B: Le phosphore 32 (<sup>32</sup><sub>15</sub>P) se désintègre en soufre 32 (<sup>32</sup><sub>16</sub>S) par émission β<sup>+</sup>.</div>
+                                            <div class="qcm-item">C: La désintégration β<sup>+</sup> est le mode de désintégration que subissent les noyaux lourds.</div>
+                                            <div class="qcm-item">D: Lors d'une désintégration β<sup>−</sup>, on a une transformation spontanée d'un proton en neutron.</div>
+                                            <div class="qcm-item">E: La capture électronique intervient en concurrence avec l'émission β<sup>−</sup>.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2020-21 Q1</em></li>
+                                            <li class="ref-quasi"><em>2022-23 Q2</em></li>
+                                            <li class="ref-quasi"><em>2023-24 Q2</em></li>
+                                            <li class="ref-quasi"><em>2024-25 Q2</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <!-- 2022-2023 Q2 -->
+                                <tr>
+                                    <td>2022-2023 Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la désintégration β<sup>+</sup> :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Lors d'une désintégration β<sup>+</sup>, on a une transformation spontanée d'un neutron en proton.</div>
+                                            <div class="qcm-item">B: La capture électronique intervient en concurrence avec l'émission β<sup>+</sup>.</div>
+                                            <div class="qcm-item">C: La désintégration β<sup>+</sup> s'accompagne de l'émission d'un anti-neutrino.</div>
+                                            <div class="qcm-item">D: Aucune réponse.</div>
+                                            <div class="qcm-item">E: La désintégration β<sup>+</sup> est le mode de désintégration que subissent les noyaux lourds.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2021-22 Q2</em></li>
+                                            <li class="ref-quasi"><em>2023-24 Q2</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <!-- 2023-2024 Q2 -->
+                                <tr>
+                                    <td>2023-2024 Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les transformations radioactives :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La désintégration β<sup>+</sup> est le mode de désintégration que subissent les noyaux lourds.</div>
+                                            <div class="qcm-item">B: Lors d'une désintégration β<sup>−</sup>, on a une transformation spontanée d'un proton en neutron.</div>
+                                            <div class="qcm-item">C: La désintégration β<sup>−</sup> s'accompagne de l'émission d'un anti-neutrino.</div>
+                                            <div class="qcm-item">D: La capture électronique intervient en concurrence avec l'émission β<sup>+</sup>.</div>
+                                            <div class="qcm-item">E: Le spectre des particules β est un spectre de raies.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2021-22 Q2</em></li>
+                                            <li class="ref-quasi"><em>2022-23 Q2</em></li>
+                                            <li class="ref-quasi"><em>2024-25 Q2</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <!-- 2024-2025 Q2 -->
+                                <tr>
+                                    <td>2024-2025 Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les transformations radioactives, les affirmations suivantes concernent les modes de désintégration :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La désintégration α est le mode de désintégration que subissent les noyaux lourds.</div>
+                                            <div class="qcm-item">B: La désintégration α est le mode de désintégration que subissent les noyaux qui contiennent trop de nucléons.</div>
+                                            <div class="qcm-item">C: La désintégration β<sup>+</sup> est le mode de désintégration que subissent les noyaux présentant un excès de nucléons.</div>
+                                            <div class="qcm-item">D: La désintégration β<sup>+</sup> est le mode de désintégration que subissent les noyaux présentant un excès de protons.</div>
+                                            <div class="qcm-item">E: La désintégration β<sup>+</sup> est le mode de désintégration que subissent les noyaux présentant un excès de neutrons.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2021-22 Q2</em></li>
+                                            <li class="ref-quasi"><em>2023-24 Q2</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- THÈME 2 : PÉRIODE PHYSIQUE - DÉFINITION -->
+                    <div class="qcm-thematique">
+                        <h4>Période physique vs biologique vs effective - 3 ans / 5</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                    <th>Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 2021-2022 Q5 -->
+                                <tr>
+                                    <td>2021-2022 Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les périodes : Le temps nécessaire pour que la radioactivité diminue de moitié dans l'organisme :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Correspond à la moitié de la période physique.</div>
+                                            <div class="qcm-item">B: Correspond à la période physique.</div>
+                                            <div class="qcm-item">C: Correspond à la période biologique.</div>
+                                            <div class="qcm-item">D: Correspond à la moitié de la période biologique.</div>
+                                            <div class="qcm-item">E: Correspond à la période effective.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2022-23 Q3</em></li>
+                                            <li class="ref-quasi"><em>2024-25 Q3</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <!-- 2022-2023 Q3 -->
+                                <tr>
+                                    <td>2022-2023 Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">La période physique :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Est le temps nécessaire pour que la radioactivité diminue de moitié dans l'organisme.</div>
+                                            <div class="qcm-item">B: Est le temps au bout duquel la moitié des noyaux radioactifs se sont désintégrés.</div>
+                                            <div class="qcm-item">C: Est toujours supérieure à la période biologique.</div>
+                                            <div class="qcm-item">D: Est aussi appelée période radioactive.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-identique"><em>2024-25 Q3</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <!-- 2024-2025 Q3 -->
+                                <tr>
+                                    <td>2024-2025 Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">La période physique de la radioactivité est décrite par les affirmations suivantes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Correspond au temps nécessaire pour que la radioactivité diminue de moitié dans l'organisme.</div>
+                                            <div class="qcm-item">B: Correspond au temps au bout duquel la moitié des noyaux radioactifs se sont désintégrés.</div>
+                                            <div class="qcm-item">C: Est aussi appelée période radioactive.</div>
+                                            <div class="qcm-item">D: Est aussi appelée période biologique.</div>
+                                            <div class="qcm-item">E: Est aussi appelée période effective.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-identique"><em>2022-23 Q3</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- THÈME 3 : CALCULS PÉRIODE / DÉCROISSANCE -->
+                    <div class="qcm-thematique">
+                        <h4>Calculs période / décroissance - 2 ans / 5</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                    <th>Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 2020-2021 Q2 -->
+                                <tr>
+                                    <td>2020-2021 Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">L'activité du radionucléide X diminue d'un facteur 8 en 6 jours. Quelle est sa période physique ? Cochez la proposition exacte.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: 0,75 jours.</div>
+                                            <div class="qcm-item">B: 1,3 jours.</div>
+                                            <div class="qcm-item">C: 2 jours.</div>
+                                            <div class="qcm-item">D: 4 jours.</div>
+                                            <div class="qcm-item">E: On ne peut pas la calculer.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2023-24 Q3</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <!-- 2023-2024 Q3 -->
+                                <tr>
+                                    <td>2023-2024 Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la période physique. La période physique d'un radionucléide est égale à 2 jours. Son activité diminue en 6 jours d'un facteur :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: 2</div>
+                                            <div class="qcm-item">B: 6</div>
+                                            <div class="qcm-item">C: 8</div>
+                                            <div class="qcm-item">D: 12</div>
+                                            <div class="qcm-item">E: On ne peut pas la calculer.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2020-21 Q2</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- THÈME 4 : ACTIVITÉ A(t) -->
+                    <div class="qcm-thematique">
+                        <h4>Calcul d'activité A(t) - 1 an / 5</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                    <th>Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 2021-2022 Q3 -->
+                                <tr>
+                                    <td>2021-2022 Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'activité : On administre 3,7×10<sup>15</sup> noyaux d'iode 131 (Période physique de l'iode 131 : 8 jours soit environ 7×10<sup>5</sup> secondes) à un patient pour traiter son cancer de la thyroïde (on considère ln2 égale à 0,7). L'activité administrée en iode 131 chez ce patient est d'environ :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: 370 kBq</div>
+                                            <div class="qcm-item">B: 3700 kBq</div>
+                                            <div class="qcm-item">C: 370 MBq</div>
+                                            <div class="qcm-item">D: 3700 MBq</div>
+                                            <div class="qcm-item">E: 370 GBq</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        -
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>Rappel diagnostic</summary>
+                <div class="accordion-content">
+
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table" style="table-layout: fixed; width: 100%;">
+                            <tr>
+                                <th style="text-align: center; width: 20%;">Fréquence</th>
+                                <th style="text-align: center; width: 20%;">Moyenne QCM/an</th>
+                                <th style="text-align: center; width: 20%;">SRT</th>
+                                <th style="text-align: center; width: 20%;">SRI</th>
+                                <th style="text-align: center; width: 20%;">Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    Chaque année<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">5 années sur 5</span>
+                                </td>
+                                <td style="text-align: center;">2-3</td>
+                                <td style="text-align: center;">
+                                    80%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Récurrence Thématique</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    65%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Récurrence Items</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    Suite logique<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Nécessite FC1 (noyau atomique)</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div class="vue-ensemble">
+                        <h4>Vue d'ensemble des QCM par thématique</h4>
+                        <p class="vue-ensemble-intro">Ce chapitre est l'un des plus prévisibles de l'UE4. Les mêmes thèmes reviennent systématiquement : modes de désintégration et période physique.</p>
+
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-21</th>
+                                        <th>2021-22</th>
+                                        <th>2022-23</th>
+                                        <th>2023-24</th>
+                                        <th>2024-25</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Désintégration α</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q2(A)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q2(AB)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Désintégration β<sup>+</sup></td>
+                                        <td class="empty-cell">-</td>
+                                        <td><span class="fc-tag" style="background-color: #8b5cf6;">Q2(BC)</span></td>
+                                        <td><span class="fc-tag" style="background-color: #8b5cf6;">Q2(ACE)</span></td>
+                                        <td><span class="fc-tag" style="background-color: #8b5cf6;">Q2(A)</span></td>
+                                        <td>Q2(CDE)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Désintégration β<sup>−</sup></td>
+                                        <td>Q1(CE)</td>
+                                        <td><span class="fc-tag" style="background-color: #f97316;">Q2(D)</span></td>
+                                        <td class="empty-cell">-</td>
+                                        <td><span class="fc-tag" style="background-color: #f97316;">Q2(BCE)</span></td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Capture électronique</td>
+                                        <td><span class="fc-tag" style="background-color: #06b6d4;">Q1(D)</span></td>
+                                        <td><span class="fc-tag" style="background-color: #06b6d4;">Q2(E)</span></td>
+                                        <td><span class="fc-tag" style="background-color: #06b6d4;">Q2(B)</span></td>
+                                        <td><span class="fc-tag" style="background-color: #06b6d4;">Q2(D)</span></td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Périodes (Tp/Tb/Teff)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q5</td>
+                                        <td><span class="fc-tag" style="background-color: #3b82f6;">Q3</span></td>
+                                        <td class="empty-cell">-</td>
+                                        <td><span class="fc-tag" style="background-color: #3b82f6;">Q3</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calculs période / décroissance</td>
+                                        <td><span class="fc-tag" style="background-color: #10b981;">Q2</span></td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td><span class="fc-tag" style="background-color: #10b981;">Q3</span></td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calcul activité A(t)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q3</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>1) Les modes de désintégration (α, β<sup>+</sup>, β<sup>−</sup>, CE)</h4>
+                        <p><strong>Objectif :</strong> Savoir associer chaque type de désintégration à son contexte nucléaire.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Désintégration α</strong> - noyaux lourds (Z > 82) ou avec trop de nucléons<br>
+                            <span style="color: #64748b;">Émission d'une particule α (noyau d'hélium). A diminue de 4, Z diminue de 2.</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><strong>Désintégration β<sup>−</sup></strong> - excès de neutrons<br>
+                            <span style="color: #64748b;">Transformation : n → p + e<sup>−</sup> + antineutrino. A constant, Z +1.</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><strong>Désintégration β<sup>+</sup></strong> - excès de protons<br>
+                            <span style="color: #64748b;">Transformation : p → n + e<sup>+</sup> + neutrino. A constant, Z -1. Le positon s'annihile → 2 photons de 511 keV.</span></p>
+
+                            <p style="margin: 0;"><strong>Capture électronique (CE)</strong> - en compétition avec β<sup>+</sup> (pas β<sup>−</sup> !)<br>
+                            <span style="color: #64748b;">p + e<sup>−</sup> → n + neutrino</span></p>
+                        </div>
+                        <span class="frequence">Tombé 5 ans / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>2) Période physique vs biologique vs effective</h4>
+                        <p><strong>Objectif :</strong> Ne jamais confondre les 3 types de périodes.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Période physique (T<sub>p</sub>)</strong><br>
+                            <span style="color: #64748b;">Temps pour que la moitié des noyaux se désintègrent. = période radioactive = demi-vie. Propriété intrinsèque du radionucléide.</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><strong>Période biologique (T<sub>b</sub>)</strong><br>
+                            <span style="color: #64748b;">Temps pour que l'organisme élimine la moitié d'une substance. Ne dépend pas de la radioactivité.</span></p>
+
+                            <p style="margin: 0;"><strong>Période effective (T<sub>eff</sub>)</strong><br>
+                            <span style="color: #64748b;">Temps pour que la radioactivité dans l'organisme diminue de moitié. Combine les deux. Formule : 1/T<sub>eff</sub> = 1/T<sub>p</sub> + 1/T<sub>b</sub>. Toujours inférieure aux deux autres.</span></p>
+                        </div>
+                        <span class="frequence">Tombé 3 ans / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>3) Calculs de période et décroissance</h4>
+                        <p><strong>Objectif :</strong> Savoir calculer rapidement sans calculatrice.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 10px 0;"><strong>Ce qu'il faut retenir :</strong></p>
+                            <p style="margin: 0 0 5px 15px; color: #64748b;">1 période → activité ÷ 2</p>
+                            <p style="margin: 0 0 5px 15px; color: #64748b;">2 périodes → activité ÷ 4</p>
+                            <p style="margin: 0 0 15px 15px; color: #64748b;">3 périodes → activité ÷ 8</p>
+
+                            <p style="margin: 0;"><strong>Méthode QCM :</strong> <span style="color: #64748b;">on te donne un facteur (2, 4, 8...), tu comptes combien de périodes ça représente, puis tu divises le temps par ce nombre.</span></p>
+                        </div>
+                        <p style="margin-top: 15px; font-style: italic; color: #64748b;">→ Voir accordéon 4 pour les exemples concrets</p>
+                        <span class="frequence">Tombé 2 ans / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>4) Émissions accompagnant les désintégrations</h4>
+                        <p><strong>Objectif :</strong> Associer chaque désintégration à ses émissions.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 10px 0;"><strong>β<sup>−</sup></strong> → électron + <strong>anti</strong>neutrino (ν̄)</p>
+                            <p style="margin: 0 0 10px 0;"><strong>β<sup>+</sup></strong> → positon + neutrino (ν)</p>
+                            <p style="margin: 0 0 10px 0;"><strong>Spectre β</strong> → spectre CONTINU (pas de raies). <span style="color: #64748b;">L'énergie est partagée aléatoirement entre β et neutrino.</span></p>
+                            <p style="margin: 0;"><strong>Annihilation β<sup>+</sup></strong> → e<sup>+</sup> + e<sup>−</sup> = 2 photons γ de 511 keV (à 180°)</p>
+                        </div>
+                        <span class="frequence">Tombé 2 ans / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; border-left-color: #94a3b8;">
+                        <h4>Thèmes jamais tombés (à surveiller)</h4>
+                        <div style="margin-top: 15px; color: #64748b;">
+                            <p style="margin: 0 0 8px 0;">- Émission γ et conversion interne (désexcitation)</p>
+                            <p style="margin: 0 0 8px 0;">- Chaînes de désintégration</p>
+                            <p style="margin: 0;">- Filiation radioactive (équilibre séculaire, transitoire)</p>
+                        </div>
+                        <p style="margin-top: 15px; font-style: italic; color: #94a3b8;">Ces thèmes n'ont pas été interrogés sur les 5 dernières années mais font partie du programme.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 8px; color: #92400e;">
+                        <strong>Objectif Niveau 1 :</strong> tu n'as pas le temps d'ouvrir le cours. Tu vas travailler uniquement les annales. Voici les 3 types de QCM qui reviennent et comment les maitriser.
+                    </p>
+
+                    <!-- QCM TYPE 1 : Période physique -->
+                    <div class="qcm-analyse">
+                        <h4>TYPE 1 - Définition période physique vs effective</h4>
+                        <div class="qcm-badge">Tombé en <strong>2021-22</strong>, <strong>2022-23</strong>, <strong>2024-25</strong> - QCM quasi-identique</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Comment ça tombe :</div>
+                            <div class="qcm-section-content">On te donne une phrase du type "le temps nécessaire pour que la radioactivité diminue de moitié dans l'organisme correspond à..." et tu dois choisir entre période physique, biologique, effective.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois retenir :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Règle simple pour trancher :</strong></p>
+                                <p style="margin-top: 10px;">1. Si on parle de <u>radioactivité</u> + <u>dans l'organisme</u> = <strong>période effective</strong></p>
+                                <p style="margin-left: 20px; color: #64748b;">(c'est le cas le plus fréquent aux QCM)</p>
+                                <p style="margin-top: 10px;">2. Si on parle de <u>noyaux qui se désintègrent</u> (sans mention de l'organisme) = <strong>période physique</strong></p>
+                                <p style="margin-top: 10px;">3. Si on parle d'<u>élimination</u> par l'organisme (sans mention de radioactivité) = <strong>période biologique</strong></p>
+                                <p style="margin-top: 15px; padding: 8px; background: #fef3c7; border-radius: 4px;"><strong>Astuce :</strong> dès que tu vois "organisme" + "radioactivité" ensemble, c'est effectif. La période physique ne concerne QUE les noyaux, pas l'organisme.</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">⚠️ Le piège qui tombe à chaque fois :</div>
+                            <div class="qcm-section-content" style="color: #dc2626;">
+                                "La période physique est toujours supérieure à la période biologique" → <strong>FAUX</strong><br>
+                                Ça dépend du radionucléide ! Pas de règle générale.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM TYPE 2 : Désintégrations -->
+                    <div class="qcm-analyse">
+                        <h4>TYPE 2 - Modes de désintégration</h4>
+                        <div class="qcm-badge">Tombé <strong>CHAQUE ANNÉE</strong> depuis 2020 - 5 ans / 5</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Comment ça tombe :</div>
+                            <div class="qcm-section-content">Des phrases du type "La désintégration β<sup>+</sup> est le mode que subissent les noyaux lourds" ou "Lors d'une β<sup>−</sup>, un proton devient neutron".</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Apprends ce tableau par coeur :</div>
+                            <div class="cle-raisonnement">
+                                <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                                    <tr style="background: #166534; color: white;">
+                                        <th style="padding: 8px; text-align: left;">Type</th>
+                                        <th style="padding: 8px; text-align: left;">Quand ?</th>
+                                        <th style="padding: 8px; text-align: left;">Transformation</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>α</strong></td>
+                                        <td style="padding: 8px; border-bottom: 1px solid #ddd;">Noyaux <strong>LOURDS</strong> (trop de nucléons)</td>
+                                        <td style="padding: 8px; border-bottom: 1px solid #ddd;">Expulse 2p + 2n</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>β<sup>−</sup></strong></td>
+                                        <td style="padding: 8px; border-bottom: 1px solid #ddd;">Trop de <strong>NEUTRONS</strong></td>
+                                        <td style="padding: 8px; border-bottom: 1px solid #ddd;">n → p (neutron devient proton)</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>β<sup>+</sup></strong></td>
+                                        <td style="padding: 8px; border-bottom: 1px solid #ddd;">Trop de <strong>PROTONS</strong></td>
+                                        <td style="padding: 8px; border-bottom: 1px solid #ddd;">p → n (proton devient neutron)</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px;"><strong>CE</strong></td>
+                                        <td style="padding: 8px;">En compétition avec <strong>β<sup>+</sup></strong></td>
+                                        <td style="padding: 8px;">Capture un e<sup>−</sup></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">⚠️ Les 3 pièges qui tombent TOUT LE TEMPS :</div>
+                            <div class="qcm-section-content" style="color: #dc2626;">
+                                <ul style="margin: 0; padding-left: 20px;">
+                                    <li>"β<sup>+</sup> pour les noyaux lourds" → <strong>FAUX</strong> (c'est α)</li>
+                                    <li>"β<sup>−</sup> : proton devient neutron" → <strong>FAUX</strong> (c'est l'inverse : n → p)</li>
+                                    <li>"CE en compétition avec β<sup>−</sup>" → <strong>FAUX</strong> (c'est avec β<sup>+</sup>)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Moyen mnémotechnique :</div>
+                            <div class="connaissance-pure">
+                                <p><strong>β<sup>−</sup></strong> = le signe MOINS (-) → on ENLÈVE un neutron → n devient p</p>
+                                <p><strong>β<sup>+</sup></strong> = le signe PLUS (+) → on AJOUTE un neutron → p devient n</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM TYPE 3 : Calculs -->
+                    <div class="qcm-analyse">
+                        <h4>TYPE 3 - Calculs période / décroissance</h4>
+                        <div class="qcm-badge">Tombé en <strong>2020-21</strong> et <strong>2023-24</strong> - Même énoncé, chiffres différents</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Comment ça tombe :</div>
+                            <div class="qcm-section-content">
+                                <strong>Version 1 :</strong> "L'activité diminue d'un facteur 8 en 6 jours. Quelle est la période ?"<br>
+                                <strong>Version 2 :</strong> "La période est de 2 jours. De quel facteur l'activité diminue-t-elle en 6 jours ?"
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Méthode pas à pas :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Étape 1 : Apprends la table des puissances de 2</strong></p>
+                                <ul style="margin: 5px 0 15px 20px;">
+                                    <li>2<sup>1</sup> = 2 → facteur 2 = 1 période</li>
+                                    <li>2<sup>2</sup> = 4 → facteur 4 = 2 périodes</li>
+                                    <li>2<sup>3</sup> = 8 → facteur 8 = 3 périodes</li>
+                                    <li>2<sup>4</sup> = 16 → facteur 16 = 4 périodes</li>
+                                </ul>
+
+                                <p><strong>Étape 2 : Traduis l'énoncé</strong></p>
+                                <ul style="margin: 5px 0 15px 20px;">
+                                    <li>"Facteur 8" → regarde dans ta table → c'est 2<sup>3</sup> → donc 3 périodes</li>
+                                </ul>
+
+                                <p><strong>Étape 3 : Calcule</strong></p>
+                                <ul style="margin: 5px 0 0 20px;">
+                                    <li>Si on cherche T : T = temps ÷ nombre de périodes</li>
+                                    <li>Exemple : 6 jours ÷ 3 périodes = <strong>2 jours</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Formule (pour info) :</div>
+                            <div class="connaissance-pure">
+                                <p>A(t) = A<sub>0</sub> × (1/2)<sup>t/T</sup></p>
+                                <p style="margin-top: 8px;">En pratique, tu n'auras pas à l'utiliser. La méthode ci-dessus avec la table des puissances de 2 suffit.</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce type de calcul doit être maitrisé :</div>
+                            <div class="qcm-section-content">
+                                C'est toujours le même raisonnement avec des chiffres différents. Si tu sais faire celui-ci, tu sauras faire tous les autres.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM TYPE 4 : Calcul d'activité -->
+                    <div class="qcm-analyse">
+                        <h4>TYPE 4 - Calcul d'activité A = λ × N</h4>
+                        <div class="qcm-badge">Tombé en <strong>2021-22</strong> - QCM isolé mais peut revenir</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Comment ça tombe :</div>
+                            <div class="qcm-section-content">
+                                On te donne un nombre de noyaux N et une période T. Tu dois calculer l'activité A.<br>
+                                Exemple 2021-22 : "On administre 3,7×10<sup>15</sup> noyaux d'iode 131 (T = 8 jours ≈ 7×10<sup>5</sup> s, ln2 ≈ 0,7). L'activité est d'environ ?"
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Méthode pas à pas :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Formule :</strong> A = λ × N = (ln2 / T) × N</p>
+                                <p style="margin-top: 10px;"><strong>Calcul :</strong></p>
+                                <ul style="margin: 5px 0 0 20px;">
+                                    <li>λ = 0,7 / (7×10<sup>5</sup>) = 10<sup>-6</sup> s<sup>-1</sup></li>
+                                    <li>A = 10<sup>-6</sup> × 3,7×10<sup>15</sup> = 3,7×10<sup>9</sup> Bq</li>
+                                    <li>= 3700 MBq (réponse D)</li>
+                                </ul>
+                                <p style="margin-top: 15px; padding: 8px; background: #fef3c7; border-radius: 4px;"><strong>Astuce :</strong> les valeurs sont toujours choisies pour que le calcul tombe juste. Cherche les simplifications (ici 0,7/7 = 0,1 = 10<sup>-1</sup>).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 12px; background: #fef3c7; border-radius: 8px; font-size: 0.85rem; color: #92400e;">
+                        ⚠️ Les pièges ci-dessous sont issus des <strong>annales des 5 dernières années</strong>.
+                    </p>
+
+                    <div class="vigilance-item">
+                        <h4>Piège tombé : "CE en compétition avec β<sup>−</sup>"</h4>
+                        <p><strong>Années :</strong> 2020-21 Q1D, 2021-22 Q2E<br>
+                        <strong>Réponse :</strong> FAUX. La capture électronique est en compétition avec <strong>β<sup>+</sup></strong> (pas β<sup>−</sup>). Les deux concernent les noyaux avec excès de protons.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège tombé : "β<sup>−</sup> = transformation p en n"</h4>
+                        <p><strong>Années :</strong> 2021-22 Q2D, 2023-24 Q2B<br>
+                        <strong>Réponse :</strong> FAUX. C'est l'inverse ! β<sup>−</sup> = n → p (neutron devient proton). β<sup>+</sup> = p → n.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège tombé : "β<sup>+</sup> = noyaux lourds"</h4>
+                        <p><strong>Années :</strong> 2021-22 Q2C, 2022-23 Q2E, 2023-24 Q2A<br>
+                        <strong>Réponse :</strong> FAUX. β<sup>+</sup> concerne les noyaux avec excès de PROTONS. Les noyaux lourds → désintégration α.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège tombé : "Spectre β = raies"</h4>
+                        <p><strong>Année :</strong> 2023-24 Q2E<br>
+                        <strong>Réponse :</strong> FAUX. Le spectre β est CONTINU (pas de raies). L'énergie est partagée aléatoirement entre la particule β et le neutrino.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège tombé : "T<sub>p</sub> toujours > T<sub>b</sub>"</h4>
+                        <p><strong>Année :</strong> 2022-23 Q3C<br>
+                        <strong>Réponse :</strong> FAUX. La période physique n'est PAS toujours supérieure à la période biologique. Ça dépend du radionucléide et de l'élément chimique.</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #94a3b8; background: #f8fafc;">
+                        <h4>Piège possible (non tombé mais plausible) :</h4>
+                        <p>Confusion entre "période effective = période physique" ou "période effective = période biologique". La période effective est TOUJOURS inférieure aux deux autres (elle combine les deux phénomènes).</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 18px; font-weight: 600; color: #1a365d; font-size: 1.05rem;">
+                            Ce chapitre fait partie des valeurs sûres de l'UE4. Que tu sois en avance ou en retard, il y a une stratégie adaptée. Voici mon analyse selon ton niveau.
+                        </p>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 3 - tu maitrises le cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Tu dois <strong>maîtriser</strong> l'ensemble du chapitre : tous les modes de désintégration (α, β<sup>+</sup>, β<sup>−</sup>, CE, émission γ, conversion interne), la cinétique complète (constante λ, loi de décroissance, calculs d'activité), et les notions de filiation radioactive.<br><br>
+                                <em style="color: #64748b;">À noter :</em> L'émission γ, la conversion interne et les chaînes de désintégration n'ont pas été interrogées ces 5 dernières années - mais elles font partie du programme et pourraient tomber.
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #d97706;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #d97706;">Niveau 2 - tu cibles les parties du cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Concentre-toi sur les <strong>4 thèmes récurrents</strong> :<br>
+                                • Les modes de désintégration (α/β<sup>+</sup>/β<sup>−</sup>/CE) - tombé 5/5 ans<br>
+                                • Période physique vs biologique vs effective - tombé 3/5 ans<br>
+                                • Les calculs période/décroissance - tombé 2/5 ans<br>
+                                • Les émissions accompagnant les désintégrations (neutrino, spectre continu) - tombé 2/5 ans<br><br>
+                                Survole le reste sans t'attarder. Tu peux faire l'impasse sur l'émission γ et la conversion interne (jamais tombées).
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; border: 2px solid #dc2626;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #dc2626;">Niveau 1 - tu travailles quasi exclusivement sur les annales</p>
+                            <p style="margin: 0 0 12px 0; color: #4a5568; line-height: 1.6;">
+                                <strong>Mon avis basé sur les statistiques :</strong>
+                            </p>
+                            <p style="margin: 0 0 12px 0; padding: 10px; background: #dcfce7; border-radius: 6px; color: #166534;">
+                                <strong>Stratégie Niveau 1 : viable</strong><br>
+                                Avec un SRI estimé autour de 60% et des QCM de calcul qui reviennent avec la même méthode (seuls les chiffres changent), ce chapitre est adapté à une stratégie annales.
+                            </p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                <strong>Concrètement :</strong> Il y a 3 types de QCM qui reviennent chaque année. Les QCM de calcul (période/décroissance) utilisent strictement la même méthode - seules les valeurs numériques changent. Si tu maîtrises la méthode sur un QCM, tu maîtrises tous les QCM de ce type. Ça vaut donc le coup de les travailler à fond.<br><br>
+                                <strong>Attention toutefois :</strong> Ce chapitre est une base pour comprendre la suite de l'UE4 (production de radionucléides, imagerie, radioprotection). Si tu fais l'impasse sur le cours, tu risques de galérer sur les chapitres suivants. À toi de voir si tu peux te le permettre en fonction de ta situation.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </details>
+
+        </div>
+
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours.
+        </div>
+    </div>
+</body>
+</html>
