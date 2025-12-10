@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC4 - Production des radionucleides - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .qcm-table th:first-child {
+            width: 130px;
+        }
+
+        .qcm-table th:last-child {
+            width: 150px;
+        }
+
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+
+        /* Références récurrence */
+        .qcm-ref {
+            font-size: 0.75rem;
+            color: #1a365d;
+            font-style: italic;
+        }
+
+        .qcm-ref ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .qcm-ref li {
+            margin-bottom: 3px;
+        }
+
+        .ref-quasi::before {
+            content: "≈ ";
+        }
+
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+
+        /* Recommandations */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px dashed #0284c7;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .tuteur-zone p {
+            margin: 0;
+            color: #0c4a6e;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px; }
+            .qcm-thematique { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .qcm-table { min-width: 750px; font-size: 0.7rem !important; }
+            .vue-tableau { min-width: 600px; }
+        }
+
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC4 - Production des radionucleides</h1>
+            <div class="meta">
+                <span>UE4 - Rayonnements et Sante</span>
+                <span>Fiche d'Analyse</span>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- ACCORDEON 1 : QCM TOMBES AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>QCM tombes aux sessions 1</summary>
+                <div class="accordion-content">
+
+                    <!-- THEME : MODES DE PRODUCTION -->
+                    <div class="qcm-thematique">
+                        <h4>Les 4 modes de production - 4 ans / 5 (non tombe 2020-21)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Annee - QCM</th>
+                                    <th>Enonce et items</th>
+                                    <th>Recurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- 2021-22 Q4 et 2023-24 Q4 = QUASI-IDENTIQUES -->
+                                <tr>
+                                    <td>2021-2022 Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la production des radionucleides :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Dans les cyclotrons, des neutrons sont utilises pour bombarder les matieres cibles.</div>
+                                            <div class="qcm-item">B: Dans les reacteurs nucleaires, on utilise le principe de reaction en chaine de la fission de l'uranium 235.</div>
+                                            <div class="qcm-item">C: Le molybdene 99 est un produit de fission de l'uranium 235.</div>
+                                            <div class="qcm-item">D: Le molybdene 99 est produit a partir d'un generateur de technetium 99m.</div>
+                                            <div class="qcm-item">E: Les generateurs permettent de produire des radionucleides fils de courte periode physique.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2023-24 Q4</em></li>
+                                            <li class="ref-quasi"><em>2024-25 Q4</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2023-2024 Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la production des radionucleides :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Dans les cyclotrons, des particules chargees sont utilisees pour bombarder les matieres cibles.</div>
+                                            <div class="qcm-item">B: Dans les reacteurs nucleaires, on utilise le principe de reaction en chaine de la fission de l'uranium 235.</div>
+                                            <div class="qcm-item">C: Le molybdene 99 est produit a partir d'un generateur de technetium 99m.</div>
+                                            <div class="qcm-item">D: Les generateurs permettent de produire des radionucleides fils de longue periode physique.</div>
+                                            <div class="qcm-item">E: Aucune reponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2021-22 Q4</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2024-2025 Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les generateurs nucleaires, determiner la veracite des affirmations suivantes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Dans les generateurs, on utilise le principe de reaction en chaine de la fission de l'uranium 235.</div>
+                                            <div class="qcm-item">B: Dans les generateurs, on utilise des particules chargees pour bombarder des matieres cibles.</div>
+                                            <div class="qcm-item">C: Le generateur permet de produire un radionucleide fils a partir d'un radionucleide pere.</div>
+                                            <div class="qcm-item">D: Le technetium 99m est produit a partir d'un generateur de molybdene 99.</div>
+                                            <div class="qcm-item">E: Le technetium 99m est produit a partir d'un...</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2021-22 Q4</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2022-2023 Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les produits radiopharmaceutiques :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le medicament radiopharmaceutique est un medicament contenant un ou plusieurs radionucleides.</div>
+                                            <div class="qcm-item">B: Le radionucleide peut etre produit par un cyclotron.</div>
+                                            <div class="qcm-item">C: Le radionucleide peut etre produit par un generateur.</div>
+                                            <div class="qcm-item">D: Le radionucleide peut etre produit par un reacteur nucleaire.</div>
+                                            <div class="qcm-item">E: La trousse a un role de vecteur.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>Rappel diagnostic</summary>
+                <div class="accordion-content">
+
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table" style="table-layout: fixed; width: 100%;">
+                            <tr>
+                                <th style="text-align: center; width: 20%;">Frequence</th>
+                                <th style="text-align: center; width: 20%;">Moyenne QCM/an</th>
+                                <th style="text-align: center; width: 20%;">SRT</th>
+                                <th style="text-align: center; width: 20%;">SRI</th>
+                                <th style="text-align: center; width: 20%;">Dependance</th>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    4 annees sur 5<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Non tombe 2020-21</span>
+                                </td>
+                                <td style="text-align: center;">1</td>
+                                <td style="text-align: center;">
+                                    ~70%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Recurrence Thematique</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    ~75%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Recurrence Items</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    Chapitre technique<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Lie a FC5 (produits de sante)</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div class="vue-ensemble">
+                        <h4>Vue d'ensemble des QCM par thematique</h4>
+                        <p class="vue-ensemble-intro">Ce chapitre pose TOUJOURS les memes questions sur les 3 modes de production (reacteurs, cyclotrons, generateurs). Les pieges sont recurrents : "neutrons dans cyclotrons" (FAUX) et "Mo99 produit par generateur" (FAUX).</p>
+
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thematique</th>
+                                        <th>2020-21</th>
+                                        <th>2021-22</th>
+                                        <th>2022-23</th>
+                                        <th>2023-24</th>
+                                        <th>2024-25</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Cyclotrons (particules chargees)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q4(A)</td>
+                                        <td>Q4(B)</td>
+                                        <td>Q4(A)</td>
+                                        <td>Q4(B)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reacteurs (fission U235)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q4(BC)</td>
+                                        <td>Q4(D)</td>
+                                        <td>Q4(B)</td>
+                                        <td>Q4(A)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Generateurs (pere->fils)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q4(DE)</td>
+                                        <td>Q4(C)</td>
+                                        <td>Q4(CD)</td>
+                                        <td>Q4(CD)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mo99/Tc99m</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q4(CD)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q4(C)</td>
+                                        <td>Q4(D)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Produits radiopharmaceutiques</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q4(AE)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px; border-left-color: #dc2626;">
+                        <h4>1) Les 4 modes de production (PRIORITE ABSOLUE)</h4>
+                        <p><strong>Objectif :</strong> Distinguer les 4 modes et leurs caracteristiques.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>1. REACTEURS NUCLEAIRES</strong><br>
+                            <span style="color: #64748b;">- Bombardement par NEUTRONS (particules neutres)<br>
+                            - Fission de l'Uranium 235 + reaction en chaine<br>
+                            - Produits de fission : Mo99, I131, Xe133, Cs137</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><strong>2. CYCLOTRONS</strong><br>
+                            <span style="color: #dc2626; font-weight: 600;">- Bombardement par PARTICULES CHARGEES (protons, deuterons, alpha)</span><br>
+                            <span style="color: #64748b;">- Acceleration par champs electromagnetiques<br>
+                            - Produisent F18, C11, O15, N13 (emetteurs beta+)</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><strong>3. GENERATEURS</strong><br>
+                            <span style="color: #64748b;">- Pere (longue periode) -> Fils (courte periode)<br>
+                            - Tp pere >> Tp fils<br>
+                            - Ex: Mo99 (66h) -> Tc99m (6h)</span></p>
+
+                            <p style="margin: 0;"><strong>4. SPALLATION</strong><br>
+                            <span style="color: #64748b;">- Non interroge ces 5 dernieres annees</span></p>
+                        </div>
+                        <span class="frequence" style="background: #fee2e2; color: #dc2626;">Tombe 4 ans / 5 - INCONTOURNABLE</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>2) Le generateur Mo99/Tc99m</h4>
+                        <p><strong>Objectif :</strong> Retenir le sens pere -> fils.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Mo99 = PERE (produit par fission U235)</strong><br>
+                            <span style="color: #64748b;">Periode physique : 66 heures. Fixe sur colonne d'alumine. Decroit par emission beta-.</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><strong>Tc99m = FILS (produit par le generateur)</strong><br>
+                            <span style="color: #64748b;">Periode physique : 6 heures. Elue par NaCl 0,9%. Decroit par emission gamma (140 keV).</span></p>
+
+                            <p style="margin: 0;"><strong>ATTENTION au piege :</strong><br>
+                            <span style="color: #dc2626;">"Mo99 produit par generateur de Tc99m" = FAUX (c'est l'inverse !)</span></p>
+                        </div>
+                        <span class="frequence">Tombe 3 ans / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>3) Les cyclotrons - Particules CHARGEES</h4>
+                        <p><strong>Objectif :</strong> Retenir que ce sont des particules CHARGEES (pas neutrons).</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Particules utilisees :</strong><br>
+                            <span style="color: #64748b;">Protons (H+), deuterons (D+), helions (He3+), alpha (He2+)</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><strong>Principe :</strong><br>
+                            <span style="color: #64748b;">Acceleration par champ electrique + trajectoire courbee par champ magnetique</span></p>
+
+                            <p style="margin: 0;"><strong>ATTENTION au piege RECURRENT :</strong><br>
+                            <span style="color: #dc2626;">"Dans les cyclotrons, des NEUTRONS sont utilises" = FAUX</span><br>
+                            <span style="color: #64748b;">Les neutrons sont utilises dans les REACTEURS, pas les cyclotrons.</span></p>
+                        </div>
+                        <span class="frequence">Tombe 4 ans / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>4) Les reacteurs nucleaires - Fission U235</h4>
+                        <p><strong>Objectif :</strong> Retenir les 2 modes de production dans les reacteurs.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Mode 1 : Bombardement par neutrons</strong><br>
+                            <span style="color: #64748b;">- Neutrons thermiques (loin du coeur) ou rapides (pres du coeur)<br>
+                            - Capture neutronique : reaction (n,gamma)</span></p>
+
+                            <p style="margin: 0;"><strong>Mode 2 : Fission de l'U235</strong><br>
+                            <span style="color: #64748b;">- Reaction en chaine controlee<br>
+                            - Produits de fission : Mo99, I131, Xe133, Cs137</span></p>
+                        </div>
+                        <span class="frequence">Tombe 4 ans / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; border-left-color: #94a3b8;">
+                        <h4>Themes jamais tombes (a surveiller)</h4>
+                        <div style="margin-top: 15px; color: #64748b;">
+                            <p style="margin: 0 0 8px 0;">- Details techniques des cyclotrons (composition, energie en MeV)</p>
+                            <p style="margin: 0 0 8px 0;">- Autres generateurs (Ge68/Ga68, Sr82/Rb82, Rb81/Kr81m)</p>
+                            <p style="margin: 0;">- Principe de filiation detaille</p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>Recommandations Niveau 1 (strategie annales)</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 8px; color: #166534;">
+                        <strong>QCM tres previsible.</strong> Ce chapitre pose TOUJOURS les memes questions avec les memes pieges. Si tu retiens 3 regles simples, tu reponds correctement a 100% des items.
+                    </p>
+
+                    <!-- QCM TYPE -->
+                    <div class="qcm-analyse">
+                        <h4>Les 3 regles d'or - "Qui utilise quoi ?"</h4>
+                        <div class="qcm-badge">Tombe en <strong>2021-22</strong>, <strong>2022-23</strong>, <strong>2023-24</strong>, <strong>2024-25</strong></div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Regle 1 : CYCLOTRONS = particules CHARGEES</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Cyclotrons = protons, deuterons, alpha (CHARGEES)</strong></p>
+                                <p>JAMAIS de neutrons dans les cyclotrons ! Les neutrons sont NEUTRES, ils ne peuvent pas etre acceleres par les champs electromagnetiques du cyclotron.</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Regle 2 : REACTEURS = fission U235 + reaction en chaine</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Reacteurs utilisent la fission de l'Uranium 235</strong></p>
+                                <p>Reaction en chaine controlee par des absorbeurs de neutrons. Produits de fission : Mo99, I131.</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Regle 3 : GENERATEURS = pere -> fils (courte periode)</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Le generateur produit un fils de COURTE periode</strong></p>
+                                <ul>
+                                    <li>Mo99 (pere, 66h) -> Tc99m (fils, 6h)</li>
+                                    <li>Le fils a TOUJOURS une periode plus courte que le pere</li>
+                                    <li>Mo99 n'est PAS produit par le generateur, il est produit par fission U235 !</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Moyen mnemotechnique :</div>
+                            <div class="connaissance-pure">
+                                <p><strong>C</strong>yclotrons = <strong>C</strong>hargees<br>
+                                <strong>R</strong>eacteurs = <strong>R</strong>eaction en chaine (fission U235)<br>
+                                <strong>G</strong>enerateurs = produisent des fils de courte periode</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 12px; background: #fef3c7; border-radius: 8px; font-size: 0.85rem; color: #92400e;">
+                        Les pieges ci-dessous sont issus des <strong>annales des 5 dernieres annees</strong>. Ils sont RECURRENTS.
+                    </p>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>PIEGE #1 (tombe CHAQUE annee) : "Dans les cyclotrons, des neutrons sont utilises"</h4>
+                        <p><strong>Annees :</strong> 2021-22 Q4A<br>
+                        <strong>Reponse :</strong> FAUX. Les cyclotrons utilisent des particules CHARGEES (protons, deuterons, alpha). Les neutrons sont utilises dans les REACTEURS.</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>PIEGE #2 (tombe 3 ans/5) : "Le Mo99 est produit par un generateur de Tc99m"</h4>
+                        <p><strong>Annees :</strong> 2021-22 Q4D, 2023-24 Q4C<br>
+                        <strong>Reponse :</strong> FAUX. C'est l'INVERSE ! Mo99 = PERE (produit par fission U235). Tc99m = FILS (produit par le generateur Mo99/Tc99m).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>PIEGE #3 : "Les generateurs produisent des radionucleides fils de LONGUE periode"</h4>
+                        <p><strong>Annee :</strong> 2023-24 Q4D<br>
+                        <strong>Reponse :</strong> FAUX. Les generateurs produisent des fils de COURTE periode (Tc99m = 6h, Kr81m = 13s). C'est justement l'interet du generateur : produire sur place un fils a courte periode qu'on ne pourrait pas transporter.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>PIEGE #4 : Confondre generateur et reacteur</h4>
+                        <p><strong>Annee :</strong> 2024-25 Q4A<br>
+                        <strong>Attention :</strong> "Dans les generateurs, on utilise la fission de l'U235" = FAUX. La fission U235 se fait dans les REACTEURS. Le generateur utilise la decroissance naturelle d'un pere en fils.</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #94a3b8; background: #f8fafc;">
+                        <h4>Pieges possibles (non tombes mais plausibles) :</h4>
+                        <p>- Confondre les periodes Mo99/Tc99m (Mo99 = 66h, Tc99m = 6h)<br>
+                        - Dire que le Tc99m est stable (il est metastable, il decroit en Tc99 par emission gamma)<br>
+                        - Oublier que la trousse a un role de VECTEUR (transporte le radionucleide vers la cible)</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 18px; font-weight: 600; color: #1a365d; font-size: 1.05rem;">
+                            Ce chapitre est TRES rentable : les QCM sont previsibles et les pieges sont toujours les memes. Voici mon analyse selon ton niveau.
+                        </p>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 3 - tu maitrises le cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Tu dois <strong>maitriser</strong> l'ensemble du chapitre : les 4 modes de production, les details des reacteurs (neutrons thermiques/rapides, fission U235, reaction en chaine), les cyclotrons (principe electromagnetique, energie en MeV), tous les types de generateurs (Mo/Tc, Ge/Ga, Sr/Rb, Rb/Kr).<br><br>
+                                <em style="color: #64748b;">A noter :</em> Les details techniques des cyclotrons (composition, ARRONAX, energie) n'ont pas ete interroges.
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #d97706;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #d97706;">Niveau 2 - tu cibles les parties du cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Concentre-toi sur :<br>
+                                - Les <strong>4 modes de production</strong> et leurs caracteristiques<br>
+                                - <strong>Cyclotrons = particules CHARGEES</strong> (pas neutrons !)<br>
+                                - <strong>Reacteurs = fission U235</strong> + reaction en chaine<br>
+                                - <strong>Generateurs = pere -> fils</strong> (courte periode)<br>
+                                - Le generateur <strong>Mo99/Tc99m</strong> : qui est le pere, qui est le fils<br><br>
+                                Tu peux survoler les autres generateurs et les details techniques.
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 1 - tu travailles quasi exclusivement sur les annales</p>
+                            <p style="margin: 0 0 12px 0; padding: 10px; background: #dcfce7; border-radius: 6px; color: #166534;">
+                                <strong>QCM tres previsible.</strong> Les 3 memes pieges tombent chaque annee. 3 regles = 100% des items corrects.
+                            </p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                <strong>Les 3 regles :</strong><br>
+                                1. Cyclotrons = particules CHARGEES (jamais neutrons)<br>
+                                2. Reacteurs = fission U235 + reaction en chaine<br>
+                                3. Generateurs = pere (longue periode) -> fils (courte periode)<br><br>
+                                <strong>Le piege classique :</strong> "Mo99 produit par generateur de Tc99m" = FAUX (c'est l'inverse : Mo99 pere -> Tc99m fils)
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </details>
+
+        </div>
+
+        <div class="footer">
+            <strong>Creation originale de E. Schaeffer</strong><br>
+            Soumis a droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prepa encourage chaque etudiant a maitriser l'integralite de son programme. Cette ressource est destinee uniquement aux etudiants en retard quelques semaines avant l'examen, en dernier recours.
+        </div>
+    </div>
+</body>
+</html>
