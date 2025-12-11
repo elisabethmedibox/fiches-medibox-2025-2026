@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC7 - Nature des risques et conduite à tenir | UE4</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f4f8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .stats-banner {
+            display: flex;
+            justify-content: space-around;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 10px 15px;
+        }
+
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .accordion {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            opacity: 0.95;
+        }
+
+        .accordion-header h2 {
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .accordion-header .icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion.active .accordion-header .icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .accordion.active .accordion-content {
+            max-height: 5000px;
+        }
+
+        .accordion-inner {
+            padding: 20px;
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #e0e7ff 0%, #f0e6ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .key-point-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .formula-box {
+            background: #1a1a2e;
+            color: #00ff88;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .comparison-table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .mnemonic-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .mnemonic-title {
+            color: #e65100;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border: 2px solid #f44336;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .warning-title {
+            color: #c62828;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qcm-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .qcm-title {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qcm-question {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .qcm-answer {
+            color: #1b5e20;
+            font-weight: 500;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #4caf50;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #fff59d 0%, #fff176 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .important-value {
+            color: #d32f2f;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        ul, ol {
+            margin: 10px 0 10px 20px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .sub-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .sub-section-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .danger-grid {
+            display: grid;
+            grid-template-columns: auto repeat(4, 1fr);
+            gap: 2px;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+
+        .danger-grid > div {
+            padding: 10px;
+            text-align: center;
+            background: white;
+            border: 1px solid #e0e0e0;
+        }
+
+        .danger-grid .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+        }
+
+        .danger-grid .row-header {
+            background: #f0f0f0;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .danger-low { background: #e8f5e9 !important; color: #2e7d32; }
+        .danger-medium { background: #fff3e0 !important; color: #e65100; }
+        .danger-high { background: #ffebee !important; color: #c62828; }
+
+        .unit-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .unit-card .name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .unit-card .symbol {
+            font-size: 1.5em;
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        .unit-card .definition {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.4em;
+            }
+
+            .accordion-header h2 {
+                font-size: 1em;
+            }
+
+            .danger-grid {
+                font-size: 0.75em;
+            }
+
+            .danger-grid > div {
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FC7 - Nature des risques et conduite à tenir en cas d'accident</h1>
+            <div class="subtitle">UE4 : Rayonnements et Santé</div>
+        </header>
+
+        <div class="stats-banner">
+            <div class="stat-item">
+                <div class="stat-value">5</div>
+                <div class="stat-label">QCMs (5 ans)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">85%</div>
+                <div class="stat-label">SRT (Score Récurrence Thématique)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">60%</div>
+                <div class="stat-label">SRI (Score Récurrence Items)</div>
+            </div>
+        </div>
+
+        <!-- ACCORDION 1: Modes d'exposition -->
+        <div class="accordion active">
+            <div class="accordion-header">
+                <h2><span>☢️</span> Modes d'exposition aux rayonnements</h2>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <div class="warning-box">
+                        <div class="warning-title">⚠️ Piège QCM fréquent</div>
+                        <p>Bien distinguer <strong>exposition externe</strong> (source à distance) et <strong>contamination externe</strong> (source au contact de la peau) !</p>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">1. Exposition externe</div>
+                        <div class="key-point">
+                            <div class="key-point-title">🎯 Définition</div>
+                            <p>Source radioactive située <span class="highlight">à l'extérieur de l'organisme</span>, <strong>sans contact cutané</strong>.</p>
+                        </div>
+                        <ul>
+                            <li><strong>Globale</strong> : corps entier exposé</li>
+                            <li><strong>Partielle</strong> : seulement une partie du corps (ex: mains)</li>
+                        </ul>
+                        <p><strong>Important</strong> : Un irradié <span class="highlight">ne va pas irradier</span> son entourage (pas de matière radioactive portée).</p>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">2. Contamination externe</div>
+                        <div class="key-point">
+                            <div class="key-point-title">🎯 Définition</div>
+                            <p>Source radioactive <span class="highlight">au contact de la peau</span>.</p>
+                        </div>
+                        <ul>
+                            <li>La personne est <strong>contaminante</strong> pour elle-même ET son entourage</li>
+                            <li>Risque de transformation en contamination interne si plaie</li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">3. Contamination interne</div>
+                        <div class="key-point">
+                            <div class="key-point-title">🎯 Définition</div>
+                            <p><span class="highlight">Incorporation</span> de substances radioactives dans l'organisme.</p>
+                        </div>
+
+                        <p><strong>Voies d'incorporation :</strong></p>
+                        <ul>
+                            <li><strong>Ingestion</strong> : lait, aliments contaminés</li>
+                            <li><strong>Inhalation</strong> : substances volatiles, gaz radioactifs</li>
+                            <li><strong>Voie cutanée</strong> : passage par plaies</li>
+                        </ul>
+                        <p>La personne est contaminante pour elle-même et son entourage (émet de la radioactivité).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCORDION 2: Dangerosité -->
+        <div class="accordion">
+            <div class="accordion-header">
+                <h2><span>⚡</span> Dangerosité selon rayonnement et mode d'exposition</h2>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <div class="key-point">
+                        <div class="key-point-title">🎯 Tableau de dangerosité (à connaître !)</div>
+                        <p>La dangerosité dépend de la <strong>nature du rayonnement</strong> et du <strong>mode d'exposition</strong>.</p>
+                    </div>
+
+                    <div class="danger-grid">
+                        <div class="header">Danger relatif</div>
+                        <div class="header">α</div>
+                        <div class="header">β</div>
+                        <div class="header">X, γ</div>
+                        <div class="header">n</div>
+
+                        <div class="row-header">Exposition externe</div>
+                        <div class="danger-low">Sans danger</div>
+                        <div class="danger-low">0/+</div>
+                        <div class="danger-high">++</div>
+                        <div class="danger-high">+++</div>
+
+                        <div class="row-header">Contamination externe</div>
+                        <div class="danger-low">Sans danger</div>
+                        <div class="danger-high">+++ (brûlures)</div>
+                        <div class="danger-medium">++</div>
+                        <div class="danger-medium">++</div>
+
+                        <div class="row-header">Contamination interne</div>
+                        <div class="danger-high">+++</div>
+                        <div class="danger-high">+++</div>
+                        <div class="danger-medium">++</div>
+                        <div class="danger-medium">++</div>
+                    </div>
+
+                    <div class="mnemonic-box">
+                        <div class="mnemonic-title">💡 Logique à retenir</div>
+                        <ul>
+                            <li><strong>α</strong> : faible parcours → sans danger en externe, mais TRÈS dangereux en interne (TEL élevé)</li>
+                            <li><strong>β</strong> : parcours moyen → brûlures en contamination externe (couche basale)</li>
+                            <li><strong>X, γ, n</strong> : très pénétrants → dangereux dans TOUS les cas</li>
+                        </ul>
+                    </div>
+
+                    <div class="key-point">
+                        <div class="key-point-title">🎯 Couche cornée</div>
+                        <p>Épaisseur moyenne chez l'homme : <span class="highlight">~0,7 mm</span></p>
+                        <ul>
+                            <li>α ne la traverse pas → cellules mortes = pas de danger</li>
+                            <li>β la traverse → atteint la couche basale (cellules vivantes) → brûlures</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCORDION 3: Grandeurs et unités -->
+        <div class="accordion">
+            <div class="accordion-header">
+                <h2><span>📐</span> Grandeurs et unités en radioprotection</h2>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <div class="warning-box">
+                        <div class="warning-title">⚠️ Section très importante au concours</div>
+                        <p>Les grandeurs, formules et unités sont régulièrement testées !</p>
+                    </div>
+
+                    <div class="unit-card">
+                        <div class="name">Activité radioactive (A)</div>
+                        <div class="symbol">Becquerel (Bq)</div>
+                        <div class="definition">Nombre de désintégrations par seconde</div>
+                        <p style="margin-top:10px;color:#666;font-size:0.9em;">Ancienne unité : Curie (1 Ci = activité de 1g de ²²⁶Ra)</p>
+                    </div>
+
+                    <div class="unit-card">
+                        <div class="name">Dose absorbée (D)</div>
+                        <div class="symbol">Gray (Gy) = 1 J/kg</div>
+                        <div class="definition">Énergie absorbée par unité de masse de matière</div>
+                        <div class="formula-box">D = dE / dm</div>
+                        <div class="warning-box" style="margin-top:10px;">
+                            <div class="warning-title">⚠️ Attention</div>
+                            <p>Ne prend en compte QUE l'énergie, PAS la nature du rayonnement !</p>
+                            <p>1 Gy de β ≠ 1 Gy de α en termes d'effets biologiques</p>
+                        </div>
+                    </div>
+
+                    <div class="unit-card">
+                        <div class="name">Dose équivalente (H<sub>T,R</sub>)</div>
+                        <div class="symbol">Sievert (Sv)</div>
+                        <div class="definition">Dose absorbée pondérée selon le type et l'énergie du rayonnement</div>
+                        <div class="formula-box">H<sub>T,R</sub> = W<sub>R</sub> × D<sub>T,R</sub></div>
+                        <div class="key-point" style="margin-top:10px;">
+                            <div class="key-point-title">🎯 W<sub>R</sub> dépend de :</div>
+                            <ul>
+                                <li>La <strong>nature</strong> du rayonnement</li>
+                                <li>L'<strong>énergie</strong> du rayonnement</li>
+                            </ul>
+                            <p><strong>Indépendant</strong> de la nature du tissu ou de l'organe !</p>
+                        </div>
+                    </div>
+
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Type de rayonnement</th>
+                            <th>W<sub>R</sub></th>
+                        </tr>
+                        <tr>
+                            <td>Photons (X, γ)</td>
+                            <td><span class="highlight">1</span></td>
+                        </tr>
+                        <tr>
+                            <td>Électrons (β)</td>
+                            <td><span class="highlight">1</span></td>
+                        </tr>
+                        <tr>
+                            <td>Neutrons (&lt; 10 keV)</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>Neutrons (10-100 keV)</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>Neutrons (100 keV - 2 MeV), α</td>
+                            <td><span class="important-value">20</span></td>
+                        </tr>
+                        <tr>
+                            <td>Neutrons (&gt; 20 MeV), protons</td>
+                            <td>5</td>
+                        </tr>
+                    </table>
+
+                    <div class="unit-card">
+                        <div class="name">Dose efficace (E)</div>
+                        <div class="symbol">Sievert (Sv)</div>
+                        <div class="definition">Somme des doses équivalentes pondérées par la radiosensibilité des tissus</div>
+                        <div class="formula-box">E = Σ<sub>T</sub> W<sub>T</sub> × H<sub>T</sub></div>
+                        <div class="key-point" style="margin-top:10px;">
+                            <div class="key-point-title">🎯 La dose efficace tient compte de :</div>
+                            <ul>
+                                <li>La <strong>nocivité du rayonnement</strong> (via W<sub>R</sub>)</li>
+                                <li>La <strong>radiosensibilité du tissu/organe</strong> (via W<sub>T</sub>)</li>
+                            </ul>
+                            <p>C'est une dose <strong>virtuelle</strong>, non mesurable mais calculable.</p>
+                        </div>
+                    </div>
+
+                    <div class="mnemonic-box">
+                        <div class="mnemonic-title">💡 Analogie des pommes (à retenir !)</div>
+                        <ul>
+                            <li><strong>Becquerel</strong> = nombre de pommes qui tombent de l'arbre</li>
+                            <li><strong>Gray</strong> = nombre de pommes reçues par la personne</li>
+                            <li><strong>Sievert</strong> = taille de la bosse selon le poids des pommes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCORDION 4: Niveaux d'intervention -->
+        <div class="accordion">
+            <div class="accordion-header">
+                <h2><span>🚨</span> Niveaux d'intervention et plans d'urgence</h2>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <div class="key-point">
+                        <div class="key-point-title">🎯 Actions selon la dose efficace reçue</div>
+                    </div>
+
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Niveau d'intervention</th>
+                            <th>Action de radioprotection</th>
+                        </tr>
+                        <tr>
+                            <td>Dose efficace de <span class="important-value">10 mSv</span></td>
+                            <td><strong>Mise à l'abri</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Dose efficace de <span class="important-value">50 mSv</span></td>
+                            <td><strong>Évacuation</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Dose équivalente à la thyroïde de <span class="important-value">50 mSv</span></td>
+                            <td><strong>Administration d'iode stable</strong></td>
+                        </tr>
+                    </table>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">Plans d'urgence (3 niveaux)</div>
+                        <table class="comparison-table">
+                            <tr>
+                                <th>Plan</th>
+                                <th>Niveau</th>
+                                <th>Responsable</th>
+                            </tr>
+                            <tr>
+                                <td><strong>PUI</strong> - Plan d'Urgence Interne</td>
+                                <td>Établissement</td>
+                                <td>Direction</td>
+                            </tr>
+                            <tr>
+                                <td><strong>PPI</strong> - Plan Particulier d'Intervention</td>
+                                <td>Départemental</td>
+                                <td>Pouvoirs publics (Préfet)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>PSS</strong> - Plans Spécialisés de Secours</td>
+                                <td>National</td>
+                                <td>État</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">Plans NRBC (attentats/menaces)</div>
+                        <p><strong>NRBC</strong> = Nucléaire, Radiologique, Biologique, Chimique</p>
+                        <table class="comparison-table">
+                            <tr>
+                                <th>Type de menace</th>
+                                <th>Plan activé</th>
+                            </tr>
+                            <tr>
+                                <td>Nucléaire / Radiologique</td>
+                                <td><span class="highlight">PIRATOME</span></td>
+                            </tr>
+                            <tr>
+                                <td>Biologique</td>
+                                <td>BIOTOX</td>
+                            </tr>
+                            <tr>
+                                <td>Chimique</td>
+                                <td>PIRATOX</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCORDION 5: Conduites à tenir -->
+        <div class="accordion">
+            <div class="accordion-header">
+                <h2><span>🩺</span> Conduites à tenir en cas d'incident</h2>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <div class="key-point">
+                        <div class="key-point-title">🎯 Principes généraux</div>
+                        <ol>
+                            <li><strong>Limiter</strong> le risque d'exposition au plus vite</li>
+                            <li><strong>Confiner</strong> le risque en évitant toute surcontamination</li>
+                        </ol>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">1. En cas d'irradiation externe</div>
+                        <ol>
+                            <li><strong>Supprimer l'exposition</strong> : soustraire la personne du champ d'irradiation</li>
+                            <li><strong>Protéger les intervenants</strong> :
+                                <ul>
+                                    <li>Utiliser des écrans</li>
+                                    <li>Limiter le temps d'intervention</li>
+                                    <li>Baliser et interdire l'accès à la zone</li>
+                                </ul>
+                            </li>
+                            <li><strong>Secours médicaux</strong> + bilan dosimétrique</li>
+                        </ol>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">2. En cas de contamination externe</div>
+                        <div class="warning-box">
+                            <div class="warning-title">⚠️ Règles essentielles</div>
+                            <ul>
+                                <li><strong>NE JAMAIS FROTTER</strong> (risque de lésions cutanées → contamination interne)</li>
+                                <li>Éviter de transformer une contamination localisée en contamination étendue</li>
+                            </ul>
+                        </div>
+
+                        <p><strong>Si contamination localisée :</strong></p>
+                        <ul>
+                            <li>Nettoyer à l'eau du robinet ou savon (sans frotter)</li>
+                            <li>Rincer abondamment</li>
+                            <li>Si visage : protéger tous les conduits (oreilles, narines, yeux, bouche)</li>
+                            <li>Faire moucher la personne</li>
+                        </ul>
+
+                        <p><strong>Si contamination étendue :</strong></p>
+                        <ul>
+                            <li>Se déshabiller en évitant la dispersion</li>
+                            <li>Recueillir les vêtements dans un sac</li>
+                            <li>Douche à l'eau tiède et savon → <span class="highlight">enlève &gt; 90% de la contamination</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">3. En cas de contamination interne</div>
+                        <p>La conduite dépend de la <strong>nature du radionucléide</strong> et de sa <strong>porte d'entrée</strong>.</p>
+
+                        <p><strong>Contamination par plaie :</strong></p>
+                        <ul>
+                            <li>Laver abondamment la plaie</li>
+                            <li>Appliquer un pansement stérile</li>
+                        </ul>
+
+                        <p><strong>Contamination par ingestion/inhalation :</strong></p>
+                        <ul>
+                            <li><strong>Saturer l'organe cible</strong> par isotope stable (ex: iode stable pour la thyroïde)</li>
+                            <li><strong>Diminuer l'absorption GI</strong> (ex: phosphate d'aluminium pour ³²P)</li>
+                            <li><strong>Accélérer l'élimination</strong> (laxatif)</li>
+                            <li><strong>Chélater</strong> le radionucléide (DTPA)</li>
+                            <li><strong>Boire abondamment</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="sub-section">
+                        <div class="sub-section-title">4. Contamination de locaux/matériel</div>
+                        <p>Distinguer contamination <strong>fixée</strong> (peu transférable) vs <strong>non fixée</strong> (transférable).</p>
+                        <ul>
+                            <li>Délimiter et baliser la zone</li>
+                            <li>Décontaminer : <span class="highlight">de la périphérie vers le centre</span></li>
+                            <li>Rincer abondamment, sécher</li>
+                            <li>Vérifier avec détecteur approprié</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCORDION 6: QCMs -->
+        <div class="accordion">
+            <div class="accordion-header">
+                <h2><span>✅</span> QCMs d'entraînement type concours</h2>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="accordion-inner">
+                    <div class="qcm-box">
+                        <div class="qcm-title">📝 QCM 1 - Modes d'exposition (2021-2022)</div>
+                        <div class="qcm-question">
+                            <p>Concernant les modes d'exposition aux rayonnements ionisants :</p>
+                            <p>A. L'exposition externe implique un contact cutané avec la source</p>
+                            <p>B. Un irradié peut irradier son entourage</p>
+                            <p>C. La contamination externe peut se transformer en contamination interne si plaie</p>
+                            <p>D. Les particules α sont très dangereuses en contamination interne</p>
+                            <p>E. Les rayonnements X et γ sont dangereux quel que soit le mode d'exposition</p>
+                            <div class="qcm-answer">
+                                <strong>Réponses : C, D, E</strong><br>
+                                A est FAUX : exposition externe = PAS de contact cutané<br>
+                                B est FAUX : un irradié ne porte pas de matière radioactive, il n'irradie pas son entourage
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-box">
+                        <div class="qcm-title">📝 QCM 2 - Grandeurs et unités (2022-2023)</div>
+                        <div class="qcm-question">
+                            <p>Concernant les grandeurs utilisées en radioprotection :</p>
+                            <p>A. La dose absorbée s'exprime en Gray</p>
+                            <p>B. La dose équivalente prend en compte la nature du rayonnement</p>
+                            <p>C. Le facteur W<sub>R</sub> pour les particules α est égal à 1</p>
+                            <p>D. La dose efficace tient compte de la radiosensibilité des tissus</p>
+                            <p>E. La dose efficace s'exprime en Sievert</p>
+                            <div class="qcm-answer">
+                                <strong>Réponses : A, B, D, E</strong><br>
+                                C est FAUX : W<sub>R</sub> = 20 pour les particules α (pas 1)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-box">
+                        <div class="qcm-title">📝 QCM 3 - Niveaux d'intervention (2023-2024)</div>
+                        <div class="qcm-question">
+                            <p>Concernant les niveaux d'intervention en situation d'urgence radiologique :</p>
+                            <p>A. La mise à l'abri est recommandée pour une dose efficace de 10 mSv</p>
+                            <p>B. L'évacuation est recommandée pour une dose efficace de 100 mSv</p>
+                            <p>C. Le plan PIRATOME concerne les menaces nucléaires</p>
+                            <p>D. Le plan PUI est du ressort des pouvoirs publics</p>
+                            <p>E. L'administration d'iode stable est recommandée pour une dose à la thyroïde de 50 mSv</p>
+                            <div class="qcm-answer">
+                                <strong>Réponses : A, C, E</strong><br>
+                                B est FAUX : évacuation à 50 mSv (pas 100 mSv)<br>
+                                D est FAUX : PUI = Plan d'Urgence Interne (niveau établissement, pas pouvoirs publics)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="qcm-box">
+                        <div class="qcm-title">📝 QCM 4 - Conduites à tenir</div>
+                        <div class="qcm-question">
+                            <p>Concernant la conduite à tenir en cas de contamination externe :</p>
+                            <p>A. Il faut frotter vigoureusement pour éliminer la contamination</p>
+                            <p>B. Une douche à l'eau tiède et savon enlève plus de 90% de la contamination</p>
+                            <p>C. La décontamination se fait de la périphérie vers le centre</p>
+                            <p>D. Il faut créer des lésions cutanées pour favoriser l'élimination</p>
+                            <p>E. Les vêtements contaminés doivent être recueillis dans un sac</p>
+                            <div class="qcm-answer">
+                                <strong>Réponses : B, C, E</strong><br>
+                                A est FAUX : NE JAMAIS FROTTER<br>
+                                D est FAUX : éviter les lésions cutanées (risque de contamination interne)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const accordion = header.parentElement;
+                accordion.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
