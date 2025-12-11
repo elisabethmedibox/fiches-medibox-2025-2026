@@ -10,15 +10,17 @@
            CSS INLINE OBLIGATOIRE - NE PAS MODIFIER
            ============================================ */
 
-        /* Filigrane logo Medibox - fixe pendant scroll */
+        /* Filigrane logo Medibox - fixe pendant scroll, responsive */
         body::after {
             content: "";
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 900px;
-            height: 900px;
+            width: 80vw;
+            height: 80vw;
+            max-width: 900px;
+            max-height: 900px;
             background-image: url('https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-clair.png');
             background-size: contain;
             background-repeat: no-repeat;
@@ -28,11 +30,11 @@
             z-index: 9999;
         }
 
-        /* Responsive : logo plus petit sur mobile */
+        /* Responsive : ajustement mobile */
         @media (max-width: 768px) {
             body::after {
-                width: 600px;
-                height: 600px;
+                width: 90vw;
+                height: 90vw;
                 opacity: 0.06;
             }
         }
@@ -84,6 +86,8 @@
         /* Tableaux QCM */
         .qcm-thematique {
             margin-bottom: 30px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .qcm-thematique h4 {
@@ -179,7 +183,23 @@
         .table-wrapper {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
+            margin-bottom: 5px;
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Indication scroll sous les tableaux */
+        .scroll-hint {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-style: italic;
+            text-align: right;
             margin-bottom: 20px;
+            padding-right: 5px;
+        }
+
+        .scroll-hint::before {
+            content: "👉 ";
         }
 
         /* Tableau diagnostic compact */
@@ -443,7 +463,7 @@
             <h1>📘 {{FC_NUM}} - {{FC_TITRE}}</h1>
             <div class="meta">
                 <span>📚 {{UE_NUM}} - {{UE_TITRE}}</span>
-                <span>🎯 Fiche d'Analyse - Module 40 : gerer son retard</span>
+                <span>🎯 Fiche d'Analyse - Module 40 : gérer son retard</span>
             </div>
         </div>
 
@@ -459,18 +479,19 @@
                  - Symboles : ≈ quasi-identique
                  ============================================ -->
             <details class="main-accordion">
-                <summary>📋 QCM tombes aux sessions 1</summary>
+                <summary>📋 QCM tombés aux sessions 1</summary>
                 <div class="accordion-content">
 
                     <!-- THEME 1 : {{THEME_1_TITRE}} -->
                     <div class="qcm-thematique">
                         <h4>{{THEME_1_TITRE}} - X ans / 5</h4>
+                        <div class="table-wrapper">
                         <table class="qcm-table">
                             <thead>
                                 <tr>
-                                    <th>Annee - QCM</th>
-                                    <th>Enonce et items</th>
-                                    <th>Recurrence</th>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                    <th>Récurrence</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -494,9 +515,11 @@
                                         <!-- Si pas de recurrence : - -->
                                     </td>
                                 </tr>
-                                <!-- Autres QCM du theme... -->
+                                <!-- Autres QCM du thème... -->
                             </tbody>
                         </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
                     </div>
 
                     <!-- THEME 2, 3, etc. : copier le bloc qcm-thematique -->
@@ -519,25 +542,25 @@
                     <div class="table-wrapper">
                         <table class="diagnostic-table" style="table-layout: fixed; width: 100%;">
                             <tr>
-                                <th style="text-align: center; width: 20%;">Frequence</th>
+                                <th style="text-align: center; width: 20%;">Fréquence</th>
                                 <th style="text-align: center; width: 20%;">Moyenne QCM/an</th>
                                 <th style="text-align: center; width: 20%;">SRT</th>
                                 <th style="text-align: center; width: 20%;">SRI</th>
-                                <th style="text-align: center; width: 20%;">Dependance</th>
+                                <th style="text-align: center; width: 20%;">Dépendance</th>
                             </tr>
                             <tr>
                                 <td style="text-align: center;">
-                                    {{X}} annees sur 5<br>
+                                    {{X}} années sur 5<br>
                                     <span style="font-size: 0.75rem; color: #64748b;">{{ANNEES_NON_TOMBEES}}</span>
                                 </td>
                                 <td style="text-align: center;">{{MOYENNE}}</td>
                                 <td style="text-align: center;">
                                     ~{{SRT}}%<br>
-                                    <span style="font-size: 0.75rem; color: #64748b;">Score Recurrence Thematique</span>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Récurrence Thématique</span>
                                 </td>
                                 <td style="text-align: center;">
                                     ~{{SRI}}%<br>
-                                    <span style="font-size: 0.75rem; color: #64748b;">Score Recurrence Items</span>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Récurrence Items</span>
                                 </td>
                                 <td style="text-align: center;">
                                     {{DEPENDANCE}}<br>
@@ -546,16 +569,17 @@
                             </tr>
                         </table>
                     </div>
+                    <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
 
                     <div class="vue-ensemble">
-                        <h4>Vue d'ensemble des QCM par thematique</h4>
+                        <h4>Vue d'ensemble des QCM par thématique</h4>
                         <p class="vue-ensemble-intro">{{INTRO_VUE_ENSEMBLE}}</p>
 
                         <div class="table-wrapper">
                             <table class="vue-tableau">
                                 <thead>
                                     <tr>
-                                        <th>Thematique</th>
+                                        <th>Thématique</th>
                                         <th>2020-21</th>
                                         <th>2021-22</th>
                                         <th>2022-23</th>
@@ -572,10 +596,11 @@
                                         <td class="empty-cell">-</td>
                                         <td>Q{{X}}({{ITEMS}})</td>
                                     </tr>
-                                    <!-- Autres thematiques... -->
+                                    <!-- Autres thématiques... -->
                                 </tbody>
                             </table>
                         </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
                     </div>
 
                 </div>
@@ -591,11 +616,11 @@
                  - Blocs gris clair (#f8fafc)
                  ============================================ -->
             <details class="main-accordion">
-                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <summary>🎯 Recommandations Niveau 2 (ciblage des parties du cours)</summary>
                 <div class="accordion-content">
 
                     <div class="reco-item" style="padding: 25px; margin-bottom: 30px; border-left-color: #dc2626;">
-                        <h4>1) {{THEME_PRIORITAIRE_1}} (PRIORITE ABSOLUE)</h4>
+                        <h4>1) {{THEME_PRIORITAIRE_1}} (PRIORITÉ ABSOLUE)</h4>
                         <p><strong>Objectif :</strong> {{OBJECTIF}}</p>
 
                         <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
@@ -633,7 +658,7 @@
                  - .cle-raisonnement (vert) OU .connaissance-pure (jaune)
                  ============================================ -->
             <details class="main-accordion">
-                <summary>📝 Recommandations Niveau 1 (strategie annales)</summary>
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
                 <div class="accordion-content">
 
                     <!-- ENCADRE INTRO : choisir vert (viable) ou rouge (peu rentable) -->
@@ -665,7 +690,7 @@
                         </div>
 
                         <div class="qcm-section">
-                            <div class="qcm-section-title">Cle de raisonnement :</div>
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
 
                             <!-- CHOIX A : Cle logique (fond VERT) -->
                             <div class="cle-raisonnement">
@@ -678,7 +703,7 @@
 
                             <!-- CHOIX B : Connaissance pure (fond JAUNE)
                             <div class="connaissance-pure">
-                                <p><strong>A retenir par coeur :</strong></p>
+                                <p><strong>À retenir par cœur :</strong></p>
                                 <p>{{ELEMENT_1}}</p>
                                 <p>{{ELEMENT_2}}</p>
                             </div>
@@ -704,18 +729,18 @@
                 <div class="accordion-content">
 
                     <p style="margin-bottom: 20px; padding: 12px; background: #fef3c7; border-radius: 8px; font-size: 0.85rem; color: #92400e;">
-                        Les pieges ci-dessous sont issus des <strong>annales des 5 dernieres annees</strong>. Ils sont RECURRENTS.
+                        Les pièges ci-dessous sont issus des <strong>annales des 5 dernières années</strong>. Ils sont RÉCURRENTS.
                     </p>
 
                     <div class="vigilance-item" style="border-left-color: #dc2626;">
-                        <h4>PIEGE #1 : {{TITRE_PIEGE}}</h4>
-                        <p><strong>Annees :</strong> {{ANNEES}}<br>
-                        <strong>Reponse :</strong> {{EXPLICATION}}</p>
+                        <h4>PIÈGE #1 : {{TITRE_PIEGE}}</h4>
+                        <p><strong>Années :</strong> {{ANNEES}}<br>
+                        <strong>Réponse :</strong> {{EXPLICATION}}</p>
                     </div>
 
                     <div class="vigilance-item">
-                        <h4>PIEGE #2 : {{TITRE_PIEGE}}</h4>
-                        <p><strong>Annee :</strong> {{ANNEE}}<br>
+                        <h4>PIÈGE #2 : {{TITRE_PIEGE}}</h4>
+                        <p><strong>Année :</strong> {{ANNEE}}<br>
                         <strong>Attention :</strong> {{EXPLICATION}}</p>
                     </div>
 
@@ -741,7 +766,7 @@
                         </p>
 
                         <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #059669;">
-                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 3 - tu maitrises le cours</p>
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 3 - tu maîtrises le cours</p>
                             <p style="margin: 0; color: #4a5568; line-height: 1.6;">
                                 {{CONSEILS_NIVEAU_3}}
                             </p>
@@ -789,7 +814,7 @@
 
         <div class="avertissement">
             <strong>AVERTISSEMENT</strong><br>
-            Cette fiche d'analyse ne se substitue pas au cours officiel. La prepa encourage chaque etudiant a maitriser l'integralite de son programme. Cette ressource est destinee uniquement aux etudiants en retard quelques semaines avant l'examen, en dernier recours.
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours.
         </div>
     </div>
 </body>
