@@ -86,8 +86,6 @@
         /* Tableaux QCM */
         .qcm-thematique {
             margin-bottom: 30px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
         }
 
         .qcm-thematique h4 {
@@ -101,6 +99,7 @@
 
         .qcm-table {
             width: 100%;
+            min-width: 700px;
             border-collapse: collapse;
             margin-bottom: 20px;
             font-size: 0.85rem;
@@ -179,12 +178,13 @@
             content: "≈ ";
         }
 
-        /* Wrapper pour scroll des tableaux */
+        /* Wrapper pour scroll des tableaux - copié du tableau diagnostic qui fonctionne */
         .table-wrapper {
             overflow-x: auto;
+            overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
             margin-bottom: 5px;
-            max-width: 100%;
+            width: 100%;
             display: block;
         }
 
@@ -226,8 +226,6 @@
         /* Vue d'ensemble */
         .vue-ensemble {
             margin-top: 25px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
         }
 
         .vue-ensemble h4 {
@@ -244,6 +242,7 @@
 
         .vue-tableau {
             width: 100%;
+            min-width: 550px;
             border-collapse: collapse;
             margin-top: 15px;
             font-size: 0.9rem;
@@ -431,9 +430,9 @@
             .accordion-content { padding: 20px; }
             table { font-size: 0.8rem; }
             th, td { padding: 8px; }
-            .qcm-thematique { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-            .qcm-table { min-width: 750px; font-size: 0.7rem !important; }
-            .vue-tableau { min-width: 600px; }
+            .qcm-thematique { }
+            .qcm-table { font-size: 0.7rem !important; }
+            .vue-tableau { }
         }
 
         /* Footer */
