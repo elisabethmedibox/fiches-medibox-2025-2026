@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{FC_NUM}} - {{FC_TITRE}} - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* ============================================
+           CSS INLINE OBLIGATOIRE - NE PAS MODIFIER
+           ============================================ */
+
+        /* Filigrane logo Medibox - fixe pendant scroll */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 900px;
+            height: 900px;
+            background-image: url('https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-clair.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Responsive : logo plus petit sur mobile */
+        @media (max-width: 768px) {
+            body::after {
+                width: 600px;
+                height: 600px;
+                opacity: 0.06;
+            }
+        }
+
+        /* Accordeons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .qcm-table th:first-child {
+            width: 130px;
+        }
+
+        .qcm-table th:last-child {
+            width: 150px;
+        }
+
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+
+        /* References recurrence */
+        .qcm-ref {
+            font-size: 0.75rem;
+            color: #1a365d;
+            font-style: italic;
+        }
+
+        .qcm-ref ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .qcm-ref li {
+            margin-bottom: 3px;
+        }
+
+        .ref-quasi::before {
+            content: "≈ ";
+        }
+
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+
+        /* Recommandations */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        /* QCM Analyse (Accordeon 4) */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px dashed #0284c7;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .tuteur-zone p {
+            margin: 0;
+            color: #0c4a6e;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px; }
+            .qcm-thematique { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .qcm-table { min-width: 750px; font-size: 0.7rem !important; }
+            .vue-tableau { min-width: 600px; }
+        }
+
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📘 {{FC_NUM}} - {{FC_TITRE}}</h1>
+            <div class="meta">
+                <span>📚 {{UE_NUM}} - {{UE_TITRE}}</span>
+                <span>🎯 Fiche d'Analyse - Module 40 : gerer son retard</span>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- ============================================
+                 ACCORDEON 1 : QCM TOMBES AUX SESSIONS 1
+                 ============================================
+                 REGLES :
+                 - Grouper par THEMATIQUE (pas par annee)
+                 - Tous les items A-E presents
+                 - Source : PDF original (pas JSON)
+                 - Symboles : ≈ quasi-identique
+                 ============================================ -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombes aux sessions 1</summary>
+                <div class="accordion-content">
+
+                    <!-- THEME 1 : {{THEME_1_TITRE}} -->
+                    <div class="qcm-thematique">
+                        <h4>{{THEME_1_TITRE}} - X ans / 5</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Annee - QCM</th>
+                                    <th>Enonce et items</th>
+                                    <th>Recurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ANNEE}} Q{{NUM}}</td>
+                                    <td>
+                                        <div class="qcm-enonce">{{ENONCE}}</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: {{ITEM_A}}</div>
+                                            <div class="qcm-item">B: {{ITEM_B}}</div>
+                                            <div class="qcm-item">C: {{ITEM_C}}</div>
+                                            <div class="qcm-item">D: {{ITEM_D}}</div>
+                                            <div class="qcm-item">E: {{ITEM_E}}</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <!-- Si quasi-identique a un autre QCM : -->
+                                        <ul>
+                                            <li class="ref-quasi"><em>{{ANNEE_REF}} Q{{NUM_REF}}</em></li>
+                                        </ul>
+                                        <!-- Si pas de recurrence : - -->
+                                    </td>
+                                </tr>
+                                <!-- Autres QCM du theme... -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- THEME 2, 3, etc. : copier le bloc qcm-thematique -->
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDEON 2 : RAPPEL DIAGNOSTIC
+                 ============================================
+                 REGLES :
+                 - Tableau synthese : Frequence, Moyenne, SRT, SRI, Dependance
+                 - Vue d'ensemble : Thematiques GENERALES x Annees
+                 - Items entre parentheses : Q2(BC), Q4(ADE)
+                 ============================================ -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table" style="table-layout: fixed; width: 100%;">
+                            <tr>
+                                <th style="text-align: center; width: 20%;">Frequence</th>
+                                <th style="text-align: center; width: 20%;">Moyenne QCM/an</th>
+                                <th style="text-align: center; width: 20%;">SRT</th>
+                                <th style="text-align: center; width: 20%;">SRI</th>
+                                <th style="text-align: center; width: 20%;">Dependance</th>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    {{X}} annees sur 5<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">{{ANNEES_NON_TOMBEES}}</span>
+                                </td>
+                                <td style="text-align: center;">{{MOYENNE}}</td>
+                                <td style="text-align: center;">
+                                    ~{{SRT}}%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Recurrence Thematique</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    ~{{SRI}}%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Recurrence Items</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    {{DEPENDANCE}}<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">{{DEPENDANCE_DETAIL}}</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>Vue d'ensemble des QCM par thematique</h4>
+                        <p class="vue-ensemble-intro">{{INTRO_VUE_ENSEMBLE}}</p>
+
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thematique</th>
+                                        <th>2020-21</th>
+                                        <th>2021-22</th>
+                                        <th>2022-23</th>
+                                        <th>2023-24</th>
+                                        <th>2024-25</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{THEMATIQUE_1}}</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q{{X}}({{ITEMS}})</td>
+                                        <td>Q{{X}}({{ITEMS}})</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q{{X}}({{ITEMS}})</td>
+                                    </tr>
+                                    <!-- Autres thematiques... -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDEON 3 : RECOMMANDATIONS NIVEAU 2
+                 ============================================
+                 REGLES :
+                 - Themes prioritaires par frequence decroissante
+                 - Format : titre + description + frequence
+                 - PAS de bullets imbriques
+                 - Blocs gris clair (#f8fafc)
+                 ============================================ -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px; border-left-color: #dc2626;">
+                        <h4>1) {{THEME_PRIORITAIRE_1}} (PRIORITE ABSOLUE)</h4>
+                        <p><strong>Objectif :</strong> {{OBJECTIF}}</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>{{SOUS_THEME_1}}</strong><br>
+                            <span style="color: #64748b;">{{DETAILS}}</span></p>
+
+                            <p style="margin: 0;"><strong>{{SOUS_THEME_2}}</strong><br>
+                            <span style="color: #64748b;">{{DETAILS}}</span></p>
+                        </div>
+                        <span class="frequence" style="background: #fee2e2; color: #dc2626;">Tombe X ans / 5 - INCONTOURNABLE</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>2) {{THEME_PRIORITAIRE_2}}</h4>
+                        <p><strong>Objectif :</strong> {{OBJECTIF}}</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            {{CONTENU}}
+                        </div>
+                        <span class="frequence">Tombe X ans / 5</span>
+                    </div>
+
+                    <!-- Autres themes... -->
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDEON 4 : RECOMMANDATIONS NIVEAU 1
+                 ============================================
+                 REGLES :
+                 - Encadre intro : VERT si viable, ROUGE sinon
+                 - Cartes par THEMATIQUE (pas par QCM)
+                 - Structure : Titre + Badge annees + Constat + Action + Cle
+                 - .cle-raisonnement (vert) OU .connaissance-pure (jaune)
+                 ============================================ -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (strategie annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- ENCADRE INTRO : choisir vert (viable) ou rouge (peu rentable) -->
+
+                    <!-- Option VERT (SRI > 50%) : -->
+                    <p style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 8px; color: #166534;">
+                        <strong>Niveau 1 VIABLE.</strong> {{EXPLICATION_VIABILITE}}
+                    </p>
+
+                    <!-- Option ROUGE (SRI < 50%) :
+                    <p style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border-radius: 8px; color: #991b1b;">
+                        <strong>Niveau 1 PEU RENTABLE.</strong> {{EXPLICATION}}
+                    </p>
+                    -->
+
+                    <!-- CARTE THEMATIQUE -->
+                    <div class="qcm-analyse">
+                        <h4>{{TITRE_THEMATIQUE}}</h4>
+                        <div class="qcm-badge">Tombe en <strong>{{ANNEE_1}}</strong> Q{{X}} | <strong>{{ANNEE_2}}</strong> Q{{X}}</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">{{CE_QUE_LE_PROF_TESTE}}</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">{{ACTION_CONCRETE}}</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Cle de raisonnement :</div>
+
+                            <!-- CHOIX A : Cle logique (fond VERT) -->
+                            <div class="cle-raisonnement">
+                                <p><strong>{{REGLE_LOGIQUE}}</strong></p>
+                                <ul>
+                                    <li>{{POINT_1}}</li>
+                                    <li>{{POINT_2}}</li>
+                                </ul>
+                            </div>
+
+                            <!-- CHOIX B : Connaissance pure (fond JAUNE)
+                            <div class="connaissance-pure">
+                                <p><strong>A retenir par coeur :</strong></p>
+                                <p>{{ELEMENT_1}}</p>
+                                <p>{{ELEMENT_2}}</p>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+
+                    <!-- Autres cartes thematiques... -->
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDEON 5 : POINTS DE VIGILANCE
+                 ============================================
+                 REGLES :
+                 - Pieges recurrents identifies
+                 - Titre en orange + description
+                 - border-left-color: #dc2626 pour pieges majeurs
+                 ============================================ -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 12px; background: #fef3c7; border-radius: 8px; font-size: 0.85rem; color: #92400e;">
+                        Les pieges ci-dessous sont issus des <strong>annales des 5 dernieres annees</strong>. Ils sont RECURRENTS.
+                    </p>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>PIEGE #1 : {{TITRE_PIEGE}}</h4>
+                        <p><strong>Annees :</strong> {{ANNEES}}<br>
+                        <strong>Reponse :</strong> {{EXPLICATION}}</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>PIEGE #2 : {{TITRE_PIEGE}}</h4>
+                        <p><strong>Annee :</strong> {{ANNEE}}<br>
+                        <strong>Attention :</strong> {{EXPLICATION}}</p>
+                    </div>
+
+                    <!-- Autres pieges... -->
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDEON 6 : AVIS DU TUTEUR
+                 ============================================
+                 REGLES :
+                 - Zone .tuteur-zone
+                 - 3 blocs : Niveau 3, Niveau 2, Niveau 1
+                 - Indiquer si Niveau 1 VIABLE ou non
+                 ============================================ -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 18px; font-weight: 600; color: #1a365d; font-size: 1.05rem;">
+                            {{INTRO_TUTEUR}}
+                        </p>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 3 - tu maitrises le cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                {{CONSEILS_NIVEAU_3}}
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #d97706;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #d97706;">Niveau 2 - tu cibles les parties du cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                {{CONSEILS_NIVEAU_2}}
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 1 - tu travailles quasi exclusivement sur les annales</p>
+
+                            <!-- Si Niveau 1 VIABLE : -->
+                            <p style="margin: 0 0 12px 0; padding: 10px; background: #dcfce7; border-radius: 6px; color: #166534;">
+                                <strong>Niveau 1 VIABLE.</strong> {{EXPLICATION}}
+                            </p>
+
+                            <!-- Si Niveau 1 PEU RENTABLE :
+                            <p style="margin: 0 0 12px 0; padding: 10px; background: #fee2e2; border-radius: 6px; color: #991b1b;">
+                                <strong>Niveau 1 PEU RENTABLE.</strong> {{EXPLICATION}}
+                            </p>
+                            -->
+
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                {{CONSEILS_NIVEAU_1}}
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ============================================
+             FOOTER OBLIGATOIRE - NE PAS MODIFIER
+             ============================================ -->
+        <div class="footer">
+            <strong>Creation originale de E. Schaeffer</strong><br>
+            Soumis a droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prepa encourage chaque etudiant a maitriser l'integralite de son programme. Cette ressource est destinee uniquement aux etudiants en retard quelques semaines avant l'examen, en dernier recours.
+        </div>
+    </div>
+</body>
+</html>
