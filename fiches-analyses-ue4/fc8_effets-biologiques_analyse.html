@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC8 - Effets biologiques des rayonnements ionisants - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* ============================================
+           CSS INLINE OBLIGATOIRE - NE PAS MODIFIER
+           ============================================ */
+
+        /* Filigrane logo Medibox - fixe pendant scroll, responsive */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 900px;
+            max-height: 900px;
+            background-image: url('https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-clair.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Responsive : ajustement mobile */
+        @media (max-width: 768px) {
+            body::after {
+                width: 90vw;
+                height: 90vw;
+                opacity: 0.06;
+            }
+        }
+
+        /* Accordeons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+
+        .qcm-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .qcm-table th:first-child {
+            width: 130px;
+        }
+
+        .qcm-table th:last-child {
+            width: 150px;
+        }
+
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+
+        /* References recurrence */
+        .qcm-ref {
+            font-size: 0.75rem;
+            color: #1a365d;
+            font-style: italic;
+        }
+
+        .qcm-ref ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .qcm-ref li {
+            margin-bottom: 3px;
+        }
+
+        .ref-quasi::before {
+            content: "≈ ";
+        }
+
+        /* Wrapper pour scroll des tableaux - copié du tableau diagnostic qui fonctionne */
+        .table-wrapper {
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 5px;
+            width: 100%;
+            display: block;
+        }
+
+        /* Indication scroll sous les tableaux */
+        .scroll-hint {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-style: italic;
+            text-align: right;
+            margin-bottom: 20px;
+            padding-right: 5px;
+        }
+
+        .scroll-hint::before {
+            content: "👉 ";
+        }
+
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+        }
+
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .vue-tableau {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+
+        /* Recommandations */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        /* QCM Analyse (Accordeon 4) */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px dashed #0284c7;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .tuteur-zone p {
+            margin: 0;
+            color: #0c4a6e;
+        }
+
+        /* Tableau comparatif */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.85rem;
+        }
+
+        .comparison-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        .comparison-table tr:nth-child(even) td {
+            background: #f8fafc;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px; }
+            .qcm-thematique { }
+            .qcm-table { font-size: 0.7rem !important; }
+            .vue-tableau { }
+        }
+
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📘 FC8 - Effets biologiques des rayonnements ionisants</h1>
+            <div class="meta">
+                <span>📚 UE4 - Rayonnements et Santé</span>
+                <span>🎯 Fiche d'Analyse - Module 40 : gérer son retard</span>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- ============================================
+                 ACCORDEON 1 : QCM TOMBES AUX SESSIONS 1
+                 ============================================ -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+
+                    <!-- THEME UNIQUE : Effets déterministes vs stochastiques -->
+                    <div class="qcm-thematique">
+                        <h4>Effets déterministes vs stochastiques - 5 ans / 5</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table" style="table-layout: fixed; width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%;">Année - QCM</th>
+                                    <th style="width: 65%;">Énoncé et items</th>
+                                    <th style="width: 20%;">Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-25 Q9</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les effets biologiques des rayonnements ionisants, les effets déterministes présentent les caractéristiques suivantes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A. N'apparaissent qu'à un certain seuil.</div>
+                                            <div class="qcm-item">B. Sont des effets obligatoires.</div>
+                                            <div class="qcm-item">C. Sont éventuellement réversibles.</div>
+                                            <div class="qcm-item">D. Apparaissent tardivement.</div>
+                                            <div class="qcm-item">E. Leur gravité est proportionnelle à la dose.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2022-23 Q9</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-24 Q9</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les effets biologiques des rayonnements ionisants :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A. Le TLE reflète la nuisance biologique des rayonnements ionisants.</div>
+                                            <div class="qcm-item">B. Les effets déterministes sont des effets obligatoires.</div>
+                                            <div class="qcm-item">C. Les effets déterministes sont généralement irréversibles.</div>
+                                            <div class="qcm-item">D. Les effets stochastiques n'apparaissent qu'à un certain seuil.</div>
+                                            <div class="qcm-item">E. La gravité des effets stochastiques est proportionnelle à la dose.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2021-22 Q8</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-23 Q9</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les effets déterministes des rayonnements ionisants :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A. Ils n'apparaissent qu'à un certain seuil.</div>
+                                            <div class="qcm-item">B. Leur gravité est indépendante de la dose.</div>
+                                            <div class="qcm-item">C. Ils apparaissent tardivement.</div>
+                                            <div class="qcm-item">D. Les effets déterministes sont des effets obligatoires.</div>
+                                            <div class="qcm-item">E. Ils sont généralement irréversibles.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2024-25 Q9</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-22 Q8</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les effets biologiques des rayonnements ionisants :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A. Plus les cellules sont jeunes et indifférenciées, plus elles sont radiosensibles.</div>
+                                            <div class="qcm-item">B. Le TLE reflète la nuisance biologique des rayonnements ionisants.</div>
+                                            <div class="qcm-item">C. Les effets stochastiques sont observés à partir d'une certaine dose (effets à seuil).</div>
+                                            <div class="qcm-item">D. La gravité des effets stochastiques est proportionnelle à la dose.</div>
+                                            <div class="qcm-item">E. Les brûlures radiologiques sont plus douloureuses que les brûlures thermiques.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2023-24 Q9</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2020-21 Q8</td>
+                                    <td>
+                                        <div class="qcm-enonce">Effets biologiques des rayonnements. Concernant les propositions suivantes, indiquez laquelle (ou lesquelles) est (ou sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A. Plus les cellules sont jeunes et indifférenciées, plus elles sont radiosensibles.</div>
+                                            <div class="qcm-item">B. Les tissus avec un index mitotique élevé sont plus radiosensibles que les tissus non compartimentaux.</div>
+                                            <div class="qcm-item">C. Les effets stochastiques n'apparaissent qu'à un certain seuil.</div>
+                                            <div class="qcm-item">D. Les effets déterministes sont des effets obligatoires.</div>
+                                            <div class="qcm-item">E. Dans le Syndrome d'Irradiation Globale Aiguë (SIGA), l'aplasie médullaire survient pour des doses supérieures à 1 Gy.</div>
+                                        </div>
+                                    </td>
+                                    <td>-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDEON 2 : RAPPEL DIAGNOSTIC
+                 ============================================ -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table" style="table-layout: fixed; width: 100%;">
+                            <tr>
+                                <th style="text-align: center; width: 20%;">Fréquence</th>
+                                <th style="text-align: center; width: 20%;">NB de QCM/an</th>
+                                <th style="text-align: center; width: 20%;">SRT</th>
+                                <th style="text-align: center; width: 20%;">SRI</th>
+                                <th style="text-align: center; width: 20%;">Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    5 années sur 5<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Systématique</span>
+                                </td>
+                                <td style="text-align: center;">1</td>
+                                <td style="text-align: center;">
+                                    ~100%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Récurrence Thématique</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    ~60%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Récurrence Items</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    Nulle<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Connaissances pures</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 15px; margin: 15px 0; font-size: 0.85rem;">
+                        <strong>Légende :</strong><br>
+                        • <strong>SRT</strong> (Score Récurrence Thématique) : probabilité qu'un thème tombe à nouveau<br>
+                        • <strong>SRI</strong> (Score Récurrence Items) : probabilité que les mêmes items/formulations reviennent
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>Vue d'ensemble des QCM par thématique</h4>
+                        <p class="vue-ensemble-intro">Fiche ultra-concentrée : la distinction déterministes/stochastiques couvre 100% des QCM. Les pièges consistent à inverser les caractéristiques des deux types d'effets.</p>
+
+                        <div class="table-wrapper">
+                            <table class="vue-tableau" style="table-layout: fixed; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 30%;">Thématique</th>
+                                        <th style="width: 14%;">2020-21</th>
+                                        <th style="width: 14%;">2021-22</th>
+                                        <th style="width: 14%;">2022-23</th>
+                                        <th style="width: 14%;">2023-24</th>
+                                        <th style="width: 14%;">2024-25</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Déterministes (caractéristiques)</td>
+                                        <td>Q8(D)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q9(AD)</td>
+                                        <td>Q9(BC)</td>
+                                        <td>Q9(ABCE)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Stochastiques (pièges)</td>
+                                        <td>Q8(C)</td>
+                                        <td>Q8(CD)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q9(DE)</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Radiosensibilité cellulaire</td>
+                                        <td>Q8(AB)</td>
+                                        <td>Q8(A)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TLE nuisance biologique</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q8(B)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q9(A)</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SIGA</td>
+                                        <td>Q8(E)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDEON 3 : RECOMMANDATIONS NIVEAU 2
+                 ============================================ -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage des parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px; border-left-color: #dc2626;">
+                        <h4>1) Effets déterministes vs stochastiques (PRIORITÉ ABSOLUE)</h4>
+                        <p><strong>Objectif :</strong> maîtriser les 6 caractéristiques qui distinguent les deux types d'effets.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Effets déterministes</strong><br>
+                            <span style="color: #64748b;">À seuil, obligatoires, gravité ∝ dose, précoces, généralement réversibles. Exemples : brûlure, aplasie, SIGA.</span></p>
+
+                            <p style="margin: 0;"><strong>Effets stochastiques</strong><br>
+                            <span style="color: #64748b;">Sans seuil, aléatoires, gravité indépendante (fréquence ∝ dose), tardifs, irréversibles. Exemples : cancer, effets génétiques.</span></p>
+                        </div>
+                        <span class="frequence" style="background: #fee2e2; color: #dc2626;">Tombe 5 ans / 5 - INCONTOURNABLE</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>2) Radiosensibilité cellulaire</h4>
+                        <p><strong>Objectif :</strong> retenir la loi de Bergonié-Tribondeau.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0;"><strong>3 critères de radiosensibilité élevée :</strong> cellules jeunes, indifférenciées, avec index mitotique élevé. Les tissus compartimentaux (moelle osseuse, épithélium intestinal) sont plus sensibles que les tissus stables.</p>
+                        </div>
+                        <span class="frequence">Tombe 2 ans / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>3) TLE et nuisance biologique</h4>
+                        <p><strong>Objectif :</strong> comprendre le lien entre TLE et dégâts biologiques.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0;">Le TLE (Transfert Linéique d'Énergie) quantifie l'énergie déposée par unité de longueur de trajectoire. Plus le TLE est élevé, plus les dégâts sont concentrés et donc plus la nuisance biologique est importante.</p>
+                        </div>
+                        <span class="frequence">Tombe 2 ans / 5</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDEON 4 : RECOMMANDATIONS NIVEAU 1
+                 ============================================ -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 8px; color: #166534;">
+                        <strong>Niveau 1 TRÈS VIABLE.</strong> Un seul thème (déterministes vs stochastiques), items très répétitifs (SRI ~60%), aucun calcul. En apprenant le tableau ci-dessous, tu sécurises quasi-systématiquement 1 QCM/an.
+                    </p>
+
+                    <!-- CARTE PRINCIPALE : Tableau comparatif -->
+                    <div class="qcm-analyse">
+                        <h4>Tableau à apprendre : déterministes vs stochastiques</h4>
+                        <div class="qcm-badge">Tombe en <strong>2020-21</strong> | <strong>2021-22</strong> | <strong>2022-23</strong> | <strong>2023-24</strong> | <strong>2024-25</strong></div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Chaque année, le prof teste la distinction déterministes/stochastiques avec les mêmes pièges : inverser les caractéristiques (seuil, réversibilité, temporalité, relation dose-effet).</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprendre ce tableau par cœur. C'est la clé de FC8.</div>
+                        </div>
+
+                        <div class="table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Critère</th>
+                                    <th>Déterministes</th>
+                                    <th>Stochastiques</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Seuil</strong></td>
+                                    <td>OUI (à seuil)</td>
+                                    <td>NON (sans seuil)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Caractère</strong></td>
+                                    <td>Obligatoires</td>
+                                    <td>Aléatoires</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Gravité</strong></td>
+                                    <td>∝ dose</td>
+                                    <td>Indépendante de la dose</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Fréquence</strong></td>
+                                    <td>100% si seuil dépassé</td>
+                                    <td>∝ dose</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Délai</strong></td>
+                                    <td>Précoces (h à semaines)</td>
+                                    <td>Tardifs (années)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Réversibilité</strong></td>
+                                    <td>Généralement réversibles</td>
+                                    <td>Irréversibles</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Exemples</strong></td>
+                                    <td>Brûlure, aplasie, SIGA</td>
+                                    <td>Cancer, effets génétiques</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+
+                        <div class="connaissance-pure">
+                            <p><strong>Astuce mnémotechnique :</strong></p>
+                            <p>• "Déterministe" = "déterminé" = prévisible, obligatoire, proportionnel</p>
+                            <p>• "Stochastique" = "hasard" (du grec stokhastikos) = aléatoire, imprévisible</p>
+                        </div>
+                    </div>
+
+                    <!-- CARTE SECONDAIRE : TLE -->
+                    <div class="qcm-analyse">
+                        <h4>TLE reflète la nuisance biologique</h4>
+                        <div class="qcm-badge">Tombe en <strong>2021-22</strong> Q8 | <strong>2023-24</strong> Q9</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">L'item "Le TLE reflète la nuisance biologique des rayonnements ionisants" est repris mot pour mot.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retenir cette phrase exacte. Elle est VRAIE.</div>
+                        </div>
+
+                        <div class="cle-raisonnement">
+                            <p><strong>Logique :</strong></p>
+                            <ul>
+                                <li>TLE élevé = énergie déposée sur une courte distance</li>
+                                <li>= dégâts concentrés = cassures double-brin de l'ADN</li>
+                                <li>= nuisance biologique élevée</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDEON 5 : POINTS DE VIGILANCE
+                 ============================================ -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 12px; background: #fef3c7; border-radius: 8px; font-size: 0.85rem; color: #92400e;">
+                        Les pièges ci-dessous sont issus des <strong>annales des 5 dernières années</strong>. Ils sont RÉCURRENTS.
+                    </p>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>PIÈGE #1 : "Les effets stochastiques n'apparaissent qu'à un certain seuil"</h4>
+                        <p><strong>Années :</strong> 2020-21, 2021-22, 2023-24<br>
+                        <strong>Réponse :</strong> FAUX. C'est l'inverse : les stochastiques sont SANS seuil, ce sont les déterministes qui ont un seuil.</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>PIÈGE #2 : "La gravité des effets stochastiques est proportionnelle à la dose"</h4>
+                        <p><strong>Années :</strong> 2021-22, 2023-24<br>
+                        <strong>Réponse :</strong> FAUX. C'est la FRÉQUENCE qui est proportionnelle à la dose, pas la gravité. Un cancer est un cancer, quelle que soit la dose reçue.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>PIÈGE #3 : "Les effets déterministes sont irréversibles"</h4>
+                        <p><strong>Années :</strong> 2022-23, 2023-24<br>
+                        <strong>Réponse :</strong> FAUX. Les déterministes sont généralement RÉVERSIBLES (une brûlure guérit). Ce sont les stochastiques qui sont irréversibles.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>PIÈGE #4 : "Les effets déterministes apparaissent tardivement"</h4>
+                        <p><strong>Années :</strong> 2022-23, 2024-25<br>
+                        <strong>Réponse :</strong> FAUX. Les déterministes sont PRÉCOCES (heures à semaines). Ce sont les stochastiques qui sont tardifs (années).</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDEON 6 : AVIS DU TUTEUR
+                 ============================================ -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 18px; font-weight: 600; color: #1a365d; font-size: 1.05rem;">
+                            FC8 est probablement la fiche la plus rentable de l'UE4 : un seul tableau à connaître pour sécuriser 1 QCM/an.
+                        </p>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 3 - tu maîtrises le cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Assure-toi de connaître aussi la radiosensibilité cellulaire (Bergonié-Tribondeau), le TLE, et les seuils du SIGA (1 Gy aplasie, 6 Gy digestif, 10 Gy neurologique).
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #d97706;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #d97706;">Niveau 2 - tu cibles les parties du cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Concentre-toi sur le tableau déterministes vs stochastiques. Ajoute la radiosensibilité et le TLE si tu as le temps. Ignore le SIGA (tombé 1 seule fois en 5 ans).
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 1 - tu travailles quasi exclusivement sur les annales</p>
+
+                            <p style="margin: 0 0 12px 0; padding: 10px; background: #dcfce7; border-radius: 6px; color: #166534;">
+                                <strong>Niveau 1 TRÈS VIABLE.</strong> Meilleur ratio temps/points de l'UE4.
+                            </p>
+
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Apprends UNIQUEMENT le tableau comparatif de l'accordéon 4. En 10 minutes, tu maîtrises les 6 critères qui distinguent déterministes et stochastiques. Les pièges sont toujours les mêmes depuis 5 ans.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ============================================
+             FOOTER OBLIGATOIRE - NE PAS MODIFIER
+             ============================================ -->
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours.
+        </div>
+    </div>
+</body>
+</html>
