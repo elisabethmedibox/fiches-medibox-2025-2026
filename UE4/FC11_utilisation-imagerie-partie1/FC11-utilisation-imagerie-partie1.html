@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC11 - Utilisation en imagerie (partie 1) - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Filigrane logo Medibox */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 900px;
+            max-height: 900px;
+            background-image: url('https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-clair.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @media (max-width: 768px) {
+            body::after {
+                width: 90vw;
+                height: 90vw;
+                opacity: 0.06;
+            }
+        }
+
+        /* Accordeons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+
+        .qcm-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+
+        .qcm-ref {
+            font-size: 0.75rem;
+            color: #1a365d;
+            font-style: italic;
+        }
+
+        .qcm-ref ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .qcm-ref li {
+            margin-bottom: 3px;
+        }
+
+        .ref-quasi::before {
+            content: "≈ ";
+        }
+
+        /* Wrapper scroll */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 5px;
+        }
+
+        .scroll-hint {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-style: italic;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        /* Tableau diagnostic */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        /* Vue ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+        }
+
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .vue-tableau {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 35%;
+        }
+
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+
+        /* Recommandations */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .reco-item .fréquence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px dashed #0284c7;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .tuteur-zone p {
+            margin: 0;
+            color: #0c4a6e;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px; }
+            .qcm-table { font-size: 0.7rem !important; }
+        }
+
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📘 FC11 - Utilisation en imagerie (partie 1)</h1>
+            <div class="meta">
+                <span>📚 UE4 - Rayonnements et Santé</span>
+                <span>🎯 Fiche d'Analyse - Module 40 : gérer son retard</span>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- ACCORDEON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+
+                    <!-- THEME : IMAGERIE ANATOMIQUE VS FONCTIONNELLE -->
+                    <div class="qcm-thematique">
+                        <h4>Imagerie anatomique vs fonctionnelle - 5 ans / 5</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%;">Année - QCM</th>
+                                    <th style="width: 65%;">Énoncé et items</th>
+                                    <th style="width: 20%;">Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025 Q11</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'imagerie, quelles propositions decrivent correctement ses types ?</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La radiographie du poumon est une imagerie anatomique.</div>
+                                            <div class="qcm-item">B: La TDM-X est une imagerie anatomique.</div>
+                                            <div class="qcm-item">C: La TDM-X est une imagerie fonctionnelle.</div>
+                                            <div class="qcm-item">D: La scintigraphie est une imagerie anatomique.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2021-22 Q11</em></li>
+                                            <li class="ref-quasi"><em>2020-21 Q11</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2023-2024 Q11</td>
+                                    <td>
+                                        <div class="qcm-enonce">L'imagerie en coupe est utilisée en :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Tomodensitométrie a rayon X.</div>
+                                            <div class="qcm-item">B: Radiographie pulmonaire de face.</div>
+                                            <div class="qcm-item">C: TEP.</div>
+                                            <div class="qcm-item">D: Tomoscintigraphie.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2022-23 Q11</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2022-2023 Q11</td>
+                                    <td>
+                                        <div class="qcm-enonce">L'imagerie en coupe est utilisée en :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Tomodensitométrie a rayon X.</div>
+                                            <div class="qcm-item">B: Radiographie pulmonaire de face.</div>
+                                            <div class="qcm-item">C: Tomographie d'Emission de Positons.</div>
+                                            <div class="qcm-item">D: Tomoscintigraphie osseuse.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2023-24 Q11</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2021-2022 Q11</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur l'imagerie :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La radiographie du poumon est une imagerie fonctionnelle.</div>
+                                            <div class="qcm-item">B: La TDM-X est une imagerie anatomique.</div>
+                                            <div class="qcm-item">C: La TDM-X est une imagerie fonctionnelle.</div>
+                                            <div class="qcm-item">D: La scintigraphie est une imagerie anatomique.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2020-21 Q11</em></li>
+                                            <li class="ref-quasi"><em>2024-25 Q11</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2020-2021 Q11</td>
+                                    <td>
+                                        <div class="qcm-enonce">Concernant les propositions suivantes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La radiographie du poumon est une imagerie anatomique.</div>
+                                            <div class="qcm-item">B: La TDM-X est une imagerie anatomique.</div>
+                                            <div class="qcm-item">C: La TDM-X est une imagerie fonctionnelle.</div>
+                                            <div class="qcm-item">D: La scintigraphie est une imagerie anatomique.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2021-22 Q11</em></li>
+                                            <li class="ref-quasi"><em>2024-25 Q11</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+                    </div>
+
+                    <!-- THEME : TDM AVEC PCI -->
+                    <div class="qcm-thematique">
+                        <h4>TDM avec injection de PCI (precautions) - 5 ans / 5</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%;">Année - QCM</th>
+                                    <th style="width: 65%;">Énoncé et items</th>
+                                    <th style="width: 20%;">Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025 Q14</td>
+                                    <td>
+                                        <div class="qcm-enonce">Avant de prescrire une TDM avec injection de PCI, vous devez vérifier :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La fonction rénale du patient.</div>
+                                            <div class="qcm-item">B: L'absence de grossesse.</div>
+                                            <div class="qcm-item">C: Les antecedents allergiques du patient.</div>
+                                            <div class="qcm-item">D: L'absence de corps etranger metallique dans le corps du patient.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2023-24 Q14</em></li>
+                                            <li class="ref-quasi"><em>2022-23 Q14</em></li>
+                                            <li class="ref-quasi"><em>2021-22 Q14</em></li>
+                                            <li class="ref-quasi"><em>2020-21 Q14</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2023-2024 Q14</td>
+                                    <td>
+                                        <div class="qcm-enonce">Avant de prescrire une TDM avec injection de PCI vous devez vérifier :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La fonction rénale du patient.</div>
+                                            <div class="qcm-item">B: L'absence de grossesse.</div>
+                                            <div class="qcm-item">C: Les antecedents allergiques du patient.</div>
+                                            <div class="qcm-item">D: Le rapport benefice/risque.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>Tous les ans</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+                    </div>
+
+                    <!-- THEME : UNITES HOUNSFIELD -->
+                    <div class="qcm-thematique">
+                        <h4>Unites Hounsfield (valeurs) - 2 ans / 5</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%;">Année - QCM</th>
+                                    <th style="width: 65%;">Énoncé et items</th>
+                                    <th style="width: 20%;">Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2023-2024 Q13</td>
+                                    <td>
+                                        <div class="qcm-enonce">Unites Hounsfield :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Eau = 5 UH environ.</div>
+                                            <div class="qcm-item">B: Air = -1000 UH environ.</div>
+                                            <div class="qcm-item">C: Graisse = 80 à 120 UH environ.</div>
+                                            <div class="qcm-item">D: Os = plusieurs centaines d'UH.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2022-23 Q13</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2022-2023 Q13</td>
+                                    <td>
+                                        <div class="qcm-enonce">Unites Hounsfield :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Eau = 5 UH environ.</div>
+                                            <div class="qcm-item">B: Air = -1000 UH environ.</div>
+                                            <div class="qcm-item">C: Graisse = 80 à 120 UH environ.</div>
+                                            <div class="qcm-item">D: Os = plusieurs centaines d'UH.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2023-24 Q13</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+                    </div>
+
+                    <!-- THEME : ATTENUATION TDM -->
+                    <div class="qcm-thematique">
+                        <h4>Attenuation en TDM (unites) - 3 ans / 5</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%;">Année - QCM</th>
+                                    <th style="width: 65%;">Énoncé et items</th>
+                                    <th style="width: 20%;">Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022 Q12</td>
+                                    <td>
+                                        <div class="qcm-enonce">L'attenuation en TDM est exprimee en :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Unites Hounsfield.</div>
+                                            <div class="qcm-item">B: Gy/cm.</div>
+                                            <div class="qcm-item">C: SUV.</div>
+                                            <div class="qcm-item">D: SUVr.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2020-21 Q12</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2020-2021 Q12</td>
+                                    <td>
+                                        <div class="qcm-enonce">L'attenuation en TDM est exprimee en :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Unites Hounsfield.</div>
+                                            <div class="qcm-item">B: kg/m.</div>
+                                            <div class="qcm-item">C: SUV.</div>
+                                            <div class="qcm-item">D: SUVr.</div>
+                                            <div class="qcm-item">E: Aucunes réponses.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2021-22 Q12</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table" style="table-layout: fixed; width: 100%;">
+                            <tr>
+                                <th style="text-align: center; width: 20%;">Fréquence</th>
+                                <th style="text-align: center; width: 20%;">Moyenne QCM/an</th>
+                                <th style="text-align: center; width: 20%;">SRT</th>
+                                <th style="text-align: center; width: 20%;">SRI</th>
+                                <th style="text-align: center; width: 20%;">Dependance</th>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    <strong style="color: #059669;">5 années sur 5</strong><br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Tombe CHAQUE année</span>
+                                </td>
+                                <td style="text-align: center;">2-3</td>
+                                <td style="text-align: center;">
+                                    ~80%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Récurrence Thématique</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    <strong style="color: #059669;">~85%</strong><br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Récurrence Items</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    Chapitre clé<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Lié à FC12 (imagerie partie 2)</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>Vue d'ensemble des QCM par thématique</h4>
+                        <p class="vue-ensemble-intro">Ce chapitre est TRÈS prévisible. Les mêmes questions tombent chaque année : imagerie anatomique/fonctionnelle (Q11), TDM avec PCI (Q14). Les items sont quasi-identiques d'une année sur l'autre.</p>
+
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-21</th>
+                                        <th>2021-22</th>
+                                        <th>2022-23</th>
+                                        <th>2023-24</th>
+                                        <th>2024-25</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Imagerie anatomique/fonctionnelle</td>
+                                        <td>Q11(ABCD)</td>
+                                        <td>Q11(ABCD)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q11(ABCD)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Imagerie en coupe</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q11(ABCD)</td>
+                                        <td>Q11(ABCD)</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>TDM avec PCI (precautions)</td>
+                                        <td>Q14(ABC)</td>
+                                        <td>Q14(ABC)</td>
+                                        <td>Q14(ABC)</td>
+                                        <td>Q14(ABCD)</td>
+                                        <td>Q14(ABC)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Attenuation TDM = UH</td>
+                                        <td>Q12(A)</td>
+                                        <td>Q12(A)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Valeurs UH (eau, air, os)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q13(BD)</td>
+                                        <td>Q13(BD)</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage des parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px; border-left-color: #dc2626;">
+                        <h4>1) Imagerie anatomique vs fonctionnelle (PRIORITE ABSOLUE)</h4>
+                        <p><strong>Objectif :</strong> savoir classer chaque technique d'imagerie.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>IMAGERIE ANATOMIQUE (morphologique) :</strong><br>
+                            <span style="color: #64748b;">- Radiographie (poumon, os, etc.)<br>
+                            - TDM-X (scanner)<br>
+                            - IRM (non irradiante)<br>
+                            - Echographie (non irradiante)</span></p>
+
+                            <p style="margin: 0;"><strong>IMAGERIE FONCTIONNELLE :</strong><br>
+                            <span style="color: #64748b;">- Scintigraphie<br>
+                            - TEP (Tomographie par Emission de Positons)<br>
+                            - TEMP (Tomoscintigraphie)</span></p>
+                        </div>
+                        <span class="frequence" style="background: #fee2e2; color: #dc2626;">Tombe 5 ans / 5 - INCONTOURNABLE</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px; border-left-color: #dc2626;">
+                        <h4>2) Precautions avant TDM avec PCI (PRIORITE ABSOLUE)</h4>
+                        <p><strong>Objectif :</strong> connaître les 3 verifications obligatoires.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Les 3 verifications OBLIGATOIRES :</strong><br>
+                            <span style="color: #dc2626; font-weight: 600;">1. Fonction rénale (créatinine, DFG)</span><br>
+                            <span style="color: #64748b;">Le PCI est néphrotoxique - risque d'insuffisance rénale aiguë</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><span style="color: #dc2626; font-weight: 600;">2. Absence de grossesse</span><br>
+                            <span style="color: #64748b;">Irradiation + passage transplacentaire du PCI</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><span style="color: #dc2626; font-weight: 600;">3. Antecedents allergiques</span><br>
+                            <span style="color: #64748b;">Risque de réaction allergique au PCI iodé</span></p>
+
+                            <p style="margin: 0;"><strong>Piège fréquent :</strong><br>
+                            <span style="color: #f59e0b;">"Absence de corps etranger metallique" = pour l'IRM, pas pour la TDM !</span></p>
+                        </div>
+                        <span class="frequence" style="background: #fee2e2; color: #dc2626;">Tombe 5 ans / 5 - INCONTOURNABLE</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>3) Unites Hounsfield (valeurs de reference)</h4>
+                        <p><strong>Objectif :</strong> connaître les valeurs UH des principaux tissus.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 10px 0;"><strong>Echelle Hounsfield :</strong></p>
+                            <p style="margin: 0 0 8px 0;"><span style="color: #64748b;">- Air = <strong>-1000 UH</strong></span></p>
+                            <p style="margin: 0 0 8px 0;"><span style="color: #64748b;">- Graisse = <strong>-100 a -50 UH</strong> (valeurs negatives !)</span></p>
+                            <p style="margin: 0 0 8px 0;"><span style="color: #64748b;">- Eau = <strong>0 UH</strong> (reference)</span></p>
+                            <p style="margin: 0 0 8px 0;"><span style="color: #64748b;">- Tissus mous = <strong>+20 a +80 UH</strong></span></p>
+                            <p style="margin: 0;"><span style="color: #64748b;">- Os = <strong>+400 a +1000 UH</strong></span></p>
+                        </div>
+                        <span class="frequence">Tombe 2 ans / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>4) Imagerie en coupe</h4>
+                        <p><strong>Objectif :</strong> distinguer imagerie planaire et imagerie en coupe.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>IMAGERIE EN COUPE (3D) :</strong><br>
+                            <span style="color: #64748b;">- TDM (scanner)<br>
+                            - TEP<br>
+                            - TEMP (Tomoscintigraphie)<br>
+                            - IRM</span></p>
+
+                            <p style="margin: 0;"><strong>IMAGERIE PLANAIRE (2D) :</strong><br>
+                            <span style="color: #64748b;">- Radiographie standard<br>
+                            - Scintigraphie planaire</span></p>
+                        </div>
+                        <span class="frequence">Tombe 2 ans / 5</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 8px; color: #166534;">
+                        <strong>Niveau 1 TRÈS VIABLE.</strong> Ce chapitre est extremement prévisible. Les mêmes QCM tombent chaque année avec des items quasi-identiques. 4 règles = 100% des points.
+                    </p>
+
+                    <!-- CARTE THÉMATIQUE 1 -->
+                    <div class="qcm-analyse">
+                        <h4>Imagerie anatomique vs fonctionnelle</h4>
+                        <div class="qcm-badge">Tombe en <strong>2020-21</strong> Q11 | <strong>2021-22</strong> Q11 | <strong>2024-25</strong> Q11</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof teste systématiquement si tu sais classer radiographie, TDM, scintigraphie. Le piège : "TDM-X = fonctionnelle" ou "scintigraphie = anatomique".</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que tout ce qui utilise des rayons X (radio, TDM) = ANATOMIQUE. Tout ce qui utilise des isotopes (scinti, TEP) = FONCTIONNEL.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Rayons x = ANATOMIQUE (on voit les structures)</strong></p>
+                                <ul>
+                                    <li>Radiographie : anatomique</li>
+                                    <li>TDM-X (scanner) : anatomique</li>
+                                </ul>
+                                <p style="margin-top: 10px;"><strong>Isotopes = FONCTIONNEL (on voit le métabolisme)</strong></p>
+                                <ul>
+                                    <li>Scintigraphie : fonctionnelle</li>
+                                    <li>TEP : fonctionnelle</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARTE THÉMATIQUE 2 -->
+                    <div class="qcm-analyse">
+                        <h4>TDM avec PCI - Les 3 verifications</h4>
+                        <div class="qcm-badge">Tombe CHAQUE ANNÉE : <strong>2020-21</strong> | <strong>2021-22</strong> | <strong>2022-23</strong> | <strong>2023-24</strong> | <strong>2024-25</strong></div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">QCM le plus récurrent de l'UE4. Les 3 mêmes items sont corrects chaque année. Le piège : "absence de corps metallique" qui est pour l'IRM.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens "RAG" pour les 3 verifications.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                <p><strong>Acronyme "RAG" :</strong></p>
+                                <p>- <strong>R</strong>eins : fonction rénale (PCI néphrotoxique)</p>
+                                <p>- <strong>A</strong>llergie : antecedents allergiques</p>
+                                <p>- <strong>G</strong>rossesse : absence de grossesse</p>
+                                <p style="margin-top: 10px;"><em>Corps metallique = IRM, pas TDM !</em></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARTE THÉMATIQUE 3 -->
+                    <div class="qcm-analyse">
+                        <h4>Valeurs Hounsfield</h4>
+                        <div class="qcm-badge">Tombe en <strong>2022-23</strong> Q13 | <strong>2023-24</strong> Q13</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof teste les valeurs de référence. Piège principal : "graisse = 80-120 UH" (faux, c'est négatif).</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens l'ordre croissant : air < graisse < eau < tissus < os.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                <p><strong>Valeurs à retenir :</strong></p>
+                                <p>- Air = -1000 UH (très noir)</p>
+                                <p>- Graisse = NÉGATIF (environ -100)</p>
+                                <p>- Eau = 0 UH (valeur de référence)</p>
+                                <p>- Os = plusieurs centaines (très blanc)</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 15px; padding: 12px; background: #fffbeb; border-radius: 8px; border-left: 3px solid #d97706;">
+                            <p style="margin: 0; font-size: 0.9rem;"><strong>⚠️ Cas ambigu "Eau = 5 UH environ" :</strong><br>
+                            Le cours dit "0 à 10-15 UH" mais nous corrigeons cet item comme FAUX. Pourquoi ? → Voir l'explication détaillée dans l'onglet <strong>Points de vigilance</strong>.</p>
+                        </div>
+                    </div>
+
+                    <!-- CARTE THÉMATIQUE 4 -->
+                    <div class="qcm-analyse">
+                        <h4>Imagerie en coupe vs planaire</h4>
+                        <div class="qcm-badge">Tombe en <strong>2022-23</strong> Q11 | <strong>2023-24</strong> Q11</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof teste si tu sais que TDM, TEP et TEMP sont des imageries en coupe. Piège : "radiographie pulmonaire de face" = planaire, pas en coupe.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que "Tomo" = coupe (TDM = Tomodensitométrie, TEP = Tomographie, TEMP = TomoScintigraphie).</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>"TOMO" = coupes (du grec "tomos" = section)</strong></p>
+                                <ul>
+                                    <li>TDM (Tomodensitométrie) = en coupe</li>
+                                    <li>TEP (Tomographie) = en coupe</li>
+                                    <li>TEMP (TomoScintigraphie) = en coupe</li>
+                                    <li>Radiographie standard = planaire (pas de "tomo")</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 12px; background: #fef3c7; border-radius: 8px; font-size: 0.85rem; color: #92400e;">
+                        Les pièges ci-dessous sont issus des <strong>annales des 5 dernières années</strong>. Ils sont RÉCURRENTS.
+                    </p>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>PIÈGE #1 (tombe CHAQUE année) : "La TDM-X est une imagerie fonctionnelle"</h4>
+                        <p><strong>Années :</strong> 2020-21 Q11C, 2021-22 Q11C, 2024-25 Q11C<br>
+                        <strong>Réponse :</strong> la TDM-X est une imagerie ANATOMIQUE (morphologique). Elle utilisé les rayons X pour visualiser les structures. Seules les techniques isotopiques (scinti, TEP) sont fonctionnelles.</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>PIÈGE #2 (tombe CHAQUE année) : "La scintigraphie est une imagerie anatomique"</h4>
+                        <p><strong>Années :</strong> 2020-21 Q11D, 2021-22 Q11D, 2024-25 Q11D<br>
+                        <strong>Réponse :</strong> la scintigraphie est une imagerie FONCTIONNELLE. Elle utilisé des isotopes radioactifs pour visualiser le métabolisme, pas les structures.</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>PIÈGE #3 (tombe 5 ans/5) : "Vérifier l'absence de corps metallique" pour TDM</h4>
+                        <p><strong>Années :</strong> 2020-21 Q14D, 2021-22 Q14D, 2024-25 Q14D<br>
+                        <strong>Réponse :</strong> c'est pour l'IRM qu'on vérifié l'absence de metal (champ magnetique). Pour la TDM, on vérifié : fonction rénale, grossesse, allergies.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>PIÈGE #4 : "Graisse = 80-120 UH"</h4>
+                        <p><strong>Années :</strong> 2022-23 Q13C, 2023-24 Q13C<br>
+                        <strong>Réponse :</strong> la graisse a des valeurs NEGATIVES (environ -100 UH). Les valeurs 80-120 UH correspondent aux tissus mous, pas à la graisse.</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #d97706; background: #fffbeb;">
+                        <h4>⚠️ CAS AMBIGU : "Eau = 5 UH environ"</h4>
+                        <p><strong>Années :</strong> 2022-23 Q13A, 2023-24 Q13A</p>
+
+                        <p style="margin-top: 12px;"><strong>Le problème :</strong><br>
+                        Le cours dit textuellement : <em>"L'eau a un coefficient d'atténuation proche de 0. Ça va à peu près de 0 à 10 ou à 15 parce que l'eau n'est jamais de l'eau pure dans le corps du patient."</em><br>
+                        Donc "5 UH environ" serait techniquement dans cette fourchette. Comment corriger cet item sans correction officielle du professeur ?</p>
+
+                        <p style="margin-top: 12px;"><strong>Le choix de correction de la prépa :</strong><br>
+                        Nous avons choisi de considérer cet item comme <strong>FAUX</strong>. Voici notre raisonnement :</p>
+                        <ul style="margin: 10px 0 10px 20px; color: #4a5568;">
+                            <li style="margin-bottom: 8px;"><strong>Indice 1 :</strong> dans son ED de début d'année, le professeur a validé l'item <strong>"Eau = 0 UH"</strong> comme vrai. On s'aligne sur cette réponse.</li>
+                            <li style="margin-bottom: 8px;"><strong>Indice 2 :</strong> nous pensons que le professeur demande la <strong>valeur de référence</strong> de l'échelle Hounsfield (0 UH par définition), et non la valeur physiologique in vivo (0-15 UH). C'est comme demander "à quelle température l'eau bout" : on attend 100°C, pas "95-100°C selon l'altitude".</li>
+                        </ul>
+
+                        <p style="margin-top: 12px; padding: 12px; background: white; border-radius: 6px; border: 1px dashed #d97706;">
+                        <strong>⚠️ Important :</strong> c'est une <strong>interprétation de la prépa</strong>, pas une certitude. En l'absence de correction officielle de l'annale, nous ne pouvons pas garantir à 100% que "5 UH environ" serait compté faux. Cependant, par prudence, nous te conseillons de retenir <strong>eau = 0 UH</strong> comme réponse attendue.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>PIÈGE #5 : "Radiographie pulmonaire = imagerie en coupe"</h4>
+                        <p><strong>Années :</strong> 2022-23 Q11B, 2023-24 Q11B<br>
+                        <strong>Réponse :</strong> la radiographie standard est une imagerie PLANAIRE (2D). Les imageries en coupe sont : TDM, TEP, TEMP, IRM.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 18px; font-weight: 600; color: #1a365d; font-size: 1.05rem;">
+                            FC11 est un des chapitres les plus RENTABLES de l'UE4. Les QCM sont ultra-prévisibles et tombent chaque année.
+                        </p>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 3 - tu maîtrisés le cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Tu dois connaître l'ensemble du chapitre : principe de la TDM (tube à rayons X + détecteurs), reconstruction des images, fenêtrage (largeur, centre), artefacts, indications et contre-indications détaillées des PCI.<br><br>
+                                <em style="color: #64748b;">Details techniques rarement testes :</em> énergie des rayons X, temps d'acquisition, resolution spatiale.
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #d97706;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #d97706;">Niveau 2 - tu cibles les parties du cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Concentre-toi sur :<br>
+                                - <strong>Anatomique vs fonctionnelle</strong> : classification des techniques<br>
+                                - <strong>TDM avec PCI</strong> : les 3 verifications (reins, allergie, grossesse)<br>
+                                - <strong>Unites Hounsfield</strong> : valeurs de reference (air, eau, graisse, os)<br>
+                                - <strong>Imagerie en coupe</strong> : TDM, TEP, TEMP<br><br>
+                                Tu peux survoler les details techniques du scanner.
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 1 - tu travailles quasi exclusivement sur les annales</p>
+                            <p style="margin: 0 0 12px 0; padding: 10px; background: #dcfce7; border-radius: 6px; color: #166534;">
+                                <strong>Niveau 1 ULTRA-VIABLE.</strong> 4 règles simples = 100% des points sur 5 ans.
+                            </p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                <strong>Les 4 règles :</strong><br>
+                                1. Rayons X (radio, TDM) = ANATOMIQUE<br>
+                                2. Isotopes (scinti, TEP) = FONCTIONNEL<br>
+                                3. TDM + PCI = vérifier RAG (Reins, Allergie, Grossesse)<br>
+                                4. Eau = 0 UH*, graisse = négatif, air = -1000, os = +centaines<br><br>
+                                <em style="font-size: 0.85rem;">*Voir Points de vigilance pour le cas ambigu "eau = 5 UH"</em><br><br>
+                                <strong>Le piège classique :</strong> "corps métallique" = IRM, pas TDM !
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </details>
+
+        </div>
+
+        <div class="footer">
+            <strong>Creation originale de E. Schaeffer</strong><br>
+            Soumis a droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prepa encourage chaque étudiant a maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours.
+        </div>
+    </div>
+</body>
+</html>
