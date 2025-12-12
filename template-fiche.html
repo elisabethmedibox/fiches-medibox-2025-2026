@@ -99,7 +99,7 @@
 
         .qcm-table {
             width: 100%;
-            min-width: 700px;
+            table-layout: fixed;
             border-collapse: collapse;
             margin-bottom: 20px;
             font-size: 0.85rem;
@@ -242,7 +242,7 @@
 
         .vue-tableau {
             width: 100%;
-            min-width: 550px;
+            table-layout: fixed;
             border-collapse: collapse;
             margin-top: 15px;
             font-size: 0.9rem;
@@ -485,12 +485,12 @@
                     <div class="qcm-thematique">
                         <h4>{{THEME_1_TITRE}} - X ans / 5</h4>
                         <div class="table-wrapper">
-                        <table class="qcm-table">
+                        <table class="qcm-table" style="table-layout: fixed; width: 100%;">
                             <thead>
                                 <tr>
-                                    <th>Année - QCM</th>
-                                    <th>Énoncé et items</th>
-                                    <th>Récurrence</th>
+                                    <th style="width: 15%;">Année - QCM</th>
+                                    <th style="width: 65%;">Énoncé et items</th>
+                                    <th style="width: 20%;">Récurrence</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -575,15 +575,15 @@
                         <p class="vue-ensemble-intro">{{INTRO_VUE_ENSEMBLE}}</p>
 
                         <div class="table-wrapper">
-                            <table class="vue-tableau">
+                            <table class="vue-tableau" style="table-layout: fixed; width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th>Thématique</th>
-                                        <th>2020-21</th>
-                                        <th>2021-22</th>
-                                        <th>2022-23</th>
-                                        <th>2023-24</th>
-                                        <th>2024-25</th>
+                                        <th style="width: 30%;">Thématique</th>
+                                        <th style="width: 14%;">2020-21</th>
+                                        <th style="width: 14%;">2021-22</th>
+                                        <th style="width: 14%;">2022-23</th>
+                                        <th style="width: 14%;">2023-24</th>
+                                        <th style="width: 14%;">2024-25</th>
                                     </tr>
                                 </thead>
                                 <tbody>
