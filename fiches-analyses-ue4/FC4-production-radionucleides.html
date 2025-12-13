@@ -6,6 +6,26 @@
     <title>FC4 - Production des radionucleides - Fiche d'Analyse</title>
     <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
     <style>
+        /* Filigrane logo Medibox - fixe pendant scroll, responsive */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 900px;
+            max-height: 900px;
+            background-image: url('https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-clair.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
         /* Accordéons principaux */
         .main-accordion {
             margin-bottom: 15px;
@@ -409,10 +429,10 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>FC4 - Production des radionucleides</h1>
+            <h1>📘 FC4 - Production des radionucléides</h1>
             <div class="meta">
-                <span>UE4 - Rayonnements et Sante</span>
-                <span>Fiche d'Analyse</span>
+                <span>📚 UE4 - Rayonnements et Santé</span>
+                <span>🎯 Fiche d'Analyse - Module 40 : gérer son retard</span>
             </div>
         </div>
 
@@ -420,7 +440,7 @@
 
             <!-- ACCORDEON 1 : QCM TOMBES AUX SESSIONS 1 -->
             <details class="main-accordion">
-                <summary>QCM tombes aux sessions 1</summary>
+                <summary>📋 QCM tombés aux sessions 1</summary>
                 <div class="accordion-content">
 
                     <!-- THEME : MODES DE PRODUCTION -->
@@ -517,7 +537,7 @@
 
             <!-- ACCORDEON 2 : RAPPEL DIAGNOSTIC -->
             <details class="main-accordion">
-                <summary>Rappel diagnostic</summary>
+                <summary>📊 Rappel diagnostic</summary>
                 <div class="accordion-content">
 
                     <div class="table-wrapper">
@@ -619,7 +639,7 @@
 
             <!-- ACCORDEON 3 : RECOMMANDATIONS NIVEAU 2 -->
             <details class="main-accordion">
-                <summary>Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
                 <div class="accordion-content">
 
                     <div class="reco-item" style="padding: 25px; margin-bottom: 30px; border-left-color: #dc2626;">
@@ -713,7 +733,7 @@
 
             <!-- ACCORDEON 4 : RECOMMANDATIONS NIVEAU 1 -->
             <details class="main-accordion">
-                <summary>Recommandations Niveau 1 (strategie annales)</summary>
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
                 <div class="accordion-content">
 
                     <p style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 8px; color: #166534;">
@@ -768,7 +788,7 @@
 
             <!-- ACCORDEON 5 : POINTS DE VIGILANCE -->
             <details class="main-accordion">
-                <summary>Points de vigilance</summary>
+                <summary>⚠️ Points de vigilance</summary>
                 <div class="accordion-content">
 
                     <p style="margin-bottom: 20px; padding: 12px; background: #fef3c7; border-radius: 8px; font-size: 0.85rem; color: #92400e;">
@@ -811,7 +831,7 @@
 
             <!-- ACCORDEON 6 : AVIS DU TUTEUR -->
             <details class="main-accordion">
-                <summary>Avis du tuteur</summary>
+                <summary>💬 Avis du tuteur</summary>
                 <div class="accordion-content">
                     <div class="tuteur-zone">
                         <p style="margin-bottom: 18px; font-weight: 600; color: #1a365d; font-size: 1.05rem;">
