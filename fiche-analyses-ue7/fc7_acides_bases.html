@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC7 - Acides et Bases - Solutions Tampons - Fiche d'Analyse</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #f5f7fa;
+            color: #1a202c;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0 0 10px 0;
+            color: #6b21a8;
+        }
+        
+        .tuteur-zone p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC7 - Acides et Bases - Solutions Tampons</h1>
+            <div class="meta">
+                <span>📚 UE7 - Biophysique</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- COUPLES ACIDO-BASIQUES H2CO3/HCO3- -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Couples acido-basiques H₂CO₃/HCO₃⁻ et HCO₃⁻/CO₃²⁻ (5 QCM)</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q13<br>2023-2024 Q13<br>2024-2025 Q13<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">On considère les couples acide/base (faibles) H₂CO₃/HCO₃⁻ (pKa=6,4) et HCO₃⁻/CO₃²⁻ (pKa=10,3) mettant en jeu l'ion HCO₃⁻. On considère une eau minérale contenant de l'acide carbonique H₂CO₃ dû à une faible dissolution de dioxyde de carbone CO₂. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: HCO₃⁻ est l'acide du couple H₂CO₃/HCO₃⁻.</div>
+                                            <div class="qcm-item">B: HCO₃⁻ est la base du couple HCO₃⁻/CO₃²⁻.</div>
+                                            <div class="qcm-item">C: L'espèce prédominante dans cette eau minérale de pH = 7 est le CO₃²⁻.</div>
+                                            <div class="qcm-item">D: L'acide du couple HCO₃⁻/CO₃²⁻ est plus faible que celui du couple H₂CO₃/HCO₃⁻.</div>
+                                            <div class="qcm-item">E: La base du couple H₂CO₃/HCO₃⁻ est plus forte que celle du couple HCO₃⁻/CO₃²⁻.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">On considère les couples acide/base (faibles) H₂CO₃/HCO₃⁻ (pKa = 6,4) et HCO₃⁻/CO₃²⁻ (pKa=10,3) mettant en jeu l'ion HCO₃⁻. On considère une eau minérale contenant de l'acide carbonique H₂CO₃ dû à une faible dissolution de dioxyde de carbone CO₂. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: HCO₃⁻ est l'acide du couple H₂CO₃/HCO₃⁻.</div>
+                                            <div class="qcm-item">B: HCO₃⁻ est la base du couple HCO₃⁻/CO₃²⁻.</div>
+                                            <div class="qcm-item">C: L'espèce prédominante dans cette eau minérale de pH = 7,4 est HCO₃⁻.</div>
+                                            <div class="qcm-item">D: L'acide du couple HCO₃⁻/CO₃²⁻ est plus faible que celui du couple H₂CO₃/HCO₃⁻.</div>
+                                            <div class="qcm-item">E: La base du couple H₂CO₃/HCO₃⁻ est plus forte que celle du couple HCO₃⁻/CO₃²⁻.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q14<br>2023-2024 Q14<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">On considère les couples acide/base (faibles) H₂CO₃/HCO₃⁻ (pKa=6,4) et HCO₃⁻/CO₃²⁻ (pKa=10,3). Soit une solution de carbonate de sodium (Na₂CO₃) de concentration [C]. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: CO₃²⁻ est l'acide faible du couple (HCO₃⁻/CO₃²⁻).</div>
+                                            <div class="qcm-item">B: CO₃²⁻ est une base faible.</div>
+                                            <div class="qcm-item">C: Si la concentration [Na₂CO₃]= 1 mmol/L, alors le pH de cette solution est égal à 5.</div>
+                                            <div class="qcm-item">D: Si la concentration [Na₂CO₃]= 10 mmol/L alors le pH de cette solution est égal à 10.</div>
+                                            <div class="qcm-item">E: Si la concentration [Na₂CO₃]= 100 mmol/L alors le pH de cette solution est égal à 11,65.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                    <!-- CALCUL DE pH - AJOUT HCl -->
+                    <div class="qcm-thematique">
+                        <h4>🧪 Calcul de pH - Ajout d'acide fort (HCl) dans l'eau (2 QCM)</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">On ajoute de l'acide chlorhydrique (HCl) dans l'eau. On donne log2=0,3. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Avant l'ajout de HCl, le pH de l'eau est égal à 7.</div>
+                                            <div class="qcm-item">B: L'ajout de 0,01 mole de HCl dans 1 litre d'eau donne un pH de la solution égal à 2.</div>
+                                            <div class="qcm-item">C: L'ajout de 0,02 mole de HCl dans 1 litre d'eau donne un pH de la solution égal à 1.</div>
+                                            <div class="qcm-item">D: L'ajout de 0,04 mole de HCl dans 1 litre d'eau donne un pH de la solution égal à 0,5.</div>
+                                            <div class="qcm-item">E: L'ajout de 0,01 mole de HCl dans l'eau ne s'accompagne pas de variation de pH de la solution.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">On ajoute de l'acide chlorhydrique (HCl) dans l'eau à 25°C. On donne log2=0,3. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La neutralité pH varie en fonction de la température.</div>
+                                            <div class="qcm-item">B: L'ajout de 0,01 mole de HCl dans 1 litre d'eau donne un pH de la solution égal à 2.</div>
+                                            <div class="qcm-item">C: L'ajout de 0,02 mole de HCl dans 1 litre d'eau donne un pH de la solution égal à 0,6.</div>
+                                            <div class="qcm-item">D: L'ajout de 0,04 mole de HCl dans 1 litre d'eau donne un pH de la solution égal à 10.</div>
+                                            <div class="qcm-item">E: L'ajout de 0,02 mole de HCl dans 1 litre d'eau ne s'accompagne pas de variations de pH de la solution.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion" open>
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>📊 Tombe chaque année (1-2 QCM/an)</td>
+                                <td>🧪 Exercices d'application - très répétitifs</td>
+                                <td>🔗 Lié à FC8 (Diagramme de Davenport)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>8 QCM</strong> sur ce chapitre (moyenne 1,6/an). Ces QCM se regroupent en <strong>3 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Couples H₂CO₃/HCO₃⁻ - Eau minérale</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q13</span></td>
+                                    <td class="qcm-cell">Q6</td>
+                                    <td class="empty-cell">—</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q13</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q13</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Solution Na₂CO₃ - Calcul pH</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q14</span></td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q14</span></td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Ajout HCl dans l'eau</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q7</td>
+                                    <td class="qcm-cell">Q7</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="reco-item">
+                        <h4>Identification acide/base dans un couple acido-basique</h4>
+                        <p>Savoir identifier sans hésitation l'acide et la base dans un couple. L'acide est l'espèce qui cède le H⁺, la base est celle qui le capte. Dans le couple H₂CO₃/HCO₃⁻ : H₂CO₃ est l'acide et HCO₃⁻ est la base.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Domaines de prédominance et relation pH/pKa</h4>
+                        <p>Maîtriser la règle : si pH < pKa → forme acide prédominante ; si pH > pKa → forme basique prédominante. À pH = 7 avec pKa₁ = 6,4 et pKa₂ = 10,3, l'espèce HCO₃⁻ prédomine (entre les deux pKa).</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Calcul de pH d'un acide fort (HCl)</h4>
+                        <p>HCl est un acide fort → dissociation totale. pH = -log[H⁺] = -log[HCl]. Si [HCl] = 0,01 mol/L → pH = 2. Savoir utiliser log2 = 0,3 pour les calculs avec 0,02 mol/L.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Force relative des acides et bases conjugués</h4>
+                        <p>Plus le pKa est élevé, plus l'acide est faible et plus sa base conjuguée est forte. Entre H₂CO₃ (pKa=6,4) et HCO₃⁻ (pKa=10,3) : HCO₃⁻ est un acide plus faible que H₂CO₃, donc CO₃²⁻ est une base plus forte que HCO₃⁻.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📚 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- VOCABULAIRE DE BASE -->
+                    <div class="qcm-analyse" style="border-color: #8b5cf6;">
+                        <h4 style="color: #6b21a8;">📚 Vocabulaire de base (à connaître AVANT de lire les QCM)</h4>
+                        
+                        <div class="cle-raisonnement" style="background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border-left-color: #8b5cf6;">
+                            <p><strong>Espèce chimique</strong> = une molécule ou un ion précis. Ici, les 3 "espèces" sont :</p>
+                            <ul>
+                                <li><strong>H₂CO₃</strong> (acide carbonique)</li>
+                                <li><strong>HCO₃⁻</strong> (bicarbonate)</li>
+                                <li><strong>CO₃²⁻</strong> (carbonate)</li>
+                            </ul>
+                            <p><strong>Espèce prédominante</strong> = l'espèce présente en PLUS GRANDE QUANTITÉ dans la solution à un pH donné.</p>
+                            <p><strong>pKa</strong> = une valeur numérique associée à chaque couple acide/base. C'est une constante DONNÉE dans l'énoncé. Tu n'as pas besoin de savoir d'où ça vient, juste de l'utiliser.</p>
+                            <p><strong>Acide fort/faible</strong> = un acide fort cède FACILEMENT son H⁺, un acide faible le cède DIFFICILEMENT.</p>
+                            <p><strong>Base forte/faible</strong> = une base forte capte FACILEMENT un H⁺, une base faible le capte DIFFICILEMENT.</p>
+                        </div>
+                    </div>
+
+                    <!-- HACK ULTIME -->
+                    <div class="qcm-analyse" style="border-color: #f59e0b; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);">
+                        <h4 style="color: #b45309;">💡 HACK ULTIME - Convention d'écriture des couples</h4>
+                        
+                        <div style="background: white; border: 3px solid #f59e0b; padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 15px;">
+                            <p style="font-size: 1.2rem; margin: 0;"><strong>Dans un couple A/B → c'est TOUJOURS Acide/Base</strong></p>
+                            <p style="margin: 10px 0 0 0; color: #92400e;">L'espèce à <strong>GAUCHE</strong> = l'acide | L'espèce à <strong>DROITE</strong> = la base</p>
+                        </div>
+                        
+                        <p><strong>Application immédiate aux couples de l'énoncé :</strong></p>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                            <tr style="background: #1a365d; color: white;">
+                                <th style="padding: 8px; text-align: left;">Couple</th>
+                                <th style="padding: 8px; text-align: center;">GAUCHE = Acide</th>
+                                <th style="padding: 8px; text-align: center;">DROITE = Base</th>
+                                <th style="padding: 8px; text-align: center;">pKa</th>
+                            </tr>
+                            <tr style="background: white;">
+                                <td style="padding: 8px; border: 1px solid #e2e8f0;">H₂CO₃/HCO₃⁻</td>
+                                <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center; color: #dc2626; font-weight: bold;">H₂CO₃</td>
+                                <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center; color: #2563eb; font-weight: bold;">HCO₃⁻</td>
+                                <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center;">6,4</td>
+                            </tr>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 8px; border: 1px solid #e2e8f0;">HCO₃⁻/CO₃²⁻</td>
+                                <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center; color: #dc2626; font-weight: bold;">HCO₃⁻</td>
+                                <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center; color: #2563eb; font-weight: bold;">CO₃²⁻</td>
+                                <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center;">10,3</td>
+                            </tr>
+                        </table>
+                        <p style="margin-top: 10px; color: #92400e;"><strong>⚠️ Piège classique :</strong> HCO₃⁻ apparaît dans les DEUX couples ! Il est BASE dans le 1er couple mais ACIDE dans le 2ème.</p>
+                    </div>
+
+                    <!-- QCM TYPE 1 -->
+                    <div class="qcm-analyse">
+                        <h4>QCM Type 1 : Quelle espèce prédomine à un pH donné ?</h4>
+                        <div class="qcm-badge">📋 <strong>2020-21</strong> Q13 | <strong>2021-22</strong> Q6 | <strong>2023-24</strong> Q13 | <strong>2024-25</strong> Q13</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">📌 Exemple de proposition à évaluer</div>
+                            <div class="qcm-section-content">
+                                "L'espèce prédominante dans cette eau minérale de pH = 7 est le CO₃²⁻" → VRAI ou FAUX ?
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">🎯 LA RÈGLE D'OR</div>
+                            <div style="background: white; border: 2px solid #10b981; padding: 12px; border-radius: 8px; margin-top: 8px;">
+                                <p style="margin: 0 0 10px 0;"><strong>Pour savoir quelle espèce prédomine, tu compares le pH au pKa :</strong></p>
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <tr style="background: #d1fae5;">
+                                        <td style="padding: 8px; border: 1px solid #10b981;"><strong>Si pH &lt; pKa</strong></td>
+                                        <td style="padding: 8px; border: 1px solid #10b981;">→ L'espèce à <strong>GAUCHE</strong> prédomine (l'acide)</td>
+                                    </tr>
+                                    <tr style="background: #a7f3d0;">
+                                        <td style="padding: 8px; border: 1px solid #10b981;"><strong>Si pH &gt; pKa</strong></td>
+                                        <td style="padding: 8px; border: 1px solid #10b981;">→ L'espèce à <strong>DROITE</strong> prédomine (la base)</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">🔑 Méthode pas à pas</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>ÉTAPE 1 : Identifier où se trouve l'espèce mentionnée</strong></p>
+                                <p style="margin-left: 15px;">→ Je cherche CO₃²⁻ dans les couples :<br>
+                                • Couple 1 : H₂CO₃/HCO₃⁻ → CO₃²⁻ n'est pas dedans<br>
+                                • Couple 2 : HCO₃⁻/CO₃²⁻ → CO₃²⁻ est à <strong>DROITE</strong> (c'est la base)<br>
+                                → <strong>CO₃²⁻ appartient au couple 2, dont le pKa = 10,3</strong></p>
+                                
+                                <p><strong>ÉTAPE 2 : Comparer le pH au pKa du couple concerné</strong></p>
+                                <p style="margin-left: 15px;">→ pH de la solution = 7<br>
+                                → pKa du couple 2 = 10,3<br>
+                                → Comparaison : <strong>7 &lt; 10,3 donc pH &lt; pKa</strong></p>
+                                
+                                <p><strong>ÉTAPE 3 : Appliquer la règle d'or</strong></p>
+                                <p style="margin-left: 15px;">→ pH &lt; pKa = l'espèce à GAUCHE prédomine<br>
+                                → Dans HCO₃⁻/CO₃²⁻ : GAUCHE = HCO₃⁻<br>
+                                → <strong>Donc c'est HCO₃⁻ qui prédomine, PAS CO₃²⁻</strong></p>
+                                
+                                <p><strong>ÉTAPE 4 : Répondre</strong></p>
+                                <p style="margin-left: 15px; background: #fee2e2; padding: 8px; border-radius: 4px;">La proposition dit "CO₃²⁻ prédomine" mais on a trouvé que c'est HCO₃⁻ → <strong>FAUX</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM TYPE 2 : COMPARAISON DES FORCES -->
+                    <div class="qcm-analyse">
+                        <h4>QCM Type 2 : Comparer la force des acides ou des bases</h4>
+                        <div class="qcm-badge">📋 Items D et E des QCM 2020-2025</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">🎯 LA RÈGLE D'OR</div>
+                            <div style="background: white; border: 2px solid #10b981; padding: 12px; border-radius: 8px; margin-top: 8px;">
+                                <p style="margin: 0 0 10px 0;"><strong>Le pKa te dit la force de l'acide et de sa base conjuguée :</strong></p>
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <tr style="background: #d1fae5;">
+                                        <td style="padding: 8px; border: 1px solid #10b981;"><strong>pKa PETIT</strong> (ex: 6,4)</td>
+                                        <td style="padding: 8px; border: 1px solid #10b981;">= Acide plus <strong>FORT</strong></td>
+                                        <td style="padding: 8px; border: 1px solid #10b981;">= Base conjuguée plus <strong>FAIBLE</strong></td>
+                                    </tr>
+                                    <tr style="background: #a7f3d0;">
+                                        <td style="padding: 8px; border: 1px solid #10b981;"><strong>pKa GRAND</strong> (ex: 10,3)</td>
+                                        <td style="padding: 8px; border: 1px solid #10b981;">= Acide plus <strong>FAIBLE</strong></td>
+                                        <td style="padding: 8px; border: 1px solid #10b981;">= Base conjuguée plus <strong>FORTE</strong></td>
+                                    </tr>
+                                </table>
+                                <p style="margin: 10px 0 0 0; text-align: center; color: #166534;"><strong>Astuce :</strong> pKa ↑ = acide ↓ (sens inverse) | pKa ↑ = base ↑ (même sens)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">🔑 Méthode pas à pas - Item D</div>
+                            <div class="cle-raisonnement">
+                                <p style="background: #e0f2fe; padding: 8px; border-radius: 4px;"><strong>Proposition D :</strong> "L'acide du couple HCO₃⁻/CO₃²⁻ est plus faible que celui du couple H₂CO₃/HCO₃⁻"</p>
+                                
+                                <p><strong>ÉTAPE 1 : Identifier les acides de chaque couple</strong></p>
+                                <p style="margin-left: 15px;">→ Rappel : l'acide est à GAUCHE<br>
+                                • Couple H₂CO₃/HCO₃⁻ → acide = <strong>H₂CO₃</strong><br>
+                                • Couple HCO₃⁻/CO₃²⁻ → acide = <strong>HCO₃⁻</strong></p>
+                                
+                                <p><strong>ÉTAPE 2 : Noter les pKa</strong></p>
+                                <p style="margin-left: 15px;">• H₂CO₃ (couple 1) → pKa = <strong>6,4</strong><br>
+                                • HCO₃⁻ (couple 2) → pKa = <strong>10,3</strong></p>
+                                
+                                <p><strong>ÉTAPE 3 : Comparer les pKa</strong></p>
+                                <p style="margin-left: 15px;">→ 10,3 &gt; 6,4<br>
+                                → Le pKa du couple 2 est <strong>PLUS GRAND</strong></p>
+                                
+                                <p><strong>ÉTAPE 4 : Appliquer la règle</strong></p>
+                                <p style="margin-left: 15px;">→ pKa plus grand = acide plus FAIBLE<br>
+                                → Donc HCO₃⁻ (pKa = 10,3) est plus <strong>FAIBLE</strong> que H₂CO₃ (pKa = 6,4)</p>
+                                
+                                <p><strong>ÉTAPE 5 : Répondre</strong></p>
+                                <p style="margin-left: 15px; background: #d1fae5; padding: 8px; border-radius: 4px;">La proposition dit exactement ça → <strong>VRAI</strong></p>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">🔑 Méthode pas à pas - Item E</div>
+                            <div class="cle-raisonnement">
+                                <p style="background: #e0f2fe; padding: 8px; border-radius: 4px;"><strong>Proposition E :</strong> "La base du couple H₂CO₃/HCO₃⁻ est plus forte que celle du couple HCO₃⁻/CO₃²⁻"</p>
+                                
+                                <p><strong>ÉTAPE 1 : Identifier les bases de chaque couple</strong></p>
+                                <p style="margin-left: 15px;">→ Rappel : la base est à DROITE<br>
+                                • Couple H₂CO₃/HCO₃⁻ → base = <strong>HCO₃⁻</strong><br>
+                                • Couple HCO₃⁻/CO₃²⁻ → base = <strong>CO₃²⁻</strong></p>
+                                
+                                <p><strong>ÉTAPE 2 : Noter les pKa</strong></p>
+                                <p style="margin-left: 15px;">• HCO₃⁻ est la base du couple 1 → pKa = <strong>6,4</strong><br>
+                                • CO₃²⁻ est la base du couple 2 → pKa = <strong>10,3</strong></p>
+                                
+                                <p><strong>ÉTAPE 3 : Comparer les pKa</strong></p>
+                                <p style="margin-left: 15px;">→ 10,3 &gt; 6,4<br>
+                                → Le pKa du couple 2 est <strong>PLUS GRAND</strong></p>
+                                
+                                <p><strong>ÉTAPE 4 : Appliquer la règle</strong></p>
+                                <p style="margin-left: 15px;">→ pKa plus grand = base conjuguée plus FORTE<br>
+                                → Donc CO₃²⁻ (pKa = 10,3) est plus <strong>FORTE</strong> que HCO₃⁻ (pKa = 6,4)</p>
+                                
+                                <p><strong>ÉTAPE 5 : Répondre</strong></p>
+                                <p style="margin-left: 15px; background: #fee2e2; padding: 8px; border-radius: 4px;">La proposition dit "HCO₃⁻ plus forte que CO₃²⁻" mais c'est l'INVERSE → <strong>FAUX</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM TYPE 3 : SOLUTION Na2CO3 -->
+                    <div class="qcm-analyse">
+                        <h4>QCM Type 3 : Solution de Na₂CO₃ - Calcul de pH</h4>
+                        <div class="qcm-badge">📋 <strong>2020-21</strong> Q14 | <strong>2023-24</strong> Q14</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">⚠️ ATTENTION : L'énoncé contient un piège !</div>
+                            <div class="connaissance-pure">
+                                <p>L'énoncé te donne DEUX couples :</p>
+                                <ul style="margin: 8px 0 8px 20px;">
+                                    <li>H₂CO₃/HCO₃⁻ (pKa = 6,4)</li>
+                                    <li>HCO₃⁻/CO₃²⁻ (pKa = 10,3)</li>
+                                </ul>
+                                <p><strong>Mais le couple H₂CO₃/HCO₃⁻ (pKa = 6,4) ne sert À RIEN dans ce QCM !</strong> Il est là pour te faire perdre du temps et te piéger si tu utilises le mauvais pKa.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">🔑 Ce que tu dois savoir AVANT de répondre</div>
+                            <div class="cle-raisonnement">
+                                <p>Tu ne peux pas résoudre ce QCM si tu ne sais pas que :</p>
+                                <p style="background: white; border: 2px solid #10b981; padding: 10px; border-radius: 8px; text-align: center; margin: 10px 0;">
+                                    <strong>Na₂CO₃ se dissocie dans l'eau → 2 Na⁺ + CO₃²⁻</strong>
+                                </p>
+                                <ul style="margin: 8px 0 8px 20px;">
+                                    <li><strong>Na⁺</strong> = ion spectateur (on s'en fiche)</li>
+                                    <li><strong>CO₃²⁻</strong> = c'est LUI qui influence le pH !</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">🔑 Faire le lien avec le bon couple</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>ÉTAPE 1 :</strong> Na₂CO₃ libère CO₃²⁻</p>
+                                
+                                <p><strong>ÉTAPE 2 :</strong> Je cherche CO₃²⁻ dans les couples de l'énoncé :</p>
+                                <ul style="margin: 8px 0 8px 20px;">
+                                    <li>H₂CO₃/HCO₃⁻ → CO₃²⁻ n'est pas dedans ❌</li>
+                                    <li>HCO₃⁻/CO₃²⁻ → CO₃²⁻ est à DROITE ✅</li>
+                                </ul>
+                                
+                                <p><strong>ÉTAPE 3 :</strong> CO₃²⁻ est à DROITE → c'est une BASE</p>
+                                
+                                <p><strong>ÉTAPE 4 :</strong> Le pKa utile est celui du couple HCO₃⁻/CO₃²⁻ → <strong>pKa = 10,3</strong> (donc pKb = 14 - 10,3 = 3,7)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">📐 La formule "officielle" (compliquée)</div>
+                            <div class="qcm-section-content">
+                                <p>Pour une base faible, la formule est : <strong>pOH = ½(pKb - log C)</strong> puis <strong>pH = 14 - pOH</strong></p>
+                                <p style="margin-top: 8px;"><strong>Mais</strong> cette formule est compliquée à utiliser et à calculer de tête, surtout si tu n'es pas très à l'aise avec les puissances de 10 et les logarithmes.</p>
+                                <p><strong>Donc je te donne d'autres astuces :</strong></p>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">💡 HACK n°1 : Le tableau à connaître par cœur</div>
+                            <div class="cle-raisonnement">
+                                <p>Pour le couple HCO₃⁻/CO₃²⁻ (pKa = 10,3), voici les pH selon la concentration :</p>
+                                <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+                                    <tr style="background: #1a365d; color: white;">
+                                        <th style="padding: 8px; text-align: left;">Concentration de Na₂CO₃</th>
+                                        <th style="padding: 8px; text-align: center;">pH</th>
+                                    </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">1 mmol/L = 10⁻³ mol/L</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center; font-weight: bold; color: #dc2626;">10,65</td>
+                                    </tr>
+                                    <tr style="background: #f8fafc;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">10 mmol/L = 10⁻² mol/L</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center; font-weight: bold; color: #dc2626;">11,15</td>
+                                    </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">100 mmol/L = 10⁻¹ mol/L</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center; font-weight: bold; color: #dc2626;">11,65</td>
+                                    </tr>
+                                </table>
+                                
+                                <p><strong>La règle :</strong> À chaque fois que tu MULTIPLIES la concentration par 10, le pH AUGMENTE de 0,5.</p>
+                                
+                                <p><strong>Comment raisonner :</strong></p>
+                                <ol style="margin: 8px 0 8px 20px;">
+                                    <li>Tu retiens UNE seule valeur : <strong>1 mmol/L → pH = 10,65</strong></li>
+                                    <li>Si la concentration est 10 mmol/L (×10) → pH = 10,65 + 0,5 = <strong>11,15</strong></li>
+                                    <li>Si la concentration est 100 mmol/L (×10 encore) → pH = 11,15 + 0,5 = <strong>11,65</strong></li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">💡 HACK n°2 : Éliminer les chiffres ronds (plus incertain mais plus rapide)</div>
+                            <div class="cle-raisonnement">
+                                <p>Avec un pKa de 10,3 (ou même 6,4), <strong>il est statistiquement impossible d'obtenir des pH qui tombent sur des chiffres ronds</strong>.</p>
+                                
+                                <p>Pourquoi ? Parce que le pKa a une décimale (,3 ou ,4) et que la formule divise par 2, donc le résultat aura toujours une décimale "bizarre" (,15 ou ,35 ou ,65 ou ,85).</p>
+                                
+                                <p><strong>Application immédiate :</strong></p>
+                                <ul style="margin: 8px 0 8px 20px;">
+                                    <li>Item C : pH = 5 → chiffre rond → <strong>probablement FAUX</strong> ❌</li>
+                                    <li>Item D : pH = 10 → chiffre rond → <strong>probablement FAUX</strong> ❌</li>
+                                    <li>Item E : pH = 11,65 → décimale "bizarre" → <strong>possiblement VRAI</strong> ✅</li>
+                                </ul>
+                                
+                                <p style="background: #fef3c7; padding: 8px; border-radius: 4px; margin-top: 8px;"><strong>⚠️ Attention :</strong> Ce hack te permet d'éliminer C et D rapidement, mais il ne te permet pas de CONFIRMER que E est vrai. Pour être sûr de E, il faut utiliser le HACK n°1 (le tableau).</p>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">🔑 Méthode pas à pas - Item B : "CO₃²⁻ est une base faible"</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>ÉTAPE 1 :</strong> On a déjà vu que CO₃²⁻ est une BASE (à droite dans le couple)</p>
+                                
+                                <p><strong>ÉTAPE 2 :</strong> Mais est-ce une base FORTE ou FAIBLE ?</p>
+                                
+                                <p style="background: white; border: 2px solid #10b981; padding: 10px; border-radius: 8px; margin: 10px 0;">
+                                    <strong>Règle ultra-simple :</strong><br>
+                                    Base forte = <strong>OH⁻</strong> (ou les trucs qui donnent OH⁻ directement comme NaOH, KOH)<br>
+                                    <strong>Tout le reste = base faible</strong>
+                                </p>
+                                
+                                <p><strong>ÉTAPE 3 :</strong> Est-ce que CO₃²⁻ c'est OH⁻ ? → NON → donc c'est une base faible</p>
+                                
+                                <p style="background: #d1fae5; padding: 8px; border-radius: 4px;"><strong>→ VRAI</strong></p>
+                                
+                                <p style="background: #fef3c7; padding: 8px; border-radius: 4px; margin-top: 10px;">
+                                    <strong>💡 Même logique pour les acides :</strong><br>
+                                    Acide fort = <strong>HCl, H₂SO₄, HNO₃</strong> (les 3 classiques)<br>
+                                    <strong>Tout le reste = acide faible</strong>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">✅ Réponses finales</div>
+                            <div class="cle-raisonnement">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <tr style="background: #1a365d; color: white;">
+                                        <th style="padding: 8px;">Item</th>
+                                        <th style="padding: 8px;">Proposition</th>
+                                        <th style="padding: 8px;">Réponse</th>
+                                    </tr>
+                                    <tr style="background: #fee2e2;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">A</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">CO₃²⁻ est l'acide du couple HCO₃⁻/CO₃²⁻</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">FAUX (CO₃²⁻ est à DROITE = BASE)</td>
+                                    </tr>
+                                    <tr style="background: #d1fae5;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">B</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">CO₃²⁻ est une base faible</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">VRAI ✓</td>
+                                    </tr>
+                                    <tr style="background: #fee2e2;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">C</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">[Na₂CO₃] = 1 mmol/L → pH = 5</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">FAUX (chiffre rond, vrai pH = 10,65)</td>
+                                    </tr>
+                                    <tr style="background: #fee2e2;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">D</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">[Na₂CO₃] = 10 mmol/L → pH = 10</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">FAUX (chiffre rond, vrai pH = 11,15)</td>
+                                    </tr>
+                                    <tr style="background: #d1fae5;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">E</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">[Na₂CO₃] = 100 mmol/L → pH = 11,65</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">VRAI ✓</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">📝 Note : Et si l'énoncé parle de NaHCO₃ (bicarbonate de sodium) ?</div>
+                            <div class="cle-raisonnement">
+                                <p>NaHCO₃ se dissocie en <strong>Na⁺ + HCO₃⁻</strong></p>
+                                <p>HCO₃⁻ est la BASE du couple H₂CO₃/HCO₃⁻ (pKa = 6,4)</p>
+                                
+                                <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+                                    <tr style="background: #1a365d; color: white;">
+                                        <th style="padding: 8px; text-align: left;">Concentration de NaHCO₃</th>
+                                        <th style="padding: 8px; text-align: center;">pH</th>
+                                    </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">1 mmol/L</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center; font-weight: bold; color: #2563eb;">8,20</td>
+                                    </tr>
+                                    <tr style="background: #f8fafc;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">10 mmol/L</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center; font-weight: bold; color: #2563eb;">8,70</td>
+                                    </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">100 mmol/L</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center; font-weight: bold; color: #2563eb;">9,20</td>
+                                    </tr>
+                                </table>
+                                
+                                <p><strong>Même règle :</strong> ×10 en concentration = +0,5 en pH</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM TYPE 4 : AJOUT HCl -->
+                    <div class="qcm-analyse">
+                        <h4>QCM Type 4 : Ajout de HCl dans l'eau - Calcul de pH</h4>
+                        <div class="qcm-badge">📋 <strong>2021-22</strong> Q7 | <strong>2022-23</strong> Q7</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">🔑 Ce que tu dois savoir AVANT de répondre</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>HCl est un acide FORT</strong></p>
+                                <p>Comment je le sais ? → Règle ultra-simple :</p>
+                                <ul style="margin: 8px 0 8px 20px;">
+                                    <li>Acide fort = <strong>HCl, H₂SO₄, HNO₃</strong> (les 3 classiques)</li>
+                                    <li>Tout le reste = acide faible</li>
+                                </ul>
+                                
+                                <p><strong>"Acide fort" ça veut dire quoi ?</strong></p>
+                                <p>Ça veut dire qu'il se dissocie à 100% : <strong>HCl → H⁺ + Cl⁻</strong></p>
+                                <p>Tout le HCl se transforme en H⁺ et Cl⁻. Donc si tu mets 0,01 mol/L de HCl, tu obtiens 0,01 mol/L de H⁺ (et 0,01 mol/L de Cl⁻, mais on s'en fiche pour le pH).</p>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">📐 ÉTAPE 1 : Transformer la concentration en puissance de 10</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Astuce :</strong> Le nombre de chiffres après la virgule = l'exposant négatif</p>
+                                
+                                <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+                                    <tr style="background: #1a365d; color: white;">
+                                        <th style="padding: 8px; text-align: left;">Concentration</th>
+                                        <th style="padding: 8px; text-align: left;">Puissance de 10</th>
+                                    </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">0,1</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">10⁻¹ (on pourrait aussi écrire 1×10⁻¹ mais par convention on n'écrit jamais le 1 devant)</td>
+                                    </tr>
+                                    <tr style="background: #f8fafc;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">0,01</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">10⁻²</td>
+                                    </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">0,001</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">10⁻³</td>
+                                    </tr>
+                                </table>
+                                
+                                <p><strong>Si le chiffre n'est pas 1 :</strong></p>
+                                <ul style="margin: 8px 0 8px 20px;">
+                                    <li>0,02 = <strong>2</strong> × 10⁻²</li>
+                                    <li>0,04 = <strong>4</strong> × 10⁻²</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">📐 ÉTAPE 2 : Calculer le pH</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Cas 1 : Le chiffre devant est 1 (ou pas de chiffre écrit)</strong></p>
+                                <p>→ pH = l'exposant (sans le moins)</p>
+                                <p style="margin-left: 15px;">Exemple : 0,01 = 1 × 10⁻² → pH = <strong>2</strong></p>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">📐 ÉTAPE 2 : Calculer le pH - Cas 2 : Le chiffre devant n'est pas 1</div>
+                            <div class="cle-raisonnement">
+                                <p>Le chiffre devant le 10⁻ˣ va correspondre à un multiple du log donné dans l'énoncé. <strong>Il faudra décomposer ce chiffre en multiple du log donné dans l'énoncé.</strong></p>
+                                
+                                <p style="background: #e0f2fe; padding: 10px; border-radius: 4px; margin: 10px 0;"><strong>Formule à connaître :</strong> log(A × B) = logA + logB<br>
+                                Exemple : log4 = log(2 × 2) = log2 + log2</p>
+                                
+                                <p style="margin-top: 15px;"><strong>Exemple 1 : 0,02 = <span style="color: #2563eb;">2</span> × 10<sup style="color: #dc2626;">-2</sup></strong></p>
+                                
+                                <p><strong>1.</strong> pH de base = <span style="color: #dc2626; font-weight: bold;">2</span> (car l'exposant est <span style="color: #dc2626;">-2</span>, on enlève le moins)</p>
+                                
+                                <p><strong>2.</strong> Chiffre devant le 10⁻² = <span style="color: #2563eb; font-weight: bold;">2</span></p>
+                                <p style="margin-left: 15px;">→ Tu regardes l'énoncé : quel log t'a-t-on donné ? → <strong>log<span style="color: #2563eb;">2</span></strong> = <span style="color: #16a34a; font-weight: bold;">0,3</span></p>
+                                <p style="margin-left: 15px;">→ Tu repères que le chiffre devant 10⁻² (qui est <span style="color: #2563eb; font-weight: bold;">2</span>) correspond exactement au chiffre écrit derrière "log" dans l'énoncé. Parfait, c'est simple !</p>
+                                
+                                <p><strong>3.</strong> Tu remplaces log<span style="color: #2563eb;">2</span> par sa valeur → <span style="color: #16a34a; font-weight: bold;">0,3</span></p>
+                                
+                                <p><strong>4.</strong> pH = pH de base - somme des logs = <span style="color: #dc2626; font-weight: bold;">2</span> - <span style="color: #16a34a; font-weight: bold;">0,3</span> = <strong style="color: #7c3aed;">1,7</strong></p>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">📐 Exemple 2 : 0,04 = <span style="color: #2563eb;">4</span> × 10<sup style="color: #dc2626;">-2</sup></div>
+                            <div class="cle-raisonnement">
+                                <p><strong>1.</strong> pH de base = <span style="color: #dc2626; font-weight: bold;">2</span> (car l'exposant est <span style="color: #dc2626;">-2</span>, on enlève le moins)</p>
+                                
+                                <p><strong>2.</strong> Chiffre devant le 10⁻² = <span style="color: #2563eb; font-weight: bold;">4</span></p>
+                                <p style="margin-left: 15px;">→ Tu regardes l'énoncé : quel log t'a-t-on donné ? → <strong>log2</strong> = 0,3</p>
+                                <p style="margin-left: 15px;">→ Problème : on t'a donné log2, pas log4 !</p>
+                                <p style="margin-left: 15px; background: #fef3c7; padding: 8px; border-radius: 4px;">→ <strong>C'est là que tu dois être malin :</strong> tu dois décomposer le <span style="color: #2563eb; font-weight: bold;">4</span> en utilisant uniquement le chiffre 2 (celui du log donné)</p>
+                                <p style="margin-left: 15px;">→ On applique la formule : log(A × B) = logA + logB</p>
+                                <p style="margin-left: 15px;">→ <span style="color: #2563eb; font-weight: bold;">4</span> = 2 × 2 → donc log<span style="color: #2563eb;">4</span> = log(2 × 2) = log2 + log2</p>
+                                
+                                <p><strong>3.</strong> log2 + log2 = <span style="color: #16a34a; font-weight: bold;">0,3</span> + <span style="color: #16a34a; font-weight: bold;">0,3</span> = <span style="color: #16a34a; font-weight: bold;">0,6</span></p>
+                                
+                                <p><strong>4.</strong> pH = pH de base - somme des logs = <span style="color: #dc2626; font-weight: bold;">2</span> - <span style="color: #16a34a; font-weight: bold;">0,6</span> = <strong style="color: #7c3aed;">1,4</strong></p>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">💡 Le tableau des logs : comment être malin</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Règle d'or : La prof donne TOUJOURS les valeurs de log dont tu auras besoin dans l'énoncé.</strong></p>
+                                <p><strong>Ton travail = décomposer le chiffre devant le 10⁻ˣ en utilisant UNIQUEMENT les logs donnés dans l'énoncé.</strong></p>
+                                
+                                <p style="margin-top: 15px;"><strong>Situation 1 : L'énoncé donne seulement log2 = 0,3</strong></p>
+                                <p>Tu ne peux calculer QUE les chiffres décomposables en multiples de 2 :</p>
+                                
+                                <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+                                    <tr style="background: #1a365d; color: white;">
+                                        <th style="padding: 8px;">Chiffre devant</th>
+                                        <th style="padding: 8px;">Décomposition</th>
+                                        <th style="padding: 8px;">Calcul du log</th>
+                                    </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center;">2</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">2</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">log2 = 0,3</td>
+                                    </tr>
+                                    <tr style="background: #f8fafc;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center;">4</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">2 × 2</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">log2 + log2 = 0,3 + 0,3 = 0,6</td>
+                                    </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center;">8</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">2 × 2 × 2</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">log2 + log2 + log2 = 0,3 + 0,3 + 0,3 = 0,9</td>
+                                    </tr>
+                                </table>
+                                
+                                <p style="background: #fee2e2; padding: 8px; border-radius: 4px;"><strong>⚠️ Attention :</strong> Si tu vois un chiffre comme 3, 5, 6, 7, 9... tu ne peux PAS le calculer avec seulement log2 !</p>
+                                
+                                <p style="margin-top: 15px;"><strong>Situation 2 : L'énoncé donne log2 = 0,3 ET log3 = 0,48</strong></p>
+                                <p>Là tu as plus de possibilités ! Tu peux décomposer en multiples de 2, de 3, ou des deux :</p>
+                                
+                                <table style="width: 100%; border-collapse: collapse; margin: 10px 0;">
+                                    <tr style="background: #1a365d; color: white;">
+                                        <th style="padding: 8px;">Chiffre devant</th>
+                                        <th style="padding: 8px;">Décomposition</th>
+                                        <th style="padding: 8px;">Calcul du log</th>
+                                    </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center;">2</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">2</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">log2 = 0,3</td>
+                                    </tr>
+                                    <tr style="background: #f8fafc;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center;">3</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">3</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">log3 = 0,48</td>
+                                    </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center;">4</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">2 × 2</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">log2 + log2 = 0,6</td>
+                                    </tr>
+                                    <tr style="background: #f8fafc;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center;">6</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">2 × 3</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">log2 + log3 = 0,3 + 0,48 = 0,78</td>
+                                    </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center;">8</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">2 × 2 × 2</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">log2 + log2 + log2 = 0,9</td>
+                                    </tr>
+                                    <tr style="background: #f8fafc;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center;">9</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">3 × 3</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">log3 + log3 = 0,48 + 0,48 = 0,96</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">💡 Exemple concret pour comprendre</div>
+                            <div class="cle-raisonnement">
+                                <p>Tu as dans l'énoncé : log2 = 0,3</p>
+                                <p>Tu dois calculer le pH pour 0,06 mol/L = <strong>6</strong> × 10⁻²</p>
+                                
+                                <p style="margin-top: 10px;">→ Le chiffre devant est 6. Est-ce que tu peux décomposer 6 en multiples de 2 ?</p>
+                                <p>→ 6 = 2 × 3... mais tu n'as pas log3 dans l'énoncé !</p>
+                                <p>→ <strong>Impossible à calculer</strong> avec seulement log2.</p>
+                                
+                                <p style="background: #fef3c7; padding: 8px; border-radius: 4px; margin-top: 10px;"><strong>→ Si la prof te demande ça, c'est qu'elle t'a aussi donné log3 dans l'énoncé, ou alors cet item sera forcément FAUX.</strong></p>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">🧠 Le réflexe à avoir</div>
+                            <div class="cle-raisonnement">
+                                <ol style="margin: 8px 0 8px 20px;">
+                                    <li>Tu regardes quels logs sont donnés dans l'énoncé (log2 ? log3 ? les deux ?)</li>
+                                    <li>Tu regardes le chiffre devant le 10⁻ˣ</li>
+                                    <li>Tu te demandes : "Est-ce que je peux fabriquer ce chiffre en multipliant les chiffres des logs donnés ?"</li>
+                                    <li>Si oui → tu calcules</li>
+                                    <li>Si non → retourne vérifier l'énoncé, tu as peut-être raté un log, ou alors c'est que cet item sera forcément FAUX car tu ne peux pas le calculer</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">⚠️ Piège classique : Item A "Le pH de l'eau = 7"</div>
+                            <div class="connaissance-pure">
+                                <p><strong>FAUX</strong> si l'énoncé ne précise pas la température !</p>
+                                <p>Le pH de l'eau = 7 <strong>uniquement à 25°C</strong>. Le Ke varie avec la température.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">⚠️ Piège classique : Item E "Pas de variation de pH"</div>
+                            <div class="connaissance-pure">
+                                <p><strong>Toujours FAUX quand on ajoute quelque chose dans l'eau !</strong></p>
+                                <p>Que ce soit un acide, une base, ou n'importe quoi d'autre → ça change forcément le pH.</p>
+                                <p>On passe de pH ≈ 7 à une autre valeur → il y a une variation.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">✅ Réponses finales</div>
+                            <div class="cle-raisonnement">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <tr style="background: #1a365d; color: white;">
+                                        <th style="padding: 8px;">Item</th>
+                                        <th style="padding: 8px;">Proposition</th>
+                                        <th style="padding: 8px;">Réponse</th>
+                                    </tr>
+                                    <tr style="background: #fee2e2;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">A</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">pH de l'eau = 7</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">FAUX (pas de température précisée)</td>
+                                    </tr>
+                                    <tr style="background: #d1fae5;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">B</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">0,01 mol/L → pH = 2</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">VRAI ✓</td>
+                                    </tr>
+                                    <tr style="background: #fee2e2;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">C</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">0,02 mol/L → pH = 1</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">FAUX (vrai pH = 1,7)</td>
+                                    </tr>
+                                    <tr style="background: #fee2e2;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">D</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">0,04 mol/L → pH = 0,5</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">FAUX (vrai pH = 1,4)</td>
+                                    </tr>
+                                    <tr style="background: #fee2e2;">
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">E</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0;">Pas de variation de pH</td>
+                                        <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">FAUX (variation énorme !)</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+                    
+                    <div class="vigilance-item">
+                        <h4>HCO₃⁻ est amphotère : attention au piège !</h4>
+                        <p>HCO₃⁻ peut être acide OU base selon le couple considéré. Dans H₂CO₃/HCO₃⁻ il est BASE. Dans HCO₃⁻/CO₃²⁻ il est ACIDE. Ne pas confondre ! Les items A des QCM testent systématiquement ce piège.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>CO₃²⁻ ≠ CO₃⁻</h4>
+                        <p>Attention à la lecture des items ! CO₃²⁻ (divalent) est la base du couple HCO₃⁻/CO₃²⁻. Si tu vois « CO₃⁻ » (monovalent) dans un item, c'est une erreur ou un piège.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>pKa élevé = acide faible = base conjuguée FORTE</h4>
+                        <p>Ne pas inverser la relation ! Plus le pKa est grand, plus l'acide est faible et donc plus sa base conjuguée est forte. La base du couple à pKa = 10,3 (CO₃²⁻) est plus forte que celle du couple à pKa = 6,4 (HCO₃⁻).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>pH = 7 à 25°C uniquement</h4>
+                        <p>Le pH de neutralité (eau pure) n'est égal à 7 que si T = 25°C. À d'autres températures, le Ke change donc le pH de neutralité aussi. C'est un piège classique en 2022-2023 (item A).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Utilisation de log2 = 0,3</h4>
+                        <p>Quand l'énoncé donne log2 = 0,3, c'est qu'il faudra l'utiliser ! Ton travail = décomposer le chiffre devant le 10⁻ˣ en utilisant uniquement les logs donnés dans l'énoncé. Rappel : log(A × B) = logA + logB. Donc log4 = log(2 × 2) = log2 + log2 = 0,3 + 0,3 = 0,6.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p><strong>🎯 Bonne nouvelle :</strong> Ce chapitre est TRÈS rentable pour le temps investi ! Les mêmes QCM retombent quasiment à l'identique chaque année. Si tu maîtrises les 3 types de QCM analysés ici, tu es paré(e) pour les 8 QCM des 5 dernières années.</p>
+                        
+                        <p><strong>📌 Ce qu'il faut absolument maîtriser :</strong></p>
+                        <ul style="margin: 10px 0 10px 20px; color: #6b21a8;">
+                            <li>L'identification acide/base dans les couples (surtout avec HCO₃⁻ amphotère)</li>
+                            <li>La règle de prédominance : pH < pKa → acide prédomine</li>
+                            <li>La relation pKa élevé = acide faible = base conjuguée forte</li>
+                            <li>Le calcul de pH d'un acide fort : pH = -log[acide]</li>
+                        </ul>
+                        
+                        <p><strong>⚡ Stratégie express si tu es en retard :</strong> Apprends par cœur le raisonnement sur les couples H₂CO₃/HCO₃⁻/CO₃²⁻. Ce QCM tombe CHAQUE année ou presque. Mémorise que HCO₃⁻ est BASE dans le premier couple et ACIDE dans le second. C'est 1 à 2 points quasi-garantis.</p>
+                        
+                        <p><strong>🔗 Lien avec FC8 :</strong> Ces notions sont reprises dans le chapitre sur les régulations physiologiques (diagramme de Davenport) où le tampon bicarbonate/CO₂ est central. Maîtriser FC7 t'aidera énormément pour FC8.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>

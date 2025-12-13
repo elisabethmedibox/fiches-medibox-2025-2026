@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC9 - Mécanique des fluides (Partie 1) - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Tableau de valeurs */
+        .tableau-valeurs {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        
+        .tableau-valeurs th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .tableau-valeurs td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .tableau-valeurs tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC9 - Mécanique des fluides (Partie 1)</h1>
+            <div class="meta">
+                <span>📚 UE7 - Physiologie (Biophysique)</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- PRESSION ARTÉRIELLE ET POSITION -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Pression artérielle et influence de la position (5 QCM)</h4>
+                        <p style="margin-bottom: 15px; font-style: italic; color: #64748b;">⚠️ Ces QCM comportent une image/schéma dans l'énoncé original</p>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q16<br>2023-2024 Q16<br>2024-2025 Q15<br><em>🔄 Quasi-identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos de la pression artérielle systémique d'un sujet normal. On considère que la pression artérielle systémique moyenne d'un sujet allongé à la sortie du cœur est de 13 kPa. La distance cœur-tête et cœur-pieds est respectivement de 30 cm et 120 cm. On prendra ρ(sang) = 10³ kg.m⁻³ et g = 10 m.s⁻². Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La pression artérielle systémique varie selon l'activité du cœur. / est indépendante de l'activité du cœur (2023-2024)</div>
+                                            <div class="qcm-item">B: La pression artérielle systolique normale est de l'ordre de 12 mmHg.</div>
+                                            <div class="qcm-item">C: Chez le sujet allongé, la pression artérielle moyenne au niveau des pieds est de 13 kPa.</div>
+                                            <div class="qcm-item">D: Chez le sujet debout, la pression artérielle moyenne au niveau de la tête est de 10 kPa.</div>
+                                            <div class="qcm-item">E: Chez le sujet debout, la pression artérielle moyenne au niveau des pieds est de 27 kPa. / 27 mmHg (2024-2025)</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q16</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos de la pression artérielle systémique d'un sujet normal. On considère que la pression artérielle systémique moyenne d'un sujet allongé à la sortie du cœur est de 10 kPa. La distance cœur-tête et cœur-pieds est respectivement de 20 cm et 80 cm. On prendra ρ(sang) = 10³ kg.m⁻³ et g = 10 m.s⁻². Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Chez le sujet allongé, la pression artérielle moyenne au niveau de la tête est de 12 kPa.</div>
+                                            <div class="qcm-item">B: Chez le sujet debout, la pression artérielle moyenne au niveau de la tête est de 8 kPa.</div>
+                                            <div class="qcm-item">C: Chez le sujet debout, la pression artérielle moyenne au niveau des pieds est de 25 kPa.</div>
+                                            <div class="qcm-item">D: Chez le sujet assis, la pression artérielle moyenne au niveau de la tête est de 8 kPa.</div>
+                                            <div class="qcm-item">E: Chez le sujet debout, la pression artérielle moyenne au niveau des pieds est de 25 kPa.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos de la pression artérielle systémique d'un sujet normal. On considère que la pression artérielle systémique moyenne d'un sujet allongé à la sortie du cœur est de 10 kPa. La distance cœur-tête et cœur-pieds est respectivement de 50 cm et 120 cm. On prendra ρ(sang) = 10³ kg.m⁻³ et g = 10 m.s⁻². Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Chez le sujet allongé, la pression artérielle moyenne au niveau de la tête est supérieure à celle du cœur.</div>
+                                            <div class="qcm-item">B: Chez le sujet debout, la pression artérielle moyenne au niveau de la tête est de 8 kPa.</div>
+                                            <div class="qcm-item">C: Chez le sujet debout, la pression artérielle moyenne au niveau des pieds est de 22 kPa.</div>
+                                            <div class="qcm-item">D: Chez le sujet assis, si la pression au niveau du cœur est inchangée, la pression artérielle moyenne au niveau de la tête est de 22 kPa.</div>
+                                            <div class="qcm-item">E: Chez le sujet debout, la pression artérielle moyenne au niveau des pieds est proche de zéro compte tenu du petit calibre des artères du pied.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- SPHYGMOMANOMÈTRE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Mesure de la PA par sphygmomanomètre (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q20</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos de la mesure de la pression artérielle par un sphygmomanomètre (méthode auscultatoire). Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La loi de Poiseuille est applicable si le régime d'écoulement est turbulent. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 10px; font-size: 0.7rem; margin-left: 5px;">FC12</span></div>
+                                            <div class="qcm-item">B: L'apparition des bruits de Korotkov au dégonflage du brassard signale le pic de pression artérielle.</div>
+                                            <div class="qcm-item">C: La disparition des bruits auscultatoires au dégonflage du brassard permet de déterminer la pression artérielle diastolique.</div>
+                                            <div class="qcm-item">D: La résistance à l'écoulement diminue dans le segment 2. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 10px; font-size: 0.7rem; margin-left: 5px;">FC12</span></div>
+                                            <div class="qcm-item">E: La pression artérielle systolique / diastolique normale est de l'ordre de 160/80 mm Hg.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q20</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos de la mesure de la pression artérielle par un sphygmomanomètre (méthode auscultatoire). Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La loi de Poiseuille est applicable si le régime d'écoulement est turbulent. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 10px; font-size: 0.7rem; margin-left: 5px;">FC12</span></div>
+                                            <div class="qcm-item">B: L'apparition des bruits de Korotkov au dégonflage du brassard signale le niveau de pression artérielle moyenne.</div>
+                                            <div class="qcm-item">C: La disparition des bruits auscultatoires au dégonflage du brassard permet de déterminer la pression artérielle diastolique.</div>
+                                            <div class="qcm-item">D: L'écoulement est laminaire dans le segment 1. <span style="background: #dbeafe; color: #1e40af; padding: 2px 6px; border-radius: 10px; font-size: 0.7rem; margin-left: 5px;">FC12</span></div>
+                                            <div class="qcm-item">E: La pression artérielle systolique / diastolique normale est de l'ordre de 12/8 mmHg.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année (1 à 2 QCM/an)</td>
+                                <td>💡 QCM avec items récurrents</td>
+                                <td>🔗 Cours appartenant à une suite logique</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>7 QCM</strong> sur ce chapitre (moyenne 1,4/an). Ces QCM se regroupent en <strong>2 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>PA et position (calculs ρgh)</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q16</span></td>
+                                    <td class="qcm-cell">Q16</td>
+                                    <td class="qcm-cell">Q17</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q16</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q15</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Sphygmomanomètre (items B,C,E)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q20</td>
+                                    <td class="qcm-cell">Q20</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique ou quasi-identique (même énoncé, mêmes items avec variations mineures) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>Le calcul de la pression artérielle en fonction de la position</h4>
+                        <p>Maîtriser l'équation P = P₀ ± ρgh pour calculer la pression artérielle au niveau de la tête (pression diminue) et des pieds (pression augmente) en position debout. Voir diapos sur la pression artérielle et l'influence de la position.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les valeurs normales de pression artérielle</h4>
+                        <p>Connaître les valeurs normales : PA systolique ≈ 120 mmHg (≈ 16-17 kPa), PA diastolique ≈ 80 mmHg (≈ 10-11 kPa), PA moyenne ≈ 100 mmHg (≈ 13 kPa). Attention au piège « 12 mmHg » au lieu de 120 mmHg !</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans (item piège récurrent)</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La mesure de la PA par méthode auscultatoire</h4>
+                        <p>Comprendre le principe : apparition des bruits de Korotkov = PA systolique, disparition des bruits = PA diastolique. Les valeurs normales sont 120/80 mmHg (pas 160/80 ni 12/8).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- ENCADRÉ 1 : Valeurs de PA à connaître -->
+                    <div class="qcm-analyse" style="border-color: #8b5cf6;">
+                        <h4 style="color: #6d28d9;">📌 Les valeurs de PA à connaître</h4>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Valeurs normales de pression artérielle :</div>
+                            <div class="qcm-section-content">
+                                <ul style="margin: 10px 0 10px 20px;">
+                                    <li><strong>PA systolique</strong> (quand le cœur se contracte) ≈ <strong>120 mmHg</strong> ≈ 16 kPa</li>
+                                    <li><strong>PA diastolique</strong> (quand le cœur se relâche) ≈ <strong>80 mmHg</strong> ≈ 11 kPa</li>
+                                    <li><strong>PA moyenne</strong> (donnée dans les énoncés) ≈ <strong>100 mmHg</strong> ≈ <strong>13 kPa</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">La PA est-elle dépendante ou indépendante de l'activité du cœur ?</div>
+                            <div class="qcm-section-content">
+                                <p>La PA <strong>DÉPEND</strong> de l'activité du cœur (elle varie selon que le cœur se contracte ou se relâche).</p>
+                                <p style="margin-top: 8px;">⚠️ L'item « la PA est indépendante de l'activité du cœur » est <strong>FAUX</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ENCADRÉ 2 : Calcul de PA selon la position -->
+                    <div class="qcm-analyse">
+                        <h4>📌 Calcul de PA selon la position</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q16 | <strong>2021-2022</strong> Q16 | <strong>2022-2023</strong> Q17 | <strong>2023-2024</strong> Q16 | <strong>2024-2025</strong> Q15</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que l'énoncé te donne TOUJOURS :</div>
+                            <div class="qcm-section-content">
+                                <ol style="margin: 10px 0 10px 20px;">
+                                    <li><strong>Une pression de départ</strong> (au niveau du cœur, sujet allongé) → ex : « 13 kPa »</li>
+                                    <li><strong>Des distances</strong> → ex : « distance cœur-tête = 30 cm, distance cœur-pieds = 120 cm »</li>
+                                    <li><strong>Les constantes</strong> → « ρ(sang) = 10³ kg.m⁻³ et g = 10 m.s⁻² »</li>
+                                    <li><strong>Une position</strong> → allongé, debout, ou assis</li>
+                                </ol>
+                                <p style="font-style: italic; color: #64748b; margin-top: 10px;">(Note : La pression de départ est toujours donnée pour un sujet allongé car c'est la position de référence où tout est au même niveau)</p>
+                            </div>
+                        </div>
+
+                        <!-- ÉTAPE 1 -->
+                        <h5 style="margin-top: 25px; color: #1a365d; border-bottom: 2px solid #ff6b7a; padding-bottom: 5px;">ÉTAPE 1 : Sur ta feuille de brouillon, note ces 3 éléments</h5>
+                        <div class="qcm-section-content" style="margin-top: 10px;">
+                            <ul style="margin: 10px 0 10px 20px;">
+                                <li><strong>Distance cœur-tête</strong> : 30 cm <em>(garde les centimètres, ne convertis PAS en mètres)</em></li>
+                                <li><strong>Distance cœur-pieds</strong> : 120 cm <em>(garde les centimètres, ne convertis PAS en mètres)</em></li>
+                                <li><strong>Pression de départ P₀</strong> : ex. 13 kPa</li>
+                            </ul>
+                        </div>
+
+                        <!-- ÉTAPE 2 -->
+                        <h5 style="margin-top: 25px; color: #1a365d; border-bottom: 2px solid #ff6b7a; padding-bottom: 5px;">ÉTAPE 2 : Comprendre la logique (même sans cours)</h5>
+                        <div class="qcm-section-content" style="margin-top: 10px;">
+                            <p><strong>Le sang est un liquide. Comme l'eau dans un tuyau :</strong></p>
+                            <ul style="margin: 10px 0 10px 20px;">
+                                <li>Si tu es <strong>DEBOUT</strong> : le sang doit "monter" vers ta tête → ça demande un effort → la pression <strong>diminue</strong> en haut</li>
+                                <li>Si tu es <strong>DEBOUT</strong> : le sang "descend" vers tes pieds → la gravité l'aide → la pression <strong>augmente</strong> en bas</li>
+                                <li>Si tu es <strong>ALLONGÉ</strong> : tout est au même niveau → la pression est <strong>la même partout</strong> = P₀</li>
+                            </ul>
+                        </div>
+
+                        <!-- ÉTAPE 3 -->
+                        <h5 style="margin-top: 25px; color: #1a365d; border-bottom: 2px solid #ff6b7a; padding-bottom: 5px;">ÉTAPE 3 : La formule à connaître</h5>
+                        <div class="qcm-section-content" style="margin-top: 10px;">
+                            <p style="font-size: 1.1rem; text-align: center; background: #f1f5f9; padding: 15px; border-radius: 8px; margin: 15px 0;"><strong>P = P₀ ± ρ × g × h</strong></p>
+                            
+                            <div class="table-wrapper">
+                            <table class="tableau-valeurs" style="margin: 15px 0;">
+                                <thead>
+                                    <tr>
+                                        <th>Symbole</th>
+                                        <th>C'est quoi ?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>P</strong></td><td>La pression qu'on cherche</td></tr>
+                                    <tr><td><strong>P₀</strong></td><td>La pression de départ (donnée dans l'énoncé)</td></tr>
+                                    <tr><td><strong>ρ</strong></td><td>Masse volumique du sang (donnée : 10³)</td></tr>
+                                    <tr><td><strong>g</strong></td><td>Accélération de la pesanteur (donnée : 10)</td></tr>
+                                    <tr><td><strong>h</strong></td><td>La hauteur</td></tr>
+                                </tbody>
+                            </table>
+                            </div>
+                            
+                            <p><strong>Le signe ± dépend de où on calcule :</strong></p>
+                            <ul style="margin: 10px 0 10px 20px;">
+                                <li><strong>TÊTE</strong> (au-dessus du cœur) → <strong>P₀ − ρgh</strong> (la pression diminue)</li>
+                                <li><strong>PIEDS</strong> (en-dessous du cœur) → <strong>P₀ + ρgh</strong> (la pression augmente)</li>
+                            </ul>
+                        </div>
+
+                        <!-- ÉTAPE 4 -->
+                        <h5 style="margin-top: 25px; color: #1a365d; border-bottom: 2px solid #ff6b7a; padding-bottom: 5px;">ÉTAPE 4 : Le calcul de ρ × g × h</h5>
+                        
+                        <p style="margin-top: 15px; font-weight: 600; color: #1a365d;">Méthode 1 : Le calcul classique</p>
+                        <div class="qcm-section-content" style="margin-top: 10px;">
+                            <p>⚠️ Ne te soucie pas des unités ! La prof donne toujours les mêmes unités standard. Tu prends juste les chiffres et tu multiplies.</p>
+                            
+                            <p style="margin-top: 10px;"><strong>Le calcul :</strong> ρ × g × h = 10³ × 10 × h</p>
+                            
+                            <div style="background: #f0f9ff; border-left: 3px solid #0ea5e9; padding: 12px 15px; border-radius: 0 8px 8px 0; margin: 15px 0;">
+                                <p style="margin: 0; color: #0369a1;"><strong>💡 Petit rappel : calcul des puissances de 10</strong></p>
+                                <p style="margin: 8px 0 0 0; color: #0369a1;">10<sup>a</sup> × 10<sup>b</sup> = 10<sup>(a+b)</sup></p>
+                                <p style="margin: 5px 0 0 0; color: #0369a1;">Donc : 10³ × 10 = 10³ × 10¹ = 10<sup>(3+1)</sup> = <strong>10⁴</strong></p>
+                            </div>
+                            
+                            <p><strong>Donc :</strong> ρ × g × h = 10⁴ × h (et 10⁴ = 10 000)</p>
+                            
+                            <p style="margin-top: 15px;"><strong>Exemple de calcul pour h = 0,30 m :</strong></p>
+                            <p>ρ × g × h = 10⁴ × 0,30</p>
+                            <p>On peut écrire 0,30 = 3 × 10⁻¹</p>
+                            <p>= 10⁴ × 3 × 10⁻¹ = 3 × 10<sup>(4-1)</sup> = 3 × 10³ = 3000 Pa = <strong>3 kPa</strong></p>
+                            
+                            <div style="background: #f0f9ff; border-left: 3px solid #0ea5e9; padding: 12px 15px; border-radius: 0 8px 8px 0; margin: 15px 0;">
+                                <p style="margin: 0; color: #0369a1;"><strong>💡 Rappel :</strong> 1 kPa = 1000 Pa, donc on divise par 1000 (ou on enlève 10³)</p>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 25px; font-weight: 600; color: #ff6b7a; font-size: 1.1rem;">🚀 Méthode 2 : Le HACK Medibox</p>
+                        <div class="cle-raisonnement" style="margin-top: 10px;">
+                            <p><strong>Tu ne calcules RIEN. Tu gardes tout en centimètres.</strong></p>
+                            <ol style="margin: 15px 0 15px 20px;">
+                                <li>Tu prends ta hauteur <strong>en centimètres</strong> (ex : 30 cm)</li>
+                                <li>Tu divises par 10 (ex : 30 ÷ 10 = 3)</li>
+                                <li><strong>C'est ton ρgh en kPa !</strong> (ex : ρgh = 3 kPa)</li>
+                            </ol>
+                            <p>C'est tout. Pas de conversion en mètres, pas de puissances de 10, rien.</p>
+                            
+                            <div class="table-wrapper" style="margin-top: 15px;">
+                            <table class="tableau-valeurs">
+                                <thead>
+                                    <tr>
+                                        <th>Hauteur (en cm)</th>
+                                        <th>÷ 10</th>
+                                        <th>ρgh (en kPa)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>20 cm</td><td>20 ÷ 10</td><td><strong>2 kPa</strong></td></tr>
+                                    <tr><td>30 cm</td><td>30 ÷ 10</td><td><strong>3 kPa</strong></td></tr>
+                                    <tr><td>50 cm</td><td>50 ÷ 10</td><td><strong>5 kPa</strong></td></tr>
+                                    <tr><td>80 cm</td><td>80 ÷ 10</td><td><strong>8 kPa</strong></td></tr>
+                                    <tr><td>120 cm</td><td>120 ÷ 10</td><td><strong>12 kPa</strong></td></tr>
+                                </tbody>
+                            </table>
+                            </div>
+                            
+                            <p style="margin-top: 15px;">⚠️ <strong>Si l'énoncé te donne des mètres</strong>, convertis d'abord en centimètres (×100), puis applique le hack.</p>
+                        </div>
+
+                        <!-- ÉTAPE 5 -->
+                        <h5 style="margin-top: 25px; color: #1a365d; border-bottom: 2px solid #ff6b7a; padding-bottom: 5px;">ÉTAPE 5 : Appliquer selon la POSITION demandée</h5>
+                        <div class="table-wrapper" style="margin-top: 15px;">
+                        <table class="tableau-valeurs">
+                            <thead>
+                                <tr>
+                                    <th>Position du sujet</th>
+                                    <th>PA à la TÊTE</th>
+                                    <th>PA aux PIEDS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>ALLONGÉ</strong></td><td>= P₀</td><td>= P₀</td></tr>
+                                <tr><td><strong>DEBOUT</strong></td><td>= P₀ − ρgh(tête)</td><td>= P₀ + ρgh(pieds)</td></tr>
+                                <tr><td><strong>ASSIS</strong></td><td>= P₀ − ρgh(tête)</td><td>Non demandé aux examens</td></tr>
+                            </tbody>
+                        </table>
+                        </div>
+
+                        <!-- ÉTAPE 6 -->
+                        <h5 style="margin-top: 25px; color: #1a365d; border-bottom: 2px solid #ff6b7a; padding-bottom: 5px;">ÉTAPE 6 : Exemple complet avec Q16 2021-2022</h5>
+                        <div class="qcm-section-content" style="margin-top: 10px;">
+                            <p><strong>Énoncé :</strong> <em>Pression artérielle moyenne sujet allongé = 10 kPa. Distance cœur-tête = 20 cm, distance cœur-pieds = 80 cm. ρ = 10³ kg/m³, g = 10 m/s².</em></p>
+                            
+                            <p style="margin-top: 15px;"><strong>Sur ta feuille de brouillon :</strong></p>
+                            <ul style="margin: 10px 0 10px 20px;">
+                                <li>P₀ = 10 kPa</li>
+                                <li>Hauteur tête = 20 cm → 20 ÷ 10 = 2 → <strong>ρgh = 2 kPa</strong></li>
+                                <li>Hauteur pieds = 80 cm → 80 ÷ 10 = 8 → <strong>ρgh = 8 kPa</strong></li>
+                            </ul>
+                            
+                            <p style="margin-top: 15px;"><strong>Calculs :</strong></p>
+                            <ul style="margin: 10px 0 10px 20px;">
+                                <li><strong>Sujet allongé</strong> (tête ou pieds) : P = P₀ = <strong>10 kPa</strong></li>
+                                <li><strong>Sujet debout, tu cherches la pression à la TÊTE :</strong><br>
+                                    → La tête est AU-DESSUS du cœur → on SOUSTRAIT<br>
+                                    → P = P₀ − ρgh(tête) = 10 − 2 = <strong>8 kPa</strong></li>
+                                <li><strong>Sujet debout, tu cherches la pression aux PIEDS :</strong><br>
+                                    → Les pieds sont EN-DESSOUS du cœur → on AJOUTE<br>
+                                    → P = P₀ + ρgh(pieds) = 10 + 8 = <strong>18 kPa</strong></li>
+                            </ul>
+                            
+                            <p style="margin-top: 15px;"><strong>Vérification des items :</strong></p>
+                            <div class="table-wrapper">
+                            <table class="tableau-valeurs" style="text-align: left;">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Énoncé</th>
+                                        <th>Analyse</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>A</td><td>« Sujet allongé, PA tête = 12 kPa »</td><td>Allongé → P = P₀ = 10 kPa. <strong>12 ≠ 10 → FAUX</strong></td></tr>
+                                    <tr><td>B</td><td>« Sujet debout, PA tête = 8 kPa »</td><td>Debout tête → P = 10 − 2 = 8 kPa. <strong>8 = 8 → VRAI</strong></td></tr>
+                                    <tr><td>C</td><td>« Sujet debout, PA pieds = 25 kPa »</td><td>Debout pieds → P = 10 + 8 = 18 kPa. <strong>25 ≠ 18 → FAUX</strong></td></tr>
+                                    <tr><td>D</td><td>« Sujet assis, PA tête = 8 kPa »</td><td>Assis tête → même calcul que debout = 8 kPa. <strong>VRAI</strong></td></tr>
+                                    <tr><td>E</td><td>« Sujet debout, PA pieds = 25 kPa »</td><td>Idem que C. <strong>FAUX</strong></td></tr>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+
+                        <!-- HACK Élimination rapide -->
+                        <div class="cle-raisonnement" style="margin-top: 25px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left-color: #f59e0b;">
+                            <p style="color: #92400e; font-size: 1.1rem;"><strong>🚀 HACK Medibox : Éliminer rapidement sans calculer</strong></p>
+                            <p style="color: #92400e;">Avant même de faire le calcul, tu peux éliminer certains items grâce à la logique :</p>
+                            
+                            <div class="table-wrapper" style="margin: 15px 0;">
+                            <table class="tableau-valeurs" style="font-size: 0.85rem;">
+                                <thead>
+                                    <tr>
+                                        <th>Si l'item dit...</th>
+                                        <th>Vérifie que...</th>
+                                        <th>Sinon c'est...</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>« Sujet <strong>ALLONGÉ</strong>, PA = X »</td><td>X doit être <strong>égal à P₀</strong></td><td><strong>FAUX</strong></td></tr>
+                                    <tr><td>« Sujet <strong>DEBOUT</strong>, PA <strong>TÊTE</strong> = X »</td><td>X doit être <strong>inférieur à P₀</strong></td><td><strong>FAUX</strong></td></tr>
+                                    <tr><td>« Sujet <strong>DEBOUT</strong>, PA <strong>PIEDS</strong> = X »</td><td>X doit être <strong>supérieur à P₀</strong></td><td><strong>FAUX</strong></td></tr>
+                                </tbody>
+                            </table>
+                            </div>
+                            
+                            <p style="color: #92400e;"><strong>Exemple avec P₀ = 10 kPa :</strong></p>
+                            <ul style="margin: 10px 0 0 20px; color: #92400e;">
+                                <li>« Sujet allongé, PA tête = 12 kPa » → 12 ≠ 10 → <strong>FAUX immédiatement</strong></li>
+                                <li>« Sujet debout, PA tête = 12 kPa » → 12 > 10 → <strong>FAUX immédiatement</strong> (devrait être < 10)</li>
+                                <li>« Sujet debout, PA pieds = 8 kPa » → 8 < 10 → <strong>FAUX immédiatement</strong> (devrait être > 10)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- ENCADRÉ 3 : Sphygmomanomètre -->
+                    <div class="qcm-analyse" style="margin-top: 25px;">
+                        <h4>📌 Mesure de la PA par sphygmomanomètre</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q20 | <strong>2022-2023</strong> Q20</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la méthode auscultatoire de mesure de la PA. Certains items relèvent du FC9 (bruits de Korotkov, valeurs normales), d'autres du FC12 (écoulement laminaire/turbulent).</div>
+                        </div>
+                        
+                        <div class="connaissance-pure" style="margin-top: 15px;">
+                            <p><strong>C'est un QCM de connaissance pure. Mémorise ces 3 points :</strong></p>
+                            <p style="margin-top: 10px;">1. <strong>Apparition des bruits de Korotkov</strong> = PA <strong>SYSTOLIQUE</strong> = le <strong>pic</strong> de pression artérielle</p>
+                            <p>2. <strong>Disparition des bruits</strong> = PA <strong>DIASTOLIQUE</strong></p>
+                            <p>3. <strong>PA normale</strong> = <strong>120/80 mmHg</strong> = <strong>12/8 cmHg</strong> (pas 160/80 mmHg, pas 12/8 mmHg)</p>
+                        </div>
+                        
+                        <div style="background: #fef2f2; border-left: 3px solid #ef4444; padding: 12px 15px; border-radius: 0 8px 8px 0; margin-top: 15px;">
+                            <p style="margin: 0; color: #991b1b;"><strong>⚠️ Pourquoi 12/8 mmHg est FAUX ?</strong></p>
+                            <p style="margin: 8px 0 0 0; color: #991b1b;">Le prof joue sur la confusion mmHg / cmHg :</p>
+                            <ul style="margin: 8px 0 0 20px; color: #991b1b;">
+                                <li>120/80 <strong>mmHg</strong> = valeurs normales ✅</li>
+                                <li>12/8 <strong>cmHg</strong> = même chose (car 1 cmHg = 10 mmHg) ✅</li>
+                                <li>12/8 <strong>mmHg</strong> = 10× trop faible → <strong>FAUX</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>L'item « PA systolique normale de l'ordre de 12 mmHg » est FAUX</h4>
+                        <p>C'est LE piège récurrent du chapitre (présent dans 4 QCM sur 5). La PA systolique normale est de 120 mmHg, PAS 12 mmHg. L'item joue sur la confusion 12/120.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>L'item « PA normale 160/80 mmHg » est FAUX</h4>
+                        <p>La PA normale est 120/80 mmHg. 160/80 correspond à une hypertension systolique isolée.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>L'item « PA normale 12/8 mmHg » est FAUX</h4>
+                        <p>Le prof joue sur la confusion entre mmHg et cmHg. Les valeurs normales sont 120/80 <strong>mmHg</strong> = 12/8 <strong>cmHg</strong> (car 1 cmHg = 10 mmHg). Donc 12/8 mmHg est 10× trop faible.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>L'item « sujet allongé, PA tête ≠ P₀ » est FAUX</h4>
+                        <p>Chez le sujet ALLONGÉ, la pression est la MÊME partout (tête, cœur, pieds) car tout est au même niveau. Il n'y a pas de différence de hauteur donc pas de ρgh. La PA = P₀ partout.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>L'item « PA indépendante de l'activité du cœur » est FAUX</h4>
+                        <p>La pression artérielle DÉPEND de l'activité du cœur : elle varie entre systole (contraction → PA max) et diastole (relâchement → PA min).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Les bruits de Korotkov signalent la PA SYSTOLIQUE, pas moyenne</h4>
+                        <p>L'apparition des bruits au dégonflage indique la PA systolique (= le pic de pression). L'item « signale le niveau de PA moyenne » (2022-2023) est FAUX.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Attention au piège du changement d'unités kPa → mmHg (2024-2025)</h4>
+                        <p>Cette année, le prof teste le changement d'unités. <strong>Deux réflexes :</strong></p>
+                        <p style="margin-top: 8px;">1. Si le chiffre est bon mais pas l'unité → <strong>TOUJOURS FAUX</strong> (ex : tu calcules 25 kPa, l'item dit "25 mmHg" → FAUX)</p>
+                        <p style="margin-top: 5px;">2. Le rapport à connaître : <strong>1 kPa ≈ 7,5 mmHg</strong>. Donc si ton résultat est 25 kPa, en mmHg ça doit être ~187 mmHg (7× plus grand). Si l'item propose un chiffre du même ordre de grandeur que le kPa (ex : 27 mmHg vs 25 kPa), c'est <strong>FAUX immédiatement</strong>.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre est une MINE D'OR pour les étudiants de Niveau 1. Le QCM sur la pression artérielle et la position tombe CHAQUE année avec des valeurs très similaires, et le HACK Medibox (hauteur en cm ÷ 10 = ρgh en kPa) permet de répondre en moins de 30 secondes.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Lisez le cours entier pour comprendre la physique derrière les calculs (loi de Pascal, équation fondamentale de la statique). Attention, de nombreuses parties du cours n'ont JAMAIS été testées : tonneau de Pascal, presse hydraulique, expérience de Torricelli, unités de pression... Le prof pourrait les tester un jour.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur : (1) les valeurs normales de PA (120/80 mmHg, PA moyenne ≈ 13 kPa), (2) l'influence de la position sur la PA (formule P = P₀ ± ρgh), (3) la mesure par sphygmomanomètre (bruits de Korotkov). Ce sont les seules parties testées depuis 5 ans.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Ce chapitre est une garantie de point. Utilisez le HACK Medibox : hauteur en cm ÷ 10 = ρgh en kPa. Avant même de calculer, éliminez les items grâce à la logique (allongé = P₀, debout tête < P₀, debout pieds > P₀). Mémorisez les pièges récurrents : "12 mmHg" au lieu de 120 mmHg, "12/8 mmHg" au lieu de 12/8 cmHg, "PA indépendante du cœur". Pour le sphygmomanomètre, retenez juste : apparition bruits = systolique, disparition = diastolique, PA normale = 120/80 mmHg.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
