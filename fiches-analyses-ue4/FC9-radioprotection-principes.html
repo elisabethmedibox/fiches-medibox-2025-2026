@@ -39,6 +39,23 @@
             }
         }
 
+        /* Tags FC pour QCM mixtes */
+        .fc-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .fc-tag-fc10 {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+
         /* Accordeons principaux */
         .main-accordion {
             margin-bottom: 15px;
@@ -459,7 +476,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>📘 FC9 - Radioprotection : organisation et principes fondamentaux</h1>
+            <h1>FC9 - Radioprotection : organisation et principes fondamentaux</h1>
             <div class="meta">
                 <span>📚 UE4 - Rayonnements et Santé</span>
                 <span>🎯 Fiche d'Analyse - Module 40 : gérer son retard</span>
@@ -476,7 +493,7 @@
                 <div class="accordion-content">
 
                     <p style="margin-bottom: 20px; padding: 12px; background: #fef3c7; border-radius: 8px; font-size: 0.9rem; color: #92400e;">
-                        <strong>⚠️ Attention :</strong> FC9 est en forte baisse. Aucun QCM en 2023-24 ni en 2024-25. Les QCM présentés ci-dessous datent de 2020 à 2023.
+                        <strong>⚠️ Attention :</strong> FC9 est en forte baisse. Aucun QCM en 2023-24 ni en 2024-25. En 2022-23, seuls les items D et E étaient FC9 (les items A, B, C relèvent de FC10).
                     </p>
 
                     <!-- THEME : Principes fondamentaux et acteurs -->
@@ -497,16 +514,16 @@
                                     <td>
                                         <div class="qcm-enonce">Sur la radioprotection :</div>
                                         <div class="qcm-items">
-                                            <div class="qcm-item">A. Des écrans sont interposés entre la source et l'opérateur pour réduire l'exposition externe.</div>
-                                            <div class="qcm-item">B. Les travailleurs de catégorie A doivent porter un dosimètre passif.</div>
-                                            <div class="qcm-item">C. Les travailleurs de catégorie A doivent porter un dosimètre opérationnel.</div>
+                                            <div class="qcm-item">A. Des écrans sont interposés entre la source et l'opérateur pour réduire l'exposition externe. <span class="fc-tag fc-tag-fc10">FC10</span></div>
+                                            <div class="qcm-item">B. Les travailleurs de catégorie A doivent porter un dosimètre passif. <span class="fc-tag fc-tag-fc10">FC10</span></div>
+                                            <div class="qcm-item">C. Les travailleurs de catégorie A doivent porter un dosimètre opérationnel. <span class="fc-tag fc-tag-fc10">FC10</span></div>
                                             <div class="qcm-item">D. Le "principe de limitation" correspond au fait que l'exposition des patients aux rayonnements ionisants doit être maintenue au niveau le plus faible qu'il est raisonnablement possible d'atteindre.</div>
                                             <div class="qcm-item">E. Le "principe de justification" correspond au fait que toute exposition doit être justifiée par les avantages qu'elle procure.</div>
                                         </div>
                                     </td>
                                     <td class="qcm-ref">
                                         <ul>
-                                            <li class="ref-quasi"><em>2021-22 Q10</em></li>
+                                            <li class="ref-quasi"><em>2021-22 Q10 (D,E)</em></li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -524,7 +541,8 @@
                                     </td>
                                     <td class="qcm-ref">
                                         <ul>
-                                            <li class="ref-quasi"><em>2022-23 Q10</em></li>
+                                            <li class="ref-quasi"><em>2020-21 Q10</em></li>
+                                            <li class="ref-quasi"><em>2022-23 Q10 (D,E)</em></li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -540,7 +558,11 @@
                                             <div class="qcm-item">E. Le principe ALARA (As Low As Reasonably Achievable) correspond au principe d'optimisation.</div>
                                         </div>
                                     </td>
-                                    <td>-</td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2021-22 Q10</em></li>
+                                        </ul>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -593,12 +615,13 @@
                     <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 15px; margin: 15px 0; font-size: 0.85rem;">
                         <strong>Légende :</strong><br>
                         • <strong>SRT</strong> (Score Récurrence Thématique) : probabilité qu'un thème tombe à nouveau<br>
-                        • <strong>SRI</strong> (Score Récurrence Items) : probabilité que les mêmes items/formulations reviennent
+                        • <strong>SRI</strong> (Score Récurrence Items) : probabilité que les mêmes items/formulations reviennent<br>
+                        • <span class="fc-tag fc-tag-fc10">FC10</span> : items traités dans la fiche FC10 (mesures pratiques de radioprotection)
                     </div>
 
                     <div class="vue-ensemble">
                         <h4>Vue d'ensemble des QCM par thématique</h4>
-                        <p class="vue-ensemble-intro">FC9 ne tombe plus depuis 2 ans. Les thèmes historiques étaient le principe d'optimisation (ALARA) et la distinction PCR/PSRPM.</p>
+                        <p class="vue-ensemble-intro">FC9 ne tombe plus depuis 2 ans. Les thèmes historiques étaient le principe d'optimisation (ALARA) et la distinction PCR/PSRPM. Les items sur les écrans et dosimètres (2022-23 ABC) relèvent de FC10.</p>
 
                         <div class="table-wrapper">
                             <table class="vue-tableau" style="table-layout: fixed; width: 100%;">
@@ -624,7 +647,7 @@
                                     <tr>
                                         <td>PCR vs PSRPM</td>
                                         <td>Q10(C)</td>
-                                        <td>Q10(BC)</td>
+                                        <td>Q10(ABC)</td>
                                         <td class="empty-cell">-</td>
                                         <td class="empty-cell">-</td>
                                         <td class="empty-cell">-</td>
@@ -653,18 +676,14 @@
                                         <td class="empty-cell">-</td>
                                         <td class="empty-cell">-</td>
                                     </tr>
-                                    <tr>
-                                        <td>Dosimétrie travailleurs</td>
-                                        <td class="empty-cell">-</td>
-                                        <td class="empty-cell">-</td>
-                                        <td>Q10(BC)</td>
-                                        <td class="empty-cell">-</td>
-                                        <td class="empty-cell">-</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                         <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+
+                        <p style="font-size: 0.85rem; color: #64748b; margin-top: 10px; padding: 10px; background: #dbeafe; border-radius: 6px;">
+                            <strong>Note :</strong> Les items sur les écrans, dosimètres et catégories de travailleurs (Q10 2022-23 items A, B, C) sont traités en <strong>FC10</strong>.
+                        </p>
                     </div>
 
                 </div>
@@ -688,7 +707,7 @@
                         <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
                             <p style="margin: 0;">ALARA = principe d'OPTIMISATION (pas justification, pas limitation). C'était l'item le plus récurrent historiquement.</p>
                         </div>
-                        <span class="frequence">Tombé 2/5 ans (ancien)</span>
+                        <span class="frequence">Tombé 2/5 ans (2020-21, 2021-22)</span>
                     </div>
 
                     <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
@@ -699,17 +718,18 @@
                             <p style="margin: 0 0 10px 0;"><strong>PCR</strong> (Personne Compétente en Radioprotection) = radioprotection des TRAVAILLEURS</p>
                             <p style="margin: 0;"><strong>PSRPM</strong> (Personne Spécialisée en Radiophysique Médicale) = radioprotection des PATIENTS</p>
                         </div>
-                        <span class="frequence">Tombé 2/5 ans (ancien)</span>
+                        <span class="frequence">Tombé 2/5 ans (2020-21, 2021-22)</span>
                     </div>
 
                     <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
-                        <h4>3) Principe de limitation</h4>
-                        <p><strong>Objectif :</strong> retenir que ce principe ne s'applique PAS aux patients.</p>
+                        <h4>3) Principe de limitation vs optimisation</h4>
+                        <p><strong>Objectif :</strong> ne pas confondre les définitions et retenir que la limitation ne s'applique PAS aux patients.</p>
 
                         <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
-                            <p style="margin: 0;">Limites de dose : 20 mSv/an pour les travailleurs, 1 mSv/an pour le public. Les patients ne sont pas concernés car leur exposition est justifiée par le bénéfice médical.</p>
+                            <p style="margin: 0 0 10px 0;"><strong>Limitation</strong> = limites de dose chiffrées (20 mSv/an travailleurs, 1 mSv/an public)</p>
+                            <p style="margin: 0;"><strong>Optimisation</strong> = ALARA = dose la plus basse possible (pas de limite chiffrée)</p>
                         </div>
-                        <span class="frequence">Tombé 2/5 ans (ancien)</span>
+                        <span class="frequence">Tombé 2/5 ans (2021-22, 2022-23)</span>
                     </div>
 
                 </div>
@@ -769,18 +789,23 @@
                     </div>
 
                     <div class="qcm-analyse">
-                        <h4>Les 3 principes fondamentaux : JLO</h4>
-                        <div class="qcm-badge">Concept transversal</div>
+                        <h4>Confusion limitation / optimisation</h4>
+                        <div class="qcm-badge">Tombé en <strong>2021-22</strong> Q10 | <strong>2022-23</strong> Q10</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof inversait les définitions pour piéger : "la limitation = maintenir au niveau le plus faible" (FAUX, c'est l'optimisation).</div>
+                        </div>
 
                         <div class="qcm-section">
                             <div class="qcm-section-title">Ce que tu dois faire :</div>
-                            <div class="qcm-section-content">Connaître les 3 principes et ne pas les confondre :</div>
+                            <div class="qcm-section-content">Distinguer les 3 principes JLO et retenir que la limitation ne s'applique PAS aux patients.</div>
                         </div>
 
                         <div class="connaissance-pure">
                             <p><strong>À retenir par cœur :</strong></p>
                             <p>• <strong>Justification</strong> = bénéfice > risque</p>
-                            <p>• <strong>Limitation</strong> = limites de dose (20 mSv travailleurs, 1 mSv public) - NE S'APPLIQUE PAS AUX PATIENTS</p>
+                            <p>• <strong>Limitation</strong> = limites de dose chiffrées - NE S'APPLIQUE PAS AUX PATIENTS</p>
                             <p>• <strong>Optimisation</strong> = ALARA = dose la plus basse possible</p>
                         </div>
                     </div>
@@ -834,7 +859,7 @@
                 <div class="accordion-content">
                     <div class="tuteur-zone">
                         <p style="margin-bottom: 18px; font-weight: 600; color: #1a365d; font-size: 1.05rem;">
-                            FC9 est une fiche historique qui ne tombe plus. À traiter en dernière priorité.
+                            FC9 n'est pas tombé depuis 2 ans. Les thèmes récurrents sont ALARA et la distinction PCR/PSRPM.
                         </p>
 
                         <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #059669;">
@@ -859,7 +884,7 @@
                             </p>
 
                             <p style="margin: 0; color: #4a5568; line-height: 1.6;">
-                                Si tu manques de temps, IGNORE cette fiche. Concentre-toi sur FC8 (effets biologiques) qui tombe chaque année. Si FC9 retombe un jour, ce sera probablement sur ALARA ou PCR/PSRPM.
+                                Si tu manques de temps, IGNORE cette fiche. Concentre-toi sur <strong>FC10</strong> (mesures pratiques de radioprotection) qui tombe depuis 3 ans consécutifs, ou sur FC8 (effets biologiques). Si FC9 retombe un jour, ce sera probablement sur ALARA ou PCR/PSRPM.
                             </p>
                         </div>
 

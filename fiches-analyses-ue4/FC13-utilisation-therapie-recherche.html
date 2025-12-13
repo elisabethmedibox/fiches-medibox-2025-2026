@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC13 - Utilisation en therapie et en recherche - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Filigrane logo Medibox */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 900px;
+            max-height: 900px;
+            background-image: url('https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-clair.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @media (max-width: 768px) {
+            body::after {
+                width: 90vw;
+                height: 90vw;
+                opacity: 0.06;
+            }
+        }
+
+        /* Accordeons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+
+        .qcm-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+
+        .qcm-ref {
+            font-size: 0.75rem;
+            color: #1a365d;
+            font-style: italic;
+        }
+
+        .qcm-ref ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .qcm-ref li {
+            margin-bottom: 3px;
+        }
+
+        .ref-quasi::before {
+            content: "≈ ";
+        }
+
+        /* Wrapper scroll */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 5px;
+        }
+
+        .scroll-hint {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-style: italic;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        /* Tableau diagnostic */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        /* Vue ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+        }
+
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .vue-tableau {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 35%;
+        }
+
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+
+        /* Recommandations */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .reco-item .fréquence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px dashed #0284c7;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .tuteur-zone p {
+            margin: 0;
+            color: #0c4a6e;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px; }
+            .qcm-table { font-size: 0.7rem !important; }
+        }
+
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📘 FC13 - Utilisation en thérapie et en recherche</h1>
+            <div class="meta">
+                <span>📚 UE4 - Rayonnements et Santé</span>
+                <span>🎯 Fiche d'Analyse - Module 40 : gérer son retard</span>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- ACCORDEON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+
+                    <!-- THEME : RADIOTHÉRAPIE INTERNE -->
+                    <div class="qcm-thematique">
+                        <h4>Radiothérapie interne (vectorisee) - 5 ans / 5</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%;">Année - QCM</th>
+                                    <th style="width: 65%;">Énoncé et items</th>
+                                    <th style="width: 20%;">Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025 Q18</td>
+                                    <td>
+                                        <div class="qcm-enonce">La radiothérapie interne est caracterisee par les affirmations suivantes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Nécessité une tumeur avide de la molecule injectée ou ingeree.</div>
+                                            <div class="qcm-item">B: Le patient degage de la radioactivite après la séance.</div>
+                                            <div class="qcm-item">C: Le rayonnement est delivre a l'interieur de l'organisme au contact de la tumeur.</div>
+                                            <div class="qcm-item">D: Le <sup>177</sup>Lu-PSMA est un traitement du cancer de la thyroide.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>Identique 5 ans</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2023-2024 Q18</td>
+                                    <td>
+                                        <div class="qcm-enonce">La radiothérapie interne vectorisee :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Nécessité une tumeur avide de la molecule injectée ou ingeree.</div>
+                                            <div class="qcm-item">B: Le patient degage de la radioactivite après la séance.</div>
+                                            <div class="qcm-item">C: Le rayonnement est delivre a l'interieur de l'organisme au contact de la tumeur.</div>
+                                            <div class="qcm-item">D: L'I-123 est un traitement du cancer de la thyroide.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2022-23 Q18</em></li>
+                                            <li class="ref-quasi"><em>2021-22 Q18</em></li>
+                                            <li class="ref-quasi"><em>2020-21 Q18</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2021-2022 Q18</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la radiothérapie interne :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Elle nécessité une tumeur avide de la molecule injectée ou ingeree.</div>
+                                            <div class="qcm-item">B: Le patient degage de la radioactivite après la séance.</div>
+                                            <div class="qcm-item">C: Le rayonnement est delivre a l'interieur de l'organisme au contact de la tumeur.</div>
+                                            <div class="qcm-item">D: Le <sup>177</sup>Lu-PSMA est un traitement du cancer de la thyroide.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2024-25 Q18</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2020-2021 Q18</td>
+                                    <td>
+                                        <div class="qcm-enonce">La radiothérapie interne :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La radiothérapie interne nécessité une tumeur avide de la molecule injectée ou ingeree.</div>
+                                            <div class="qcm-item">B: Le patient degage de la radioactivite après la séance.</div>
+                                            <div class="qcm-item">C: Le rayonnement est delivre a l'interieur de l'organisme au contact de la tumeur.</div>
+                                            <div class="qcm-item">D: L'iodé 123 est un traitement du cancer de la thyroide.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2023-24 Q18</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+                    </div>
+
+                    <!-- THEME : RADIOTHÉRAPIE EXTERNE -->
+                    <div class="qcm-thematique">
+                        <h4>Radiothérapie externe (caractéristiques) - 5 ans / 5</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%;">Année - QCM</th>
+                                    <th style="width: 65%;">Énoncé et items</th>
+                                    <th style="width: 20%;">Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025 Q19</td>
+                                    <td>
+                                        <div class="qcm-enonce">La radiothérapie externe est décrite dans les affirmations suivantes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Est un traitement loco-regional du cancer.</div>
+                                            <div class="qcm-item">B: La TEP peut aider a préciser le volume tumoral a irradier.</div>
+                                            <div class="qcm-item">C: Les rayons gamma sont les plus utilisés.</div>
+                                            <div class="qcm-item">D: La dose et le fractionnement varient en fonction de la tumeur.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>Identique 5 ans</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2022-2023 Q19</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la radiothérapie externe :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La radiothérapie externe est un traitement loco-regional du cancer.</div>
+                                            <div class="qcm-item">B: Le scanner peut aider a préciser le volume tumoral a irradier.</div>
+                                            <div class="qcm-item">C: Les rayons gamma sont parfois utilisés.</div>
+                                            <div class="qcm-item">D: La dose utilisée varie en fonction de la tumeur.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2023-24 Q19</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+                    </div>
+
+                    <!-- THEME : RADIOTHÉRAPIE EXTERNE (EFFETS) -->
+                    <div class="qcm-thematique">
+                        <h4>Radiothérapie externe (effets secondaires, types) - 5 ans / 5</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%;">Année - QCM</th>
+                                    <th style="width: 65%;">Énoncé et items</th>
+                                    <th style="width: 20%;">Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025 Q20</td>
+                                    <td>
+                                        <div class="qcm-enonce">La radiothérapie externe presente les caractéristiques suivantes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La radiothérapie n'a pas d'effet secondaire.</div>
+                                            <div class="qcm-item">B: La radiothérapie adjuvante est postoperatoire.</div>
+                                            <div class="qcm-item">C: Ne touche que les cellules cancéreuses.</div>
+                                            <div class="qcm-item">D: Le patient devient "irradiant" pour son entourage après une radiothérapie externe.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>Identique 5 ans</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2022-2023 Q20</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la radiothérapie externe :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La radiothérapie n'a pas d'effet secondaire.</div>
+                                            <div class="qcm-item">B: La radiothérapie neo-adjuvante est preoperatoire.</div>
+                                            <div class="qcm-item">C: Elle ne touche que les cellules cancéreuses.</div>
+                                            <div class="qcm-item">D: Le patient devient "irradiant" pour son entourage après une radiothérapie externe.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2020-21 Q20</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2020-2021 Q20</td>
+                                    <td>
+                                        <div class="qcm-enonce">Radiothérapie externe :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La radiothérapie neo-adjuvante est preoperatoire.</div>
+                                            <div class="qcm-item">B: La radiothérapie adjuvante est postoperatoire.</div>
+                                            <div class="qcm-item">C: La radiothérapie externe ne touche que les cellules cancéreuses.</div>
+                                            <div class="qcm-item">D: Le patient devient irradiant pour son entourage après une radiothérapie externe.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2022-23 Q20</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table" style="table-layout: fixed; width: 100%;">
+                            <tr>
+                                <th style="text-align: center; width: 20%;">Fréquence</th>
+                                <th style="text-align: center; width: 20%;">Moyenne QCM/an</th>
+                                <th style="text-align: center; width: 20%;">SRT</th>
+                                <th style="text-align: center; width: 20%;">SRI</th>
+                                <th style="text-align: center; width: 20%;">Dependance</th>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    <strong style="color: #059669;">5 années sur 5</strong><br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Tombe CHAQUE année</span>
+                                </td>
+                                <td style="text-align: center;">3</td>
+                                <td style="text-align: center;">
+                                    ~75%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Récurrence Thématique</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    <strong style="color: #059669;">~85%</strong><br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Récurrence Items</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    Dernier chapitre<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Independant</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>Vue d'ensemble des QCM par thématique</h4>
+                        <p class="vue-ensemble-intro">Ce chapitre est TRÈS prévisible. Les 3 QCM (Q18, Q19, Q20) portent toujours sur les mêmes themes avec des items quasi-identiques. Les pièges sont constants : I-123 vs I-131, rayons gamma, patient irradiant.</p>
+
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-21</th>
+                                        <th>2021-22</th>
+                                        <th>2022-23</th>
+                                        <th>2023-24</th>
+                                        <th>2024-25</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Radiothérapie interne (principe)</td>
+                                        <td>Q18(ABC)</td>
+                                        <td>Q18(ABC)</td>
+                                        <td>Q18(ABC)</td>
+                                        <td>Q18(ABC)</td>
+                                        <td>Q18(ABC)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>I-123 vs I-131 (thyroide)</td>
+                                        <td>Q18(D)</td>
+                                        <td>Q18(D)</td>
+                                        <td>Q18(D)</td>
+                                        <td>Q18(D)</td>
+                                        <td>Q18(D)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>RT externe (loco-regional)</td>
+                                        <td>Q19(ABD)</td>
+                                        <td>Q19(ABD)</td>
+                                        <td>Q19(ABD)</td>
+                                        <td>Q19(ABD)</td>
+                                        <td>Q19(ABD)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rayons gamma (item piège)</td>
+                                        <td>Q19(C)</td>
+                                        <td>Q19(C)</td>
+                                        <td>Q19(C)</td>
+                                        <td>Q19(C)</td>
+                                        <td>Q19(C)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Neo-adjuvante / adjuvante</td>
+                                        <td>Q20(AB)</td>
+                                        <td>Q20(B)</td>
+                                        <td>Q20(B)</td>
+                                        <td>Q20(B)</td>
+                                        <td>Q20(B)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Patient irradiant (piège)</td>
+                                        <td>Q20(D)</td>
+                                        <td>Q20(D)</td>
+                                        <td>Q20(D)</td>
+                                        <td>Q20(D)</td>
+                                        <td>Q20(D)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage des parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px; border-left-color: #dc2626;">
+                        <h4>1) Radiothérapie interne vectorisee (PRIORITE ABSOLUE)</h4>
+                        <p><strong>Objectif :</strong> comprendre le principe et distinguer les isotopes.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Principe :</strong><br>
+                            <span style="color: #64748b;">- Injection/ingestion d'un radiopharmaceutique<br>
+                            - La molecule se fixe sur la tumeur (tumeur "avide")<br>
+                            - Le rayonnement est delivre AU CONTACT de la tumeur<br>
+                            - Le patient DEGAGE de la radioactivite après (sources non scellees)</span></p>
+
+                            <p style="margin: 0;"><strong>Exemples :</strong><br>
+                            <span style="color: #64748b;">- <sup>131</sup>I (iodé 131) : traitement cancer thyroide<br>
+                            - <sup>177</sup>Lu-PSMA : traitement cancer prostate (PAS thyroide !)<br>
+                            - <sup>177</sup>Lu-DOTATATE : tumeurs neuroendocrines</span></p>
+                        </div>
+                        <span class="frequence" style="background: #fee2e2; color: #dc2626;">Tombe 5 ans / 5 - INCONTOURNABLE</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px; border-left-color: #dc2626;">
+                        <h4>2) Radiothérapie externe (PRIORITE ABSOLUE)</h4>
+                        <p><strong>Objectif :</strong> connaître les caractéristiques et les types de RT.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Caractéristiques :</strong><br>
+                            <span style="color: #64748b;">- Traitement LOCO-REGIONAL du cancer<br>
+                            - Source EXTERNE (accelerateur lineaire)<br>
+                            - Patient NON irradiant après (pas de sources incorporees)<br>
+                            - Touche aussi les cellules saines (effets secondaires)</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><strong>Types de rayonnements :</strong><br>
+                            <span style="color: #64748b;">- Rayons x (photons) : les plus utilisés<br>
+                            - Rayons gamma : parfois utilisés (Gamma Knife)<br>
+                            - Électrons, protons : cas particuliers</span></p>
+
+                            <p style="margin: 0;"><strong>Planification :</strong><br>
+                            <span style="color: #64748b;">- Scanner de dosimetrie pour delimiter le volume<br>
+                            - TEP peut aider a préciser les contours tumoraux</span></p>
+                        </div>
+                        <span class="frequence" style="background: #fee2e2; color: #dc2626;">Tombe 5 ans / 5 - INCONTOURNABLE</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>3) Neo-adjuvante vs adjuvante</h4>
+                        <p><strong>Objectif :</strong> distinguer les 2 types de RT par rapport a la chirurgie.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>NEO-adjuvante = PRE-operatoire</strong><br>
+                            <span style="color: #64748b;">- Avant la chirurgie<br>
+                            - But : reduire la taille de la tumeur<br>
+                            - Faciliter la resection chirurgicale</span></p>
+
+                            <p style="margin: 0;"><strong>Adjuvante = POST-operatoire</strong><br>
+                            <span style="color: #64748b;">- Après la chirurgie<br>
+                            - But : detruire les cellules residuelles<br>
+                            - Reduire le risque de recidive</span></p>
+                        </div>
+                        <span class="frequence">Tombe 5 ans / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>4) I-123 vs I-131 (thyroide)</h4>
+                        <p><strong>Objectif :</strong> distinguer l'isotope diagnostic de l'isotope thérapeutique.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong><sup>123</sup>I (Iodé 123) = DIAGNOSTIC</strong><br>
+                            <span style="color: #64748b;">- Emetteur gamma pur<br>
+                            - Utilisé en scintigraphie thyroidienne<br>
+                            - PAS un traitement du cancer</span></p>
+
+                            <p style="margin: 0;"><strong><sup>131</sup>I (Iodé 131) = THÉRAPEUTIQUE</strong><br>
+                            <span style="color: #64748b;">- Émetteur β⁻ (et gamma)<br>
+                            - Traitement du cancer de la thyroide<br>
+                            - Radiothérapie interne vectorisee</span></p>
+                        </div>
+                        <span class="frequence">Tombe 5 ans / 5</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 8px; color: #166534;">
+                        <strong>Niveau 1 TRÈS VIABLE.</strong> Ce chapitre a 3 QCM par année avec des items quasi-identiques depuis 5 ans. Les pièges sont toujours les mêmes. 5 règles = 15 points garantis.
+                    </p>
+
+                    <!-- CARTE THÉMATIQUE 1 -->
+                    <div class="qcm-analyse">
+                        <h4>Radiothérapie interne - 3 items TOUJOURS vrais</h4>
+                        <div class="qcm-badge">Tombe CHAQUE ANNÉE : Q18</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Les 3 premiers items (A, B, C) sont TOUJOURS corrects depuis 5 ans. L'item D est le piège (I-123 ou Lu-PSMA pour la thyroide).</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Coche A, B, C sans hesiter. Vérifié l'item D : si c'est I-123 ou Lu-PSMA "pour la thyroide", c'est FAUX.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                <p><strong>Les 3 items TOUJOURS VRAIS :</strong></p>
+                                <p>A: Tumeur avide de la molecule = VRAI</p>
+                                <p>B: Patient degage de la radioactivite = VRAI</p>
+                                <p>C: Rayonnement au contact de la tumeur = VRAI</p>
+                                <p style="margin-top: 10px;"><strong>Item D piège :</strong></p>
+                                <p>- I-123 traite la thyroide = FAUX (c'est I-131)</p>
+                                <p>- Lu-PSMA traite la thyroide = FAUX (c'est la prostate)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARTE THÉMATIQUE 2 -->
+                    <div class="qcm-analyse">
+                        <h4>Radiothérapie externe - "Loco-regional + rayons X"</h4>
+                        <div class="qcm-badge">Tombe CHAQUE ANNÉE : Q19</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof teste si tu sais que c'est un traitement loco-regional et que les rayons X sont les plus utilisés (pas les gamma).</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Vérifié l'item sur les rayons gamma. "Les plus utilisés" = FAUX. "Parfois utilisés" = VRAI.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>RT externe :</strong></p>
+                                <ul>
+                                    <li>Traitement LOCO-REGIONAL = VRAI</li>
+                                    <li>Scanner/TEP aide a delimiter = VRAI</li>
+                                    <li>Dose varie selon tumeur = VRAI</li>
+                                    <li>Gamma = "parfois" VRAI, "les plus utilisés" FAUX</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARTE THÉMATIQUE 3 -->
+                    <div class="qcm-analyse">
+                        <h4>RT externe (Q20) - "Patient NON irradiant"</h4>
+                        <div class="qcm-badge">Tombe CHAQUE ANNÉE : Q20</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le piège constant : "le patient devient irradiant après RT externe". C'est TOUJOURS FAUX depuis 5 ans.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Des que tu vois "patient irradiant" + "RT externe", c'est FAUX. C'est vrai pour la RT INTERNE (sources incorporees).</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Patient irradiant ?</strong></p>
+                                <ul>
+                                    <li>RT EXTERNE : NON (source externe, pas incorporee)</li>
+                                    <li>RT INTERNE : OUI (source incorporee, degage radioactivite)</li>
+                                </ul>
+                                <p style="margin-top: 10px;"><strong>Autres items :</strong></p>
+                                <ul>
+                                    <li>"Pas d'effets secondaires" = FAUX</li>
+                                    <li>"Ne touche que les cellules cancéreuses" = FAUX</li>
+                                    <li>"Adjuvante = postoperatoire" = VRAI</li>
+                                    <li>"Neo-adjuvante = preoperatoire" = VRAI</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 12px; background: #fef3c7; border-radius: 8px; font-size: 0.85rem; color: #92400e;">
+                        Les pièges ci-dessous sont issus des <strong>annales des 5 dernières années</strong>. Ils sont RÉCURRENTS.
+                    </p>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>PIÈGE #1 (tombe CHAQUE année) : "L'I-123 est un traitement du cancer de la thyroide"</h4>
+                        <p><strong>Années :</strong> 2020-21 Q18D, 2022-23 Q18D, 2023-24 Q18D<br>
+                        <strong>Réponse :</strong> l'I-123 est un isotope DIAGNOSTIQUE (scintigraphie). Le traitement du cancer de la thyroide utilisé l'I-131 (émetteur β⁻).</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>PIÈGE #2 (tombe 2 ans/5) : "Le <sup>177</sup>Lu-PSMA est un traitement du cancer de la thyroide"</h4>
+                        <p><strong>Années :</strong> 2021-22 Q18D, 2024-25 Q18D<br>
+                        <strong>Réponse :</strong> le Lu-PSMA cible le PSMA (Prostate-Specific Membrane Antigen). C'est un traitement du cancer de la PROSTATE, pas de la thyroide.</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>PIÈGE #3 (tombe CHAQUE année) : "Le patient devient irradiant après RT externe"</h4>
+                        <p><strong>Années :</strong> 2020-21 Q20D, 2021-22 Q20D, 2022-23 Q20D, 2023-24 Q20D, 2024-25 Q20D<br>
+                        <strong>Réponse :</strong> en RT EXTERNE, la source est a l'exterieur du patient. Il ne devient PAS irradiant. C'est en RT INTERNE (sources incorporees) que le patient degage de la radioactivite.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>PIÈGE #4 : "Les rayons gamma sont les plus utilisés en RT externe"</h4>
+                        <p><strong>Années :</strong> 2020-21 Q19C, 2021-22 Q19C, 2023-24 Q19C, 2024-25 Q19C<br>
+                        <strong>Réponse :</strong> les rayons X (photons) sont les plus utilisés. Les gamma sont parfois utilisés (Gamma Knife) mais pas "les plus utilisés".</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>PIÈGE #5 : "La RT externe ne touche que les cellules cancéreuses"</h4>
+                        <p><strong>Années :</strong> 2020-21 Q20C, 2021-22 Q20C, 2022-23 Q20C, 2023-24 Q20C, 2024-25 Q20C<br>
+                        <strong>Réponse :</strong> la RT externe touche aussi les cellules saines dans le trajet du faisceau. C'est pourquoi il y a des effets secondaires (radiodermite, fatigue, etc.).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>PIÈGE #6 : "La RT externe n'a pas d'effet secondaire"</h4>
+                        <p><strong>Années :</strong> 2021-22 Q20A, 2022-23 Q20A, 2023-24 Q20A, 2024-25 Q20A<br>
+                        <strong>Réponse :</strong> la RT externe a des effets secondaires : fatigue, radiodermite, nausees, alopecie (si crane), etc.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 18px; font-weight: 600; color: #1a365d; font-size: 1.05rem;">
+                            FC13 cloture l'UE4 avec 3 QCM/an extremement prévisibles. Les pièges sont identiques depuis 5 ans.
+                        </p>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 3 - tu maîtrisés le cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Tu dois connaître l'ensemble du chapitre : les différentes techniques de RT externe (RCMI, SBRT, protontherapie), la curietherapie (haut/bas debit), les radiopharmaceutiques thérapeutiques (<sup>131</sup>I, <sup>177</sup>Lu, <sup>223</sup>Ra), les indications en recherche (radiotraceurs precliniques).<br><br>
+                                <em style="color: #64748b;">Details techniques rarement testes :</em> balistique, dosimetrie, contraintes d'organes a risque.
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #d97706;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #d97706;">Niveau 2 - tu cibles les parties du cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Concentre-toi sur :<br>
+                                - <strong>RT interne</strong> : principe (tumeur avide, patient irradiant)<br>
+                                - <strong>I-123 vs I-131</strong> : diagnostic vs thérapeutique<br>
+                                - <strong>RT externe</strong> : loco-regional, rayons X (pas gamma)<br>
+                                - <strong>Neo-adjuvante vs adjuvante</strong> : pre vs post-operatoire<br>
+                                - <strong>Patient NON irradiant</strong> après RT externe<br><br>
+                                Tu peux survoler la curietherapie et les details techniques.
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 1 - tu travailles quasi exclusivement sur les annales</p>
+                            <p style="margin: 0 0 12px 0; padding: 10px; background: #dcfce7; border-radius: 6px; color: #166534;">
+                                <strong>Niveau 1 TRÈS VIABLE.</strong> 5 règles simples = 15 points garantis sur 5 ans.
+                            </p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                <strong>Les 5 règles :</strong><br>
+                                1. RT interne : A, B, C = TOUJOURS VRAI<br>
+                                2. I-123 thyroide = FAUX (c'est I-131)<br>
+                                3. Lu-PSMA thyroide = FAUX (c'est prostate)<br>
+                                4. RT externe + patient irradiant = FAUX<br>
+                                5. Gamma "les plus utilisés" = FAUX (c'est rayons X)<br><br>
+                                <strong>Bonus :</strong> adjuvante = POST-op, neo-adjuvante = PRE-op
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </details>
+
+        </div>
+
+        <div class="footer">
+            <strong>Creation originale de E. Schaeffer</strong><br>
+            Soumis a droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prepa encourage chaque étudiant a maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours.
+        </div>
+    </div>
+</body>
+</html>

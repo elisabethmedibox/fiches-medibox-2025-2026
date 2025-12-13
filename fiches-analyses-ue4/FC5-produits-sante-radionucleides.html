@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC5 - Produits de sante contenant des radionucleides - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .qcm-table th:first-child {
+            width: 130px;
+        }
+
+        .qcm-table th:last-child {
+            width: 150px;
+        }
+
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+
+        /* Références récurrence */
+        .qcm-ref {
+            font-size: 0.75rem;
+            color: #1a365d;
+            font-style: italic;
+        }
+
+        .qcm-ref ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .qcm-ref li {
+            margin-bottom: 3px;
+        }
+
+        .ref-quasi::before {
+            content: "≈ ";
+        }
+
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+
+        /* Recommandations */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px dashed #0284c7;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .tuteur-zone p {
+            margin: 0;
+            color: #0c4a6e;
+        }
+
+        /* Tag FC pour QCM mixtes */
+        .fc-tag {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+        .fc-tag-fc12 {
+            background: #ddd6fe;
+            color: #5b21b6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px; }
+            .qcm-thematique { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .qcm-table { min-width: 750px; font-size: 0.7rem !important; }
+            .vue-tableau { min-width: 600px; }
+        }
+
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC5 - Produits de sante contenant des radionucleides</h1>
+            <div class="meta">
+                <span>UE4 - Rayonnements et Sante</span>
+                <span>Fiche d'Analyse</span>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- ACCORDEON 1 : QCM TOMBES AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>QCM tombes aux sessions 1</summary>
+                <div class="accordion-content">
+
+                    <!-- THEME : TROUSSE ET PRECURSEUR -->
+                    <div class="qcm-thematique">
+                        <h4>Trousse, precurseur et medicament radiopharmaceutique - 4 ans / 5</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Annee - QCM</th>
+                                    <th>Enonce et items</th>
+                                    <th>Recurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">Produits de sante contenant des radionucleides. Cochez la (ou les) proposition(s) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La trousse permet de transporter le radionucleide jusqu'a sa cible.</div>
+                                            <div class="qcm-item">B: La trousse est une molecule radioactive.</div>
+                                            <div class="qcm-item">C: Le radionucleide produit par un cyclotron est appele precurseur.</div>
+                                            <div class="qcm-item">D: Le precurseur a un role de vecteur.</div>
+                                            <div class="qcm-item">E: En curietherapie, les sources radioactives utilisees sont des sources non scellees.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2023-24 Q5</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2023-2024 Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les produits de sante contenant des radionucleides :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le medicament radiopharmaceutique est constitue d'une trousse et d'un radionucleide.</div>
+                                            <div class="qcm-item">B: La trousse permet de transporter le radionucleide jusqu'a sa cible.</div>
+                                            <div class="qcm-item">C: Le radionucleide produit par un cyclotron est appele precurseur.</div>
+                                            <div class="qcm-item">D: Le precurseur a un role de vecteur.</div>
+                                            <div class="qcm-item">E: Aucune reponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2020-21 Q3</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2024-2025 Q5</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le medicament radiopharmaceutique est constitue des elements suivants :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: D'une trousse et d'un generateur.</div>
+                                            <div class="qcm-item">B: D'une trousse et d'un radionucleide.</div>
+                                            <div class="qcm-item">C: D'un generateur et d'un radionucleide.</div>
+                                            <div class="qcm-item">D: D'un generateur et d'un precurseur.</div>
+                                            <div class="qcm-item">E: D'un precurseur et d'un radionucleide.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- THEME : 18F-FDG -->
+                    <div class="qcm-thematique">
+                        <h4><sup>18</sup>F-FDG (radiotraceur) - 1 an / 5 <span class="fc-tag fc-tag-fc12">FC12</span></h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Annee - QCM</th>
+                                    <th>Enonce et items</th>
+                                    <th>Recurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025 Q15</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le <sup>18</sup>F-FDG est un radiotraceur implique dans les propositions suivantes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Est le radiotraceur le plus utilise en TEP. <span class="fc-tag fc-tag-fc12">FC12</span></div>
+                                            <div class="qcm-item">B: Est contre-indique en cas d'insuffisance renale.</div>
+                                            <div class="qcm-item">C: Peut etre transporte en avion.</div>
+                                            <div class="qcm-item">D: A une demi-vie de 2 h environ.</div>
+                                            <div class="qcm-item">E: Aucune reponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>Rappel diagnostic</summary>
+                <div class="accordion-content">
+
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table" style="table-layout: fixed; width: 100%;">
+                            <tr>
+                                <th style="text-align: center; width: 20%;">Frequence</th>
+                                <th style="text-align: center; width: 20%;">Moyenne QCM/an</th>
+                                <th style="text-align: center; width: 20%;">SRT</th>
+                                <th style="text-align: center; width: 20%;">SRI</th>
+                                <th style="text-align: center; width: 20%;">Dependance</th>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    4 annees sur 5<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Non tombe 2021-22, 2022-23</span>
+                                </td>
+                                <td style="text-align: center;">~1</td>
+                                <td style="text-align: center;">
+                                    ~50%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Recurrence Thematique</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    ~60%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Recurrence Items</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    Chapitre cle<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Lie a FC4 (production) et FC12 (imagerie TEP)</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div class="vue-ensemble">
+                        <h4>Vue d'ensemble des QCM par thematique</h4>
+                        <p class="vue-ensemble-intro">Ce chapitre pose TOUJOURS les memes questions sur la composition du medicament radiopharmaceutique (trousse + radionucleide) et le role de chaque composant. Le piege "precurseur = vecteur" tombe quasiment chaque annee.</p>
+
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thematique</th>
+                                        <th>2020-21</th>
+                                        <th>2021-22</th>
+                                        <th>2022-23</th>
+                                        <th>2023-24</th>
+                                        <th>2024-25</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Composition medicament radiopharmaceutique</td>
+                                        <td>Q3(A)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q5(AB)</td>
+                                        <td>Q5(ABCDE)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trousse = vecteur (non radioactive)</td>
+                                        <td>Q3(AB)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q5(B)</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Precurseur (cyclotron/reacteur)</td>
+                                        <td>Q3(CD)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q5(CD)</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Curietherapie (sources scellees)</td>
+                                        <td>Q3(E)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td><sup>18</sup>F-FDG (radiotraceur TEP)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q15(ABCD)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px; border-left-color: #dc2626;">
+                        <h4>1) L'equation fondamentale : medicament radiopharmaceutique = trousse + radionucleide</h4>
+                        <p><strong>Objectif :</strong> Retenir la composition et le role de chaque element.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>TROUSSE = VECTEUR</strong><br>
+                            <span style="color: #64748b;">- Molecule "froide" = NON radioactive<br>
+                            - Transporte le radionucleide jusqu'a sa cible<br>
+                            - Possede un tropisme pour l'organe/tissu a explorer</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><strong>RADIONUCLEIDE = MARQUEUR</strong><br>
+                            <span style="color: #64748b;">- Rend la trousse detectable (diagnostic) ou permet l'irradiation (therapeutique)<br>
+                            - Produit par generateur, cyclotron ou reacteur</span></p>
+
+                            <p style="margin: 0;"><strong>PRECURSEUR = type de radionucleide</strong><br>
+                            <span style="color: #dc2626; font-weight: 600;">- Radionucleide produit par CYCLOTRON ou REACTEUR<br>
+                            - Role de MARQUEUR (pas de vecteur !)</span></p>
+                        </div>
+                        <span class="frequence" style="background: #fee2e2; color: #dc2626;">Tombe 4 ans / 5 - INCONTOURNABLE</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>2) Curietherapie : sources SCELLEES</h4>
+                        <p><strong>Objectif :</strong> Distinguer sources scellees et non scellees.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Sources NON SCELLEES</strong><br>
+                            <span style="color: #64748b;">- Acces a la matiere radioactive<br>
+                            - Risque de contamination<br>
+                            - Medicaments radiopharmaceutiques (injectes, inhales...)</span></p>
+
+                            <p style="margin: 0;"><strong>Sources SCELLEES</strong><br>
+                            <span style="color: #64748b;">- Enveloppe etanche, pas d'acces direct<br>
+                            - Pas de risque de dispersion<br>
+                            - CURIETHERAPIE (fils Ir-192, grains I-125)</span></p>
+                        </div>
+                        <span class="frequence">Tombe 1 an / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>3) Le <sup>18</sup>F-FDG</h4>
+                        <p><strong>Objectif :</strong> Connaitre les caracteristiques de ce radiotraceur.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Caracteristiques :</strong><br>
+                            <span style="color: #64748b;">- Analogue du glucose marque au Fluor-18<br>
+                            - Radiotraceur le plus utilise en TEP<br>
+                            - Demi-vie : ~2h (110-120 min)<br>
+                            - Transportable en avion</span></p>
+
+                            <p style="margin: 0;"><strong>Securite :</strong><br>
+                            <span style="color: #059669; font-weight: 600;">- PAS nephrotoxique<br>
+                            - PAS contre-indique en insuffisance renale</span></p>
+                        </div>
+                        <span class="frequence">Tombe 1 an / 5 (nouveau 2024-25)</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>Recommandations Niveau 1 (strategie annales)</summary>
+                <div class="accordion-content">
+
+                    <div style="background: #dcfce7; border: 2px solid #10b981; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+                        <p style="margin: 0; color: #166534; font-weight: 600;">NIVEAU 1 VIABLE sur ce chapitre</p>
+                        <p style="margin: 10px 0 0 0; color: #166534; font-size: 0.9rem;">Forte recurrence des items (~60%). Le prof pose toujours les memes questions avec les memes pieges. 2 regles simples suffisent pour repondre correctement a tous les items.</p>
+                    </div>
+
+                    <!-- THEMATIQUE 1 : Composition du medicament radiopharmaceutique -->
+                    <div class="qcm-analyse">
+                        <h4>Composition du medicament radiopharmaceutique</h4>
+                        <div class="qcm-badge">Tombe en <strong>2020-21</strong> Q3 | <strong>2023-24</strong> Q5 | <strong>2024-25</strong> Q5</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof teste systematiquement la composition du medicament radiopharmaceutique. Il propose des combinaisons fausses (trousse + generateur, generateur + radionucleide) pour pieger les etudiants.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens UNE seule formule : medicament radiopharmaceutique = TROUSSE + RADIONUCLEIDE. Toute autre combinaison proposee est fausse.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Cle de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Le generateur n'entre JAMAIS dans la composition du medicament final</strong></p>
+                                <ul>
+                                    <li>Le generateur PRODUIT le radionucleide (c'est un outil de fabrication)</li>
+                                    <li>Le medicament final = trousse (vecteur) + radionucleide (marqueur)</li>
+                                    <li>Si tu vois "generateur" dans une reponse sur la composition → c'est FAUX</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- THEMATIQUE 2 : Role trousse vs precurseur -->
+                    <div class="qcm-analyse">
+                        <h4>Role de la trousse et du precurseur</h4>
+                        <div class="qcm-badge">Tombe en <strong>2020-21</strong> Q3 | <strong>2023-24</strong> Q5</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le piege classique du prof : inverser les roles de la trousse et du precurseur. L'item "le precurseur a un role de vecteur" tombe quasiment chaque annee.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens : TROUSSE = vecteur (transporte), PRECURSEUR = marqueur (rend detectable). La trousse est une molecule "froide" (non radioactive).</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Cle de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Moyen mnemotechnique : "la Trousse Transporte, le Marqueur Marque"</strong></p>
+                                <ul>
+                                    <li>TROUSSE = Transporte = Vecteur (molecule froide, non radioactive)</li>
+                                    <li>PRECURSEUR = c'est un radionucleide = Marqueur (produit par cyclotron/reacteur)</li>
+                                    <li>"Le precurseur a un role de vecteur" = toujours FAUX</li>
+                                    <li>"La trousse est radioactive" = toujours FAUX</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- THEMATIQUE 3 : Curietherapie -->
+                    <div class="qcm-analyse">
+                        <h4>Curietherapie et sources scellees</h4>
+                        <div class="qcm-badge">Tombe en <strong>2020-21</strong> Q3</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof teste la distinction entre sources scellees et non scellees. L'item "en curietherapie, les sources sont non scellees" est un piege classique.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens : CURIETHERAPIE = sources SCELLEES. Les sources non scellees = medicaments radiopharmaceutiques (injectes, inhales).</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Cle de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Scelle vs Non scelle = acces a la matiere radioactive</strong></p>
+                                <ul>
+                                    <li>SCELLE = enveloppe etanche, pas d'acces direct → curietherapie (fils, grains)</li>
+                                    <li>NON SCELLE = acces possible, risque de contamination → medicaments radiopharmaceutiques</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- THEMATIQUE 4 : 18F-FDG -->
+                    <div class="qcm-analyse">
+                        <h4><sup>18</sup>F-FDG (radiotraceur TEP)</h4>
+                        <div class="qcm-badge">Tombe en <strong>2024-25</strong> Q15</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Nouvelle thematique apparue en 2024-25. Le prof teste les caracteristiques du <sup>18</sup>F-FDG avec un piege sur la nephrotoxicite (confusion avec les produits de contraste iodes).</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens 4 caracteristiques : radiotraceur le plus utilise en TEP, demi-vie ~2h, transportable en avion, PAS nephrotoxique.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Cle de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                <p><strong>QCM de connaissance pure - a retenir par coeur :</strong></p>
+                                <p>- <sup>18</sup>F-FDG = radiotraceur le plus utilise en TEP</p>
+                                <p>- Demi-vie du <sup>18</sup>F = ~2h (110 min)</p>
+                                <p>- Transportable en avion (demi-vie assez longue)</p>
+                                <p>- PAS nephrotoxique, PAS contre-indique en insuffisance renale</p>
+                                <p style="margin-top: 10px;"><em>Attention : ne pas confondre avec les produits de contraste iodes (TDM) qui sont nephrotoxiques</em></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 12px; background: #fef3c7; border-radius: 8px; font-size: 0.85rem; color: #92400e;">
+                        Les pieges ci-dessous sont issus des <strong>annales des 5 dernieres annees</strong>. Ils sont RECURRENTS.
+                    </p>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>PIEGE #1 (tombe 2 ans/5) : "Le precurseur a un role de vecteur"</h4>
+                        <p><strong>Annees :</strong> 2020-21 Q3D, 2023-24 Q5D<br>
+                        <strong>Reponse :</strong> Le precurseur est un RADIONUCLEIDE produit par cyclotron ou reacteur. Son role est de MARQUEUR (rendre detectable), pas de vecteur. C'est la TROUSSE qui a un role de vecteur.</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>PIEGE #2 (tombe 1 an/5) : "La trousse est une molecule radioactive"</h4>
+                        <p><strong>Annee :</strong> 2020-21 Q3B<br>
+                        <strong>Reponse :</strong> La trousse est une molecule "FROIDE" = NON radioactive. C'est le radionucleide qui est radioactif.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>PIEGE #3 (tombe 1 an/5) : "En curietherapie, les sources sont non scellees"</h4>
+                        <p><strong>Annee :</strong> 2020-21 Q3E<br>
+                        <strong>Reponse :</strong> En curietherapie, les sources sont SCELLEES (enveloppe etanche). Les sources non scellees sont les medicaments radiopharmaceutiques.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>PIEGE #4 (nouveau 2024-25) : "<sup>18</sup>F-FDG contre-indique en insuffisance renale"</h4>
+                        <p><strong>Annee :</strong> 2024-25 Q15B<br>
+                        <strong>Reponse :</strong> Le <sup>18</sup>F-FDG n'est PAS nephrotoxique et n'est PAS contre-indique en cas d'insuffisance renale. A ne pas confondre avec les produits de contraste iodes utilises en TDM.</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #94a3b8; background: #f8fafc;">
+                        <h4>Pieges possibles (non tombes mais plausibles) :</h4>
+                        <p>- Confondre "medicament radiopharmaceutique = trousse + generateur" (FAUX : c'est trousse + radionucleide)<br>
+                        - Dire que le precurseur est produit par un generateur (FAUX : par cyclotron ou reacteur)<br>
+                        - Confondre scintigraphie (diagnostic) et RIV (therapeutique)</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 18px; font-weight: 600; color: #1a365d; font-size: 1.05rem;">
+                            Ce chapitre est TRES rentable : 2 regles simples suffisent pour repondre correctement a tous les items. Les pieges sont toujours les memes depuis 5 ans.
+                        </p>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 3 - tu maitrises le cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Tu dois <strong>maitriser</strong> l'ensemble du chapitre : les definitions (trousse, precurseur, radiotraceur), les contraintes du radiotraceur ideal (chimiques et physiques), la periode effective, les techniques de radiomarquage, les caracteristiques du Tc99m et du <sup>18</sup>F-FDG.<br><br>
+                                <em style="color: #64748b;">A noter :</em> Les details sur la periode effective (formule 1/Te = 1/Tp + 1/Tb) n'ont pas ete interroges ces 5 dernieres annees.
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #d97706;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #d97706;">Niveau 2 - tu cibles les parties du cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Concentre-toi sur :<br>
+                                - <strong>Medicament radiopharmaceutique = trousse + radionucleide</strong><br>
+                                - <strong>Trousse = vecteur</strong> (molecule froide, transporte)<br>
+                                - <strong>Precurseur = marqueur</strong> (radionucleide produit par cyclotron/reacteur)<br>
+                                - <strong>Curietherapie = sources scellees</strong><br>
+                                - <strong><sup>18</sup>F-FDG</strong> : demi-vie 2h, pas nephrotoxique<br><br>
+                                Tu peux survoler les details techniques (radiomarquage, periode effective).
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 1 - tu travailles quasi exclusivement sur les annales</p>
+                            <p style="margin: 0 0 12px 0; padding: 10px; background: #dcfce7; border-radius: 6px; color: #166534;">
+                                <strong>NIVEAU 1 VIABLE.</strong> 2 regles = 100% des items corrects.
+                            </p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                <strong>Les 2 regles :</strong><br>
+                                1. Medicament radiopharmaceutique = TROUSSE + RADIONUCLEIDE<br>
+                                2. Trousse = VECTEUR, Precurseur = MARQUEUR<br><br>
+                                <strong>Le piege classique :</strong> "Le precurseur a un role de vecteur" = toujours FAUX<br><br>
+                                <strong>Bonus <sup>18</sup>F-FDG :</strong> demi-vie 2h, transportable en avion, PAS nephrotoxique
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </details>
+
+        </div>
+
+        <div class="footer">
+            <strong>Creation originale de E. Schaeffer</strong><br>
+            Soumis a droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prepa encourage chaque etudiant a maitriser l'integralite de son programme. Cette ressource est destinee uniquement aux etudiants en retard quelques semaines avant l'examen, en dernier recours.
+        </div>
+    </div>
+</body>
+</html>

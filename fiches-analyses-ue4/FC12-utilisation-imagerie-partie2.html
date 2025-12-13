@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC12 - Utilisation en imagerie (partie 2) - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Filigrane logo Medibox */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 900px;
+            max-height: 900px;
+            background-image: url('https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-clair.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @media (max-width: 768px) {
+            body::after {
+                width: 90vw;
+                height: 90vw;
+                opacity: 0.06;
+            }
+        }
+
+        /* Accordeons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+
+        .qcm-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+
+        .qcm-ref {
+            font-size: 0.75rem;
+            color: #1a365d;
+            font-style: italic;
+        }
+
+        .qcm-ref ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .qcm-ref li {
+            margin-bottom: 3px;
+        }
+
+        .ref-quasi::before {
+            content: "≈ ";
+        }
+
+        /* Wrapper scroll */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 5px;
+        }
+
+        .scroll-hint {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-style: italic;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        /* Tableau diagnostic */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        /* Vue ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+        }
+
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .vue-tableau {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 35%;
+        }
+
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+
+        /* Recommandations */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .reco-item .fréquence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px dashed #0284c7;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .tuteur-zone p {
+            margin: 0;
+            color: #0c4a6e;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px; }
+            .qcm-table { font-size: 0.7rem !important; }
+        }
+
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📘 FC12 - Utilisation en imagerie (partie 2)</h1>
+            <div class="meta">
+                <span>📚 UE4 - Rayonnements et Santé</span>
+                <span>🎯 Fiche d'Analyse - Module 40 : gérer son retard</span>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- ACCORDEON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+
+                    <!-- THEME : 18F-FDG -->
+                    <div class="qcm-thematique">
+                        <h4><sup>18</sup>F-FDG (caractéristiques) - 5 ans / 5</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%;">Année - QCM</th>
+                                    <th style="width: 65%;">Énoncé et items</th>
+                                    <th style="width: 20%;">Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025 Q15</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le <sup>18</sup>F-FDG est un radiotraceur impliqué dans les propositions suivantes :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Est le radiotraceur le plus utilisé en TEP.</div>
+                                            <div class="qcm-item">B: Est contre-indiqué en cas d'insuffisance rénale.</div>
+                                            <div class="qcm-item">C: Peut être transporté en avion.</div>
+                                            <div class="qcm-item">D: A une demi-vie de 2 h environ.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2021-22 Q15</em></li>
+                                            <li class="ref-quasi"><em>2020-21 Q15</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2023-2024 Q15</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le <sup>18</sup>F-FDG :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Est un glucose marqué au fluor 18.</div>
+                                            <div class="qcm-item">B: La demi-vie est de 120 min.</div>
+                                            <div class="qcm-item">C: Est néphrotoxique.</div>
+                                            <div class="qcm-item">D: Est neurotoxique.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2022-23 Q15</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2022-2023 Q15</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le <sup>18</sup>F-FDG :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Est un glucose marqué au fluor 18.</div>
+                                            <div class="qcm-item">B: La demi-vie est de 110 min environ.</div>
+                                            <div class="qcm-item">C: Est néphrotoxique.</div>
+                                            <div class="qcm-item">D: Est cardiotoxique.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2023-24 Q15</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2021-2022 Q15</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le <sup>18</sup>F-FDG :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Est le radiotraceur le plus utilisé en TEP.</div>
+                                            <div class="qcm-item">B: Est contre-indiqué en cas d'insuffisance rénale.</div>
+                                            <div class="qcm-item">C: Peut être transporté en avion.</div>
+                                            <div class="qcm-item">D: A une demi-vie de 2h environ.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2020-21 Q15</em></li>
+                                            <li class="ref-quasi"><em>2024-25 Q15</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2020-2021 Q15</td>
+                                    <td>
+                                        <div class="qcm-enonce">Concernant le <sup>18</sup>F-FDG :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Est le radiotraceur le plus utilisé en TEP.</div>
+                                            <div class="qcm-item">B: Est contre-indiqué en cas de terrain allergique.</div>
+                                            <div class="qcm-item">C: Peut être transporté en avion.</div>
+                                            <div class="qcm-item">D: A une demi-vie de 2h environ.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2021-22 Q15</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+                    </div>
+
+                    <!-- THEME : FEMME ENCEINTE FISSURE -->
+                    <div class="qcm-thematique">
+                        <h4>Femme enceinte - suspicion fissure de fatigue - 5 ans / 5 (QCM IDENTIQUE)</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%;">Année - QCM</th>
+                                    <th style="width: 65%;">Énoncé et items</th>
+                                    <th style="width: 20%;">Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025 Q16</td>
+                                    <td>
+                                        <div class="qcm-enonce">Mme H, enceinte de 4 mois, vient vous consulter pour une douleur du pied droit après une randonnee : vous suspectez une fissure de fatigue.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Vous lui prescrivez une IRM avec injection de gadolinium.</div>
+                                            <div class="qcm-item">B: Vous lui prescrivez une scintigraphie osseuse.</div>
+                                            <div class="qcm-item">C: Vous lui prescrivez une TDM de la cheville injectée aux PCI.</div>
+                                            <div class="qcm-item">D: Vous lui prescrivez une TEP-TDM au FNA.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>Identique 5 ans</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2020-2025</td>
+                                    <td>
+                                        <div class="qcm-enonce" style="color: #059669;">CE QCM EST STRICTEMENT IDENTIQUE DEPUIS 5 ANS.</div>
+                                        <div class="qcm-items" style="background: #dcfce7; padding: 10px; border-radius: 6px;">
+                                            <p style="margin: 0; color: #166534;">Même énoncé, mêmes items, même piège. Seule la bonne réponse changé selon les années (generalement E = aucune réponse, car toutes les options sont contre-indiquées chez la femme enceinte).</p>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+                    </div>
+
+                    <!-- THEME : FIXATION TEP SUV -->
+                    <div class="qcm-thematique">
+                        <h4>Fixation en TEP (SUV) - 5 ans / 5</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%;">Année - QCM</th>
+                                    <th style="width: 65%;">Énoncé et items</th>
+                                    <th style="width: 20%;">Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-2025 Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">La fixation en TEP peut être exprimee en :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Unites Hounsfield.</div>
+                                            <div class="qcm-item">B: kg/m.</div>
+                                            <div class="qcm-item">C: SUV.</div>
+                                            <div class="qcm-item">D: Gy/m<sup>2</sup>.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>Identique 5 ans</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2023-2024 Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">La fixation en TEP peut être exprimee en :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Unites Hounsfield.</div>
+                                            <div class="qcm-item">B: kg/m.</div>
+                                            <div class="qcm-item">C: SUV.</div>
+                                            <div class="qcm-item">D: Gy/ml<sup>2</sup>.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2022-23 Q17</em></li>
+                                            <li class="ref-quasi"><em>2021-22 Q17</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+                    </div>
+
+                    <!-- THEME : SCINTIGRAPHIE OSSEUSE -->
+                    <div class="qcm-thematique">
+                        <h4>Scintigraphie osseuse - 1 an / 5</h4>
+                        <div class="table-wrapper">
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%;">Année - QCM</th>
+                                    <th style="width: 65%;">Énoncé et items</th>
+                                    <th style="width: 20%;">Récurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">La scintigraphie osseuse :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Est une imagerie fonctionnelle.</div>
+                                            <div class="qcm-item">B: Consiste a injecter des biphosphonates marqués au <sup>99m</sup>Tc.</div>
+                                            <div class="qcm-item">C: Consiste a injecter du <sup>99m</sup>Tc seul.</div>
+                                            <div class="qcm-item">D: Est utilisé uniquement en cancérologie.</div>
+                                            <div class="qcm-item">E: Aucune réponse.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table" style="table-layout: fixed; width: 100%;">
+                            <tr>
+                                <th style="text-align: center; width: 20%;">Fréquence</th>
+                                <th style="text-align: center; width: 20%;">Moyenne QCM/an</th>
+                                <th style="text-align: center; width: 20%;">SRT</th>
+                                <th style="text-align: center; width: 20%;">SRI</th>
+                                <th style="text-align: center; width: 20%;">Dependance</th>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    <strong style="color: #059669;">5 années sur 5</strong><br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Tombe CHAQUE année</span>
+                                </td>
+                                <td style="text-align: center;">3</td>
+                                <td style="text-align: center;">
+                                    ~70%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Récurrence Thématique</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    <strong style="color: #059669;">~90%</strong><br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Récurrence Items</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    Chapitre clé<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Lié à FC11 (imagerie partie 1)</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>Vue d'ensemble des QCM par thématique</h4>
+                        <p class="vue-ensemble-intro">Ce chapitre est EXTREMEMENT prévisible. Les QCM Q15, Q16, Q17 sont quasi-identiques chaque année. Le QCM "femme enceinte" (Q16) n'a pas changé depuis 5 ans.</p>
+
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-21</th>
+                                        <th>2021-22</th>
+                                        <th>2022-23</th>
+                                        <th>2023-24</th>
+                                        <th>2024-25</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><sup>18</sup>F-FDG (caractéristiques)</td>
+                                        <td>Q15(ACD)</td>
+                                        <td>Q15(ACD)</td>
+                                        <td>Q15(AB)</td>
+                                        <td>Q15(AB)</td>
+                                        <td>Q15(ACD)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Femme enceinte (fissure)</td>
+                                        <td>Q16(E)</td>
+                                        <td>Q16(E)</td>
+                                        <td>Q16(E)</td>
+                                        <td>Q16(E)</td>
+                                        <td>Q16(E)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fixation TEP = SUV</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q17(C)</td>
+                                        <td>Q17(D)</td>
+                                        <td>Q17(C)</td>
+                                        <td>Q17(C)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Scintigraphie osseuse</td>
+                                        <td>Q17(AB)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="scroll-hint">Scrollez à droite pour voir tout le tableau</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage des parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px; border-left-color: #dc2626;">
+                        <h4>1) Le <sup>18</sup>F-FDG (PRIORITE ABSOLUE)</h4>
+                        <p><strong>Objectif :</strong> connaître les caractéristiques du radiotraceur le plus utilisé en TEP.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Qu'est-ce que le <sup>18</sup>F-FDG ?</strong><br>
+                            <span style="color: #64748b;">- FluoroDeoxyGlucose marqué au Fluor-18<br>
+                            - Analogue du glucose (capte par les cellules avides de glucose)<br>
+                            - Le radiotraceur le plus utilisé en TEP</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><strong>Demi-vie :</strong><br>
+                            <span style="color: #64748b;">- T<sub>1/2</sub> = 110 minutes (environ 2 heures)<br>
+                            - Peut être transporté en avion (demi-vie suffisante)</span></p>
+
+                            <p style="margin: 0;"><strong>Toxicite :</strong><br>
+                            <span style="color: #059669; font-weight: 600;">- NON néphrotoxique<br>
+                            - NON cardiotoxique<br>
+                            - NON neurotoxique<br>
+                            - PAS de contre-indication allergique</span></p>
+                        </div>
+                        <span class="frequence" style="background: #fee2e2; color: #dc2626;">Tombe 5 ans / 5 - INCONTOURNABLE</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px; border-left-color: #dc2626;">
+                        <h4>2) Imagerie chez la femme enceinte (PRIORITE ABSOLUE)</h4>
+                        <p><strong>Objectif :</strong> savoir quels examens sont contre-indiqués pendant la grossesse.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>CONTRE-INDIQUÉS chez la femme enceinte :</strong><br>
+                            <span style="color: #dc2626;">- TDM injectée (irradiation + PCI)<br>
+                            - Scintigraphie (irradiation isotopes)<br>
+                            - TEP-TDM (irradiation)<br>
+                            - IRM avec gadolinium (passage transplacentaire)</span></p>
+
+                            <p style="margin: 0;"><strong>AUTORISES (avec precaution) :</strong><br>
+                            <span style="color: #059669;">- Radiographie simple (dose faible, urgence)<br>
+                            - Echographie (non irradiante)<br>
+                            - IRM SANS gadolinium (non irradiante)</span></p>
+                        </div>
+                        <span class="frequence" style="background: #fee2e2; color: #dc2626;">Tombe 5 ans / 5 - QCM IDENTIQUE</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>3) Unites de fixation en TEP : le SUV</h4>
+                        <p><strong>Objectif :</strong> distinguer les unites TDM (UH) et TEP (SUV).</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>SUV = Standardized Uptake Value</strong><br>
+                            <span style="color: #64748b;">- Unite de mesure de la fixation en TEP<br>
+                            - Reflete l'intensité du métabolisme (captation du traceur)<br>
+                            - SUV élevé = hyperfixation (suspicion de malignite)</span></p>
+
+                            <p style="margin: 0;"><strong>Ne pas confondre :</strong><br>
+                            <span style="color: #f59e0b;">- UH (Unites Hounsfield) = TDM (attenuation)<br>
+                            - SUV = TEP (fixation métabolique)</span></p>
+                        </div>
+                        <span class="frequence">Tombe 4 ans / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>4) Scintigraphie osseuse</h4>
+                        <p><strong>Objectif :</strong> connaître le principe et les indications.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Principe :</strong><br>
+                            <span style="color: #64748b;">- Injection de biphosphonates marqués au <sup>99m</sup>Tc<br>
+                            - Les biphosphonates se fixent sur l'os en remodelage<br>
+                            - Imagerie FONCTIONNELLE (pas anatomique)</span></p>
+
+                            <p style="margin: 0;"><strong>Indications :</strong><br>
+                            <span style="color: #64748b;">- Recherche de métastases osseuses<br>
+                            - Fractures de stress / fissures de fatigue<br>
+                            - Infections osseuses<br>
+                            - PAS uniquement en cancérologie !</span></p>
+                        </div>
+                        <span class="frequence">Tombe 1 an / 5</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 8px; color: #166534;">
+                        <strong>Niveau 1 ULTRA-VIABLE.</strong> Ce chapitre a le SRI le plus élevé de l'UE4 (~90%). Les QCM sont strictement identiques d'une année sur l'autre. 3 règles = 100% des points.
+                    </p>
+
+                    <!-- CARTE THÉMATIQUE 1 -->
+                    <div class="qcm-analyse">
+                        <h4><sup>18</sup>F-FDG - "Pas toxique, pas allergisant"</h4>
+                        <div class="qcm-badge">Tombe CHAQUE ANNÉE : Q15</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof teste systématiquement les caractéristiques du FDG. Les pièges : "néphrotoxique", "contre-indiqué si allergie", "contre-indiqué si insuffisance rénale".</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que le FDG n'a AUCUNE toxicite particulière. C'est juste du glucose radioactif.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Le <sup>18</sup>F-FDG = glucose marqué, donc :</strong></p>
+                                <ul>
+                                    <li>NON néphrotoxique (ce n'est pas un PCI iodé)</li>
+                                    <li>NON allergisant (c'est du glucose !)</li>
+                                    <li>Peut être transporté (T<sub>1/2</sub> = 2h, assez long)</li>
+                                    <li>Le plus utilisé en TEP (oncologie surtout)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARTE THÉMATIQUE 2 -->
+                    <div class="qcm-analyse">
+                        <h4>Femme enceinte - "RIEN n'est autorise"</h4>
+                        <div class="qcm-badge">QCM IDENTIQUE depuis 5 ans : Q16</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM est le plus prévisible de toute l'UE4. Même énoncé, mêmes items depuis 5 ans. La réponse est TOUJOURS "E : Aucune réponse" car tout est contre-indiqué.</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Des que tu vois "femme enceinte" + choix d'examens irradiants, coche "Aucune réponse".</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                <p><strong>Chez la femme enceinte, TOUT est contre-indiqué :</strong></p>
+                                <p>- IRM + gadolinium = passage transplacentaire</p>
+                                <p>- Scintigraphie = irradiation isotopes</p>
+                                <p>- TDM + PCI = irradiation + nephrotoxicite</p>
+                                <p>- TEP = irradiation</p>
+                                <p style="margin-top: 10px;"><strong>Réponse = E (Aucune réponse)</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARTE THÉMATIQUE 3 -->
+                    <div class="qcm-analyse">
+                        <h4>Fixation TEP = SUV</h4>
+                        <div class="qcm-badge">Tombe en <strong>2021-22</strong> | <strong>2022-23</strong> | <strong>2023-24</strong> | <strong>2024-25</strong> : Q17</div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof teste la distinction TDM/TEP. Piège : proposer "Unites Hounsfield" pour la TEP (les UH sont pour la TDM).</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens : TDM = UH (attenuation), TEP = SUV (fixation).</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                <p><strong>Distinction simple :</strong></p>
+                                <p>- TDM = Unites <strong>H</strong>ounsfield (attenuation rayons X)</p>
+                                <p>- TEP = <strong>S</strong>UV (fixation métabolique isotopes)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 12px; background: #fef3c7; border-radius: 8px; font-size: 0.85rem; color: #92400e;">
+                        Les pièges ci-dessous sont issus des <strong>annales des 5 dernières années</strong>. Ils sont RÉCURRENTS.
+                    </p>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>PIÈGE #1 (tombe CHAQUE année) : "Le <sup>18</sup>F-FDG est néphrotoxique / contre-indiqué si IR"</h4>
+                        <p><strong>Années :</strong> 2021-22 Q15B, 2024-25 Q15B, 2022-23 Q15C, 2023-24 Q15C<br>
+                        <strong>Réponse :</strong> le FDG n'est PAS néphrotoxique. C'est du glucose marqué, pas un produit de contraste iodé. La nephrotoxicite est pour les PCI (TDM injectée).</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>PIÈGE #2 (tombe CHAQUE année) : "Le <sup>18</sup>F-FDG est contre-indiqué en cas d'allergie"</h4>
+                        <p><strong>Année :</strong> 2020-21 Q15B<br>
+                        <strong>Réponse :</strong> le FDG n'est PAS allergisant. C'est un analogue du glucose, molecule naturelle. Les allergies aux produits de contraste concernent les PCI iodes et le gadolinium.</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>PIÈGE #3 (QCM IDENTIQUE 5 ans) : Proposer un examen irradiant a une femme enceinte</h4>
+                        <p><strong>Années :</strong> Toutes (Q16)<br>
+                        <strong>Réponse :</strong> chez la femme enceinte, TOUS les examens proposes sont contre-indiqués : IRM + gadolinium, scintigraphie, TDM + PCI, TEP. La réponse est TOUJOURS "E : Aucune réponse".</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>PIÈGE #4 : "La fixation TEP s'exprime en Unites Hounsfield"</h4>
+                        <p><strong>Années :</strong> 2021-22 Q17A, 2022-23 Q17A, 2023-24 Q17A, 2024-25 Q17A<br>
+                        <strong>Réponse :</strong> les UH sont pour la TDM (attenuation des rayons X). La fixation en TEP s'exprime en SUV (Standardized Uptake Value).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>PIÈGE #5 : "La scintigraphie osseuse est utilisée UNIQUEMENT en cancérologie"</h4>
+                        <p><strong>Année :</strong> 2020-21 Q17D<br>
+                        <strong>Réponse :</strong> la scintigraphie osseuse a des indications variees : métastases (cancero), fractures de stress, infections osseuses, maladies metaboliques. Pas uniquement en cancero.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 18px; font-weight: 600; color: #1a365d; font-size: 1.05rem;">
+                            FC12 est l'UN DES chapitres les plus rentables de l'UE4. Le QCM "femme enceinte" est strictement identique depuis 5 ans. C'est un cadeau.
+                        </p>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 3 - tu maîtrisés le cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Tu dois connaître l'ensemble du chapitre : principe de la TEP (detection des photons d'annihilation), les différents radiotraceurs (<sup>18</sup>F-FDG, <sup>18</sup>F-Choline, <sup>68</sup>Ga-PSMA), les indications en oncologie, le principe de la scintigraphie et de la TEMP.<br><br>
+                                <em style="color: #64748b;">Details techniques rarement testes :</em> temps de vol, resolution spatiale, correction d'attenuation.
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #d97706;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #d97706;">Niveau 2 - tu cibles les parties du cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Concentre-toi sur :<br>
+                                - Le <strong><sup>18</sup>F-FDG</strong> : caractéristiques, T<sub>1/2</sub>, absence de toxicite<br>
+                                - <strong>Femme enceinte</strong> : tous les examens irradiants sont contre-indiqués<br>
+                                - <strong>SUV</strong> : unite de fixation en TEP (vs UH en TDM)<br>
+                                - <strong>Scintigraphie osseuse</strong> : biphosphonates + <sup>99m</sup>Tc<br><br>
+                                Tu peux survoler les details techniques de la TEP.
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 1 - tu travailles quasi exclusivement sur les annales</p>
+                            <p style="margin: 0 0 12px 0; padding: 10px; background: #dcfce7; border-radius: 6px; color: #166534;">
+                                <strong>Niveau 1 ULTRA-VIABLE.</strong> Le QCM Q16 est IDENTIQUE depuis 5 ans. 3 règles = 9 points garantis.
+                            </p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                <strong>Les 3 règles :</strong><br>
+                                1. <sup>18</sup>F-FDG = PAS toxique (ni reins, ni allergie, ni coeur)<br>
+                                2. Femme enceinte + examen irradiant = "Aucune réponse"<br>
+                                3. TEP = SUV (pas UH)<br><br>
+                                <strong>Le QCM cadeau :</strong> "Mme H enceinte de 4 mois, fissure de fatigue" = Réponse E depuis 5 ans.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </details>
+
+        </div>
+
+        <div class="footer">
+            <strong>Creation originale de E. Schaeffer</strong><br>
+            Soumis a droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prepa encourage chaque étudiant a maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours.
+        </div>
+    </div>
+</body>
+</html>

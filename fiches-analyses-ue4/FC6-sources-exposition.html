@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC6 - Sources d'exposition et risques associes - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordeons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .qcm-table th:first-child {
+            width: 130px;
+        }
+
+        .qcm-table th:last-child {
+            width: 150px;
+        }
+
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+
+        /* References recurrence */
+        .qcm-ref {
+            font-size: 0.75rem;
+            color: #1a365d;
+            font-style: italic;
+        }
+
+        .qcm-ref ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .qcm-ref li {
+            margin-bottom: 3px;
+        }
+
+        .ref-quasi::before {
+            content: "≈ ";
+        }
+
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+
+        /* Recommandations */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px dashed #0284c7;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .tuteur-zone p {
+            margin: 0;
+            color: #0c4a6e;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px; }
+            .qcm-thematique { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .qcm-table { min-width: 750px; font-size: 0.7rem !important; }
+            .vue-tableau { min-width: 600px; }
+        }
+
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC6 - Sources d'exposition et risques associes</h1>
+            <div class="meta">
+                <span>UE4 - Rayonnements et Sante</span>
+                <span>Fiche d'Analyse</span>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- ACCORDEON 1 : QCM TOMBES AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>QCM tombes aux sessions 1</summary>
+                <div class="accordion-content">
+
+                    <!-- THEME : NIVEAUX D'EXPOSITION EN FRANCE -->
+                    <div class="qcm-thematique">
+                        <h4>Niveaux d'exposition en France - 4 ans / 5</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Annee - QCM</th>
+                                    <th>Enonce et items</th>
+                                    <th>Recurrence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021 Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">Concernant les propositions suivantes, indiquez laquelle (ou lesquelles) est (ou sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le niveau d'exposition moyen en France est de 3,5 mSv/an.</div>
+                                            <div class="qcm-item">B: La radioactivite due aux expositions medicales constitue la premiere source d'exposition artificielle.</div>
+                                            <div class="qcm-item">C: L'exposition naturelle augmente avec l'altitude.</div>
+                                            <div class="qcm-item">D: L'exposition au radon constitue 1/3 de l'exposition artificielle.</div>
+                                            <div class="qcm-item">E: Le principal mode d'exposition au radon 222 est l'exposition externe.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2023-24 Q7</em></li>
+                                            <li class="ref-quasi"><em>2024-25 Q7</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2022-2023 Q6</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les sources d'exposition. Le niveau d'exposition moyen en France d'origine artificielle est de :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: 1 mSv/an</div>
+                                            <div class="qcm-item">B: 1,6 mSv/an</div>
+                                            <div class="qcm-item">C: 2,9 mSv/an</div>
+                                            <div class="qcm-item">D: 4,5 mSv/an</div>
+                                            <div class="qcm-item">E: 10 mSv/an</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2023-24 Q7</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2023-2024 Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les sources d'exposition. Le niveau d'exposition moyen en France est de :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: 1 mSv/an</div>
+                                            <div class="qcm-item">B: 1,6 mSv/an</div>
+                                            <div class="qcm-item">C: 2,9 mSv/an</div>
+                                            <div class="qcm-item">D: 4,5 mSv/an</div>
+                                            <div class="qcm-item">E: 10 mSv/an</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2022-23 Q6</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2024-2025 Q7</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur les sources d'exposition, quelles affirmations sont correctes ?</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La radioactivite due aux expositions medicales constitue la premiere source d'exposition artificielle.</div>
+                                            <div class="qcm-item">B: La radioactivite d'origine naturelle est superieure a celle d'origine artificielle.</div>
+                                            <div class="qcm-item">C: L'exposition d'origine naturelle est plus importante dans les regions granitiques.</div>
+                                            <div class="qcm-item">D: L'exposition au radon constitue 1/3 de l'exposition d'origine naturelle.</div>
+                                            <div class="qcm-item">E: Le niveau d'exposition moyen en France est de 1 mSv/an.</div>
+                                        </div>
+                                    </td>
+                                    <td class="qcm-ref">
+                                        <ul>
+                                            <li class="ref-quasi"><em>2020-21 Q6</em></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>Rappel diagnostic</summary>
+                <div class="accordion-content">
+
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table" style="table-layout: fixed; width: 100%;">
+                            <tr>
+                                <th style="text-align: center; width: 20%;">Frequence</th>
+                                <th style="text-align: center; width: 20%;">Moyenne QCM/an</th>
+                                <th style="text-align: center; width: 20%;">SRT</th>
+                                <th style="text-align: center; width: 20%;">SRI</th>
+                                <th style="text-align: center; width: 20%;">Dependance</th>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    4 annees sur 5<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Non tombe 2021-22</span>
+                                </td>
+                                <td style="text-align: center;">1</td>
+                                <td style="text-align: center;">
+                                    ~30%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Recurrence Thematique</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    ~80%<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Score Recurrence Items</span>
+                                </td>
+                                <td style="text-align: center;">
+                                    Chapitre factuel<br>
+                                    <span style="font-size: 0.75rem; color: #64748b;">Valeurs chiffrees a retenir</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div class="vue-ensemble">
+                        <h4>Vue d'ensemble des QCM par thematique</h4>
+                        <p class="vue-ensemble-intro">Ce chapitre pose TOUJOURS des questions sur les valeurs d'exposition (4,5 mSv/an total, 2,9 naturelle, 1,6 artificielle) et les caracteristiques du radon. QCM tres previsible avec les memes items qui reviennent.</p>
+
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thematique</th>
+                                        <th>2020-21</th>
+                                        <th>2021-22</th>
+                                        <th>2022-23</th>
+                                        <th>2023-24</th>
+                                        <th>2024-25</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Niveau exposition total (4,5 mSv/an)</td>
+                                        <td>Q6(A)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q7(D)</td>
+                                        <td>Q7(E)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Exposition artificielle (1,6 mSv/an)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q6(B)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Exposition medicale = 1ere source artificielle</td>
+                                        <td>Q6(B)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q7(A)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Naturelle > artificielle</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q7(B)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Altitude et exposition</td>
+                                        <td>Q6(C)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Regions granitiques</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q7(C)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Radon (1/3 exposition naturelle/totale)</td>
+                                        <td>Q6(D)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td>Q7(D)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mode d'exposition au radon</td>
+                                        <td>Q6(E)</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px; border-left-color: #dc2626;">
+                        <h4>1) Les 3 valeurs d'exposition en France (PRIORITE ABSOLUE)</h4>
+                        <p><strong>Objectif :</strong> retenir les 3 valeurs cles et leur repartition.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>TOTAL = 4,5 mSv/an</strong><br>
+                            <span style="color: #64748b;">Dose efficace moyenne absorbee par le corps entier (hors activite professionnelle et radiotherapie)</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><strong>NATURELLE = 2,9 mSv/an (~2/3 du total)</strong><br>
+                            <span style="color: #64748b;">Rayonnements cosmiques + telluriques + radon + alimentation</span></p>
+
+                            <p style="margin: 0;"><strong>ARTIFICIELLE = 1,6 mSv/an (~1/3 du total)</strong><br>
+                            <span style="color: #64748b;">Essentiellement medicale (35% du total). Industrielle = moins de 1%</span></p>
+                        </div>
+                        <span class="frequence" style="background: #fee2e2; color: #dc2626;">Tombe 4 ans / 5 - INCONTOURNABLE</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>2) Le radon - 1/3 de l'exposition</h4>
+                        <p><strong>Objectif :</strong> retenir les caracteristiques du radon 222.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Radon 222 = gaz radioactif</strong><br>
+                            <span style="color: #64748b;">Descendant du radium 226 dans la chaine de l'uranium 238. Emetteur α. Periode physique : 3,82 jours.</span></p>
+
+                            <p style="margin: 0 0 15px 0;"><strong>Mode d'exposition = contamination INTERNE par INHALATION</strong><br>
+                            <span style="color: #dc2626;">PAS exposition externe ! Le radon est inhale, c'est une contamination interne avec risque de cancer pulmonaire.</span></p>
+
+                            <p style="margin: 0;"><strong>Provenance :</strong><br>
+                            <span style="color: #64748b;">Sous-sols granitiques et volcaniques, materiaux de construction (granit, basalte). Plus concentre dans les maisons mal ventilees.</span></p>
+                        </div>
+                        <span class="frequence">Tombe 2 ans / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>3) Exposition et altitude</h4>
+                        <p><strong>Objectif :</strong> retenir que l'exposition naturelle augmente avec l'altitude.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Rayonnements cosmiques x 2 tous les 500 metres</strong><br>
+                            <span style="color: #64748b;">L'atmosphere protege moins en altitude, donc les rayonnements cosmiques augmentent.</span></p>
+
+                            <p style="margin: 0;"><strong>Exemples :</strong><br>
+                            <span style="color: #64748b;">- Montagnard a 1000 m : +20% par rapport au niveau de la mer<br>
+                            - Avion en croisiere : 150 fois plus qu'au niveau de la mer</span></p>
+                        </div>
+                        <span class="frequence">Tombe 1 an / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; margin-bottom: 30px;">
+                        <h4>4) Regions granitiques et rayonnements telluriques</h4>
+                        <p><strong>Objectif :</strong> retenir que l'exposition est plus importante dans les regions granitiques.</p>
+
+                        <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 6px;">
+                            <p style="margin: 0 0 15px 0;"><strong>Rayonnements telluriques = 14% de la dose totale</strong><br>
+                            <span style="color: #64748b;">Dus aux radionucleides primordiaux : uranium 238, thorium 232, potassium 40.</span></p>
+
+                            <p style="margin: 0;"><strong>Radioactivite des roches (du moins au plus) :</strong><br>
+                            <span style="color: #64748b;">Argile (1000 Bq/kg) → Granit (3000 Bq/kg) → Pechblende (10 000 Bq/kg)</span></p>
+                        </div>
+                        <span class="frequence">Tombe 1 an / 5</span>
+                    </div>
+
+                    <div class="reco-item" style="padding: 25px; border-left-color: #94a3b8;">
+                        <h4>Themes jamais tombes (a surveiller)</h4>
+                        <div style="margin-top: 15px; color: #64748b;">
+                            <p style="margin: 0 0 8px 0;">- Details des radionucleides cosmogeniques (tritium, carbone 14, beryllium 7)</p>
+                            <p style="margin: 0 0 8px 0;">- Details sur Tchernobyl et Fukushima</p>
+                            <p style="margin: 0;">- Radioecologie</p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>Recommandations Niveau 1 (strategie annales)</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 8px; color: #166534;">
+                        <strong>Niveau 1 VIABLE.</strong> Ce chapitre pose toujours les memes questions sur les valeurs d'exposition. Si tu retiens 4 valeurs cles, tu reponds correctement a la majorite des items.
+                    </p>
+
+                    <!-- QCM TYPE : VALEURS D'EXPOSITION -->
+                    <div class="qcm-analyse">
+                        <h4>Les valeurs d'exposition a retenir</h4>
+                        <div class="qcm-badge">Tombe en <strong>2020-21</strong>, <strong>2022-23</strong>, <strong>2023-24</strong>, <strong>2024-25</strong></div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof teste toujours les memes valeurs : niveau total, niveau artificiel, et la hierarchie naturelle vs artificielle. Le piege classique est de confondre le niveau total (4,5) avec le niveau artificiel (1,6) ou naturel (2,9).</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retenir les 3 valeurs et leur hierarchie. Naturelle > artificielle. L'exposition medicale est la premiere source artificielle (35% du total).</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Cle de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                <p><strong>QCM de connaissance pure - a retenir par coeur :</strong></p>
+                                <p>- TOTAL = 4,5 mSv/an</p>
+                                <p>- NATURELLE = 2,9 mSv/an (2/3)</p>
+                                <p>- ARTIFICIELLE = 1,6 mSv/an (1/3)</p>
+                                <p>- Medicale = premiere source artificielle</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM TYPE : RADON -->
+                    <div class="qcm-analyse">
+                        <h4>Le radon : mode d'exposition et proportion</h4>
+                        <div class="qcm-badge">Tombe en <strong>2020-21</strong>, <strong>2024-25</strong></div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Le prof teste si tu connais le mode d'exposition au radon (contamination interne par inhalation, pas externe) et sa proportion dans l'exposition (environ 1/3).</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retenir que le radon est un gaz qu'on INHALE, donc c'est une contamination INTERNE (pas externe). Le radon represente environ 1/3 de l'exposition (totale ou naturelle selon la formulation).</div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Cle de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Radon = GAZ = on le respire = INHALATION = contamination INTERNE</strong></p>
+                                <ul>
+                                    <li>L'exposition externe = source a l'exterieur du corps</li>
+                                    <li>Le radon entre dans les poumons = source a l'interieur = contamination interne</li>
+                                    <li>Consequence : risque de cancer pulmonaire</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <p style="margin-bottom: 20px; padding: 12px; background: #fef3c7; border-radius: 8px; font-size: 0.85rem; color: #92400e;">
+                        Les pieges ci-dessous sont issus des <strong>annales des 5 dernieres annees</strong>.
+                    </p>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>Confondre les valeurs d'exposition</h4>
+                        <p><strong>Annees :</strong> 2020-21 Q6A, 2022-23 Q6, 2023-24 Q7, 2024-25 Q7E<br>
+                        <strong>Attention :</strong> ne pas confondre 4,5 mSv/an (total), 2,9 mSv/an (naturelle) et 1,6 mSv/an (artificielle). Lire attentivement ce qui est demande : "niveau moyen France" = 4,5, "origine artificielle" = 1,6.</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #dc2626;">
+                        <h4>Le mode d'exposition au radon = interne, pas externe</h4>
+                        <p><strong>Annee :</strong> 2020-21 Q6E<br>
+                        <strong>Piege :</strong> "Le principal mode d'exposition au radon 222 est l'exposition externe" = FAUX. Le radon est un gaz qu'on INHALE, c'est une contamination INTERNE.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le radon et l'exposition artificielle</h4>
+                        <p><strong>Annee :</strong> 2020-21 Q6D<br>
+                        <strong>Piege :</strong> "L'exposition au radon constitue 1/3 de l'exposition artificielle" = FAUX. Le radon est une source NATURELLE. Il constitue environ 1/3 de l'exposition totale (ou de l'exposition naturelle selon les sources).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Ambiguite sur le 1/3 du radon</h4>
+                        <p><strong>Annee :</strong> 2024-25 Q7D<br>
+                        <strong>Attention :</strong> "1/3 de l'exposition naturelle" ou "1/3 de l'exposition totale" ? Le cours dit "1/3 de l'exposition naturelle" mais le graphique montre environ 1/3 de l'exposition totale (32%). En cas de doute, se referer au graphique du cours.</p>
+                    </div>
+
+                    <div class="vigilance-item" style="border-left-color: #94a3b8; background: #f8fafc;">
+                        <h4>Pieges possibles (non tombes mais plausibles) :</h4>
+                        <p>- Confondre exposition externe et contamination interne<br>
+                        - Dire que l'exposition industrielle est la premiere source artificielle (c'est le medical)<br>
+                        - Oublier que l'exposition augmente avec l'altitude</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 18px; font-weight: 600; color: #1a365d; font-size: 1.05rem;">
+                            Chapitre court et tres rentable : 1 QCM par an avec des questions repetitives sur les memes valeurs. Le temps investi ici est tres bien rentabilise.
+                        </p>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 3 - tu maitrises le cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Tu dois maitriser l'ensemble du chapitre : les valeurs d'exposition (totale, naturelle, artificielle), les sources de radioactivite naturelle (cosmique, tellurique, radon), les sources artificielles (medicale, industrielle), les caracteristiques du radon, et les notions de radioecologie.<br><br>
+                                <em style="color: #64748b;">A noter :</em> les details sur Tchernobyl/Fukushima n'ont jamais ete interroges.
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; border: 2px solid #d97706;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #d97706;">Niveau 2 - tu cibles les parties du cours</p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                Concentre-toi sur :<br>
+                                - <strong>Les 3 valeurs d'exposition</strong> : 4,5 total / 2,9 naturelle / 1,6 artificielle<br>
+                                - <strong>Hierarchie</strong> : naturelle (2/3) > artificielle (1/3)<br>
+                                - <strong>Exposition medicale</strong> = premiere source artificielle<br>
+                                - <strong>Radon</strong> : gaz, inhalation, contamination interne, 1/3 de l'exposition<br>
+                                - <strong>Altitude</strong> : exposition augmente avec l'altitude<br>
+                                - <strong>Regions granitiques</strong> : plus d'exposition tellurique
+                            </p>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; border: 2px solid #059669;">
+                            <p style="margin: 0 0 10px 0; font-weight: 600; color: #059669;">Niveau 1 - tu travailles quasi exclusivement sur les annales</p>
+                            <p style="margin: 0 0 12px 0; padding: 10px; background: #dcfce7; border-radius: 6px; color: #166534;">
+                                <strong>Niveau 1 VIABLE.</strong> 4 valeurs = 1 QCM/an reussi.
+                            </p>
+                            <p style="margin: 0; color: #4a5568; line-height: 1.6;">
+                                <strong>Les 4 valeurs a retenir :</strong><br>
+                                1. Total France = 4,5 mSv/an<br>
+                                2. Naturelle = 2,9 mSv/an (2/3 du total)<br>
+                                3. Artificielle = 1,6 mSv/an (1/3 du total)<br>
+                                4. Radon = 1/3 de l'exposition + contamination INTERNE (pas externe)<br><br>
+                                <strong>Bonus :</strong> exposition medicale = premiere source artificielle
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </details>
+
+        </div>
+
+        <div class="footer">
+            <strong>Creation originale de E. Schaeffer</strong><br>
+            Soumis a droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prepa encourage chaque etudiant a maitriser l'integralite de son programme. Cette ressource est destinee uniquement aux etudiants en retard quelques semaines avant l'examen, en dernier recours.
+        </div>
+    </div>
+</body>
+</html>
