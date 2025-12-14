@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC11 - Équation de continuité - Théorème de Bernoulli - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC11 - Équation de continuité - Théorème de Bernoulli</h1>
+            <div class="meta">
+                <span>📚 UE7 - Physiologie/Biophysique</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- THÉMATIQUE 1 : 3 tubes en série -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Conservation du débit - 3 tubes en série (3 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q18<br>2023-2024 Q18<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos des relations entre débit et vitesse d'un fluide réel incompressible circulant dans un système constitué de 3 tubes horizontaux en série (1, 2, 3) comme décrit ci-dessous. [Schéma : Section (A) 2 cm², 10 cm², 1 cm² - Q = 10 ml/s]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le débit dans le tube (3) est de 20 cm³.s⁻¹.</div>
+                                            <div class="qcm-item">B: La vitesse du fluide dans le tube (2) du système est de 1 cm.s⁻¹.</div>
+                                            <div class="qcm-item">C: L'écoulement dans le tube (3) est toujours turbulent.</div>
+                                            <div class="qcm-item">D: La pression hydrostatique P2 dans le tube (2) est plus faible que la pression hydrostatique P1 dans le tube (1).</div>
+                                            <div class="qcm-item">E: La pression hydrostatique P1 dans le tube (1) est égale à la pression hydrostatique P3 dans le tube (3).</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos des relations entre débit et vitesse d'un fluide réel incompressible circulant dans un système constitué de 3 tubes horizontaux en série (1,2,3) comme décrit ci-dessous : [Même schéma]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le débit dans le tube (3) est de 20 cm/s</div>
+                                            <div class="qcm-item">B: La vitesse du fluide dans le tube (2) du système est de 1 cm/s</div>
+                                            <div class="qcm-item">C: L'écoulement dans le tube (3) est toujours turbulent</div>
+                                            <div class="qcm-item">D: L'écoulement dans le tube (3) est toujours laminaire</div>
+                                            <div class="qcm-item">E: La pression hydrostatique P1 dans le tube (1) est égale à la pression hydrostatique P3 dans le tube (3)</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- THÉMATIQUE 2 : Bernoulli 2 segments -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Théorème de Bernoulli - 2 segments avec rétrécissement (6 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q19<br>2023-2024 Q19<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos de l'eau, considérée comme un fluide réel, circulant dans un système constitué d'un tube horizontal de section circulaire et de rayon variable. Dans la partie initiale (1), le diamètre D1 est de 20 cm et la vitesse de l'eau dans ce segment est de 1 m/s. On rappelle que l'équation de Bernoulli s'écrit P + ½ρv² + ρgz est constante. On donne ρ(eau) = 1000 kg.m⁻³ et 1 mmHg = 130 Pa.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le débit d'eau dans le segment 2 est le double de celui du segment 1.</div>
+                                            <div class="qcm-item">B: Si la vitesse de l'eau dans le segment (2) est de 25 m/s, alors le rayon du segment (2) est de 2 cm.</div>
+                                            <div class="qcm-item">C: Si D2 est inférieur à D1, alors la pression P dans le segment 2 est inférieure à celle du segment 1.</div>
+                                            <div class="qcm-item">D: Pour une vitesse de 1 m/s dans le segment (1) et de 25 m/s dans le segment (2), la variation de pression entre les deux segments est de 312 kPa.</div>
+                                            <div class="qcm-item">E: Pour une vitesse de 1 m/s dans le segment (1) et de 6 m/s dans le segment (2), la variation de pression entre les deux segments est proche de 135 mmHg.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q18</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos d'un fluide idéal, circulant dans un système constitué d'un tube horizontal de section circulaire et de rayon variable. Dans la partie initiale (1), le diamètre D1 est de 20 cm et la vitesse de l'eau dans ce segment est de 1 m.s⁻¹. La vitesse dans le segment (2) est de 4 m.s⁻¹. On rappelle que l'équation de Bernoulli s'écrit P + ½ρv² + ρgz est constante. On donne ρ(eau) = 1000 kg.m⁻³ et 1 mm Hg = 130 Pa.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le diamètre D2 dans le segment (2) est de 10 cm.</div>
+                                            <div class="qcm-item">B: Le diamètre D2 dans le segment (2) est de 5 cm.</div>
+                                            <div class="qcm-item">C: L'écoulement dans le tube (2) est turbulent.</div>
+                                            <div class="qcm-item">D: La pression hydrostatique P2 dans le tube (2) est plus élevée que la pression hydrostatique P1 dans le tube (1).</div>
+                                            <div class="qcm-item">E: La pression hydrostatique P1 dans le tube (1) est égale à la pression hydrostatique P2 dans le tube (2).</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q19</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos du dispositif et de l'énoncé décrits dans le QCM18 [suite du QCM précédent]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le débit de fluide dans le segment 2 est le double de celui du segment 1.</div>
+                                            <div class="qcm-item">B: La variation de pression hydrostatique entre le segment (1) et le segment (2) est de 7,5 kPa.</div>
+                                            <div class="qcm-item">C: La variation de pression hydrostatique entre le segment (1) et le segment (2) est de l'ordre de 600 mm Hg.</div>
+                                            <div class="qcm-item">D: La variation de pression hydrostatique entre le segment (1) et le segment (2) est de l'ordre de 60 mm Hg.</div>
+                                            <div class="qcm-item">E: La pression hydrostatique P2 dans le tube (1) est inférieure à la pression hydrostatique P1 dans le tube (1).</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q18</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos d'un fluide idéal, circulant dans un système constitué d'un tube horizontal de section circulaire et de rayon variable. Dans la partie initiale (1), le diamètre D1 est de 20 cm et la vitesse de l'eau dans ce segment est de 2 m.s⁻¹. La vitesse dans le segment (2) est de 5 m.s⁻¹. On rappelle que l'équation de Bernoulli s'écrit P + ½ρv² + ρgz est constante. On donne ρ(eau) = 1000 kg.m⁻³ et 1 mm Hg = 130 Pa.</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le diamètre du segment 2 est supérieur au diamètre du segment 1.</div>
+                                            <div class="qcm-item">B: Le diamètre du segment 2 est de 8 cm.</div>
+                                            <div class="qcm-item">C: L'écoulement dans le tube (2) est turbulent.</div>
+                                            <div class="qcm-item">D: La pression hydrostatique P2 dans le tube (2) est plus basse que la pression hydrostatique P1 dans le tube (1).</div>
+                                            <div class="qcm-item">E: La pression hydrostatique P1 dans le tube (1) est égale à la pression hydrostatique P2 dans le tube (2) puisque le fluide est idéal.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q19</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos du dispositif et de l'énoncé décrits dans le QCM18 [suite du QCM précédent]</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: L'écoulement dans le tube (2) est toujours laminaire.</div>
+                                            <div class="qcm-item">B: La variation de pression hydrostatique entre le segment (1) et le segment (2) dépend de la température.</div>
+                                            <div class="qcm-item">C: La pression hydrostatique P2 dans le tube (1) est supérieure à la pression hydrostatique P1 dans le tube (1).</div>
+                                            <div class="qcm-item">D: La variation de pression hydrostatique entre le segment (1) et le segment (2) est de 10,5 kPa.</div>
+                                            <div class="qcm-item">E: La variation de pression hydrostatique entre le segment (1) et le segment (2) est de l'ordre de 30 mmHg.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>💡 QCM avec items récurrents</td>
+                                <td>🔗 Cours appartenant à une suite logique</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>9 QCM</strong> sur ce chapitre (moyenne 1,8/an). Ces QCM se regroupent en <strong>2 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>3 tubes en série (débit-vitesse)</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q18</span></td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q18</span></td>
+                                    <td class="qcm-cell">Q17</td>
+                                </tr>
+                                <tr>
+                                    <td>Bernoulli - 2 segments (calcul rayon)</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q19</span></td>
+                                    <td class="qcm-cell">Q18</td>
+                                    <td class="qcm-cell">Q18</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q19</span></td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                                <tr>
+                                    <td>Bernoulli - 2 segments (calcul ΔP)</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q19</td>
+                                    <td class="qcm-cell">Q19</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    <div class="reco-item">
+                        <h4>Équation de continuité et conservation du débit</h4>
+                        <p>Maîtriser la formule Q = V × S et son application : dans un fluide idéal incompressible, le débit est constant tout au long du conduit.</p>
+                        <span class="frequence">Tombé 9 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Relation section-vitesse (S₁V₁ = S₂V₂)</h4>
+                        <p>Comprendre que si la section diminue, la vitesse augmente proportionnellement, et inversement.</p>
+                        <span class="frequence">Tombé 9 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Calcul du diamètre ou rayon à partir des vitesses</h4>
+                        <p>Savoir utiliser la relation S₁V₁ = S₂V₂ avec S = πr² pour calculer le rayon ou diamètre du segment 2.</p>
+                        <span class="frequence">Tombé 6 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Théorème de Bernoulli et calcul de variation de pression</h4>
+                        <p>Appliquer la formule ΔP = ½ρ(v₂² - v₁²) pour un tube horizontal où ρgz s'annule.</p>
+                        <span class="frequence">Tombé 6 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Relation section-pression dans un rétrécissement</h4>
+                        <p>Comprendre que dans un rétrécissement : section ↘ → vitesse ↗ → pression ↘.</p>
+                        <span class="frequence">Tombé 6 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Conversion kPa ↔ mmHg</h4>
+                        <p>Utiliser la conversion 1 mmHg = 130 Pa donnée dans l'énoncé pour exprimer ΔP en mmHg.</p>
+                        <span class="frequence">Tombé 6 fois en 5 ans</span>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🔍 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- ENCADRÉ : Points du cours à connaître par cœur -->
+                    <div class="qcm-analyse" style="border-color: #059669; background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);">
+                        <h4 style="color: #065f46;">🚨 Points du cours à connaître par cœur</h4>
+                        
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title" style="color: #065f46;">Les 4 choses à retenir :</div>
+                            <div class="qcm-section-content">
+                                <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 10px;">
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">1.</strong> <strong>Débit = V × S</strong></p>
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">2.</strong> Dans des tubes en série, <strong>le débit est constant</strong>, c'est-à-dire partout le même, quel que soit l'endroit où il passe.</p>
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">3.</strong> Le principe de continuité du débit : <strong>S₁V₁ = S₂V₂</strong></p>
+                                    <p style="margin: 0;"><strong style="color: #059669;">4.</strong> Pour un débit constant :<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;• <strong>V ↘ quand S ↗ → P ↗</strong><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;• <strong>V ↗ quand S ↘ → P ↘</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title" style="color: #065f46;">Les formules de Bernoulli :</div>
+                            <div class="qcm-section-content">
+                                <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 10px;">
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">5.</strong> Théorème de Bernoulli : <strong>P + ½ρv² + ρgz = constante</strong><br>
+                                    <span style="font-size: 0.9rem; color: #64748b; margin-left: 20px;">(La partie <strong>ρgz</strong> est donnée dans l'énoncé mais ne sert à rien car le tube est horizontal → elle s'annule)</span></p>
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">6.</strong> Principe de continuité (à apprendre par cœur) : <strong>r₁² × V₁ = r₂² × V₂</strong></p>
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">7.</strong> Variation de pression (eau, tube horizontal) : <strong>ΔP = ½ × 1000 × (V₂² − V₁²) = 500 × (V₂² − V₁²)</strong></p>
+                                    <p style="margin: 0;"><strong style="color: #059669;">8.</strong> Conversion : <strong>1 mmHg = 130 Pa</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- QCM 1 : 3 tubes en série - DÉTAILLÉ -->
+                    <div class="qcm-analyse">
+                        <h4>📌 Conservation du débit - 3 tubes en série</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q18 | <strong>2023-2024</strong> Q18 | <strong>2024-2025</strong> Q17</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM utilise <strong>toujours le même schéma</strong> avec les mêmes valeurs. Les questions 2020-2021 et 2023-2024 sont strictement identiques.</div>
+                        </div>
+
+                        <!-- IMAGE DU SCHÉMA -->
+                        <div style="text-align: center; margin: 20px 0;">
+                            <img src="https://raw.githubusercontent.com/elisabethmedibox/medibox-assets/main/images/Cours/UE7/FC11_Q18_3-tubes-en-serie.png" alt="Schéma 3 tubes en série" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        </div>
+
+                        <!-- ÉTAPE 1 : Données -->
+                        <h5 style="margin-top: 25px; color: #1a365d; border-bottom: 2px solid #ff6b7a; padding-bottom: 5px;">ÉTAPE 1 : Les données (toujours les mêmes jusqu'à présent mais ça pourrait changer — fais attention à comprendre le principe derrière chaque calcul)</h5>
+                        <div class="qcm-section-content" style="margin-top: 10px;">
+                            <ul style="margin: 10px 0 10px 20px;">
+                                <li><strong>Débit d'entrée</strong> : Q = 10 ml/s = <span style="color: #ff6b7a; font-weight: 600;">10 cm³/s</span> (à retenir car ensuite on te demande dans l'item A de dire que le débit est égal à quelque chose en cm³/s — c'est important de connaître cette équivalence pour déjouer les pièges d'unités)</li>
+                                <li><strong>Tube 1</strong> : Section S₁ = 2 cm²</li>
+                                <li><strong>Tube 2</strong> : Section S₂ = 10 cm²</li>
+                                <li><strong>Tube 3</strong> : Section S₃ = 1 cm²</li>
+                            </ul>
+                        </div>
+
+                        <!-- ÉTAPE 2 : Calcul des vitesses -->
+                        <h5 style="margin-top: 25px; color: #1a365d; border-bottom: 2px solid #ff6b7a; padding-bottom: 5px;">ÉTAPE 2 : Calcul des vitesses avec V = Q / S</h5>
+                        <div class="qcm-section-content" style="margin-top: 10px;">
+                            <p style="font-size: 1.2rem; text-align: center; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 15px; border-radius: 8px; margin: 15px 0; font-weight: 600; color: #92400e;">Vitesse (en cm/s) = Débit (en cm³/s) ÷ Section (en cm²)</p>
+                            <div class="table-wrapper" style="margin: 15px 0;">
+                                <table class="tableau-valeurs" style="width: 100%; border-collapse: collapse;">
+                                    <thead>
+                                        <tr style="background: #1a365d; color: white;">
+                                            <th style="padding: 10px; text-align: center;">Tube</th>
+                                            <th style="padding: 10px; text-align: center;">Calcul</th>
+                                            <th style="padding: 10px; text-align: center;">Vitesse</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="background: white;"><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;"><strong>Tube 1</strong></td><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;">10 ÷ 2</td><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;"><strong>5 cm/s</strong></td></tr>
+                                        <tr style="background: #f8fafc;"><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;"><strong>Tube 2</strong></td><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;">10 ÷ 10</td><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;"><strong>1 cm/s</strong></td></tr>
+                                        <tr style="background: white;"><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;"><strong>Tube 3</strong></td><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;">10 ÷ 1</td><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;"><strong>10 cm/s</strong></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="background: #fef2f2; border-left: 3px solid #ef4444; padding: 12px 15px; border-radius: 0 8px 8px 0; margin-top: 15px;">
+                                <p style="margin: 0; color: #991b1b;"><strong>⚠️ Point d'attention :</strong> Comme d'habitude, il faut être rigoureux avec les unités et faire attention que le chiffre demandé soit à la bonne unité.</p>
+                            </div>
+                        </div>
+
+                        <!-- ÉTAPE 3 : Classement des pressions -->
+                        <h5 style="margin-top: 25px; color: #1a365d; border-bottom: 2px solid #ff6b7a; padding-bottom: 5px;">ÉTAPE 3 : Classement des pressions</h5>
+                        <div class="qcm-section-content" style="margin-top: 10px;">
+                            <p>On applique une chaîne logique de raisonnement :</p>
+                            <div class="cle-raisonnement" style="margin: 15px 0;">
+                                <p><strong>S ↗ → V ↘ → P ↗</strong> (quand la section augmente, la vitesse diminue et la pression augmente)</p>
+                                <p><strong>S ↘ → V ↗ → P ↘</strong> (quand la section diminue, la vitesse augmente et la pression diminue)</p>
+                                <p style="margin-top: 10px;"><strong>💡 Astuce :</strong> Section et pression font pareil, la vitesse fait l'inverse.</p>
+                            </div>
+                            <div class="table-wrapper" style="margin: 15px 0;">
+                                <table class="tableau-valeurs" style="width: 100%; border-collapse: collapse;">
+                                    <thead>
+                                        <tr style="background: #1a365d; color: white;">
+                                            <th style="padding: 10px; text-align: center;">Tube</th>
+                                            <th style="padding: 10px; text-align: center;">Section</th>
+                                            <th style="padding: 10px; text-align: center;">Vitesse</th>
+                                            <th style="padding: 10px; text-align: center;">Pression</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="background: #d1fae5;"><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;"><strong>Tube 2</strong></td><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;">10 cm² (la + grande)</td><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;">1 cm/s (la + faible)</td><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;"><strong>P₂ = la + forte</strong></td></tr>
+                                        <tr style="background: white;"><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;"><strong>Tube 1</strong></td><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;">2 cm²</td><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;">5 cm/s</td><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;">P₁ = entre P₂ et P₃</td></tr>
+                                        <tr style="background: #fef2f2;"><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;"><strong>Tube 3</strong></td><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;">1 cm² (la + petite)</td><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;">10 cm/s (la + élevée)</td><td style="padding: 10px; text-align: center; border: 1px solid #e2e8f0;"><strong>P₃ = la + faible</strong></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p style="text-align: center; font-weight: 600; font-size: 1.1rem; margin-top: 15px;">Donc : <strong>P₂ > P₁ > P₃</strong></p>
+                        </div>
+
+                        <!-- HACK -->
+                        <div class="cle-raisonnement" style="margin-top: 25px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left-color: #f59e0b;">
+                            <p style="color: #92400e; font-size: 1.1rem;"><strong>🚀 HACK : Commence par annoter ton schéma AVANT de répondre</strong></p>
+                            <p style="color: #92400e;">Dès que tu vois ce type de QCM, fais tes calculs et pose tout sur ton schéma. Ensuite seulement, réponds aux items.</p>
+                            <div style="background: white; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: center;">
+                                <p style="margin: 0; font-family: monospace; font-size: 0.95rem;">
+                                    <span style="color: #64748b;">Section :</span> &nbsp;&nbsp;&nbsp; 2 cm² &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 cm² &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 cm²<br>
+                                    <span style="color: #64748b;">Vitesse :</span> &nbsp;&nbsp;&nbsp; <strong>5 cm/s</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>1 cm/s</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>10 cm/s</strong><br>
+                                    <span style="color: #64748b;">Pression :</span> &nbsp;&nbsp; P₁ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong style="color: #16a34a;">P₂ (max)</strong> &nbsp;&nbsp;&nbsp;&nbsp; <strong style="color: #dc2626;">P₃ (min)</strong>
+                                </p>
+                            </div>
+                            <p style="color: #92400e;"><strong>Rappel :</strong> La plus grande section = la plus grande pression. Section et pression font pareil.</p>
+                            
+                            <p style="color: #92400e; margin-top: 15px;"><strong>Éliminer rapidement :</strong></p>
+                            <ul style="margin: 10px 0 0 20px; color: #92400e;">
+                                <li><strong>« Débit = X » avec X ≠ débit d'entrée</strong> → FAUX (le débit est toujours constant)</li>
+                                <li><strong>« Toujours turbulent » ou « toujours laminaire »</strong> → FAUX (sans Reynolds on ne conclut pas)</li>
+                            </ul>
+                        </div>
+
+                        <!-- ÉTAPE 4 : Vérification des items -->
+                        <h5 style="margin-top: 25px; color: #1a365d; border-bottom: 2px solid #ff6b7a; padding-bottom: 5px;">ÉTAPE 4 : Vérification item par item</h5>
+                        <div class="table-wrapper" style="margin-top: 15px;">
+                            <table class="tableau-valeurs" style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                                <thead>
+                                    <tr style="background: #1a365d; color: white;">
+                                        <th style="padding: 10px; text-align: left; width: 80px;">Item</th>
+                                        <th style="padding: 10px; text-align: left;">Énoncé</th>
+                                        <th style="padding: 10px; text-align: left;">Analyse</th>
+                                        <th style="padding: 10px; text-align: center; width: 80px;">Réponse</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="background: white;">
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: 600;">A</td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0;">« Le débit dans le tube (3) est de 20 cm³/s »</td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0;">Le débit est <strong>CONSTANT</strong> dans tout le système = 10 cm³/s. Ce qui entre doit sortir.</td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0; text-align: center; color: #dc2626; font-weight: 700;">FAUX</td>
+                                    </tr>
+                                    <tr style="background: #f8fafc;">
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: 600;">B</td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0;">« La vitesse dans le tube (2) est de 1 cm/s »</td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0;">V₂ = Q / S₂ = 10 / 10 = <strong>1 cm/s</strong> ✓</td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0; text-align: center; color: #16a34a; font-weight: 700;">VRAI</td>
+                                    </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: 600;">C</td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0;">« L'écoulement dans le tube (3) est toujours turbulent »</td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0;">Sans η et r, impossible de calculer Reynolds → on ne peut pas conclure.</td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0; text-align: center; color: #dc2626; font-weight: 700;">FAUX</td>
+                                    </tr>
+                                    <tr style="background: #f8fafc;">
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: 600;">C ou D<br><span style="font-size: 0.8rem; color: #64748b;">(2024)</span></td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0;">« L'écoulement dans le tube (3) est toujours laminaire »</td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0;">Même raisonnement : sans Reynolds, on ne peut pas conclure.</td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0; text-align: center; color: #dc2626; font-weight: 700;">FAUX</td>
+                                    </tr>
+                                    <tr style="background: white;">
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: 600;">D<br><span style="font-size: 0.8rem; color: #64748b;">(2020/2023)</span></td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0;">« P₂ dans le tube (2) est plus faible que P₁ dans le tube (1) »</td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0;">On a montré que <strong>P₂ > P₁</strong> (car S₂ > S₁).</td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0; text-align: center; color: #dc2626; font-weight: 700;">FAUX</td>
+                                    </tr>
+                                    <tr style="background: #f8fafc;">
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0; font-weight: 600;">E</td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0;">« P₁ dans le tube (1) est égale à P₃ dans le tube (3) »</td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0;">On a montré que <strong>P₁ > P₃</strong> (car S₁ > S₃). Sections différentes → pressions différentes.</td>
+                                        <td style="padding: 10px; border: 1px solid #e2e8f0; text-align: center; color: #dc2626; font-weight: 700;">FAUX</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Bernoulli 2 segments - STRUCTURE PAR TYPE D'ITEM -->
+                    <div class="qcm-analyse" style="margin-top: 25px;">
+                        <h4>📌 Théorème de Bernoulli - 2 segments avec rétrécissement</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q19 | <strong>2021-2022</strong> Q18-Q19 | <strong>2022-2023</strong> Q18-Q19 | <strong>2023-2024</strong> Q19</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Contexte de l'énoncé :</div>
+                            <div class="qcm-section-content">
+                                <p>On a un tube (comme un tuyau) dans lequel circule de l'eau. Ce tube a deux parties :</p>
+                                <ul style="margin: 10px 0 10px 20px;">
+                                    <li><strong>Segment 1</strong> : large (diamètre D₁)</li>
+                                    <li><strong>Segment 2</strong> : plus étroit (diamètre D₂ qu'on cherche parfois)</li>
+                                </ul>
+                                <p>L'eau entre par le segment 1 et passe dans le segment 2. Le tube est <strong>horizontal</strong>, donc le terme ρgz de l'équation de Bernoulli s'annule (z₁ = z₂).</p>
+                            </div>
+                        </div>
+
+                        <!-- IMAGE DU SCHÉMA -->
+                        <div style="text-align: center; margin: 20px 0;">
+                            <img src="https://raw.githubusercontent.com/elisabethmedibox/medibox-assets/main/images/Cours/UE7/FC11_Q19_Bernouilli_tube-2-segments.png" alt="Schéma Bernoulli 2 segments" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que l'énoncé donne TOUJOURS :</div>
+                            <div class="qcm-section-content">
+                                <ul style="margin: 10px 0 10px 20px;">
+                                    <li><strong>ρ(eau)</strong> = 1000 kg/m³</li>
+                                    <li><strong>1 mmHg</strong> = 130 Pa</li>
+                                    <li>L'équation de Bernoulli : P + ½ρv² + ρgz = constante</li>
+                                    <li>Tube <strong>horizontal</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">La formule de Bernoulli :</div>
+                            <div class="qcm-section-content">
+                                <p style="font-size: 1.1rem; text-align: center; background: #f1f5f9; padding: 15px; border-radius: 8px; margin: 15px 0;"><strong>P + ½ρv² + ρgz = constante</strong></p>
+                                <p style="margin-top: 10px;">(La partie <strong>ρgz</strong> est donnée dans l'énoncé par le professeur, mais elle est <strong>totalement inutile</strong> et tu ne dois jamais en tenir compte. Comme le tube est horizontal, z₁ = z₂, donc ρgz s'annule.)</p>
+                                <p style="margin-top: 15px;"><strong>Concentre-toi uniquement sur :</strong></p>
+                                <p style="font-size: 1.2rem; text-align: center; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 15px; border-radius: 8px; margin: 15px 0; font-weight: 600; color: #92400e;">ΔP (eau, tube horizontal) = ½ × 1000 × (V₂² − V₁²) = 500 × (V₂² − V₁²)</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce qui VARIE selon les années :</div>
+                            <div class="qcm-section-content">
+                                <ul style="margin: 10px 0 10px 20px;">
+                                    <li><strong>Diamètre D₁</strong> (souvent 20 cm)</li>
+                                    <li><strong>Vitesse V₁</strong> (1 m/s ou 2 m/s)</li>
+                                    <li><strong>Vitesse V₂</strong> (4, 5, 6, ou 25 m/s)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOC 1 : Calcul de débit -->
+                    <div class="qcm-analyse" style="margin-top: 25px;">
+                        <h4>📌 Item de calcul 1 : Calcul de débit</h4>
+                        <div class="qcm-badge" style="font-style: italic;">📋 <strong>2020-2021</strong> Q19 A | <strong>2023-2024</strong> Q19 A</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Item type :</div>
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px;">
+                                <p style="margin: 0; font-style: italic;"><strong>A</strong> - « Le débit d'eau dans le segment 2 est le double de celui du segment 1. »</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Explication :</div>
+                            <div class="qcm-section-content">
+                                <p>Le débit est <strong>CONSTANT</strong> dans tout le système. Ce qui entre doit sortir. C'est le principe de conservation de la matière.</p>
+                                <p style="margin-top: 10px;">→ Renvoie au <strong>point 2 à retenir</strong> : « Dans des tubes en série, le débit est constant. »</p>
+                            </div>
+                        </div>
+
+                        <div class="cle-raisonnement">
+                            <p><strong>🎯 Réponse :</strong> Cet item est <strong style="color: #dc2626;">TOUJOURS FAUX</strong>. Pas de calcul, juste la logique.</p>
+                        </div>
+                    </div>
+
+                    <!-- BLOC 2 : Calcul du rayon/diamètre -->
+                    <div class="qcm-analyse" style="margin-top: 25px;">
+                        <h4>📌 Item de calcul 2 : Calcul du rayon ou diamètre</h4>
+                        <div class="qcm-badge" style="font-style: italic;">📋 <strong>2020-2021</strong> Q19 B | <strong>2021-2022</strong> Q18 A, B | <strong>2022-2023</strong> Q18 A, B | <strong>2023-2024</strong> Q19 B</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Item type :</div>
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px;">
+                                <p style="margin: 0; font-style: italic;"><strong>B</strong> - « Si la vitesse de l'eau dans le segment (2) est de 25 m/s, alors le rayon du segment (2) est de 2 cm. » (Q19 2020-2021)</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Explication :</div>
+                            <div class="qcm-section-content">
+                                <p><strong>Ce qu'on te donne :</strong> D₁ (diamètre segment 1), V₁, V₂</p>
+                                <p><strong>Ce qu'on te demande :</strong> Vérifier si le rayon r₂ proposé est correct.</p>
+                                
+                                <div style="background: #fef2f2; border-left: 3px solid #ef4444; padding: 12px 15px; border-radius: 0 8px 8px 0; margin: 15px 0;">
+                                    <p style="margin: 0; color: #991b1b;"><strong>⚠️ Attention :</strong> On te donne un <strong>diamètre</strong> dans l'énoncé, on te demande un <strong>rayon</strong>. Souviens-toi que <strong>r = D ÷ 2</strong></p>
+                                </div>
+                                
+                                <p style="margin-top: 15px;">On utilise le principe de continuité : <strong>S₁ × V₁ = S₂ × V₂</strong></p>
+                                <p>Comme S = π × r², on remplace S₁ et S₂ :</p>
+                                <p style="text-align: center; margin: 10px 0;"><strong>π × r₁² × V₁ = π × r₂² × V₂</strong></p>
+                                <p>Comme on a π de chaque côté (même valeur), on le supprime. Il reste :</p>
+                                <p style="font-size: 1.2rem; text-align: center; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 15px; border-radius: 8px; margin: 15px 0; font-weight: 600; color: #92400e;">r₁² × V₁ = r₂² × V₂</p>
+                                <p style="text-align: center; font-style: italic; color: #64748b;">Cette formule, tu peux l'apprendre par cœur. Ce sera toujours celle-là !</p>
+                            </div>
+                        </div>
+
+                        <div class="cle-raisonnement" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left-color: #f59e0b;">
+                            <p style="color: #92400e; font-size: 1.1rem;"><strong>🚀 HACK : Teste la réponse proposée !</strong></p>
+                            <p style="color: #92400e;">C'est un QCM → on te propose une réponse → tu la testes.</p>
+                            <ol style="margin: 15px 0 15px 20px; color: #92400e;">
+                                <li>Calcule <strong>r₁² × V₁</strong></li>
+                                <li>Calcule <strong>r₂² × V₂</strong> avec le r₂ proposé dans l'item</li>
+                                <li><strong>Égal ?</strong> → VRAI | <strong>Pas égal ?</strong> → FAUX</li>
+                            </ol>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 20px;">
+                            <div class="qcm-section-title">Exemple :</div>
+                            <div class="qcm-section-content">
+                                <p>D₁ = 20 cm → r₁ = 10 cm, V₁ = 1 m/s, V₂ = 25 m/s</p>
+                                <p>Item : « Le rayon du segment 2 est de 2 cm »</p>
+                                <ul style="margin: 10px 0 10px 20px;">
+                                    <li>r₁² × V₁ = 10² × 1 = <strong>100</strong></li>
+                                    <li>r₂² × V₂ = 2² × 25 = 4 × 25 = <strong>100</strong></li>
+                                </ul>
+                                <p>100 = 100 → <strong style="color: #16a34a;">VRAI</strong> ✓</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOC 3 : Relation section-pression -->
+                    <div class="qcm-analyse" style="margin-top: 25px;">
+                        <h4>📌 Item de cours : Relation section-pression (effet Venturi)</h4>
+                        <div class="qcm-badge" style="font-style: italic;">📋 <strong>2020-2021</strong> Q19 C | <strong>2021-2022</strong> Q18 D | <strong>2022-2023</strong> Q18 D, E | <strong>2023-2024</strong> Q19 C</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Item type :</div>
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px;">
+                                <p style="margin: 0; font-style: italic;"><strong>C</strong> - « Si D₂ est inférieur à D₁, alors la pression P dans le segment 2 est inférieure à celle du segment 1. » (Q19 2020-2021)</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Explication :</div>
+                            <div class="qcm-section-content">
+                                <p>→ Renvoie au <strong>point 4 à retenir</strong> :</p>
+                                <p style="text-align: center; font-size: 1.1rem; margin: 15px 0; background: #f1f5f9; padding: 15px; border-radius: 8px;"><strong>Rétrécissement → D ↘ → Vitesse ↗ → Pression ↘</strong></p>
+                                <p style="margin-top: 15px;">C'est <strong>exactement la même relation</strong> que tu as vue dans le QCM précédent (3 tubes en série). C'est la même logique : quand la section diminue, la vitesse augmente, et quand la vitesse augmente, la pression diminue.</p>
+                            </div>
+                        </div>
+
+                        <div class="cle-raisonnement">
+                            <p><strong>🎯 Réponse :</strong> « Si D₂ < D₁, alors P₂ < P₁ » est <strong style="color: #16a34a;">TOUJOURS VRAI</strong>.</p>
+                            <p style="margin-top: 10px;"><strong>Attention aux variantes :</strong></p>
+                            <ul style="margin: 10px 0 0 20px;">
+                                <li>« P₂ plus élevée que P₁ » (2021-2022 Q18 D) → <strong style="color: #dc2626;">FAUX</strong></li>
+                                <li>« P₁ = P₂ puisque fluide idéal » (2022-2023 Q18 E) → <strong style="color: #dc2626;">FAUX</strong> (fluide idéal ne veut pas dire pression égale !)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- BLOC 4 : Calcul de ΔP en kPa -->
+                    <div class="qcm-analyse" style="margin-top: 25px;">
+                        <h4>📌 Item de calcul 3 : Calcul de ΔP en kPa</h4>
+                        <div class="qcm-badge" style="font-style: italic;">📋 <strong>2020-2021</strong> Q19 D | <strong>2022-2023</strong> Q19 D | <strong>2023-2024</strong> Q19 D</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Item type :</div>
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px;">
+                                <p style="margin: 0; font-style: italic;"><strong>D</strong> - « Pour une vitesse de 1 m/s dans le segment (1) et de 25 m/s dans le segment (2), la variation de pression entre les deux segments est de <span style="color: #ff6b7a; font-weight: 600;">312 kPa</span>. » (Q19 2020-2021)</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">La formule (tube horizontal) :</div>
+                            <div class="qcm-section-content">
+                                <p style="font-size: 1.2rem; text-align: center; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 15px; border-radius: 8px; margin: 15px 0; font-weight: 600; color: #92400e;">ΔP = ½ × ρ × (V₂² - V₁²)</p>
+                                <p>Avec ρ = 1000 kg/m³, on a : ΔP = 500 × (V₂² - V₁²)</p>
+                            </div>
+                        </div>
+
+                        <div class="cle-raisonnement" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left-color: #f59e0b;">
+                            <p style="color: #92400e; font-size: 1.1rem;"><strong>🚀 HACK : Teste la réponse proposée !</strong></p>
+                            <ol style="margin: 15px 0 15px 20px; color: #92400e;">
+                                <li>Calcule <strong>V₂² - V₁²</strong></li>
+                                <li>Prends le <strong>ΔP proposé (en kPa) × 2</strong></li>
+                                <li><strong>Égal ?</strong> → VRAI | <strong>Pas égal ?</strong> → FAUX</li>
+                            </ol>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Exemple :</div>
+                            <div class="qcm-section-content">
+                                <p>V₁ = 1 m/s, V₂ = 25 m/s</p>
+                                <p>Item : « ΔP = 312 kPa »</p>
+                                <ul style="margin: 10px 0 10px 20px;">
+                                    <li>V₂² - V₁² = 625 - 1 = <strong>624</strong></li>
+                                    <li>312 × 2 = <strong>624</strong></li>
+                                </ul>
+                                <p>624 = 624 → <strong style="color: #16a34a;">VRAI</strong> ✓</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOC 5 : Calcul de ΔP en mmHg -->
+                    <div class="qcm-analyse" style="margin-top: 25px;">
+                        <h4>📌 Item de calcul 4 : Calcul de ΔP en mmHg</h4>
+                        <div class="qcm-badge" style="font-style: italic;">📋 <strong>2020-2021</strong> Q19 E | <strong>2022-2023</strong> Q19 E | <strong>2023-2024</strong> Q19 E</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Item type :</div>
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px;">
+                                <p style="margin: 0; font-style: italic;"><strong>E</strong> - « Pour une vitesse de 1 m/s dans le segment (1) et de 6 m/s dans le segment (2), la variation de pression entre les deux segments est proche de <span style="color: #ff6b7a; font-weight: 600;">135 mmHg</span>. » (Q19 2020-2021)</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Méthode :</div>
+                            <div class="qcm-section-content">
+                                <ol style="margin: 10px 0 10px 20px;">
+                                    <li>Calcule ΔP en Pa = 500 × (V₂² - V₁²)</li>
+                                    <li>Teste : valeur proposée × 130</li>
+                                    <li>Égal (ou proche) ? → VRAI</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="cle-raisonnement" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left-color: #f59e0b;">
+                            <p style="color: #92400e; font-size: 1.1rem;"><strong>🚀 HACK : Multiplier c'est plus facile que diviser !</strong></p>
+                            <p style="color: #92400e;">Au lieu de diviser ΔP par 130, multiplie la valeur proposée par 130 et compare.</p>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Exemple :</div>
+                            <div class="qcm-section-content">
+                                <p>V₁ = 1 m/s, V₂ = 6 m/s</p>
+                                <p>Item : « ΔP ≈ 135 mmHg »</p>
+                                <ul style="margin: 10px 0 10px 20px;">
+                                    <li>ΔP = 500 × (36 - 1) = 500 × 35 = <strong>17 500 Pa</strong></li>
+                                    <li>135 × 130 = <strong>17 550</strong></li>
+                                </ul>
+                                <p>17 500 ≈ 17 550 → <strong style="color: #16a34a;">VRAI</strong> ✓</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOC 6 : Pression absolue -->
+                    <div class="qcm-analyse" style="margin-top: 25px;">
+                        <h4>📌 Item de cours : Peut-on calculer P₂ en valeur absolue ?</h4>
+                        <div class="qcm-badge" style="font-style: italic;">📋 <strong>2021-2022</strong> Q18 D (variante formulée différemment)</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Item type :</div>
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px;">
+                                <p style="margin: 0; font-style: italic;"><strong>D</strong> - « En connaissant la vitesse dans les deux segments, on peut calculer la valeur absolue de la pression dans le segment 2. »</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Explication :</div>
+                            <div class="qcm-section-content">
+                                <p>Avec Bernoulli, on peut seulement calculer la <strong>différence</strong> de pression (ΔP = P₁ - P₂).</p>
+                                <p>Pour connaître P₂ en valeur absolue, il faudrait qu'on nous donne P₁... et on ne l'a pas.</p>
+                            </div>
+                        </div>
+
+                        <div class="cle-raisonnement">
+                            <p><strong>🎯 Réponse :</strong> Cet item est <strong style="color: #dc2626;">TOUJOURS FAUX</strong>.</p>
+                        </div>
+                    </div>
+
+                    <!-- BLOC 7 : Items orphelins (questions de cours) -->
+                    <div class="qcm-analyse" style="margin-top: 25px; border-color: #f59e0b;">
+                        <h4 style="color: #b45309;">📌 Autres items de cours (sans calcul)</h4>
+                        <div class="qcm-badge" style="font-style: italic;">📋 Items divers tombés en 2021-2022 et 2022-2023</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Écoulement turbulent / laminaire :</div>
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px;">
+                                <p style="margin: 0; font-style: italic;"><strong>C</strong> - « L'écoulement dans le tube (2) est turbulent. » (Q18 2021-2022, 2022-2023)</p>
+                                <p style="margin: 10px 0 0 0; font-style: italic;"><strong>A</strong> - « L'écoulement dans le tube (2) est toujours laminaire. » (Q19 2022-2023)</p>
+                            </div>
+                            <div class="qcm-section-content" style="margin-top: 10px;">
+                                <p><strong>Explication :</strong> Pour savoir si un écoulement est laminaire ou turbulent, il faut calculer le nombre de Reynolds (Re). Or, la formule Re = 2ρVr/η nécessite la <strong>viscosité η</strong> qu'on n'a pas.</p>
+                                <p style="margin-top: 10px;">→ Sans η, on ne peut pas conclure → <strong style="color: #dc2626;">FAUX</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 20px;">
+                            <div class="qcm-section-title">ΔP dépend de la température :</div>
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px;">
+                                <p style="margin: 0; font-style: italic;"><strong>B</strong> - « La variation de pression hydrostatique entre le segment (1) et le segment (2) dépend de la température. » (Q19 2022-2023)</p>
+                            </div>
+                            <div class="qcm-section-content" style="margin-top: 10px;">
+                                <p><strong>Explication :</strong> La formule ΔP = ½ρ(V₂² - V₁²) ne contient pas de température.</p>
+                                <p style="margin-top: 10px;">→ <strong style="color: #dc2626;">FAUX</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 20px;">
+                            <div class="qcm-section-title">Piège de rédaction :</div>
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px;">
+                                <p style="margin: 0; font-style: italic;"><strong>C</strong> - « La pression hydrostatique P2 dans le tube (1) est supérieure à la pression hydrostatique P1 dans le tube (1). » (Q19 2022-2023)</p>
+                            </div>
+                            <div class="qcm-section-content" style="margin-top: 10px;">
+                                <p><strong>Explication :</strong> Lis bien ! L'item dit « P2 dans le tube (1) » — ça n'a aucun sens. P2 est la pression du tube 2, pas du tube 1.</p>
+                                <p style="margin-top: 10px;">→ Item absurde → <strong style="color: #dc2626;">FAUX</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="cle-raisonnement" style="margin-top: 20px;">
+                            <p><strong>🎯 Résumé :</strong> Ces 3 types d'items sont des "cadeaux" si tu les repères :</p>
+                            <ul style="margin: 10px 0 0 20px;">
+                                <li><strong>« Turbulent » ou « laminaire »</strong> sans Reynolds → FAUX</li>
+                                <li><strong>« Dépend de la température »</strong> → FAUX</li>
+                                <li><strong>Erreur de rédaction</strong> (P2 dans tube 1) → FAUX</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Piège du débit "double"</h4>
+                        <p>L'item "Le débit dans le segment 2 est le double de celui du segment 1" est un piège récurrent. Le débit est TOUJOURS CONSTANT dans tout le système (conservation de la matière). Cet item est systématiquement FAUX.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion diamètre / rayon</h4>
+                        <p>L'énoncé donne parfois D₁ = 20 cm (diamètre), donc r₁ = 10 cm. Attention à bien utiliser le rayon dans les formules avec πr². Certains items proposent le diamètre au lieu du rayon pour piéger.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège de la pression "absolue"</h4>
+                        <p>Avec Bernoulli, on ne peut calculer que la VARIATION de pression (ΔP), jamais la valeur absolue de P₂. L'item "on peut calculer la valeur absolue de la pression dans le segment 2" est FAUX.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion unités cm/s vs m/s</h4>
+                        <p>Les données peuvent être en cm ou en m. Convertis tout dans la même unité avant de calculer. ρ = 1000 kg/m³ nécessite des vitesses en m/s pour obtenir des Pa.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège "fluide réel" vs "fluide idéal"</h4>
+                        <p>Même si l'énoncé dit "fluide réel", on applique quand même Bernoulli (en approximation). La distinction fluide réel/idéal n'empêche pas d'utiliser les formules de ce cours.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Erreur sur la relation pression-section</h4>
+                        <p>Dans le schéma à 3 tubes, le tube 2 a la plus grande section donc la vitesse la plus faible donc la pression la plus forte. P₂ > P₁ et P₂ > P₃. L'item "P₂ plus faible que P₁" est FAUX.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Piège de l'écoulement "turbulent" ou "laminaire"</h4>
+                        <p>Sans le nombre de Reynolds (Re), on ne peut PAS affirmer si l'écoulement est laminaire ou turbulent. Les items "toujours turbulent" ou "toujours laminaire" sans calcul de Re sont des pièges.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre est un cadeau pour les étudiants qui travaillent les annales : les QCM sont extrêmement récurrents et utilisent toujours les mêmes schémas avec les mêmes valeurs. Le professeur recycle ses questions d'une année sur l'autre.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Maîtrisez parfaitement les démonstrations des formules de continuité et de Bernoulli. Comprenez les conditions d'application (fluide idéal incompressible, régime stationnaire). Soyez capables d'adapter les calculs à des situations nouvelles.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les deux schémas : les 3 tubes en série et les 2 segments avec rétrécissement. Maîtrisez les formules Q = VS, S₁V₁ = S₂V₂ et ΔP = ½ρ(v₂² - v₁²). Faites tous les QCM des annales jusqu'à les réussir sans erreur.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Apprenez par cœur les calculs des deux schémas récurrents. Pour le schéma 3 tubes : V₁ = 5 cm/s, V₂ = 1 cm/s, V₃ = 10 cm/s. Pour le schéma 2 segments avec V₂ = 25 m/s : r₂ = 2 cm. Retenez que le débit est toujours constant et que D₂ < D₁ implique P₂ < P₁. Ces réflexes suffisent pour avoir les points sur ce chapitre très prévisible.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
