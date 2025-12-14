@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC10 - Pressions partielles et échanges gazeux - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC10 - Pressions partielles et échanges gazeux pulmonaires</h1>
+            <div class="meta">
+                <span>📚 UE7 - Physiologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- THÉMATIQUE 1 : TRANSPORT O2 -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Transport de l'O2 dans le sang (6 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q17<br>2024-2025 Q16<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos du transport du dioxygène (O2) dans le sang. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le contenu du sang en O2, est proportionnel à la pression partielle PO2 et à l'affinité de l'hémoglobine.</div>
+                                            <div class="qcm-item">B: La fixation de l'O2 dans le sang est déterminée par les gradients de pression partielle PO2.</div>
+                                            <div class="qcm-item">C: Le transport de l'O2 dans le sang se fait essentiellement sous forme dissoute dans le plasma.</div>
+                                            <div class="qcm-item">D: Pour une pression partielle PO2 de 600 mmHg, le volume d'O2, dissous dans le plasma est de 1,8 mL pour 100 ml de sang.</div>
+                                            <div class="qcm-item">E: Pour une concentration sanguine d'hémoglobine à 6g/100 mL totalement saturée en oxygène, le contenu en O2 du sang artériel systémique est de l'ordre de 8 mL/100 mL.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos du transport du dioxygène (O2) dans le sang. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La pression partielle d'oxygène dans l'air inspiré au sommet du mont Everest, pour une pression atmosphérique de 200 mmHg, est de 21 mm Hg.</div>
+                                            <div class="qcm-item">B: A cette altitude, la pression partielle d'oxygène d'un mélange inspiré contentant 50% d'oxygène est de 100 mmHg.</div>
+                                            <div class="qcm-item">C: La fixation de l'O2 dans le sang est déterminée par les gradients de pression partielle PO2.</div>
+                                            <div class="qcm-item">D: Pour une pression partielle PO2 de 1000 mm Hg, le volume d'O2 dissous dans le plasma est de 0,3 mL pour 100 mL de sang.</div>
+                                            <div class="qcm-item">E: Pour une concentration d'hémoglobine de 5 g/100 mL totalement saturée en oxygène ayant un pouvoir oxyphorique égal à 1,34, le contenu en O2 du sang artériel est de 6,7 mL/100 mL.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q17</td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos du transport du dioxygène (O2) dans le sang. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le contenu du sang en O2 est proportionnel à l'affinité de l'hémoglobine pour l'O2</div>
+                                            <div class="qcm-item">B: La fixation de l'O2 dans le sang est déterminée par les gradients de pression partielle PO2</div>
+                                            <div class="qcm-item">C: Le transport de l'O2 dans le sang se fait essentiellement sous forme dissoute dans le plasma</div>
+                                            <div class="qcm-item">D: Pour pression partielle PO2 de 2000 mm Hg, le volume d'O2 dissous dans le plasma est de 60 mL pour 100 mL de sang</div>
+                                            <div class="qcm-item">E: Pour une concentration sanguine d'hémoglobine à 12 g/100 mL totalement saturée en oxygène, le contenu en O2 du sang artériel systémique est de l'ordre de 16 mL/100 mL</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q19</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos du transport du dioxygène (O2) dans le sang. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) ?</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: À la surface de la mer, la pression partielle d'oxygène (PO2) d'un mélange contenant 50% d'oxygène est de 380 mmHg.</div>
+                                            <div class="qcm-item">B: La fixation de l'O2 dans le sang est déterminée par les gradients de pression partielle PO2.</div>
+                                            <div class="qcm-item">C: La pression partielle d'oxygène dans l'air inspiré au sommet du mont Everest, pour une pression atmosphérique de 200 mmHG, est de 21 mmHg.</div>
+                                            <div class="qcm-item">D: La pression atmosphérique augmente avec l'altitude.</div>
+                                            <div class="qcm-item">E: La pression atmosphérique à la surface de la mer est équivalente à celle représentée par une colonne de mercure d'une hauteur de 760 millimètres.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- THÉMATIQUE 2 : PRESSION ATMOSPHÉRIQUE ET PO2 -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Pression atmosphérique et pression partielle en O2 (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q16</td>
+                                    <td>
+                                        <div class="qcm-enonce">A propos de la pression atmosphérique et de la pression partielle en dioxygène (O2). Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La pression atmosphérique augmente avec l'altitude.</div>
+                                            <div class="qcm-item">B: La pression atmosphérique à la surface de la mer est équivalente à celle représentée par une colonne de mercure d'une hauteur de 760 millimètres.</div>
+                                            <div class="qcm-item">C: A la surface de la mer, la pression partielle d'oxygène (PO2) d'un mélange contentant 50% d'oxygène est de 380mmHg.</div>
+                                            <div class="qcm-item">D: La fraction inspirée de dioxygène (FiO2) diminue rapidement avec l'altitude.</div>
+                                            <div class="qcm-item">E: La pression partielle d'oxygène (PO2) diminue avec l'altitude.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année</td>
+                                <td>🎯 QCM sur partie ciblée du cours - avec récurrence des items</td>
+                                <td>🔗 Cours appartenant à une suite logique</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Ce chapitre a généré <strong>6 QCM sur 5 ans</strong> (moyenne 1,2 QCM/an). Les questions portent sur 2 thématiques très ciblées avec une forte récurrence des items.</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-2021</th>
+                                        <th>2021-2022</th>
+                                        <th>2022-2023</th>
+                                        <th>2023-2024</th>
+                                        <th>2024-2025</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Transport O2 (calculs)</td>
+                                        <td><span class="qcm-identique-cell">🔄 Q17</span></td>
+                                        <td class="qcm-cell">Q17</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q17</td>
+                                        <td class="qcm-cell">Q16, Q19</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pression atmo / PO2 / altitude</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="qcm-cell">Q16</td>
+                                        <td class="empty-cell">—</td>
+                                        <td class="empty-cell">—</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Légende -->
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="reco-item">
+                        <h4>Calcul de la pression partielle en O2 (PO2)</h4>
+                        <p>Savoir calculer la PO2 en fonction de la pression atmosphérique et de la fraction inspirée (FiO2). Formule : PO2 = Patm × FiO2. Connaître les valeurs clés : Patm = 760 mmHg au niveau de la mer, FiO2 = 21%.</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Transport de l'O2 : forme dissoute vs combinée</h4>
+                        <p>Comprendre que 97% de l'O2 est transporté sous forme combinée à l'hémoglobine et seulement 3% sous forme dissoute. Savoir calculer le volume d'O2 dissous (coefficient 0,003 mL/100mL/mmHg) et le contenu en O2 combiné (pouvoir oxyphorique × [Hb]).</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Effet de l'altitude sur Patm et PO2</h4>
+                        <p>Retenir que la Patm DIMINUE avec l'altitude, mais que la FiO2 reste CONSTANTE à 21%. C'est la PO2 qui diminue (car Patm diminue), pas la fraction d'O2 dans l'air.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Gradients de pression partielle</h4>
+                        <p>Comprendre que la fixation et les échanges d'O2 sont déterminés par les GRADIENTS de pression partielle PO2 entre l'alvéole et le sang.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans (item récurrent)</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- Spoiler explicatif -->
+                    <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 12px 15px; border-radius: 0 8px 8px 0; margin-bottom: 20px;">
+                        <p style="margin: 0; color: #92400e; font-size: 0.9rem;">💡 <strong>Note :</strong> On a isolé tous les items de cours en « points de cours à connaître » afin de faciliter la compréhension. Les items de calcul sont traités séparément avec leurs HACKS.</p>
+                    </div>
+
+                    <!-- ENCADRÉ 1 : Items de cours à mémoriser -->
+                    <div class="qcm-analyse">
+                        <h4>📌 Items de cours à mémoriser</h4>
+                        
+                        <!-- Valeurs à connaître en en-tête -->
+                        <div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border: 2px solid #3b82f6; border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+                            <p style="margin: 0 0 12px 0; font-weight: 700; color: #1e40af; font-size: 1.05rem;">📋 Valeurs et formules à connaître par cœur :</p>
+                            <ul style="margin: 0; padding-left: 20px; color: #1e40af;">
+                                <li style="margin-bottom: 8px;"><strong>P<sub>atm</sub> au niveau de la mer</strong> = 760 mmHg</li>
+                                <li style="margin-bottom: 8px;"><strong>FiO<sub>2</sub></strong> (fraction d'O<sub>2</sub> dans l'air) = 21% (constante quelle que soit l'altitude)</li>
+                                <li style="margin-bottom: 8px;"><strong>Transport O<sub>2</sub></strong> = 97% combiné à l'Hb, 3% dissous</li>
+                                <li style="margin-bottom: 8px;"><strong>Coefficient O<sub>2</sub> dissous</strong> = 0,003</li>
+                                <li style="margin-bottom: 15px;"><strong>Pouvoir oxyphorique</strong> = 1,34 mL O<sub>2</sub>/g Hb</li>
+                            </ul>
+                            <p style="margin: 0 0 8px 0; font-weight: 700; color: #1e40af;">Formules de calcul :</p>
+                            <ul style="margin: 0; padding-left: 20px; color: #1e40af;">
+                                <li style="margin-bottom: 8px;"><strong>PO<sub>2</sub></strong> = P<sub>atm</sub> × FiO<sub>2</sub></li>
+                                <li style="margin-bottom: 8px;"><strong>O<sub>2</sub> dissous</strong> = 0,003 × PO<sub>2</sub> <em>(en mL/100mL de sang)</em></li>
+                                <li style="margin-bottom: 0;"><strong>O<sub>2</sub> combiné</strong> = 1,34 × [Hb] <em>(en mL/100mL de sang, si saturation 100%)</em></li>
+                            </ul>
+                        </div>
+
+                        <!-- Item type 1 -->
+                        <div style="margin-bottom: 35px;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 1 : Gradients de pression partielle</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 5 fois en 5 ans (2020-2021, 2021-2022, 2023-2024, 2024-2025 Q16, 2024-2025 Q19)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>B</strong> - « La fixation de l'O<sub>2</sub> dans le sang est déterminée par les gradients de pression partielle PO<sub>2</sub>. » <span style="color: #6b7280;">(exemple Q17 2020-2021)</span></p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 8px;">L'O<sub>2</sub> passe de l'alvéole vers le sang parce qu'il y a une <strong>différence de pression</strong> (= gradient)</li>
+                                <li style="margin-bottom: 8px;">Dans l'alvéole, la PO<sub>2</sub> est <strong>élevée</strong>. Dans le sang veineux qui arrive, la PO<sub>2</sub> est <strong>basse</strong></li>
+                                <li style="margin-bottom: 8px;">L'O<sub>2</sub> diffuse naturellement du milieu où la pression est haute vers le milieu où elle est basse</li>
+                                <li style="margin-bottom: 0;">→ C'est comme ça que l'oxygène passe des poumons vers la circulation sanguine : <strong>par simple diffusion</strong></li>
+                            </ul>
+                            
+                            <p style="margin: 15px 0 0 0; padding: 12px; background: #fff7ed; border-radius: 8px; color: #c2410c;"><strong>→ La fixation de l'O<sub>2</sub> est bien déterminée par les gradients de pression partielle PO<sub>2</sub></strong></p>
+                            
+                            <div style="background: #fef2f2; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="margin: 0; color: #991b1b;"><strong>⚠️ Piège potentiel :</strong> Si l'item dit « déterminée par la concentration d'hémoglobine » ou « déterminée par l'affinité de l'Hb » → ce n'est pas la même chose. C'est bien le <strong>gradient de PO<sub>2</sub></strong> qui détermine la <strong>fixation</strong>.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item type 2 -->
+                        <div style="margin-bottom: 35px;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 2 : Forme de transport de l'O<sub>2</sub></p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 3 fois en 5 ans (2020-2021, 2023-2024, 2024-2025 Q16)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>C</strong> - « Le transport de l'O<sub>2</sub> dans le sang se fait essentiellement sous forme dissoute dans le plasma. » <span style="color: #6b7280;">(exemple Q17 2020-2021)</span></p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <p style="margin: 0 0 10px 0; color: #374151;">Le sang transporte l'O<sub>2</sub> de deux façons :</p>
+                            <ul style="margin: 0 0 12px 20px; color: #374151;">
+                                <li style="margin-bottom: 8px;"><strong>97% sous forme combinée</strong> à l'hémoglobine (dans les globules rouges)</li>
+                                <li style="margin-bottom: 0;"><strong>3% sous forme dissoute</strong> dans le plasma</li>
+                            </ul>
+                            <p style="margin: 0 0 10px 0; color: #374151;">Donc « essentiellement sous forme dissoute » = <strong>FAUX</strong>.</p>
+                            
+                            <p style="margin: 0 0 10px 0; padding: 12px; background: #fff7ed; border-radius: 8px; color: #c2410c;"><strong>→ L'O<sub>2</sub> est transporté essentiellement sous forme combinée à l'hémoglobine</strong></p>
+                            
+                            <p style="margin: 0; color: #374151;"><strong>Pourquoi c'est logique ?</strong> La forme dissoute est trop faible pour oxygéner correctement les tissus. Sans l'hémoglobine, on ne pourrait pas survivre.</p>
+                        </div>
+
+                        <!-- Item type 3 -->
+                        <div style="margin-bottom: 35px;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 3 : Pression atmosphérique et altitude</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 2 fois en 5 ans (2022-2023 Q16, 2024-2025 Q19)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>A</strong> - « La pression atmosphérique augmente avec l'altitude. » <span style="color: #6b7280;">(exemple Q16 2022-2023)</span></p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 8px;">La pression atmosphérique, c'est le <strong>poids de l'air</strong> au-dessus de nous</li>
+                                <li style="margin-bottom: 8px;">Plus on monte en altitude, moins il y a d'air au-dessus → donc la pression <strong>DIMINUE</strong></li>
+                                <li style="margin-bottom: 8px;">Au niveau de la mer : P<sub>atm</sub> = 760 mmHg</li>
+                                <li style="margin-bottom: 8px;">Au Mont Blanc (~4700 m) : P<sub>atm</sub> ≈ 500 mmHg</li>
+                                <li style="margin-bottom: 0;">Au sommet de l'Everest (~8800 m) : P<sub>atm</sub> ≈ 200 mmHg</li>
+                            </ul>
+                            
+                            <p style="margin: 15px 0 0 0; padding: 12px; background: #fff7ed; border-radius: 8px; color: #c2410c;"><strong>→ La pression atmosphérique DIMINUE avec l'altitude</strong></p>
+                            
+                            <div style="background: #fef2f2; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="margin: 0; color: #991b1b;"><strong>⚠️ Piège :</strong> L'item dit « augmente » → <strong>FAUX</strong>.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item type 4 -->
+                        <div style="margin-bottom: 35px;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 4 : Valeur de P<sub>atm</sub> au niveau de la mer</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 2 fois en 5 ans (2022-2023 Q16, 2024-2025 Q19)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>B</strong> - « La pression atmosphérique à la surface de la mer est équivalente à celle représentée par une colonne de mercure d'une hauteur de 760 millimètres. » <span style="color: #6b7280;">(exemple Q16 2022-2023)</span></p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <p style="margin: 0 0 10px 0; color: #374151;">C'est la définition même du mmHg (millimètre de mercure) : <strong>1 atmosphère = 760 mmHg</strong>. Cette valeur est dans l'encadré bleu ci-dessus.</p>
+                            
+                            <p style="margin: 0; padding: 12px; background: #fff7ed; border-radius: 8px; color: #c2410c;"><strong>→ P<sub>atm</sub> au niveau de la mer = 760 mmHg</strong></p>
+                        </div>
+
+                        <!-- Item type 5 -->
+                        <div style="margin-bottom: 35px;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 5 : FiO<sub>2</sub> et altitude</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 1 fois en 5 ans (2022-2023 Q16)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>D</strong> - « La fraction inspirée de dioxygène (FiO<sub>2</sub>) diminue rapidement avec l'altitude. » <span style="color: #6b7280;">(exemple Q16 2022-2023)</span></p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 8px;">La FiO<sub>2</sub>, c'est le <strong>pourcentage d'oxygène</strong> dans l'air qu'on respire</li>
+                                <li style="margin-bottom: 8px;">Ce pourcentage est <strong>toujours le même : 21%</strong>, que tu sois au niveau de la mer ou au sommet de l'Everest</li>
+                                <li style="margin-bottom: 0;">Ce qui change avec l'altitude, c'est la <strong>pression</strong> à laquelle on respire cet air, pas sa composition</li>
+                            </ul>
+                            
+                            <p style="margin: 15px 0 0 0; padding: 12px; background: #fff7ed; border-radius: 8px; color: #c2410c;"><strong>→ La FiO<sub>2</sub> reste constante à 21% quelle que soit l'altitude</strong></p>
+                            
+                            <div style="background: #fef2f2; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="margin: 0; color: #991b1b;"><strong>⚠️ Piège :</strong> L'item dit « FiO<sub>2</sub> diminue » → <strong>FAUX</strong>.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item type 6 -->
+                        <div style="margin-bottom: 0;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 6 : PO<sub>2</sub> et altitude</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 1 fois en 5 ans (2022-2023 Q16)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>E</strong> - « La pression partielle d'oxygène (PO<sub>2</sub>) diminue avec l'altitude. » <span style="color: #6b7280;">(exemple Q16 2022-2023)</span></p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 8px;">Contrairement à la FiO<sub>2</sub> (qui reste à 21%), la PO<sub>2</sub> <strong>diminue</strong> bien avec l'altitude</li>
+                                <li style="margin-bottom: 8px;">Pourquoi ? Parce que : <strong>PO<sub>2</sub> = P<sub>atm</sub> × FiO<sub>2</sub></strong></li>
+                                <li style="margin-bottom: 0;">Si P<sub>atm</sub> diminue (en altitude) et que FiO<sub>2</sub> reste à 21%, alors PO<sub>2</sub> diminue</li>
+                            </ul>
+                            
+                            <p style="margin: 15px 0 0 0; padding: 12px; background: #fff7ed; border-radius: 8px; color: #c2410c;"><strong>→ La PO<sub>2</sub> diminue avec l'altitude</strong></p>
+                            
+                            <div style="background: #f0fdf4; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="margin: 0; color: #166534;"><strong>✅ À retenir :</strong> FiO<sub>2</sub> = constante (21%), mais PO<sub>2</sub> = diminue en altitude (car P<sub>atm</sub> diminue).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ENCADRÉ 2 : Calcul O2 dissous -->
+                    <div class="qcm-analyse" style="margin-top: 25px;">
+                        <h4>📌 Item de calcul 1 : Volume d'O<sub>2</sub> dissous dans le plasma</h4>
+                        <div class="qcm-badge" style="font-style: italic;">📋 <strong>2020-2021</strong> Q17 | <strong>2021-2022</strong> Q17 | <strong>2023-2024</strong> Q17 | <strong>2024-2025</strong> Q16</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Item type :</div>
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px;">
+                                <p style="margin: 0; font-style: italic;"><strong>D</strong> - « Pour une pression partielle PO<sub>2</sub> de 600 mmHg, le volume d'O<sub>2</sub> dissous dans le plasma est de 1,8 mL pour 100 mL de sang. » <span style="color: #6b7280;">(exemple Q17 2020-2021)</span></p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">La formule du cours :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Volume O<sub>2</sub> dissous = 0,003 × PO<sub>2</sub></strong></p>
+                                <p style="margin-top: 8px;">Le résultat est en mL d'O<sub>2</sub> <strong>pour 100 mL de sang</strong> (c'est intégré dans le coefficient 0,003).</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">HACK Medibox 🚀</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>PO<sub>2</sub> × 3, puis tu décales la virgule de 3 rangs vers la gauche</strong> (ou tu divises par 1000)</p>
+                                <p style="margin-top: 10px;"><strong>Exemple :</strong> PO<sub>2</sub> = 600 mmHg</p>
+                                <p>→ 600 × 3 = 1800 → décale de 3 rangs → <strong>1,8 mL/100mL</strong> ✓</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">Pièges tombés :</div>
+                            <div class="connaissance-pure">
+                                <p><strong>2021-2022 :</strong> « 0,3 mL » pour PO<sub>2</sub> = 1000 mmHg → <strong>FAUX</strong> (c'est 3,0)</p>
+                                <p><strong>2023-2024 :</strong> « 60 mL » pour PO<sub>2</sub> = 2000 mmHg → <strong>FAUX</strong> (c'est 6,0 — erreur de virgule)</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">Piège potentiel (jamais tombé) :</div>
+                            <div class="qcm-section-content">
+                                <p>Si l'item change le volume de référence, il faut adapter :</p>
+                                <ul>
+                                    <li>Pour <strong>1 L de sang</strong> (= 10 × 100 mL) → multiplier par 10 (ex : 1,8 × 10 = 18 mL/L)</li>
+                                    <li>Pour <strong>10 mL de sang</strong> (= 100 mL ÷ 10) → diviser par 10 (ex : 1,8 ÷ 10 = 0,18 mL/10mL)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ENCADRÉ 3 : Calcul O2 combiné -->
+                    <div class="qcm-analyse" style="margin-top: 25px;">
+                        <h4>📌 Item de calcul 2 : Contenu en O<sub>2</sub> combiné à l'hémoglobine</h4>
+                        <div class="qcm-badge" style="font-style: italic;">📋 <strong>2020-2021</strong> Q17 | <strong>2021-2022</strong> Q17 | <strong>2023-2024</strong> Q17 | <strong>2024-2025</strong> Q16</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Item type :</div>
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px;">
+                                <p style="margin: 0; font-style: italic;"><strong>E</strong> - « Pour une concentration d'hémoglobine de 5 g/100mL totalement saturée en oxygène ayant un pouvoir oxyphorique égal à 1,34, le contenu en O<sub>2</sub> est de 6,7 mL/100mL. » <span style="color: #6b7280;">(exemple Q17 2021-2022)</span></p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">La formule du cours :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>O<sub>2</sub> combiné = Pouvoir oxyphorique × [Hb] × Saturation</strong></p>
+                                
+                                <p style="margin-top: 15px;"><strong>Pouvoir oxyphorique</strong> = quantité d'O<sub>2</sub> que peut transporter 1 gramme d'hémoglobine (= 1,34 mL d'O<sub>2</sub>/g Hb)</p>
+                                
+                                <p style="margin-top: 10px;"><strong>Totalement saturée en oxygène</strong> = saturation à 100%, c'est-à-dire que toute l'hémoglobine disponible a fixé de l'O<sub>2</sub></p>
+                                
+                                <p style="margin-top: 15px;">Si saturation = 100%, alors : <strong>O<sub>2</sub> combiné = 1,34 × [Hb]</strong></p>
+                                
+                                <p style="margin-top: 10px;">Le résultat est en mL d'O<sub>2</sub> <strong>pour 100 mL de sang</strong>.</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">Ce que l'énoncé te donne :</div>
+                            <div class="qcm-section-content">
+                                <ul>
+                                    <li style="margin-bottom: 8px;">Une concentration d'hémoglobine [Hb] en g/100mL (ex : 5, 6, 12, 15...)</li>
+                                    <li style="margin-bottom: 8px;">« Totalement saturée » = saturation 100%</li>
+                                    <li>Le pouvoir oxyphorique : parfois donné (ex : 1,34), parfois non → <strong>dans ce cas, retenir 1,34</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 20px;">
+                            <div class="qcm-section-title">HACK Medibox 🚀</div>
+                            <div class="cle-raisonnement">
+                                
+                                <p style="margin-bottom: 15px; font-weight: 600; color: #166534;">Si [Hb] est un multiple de 3 (3, 6, 9, 12, 15...) :</p>
+                                
+                                <p style="margin-bottom: 15px; padding: 10px; background: #f0fdf4; border-radius: 6px;">[Hb] + ([Hb] ÷ 3) = résultat direct</p>
+                                
+                                <ul style="margin-bottom: 25px;">
+                                    <li style="margin-bottom: 10px;">[Hb] = 6 → 6 + 2 = <strong>8</strong> mL/100mL</li>
+                                    <li style="margin-bottom: 10px;">[Hb] = 12 → 12 + 4 = <strong>16</strong> mL/100mL</li>
+                                    <li>[Hb] = 15 → 15 + 5 = <strong>20</strong> mL/100mL</li>
+                                </ul>
+                                
+                                <p style="margin-bottom: 15px; font-weight: 600; color: #b45309;">Si [Hb] n'est pas un multiple de 3 (5, 7, 10, 11...) :</p>
+                                
+                                <p style="margin-bottom: 15px; padding: 10px; background: #fef3c7; border-radius: 6px;">Pose le calcul à la main : [Hb] × 1,34</p>
+                                
+                                <ul>
+                                    <li>[Hb] = 5 → 5 × 1,34 = <strong>6,7</strong> mL/100mL</li>
+                                </ul>
+                                
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">À noter :</div>
+                            <div class="qcm-section-content">
+                                <p>Le prof arrondit souvent : « de l'ordre de 8 mL », « de l'ordre de 16 mL » → c'est normal.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ENCADRÉ 4 : Calcul PO2 air normal -->
+                    <div class="qcm-analyse" style="margin-top: 25px;">
+                        <h4>📌 Item de calcul 3 : PO<sub>2</sub> avec air normal (FiO<sub>2</sub> = 21%)</h4>
+                        <div class="qcm-badge" style="font-style: italic;">📋 <strong>2021-2022</strong> Q17 | <strong>2024-2025</strong> Q19</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Item type :</div>
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px;">
+                                <p style="margin: 0; font-style: italic;"><strong>A</strong> - « La pression partielle d'oxygène dans l'air inspiré au sommet du mont Everest, pour une pression atmosphérique de 200 mmHg, est de 21 mmHg. » <span style="color: #6b7280;">(exemple Q17 2021-2022)</span></p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">La formule du cours :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>PO<sub>2</sub> = P<sub>atm</sub> × FiO<sub>2</sub></strong></p>
+                                <ul style="margin-top: 8px;">
+                                    <li><strong>P<sub>atm</sub></strong> = pression atmosphérique (donnée dans l'énoncé)</li>
+                                    <li><strong>FiO<sub>2</sub></strong> = fraction inspirée d'oxygène = <strong>21% = 0,21</strong> pour l'air normal (quelle que soit l'altitude)</li>
+                                </ul>
+                                <p style="margin-top: 8px;"><strong>Exemple :</strong> P<sub>atm</sub> = 200 mmHg, FiO<sub>2</sub> = 21%</p>
+                                <p>PO<sub>2</sub> = 200 × 0,21 = <strong>42 mmHg</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">HACK Medibox 🚀</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>P<sub>atm</sub> × 21, puis tu décales la virgule de 2 rangs vers la gauche</strong> (ou tu divises par 100)</p>
+                                <p style="margin-top: 10px;"><strong>Exemples :</strong></p>
+                                <ul>
+                                    <li>Niveau de la mer (760 mmHg) : 760 × 21 = 15960 → décale → <strong>160 mmHg</strong> ✓</li>
+                                    <li>Everest (200 mmHg) : 200 × 21 = 4200 → décale → <strong>42 mmHg</strong> ✓</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">Piège classique (tombé 2 fois) :</div>
+                            <div class="connaissance-pure">
+                                <p>L'item dit « PO<sub>2</sub> = 21 mmHg » à l'Everest → <strong>FAUX</strong></p>
+                                <p style="margin-top: 8px;">Le prof joue sur la confusion : 21 c'est le <strong>pourcentage</strong> (FiO<sub>2</sub> = 21%), pas la pression. La vraie PO<sub>2</sub> = <strong>42 mmHg</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ENCADRÉ 5 : Calcul PO2 mélange enrichi -->
+                    <div class="qcm-analyse" style="margin-top: 25px;">
+                        <h4>📌 Item de calcul 4 : PO<sub>2</sub> avec mélange enrichi en O<sub>2</sub></h4>
+                        <div class="qcm-badge" style="font-style: italic;">📋 <strong>2021-2022</strong> Q17 | <strong>2022-2023</strong> Q16 | <strong>2024-2025</strong> Q19</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Item type :</div>
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px;">
+                                <p style="margin: 0; font-style: italic;"><strong>C</strong> - « À la surface de la mer, la pression partielle d'oxygène (PO<sub>2</sub>) d'un mélange contenant 50% d'oxygène est de 380 mmHg. » <span style="color: #6b7280;">(exemple Q16 2022-2023)</span></p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">Petite explication :</div>
+                            <div class="qcm-section-content">
+                                <p>On a vu que dans l'air normal, la FiO<sub>2</sub> est à 21%. Mais dans une bouteille à air comprimé (utilisée à l'hôpital, en plongée...), on peut modifier cette concentration en O<sub>2</sub> pour diverses raisons médicales ou techniques. Le prof peut donc te donner un mélange à 50%, 30%, ou autre.</p>
+                                <p style="margin-top: 8px;">Mais au final, le raisonnement reste le même : tu remplaces 21% par le pourcentage donné dans l'énoncé.</p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">La formule du cours :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>PO<sub>2</sub> = P<sub>atm</sub> × FiO<sub>2</sub></strong></p>
+                                <p style="margin-top: 8px;"><strong>Exemple :</strong> P<sub>atm</sub> = 760 mmHg, FiO<sub>2</sub> = 50%</p>
+                                <p>PO<sub>2</sub> = 760 × 0,50 = <strong>380 mmHg</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">HACK Medibox pour 50% 🚀</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>P<sub>atm</sub> ÷ 2</strong></p>
+                                <ul style="margin-top: 8px;">
+                                    <li>Niveau de la mer, 50% O<sub>2</sub> : 760 ÷ 2 = <strong>380 mmHg</strong> ✓</li>
+                                    <li>Everest, 50% O<sub>2</sub> : 200 ÷ 2 = <strong>100 mmHg</strong> ✓</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">Si autre pourcentage (ex : 30%) — jamais tombé mais possible :</div>
+                            <div class="qcm-section-content">
+                                <p>Poser le calcul à la main : P<sub>atm</sub> × pourcentage ÷ 100</p>
+                                <p style="margin-top: 8px;"><strong>Exemple :</strong> niveau de la mer, 30% O<sub>2</sub> : 760 × 30 ÷ 100 = <strong>228 mmHg</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+                    
+                    <div class="vigilance-item">
+                        <h4>Confusion FiO2 vs PO2</h4>
+                        <p>La FiO2 (fraction inspirée d'O2) reste CONSTANTE à 21% quelle que soit l'altitude. C'est la PO2 (pression partielle) qui DIMINUE avec l'altitude car Patm diminue. Ne confonds pas les deux !</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le piège de l'Everest « 21 mmHg »</h4>
+                        <p>Quand l'énoncé dit « Patm = 200 mmHg, FiO2 = 21% », la PO2 = 200 × 0,21 = 42 mmHg. L'item qui dit « PO2 = 21 mmHg » est FAUX : 21 c'est le pourcentage, pas la pression !</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>O2 dissous vs O2 combiné : ne pas confondre les calculs</h4>
+                        <p>O2 dissous = 0,003 × PO2 (résultat faible : quelques mL). O2 combiné = 1,34 × [Hb] (résultat élevé : 6-20 mL). Les items peuvent mélanger les deux.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le piège du facteur 10 sur l'O2 dissous</h4>
+                        <p>En 2023-2024, l'item disait « 60 mL » au lieu de « 6 mL » pour PO2 = 2000 mmHg. Vérifie toujours l'ordre de grandeur : l'O2 dissous est toujours très faible (< 10 mL/100mL).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>« Essentiellement sous forme dissoute » = TOUJOURS FAUX</h4>
+                        <p>Cet item piège revient régulièrement. Le transport de l'O2 se fait à 97% sous forme COMBINÉE à l'hémoglobine, et seulement 3% sous forme dissoute.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Pression atmosphérique : elle DIMINUE avec l'altitude</h4>
+                        <p>L'item « La pression atmosphérique augmente avec l'altitude » est un piège classique. C'est FAUX : plus on monte, moins il y a d'air au-dessus de nous, donc la pression DIMINUE.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">
+                        Ce chapitre est très prévisible avec 2 types de QCM qui reviennent chaque année : les calculs de PO2/O2 dissous/O2 combiné et les questions sur l'altitude. Le QCM 2020-2021 Q17 est revenu strictement identique en 2024-2025 Q16. Les items récurrents (gradients de PO2, forme dissoute vs combinée) tombent presque chaque année.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Lisez le cours entier pour comprendre la physiologie des échanges gazeux (loi de Dalton, diffusion alvéolo-capillaire, courbe de dissociation de l'Hb). Certaines parties n'ont jamais été testées : loi de Fick, poumon idéal vs réel, transport du CO2...</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur : les formules de calcul de PO2, le coefficient 0,003 pour l'O2 dissous, le pouvoir oxyphorique (1,34), et les valeurs clés (Patm = 760 mmHg, FiO2 = 21%).</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Apprenez les valeurs et formules de l'encadré bleu. Mémorisez les 6 items de cours récurrents (gradients de PO2, forme dissoute FAUX, Patm diminue en altitude...). Utilisez les HACKS de calcul pour répondre rapidement. Avec les annales seules et cette fiche, vous pouvez facilement obtenir votre point sur ce chapitre.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
