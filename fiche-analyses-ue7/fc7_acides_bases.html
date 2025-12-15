@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FC7 - Acides et Bases - Solutions Tampons - Fiche d'Analyse</title>
     <style>
+        /* Filigrane logo Medibox - fixe pendant scroll, responsive */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 900px;
+            max-height: 900px;
+            background-image: url('https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-clair.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Responsive : ajustement mobile */
+        @media (max-width: 768px) {
+            body::after {
+                width: 90vw;
+                height: 90vw;
+                opacity: 0.06;
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -667,7 +696,7 @@
             </details>
 
             <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
-            <details class="main-accordion" open>
+            <details class="main-accordion">
                 <summary>📊 Rappel diagnostic</summary>
                 <div class="accordion-content">
                     <div class="table-wrapper">
