@@ -721,41 +721,235 @@
                             <div class="qcm-section-title">Constat :</div>
                             <div class="qcm-section-content">Ce QCM n'est tombé qu'une seule fois en 5 ans. C'est un QCM de calcul qui teste la loi de Fick. Moins prioritaire que la conductance globale, mais à connaître pour le Niveau 2.</div>
                         </div>
-                        
-                        <div class="qcm-section">
-                            <div class="qcm-section-title">Ce que tu dois faire :</div>
-                            <div class="qcm-section-content">Comprends le principe de la diffusion (du plus concentré vers le moins concentré) et la formule de Fick. Attention aux conversions d'unités (mm → m).</div>
-                        </div>
-                        
-                        <div class="qcm-section">
-                            <div class="qcm-section-title">Clé de raisonnement :</div>
-                            <div class="cle-raisonnement">
-                                <p><strong>Ce que tu dois comprendre SANS ouvrir le cours :</strong></p>
-                                <p>La diffusion, c'est simple : une substance va <strong>toujours</strong> du compartiment où elle est <strong>la plus concentrée</strong> vers celui où elle est <strong>la moins concentrée</strong>. C'est comme un parfum qui se répand dans une pièce.</p>
-                                
-                                <p style="margin-top: 15px;"><strong>🔹 Item A : "Le NaCl se déplace de U1 vers U2"</strong></p>
-                                <p>Regarde les concentrations : C1 = 150 mmol/L (beaucoup) et C2 = 10 mmol/L (peu).<br>
-                                → Le NaCl va du plus concentré vers le moins concentré = de U1 vers U2. ✅ <strong>VRAI</strong></p>
-                                
-                                <p style="margin-top: 15px;"><strong>🔹 Items B et C : Calcul du débit</strong></p>
-                                <p>Formule de Fick : <strong>Débit = D × S × (C1 - C2) / e</strong></p>
-                                <ul>
-                                    <li>D = 10⁻¹⁰ m²/s</li>
-                                    <li>S = 1 m²</li>
-                                    <li>C1 - C2 = 150 - 10 = <strong>140 mmol/L</strong></li>
-                                    <li>e = 1 mm = <strong>10⁻³ m</strong> ⚠️ (piège : convertir en mètres !)</li>
-                                </ul>
-                                <p>Débit = 10⁻¹⁰ × 1 × 140 / 10⁻³ = 140 × 10⁻⁷ = <strong>0,014 mmol/s</strong></p>
-                                <p>→ Item B (0,4.10⁻⁴ mmol/s) : ❌ FAUX | Item C (0,014 mmol/s) : ✅ <strong>VRAI</strong></p>
-                                
-                                <p style="margin-top: 15px;"><strong>🔹 Item D : "Quantité traversée en 1 min ≈ 140 mmol"</strong></p>
-                                <p>Quantité = Débit × Temps = 0,014 × 60 = <strong>0,84 mmol</strong> (très loin de 140 !)</p>
-                                <p><em>Piège : 140 c'est la différence de concentration (C1-C2), pas la quantité.</em> ❌ <strong>FAUX</strong></p>
-                                
-                                <p style="margin-top: 15px;"><strong>🔹 Item E : "Concentration finale U2 = concentration initiale U1"</strong></p>
-                                <p>À l'équilibre, les deux cuves auront la <strong>même concentration finale</strong>, mais ce sera une <strong>moyenne</strong> : (150 + 10) / 2 = 80 mmol/L, pas 150 ! ❌ <strong>FAUX</strong></p>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">Énoncé type :</div>
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px;">
+                                <p style="margin: 0; font-style: italic;">On s'intéresse à un phénomène de diffusion du NaCl à travers une membrane semi-perméable. Deux cuves U1 et U2 de section S = 1 m² sont séparées par une membrane d'épaisseur e = 1 mm. C1 = 150 mmol/L, C2 = 10 mmol/L, D = 10⁻¹⁰ m²/s.</p>
                             </div>
                         </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">Ce que l'énoncé te donne :</div>
+                            <div class="qcm-section-content">
+                                <ul>
+                                    <li style="margin-bottom: 8px;"><strong>S</strong> = section de la membrane = 1 m²</li>
+                                    <li style="margin-bottom: 8px;"><strong>e</strong> = épaisseur de la membrane = 1 mm</li>
+                                    <li style="margin-bottom: 8px;"><strong>C1</strong> = concentration dans U1 = 150 mmol/L (beaucoup)</li>
+                                    <li style="margin-bottom: 8px;"><strong>C2</strong> = concentration dans U2 = 10 mmol/L (peu)</li>
+                                    <li><strong>D</strong> = coefficient de diffusion = 10⁻¹⁰ m²/s</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title">La formule du cours :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Débit = D × S × ΔC / e</strong></p>
+                            </div>
+                        </div>
+
+                        <!-- ITEM A -->
+                        <div class="qcm-analyse" style="margin-top: 25px; border-color: #10b981;">
+                            <h4>📌 Item A : "Le NaCl se déplace de U1 vers U2"</h4>
+                            
+                            <div class="qcm-section">
+                                <div class="qcm-section-title">Principe à comprendre :</div>
+                                <div class="qcm-section-content">
+                                    <p>La diffusion, c'est simple : une substance va <strong>toujours</strong> du compartiment où elle est <strong>la plus concentrée</strong> vers celui où elle est <strong>la moins concentrée</strong>. C'est comme un parfum qui se répand dans une pièce.</p>
+                                </div>
+                            </div>
+
+                            <div class="qcm-section" style="margin-top: 15px;">
+                                <div class="qcm-section-title">Raisonnement :</div>
+                                <div class="cle-raisonnement">
+                                    <p>Regarde les concentrations :</p>
+                                    <ul>
+                                        <li>C1 = 150 mmol/L → U1 contient <strong>beaucoup</strong> de NaCl</li>
+                                        <li>C2 = 10 mmol/L → U2 contient <strong>peu</strong> de NaCl</li>
+                                    </ul>
+                                    <p style="margin-top: 10px;">→ Le NaCl va du plus concentré vers le moins concentré = <strong>de U1 vers U2</strong></p>
+                                    <p style="margin-top: 10px; padding: 8px; background: #d1fae5; border-radius: 6px;"><strong>✅ VRAI</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ITEMS B et C -->
+                        <div class="qcm-analyse" style="margin-top: 25px; border-color: #3b82f6;">
+                            <h4>📌 Items B et C : Calcul du débit de diffusion</h4>
+                            <p style="font-size: 0.85rem; color: #6b7280; margin-bottom: 15px;">B: "Débit = 0,4.10⁻⁴ mmol/s" | C: "Débit = 0,014 mmol/s"</p>
+                            
+                            <div class="qcm-section">
+                                <div class="qcm-section-title">La formule du cours :</div>
+                                <div class="cle-raisonnement">
+                                    <p><strong>Débit = D × S × ΔC / e</strong></p>
+                                </div>
+                            </div>
+
+                            <div class="qcm-section" style="margin-top: 15px;">
+                                <div class="qcm-section-title">⚠️ Attention aux unités !</div>
+                                <div class="connaissance-pure">
+                                    <p>Cette formule ne fonctionne que si on utilise les <strong>unités SI</strong> :</p>
+                                    <table style="width: 100%; margin-top: 10px; font-size: 0.9rem; border-collapse: collapse;">
+                                        <tr style="background: #f3f4f6;">
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>D</strong></td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">m²/s</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>S</strong></td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">m²</td>
+                                        </tr>
+                                        <tr style="background: #f3f4f6;">
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>ΔC</strong></td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">mol/m³</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>e</strong></td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">m</td>
+                                        </tr>
+                                        <tr style="background: #dbeafe;">
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Résultat</strong></td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>mol/s</strong></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="qcm-section" style="margin-top: 15px;">
+                                <div class="qcm-section-title">Étape 1 : Convertir les données de l'énoncé</div>
+                                <div class="cle-raisonnement">
+                                    <table style="width: 100%; font-size: 0.9rem; border-collapse: collapse;">
+                                        <tr style="background: #1a365d; color: white;">
+                                            <th style="padding: 8px; border: 1px solid #e5e7eb;">Donnée</th>
+                                            <th style="padding: 8px; border: 1px solid #e5e7eb;">Valeur énoncé</th>
+                                            <th style="padding: 8px; border: 1px solid #e5e7eb;">Conversion</th>
+                                            <th style="padding: 8px; border: 1px solid #e5e7eb;">Valeur SI</th>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>D</strong></td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">10⁻¹⁰ m²/s</td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">Déjà OK</td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">10⁻¹⁰ m²/s</td>
+                                        </tr>
+                                        <tr style="background: #f9fafb;">
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>S</strong></td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">1 m²</td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">Déjà OK</td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">1 m²</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>C1</strong></td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">150 mmol/L</td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">mmol/L = mol/m³</td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">150 mol/m³</td>
+                                        </tr>
+                                        <tr style="background: #f9fafb;">
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>C2</strong></td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">10 mmol/L</td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">mmol/L = mol/m³</td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">10 mol/m³</td>
+                                        </tr>
+                                        <tr style="background: #fef3c7;">
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>e</strong></td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;">1 mm</td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>÷ 1000</strong></td>
+                                            <td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>10⁻³ m</strong></td>
+                                        </tr>
+                                    </table>
+                                    <p style="margin-top: 10px; padding: 8px; background: #d1fae5; border-radius: 6px;">💡 <strong>Astuce :</strong> mmol/L et mol/m³ c'est pareil (même valeur numérique) !</p>
+                                </div>
+                            </div>
+
+                            <div class="qcm-section" style="margin-top: 15px;">
+                                <div class="qcm-section-title">Étape 2 : Calculer ΔC</div>
+                                <div class="cle-raisonnement">
+                                    <p>ΔC = C1 - C2 = 150 - 10 = <strong>140 mol/m³</strong></p>
+                                </div>
+                            </div>
+
+                            <div class="qcm-section" style="margin-top: 15px;">
+                                <div class="qcm-section-title">Étape 3 : Appliquer la formule</div>
+                                <div class="cle-raisonnement">
+                                    <p>Débit = D × S × ΔC / e</p>
+                                    <p style="margin-top: 8px;">Débit = 10⁻¹⁰ × 1 × 140 / 10⁻³</p>
+                                    <p style="margin-top: 8px;">Débit = 140 × 10⁻¹⁰ / 10⁻³</p>
+                                    <p style="margin-top: 8px;">Débit = 140 × 10⁻¹⁰ × 10³ <span style="color: #6b7280;">(diviser par 10⁻³ = multiplier par 10³)</span></p>
+                                    <p style="margin-top: 8px;">Débit = <strong>140 × 10⁻⁷ mol/s</strong></p>
+                                </div>
+                            </div>
+
+                            <div class="qcm-section" style="margin-top: 15px;">
+                                <div class="qcm-section-title">Étape 4 : Convertir en mmol/s (pour comparer aux items)</div>
+                                <div class="cle-raisonnement">
+                                    <p>L'énoncé propose des réponses en <strong>mmol/s</strong>, donc on convertit :</p>
+                                    <p style="margin-top: 8px;">1 mol = 1000 mmol → on <strong>multiplie par 1000</strong> (= 10³)</p>
+                                    <p style="margin-top: 12px;">Débit = 140 × 10⁻⁷ × 10³ = 140 × 10⁻⁴ mmol/s = <strong>0,014 mmol/s</strong></p>
+                                </div>
+                            </div>
+
+                            <div class="qcm-section" style="margin-top: 15px;">
+                                <div class="qcm-section-title">Conclusion :</div>
+                                <div class="cle-raisonnement">
+                                    <p style="padding: 8px; background: #fee2e2; border-radius: 6px;"><strong>Item B (0,4 × 10⁻⁴ = 0,00004 mmol/s) : ❌ FAUX</strong></p>
+                                    <p style="margin-top: 8px; padding: 8px; background: #d1fae5; border-radius: 6px;"><strong>Item C (0,014 mmol/s) : ✅ VRAI</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ITEM D -->
+                        <div class="qcm-analyse" style="margin-top: 25px; border-color: #f59e0b;">
+                            <h4>📌 Item D : "La quantité traversée en 1 min ≈ 140 mmol"</h4>
+                            
+                            <div class="qcm-section">
+                                <div class="qcm-section-title">Raisonnement :</div>
+                                <div class="cle-raisonnement">
+                                    <p>On vient de calculer que le débit = 0,014 mmol/s</p>
+                                    <p style="margin-top: 10px;">En 1 minute (= 60 secondes) :</p>
+                                    <p style="margin-top: 10px;"><strong>Quantité = Débit × Temps = 0,014 × 60 = 0,84 mmol</strong></p>
+                                </div>
+                            </div>
+
+                            <div class="qcm-section" style="margin-top: 15px;">
+                                <div class="qcm-section-title">Le piège :</div>
+                                <div class="connaissance-pure">
+                                    <p><strong>140</strong>, c'est la <strong>différence de concentration</strong> (C1 - C2), PAS la quantité qui traverse !</p>
+                                    <p style="margin-top: 8px;">Le prof joue sur cette confusion pour piéger les étudiants pressés.</p>
+                                </div>
+                            </div>
+
+                            <div class="qcm-section" style="margin-top: 15px;">
+                                <div class="cle-raisonnement">
+                                    <p style="padding: 8px; background: #fee2e2; border-radius: 6px;"><strong>❌ FAUX</strong> (la vraie quantité est 0,84 mmol)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ITEM E -->
+                        <div class="qcm-analyse" style="margin-top: 25px; border-color: #8b5cf6;">
+                            <h4>📌 Item E : "La concentration finale dans U2 = concentration initiale dans U1"</h4>
+                            
+                            <div class="qcm-section">
+                                <div class="qcm-section-title">Principe à comprendre :</div>
+                                <div class="qcm-section-content">
+                                    <p>À l'équilibre (quand la diffusion est terminée), les deux cuves auront la <strong>même concentration finale</strong>. Mais cette concentration sera une <strong>moyenne</strong> entre C1 et C2, pas la valeur de C1 !</p>
+                                </div>
+                            </div>
+
+                            <div class="qcm-section" style="margin-top: 15px;">
+                                <div class="qcm-section-title">Raisonnement (si volumes égaux) :</div>
+                                <div class="cle-raisonnement">
+                                    <p>Concentration finale = (C1 + C2) / 2 = (150 + 10) / 2 = <strong>80 mmol/L</strong></p>
+                                    <p style="margin-top: 10px;">Ce n'est PAS 150 mmol/L (la concentration initiale de U1) !</p>
+                                </div>
+                            </div>
+
+                            <div class="qcm-section" style="margin-top: 15px;">
+                                <div class="cle-raisonnement">
+                                    <p style="padding: 8px; background: #fee2e2; border-radius: 6px;"><strong>❌ FAUX</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
