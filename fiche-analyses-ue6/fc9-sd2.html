@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC9 - SD2 - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .mixte-cell {
+            background: #fef3c7;
+            font-size: 0.8rem;
+        }
+        
+        /* Tag FC8 pour items mixtes */
+        .tag-fc8 {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC9 - SD2 : 2ème semaine de développement</h1>
+            <div class="meta">
+                <span>📚 UE6 - Embryologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- IMPLANTATION / NIDATION -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Implantation / Nidation (5 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q12</td>
+                                    <td>
+                                        <div class="qcm-enonce">Au cours de l'implantation :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Dès le début de l'implantation les cellules du trophoblaste excrètent des quantités croissantes d'hCG (hormone chorionique gonadotrope).</div>
+                                            <div class="qcm-item">B: Le cytotrophoblaste détruit et phagocyte tous les composants de l'endomètre à son contact.</div>
+                                            <div class="qcm-item">C: Au cours de son implantation le blastocyste se nourrit, dans un premier temps, des produits de la destruction de l'endomètre phagocytés et digérés par le syncytiotrophoblaste.</div>
+                                            <div class="qcm-item">D: La progression du blastocyste dans le tissu conjonctif de la muqueuse utérine déclenche la réaction déciduale.</div>
+                                            <div class="qcm-item">E: Au 12ème jour de développement, par apoptose de cellules du bouton embryonnaire le disque embryonnaire didermique se met en place.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q11<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items D,E</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Le clivage et l'implantation du zygote :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La première division de segmentation survient deux jours après l'arrivée du zygote dans la cavité utérine. <span class="tag-fc8">FC8</span></div>
+                                            <div class="qcm-item">B: Au cours de la période de clivage, chaque blastomère exprime d'une façon équivalente la totalité du programme génétique. <span class="tag-fc8">FC8</span></div>
+                                            <div class="qcm-item">C: La totipotence des blastomères est liée à l'expression du gène oct-3. <span class="tag-fc8">FC8</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">D: Apposition et éclosion sont des préalables à l'implantation du blastocyste dans la muqueuse utérine.</div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">E: Le cytotrophoblaste détruit et phagocyte tous les composants de l'endomètre à son contact grâce à la sécrétion d'enzymes protéolytiques.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q9<br><span style="background: #fef3c7; color: #92400e; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;">items C,D,E</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Les premières semaines du développement embryonnaire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Au cours de la première semaine de développement les transcrits maternels sont utilisés jusqu'à l'activation du génome embryonnaire. <span class="tag-fc8">FC8</span></div>
+                                            <div class="qcm-item">B: Au cours de la segmentation, chaque division cellulaire, permet à l'embryon d'augmenter de volume pour atteindre son volume maximal au stade blastocyste. <span class="tag-fc8">FC8</span></div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">C: L'implantation débute environ deux jours après l'arrivée du blastocyste dans la cavité utérine.</div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">D: L'implantation se termine vers le 7ème jour de développement.</div>
+                                            <div class="qcm-item" style="background: #fef3c7; font-weight: bold;">E: Le blastocyste activé s'oriente de façon à présenter son pôle embryonnaire face à l'endomètre.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q13</td>
+                                    <td>
+                                        <div class="qcm-enonce">L'implantation du blastocyste :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La fenêtre optimale pour l'implantation se situe entre J15 et J18.</div>
+                                            <div class="qcm-item">B: Le blastocyste commence son implantation par son pôle embryonnaire.</div>
+                                            <div class="qcm-item">C: La progression du blastocyste dans le tissu conjonctif de la muqueuse de l'endomètre déclenche la réaction déciduale ou décidualisation.</div>
+                                            <div class="qcm-item">D: Lors de l'implantation une sécrétion croissante de FSH et de LH est observée chez la mère.</div>
+                                            <div class="qcm-item">E: L'implantation transforme le corps jaune en corpus albicans.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q10</td>
+                                    <td>
+                                        <div class="qcm-enonce">La deuxième semaine de développement :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Au début de l'implantation les cellules du trophoblaste, qui ont traversé l'épithélium utérin, changent d'aspect, elles prolifèrent par mitose et forment le syncythiotrophoblaste.</div>
+                                            <div class="qcm-item">B: Le syncythiotrophoblaste détruit et phagocyte tous les composants de l'endomètre qui sont à son contact grâce à la sécrétion d'enzymes protéolytiques.</div>
+                                            <div class="qcm-item">C: Au 8ème jour de développement, soit à la fin de l'implantation, le syncytiotrophoblaste entoure le blastocyste uniquement au niveau de la caduque basilaire.</div>
+                                            <div class="qcm-item">D: Au début de la 2ème semaine de développement, le premier feuillet du disque embryonnaire à se mettre en place est celui de l'hypoblaste ou endoderme primitif.</div>
+                                            <div class="qcm-item">E: Les cellules de l'hypoblaste sont à l'origine de la mise en place de la membrane de Heuser, de la vésicule vitelline primaire et de la vésicule vitelline secondaire.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- EMBRYON DIDERMIQUE ET CAVITÉS -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Embryon didermique et cavités (4 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q12</td>
+                                    <td>
+                                        <div class="qcm-enonce">La deuxième semaine de développement :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Au début de la deuxième semaine de développement, l'hypoblaste (ou endoderme primitif) se met en place à partir de cellules du bouton embryonnaire.</div>
+                                            <div class="qcm-item">B: L'épiblaste se met en place à partir des cellules du trophoblaste.</div>
+                                            <div class="qcm-item">C: La vésicule vitelline primaire ou cavité exocoelomique se met en place avant la cavité amniotique.</div>
+                                            <div class="qcm-item">D: La vésicule vitelline secondaire est délimitée par la membrane de Heuser.</div>
+                                            <div class="qcm-item">E: A la fin de la deuxième semaine de développement le pédicule embryonnaire est en continuité avec la somatopleure extra-embryonnaire et la splanchnopleure extra-embryonnaire.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q10</td>
+                                    <td>
+                                        <div class="qcm-enonce">Les transformations du blastocyste :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le feuillet dorsal est le premier feuillet du disque embryonnaire à se mettre en place.</div>
+                                            <div class="qcm-item">B: Vers le 8ème jour du développement, la cavité amniotique se met en place par apoptose de cellules du bouton embryonnaire.</div>
+                                            <div class="qcm-item">C: La prolifération de cellules de l'hypoblaste (ou endoderme primitif) assure la mise en place de la membrane de Heuser.</div>
+                                            <div class="qcm-item">D: La membrane de Heuser délimite la vésicule vitelline secondaire.</div>
+                                            <div class="qcm-item">E: Vers la fin de la 2ème semaine de développement, des cellules se détachent de l'épiblaste au niveau de l'extrémité caudale du disque embryonnaire et forment le mésoblaste extra-embryonnaire.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2023-2024<br>Q14</td>
+                                    <td>
+                                        <div class="qcm-enonce">Les transformations du bouton embryonnaire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La réaction déciduale permet aux cellules du bouton embryonnaire de s'organiser en deux feuillets.</div>
+                                            <div class="qcm-item">B: Le premier feuillet à se mettre en place est le feuillet ventral.</div>
+                                            <div class="qcm-item">C: Le feuillet dorsal se met en place par apoptose des cellules du bouton embryonnaire.</div>
+                                            <div class="qcm-item">D: La vésicule vitelline primaire est la première cavité à s'individualiser.</div>
+                                            <div class="qcm-item">E: La membrane de Heuser délimite la cavité amniotique.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <thead>
+                                <tr>
+                                    <th>Fréquence</th>
+                                    <th>Moyenne QCM/an</th>
+                                    <th>Format QCM</th>
+                                    <th>Dépendance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>✅ Tombe chaque année</td>
+                                    <td>1,4 QCM/an (7 sur 5 ans)</td>
+                                    <td>🎯 QCM sur parties ciblées avec récurrence des items</td>
+                                    <td>🔗 Suite logique avec FC8 (SD1)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Les QCM sont classés par thématique principale. Certaines années apparaissent dans plusieurs thématiques si la question couvre plusieurs sujets.</p>
+                        
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thématique</th>
+                                        <th>2020-2021</th>
+                                        <th>2021-2022</th>
+                                        <th>2022-2023</th>
+                                        <th>2023-2024</th>
+                                        <th>2024-2025</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Implantation / Nidation</td>
+                                        <td class="qcm-cell">Q12</td>
+                                        <td class="mixte-cell">Q11 (mixte FC8)</td>
+                                        <td class="mixte-cell">Q9 (mixte FC8)</td>
+                                        <td class="qcm-cell">Q13</td>
+                                        <td class="qcm-cell">Q10</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Embryon didermique / Cavités</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="qcm-cell">Q12</td>
+                                        <td class="qcm-cell">Q10</td>
+                                        <td class="qcm-cell">Q14</td>
+                                        <td class="qcm-cell">Q10</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #92400e;">
+                                <strong>⚠️ QCM mixtes FC8+FC9</strong> : Q11 2021-2022 et Q9 2022-2023 mélangent des items de FC8 (1ère semaine) et FC9 (2ème semaine). Maîtrise les deux chapitres ensemble !
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>📚 Recommandations Niveau 2 (ciblage)</summary>
+                <div class="accordion-content">
+                    
+                    <div class="reco-item">
+                        <h4>Implantation / Nidation</h4>
+                        <p>Maîtrise les étapes chronologiques de l'implantation : apposition → éclosion → implantation. Retiens bien les jours clés (J6-7 début, J12 fin), le rôle du syncytiotrophoblaste (phagocytose, enzymes protéolytiques) vs cytotrophoblaste (mitoses), et la réaction déciduale.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Formation de l'embryon didermique</h4>
+                        <p>Retiens l'ordre de mise en place : 1) Hypoblaste (premier feuillet, ventral), 2) Épiblaste (dorsal), 3) Cavité amniotique (J8, par apoptose), 4) Membrane de Heuser, 5) Vésicule vitelline primaire (J9), 6) Réticulum → cavité choriale, 7) Vésicule vitelline secondaire (J13).</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Trophoblaste et hormones</h4>
+                        <p>Le trophoblaste sécrète l'hCG dès le début de l'implantation. Cette hormone transforme le corps jaune en corps jaune de grossesse (pas en corpus albicans !). Les taux de FSH et LH ne changent pas pendant la 2ème semaine.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 1 (annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM 1 -->
+                    <div class="qcm-analyse">
+                        <h4>Cytotrophoblaste vs Syncytiotrophoblaste</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q12, <strong>2021-2022</strong> Q11</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Piège récurrent : le prof inverse souvent cytotrophoblaste et syncytiotrophoblaste dans les propositions. C'est tombé 2 fois avec le même piège !</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens bien : c'est le SYNCYTIOTROPHOBLASTE qui détruit et phagocyte l'endomètre, pas le cytotrophoblaste. Le cytotrophoblaste assure les mitoses.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Cyto</strong>trophoblaste = <strong>C</strong>ellules qui se divisent (mitoses)</p>
+                                <p><strong>Syncytio</strong>trophoblaste = <strong>S</strong>yngle cellule géante qui <strong>S</strong>e nourrit (phagocyte l'endomètre)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 -->
+                    <div class="qcm-analyse">
+                        <h4>Ordre des feuillets et cavités</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q12, <strong>2022-2023</strong> Q10, <strong>2023-2024</strong> Q14</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Thème ultra-récurrent ! Le prof teste systématiquement l'ordre de mise en place des structures et les confusions hypoblaste/épiblaste et vésicule primaire/secondaire.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends la chronologie par cœur : Hypoblaste (ventral, 1er) → Épiblaste (dorsal) → Cavité amniotique (J8) → Membrane de Heuser → VV primaire (J9) → VV secondaire (J13).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>HEA</strong> = ordre de mise en place : <strong>H</strong>ypoblaste → <strong>É</strong>piblaste → cavité <strong>A</strong>mniotique</p>
+                                <p><strong>Hypo</strong>blaste = en <strong>bas</strong> = ventral = 1er feuillet</p>
+                                <p><strong>Épi</strong>blaste = au <strong>dessus</strong> = dorsal = 2ème feuillet</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 -->
+                    <div class="qcm-analyse">
+                        <h4>Membrane de Heuser</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q10, <strong>2023-2024</strong> Q14</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Piège récurrent sur ce que délimite la membrane de Heuser. Le prof propose souvent qu'elle délimite la cavité amniotique ou la VV secondaire.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">La membrane de Heuser délimite uniquement la VÉSICULE VITELLINE PRIMAIRE (avec l'hypoblaste). La VV secondaire est formée plus tard par des cellules issues de l'hypoblaste qui refoulent Heuser.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                Membrane de Heuser = VV Primaire. C'est un QCM de connaissance pure. Retiens : Heuser + Hypoblaste = VV1 (primaire).
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 -->
+                    <div class="qcm-analyse">
+                        <h4>Réaction déciduale</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q12, <strong>2023-2024</strong> Q13</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Item récurrent et toujours vrai : la progression du blastocyste dans le tissu conjonctif déclenche la réaction déciduale.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">La réaction déciduale commence vers J9, transforme les fibroblastes en cellules déciduales chargées en glycogène, et s'étend à toute la muqueuse en 1 semaine.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un item récurrent et toujours vrai. Apprends-le par cœur !
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 5 -->
+                    <div class="qcm-analyse">
+                        <h4>Hormones lors de l'implantation</h4>
+                        <div class="qcm-badge">📋 <strong>2023-2024</strong> Q13</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Pièges sur les hormones : le prof propose que FSH/LH augmentent ou que le corps jaune devient corpus albicans.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Les taux de FSH et LH ne changent PAS pendant la 2ème semaine. L'hCG (sécrétée par le trophoblaste) transforme le corps jaune en corps jaune DE GROSSESSE, pas en corpus albicans !</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Corpus albicans</strong> = corps jaune qui dégénère = PAS de grossesse</p>
+                                <p><strong>Corps jaune de grossesse</strong> = grossesse en cours = maintenu par hCG</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion cytotrophoblaste / syncytiotrophoblaste</h4>
+                        <p>Le SYNCYTIOTROPHOBLASTE (pas le cytotrophoblaste) est responsable de la phagocytose de l'endomètre et de la sécrétion d'enzymes protéolytiques. Le cytotrophoblaste assure les mitoses. Piège tombé 2 fois !</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion vésicule primaire / secondaire</h4>
+                        <p>La membrane de Heuser délimite la VV PRIMAIRE (pas secondaire). La VV secondaire est plus petite et se forme vers J13 par des cellules issues de l'hypoblaste qui refoulent Heuser.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion hypoblaste / épiblaste</h4>
+                        <p>L'hypoblaste (ventral) est le PREMIER feuillet à se mettre en place, pas l'épiblaste (dorsal). L'épiblaste se met en place APRÈS l'hypoblaste, pas par apoptose mais par différenciation des cellules restantes.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Dates clés souvent inversées</h4>
+                        <p>J6-7 = début implantation. J8 = cavité amniotique. J9 = VV primaire + début réaction déciduale. J12 = fin implantation. J13 = VV secondaire. Le prof propose souvent J7 ou J8 pour la fin de l'implantation : c'est FAUX !</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Corps jaune de grossesse vs corpus albicans</h4>
+                        <p>L'hCG transforme le corps jaune en corps jaune DE GROSSESSE (qui prolifère), pas en corpus albicans (qui est le corps jaune dégénéré en absence de grossesse).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Attention aux QCM mixtes FC8+FC9</h4>
+                        <p>Q11 2021-2022 et Q9 2022-2023 mélangent FC8 et FC9. Les items sur la segmentation, Oct-3, totipotence = FC8. Les items sur l'implantation, apposition, éclosion = FC9. Révise les deux chapitres ensemble !</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre tombe systématiquement chaque année avec 1 à 2 QCM. Le prof recycle beaucoup les mêmes pièges : confusion cyto/syncytio, ordre des feuillets, et membrane de Heuser. Attention aux QCM mixtes avec FC8 (2 fois en 5 ans) !</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Maîtrise l'intégralité du cours, notamment les sections sur l'immunologie de l'implantation et les implantations ectopiques qui n'ont jamais été testées mais pourraient l'être. Comprends les mécanismes moléculaires (intégrines, enzymes).</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentre-toi sur les étapes de l'implantation et la formation de l'embryon didermique. Apprends par cœur l'ordre chronologique des structures (HEA puis Heuser puis VV1 puis VV2) et les jours clés.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        1 à 2 points quasi assurés en maîtrisant les 4 pièges récurrents : cyto vs syncytio, ordre des feuillets, membrane de Heuser, et réaction déciduale. Révise aussi FC8 car les QCM mixtes sont fréquents.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
