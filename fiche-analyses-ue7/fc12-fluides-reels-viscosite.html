@@ -949,40 +949,29 @@
                                 <p style="margin: 0; font-style: italic; color: #374151;"><strong>E</strong> - « Si le rayon du segment 1 est de 10 mm, le rayon du segment 2 sera inférieur à 2 mm pour vérifier les caractéristiques des écoulements données dans l'énoncé. »</p>
                             </div>
                             
-                            <div class="qcm-section">
-                                <div class="qcm-section-title">Données de l'énoncé :</div>
-                                <div class="qcm-section-content">
-                                    <ul style="margin: 8px 0 0 20px;">
-                                        <li>Segment 1 : laminaire (Re₁ &lt; 2000), r₁ = 10 mm</li>
-                                        <li>Segment 2 : turbulent (Re₂ &gt; 10000)</li>
-                                        <li>Re = 2ρVr/η</li>
-                                        <li>Conservation du débit : S₁V₁ = S₂V₂ (donc πr₁²V₁ = πr₂²V₂)</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="qcm-section" style="margin-top: 15px;">
-                                <div class="qcm-section-title">Raisonnement :</div>
-                                <div class="cle-raisonnement">
-                                    <p><strong>Étape 1 :</strong> On utilise le rapport des nombres de Reynolds</p>
-                                    <p>Re₂/Re₁ = (2ρV₂r₂/η) / (2ρV₁r₁/η) = V₂r₂ / V₁r₁</p>
-                                    
-                                    <p style="margin-top: 10px;"><strong>Étape 2 :</strong> Conservation du débit → V₂ = V₁(r₁/r₂)²</p>
-                                    <p>En remplaçant : Re₂/Re₁ = V₁(r₁/r₂)² × r₂ / V₁r₁ = r₁/r₂</p>
-                                    
-                                    <p style="margin-top: 10px;"><strong>Étape 3 :</strong> Application numérique</p>
-                                    <p>On veut Re₂ &gt; 10000 et Re₁ &lt; 2000</p>
-                                    <p>Donc Re₂/Re₁ &gt; 10000/2000 = 5</p>
-                                    <p>Donc r₁/r₂ &gt; 5 → r₂ &lt; r₁/5 = 10/5 = <strong>2 mm</strong></p>
-                                </div>
+                            <!-- Explication de ce qu'on demande -->
+                            <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 0 8px 8px 0; margin-bottom: 15px;">
+                                <p style="margin: 0 0 10px 0; font-weight: 600; color: #92400e;">⚠️ Cette phrase est un peu difficile à comprendre. Prenons le temps de la décortiquer :</p>
+                                <p style="margin: 0 0 8px 0; color: #92400e;">L'énoncé du QCM dit que le segment 1 est en régime <strong>laminaire</strong> et le segment 2 est en régime <strong>turbulent</strong>.</p>
+                                <p style="margin: 0 0 8px 0; color: #92400e;">Le prof te donne le rayon du segment 1 (r₁ = 10 mm) et te demande : <strong>quel rayon faut-il pour le segment 2 pour que l'écoulement y soit turbulent ?</strong></p>
+                                <p style="margin: 0; color: #92400e;">En résumé : on cherche le rayon maximum du segment 2 pour garantir un régime turbulent.</p>
                             </div>
                             
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Raisonnement rapide :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 10px;">Pour passer de <strong>laminaire</strong> (Re &lt; 2000) à <strong>turbulent</strong> (Re &gt; 10000), il faut que Re soit <strong>multiplié par au moins 5</strong> (car 10000 / 2000 = 5).</li>
+                                <li style="margin-bottom: 10px;">Pour augmenter Re, il faut <strong>diminuer le rayon</strong>. Pourquoi ? Parce que quand le tube se rétrécit, la vitesse augmente (le même débit passe dans un tuyau plus petit → ça accélère). Et comme Re dépend de la vitesse, Re augmente.</li>
+                                <li style="margin-bottom: 10px;"><strong>Pourquoi Re × 5 → r ÷ 5 ?</strong> Avec la conservation du débit, on peut montrer que Re = 2ρQ / (πηr). Donc <strong>Re est inversement proportionnel à r</strong> : si tu divises r par 5, Re est multiplié par 5. C'est inutile de détailler le calcul ici, l'important c'est de retenir cette relation inverse.</li>
+                                <li style="margin-bottom: 0;">Donc : r₂ &lt; r₁ / 5 = 10 / 5 = <strong>2 mm</strong></li>
+                            </ul>
+                            
                             <div style="background: #f0fdf4; border-radius: 8px; padding: 12px; margin-top: 15px;">
-                                <p style="margin: 0; color: #166534;"><strong>→ L'item est donc VRAI.</strong> Pour passer de laminaire à turbulent, r₂ &lt; 2 mm.</p>
+                                <p style="margin: 0; color: #166534;"><strong>→ L'item est donc VRAI.</strong></p>
                             </div>
                             
                             <div style="background: #ede9fe; border-radius: 8px; padding: 12px; margin-top: 10px;">
-                                <p style="margin: 0; color: #5b21b6;"><strong>💡 HACK Medibox :</strong> Retiens que pour ce QCM identique, la réponse est TOUJOURS r₂ &lt; 2 mm quand r₁ = 10 mm. Pas besoin de refaire le calcul à chaque fois !</p>
+                                <p style="margin: 0 0 8px 0; color: #5b21b6;"><strong>💡 HACK Medibox :</strong> Retiens la règle → <strong>r₂ &lt; r₁ / 5</strong>. Si les chiffres changent, tu divises simplement le rayon initial par 5.</p>
+                                <p style="margin: 0; color: #5b21b6;"><em>Exemple :</em> Si on te donne r₁ = 15 mm, alors tu fais 15 / 5 = 3 mm → il faut que r₂ soit inférieur à 3 mm pour passer en régime turbulent.</p>
                             </div>
                         </div>
                     </div>
