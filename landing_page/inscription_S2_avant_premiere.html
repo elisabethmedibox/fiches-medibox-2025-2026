@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediBox Antilles-Guyane | Inscription Semestre 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bleu-medibox: #1a365d;
+            --corail: #ff6f61;
+            --corail-light: #fff2f0;
+            --vert-clair: #e0f7f4;
+            --vert-fonce: #00796b;
+            --bleu-clair: #e8f0fb;
+            --jaune: #fef7e0;
+            --blanc: #ffffff;
+            --gris-texte: #333333;
+            --gris-clair: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--bleu-medibox);
+            background: var(--gris-clair);
+            line-height: 1.6;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--bleu-medibox) 0%, #2d4a7c 100%);
+            color: var(--blanc);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 30px 30px, 20px 20px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 180px;
+            height: auto;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 span {
+            color: var(--corail);
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--corail);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero .intro {
+            font-size: 1rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+
+        .badge-places {
+            display: inline-block;
+            background: var(--corail);
+            color: var(--blanc);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* SECTION ELISABETH */
+        .section-elisabeth {
+            background: var(--blanc);
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .section-elisabeth .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .section-elisabeth h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--bleu-medibox);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .section-elisabeth p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .signature {
+            font-style: italic;
+            color: var(--corail);
+            font-weight: 500;
+            margin-top: 20px;
+        }
+
+        /* SECTION POURQUOI MEDIBOX */
+        .section-pourquoi {
+            background: var(--bleu-clair);
+            padding: 50px 20px;
+        }
+
+        .section-pourquoi h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--bleu-medibox);
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--blanc);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card .icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: var(--bleu-medibox);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* SECTION OFFRES */
+        .section-offres {
+            background: var(--blanc);
+            padding: 50px 20px;
+        }
+
+        .section-offres h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--bleu-medibox);
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .section-offres .intro-offres {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-size: 0.95rem;
+        }
+
+        .offres-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .offre-card {
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offre-card.premium {
+            background: linear-gradient(135deg, var(--bleu-medibox) 0%, #2d4a7c 100%);
+            color: var(--blanc);
+            border: 3px solid var(--corail);
+        }
+
+        .offre-card.standard {
+            background: linear-gradient(135deg, #ffd9d5 0%, #ffccc7 100%);
+            color: var(--bleu-medibox);
+            border: 2px solid var(--bleu-medibox);
+        }
+
+        .offre-badge {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--corail);
+            color: var(--blanc);
+            padding: 5px 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+
+        .offre-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .offre-card.premium h3 {
+            color: var(--blanc);
+        }
+
+        .offre-card.standard h3 {
+            color: var(--bleu-medibox);
+        }
+
+        .offre-prix {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .offre-card.premium .offre-prix {
+            color: var(--corail);
+        }
+
+        .offre-card.standard .offre-prix {
+            color: var(--corail);
+        }
+
+        .offre-card ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .offre-card ul li {
+            padding: 8px 0;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .offre-card ul li::before {
+            content: '✓';
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .offre-card.premium ul li::before {
+            color: var(--corail);
+        }
+
+        .offre-card.standard ul li::before {
+            color: var(--corail);
+        }
+
+        .btn-inscription {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-inscription:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .offre-card.premium .btn-inscription {
+            background: var(--corail);
+            color: var(--blanc);
+        }
+
+        .offre-card.standard .btn-inscription {
+            background: var(--corail);
+            color: var(--blanc);
+        }
+
+        /* BONUS BOX STANDARD */
+        .offre-card.standard .bonus-box-standard {
+            background: var(--bleu-medibox);
+            border: 2px solid var(--bleu-medibox);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .offre-card.standard .bonus-box-standard h4 {
+            color: #7dd3c8;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .offre-card.standard .bonus-box-standard p {
+            color: var(--blanc);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* BONUS BOX */
+        .bonus-box {
+            background: var(--vert-clair);
+            border: 2px solid var(--vert-fonce);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .bonus-box h4 {
+            color: var(--vert-fonce);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bonus-box p {
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        .offre-card.premium .bonus-box {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .offre-card.premium .bonus-box h4 {
+            color: #7dd3c8;
+            font-size: 0.9rem;
+        }
+
+        .offre-card.premium .bonus-box p {
+            color: rgba(255,255,255,0.95);
+            font-size: 0.85rem;
+        }
+
+        /* SECTION TEMOIGNAGE */
+        .section-resultat {
+            background: var(--corail-light);
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .resultat-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--blanc);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .resultat-box h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--bleu-medibox);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .resultat-chiffre {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--corail);
+            line-height: 1;
+        }
+
+        .resultat-chiffre span {
+            font-size: 1.5rem;
+            color: var(--bleu-medibox);
+        }
+
+        .resultat-box .legende {
+            font-size: 1.1rem;
+            color: var(--bleu-medibox);
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        .resultat-box .sous-texte {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* CTA FINAL */
+        .section-cta {
+            background: var(--bleu-medibox);
+            padding: 50px 20px;
+            text-align: center;
+            color: var(--blanc);
+        }
+
+        .section-cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .section-cta p {
+            font-size: 1rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .section-cta .btn-cta {
+            display: inline-block;
+            background: var(--corail);
+            color: var(--blanc);
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section-cta .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 111, 97, 0.4);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0f2341;
+            color: var(--blanc);
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--corail);
+            text-decoration: none;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .offres-container {
+                grid-template-columns: 1fr;
+            }
+
+            .resultat-chiffre {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo">
+                <img src="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-sombre.png" alt="Logo MediBox">
+            </div>
+            <h1>MEDI<span>BOX</span> Antilles-Guyane</h1>
+            <p class="subtitle">La seule prépa 100% transparente qui ose les avis vérifiés</p>
+            <p class="intro">Rejoins la prépa préférée des étudiants en PASS/LAS des Antilles-Guyane pour le Semestre 2 et donne-toi toutes les chances de réussir.</p>
+            <div class="badge-places">🎯 Seulement ~15 places disponibles</div>
+        </div>
+    </section>
+
+    <!-- MOT D'ELISABETH -->
+    <section class="section-elisabeth">
+        <div class="container">
+            <h2>Un mot de la fondatrice</h2>
+            <p>Je suis Elisabeth, la fondatrice de MediBox Antilles-Guyane, mais aussi la mère d'un étudiant aujourd'hui en 5ème année de médecine.</p>
+            <p>Quand j'ai créé cette prépa il y a 5 ans, je ne m'attendais pas à ce qu'elle devienne aussi rapidement la prépa préférée des étudiants de la région. Dès le départ, j'ai fait le choix d'un modèle "familial" : un nombre limité de places pour pouvoir connaître chaque étudiant personnellement et l'accompagner avec humanité et bienveillance.</p>
+            <p>Chaque année, certains étudiants réalisent en cours de route que la médecine n'est pas faite pour eux. Cette année encore, environ <strong>15 places se libéreront au S2</strong>. Je souhaite les proposer à des étudiants motivés qui veulent se donner toutes les chances de réussir.</p>
+            <p class="signature">— Elisabeth</p>
+        </div>
+    </section>
+
+    <!-- POURQUOI MEDIBOX -->
+    <section class="section-pourquoi">
+        <h2>Pourquoi choisir MediBox ?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon">📚</div>
+                <h3>Des cours d'une qualité exceptionnelle</h3>
+                <p>Nos cours sont intégralement rédigés, annotés avec les questions tombées les années précédentes. Tu ne trouveras pas mieux aux Antilles-Guyane.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">👨‍🏫</div>
+                <h3>Des tuteurs hyper sympas</h3>
+                <p>Notre équipe de tuteurs est disponible, bienveillante et à l'écoute. Pose tes questions sur Discord, ils te répondront rapidement.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📋</div>
+                <h3>Des supports pédagogiques uniques</h3>
+                <p>Fiches de révision, analyses d'annales ultra-complètes, vidéos explicatives... Des outils qui n'existent nulle part ailleurs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🎯</div>
+                <h3>Un coaching personnalisé</h3>
+                <p>Un coach dédié t'accompagne pour optimiser ta méthode de travail et rester motivé tout au long du semestre.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RÉSULTAT -->
+    <section class="section-resultat">
+        <div class="resultat-box">
+            <h2>L'année dernière, 17 étudiants déçus de leur prépa et mal classés au S1 ont rejoint MediBox en cours d'année</h2>
+            <div class="resultat-chiffre">16 <span>/ 17</span></div>
+            <p class="legende">sont passés en deuxième année</p>
+            <p class="sous-texte">On ne quitte pas sa prépa en cours d'année pour rien. On n'en paie pas une deuxième sans raison. Et on ne passe pas de "mal classé" à "admis" sans avoir changé quelque chose.</p>
+        </div>
+    </section>
+
+    <!-- OFFRES -->
+    <section class="section-offres">
+        <h2>🎄 Nos offres Semestre 2</h2>
+        <p class="intro-offres">Le même tarif qu'en janvier. Mais pas la même opportunité si tu t'inscris maintenant.</p>
+        
+        <div class="offres-container">
+            <!-- OFFRE STANDARD (maintenant en premier) -->
+            <div class="offre-card standard">
+                <h3>Formule Essentielle</h3>
+                <div class="offre-prix">1 150 €</div>
+                <p style="font-size: 0.85rem; margin-top: -5px; margin-bottom: 15px;">(paiement en 5 fois possible, sous conditions)</p>
+                <ul>
+                    <li>Accès à tous les cours en ligne en PDF</li>
+                    <li>Accès à nos fiches de stratégie et de révision</li>
+                    <li>Banque de milliers de QCM d'entraînement</li>
+                    <li>Toutes les annales corrigées</li>
+                    <li>Cours en live et replays disponibles des tuteurs et des professeurs</li>
+                    <li>Vidéos explicatives de chaque chapitre</li>
+                    <li>Fiches de révision exclusives</li>
+                    <li>Accès au Discord avec les tuteurs</li>
+                </ul>
+                
+                <div class="bonus-box-standard">
+                    <h4>💡 En t'inscrivant maintenant...</h4>
+                    <p>Tu es sûr(e) d'avoir une place au S2, ce qui ne sera peut-être plus le cas après les partiels, là où la demande est la plus forte.</p>
+                </div>
+                
+                <div class="bonus-box-standard" style="margin-top: 10px;">
+                    <h4>🎁 BONUS si inscription avant janvier et paiement comptant</h4>
+                    <p>Accès gratuit à <span style="background-color: #ffe066; color: #1a365d; padding: 1px 4px; border-radius: 3px; font-weight: bold;">une UE</span> du S1 de ton choix pour réviser le concours de janvier</p>
+                </div>
+            </div>
+
+            <!-- OFFRE PREMIUM (maintenant en second) -->
+            <div class="offre-card premium">
+                <div class="offre-badge">RECOMMANDÉ</div>
+                <h3>Formule Complète</h3>
+                <div class="offre-prix">1 750 €</div>
+                <p style="font-size: 0.85rem; margin-top: -5px; margin-bottom: 15px; opacity: 0.9;">(paiement en 5 fois possible, sous conditions)</p>
+                <ul style="margin: 0;">
+                    <li>Tous les éléments de la formule Essentielle</li>
+                </ul>
+                <p style="text-align: center; margin: 0; line-height: 1;"><span style="color: var(--corail); font-size: 2.5rem; font-weight: bold;">+</span></p>
+                <ul style="margin: 0;">
+                    <li>Cours imprimés et livrés chez toi (filière principale, hors options)</li>
+                </ul>
+                <p style="text-align: center; margin: 0; line-height: 1;"><span style="color: var(--corail); font-size: 2.5rem; font-weight: bold;">+</span></p>
+                <ul style="margin: 0;">
+                    <li><strong>1 coaching mensuel</strong> avec un coach dédié</li>
+                </ul>
+                <p style="text-align: center; margin: 0; line-height: 1;"><span style="color: var(--corail); font-size: 2.5rem; font-weight: bold;">+</span></p>
+                <ul style="margin: 0;">
+                    <li>Le livre des annales des 5 dernières années relié et envoyé chez toi (250 pages)</li>
+                </ul>
+                
+                <div class="bonus-box">
+                    <h4>🎁 BONUS 1 si inscription avant janvier</h4>
+                    <p>Accès gratuit à <span style="background-color: #ffe066; color: #1a365d; padding: 1px 4px; border-radius: 3px; font-weight: bold;">une UE</span> du S1 de ton choix pour réviser le concours de janvier</p>
+                </div>
+                
+                <div class="bonus-box" style="margin-top: 10px;">
+                    <h4>🎁 BONUS 2 si inscription avant janvier</h4>
+                    <p>Accès à notre module de méthodologie de travail 100% créé par notre prépa : il n'est pas trop tard pour apprendre à travailler !</p>
+                </div>
+                
+                <div class="bonus-box" style="margin-top: 10px;">
+                    <h4>🎁 BONUS 3 si inscription avant janvier et paiement comptant</h4>
+                    <p>Accès à <span style="background-color: #ffe066; color: #1a365d; padding: 1px 4px; border-radius: 3px; font-weight: bold;">deux UE</span> du S1 de ton choix pour réviser le concours de janvier</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section-cta">
+        <h2>Prêt(e) à rejoindre l'aventure MediBox ?</h2>
+        <p>Les places sont limitées et partiront très vite début janvier. Ne laisse pas passer cette opportunité.</p>
+        <a href="https://www.laspasscaraibes.com/contact" class="btn-cta">🚀 Je réserve ma place maintenant</a>
+        <p style="margin-top: 15px; font-size: 0.85rem; opacity: 0.9;">Indique dans ce formulaire à quelle formule tu souhaites t'inscrire, la prépa prendra contact avec toi rapidement.</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>MediBox Antilles-Guyane</strong> — La prépa 100% transparente</p>
+        <p>Une question ? <a href="mailto:equipe.medibox.2025@gmail.com">equipe.medibox.2025@gmail.com</a></p>
+    </footer>
+
+</body>
+</html>
