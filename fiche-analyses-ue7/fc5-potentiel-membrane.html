@@ -498,6 +498,190 @@
         .avertissement strong {
             color: #92400e;
         }
+        
+        /* Tableaux récapitulatifs */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        .recap-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .recap-table thead {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+        }
+        
+        .recap-table th {
+            padding: 12px 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        
+        .recap-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        .recap-table tbody tr:hover {
+            background: #f8fafc;
+        }
+        
+        .recap-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Phases du PA - couleurs */
+        .phase-repos td:first-child { border-left: 4px solid #64748b; }
+        .phase-depol td:first-child { border-left: 4px solid #ff6b7a; }
+        .phase-repol td:first-child { border-left: 4px solid #8b5cf6; }
+        .phase-hyper td:first-child { border-left: 4px solid #10b981; }
+        .phase-retour td:first-child { border-left: 4px solid #1a365d; }
+        
+        /* États des canaux */
+        .etat-ferme {
+            background: #64748b;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .etat-ouvert {
+            background: #10b981;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .etat-inactive {
+            background: #f59e0b;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .detail-small {
+            display: block;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+        
+        /* Tableau états Na+ */
+        .etats-table th:first-child,
+        .etats-table td:first-child {
+            text-align: center;
+            width: 120px;
+        }
+        
+        .etat-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        
+        .ferme-badge {
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+            color: white;
+        }
+        
+        .ouvert-badge {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+        
+        .inactive-badge {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+        }
+        
+        .icon-oui {
+            color: #10b981;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .icon-non {
+            color: #ef4444;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        /* Boîte piège */
+        .piege-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        
+        .piege-box p {
+            margin: 0;
+            color: #92400e;
+        }
+        
+        .piege-box ul li {
+            color: #78350f;
+            margin-bottom: 5px;
+        }
+        
+        /* Schéma PA */
+        .schema-pa-container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+        
+        .schema-pa {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .recap-table {
+                font-size: 0.75rem;
+                min-width: 600px;
+            }
+            
+            .recap-table th,
+            .recap-table td {
+                padding: 8px 6px;
+            }
+            
+            .etat-badge {
+                padding: 4px 10px;
+                font-size: 0.75rem;
+            }
+            
+            .schema-pa {
+                min-width: 480px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -505,7 +689,7 @@
         <div class="header">
             <h1>FC5 - Potentiel de membrane et potentiel d'action</h1>
             <div class="meta">
-                <span>📚 UE7 - Physiologie / Biophysique</span>
+                <span>📚 UE7 - Physiologie</span>
                 <span>🎯 Fiche d'Analyse</span>
             </div>
         </div>
@@ -519,7 +703,7 @@
                     
                     <!-- POTENTIEL DE REPOS -->
                     <div class="qcm-thematique">
-                        <h4>🎯 Potentiel de repos d'un neurone (5 QCM)</h4>
+                        <h4>🎯 Potentiel de repos du neurone (5 QCM)</h4>
                         <table class="qcm-table">
                             <thead>
                                 <tr>
@@ -529,20 +713,7 @@
                             </thead>
                             <tbody>
                                 <tr class="qcm-identique">
-                                    <td>2020-2021<br>Q8</td>
-                                    <td>
-                                        <div class="qcm-enonce">A propos du potentiel de repos d'un neurone. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
-                                        <div class="qcm-items">
-                                            <div class="qcm-item">A: Le potentiel de repos est de l'ordre de -35 à -45 millivolts.</div>
-                                            <div class="qcm-item">B: Dépend du transport des ions Na+ et K+ à travers des canaux membranaires.</div>
-                                            <div class="qcm-item">C: Dépend de l'activité de la pompe à protons H+/K+ ATPase.</div>
-                                            <div class="qcm-item">D: Dépend de la présence d'un canal de fuite potassique.</div>
-                                            <div class="qcm-item">E: Est indépendant du transport de chlore.</div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="qcm-identique">
-                                    <td>2021-2022<br>Q11</td>
+                                    <td>2020-2021 Q8<br>2021-2022 Q11<br><em>🔄 Identiques</em></td>
                                     <td>
                                         <div class="qcm-enonce">A propos du potentiel de repos d'un neurone. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
                                         <div class="qcm-items">
@@ -572,11 +743,11 @@
                                     <td>
                                         <div class="qcm-enonce">À propos du potentiel de repos d'un neurone. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
                                         <div class="qcm-items">
-                                            <div class="qcm-item">A: Le potentiel de repos varie en fonction du type de neurone entre est de l'ordre de -40 à -90 millivolts.</div>
-                                            <div class="qcm-item">B: Dépend du transport des ions Ca++ à travers des canaux membranaires.</div>
-                                            <div class="qcm-item">C: Dépend de l'activité de la pompe à protons H+/K+-ATPase.</div>
+                                            <div class="qcm-item">A: Le potentiel de repos varie en fonction du type de neurone entre est de l'ordre de -40 à -90 millivolts</div>
+                                            <div class="qcm-item">B: Dépend du transport des ions Ca++ à travers des canaux membranaires</div>
+                                            <div class="qcm-item">C: Dépend de l'activité de la pompe à protons H+/K+-ATPase</div>
                                             <div class="qcm-item">D: Dépend de la présence d'un canal de fuite sodique.</div>
-                                            <div class="qcm-item">E: Est indépendant du transport de chlore.</div>
+                                            <div class="qcm-item">E: Est indépendant du transport de chlore</div>
                                         </div>
                                     </td>
                                 </tr>
@@ -585,11 +756,11 @@
                                     <td>
                                         <div class="qcm-enonce">A propos du potentiel de repos d'un neurone. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) ?</div>
                                         <div class="qcm-items">
-                                            <div class="qcm-item">A: Le potentiel de repos varie en fonction du type de neurone entre est de l'ordre de 0 à -90 millivolts.</div>
-                                            <div class="qcm-item">B: Dépend du transport des ions Na+ et Cl- à travers des canaux membranaires.</div>
-                                            <div class="qcm-item">C: Dépend de l'activité de la pompe à protons H+/K+-ATPase.</div>
-                                            <div class="qcm-item">D: Dépend de la présence d'un canal de fuite potassique.</div>
-                                            <div class="qcm-item">E: Est indépendant de la présence d'un canal de fuite potassique.</div>
+                                            <div class="qcm-item">A: Le potentiel de repos varie en fonction du type de neurone entre est de l'ordre de 0 à -90 millivolts</div>
+                                            <div class="qcm-item">B: Dépend du transport des ions Na+ et Cl- à travers des canaux membranaires</div>
+                                            <div class="qcm-item">C: Dépend de l'activité de la pompe à protons H+/K+-ATPase</div>
+                                            <div class="qcm-item">D: Dépend de la présence d'un canal de fuite potassique</div>
+                                            <div class="qcm-item">E: Est indépendant de la présence d'un canal de fuite potassique</div>
                                         </div>
                                     </td>
                                 </tr>
@@ -599,7 +770,7 @@
 
                     <!-- POTENTIEL D'ACTION AXONE CALMAR -->
                     <div class="qcm-thematique">
-                        <h4>🎯 Potentiel d'action d'un axone géant de calmar (5 QCM)</h4>
+                        <h4>🎯 Potentiel d'action de l'axone géant de calmar (5 QCM)</h4>
                         <table class="qcm-table">
                             <thead>
                                 <tr>
@@ -608,7 +779,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="qcm-identique">
+                                <tr>
                                     <td>2020-2021<br>Q9</td>
                                     <td>
                                         <div class="qcm-enonce">A propos du potentiel d'action d'un axone géant de calmar. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
@@ -616,7 +787,7 @@
                                             <div class="qcm-item">A: La forme du potentiel d'action est variable selon le type de stimulus.</div>
                                             <div class="qcm-item">B: La durée du potentiel d'action est de l'ordre de 200 millisecondes.</div>
                                             <div class="qcm-item">C: La dépolarisation est due à l'ouverture des canaux sodiques Na+.</div>
-                                            <div class="qcm-item">D: La repolarisation est due à la fermeture des canaux calciques Ca2+.</div>
+                                            <div class="qcm-item">D: La repolarisation est due à la fermeture des canaux calciques Ca2+</div>
                                             <div class="qcm-item">E: La propagation se fait de proche en proche en l'absence d'une gaine de myéline.</div>
                                         </div>
                                     </td>
@@ -626,7 +797,7 @@
                                     <td>
                                         <div class="qcm-enonce">A propos du potentiel d'action d'un axone géant de calmar. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
                                         <div class="qcm-items">
-                                            <div class="qcm-item">A: La forme du potentiel d'action est variable selon le type de stimulus.</div>
+                                            <div class="qcm-item">A: La forme du potentiel d'action variable selon le type de stimulus.</div>
                                             <div class="qcm-item">B: La durée du potentiel d'action est de l'ordre de 2 millisecondes.</div>
                                             <div class="qcm-item">C: La dépolarisation est due à l'ouverture des canaux sodiques Na+.</div>
                                             <div class="qcm-item">D: La repolarisation est due à la fermeture des canaux calciques Ca++.</div>
@@ -648,28 +819,15 @@
                                     </td>
                                 </tr>
                                 <tr class="qcm-identique">
-                                    <td>2023-2024<br>Q9</td>
+                                    <td>2023-2024 Q9<br>2024-2025 Q9<br><em>🔄 Quasi-identiques</em></td>
                                     <td>
                                         <div class="qcm-enonce">À propos du potentiel d'action d'un axone géant de calmar. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
                                         <div class="qcm-items">
-                                            <div class="qcm-item">A: La forme du potentiel d'action est identique quel que soit le type de stimulus.</div>
-                                            <div class="qcm-item">B: La durée du potentiel d'action est de l'ordre de 200 millisecondes.</div>
-                                            <div class="qcm-item">C: La dépolarisation est due à l'ouverture des canaux sodiques Na+.</div>
-                                            <div class="qcm-item">D: La repolarisation est due à la fermeture des canaux calciques Ca++.</div>
-                                            <div class="qcm-item">E: La propagation se fait «par saut» en l'absence d'une gaine de myéline.</div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="qcm-identique">
-                                    <td>2024-2025<br>Q9</td>
-                                    <td>
-                                        <div class="qcm-enonce">A propos du potentiel d'action d'un axone géant de calmar. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) ?</div>
-                                        <div class="qcm-items">
-                                            <div class="qcm-item">A: La forme du potentiel d'action est identique quel que soit le type de stimulus.</div>
-                                            <div class="qcm-item">B: La durée du potentiel d'action est de l'ordre de 200 millisecondes.</div>
-                                            <div class="qcm-item">C: La dépolarisation est due à l'ouverture des canaux sodiques Na+.</div>
-                                            <div class="qcm-item">D: La repolarisation est due à la fermeture des canaux calciques Ca+.</div>
-                                            <div class="qcm-item">E: La propagation se fait «par saut» en l'absence d'une gaine de myéline.</div>
+                                            <div class="qcm-item">A: La forme du potentiel d'action est identique quel que soit le type de stimulus</div>
+                                            <div class="qcm-item">B: La durée du potentiel d'action est de l'ordre de 200 millisecondes</div>
+                                            <div class="qcm-item">C: La dépolarisation est due à l'ouverture des canaux sodiques Na+</div>
+                                            <div class="qcm-item">D: La repolarisation est due à la fermeture des canaux calciques Ca++</div>
+                                            <div class="qcm-item">E: La propagation se fait « par saut » en l'absence d'une gaine de myéline.</div>
                                         </div>
                                     </td>
                                 </tr>
@@ -679,7 +837,7 @@
 
                     <!-- CONDUCTANCES IONIQUES -->
                     <div class="qcm-thematique">
-                        <h4>🎯 Potentiels d'action et conductances ioniques (5 QCM)</h4>
+                        <h4>🎯 Conductances ioniques et potentiel d'action (5 QCM)</h4>
                         <table class="qcm-table">
                             <thead>
                                 <tr>
@@ -689,26 +847,13 @@
                             </thead>
                             <tbody>
                                 <tr class="qcm-identique">
-                                    <td>2020-2021<br>Q10</td>
+                                    <td>2020-2021 Q10<br>2021-2022 Q13<br><em>🔄 Identiques</em></td>
                                     <td>
                                         <div class="qcm-enonce">A propos des potentiels d'action et des conductances ioniques dans un neurone. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
                                         <div class="qcm-items">
                                             <div class="qcm-item">A: La phase ascendante du potentiel d'action est due à l'ouverture des canaux Na+.</div>
                                             <div class="qcm-item">B: Les canaux Na+ s'inactivent en une fraction de millisecondes après leur ouverture.</div>
                                             <div class="qcm-item">C: La repolarisation est due à l'ouverture des canaux K+ alors que les canaux Na+ sont inactivés.</div>
-                                            <div class="qcm-item">D: Les canaux K+ se ferment quand la membrane se positive.</div>
-                                            <div class="qcm-item">E: Le potentiel d'action est toujours suivi d'une phase d'hyperpolarisation transitoire.</div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="qcm-identique">
-                                    <td>2021-2022<br>Q13</td>
-                                    <td>
-                                        <div class="qcm-enonce">A propos des potentiels d'action et des conductances ioniques dans un neurone. Laquelle (ou lesquelles) de ces propositions est (ou sont) exacte(s) :</div>
-                                        <div class="qcm-items">
-                                            <div class="qcm-item">A: La phase ascendante du potentiel d'action est due à l'ouverture des canaux Na+.</div>
-                                            <div class="qcm-item">B: Les canaux Na+ s'inactivent en une fraction de millisecondes après leur ouverture.</div>
-                                            <div class="qcm-item">C: La repolarisation est due à l'ouverture des canaux K+ alors que les canaux Na+ sont inactivités.</div>
                                             <div class="qcm-item">D: Les canaux K+ se ferment quand la membrane se positive.</div>
                                             <div class="qcm-item">E: Le potentiel d'action est toujours suivi d'une phase d'hyperpolarisation transitoire.</div>
                                         </div>
@@ -727,29 +872,29 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr class="qcm-identique">
+                                <tr>
                                     <td>2023-2024<br>Q10</td>
                                     <td>
                                         <div class="qcm-enonce">À propos des potentiels d'action et des conductances ioniques dans un neurone. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
                                         <div class="qcm-items">
-                                            <div class="qcm-item">A: La phase ascendante du potentiel d'action est due à l'ouverture des canaux Ca++.</div>
-                                            <div class="qcm-item">B: Les canaux Na+ s'inactivent en une fraction de milliseconde après leur ouverture.</div>
+                                            <div class="qcm-item">A: La phase ascendante du potentiel d'action est due à l'ouverture des canaux Ca++</div>
+                                            <div class="qcm-item">B: Les canaux Na+ s'inactivent en une fraction de milliseconde après leur ouverture</div>
                                             <div class="qcm-item">C: La repolarisation est due à l'ouverture des canaux K+ alors que les canaux Na+ sont inactivés.</div>
                                             <div class="qcm-item">D: Les canaux K+ se ferment quand la membrane se positive.</div>
-                                            <div class="qcm-item">E: Le potentiel d'action est toujours suivi d'une phase d'hyperpolarisation transitoire.</div>
+                                            <div class="qcm-item">E: Le potentiel d'action est toujours suivi d'une phase d'hyperpolarisation transitoire</div>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr class="qcm-identique">
+                                <tr>
                                     <td>2024-2025<br>Q10</td>
                                     <td>
                                         <div class="qcm-enonce">A propos des potentiels d'action et des conductances ioniques dans un neurone. Laquelle (ou lesquelles) de ces propositions est ou (sont) exacte(s) ?</div>
                                         <div class="qcm-items">
-                                            <div class="qcm-item">A: La phase ascendante du potentiel d'action est due à l'ouverture des canaux Ca++.</div>
-                                            <div class="qcm-item">B: Les canaux Na+ s'inactivent en une fraction de millisecondes après leur ouverture.</div>
+                                            <div class="qcm-item">A: La phase ascendante du potentiel d'action est due à l'ouverture des canaux Ca++</div>
+                                            <div class="qcm-item">B: Les canaux Na+ s'inactivent en une fraction de millisecondes après leur ouverture</div>
                                             <div class="qcm-item">C: La repolarisation est due à l'ouverture des canaux K+ alors que les canaux Na+ sont inactivés.</div>
-                                            <div class="qcm-item">D: Les canaux K+ se ferment quand la membrane se positive.</div>
-                                            <div class="qcm-item">E: Le potentiel d'action est toujours suivi d'une phase d'hyperpolarisation transitoire.</div>
+                                            <div class="qcm-item">D: Les canaux K+ se ferment quand la membrane se positive</div>
+                                            <div class="qcm-item">E: Le potentiel d'action est toujours suivi d'une phase d'hyperpolarisation transitoire</div>
                                         </div>
                                     </td>
                                 </tr>
@@ -760,36 +905,33 @@
                 </div>
             </details>
 
-            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <!-- ACCORDÉON 2 : DIAGNOSTIC RAPIDE -->
             <details class="main-accordion">
-                <summary>📊 Rappel diagnostic</summary>
+                <summary>📊 Diagnostic rapide</summary>
                 <div class="accordion-content">
-                    
                     <div class="table-wrapper">
                         <table class="diagnostic-table">
-                            <thead>
-                                <tr>
-                                    <th>Fréquence</th>
-                                    <th>Format des QCM</th>
-                                    <th>Récurrence des items</th>
-                                    <th>Dépendance</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Tombe chaque année (3/an)</td>
-                                    <td>💡 Items récurrents</td>
-                                    <td>Récurrence TRÈS FORTE (>80%)</td>
-                                    <td>😺 Indépendant</td>
-                                </tr>
-                            </tbody>
+                            <tr>
+                                <th>Fréquence</th>
+                                <th>Moyenne QCM/an</th>
+                                <th>Format</th>
+                                <th>Dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>Tombe chaque année</td>
+                                <td>3 QCM/an</td>
+                                <td>QCM sur parties ciblées avec récurrence des items</td>
+                                <td>Pré-requis pour FC6 (électrophysio cardiaque)</td>
+                            </tr>
                         </table>
                     </div>
 
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
                     <div class="vue-ensemble">
-                        <h4>📈 Vue d'ensemble par thématique</h4>
-                        <p class="vue-ensemble-intro">Ce chapitre est <strong>ultra-stable</strong> : exactement 3 QCM chaque année, toujours les mêmes 3 thématiques, avec des items qui reviennent quasi-identiques d'une année à l'autre.</p>
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>15 QCM</strong> sur ce chapitre (exactement 3/an). Ces QCM se regroupent en <strong>3 thématiques</strong> qui tombent systématiquement chaque année :</p>
                         
+                        <div class="table-wrapper">
                         <table class="vue-tableau">
                             <thead>
                                 <tr>
@@ -804,158 +946,229 @@
                             <tbody>
                                 <tr>
                                     <td>Potentiel de repos</td>
-                                    <td><span class="qcm-identique-cell">Q8</span></td>
-                                    <td><span class="qcm-identique-cell">Q11</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q8</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q11</span></td>
                                     <td class="qcm-cell">Q11</td>
                                     <td class="qcm-cell">Q8</td>
                                     <td class="qcm-cell">Q8</td>
                                 </tr>
                                 <tr>
                                     <td>PA axone calmar</td>
-                                    <td><span class="qcm-identique-cell">Q9</span></td>
+                                    <td class="qcm-cell">Q9</td>
                                     <td class="qcm-cell">Q12</td>
                                     <td class="qcm-cell">Q12</td>
-                                    <td><span class="qcm-identique-cell">Q9</span></td>
-                                    <td><span class="qcm-identique-cell">Q9</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q9</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q9</span></td>
                                 </tr>
                                 <tr>
                                     <td>Conductances ioniques</td>
-                                    <td><span class="qcm-identique-cell">Q10</span></td>
-                                    <td><span class="qcm-identique-cell">Q13</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q10</span></td>
+                                    <td><span class="qcm-identique-cell">🔄 Q13</span></td>
                                     <td class="qcm-cell">Q13</td>
-                                    <td><span class="qcm-identique-cell">Q10</span></td>
-                                    <td><span class="qcm-identique-cell">Q10</span></td>
+                                    <td class="qcm-cell">Q10</td>
+                                    <td class="qcm-cell">Q10</td>
                                 </tr>
                             </tbody>
                         </table>
+                        </div>
                         
-                        <p style="margin-top: 15px; color: #065f46; font-weight: 600;">🔄 = QCM avec items quasi-identiques d'une année à l'autre</p>
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre. Ici : 2020-21 = 2021-22 pour potentiel de repos et conductances ; 2023-24 ≈ 2024-25 pour PA axone calmar.
+                            </p>
+                        </div>
                     </div>
-
                 </div>
             </details>
 
             <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
             <details class="main-accordion">
-                <summary>🎯 Recommandations Niveau 2 (ciblage parties du cours)</summary>
+                <summary>🎯 Recommandations Niveau 2 (ciblage de parties du cours)</summary>
                 <div class="accordion-content">
-                    
                     <div class="reco-item">
-                        <h4>Potentiel de repos du neurone</h4>
-                        <p>Apprends les déterminants du potentiel de repos : pompe Na+/K+ ATPase (pas H+/K+ !), canal de fuite potassique, transport des ions Na+ et K+. Retiens les valeurs : -60 à -90 mV selon le type cellulaire.</p>
-                        <span class="frequence">Tombé 5 fois</span>
+                        <h4>Le potentiel de repos du neurone</h4>
+                        <p>Cible les sections sur les déterminants du potentiel de repos : valeurs (-60 à -90 mV), rôle de la pompe Na+/K+ ATPase, importance du canal de fuite potassique, transport des ions Na+ et K+.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
                     </div>
 
                     <div class="reco-item">
-                        <h4>Potentiel d'action de l'axone géant de calmar</h4>
-                        <p>Maîtrise les caractéristiques clés : durée de l'ordre de la milliseconde (≈2 ms, PAS 200 ms !), loi du tout ou rien, dépolarisation par canaux Na+, propagation de proche en proche (pas "par saut" sans myéline).</p>
-                        <span class="frequence">Tombé 5 fois</span>
+                        <h4>Les caractéristiques du potentiel d'action neuronal</h4>
+                        <p>Cible les sections sur la loi du tout ou rien, la durée du PA (≈ 2 ms), les mécanismes de dépolarisation (Na+) et repolarisation (K+), et les modes de propagation (proche en proche vs saltatoire).</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
                     </div>
 
                     <div class="reco-item">
-                        <h4>Conductances ioniques et phases du PA</h4>
-                        <p>Comprends la séquence temporelle : phase ascendante = ouverture canaux Na+ (pas Ca++), inactivation Na+ en fraction de ms, puis ouverture K+ pour repolarisation. Les canaux K+ se ferment quand la membrane redevient négative.</p>
-                        <span class="frequence">Tombé 5 fois</span>
+                        <h4>La cinétique des canaux ioniques</h4>
+                        <p>Cible les sections sur l'inactivation des canaux Na+ (fraction de milliseconde), l'ouverture retardée des canaux K+, et la chronologie des événements pendant le PA.</p>
+                        <span class="frequence">Tombé 5 fois en 5 ans</span>
                     </div>
 
+                    <div class="reco-item">
+                        <h4>L'hyperpolarisation transitoire</h4>
+                        <p>Comprendre que l'hyperpolarisation n'est pas systématique ("toujours" = piège récurrent) et son lien avec la période réfractaire relative.</p>
+                        <span class="frequence">Piège récurrent dans les QCM</span>
+                    </div>
                 </div>
             </details>
 
             <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
             <details class="main-accordion">
-                <summary>🔍 Recommandations Niveau 1 (stratégie annales)</summary>
+                <summary>📝 Recommandations Niveau 1 (stratégie annales)</summary>
                 <div class="accordion-content">
 
+                    <!-- THÈME 1 : Potentiel de repos du neurone -->
                     <div class="qcm-analyse">
                         <h4>Potentiel de repos du neurone</h4>
-                        <div class="qcm-badge">📋 <strong>Chaque année</strong> - Q8 ou Q11</div>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q8 | <strong>2021-2022</strong> Q11 | <strong>2022-2023</strong> Q11 | <strong>2023-2024</strong> Q8 | <strong>2024-2025</strong> Q8</div>
                         
                         <div class="qcm-section">
                             <div class="qcm-section-title">Constat :</div>
-                            <div class="qcm-section-content">Ce QCM teste toujours les mêmes notions avec les mêmes pièges : la pompe H+/K+ (faux), le canal de fuite calcique (faux), le transport de Ca++ comme déterminant principal (faux).</div>
+                            <div class="qcm-section-content">Ce QCM tombe CHAQUE année. Les QCM 2020-2021 et 2021-2022 sont strictement identiques. Les pièges récurrents : mauvaise pompe (H+/K+ au lieu de Na+/K+), mauvais canal de fuite (calcique/sodique au lieu de potassique), mauvaises valeurs de potentiel.</div>
                         </div>
                         
                         <div class="qcm-section">
-                            <div class="qcm-section-title">Ce que tu dois faire :</div>
-                            <div class="qcm-section-content">Apprends par cœur les 3 déterminants vrais du potentiel de repos et les pièges récurrents.</div>
-                        </div>
-                        
-                        <div class="qcm-section">
-                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="qcm-section-title">Ce que tu dois savoir :</div>
                             <div class="cle-raisonnement">
-                                <p><strong>Les 3 vrais déterminants :</strong></p>
+                                <p><strong>Valeur du potentiel de repos :</strong></p>
                                 <ul>
-                                    <li>Pompe <strong>Na+/K+ ATPase</strong> (jamais H+/K+ ATPase !)</li>
-                                    <li>Canal de fuite <strong>potassique</strong> (jamais calcique !)</li>
-                                    <li>Transport des ions <strong>Na+ et K+</strong> à travers les canaux</li>
+                                    <li>Les cellules sont polarisées entre <strong>-30 mV et -90 mV</strong></li>
+                                    <li>Neurones (motoneurones) : environ <strong>-65 à -70 mV</strong></li>
+                                    <li>Cellules musculaires/cardiaques : environ <strong>-90 mV</strong></li>
+                                    <li>Axone géant de calmar : <strong>-75 mV</strong></li>
                                 </ul>
-                                <p><strong>Valeurs à retenir :</strong> -60 à -90 mV (neurone : -65 à -70 mV / muscle : -90 mV)</p>
+                                
+                                <p style="margin-top: 15px;"><strong>Les 3 déterminants du potentiel de repos :</strong></p>
+                                <ul>
+                                    <li>Transport des ions <strong>Na+ et K+</strong> à travers les canaux membranaires</li>
+                                    <li>Activité de la pompe <strong>Na+/K+ ATPase</strong></li>
+                                    <li>Présence d'un canal de fuite <strong>potassique</strong></li>
+                                </ul>
+                                
+                                <p style="margin-top: 15px;"><strong>Le chlore :</strong></p>
+                                <ul>
+                                    <li>Le potentiel de repos <strong>dépend aussi du transport de chlore</strong> (item "indépendant du chlore" = FAUX)</li>
+                                </ul>
+                                
+                                <p style="margin-top: 15px;"><strong>⚠️ Pièges récurrents :</strong></p>
+                                <ul>
+                                    <li>"Pompe H+/K+ ATPase" → FAUX, c'est la pompe gastrique</li>
+                                    <li>"Canal de fuite calcique" ou "sodique" → FAUX, c'est potassique</li>
+                                    <li>"Transport des ions Ca2+" → FAUX pour le potentiel de repos</li>
+                                    <li>"Transport Na+ et Cl-" (sans K+) → FAUX, le K+ est essentiel</li>
+                                    <li>"-35 à -45 mV" → FAUX, trop peu négatif</li>
+                                    <li>"0 à -90 mV" → FAUX, le potentiel de repos n'atteint jamais 0 mV</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
 
+                    <!-- THÈME 2 : Potentiel d'action de l'axone géant de calmar -->
                     <div class="qcm-analyse">
                         <h4>Potentiel d'action de l'axone géant de calmar</h4>
-                        <div class="qcm-badge">📋 <strong>Chaque année</strong> - Q9 ou Q12</div>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q9 | <strong>2021-2022</strong> Q12 | <strong>2022-2023</strong> Q12 | <strong>2023-2024</strong> Q9 | <strong>2024-2025</strong> Q9</div>
                         
                         <div class="qcm-section">
                             <div class="qcm-section-title">Constat :</div>
-                            <div class="qcm-section-content">Les pièges sont identiques chaque année : "200 millisecondes" (faux !), "canaux calciques" pour la repolarisation (faux !), "par saut" sans myéline (faux !).</div>
+                            <div class="qcm-section-content">Ce QCM tombe CHAQUE année. Les QCM 2023-2024 et 2024-2025 sont quasi-identiques. Les pièges portent sur la durée (200 ms vs 2 ms), la propagation (par saut vs proche en proche), et le mécanisme de repolarisation (Ca++ vs K+).</div>
                         </div>
                         
                         <div class="qcm-section">
-                            <div class="qcm-section-title">Ce que tu dois faire :</div>
-                            <div class="qcm-section-content">Mémorise les caractéristiques exactes et les pièges classiques.</div>
-                        </div>
-                        
-                        <div class="qcm-section">
-                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="qcm-section-title">Ce que tu dois savoir :</div>
                             <div class="cle-raisonnement">
-                                <p><strong>Ce qui est VRAI :</strong></p>
+                                <p><strong>Loi du tout ou rien :</strong></p>
                                 <ul>
-                                    <li>Durée ≈ <strong>2 millisecondes</strong> (ordre de la ms)</li>
-                                    <li>Dépolarisation = ouverture canaux <strong>Na+</strong></li>
-                                    <li>Propagation <strong>de proche en proche</strong> (sans myéline)</li>
-                                    <li>Loi du <strong>tout ou rien</strong></li>
-                                    <li>Forme <strong>identique</strong> quel que soit le stimulus</li>
+                                    <li>La forme du potentiel d'action est <strong>identique/stéréotypée</strong> quel que soit le type de stimulus</li>
+                                    <li>Le PA obéit à la loi du <strong>"tout ou rien"</strong></li>
                                 </ul>
-                                <p><strong>Ce qui est FAUX :</strong></p>
+                                
+                                <p style="margin-top: 15px;"><strong>Durée du PA :</strong></p>
                                 <ul>
-                                    <li>❌ 200 millisecondes (c'est 200× trop long !)</li>
-                                    <li>❌ Repolarisation par canaux Ca++ (c'est K+ !)</li>
-                                    <li>❌ Propagation "par saut" sans myéline</li>
+                                    <li>Durée de l'ordre de <strong>2 millisecondes</strong> (≈ 1-2 ms)</li>
+                                </ul>
+                                
+                                <p style="margin-top: 15px;"><strong>Mécanismes ioniques :</strong></p>
+                                <ul>
+                                    <li>Dépolarisation = ouverture des canaux <strong>sodiques Na+</strong></li>
+                                    <li>Repolarisation = ouverture des canaux <strong>K+</strong> alors que les canaux Na+ sont <strong>INACTIVÉS</strong></li>
+                                </ul>
+                                
+                                <p style="margin-top: 15px;"><strong>⚠️ Attention "inactivés" vs "fermés" :</strong></p>
+                                <ul>
+                                    <li>Le cours dit que les canaux K+ s'ouvrent quand les Na+ sont <strong>INACTIVÉS</strong></li>
+                                    <li>Si l'item dit "fermés" au lieu de "inactivés" → c'est FAUX (piège 2022-2023)</li>
+                                </ul>
+                                
+                                <p style="margin-top: 15px;"><strong>Mode de propagation (axone géant de calmar = SANS myéline) :</strong></p>
+                                <ul>
+                                    <li>Propagation <strong>de proche en proche</strong> (conduction continue)</li>
+                                    <li>L'axone géant de calmar n'a <strong>PAS de gaine de myéline</strong></li>
+                                </ul>
+                                
+                                <p style="margin-top: 15px;"><strong>⚠️ Pièges récurrents :</strong></p>
+                                <ul>
+                                    <li>"200 millisecondes" → FAUX, c'est la durée du PA cardiaque</li>
+                                    <li>"Repolarisation par fermeture des canaux Ca++" → FAUX</li>
+                                    <li>"Repolarisation finale par ouverture des canaux Ca++" → FAUX</li>
+                                    <li>"Propagation par saut" sans myéline → FAUX (par saut = avec myéline)</li>
+                                    <li>"Forme variable selon le stimulus" → FAUX (loi du tout ou rien)</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
+                    <!-- THÈME 3 : Conductances ioniques et potentiel d'action -->
                     <div class="qcm-analyse">
-                        <h4>Conductances ioniques et phases du PA</h4>
-                        <div class="qcm-badge">📋 <strong>Chaque année</strong> - Q10 ou Q13</div>
+                        <h4>Conductances ioniques et potentiel d'action</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q10 | <strong>2021-2022</strong> Q13 | <strong>2022-2023</strong> Q13 | <strong>2023-2024</strong> Q10 | <strong>2024-2025</strong> Q10</div>
                         
                         <div class="qcm-section">
                             <div class="qcm-section-title">Constat :</div>
-                            <div class="qcm-section-content">Ce QCM teste la séquence temporelle des événements ioniques. Le piège récurrent : "phase ascendante = canaux Ca++" (faux !) et "canaux K+ se ferment quand la membrane se positive" (faux !).</div>
+                            <div class="qcm-section-content">Ce QCM tombe CHAQUE année. Les QCM 2020-2021 et 2021-2022 sont strictement identiques. Le piège majeur est l'item E sur l'hyperpolarisation "toujours" présente (FAUX car le mot "toujours" le rend faux).</div>
                         </div>
                         
                         <div class="qcm-section">
-                            <div class="qcm-section-title">Ce que tu dois faire :</div>
-                            <div class="qcm-section-content">Apprends la séquence temporelle exacte des événements.</div>
-                        </div>
-                        
-                        <div class="qcm-section">
-                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="qcm-section-title">Ce que tu dois savoir :</div>
                             <div class="cle-raisonnement">
-                                <p><strong>Séquence temporelle (dans l'ordre) :</strong></p>
+                                <p><strong>Phase ascendante (dépolarisation) :</strong></p>
                                 <ul>
-                                    <li>1️⃣ Phase ascendante = ouverture canaux <strong>Na+</strong></li>
-                                    <li>2️⃣ Inactivation des Na+ en <strong>fraction de milliseconde</strong></li>
-                                    <li>3️⃣ Ouverture des canaux <strong>K+</strong> (pendant que Na+ inactivés)</li>
-                                    <li>4️⃣ Repolarisation par sortie de K+</li>
-                                    <li>5️⃣ Fermeture K+ quand membrane <strong>redevient négative</strong></li>
-                                    <li>6️⃣ Hyperpolarisation transitoire</li>
+                                    <li>Due à l'ouverture des canaux <strong>Na+</strong></li>
                                 </ul>
-                                <p><strong>Piège majeur :</strong> Les canaux K+ se ferment quand la membrane <strong>redevient négative</strong>, pas quand elle se positive !</p>
+                                
+                                <p style="margin-top: 15px;"><strong>Cinétique des canaux Na+ :</strong></p>
+                                <ul>
+                                    <li>Les canaux Na+ s'<strong>inactivent en une fraction de milliseconde</strong> après leur ouverture</li>
+                                    <li>3 états possibles : ouvert → inactivé → fermé</li>
+                                </ul>
+                                
+                                <p style="margin-top: 15px;"><strong>Repolarisation :</strong></p>
+                                <ul>
+                                    <li>Due à l'<strong>ouverture des canaux K+</strong> alors que les canaux Na+ sont <strong>INACTIVÉS</strong> (pas "fermés" !)</li>
+                                </ul>
+                                
+                                <p style="margin-top: 15px;"><strong>⚠️ Distinction cruciale : inactivé ≠ fermé</strong></p>
+                                <ul>
+                                    <li>Les canaux Na+ passent par 3 états : <strong>fermé → ouvert → inactivé → fermé</strong></li>
+                                    <li>Pendant la repolarisation, les canaux Na+ sont <strong>INACTIVÉS</strong></li>
+                                    <li>Si l'item dit "fermés" au lieu de "inactivés" → c'est FAUX</li>
+                                </ul>
+                                
+                                <p style="margin-top: 15px;"><strong>Fermeture des canaux K+ :</strong></p>
+                                <ul>
+                                    <li>Les canaux K+ se ferment quand la membrane redevient <strong>négative</strong></li>
+                                </ul>
+                                
+                                <p style="margin-top: 15px;"><strong>Hyperpolarisation :</strong></p>
+                                <ul>
+                                    <li>Le PA <strong>peut être</strong> suivi d'une phase d'hyperpolarisation transitoire</li>
+                                    <li>Cette hyperpolarisation <strong>n'est PAS systématique</strong> (varie selon les types cellulaires)</li>
+                                </ul>
+                                
+                                <p style="margin-top: 15px;"><strong>⚠️ Pièges récurrents :</strong></p>
+                                <ul>
+                                    <li>"Phase ascendante due aux canaux Ca++" → FAUX, c'est Na+ dans le neurone</li>
+                                    <li>"Canaux K+ se ferment quand la membrane se positive" → FAUX, c'est quand elle redevient négative</li>
+                                    <li>"TOUJOURS suivi d'hyperpolarisation" → FAUX à cause du mot "toujours"</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -969,53 +1182,302 @@
                 <div class="accordion-content">
 
                     <div class="vigilance-item">
-                        <h4>Confusion pompe Na+/K+ et H+/K+ ATPase</h4>
-                        <p>Le potentiel de repos dépend de la pompe <strong>Na+/K+ ATPase</strong> (3 Na+ sortants / 2 K+ entrants). La pompe H+/K+ ATPase est une pompe gastrique qui n'intervient pas dans le potentiel de repos des neurones. Ce piège revient CHAQUE ANNÉE.</p>
+                        <h4>Confusion pompe Na+/K+ ATPase vs H+/K+ ATPase</h4>
+                        <p>La pompe Na+/K+ ATPase est responsable du potentiel de repos du neurone. La pompe H+/K+ ATPase (pompe à protons) est une pompe GASTRIQUE qui produit l'HCl. Ne pas les confondre.</p>
                     </div>
 
                     <div class="vigilance-item">
-                        <h4>Durée du potentiel d'action : ms vs 200 ms</h4>
-                        <p>Le PA d'un neurone dure environ <strong>2 millisecondes</strong> (ordre de la ms). "200 millisecondes" est le piège récurrent - c'est 100× trop long ! À 200 ms, on parle plutôt de PA cardiaque (cardiomyocyte ventriculaire).</p>
+                        <h4>Confusion canal de fuite potassique vs calcique vs sodique</h4>
+                        <p>Le canal de fuite est POTASSIQUE (perméabilité K+ 100 fois supérieure à Na+). Il n'existe PAS de canal de fuite calcique ni de canal de fuite sodique intervenant dans le potentiel de repos.</p>
                     </div>
 
                     <div class="vigilance-item">
-                        <h4>Canal de fuite potassique vs calcique</h4>
-                        <p>Le potentiel de repos dépend du canal de fuite <strong>potassique</strong> (K+ sort de la cellule). Il n'existe PAS de "canal de fuite calcique" significatif pour le potentiel de repos. Ce piège apparaît régulièrement.</p>
+                        <h4>Piège sur la durée du PA : milliseconde vs 200 ms</h4>
+                        <p>Le PA du neurone dure environ 2 millisecondes. Le PA du cardiomyocyte dure environ 200 millisecondes (100 fois plus long). Ce piège revient presque chaque année.</p>
                     </div>
 
                     <div class="vigilance-item">
-                        <h4>Phase ascendante : Na+ et non Ca++</h4>
-                        <p>Dans un neurone, la phase ascendante du PA est due à l'ouverture des canaux <strong>Na+</strong>. Les canaux Ca++ interviennent dans le PA cardiaque (phase plateau), pas dans le PA neuronal classique.</p>
+                        <h4>Confusion Na+ vs Ca2+ pour la phase ascendante</h4>
+                        <p>Dans le NEURONE, la phase ascendante (dépolarisation) est due aux canaux Na+, PAS aux canaux Ca2+. Les canaux Ca2+ interviennent dans le PA des cardiomyocytes (phase plateau).</p>
                     </div>
 
                     <div class="vigilance-item">
-                        <h4>Propagation "de proche en proche" vs "par saut"</h4>
-                        <p>SANS myéline = propagation <strong>de proche en proche</strong>. AVEC myéline = propagation <strong>saltatoire (par saut)</strong> entre les nœuds de Ranvier. Le piège "par saut sans myéline" est récurrent.</p>
+                        <h4>Piège sur la propagation : proche en proche vs par saut</h4>
+                        <p>SANS myéline = propagation de proche en proche (lente). AVEC myéline = propagation saltatoire par saut entre nœuds de Ranvier (rapide). L'item inverse souvent ces deux modes.</p>
                     </div>
 
                     <div class="vigilance-item">
-                        <h4>Fermeture des canaux K+ : quand ?</h4>
-                        <p>Les canaux K+ se ferment quand la membrane <strong>redevient négative</strong> (après la repolarisation), pas quand elle "se positive". C'est un piège subtil mais fréquent.</p>
+                        <h4>Le mot "toujours" pour l'hyperpolarisation</h4>
+                        <p>L'hyperpolarisation transitoire n'est PAS "toujours" présente après un PA. Elle dépend du type cellulaire et n'est pas systématique. Tout item contenant "toujours" est suspect.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Canaux K+ : se ferment quand la membrane redevient négative</h4>
+                        <p>Les canaux K+ se ferment quand la membrane redevient NÉGATIVE (après la repolarisation), PAS quand elle "se positive". Attention à cette inversion fréquente.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion "inactivés" vs "fermés" pour les canaux Na+</h4>
+                        <p>Les canaux Na+ passent par 3 états : fermé → ouvert → INACTIVÉ → fermé. Pendant la repolarisation, ils sont INACTIVÉS (pas "fermés"). En 2022-2023 Q12, l'item D dit "fermés" au lieu de "inactivés" : c'est FAUX.</p>
                     </div>
 
                 </div>
             </details>
 
-            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <!-- ACCORDÉON 6 : TABLEAUX RÉCAPITULATIFS -->
+            <details class="main-accordion">
+                <summary>📊 Tableaux récapitulatifs</summary>
+                <div class="accordion-content">
+                    
+                    <h3>Tableau 1 : Chronologie du potentiel d'action neuronal</h3>
+                    <p style="margin-bottom: 15px; color: #64748b; font-style: italic;">Ce tableau résume les 5 phases du PA avec l'état des canaux et les mouvements ioniques à chaque étape.</p>
+                    
+                    <div class="table-responsive">
+                        <table class="recap-table">
+                            <thead>
+                                <tr>
+                                    <th>Phase</th>
+                                    <th>Potentiel (Vm)</th>
+                                    <th>Canaux Na+</th>
+                                    <th>Canaux K+</th>
+                                    <th>Ions</th>
+                                    <th>Ce qui se passe</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="phase-repos">
+                                    <td><strong>Repos</strong></td>
+                                    <td>-65 à -70 mV</td>
+                                    <td><span class="etat-ferme">Fermés</span></td>
+                                    <td><span class="etat-ferme">Fermés</span> <span class="detail-small">(+ fuite K+)</span></td>
+                                    <td>K+ sort (fuite)</td>
+                                    <td>Équilibre stable</td>
+                                </tr>
+                                <tr class="phase-depol">
+                                    <td><strong>Dépolarisation</strong><br><span class="detail-small">(phase ascendante)</span></td>
+                                    <td>-70 → +30 mV</td>
+                                    <td><span class="etat-ouvert">OUVERTS</span></td>
+                                    <td><span class="etat-ferme">Fermés</span></td>
+                                    <td><strong>Na+ ENTRE</strong></td>
+                                    <td>Vm devient positif</td>
+                                </tr>
+                                <tr class="phase-repol">
+                                    <td><strong>Repolarisation</strong><br><span class="detail-small">(phase descendante)</span></td>
+                                    <td>+30 → -70 mV</td>
+                                    <td><span class="etat-inactive">INACTIVÉS</span></td>
+                                    <td><span class="etat-ouvert">OUVERTS</span></td>
+                                    <td><strong>K+ SORT</strong></td>
+                                    <td>Vm redevient négatif</td>
+                                </tr>
+                                <tr class="phase-hyper">
+                                    <td><strong>Hyperpolarisation</strong><br><span class="detail-small">(si présente)</span></td>
+                                    <td>< -70 mV</td>
+                                    <td><span class="etat-ferme">Fermés</span></td>
+                                    <td><span class="etat-ouvert">Encore ouverts</span></td>
+                                    <td>K+ continue de sortir</td>
+                                    <td>Vm plus négatif que repos</td>
+                                </tr>
+                                <tr class="phase-retour">
+                                    <td><strong>Retour au repos</strong></td>
+                                    <td>-65 à -70 mV</td>
+                                    <td><span class="etat-ferme">Fermés</span></td>
+                                    <td><span class="etat-ferme">Fermés</span></td>
+                                    <td>Pompe Na+/K+ rééquilibre</td>
+                                    <td>Équilibre rétabli</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 style="margin-top: 35px;">Tableau 2 : Les 3 états des canaux Na+ (PIÈGE MAJEUR)</h3>
+                    <p style="margin-bottom: 15px; color: #64748b; font-style: italic;">Comprendre ces 3 états est essentiel pour éviter le piège "fermé" vs "inactivé" qui tombe régulièrement.</p>
+                    
+                    <div class="table-responsive">
+                        <table class="recap-table etats-table">
+                            <thead>
+                                <tr>
+                                    <th>État</th>
+                                    <th>Passage d'ions ?</th>
+                                    <th>Peut s'ouvrir ?</th>
+                                    <th>Quand ?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="etat-badge ferme-badge">FERMÉ</span></td>
+                                    <td><span class="icon-non">✗</span> Non</td>
+                                    <td><span class="icon-oui">✓</span> <strong>Oui</strong></td>
+                                    <td>Au repos, après hyperpolarisation</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="etat-badge ouvert-badge">OUVERT</span></td>
+                                    <td><span class="icon-oui">✓</span> <strong>Oui</strong></td>
+                                    <td>—</td>
+                                    <td>Phase ascendante (< 1 ms)</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="etat-badge inactive-badge">INACTIVÉ</span></td>
+                                    <td><span class="icon-non">✗</span> Non</td>
+                                    <td><span class="icon-non">✗</span> <strong>Non</strong></td>
+                                    <td>Pendant la repolarisation</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="piege-box" style="margin-top: 20px;">
+                        <p><strong>⚠️ PIÈGE QCM : "fermé" ≠ "inactivé"</strong></p>
+                        <ul style="margin: 10px 0 0 20px;">
+                            <li>Un canal <strong>FERMÉ</strong> peut s'ouvrir si on le stimule</li>
+                            <li>Un canal <strong>INACTIVÉ</strong> ne peut PAS s'ouvrir → il doit d'abord redevenir fermé</li>
+                            <li>En 2022-2023 Q12, l'item dit "fermés" au lieu de "inactivés" → c'est <strong>FAUX</strong></li>
+                        </ul>
+                    </div>
+
+                    <h3 style="margin-top: 35px;">Schéma : Potentiel d'action et états des canaux</h3>
+                    <p style="margin-bottom: 15px; color: #64748b; font-style: italic;">Visualisation de la courbe du PA avec la correspondance des états des canaux Na+ et K+.</p>
+                    
+                    <div class="schema-pa-container">
+                        <svg viewBox="0 0 520 340" class="schema-pa">
+                            <!-- Fond général -->
+                            <rect x="0" y="0" width="520" height="340" fill="#f8fafc"/>
+                            
+                            <!-- Zones verticales colorées pour chaque phase -->
+                            <!-- Zone Repos 1 -->
+                            <rect x="50" y="20" width="70" height="300" fill="#e2e8f0" opacity="0.5"/>
+                            <!-- Zone Dépolarisation -->
+                            <rect x="120" y="20" width="60" height="300" fill="#ffe4e6" opacity="0.6"/>
+                            <!-- Zone Repolarisation -->
+                            <rect x="180" y="20" width="80" height="300" fill="#ede9fe" opacity="0.6"/>
+                            <!-- Zone Hyperpolarisation -->
+                            <rect x="260" y="20" width="70" height="300" fill="#d1fae5" opacity="0.6"/>
+                            <!-- Zone Repos 2 -->
+                            <rect x="330" y="20" width="140" height="300" fill="#e2e8f0" opacity="0.5"/>
+                            
+                            <!-- Cadre du graphique -->
+                            <rect x="50" y="20" width="420" height="180" fill="none" stroke="#cbd5e1" stroke-width="1" rx="4"/>
+                            
+                            <!-- Lignes de référence horizontales -->
+                            <line x1="50" y1="50" x2="470" y2="50" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,4"/>
+                            <line x1="50" y1="100" x2="470" y2="100" stroke="#64748b" stroke-width="1.5"/>
+                            <line x1="50" y1="150" x2="470" y2="150" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4,4"/>
+                            
+                            <!-- Labels axe Y -->
+                            <text x="45" y="35" font-size="10" fill="#64748b" text-anchor="end">+30 mV</text>
+                            <text x="45" y="55" font-size="10" fill="#64748b" text-anchor="end">0 mV</text>
+                            <text x="45" y="105" font-size="10" fill="#1a365d" text-anchor="end" font-weight="600">-70 mV</text>
+                            <text x="45" y="155" font-size="10" fill="#64748b" text-anchor="end">-90 mV</text>
+                            
+                            <!-- Labels des phases en haut -->
+                            <text x="85" y="15" font-size="9" fill="#64748b" text-anchor="middle" font-weight="600">Repos</text>
+                            <text x="150" y="15" font-size="9" fill="#e11d48" text-anchor="middle" font-weight="600">Dépol.</text>
+                            <text x="220" y="15" font-size="9" fill="#7c3aed" text-anchor="middle" font-weight="600">Repol.</text>
+                            <text x="295" y="15" font-size="9" fill="#059669" text-anchor="middle" font-weight="600">Hyper.</text>
+                            <text x="400" y="15" font-size="9" fill="#64748b" text-anchor="middle" font-weight="600">Repos</text>
+                            
+                            <!-- Courbe du PA -->
+                            <path d="M 60,100 
+                                     L 110,100 
+                                     C 120,100 125,95 130,80
+                                     L 150,35
+                                     C 155,28 160,28 165,35
+                                     L 185,70
+                                     C 195,90 205,105 215,115
+                                     L 240,145
+                                     C 255,160 275,160 295,145
+                                     L 315,100
+                                     L 460,100" 
+                                  fill="none" 
+                                  stroke="#1a365d" 
+                                  stroke-width="3.5"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"/>
+                            
+                            <!-- Points clés sur la courbe -->
+                            <circle cx="110" cy="100" r="5" fill="#64748b"/>
+                            <circle cx="157" cy="32" r="5" fill="#e11d48"/>
+                            <circle cx="267" cy="155" r="5" fill="#059669"/>
+                            <circle cx="315" cy="100" r="5" fill="#64748b"/>
+                            
+                            <!-- Séparateur -->
+                            <line x1="50" y1="210" x2="470" y2="210" stroke="#cbd5e1" stroke-width="1"/>
+                            
+                            <!-- Section Canaux Na+ -->
+                            <text x="25" y="235" font-size="10" fill="#1a365d" font-weight="700" transform="rotate(-90, 25, 235)">Na+</text>
+                            
+                            <!-- Barres Na+ alignées avec les zones -->
+                            <rect x="50" y="220" width="70" height="24" fill="#64748b" rx="4"/>
+                            <text x="85" y="236" font-size="9" fill="white" text-anchor="middle" font-weight="600">Fermés</text>
+                            
+                            <rect x="120" y="220" width="60" height="24" fill="#10b981" rx="4"/>
+                            <text x="150" y="236" font-size="9" fill="white" text-anchor="middle" font-weight="600">OUVERTS</text>
+                            
+                            <rect x="180" y="220" width="80" height="24" fill="#f59e0b" rx="4"/>
+                            <text x="220" y="236" font-size="9" fill="white" text-anchor="middle" font-weight="600">INACTIVÉS</text>
+                            
+                            <rect x="260" y="220" width="70" height="24" fill="#64748b" rx="4"/>
+                            <text x="295" y="236" font-size="9" fill="white" text-anchor="middle" font-weight="600">Fermés</text>
+                            
+                            <rect x="330" y="220" width="140" height="24" fill="#64748b" rx="4"/>
+                            <text x="400" y="236" font-size="9" fill="white" text-anchor="middle" font-weight="600">Fermés</text>
+                            
+                            <!-- Section Canaux K+ -->
+                            <text x="25" y="275" font-size="10" fill="#1a365d" font-weight="700" transform="rotate(-90, 25, 275)">K+</text>
+                            
+                            <!-- Barres K+ alignées avec les zones -->
+                            <rect x="50" y="260" width="70" height="24" fill="#64748b" rx="4"/>
+                            <text x="85" y="276" font-size="9" fill="white" text-anchor="middle" font-weight="600">Fermés</text>
+                            
+                            <rect x="120" y="260" width="60" height="24" fill="#64748b" rx="4"/>
+                            <text x="150" y="276" font-size="9" fill="white" text-anchor="middle" font-weight="600">Fermés</text>
+                            
+                            <rect x="180" y="260" width="80" height="24" fill="#3b82f6" rx="4"/>
+                            <text x="220" y="276" font-size="9" fill="white" text-anchor="middle" font-weight="600">OUVERTS</text>
+                            
+                            <rect x="260" y="260" width="70" height="24" fill="#3b82f6" rx="4"/>
+                            <text x="295" y="276" font-size="9" fill="white" text-anchor="middle" font-weight="600">OUVERTS</text>
+                            
+                            <rect x="330" y="260" width="140" height="24" fill="#64748b" rx="4"/>
+                            <text x="400" y="276" font-size="9" fill="white" text-anchor="middle" font-weight="600">Fermés</text>
+                            
+                            <!-- Légende en bas -->
+                            <text x="50" y="310" font-size="10" fill="#1a365d" font-weight="600">Légende états :</text>
+                            <rect x="140" y="300" width="14" height="14" fill="#64748b" rx="2"/>
+                            <text x="160" y="311" font-size="9" fill="#475569">Fermé</text>
+                            <rect x="200" y="300" width="14" height="14" fill="#10b981" rx="2"/>
+                            <text x="220" y="311" font-size="9" fill="#475569">Na+ ouvert</text>
+                            <rect x="280" y="300" width="14" height="14" fill="#f59e0b" rx="2"/>
+                            <text x="300" y="311" font-size="9" fill="#475569">Na+ inactivé</text>
+                            <rect x="370" y="300" width="14" height="14" fill="#3b82f6" rx="2"/>
+                            <text x="390" y="311" font-size="9" fill="#475569">K+ ouvert</text>
+                            
+                        </svg>
+                    </div>
+                    
+                    <div class="schema-legende" style="margin-top: 15px; padding: 15px; background: #f1f5f9; border-radius: 8px; border-left: 4px solid #1a365d;">
+                        <p style="margin: 0; font-size: 0.9rem; color: #475569;">
+                            <strong>À retenir :</strong> Les colonnes colorées alignent la courbe du PA avec l'état des canaux. Pendant la <strong style="color: #7c3aed;">repolarisation</strong>, les canaux Na+ sont <span style="background: #f59e0b; color: white; padding: 2px 6px; border-radius: 3px; font-size: 0.8rem;">INACTIVÉS</span> (pas fermés !) tandis que les canaux K+ sont <span style="background: #3b82f6; color: white; padding: 2px 6px; border-radius: 3px; font-size: 0.8rem;">OUVERTS</span>.
+                        </p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 7 : AVIS DU TUTEUR -->
             <details class="main-accordion">
                 <summary>💬 Avis du tuteur</summary>
                 <div class="accordion-content">
                     <div class="tuteur-zone">
-                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre est le CHAMPION de la prévisibilité : exactement 3 QCM chaque année, toujours les 3 mêmes thématiques, avec une récurrence TRÈS FORTE des items (>80%). C'est un investissement à très haut rendement.</p>
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre est un cadeau pour les étudiants bien préparés. Avec exactement 3 QCM par an depuis 5 ans et des questions très similaires d'une année à l'autre, le rendement temps/points est excellent.</p>
                         
                         <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
-                        Même si vous visez la maîtrise complète, ce chapitre est suffisamment ciblé pour ne pas nécessiter d'apprentissage exhaustif. Concentrez-vous sur les mécanismes ioniques détaillés et les équations de Nernst/Goldman pour aller au-delà des QCM classiques.</p>
+                        Maîtrisez parfaitement les mécanismes ioniques du potentiel de repos et du potentiel d'action. Approfondissez les différences entre neurone et cardiomyocyte (durée du PA, ions impliqués) car cela prépare le chapitre FC6. Visez 3/3 sur ce chapitre.</p>
                         
                         <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
-                        Ciblez les 3 thématiques récurrentes : potentiel de repos (déterminants), PA de l'axone (caractéristiques), conductances ioniques (séquence temporelle). En 30 minutes de travail ciblé, vous pouvez sécuriser 3 points quasi-garantis.</p>
+                        Concentrez-vous sur les 3 thématiques qui tombent chaque année. Apprenez les valeurs clés : -60 à -90 mV, durée 2 ms, et les vrais déterminants (pompe Na+/K+, canal de fuite K+). Mémorisez la chronologie : Na+ → inactivation → K+ → repolarisation.</p>
                         
                         <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
-                        <strong>C'est LE chapitre idéal pour le Niveau 1.</strong> La récurrence TRÈS FORTE des items signifie que les mêmes propositions reviennent année après année. Apprenez par cœur les pièges classiques (H+/K+ ATPase, 200 ms, canal calcique, par saut sans myéline) et les réponses vraies. 3 points sont quasiment assurés avec un minimum d'effort.</p>
+                        Ce chapitre est IDÉAL pour vous : le prof recycle massivement ses questions. Les QCM 2020-2021 et 2021-2022 sont strictement IDENTIQUES pour 2 thèmes sur 3. Apprenez par cœur les "Ce que tu dois savoir" de cette fiche et repérez les pièges récurrents. Vous avez 2 à 3 points quasi assurés si vous connaissez les bonnes affirmations.</p>
                     </div>
                 </div>
             </details>

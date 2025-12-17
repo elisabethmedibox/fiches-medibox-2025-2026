@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC18 - Organogenèse du cœur - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+        }
+        
+        .vue-ensemble h4 {
+            color: #1a365d;
+            margin-bottom: 10px;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 12px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 0;
+            padding-left: 20px;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 4px;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-left: 4px solid #3b82f6;
+            padding: 12px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #dc2626;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Avis tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid #22c55e;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        /* Footer et avertissement */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 30px;
+        }
+        
+        .avertissement {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #92400e;
+            text-align: center;
+        }
+
+        /* Badge image */
+        .image-badge {
+            background: #8b5cf6;
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 FC18 - Organogenèse du cœur</h1>
+            <p class="subtitle">Fiche d'analyse stratégique - UE6 Embryologie</p>
+        </div>
+
+        <div class="content">
+            
+            <!-- ACCORDÉON 1 : QCM TOMBÉS -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+
+                    <!-- FORMATION DU TUBE CARDIAQUE PRIMITIF -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Formation du tube cardiaque primitif (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q18<br><span class="image-badge">📷 Image</span></td>
+                                    <td>
+                                        <div class="qcm-enonce">Le tube cardiaque primitif</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La lettre A indique le pôle veineux</div>
+                                            <div class="qcm-item">B: La lettre B indique le pôle artériel</div>
+                                            <div class="qcm-item">C: La flèche C indique le ventricule primitif</div>
+                                            <div class="qcm-item">D: La flèche D indique l'oreillette primitive</div>
+                                            <div class="qcm-item">E: L'allongement du tube cardiaque à son extrémité crâniale se fait par apport de cellules issues du second champ cardiaque</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q18</td>
+                                    <td>
+                                        <div class="qcm-enonce">La mise en place du tube cardiaque primitif</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Dans la région crâniale de l'embryon, la sécrétion du facteur de croissance endothéliale vasculaire, VEGF, permet la vasculogenèse des tubes endocardiques</div>
+                                            <div class="qcm-item">B: Le facteur de croissance endothéliale vasculaire, VEGF, est sécrété par le mésoblaste latéral</div>
+                                            <div class="qcm-item">C: Lors de la délimitation, les courbures céphalique et latérale de l'embryon amènent les deux tubes endocardiques latéraux dans la région thoracique</div>
+                                            <div class="qcm-item">D: Le tube cardiaque primitif est mis en place dès le 21ème jour de développement</div>
+                                            <div class="qcm-item">E: Lors de sa mise en place le tube cardiaque primitif est rectiligne</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- INFLEXION ET CLOISONNEMENT -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Inflexion du TCP et cloisonnement (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q19</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le cloisonnement auriculaire</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Le septum primum se met en place vers le 28ème jour de développement</div>
+                                            <div class="qcm-item">B: Le septum primum est un croissant tissulaire qui apparait au niveau de la paroi supéro-postérieur de l'oreillette primitive</div>
+                                            <div class="qcm-item">C: Le septum secundum apparait au niveau de la partie inférieure de l'oreillette gauche</div>
+                                            <div class="qcm-item">D: Le septum secundum est plus fin que le septum primum</div>
+                                            <div class="qcm-item">E: Le septum secundum permet l'obstruction du foramen ovale</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q19</td>
+                                    <td>
+                                        <div class="qcm-enonce">Le tube cardiaque primitif</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Au cours de l'inflexion du tube cardiaque primitif, l'oreillette primitive est déplacée vers le bas ventralement</div>
+                                            <div class="qcm-item">B: Au cours de l'inflexion du tube cardiaque primitif, le bulbe du cœur remonte en arrière vers la partie céphalique de l'embryon</div>
+                                            <div class="qcm-item">C: Le septum primum se met en place à partir du 28ème jour de développement</div>
+                                            <div class="qcm-item">D: Le foramen primum (ou ostium primum) correspond à l'ouverture inter-auriculaire qui se rétrécit progressivement du fait de la croissance du septum primum vers les bourrelets endocardiques fusionnés</div>
+                                            <div class="qcm-item">E: Le cloisonnement des ventricules est synchrone de la formation des valves atrio-ventriculaires</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : RAPPEL DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>🔵 Revient souvent (4x/5 ans)</td>
+                                <td>🎯 QCM sur partie ciblée du cours - avec récurrence des items</td>
+                                <td>😺 Indépendant</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>4 QCM</strong> sur ce chapitre (moyenne 0,8/an). Ces QCM se regroupent en <strong>2 grandes thématiques</strong> :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Formation du TCP</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q18</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q18</td>
+                                </tr>
+                                <tr>
+                                    <td>Inflexion et cloisonnement</td>
+                                    <td class="qcm-cell">Q19</td>
+                                    <td class="qcm-cell">Q19</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations Niveau 2</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item">
+                        <h4>La formation du tube cardiaque primitif</h4>
+                        <p>Connaître le rôle du VEGF dans la vasculogenèse, la fusion des tubes endocardiques, la morphologie du TCP (pôles veineux/artériel, cavités) et le schéma à légender.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le cloisonnement auriculaire</h4>
+                        <p>Maîtriser la chronologie et les caractéristiques des septa : septum primum (J28, paroi supéro-postérieure, plus fin), septum secundum (oreillette droite, plus épais), foramen primum/secundum/ovale.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>L'inflexion du tube cardiaque</h4>
+                        <p>Savoir que l'oreillette remonte en arrière vers la région céphalique, le bulbe descend vers le bas ventralement et à droite, le ventricule se positionne à gauche.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le cloisonnement des ventricules</h4>
+                        <p>Retenir que le cloisonnement ventriculaire est synchrone de la formation des valves atrio-ventriculaires.</p>
+                        <span class="frequence">Tombé 1 fois en 5 ans</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : ANALYSE STRATÉGIQUE -->
+            <details class="main-accordion">
+                <summary>🔍 Analyse stratégique des QCM</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM 1 -->
+                    <div class="qcm-analyse">
+                        <h4>Formation du tube cardiaque primitif - Schéma</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q18</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM avec image teste la capacité à identifier les structures du TCP sur un schéma (pôles veineux/artériel, cavités) et une notion moléculaire (second champ cardiaque).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends le schéma du TCP avec ses cavités dans l'ordre : sinus veineux → oreillette primitive → ventricule primitif → bulbe → truncus. Retiens que le second champ cardiaque contribue à l'allongement crânial.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Ordre des cavités du TCP (de caudal à crânial) :</strong></p>
+                                <ul>
+                                    <li>Pôle veineux (caudal) : sinus veineux → oreillette primitive</li>
+                                    <li>Pôle artériel (crânial) : ventricule primitif → bulbe/conus → truncus</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 -->
+                    <div class="qcm-analyse">
+                        <h4>Mise en place du TCP - VEGF et tubes endocardiques</h4>
+                        <div class="qcm-badge">📋 <strong>2024-2025</strong> Q18</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste les mécanismes moléculaires de formation du TCP : rôle du VEGF, origine des tubes endocardiques, chronologie (J21) et caractéristique rectiligne initiale.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens que le VEGF permet la vasculogenèse des tubes endocardiques, que la délimitation amène ces tubes dans la région thoracique, et que le TCP initial est rectiligne.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                C'est un QCM de connaissance pure. Le TCP se met en place au J21, il est d'abord rectiligne avant de subir son inflexion au J23.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 -->
+                    <div class="qcm-analyse">
+                        <h4>Cloisonnement auriculaire - Septa</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q19 + <strong>2021-2022</strong> Q19</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ces QCM testent les caractéristiques des septum primum et secundum : chronologie (J28), localisation, épaisseur relative, et les différents foramens.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprends par cœur : septum primum au J28 depuis la paroi supéro-postérieure (plus fin), septum secundum depuis l'oreillette droite (plus épais). Le foramen ovale reste ouvert jusqu'à la naissance.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Récurrence détectée sur les items :</strong></p>
+                                <ul>
+                                    <li>"Septum primum au 28ème jour" → tombé 2 fois (2020-2021 et 2021-2022)</li>
+                                    <li>Septum secundum dans l'oreillette DROITE (pas gauche) → piège récurrent</li>
+                                    <li>Septum secundum plus ÉPAIS que primum (pas plus fin)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 -->
+                    <div class="qcm-analyse">
+                        <h4>Inflexion du TCP</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q19</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste les mouvements des différentes structures lors de l'inflexion du TCP : oreillette, bulbe, ventricule.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retiens les directions : oreillette → remonte en arrière vers la région céphalique. Bulbe → descend vers le bas, ventralement et à droite. Ventricule → se positionne à gauche.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Attention aux inversions !</strong></p>
+                                <ul>
+                                    <li>L'oreillette NE descend PAS vers le bas ventralement (c'est le bulbe)</li>
+                                    <li>Le bulbe NE remonte PAS vers la région céphalique (c'est l'oreillette)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion septum primum / septum secundum</h4>
+                        <p>Le septum PRIMUM apparaît depuis la paroi supéro-postérieure et est plus FIN. Le septum SECUNDUM apparaît dans l'oreillette DROITE et est plus ÉPAIS. Ne pas inverser les caractéristiques.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion sur les mouvements d'inflexion</h4>
+                        <p>L'oreillette remonte en ARRIÈRE vers la région CÉPHALIQUE. Le bulbe descend vers le BAS, VENTRALEMENT et à DROITE. Les items inversent souvent ces directions.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Localisation du septum secundum</h4>
+                        <p>Le septum secundum apparaît dans l'oreillette DROITE, pas dans l'oreillette gauche. C'est un piège classique des QCM.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le foramen ovale ne se ferme PAS avant la naissance</h4>
+                        <p>Le septum secundum laisse une ouverture (foramen ovale) qui permet le shunt droite-gauche pendant la vie fœtale. Il ne permet pas l'"obstruction" du foramen ovale.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Chronologie clé : J28 pour le septum primum</h4>
+                        <p>Cette date est tombée 2 fois. Le cloisonnement auriculaire commence au J26, mais le septum primum apparaît au J28.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre est tombé 4 fois en 5 ans, avec une année blanche (2023-2024). Le prof alterne entre la formation du TCP et le cloisonnement auriculaire. La récurrence des items est FORTE (>60%) : les mêmes notions reviennent régulièrement (septum primum au J28, caractéristiques des septa).</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Approfondissez les mécanismes moléculaires (VEGF, second champ cardiaque) et le cloisonnement ventriculaire avec les bourrelets aortico-pulmonaires. Ces notions n'ont pas encore été testées en profondeur.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur les 4 thématiques identifiées : formation du TCP avec son schéma, cloisonnement auriculaire (septa et foramens), inflexion du TCP, et synchronisme cloisonnement ventriculaire/valves. C'est le cœur des QCM.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        Stratégie viable grâce à la récurrence forte des items. Apprenez par cœur les 4 QCM tombés, en particulier : "septum primum au J28", "septum secundum dans l'oreillette droite et plus épais", les mouvements d'inflexion (oreillette/bulbe), et le schéma du TCP. Attention : une année sur 5 n'a eu aucun QCM, gardez cette donnée en tête.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>

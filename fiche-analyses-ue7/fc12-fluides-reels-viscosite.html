@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC12 - Fluides réels et viscosité - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        .vue-tableau .qcm-identique-cell {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 2px solid #10b981;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-accordion summary {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .accordion-content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+            
+            /* Tableaux scrollables sur mobile */
+            .qcm-thematique {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .qcm-table {
+                min-width: 750px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table th:first-child,
+            .qcm-table td:first-child {
+                width: 90px;
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table td:last-child,
+            .qcm-table td:last-child * {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-enonce {
+                font-size: 0.7rem !important;
+                margin-bottom: 6px;
+            }
+            
+            .qcm-table .qcm-items {
+                font-size: 0.7rem !important;
+            }
+            
+            .qcm-table .qcm-item {
+                padding: 3px 6px;
+                margin-bottom: 3px;
+                font-size: 0.7rem !important;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            
+            .vue-tableau {
+                min-width: 600px;
+            }
+            
+            .diagnostic-table {
+                min-width: 500px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC12 - Mécanique des fluides III : Fluides réels - Viscosité</h1>
+            <div class="meta">
+                <span>📚 UE7 - Physiologie</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- THÉMATIQUE 1 : REYNOLDS / POISEUILLE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Thématique 1 : Reynolds / Poiseuille / Laminaire-Turbulent (3 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="qcm-identique">
+                                    <td>2020-2021 Q20<br>2023-2024 Q20<br><em>🔄 Identiques</em></td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos du débit d'un fluide réel newtonien et des écoulements laminaires ou turbulents dans un tube horizontal de section circulaire. En prenant le même schéma de montage que dans le QCM précédent, on donne que l'écoulement est toujours laminaire dans le segment 1 (Re &lt; 2000) et toujours turbulent (Re &gt; 10000) dans le segment 2. On rappelle que si ρ = masse volumique, V = vitesse moyenne, r = rayon et η = viscosité, le nombre de Reynolds s'écrit Re = 2·ρ·V·r/η. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La loi de Poiseuille est applicable si le régime d'écoulement est turbulent.</div>
+                                            <div class="qcm-item">B: La viscosité du liquide diminue avec l'augmentation de la vitesse de l'écoulement.</div>
+                                            <div class="qcm-item">C: Si l'écoulement est laminaire, le profil des vitesses est hyperbolique dans le segment 1.</div>
+                                            <div class="qcm-item">D: La résistance à l'écoulement diminue dans le segment 2.</div>
+                                            <div class="qcm-item">E: Si le rayon du segment 1 est de 10 mm, le rayon du segment 2 sera inférieur à 2 mm pour vérifier les caractéristiques des écoulements données dans l'énoncé.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q18</td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos du débit d'un fluide réel newtonien et des écoulements laminaires ou turbulents dans un tube horizontal de section circulaire. En le schéma de montage suivant, on donne que l'écoulement est toujours laminaire dans le segment 1 (R &lt; 2000) et toujours turbulent (R &gt; 10000) dans le segment 2. On rappelle que si ρ = masse volumique, V = vitesse moyenne, r = rayon et η = viscosité, le nombre de Reynolds s'écrit R = 2ρVr/η. Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La loi de Poiseuille est applicable si le régime d'écoulement est turbulent.</div>
+                                            <div class="qcm-item">B: En régime laminaire, les couches fluides glissent les unes sur les autres sans se mélanger.</div>
+                                            <div class="qcm-item">C: Si l'écoulement est laminaire, le profil des vitesses est parabolique dans le segment 1.</div>
+                                            <div class="qcm-item">D: La résistance à l'écoulement diminue dans le segment 2.</div>
+                                            <div class="qcm-item">E: La loi de Poiseuille est applicable si le régime d'écoulement est laminaire.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- THÉMATIQUE 2 : MESURE PA / KOROTKOFF -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Thématique 2 : Mesure de la PA - Méthode auscultatoire (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q20</td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos de la mesure de la pression artérielle par un sphygmomanomètre (méthode auscultatoire). Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Un silence auscultatoire peut correspondre à un écoulement laminaire.</div>
+                                            <div class="qcm-item">B: L'apparition des bruits de Korotkov au dégonflage du brassard signale le pic de pression artérielle.</div>
+                                            <div class="qcm-item">C: La disparition des bruits auscultatoires au dégonflage du brassard permet de déterminer la pression artérielle diastolique.</div>
+                                            <div class="qcm-item">D: Les bruits de Korotkov sont liés à des modifications de la rigidité artérielle.</div>
+                                            <div class="qcm-item">E: La pression artérielle systolique / diastolique normale est de l'ordre de 160/80 mmHg.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2022-2023<br>Q20</td>
+                                    <td>
+                                        <div class="qcm-enonce">À propos de la mesure de la pression artérielle par un sphygmomanomètre (méthode auscultatoire). Laquelle (ou lesquelles) de ces propositions est (sont) exacte(s) :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Un silence auscultatoire peut correspondre à un écoulement laminaire ou une absence d'écoulement.</div>
+                                            <div class="qcm-item">B: L'apparition des bruits de Korotkov au dégonflage du brassard signale le niveau de pression artérielle moyenne.</div>
+                                            <div class="qcm-item">C: La disparition des bruits auscultatoires au dégonflage du brassard permet de déterminer la pression artérielle diastolique.</div>
+                                            <div class="qcm-item">D: Les bruits de Korotkov sont liés à des modifications de la rigidité artérielle.</div>
+                                            <div class="qcm-item">E: La pression artérielle systolique / diastolique normale est de l'ordre de 12/8 mmHg.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>📊 Rappel diagnostic</summary>
+                <div class="accordion-content">
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th>Fréquence d'apparition</th>
+                                <th>Format des QCM</th>
+                                <th>Niveau de dépendance</th>
+                            </tr>
+                            <tr>
+                                <td>✅ Tombe chaque année (4/5 ans)</td>
+                                <td>💡 QCM avec items récurrents</td>
+                                <td>🔗 Cours appartenant à une suite logique (FC9 → FC11 → FC12 → FC13)</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- VUE D'ENSEMBLE - TABLEAU -->
+                    <div class="vue-ensemble">
+                        <h4>📋 Vue d'ensemble des QCM</h4>
+                        <p class="vue-ensemble-intro">Dans les annales des 5 dernières années, on trouve <strong>5 QCM</strong> sur ce chapitre (moyenne 1/an). Ces QCM se regroupent en <strong>2 grandes thématiques</strong> qui alternent :</p>
+                        
+                        <div class="table-wrapper">
+                        <table class="vue-tableau">
+                            <thead>
+                                <tr>
+                                    <th>Thématique</th>
+                                    <th>2020-2021</th>
+                                    <th>2021-2022</th>
+                                    <th>2022-2023</th>
+                                    <th>2023-2024</th>
+                                    <th>2024-2025</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Reynolds / Poiseuille / Laminaire-Turbulent</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q20</span></td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                    <td><span class="qcm-identique-cell">🔄 Q20</span></td>
+                                    <td class="qcm-cell">Q18</td>
+                                </tr>
+                                <tr>
+                                    <td>Mesure PA / Bruits de Korotkoff</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="qcm-cell">Q20</td>
+                                    <td class="qcm-cell">Q20</td>
+                                    <td class="empty-cell">—</td>
+                                    <td class="empty-cell">—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        
+                        <div style="margin-top: 15px; padding: 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 0 8px 8px 0;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #166534;">
+                                <strong>🔄 QCM identique</strong> : Question strictement identique (même énoncé, mêmes items) d'une année sur l'autre
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS NIVEAU 2 -->
+            <details class="main-accordion">
+                <summary>📖 Recommandations Niveau 2 (ciblage du cours)</summary>
+                <div class="accordion-content">
+
+                    <div class="reco-item">
+                        <h4>La loi de Poiseuille et ses conditions d'application</h4>
+                        <p>Comprendre que Poiseuille ne s'applique qu'en régime LAMINAIRE (Re &lt; 2000). En turbulent, la loi n'est plus valide. Retenir aussi que le profil de vitesse est PARABOLIQUE (pas hyperbolique).</p>
+                        <span class="frequence">Tombé 4 fois en 5 ans (item récurrent)</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Le nombre de Reynolds et les seuils</h4>
+                        <p>Formule Re = 2ρVr/η. Seuils : Re &lt; 2000 = laminaire, Re &gt; 10000 = turbulent. Comprendre que haute vitesse, gros diamètre et faible viscosité favorisent le passage au turbulent.</p>
+                        <span class="frequence">Tombé 3 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Liquide newtonien vs non-newtonien</h4>
+                        <p>Pour un liquide NEWTONIEN (eau), la viscosité est CONSTANTE. Pour un NON-NEWTONIEN (sang), la viscosité varie avec le gradient de vitesse. Attention à l'énoncé !</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans (piège récurrent)</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>La mesure de la PA par méthode auscultatoire</h4>
+                        <p>Comprendre le principe : apparition des bruits de Korotkoff = PA systolique (pic), disparition des bruits = PA diastolique. Silence = laminaire OU absence d'écoulement.</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>Les valeurs normales de PA</h4>
+                        <p>PAS normale = 120-129 mmHg, PAD normale = 80-84 mmHg. Attention aux pièges : 160/80 = HTA, 12/8 mmHg = piège d'unité (c'est 120/80 mmHg, pas 12/8).</p>
+                        <span class="frequence">Tombé 2 fois en 5 ans (piège récurrent)</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : RECOMMANDATIONS NIVEAU 1 -->
+            <details class="main-accordion">
+                <summary>🔍 Recommandations Niveau 1 (stratégie annales)</summary>
+                <div class="accordion-content">
+
+                    <!-- ENCADRÉ : Points du cours à connaître par cœur -->
+                    <div class="qcm-analyse" style="border-color: #059669; background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);">
+                        <h4 style="color: #065f46;">🚨 Points du cours à connaître par cœur</h4>
+                        
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title" style="color: #065f46;">Fluides réels et viscosité :</div>
+                            <div class="qcm-section-content">
+                                <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 10px;">
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">1.</strong> <strong>Fluide réel</strong> = fluide visqueux avec frottements (≠ fluide parfait)</p>
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">2.</strong> <strong>Viscosité</strong> = facilité des couches de liquide à glisser les unes sur les autres</p>
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">3.</strong> Si <strong>température ↗</strong> → viscosité <strong>↘</strong></p>
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">4.</strong> <strong>Newtonien</strong> (eau) : viscosité <strong>CONSTANTE</strong></p>
+                                    <p style="margin: 0;"><strong style="color: #059669;">5.</strong> <strong>Non-newtonien</strong> (sang) : viscosité <strong>VARIE</strong> avec le gradient de vitesse</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title" style="color: #065f46;">Nombre de Reynolds :</div>
+                            <div class="qcm-section-content">
+                                <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 10px;">
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">6.</strong> Formule : <strong>Re = 2ρVr / η</strong> (nombre sans unité)</p>
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">7.</strong> <strong>Re &lt; 2000</strong> → régime <strong>LAMINAIRE</strong></p>
+                                    <p style="margin: 0;"><strong style="color: #059669;">8.</strong> <strong>Re &gt; 10000</strong> → régime <strong>TURBULENT</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title" style="color: #065f46;">Régime laminaire :</div>
+                            <div class="qcm-section-content">
+                                <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 10px;">
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">9.</strong> Les couches fluides glissent <strong>SANS se mélanger</strong></p>
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">10.</strong> Profil de vitesse <strong>PARABOLIQUE</strong> (Vmax au centre)</p>
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">11.</strong> Loi de <strong>Poiseuille applicable</strong></p>
+                                    <p style="margin: 0;"><strong style="color: #059669;">12.</strong> Régime <strong>SILENCIEUX</strong> à l'auscultation</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title" style="color: #065f46;">Régime turbulent :</div>
+                            <div class="qcm-section-content">
+                                <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 10px;">
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">13.</strong> Loi de Poiseuille <strong>NON applicable</strong></p>
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">14.</strong> Résistance à l'écoulement <strong>AUGMENTE</strong></p>
+                                    <p style="margin: 0;"><strong style="color: #059669;">15.</strong> Régime <strong>BRUYANT</strong> à l'auscultation</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title" style="color: #065f46;">Mesure de la PA (méthode auscultatoire) :</div>
+                            <div class="qcm-section-content">
+                                <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 10px;">
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">16.</strong> <strong>Apparition</strong> des bruits de Korotkoff = <strong>PAS</strong> (pression systolique)</p>
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">17.</strong> <strong>Disparition</strong> des bruits = <strong>PAD</strong> (pression diastolique)</p>
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">18.</strong> Silence auscultatoire = laminaire OU absence d'écoulement</p>
+                                    <p style="margin: 0;"><strong style="color: #059669;">19.</strong> Bruits de Korotkoff liés aux <strong>TURBULENCES</strong> (pas à la rigidité artérielle)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="qcm-section" style="margin-top: 15px;">
+                            <div class="qcm-section-title" style="color: #065f46;">Valeurs normales de PA :</div>
+                            <div class="qcm-section-content">
+                                <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 10px;">
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">20.</strong> <strong>PAS normale</strong> = 120-129 mmHg</p>
+                                    <p style="margin: 0 0 12px 0;"><strong style="color: #059669;">21.</strong> <strong>PAD normale</strong> = 80-84 mmHg</p>
+                                    <p style="margin: 0;"><strong style="color: #059669;">22.</strong> On retient : <strong>120/80 mmHg</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- THÉMATIQUE 1 : REYNOLDS / POISEUILLE -->
+                    <div class="qcm-analyse">
+                        <h4>📌 THÉMATIQUE 1 : Reynolds / Poiseuille / Laminaire-Turbulent</h4>
+                        <div class="qcm-badge" style="font-style: italic;">📋 <strong>2020-2021</strong> Q20 | <strong>2023-2024</strong> Q20 (identiques) | <strong>2024-2025</strong> Q18</div>
+                        
+                        <!-- Item type 1 -->
+                        <div style="margin-bottom: 35px;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 1 : Loi de Poiseuille applicable si turbulent</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 3 fois en 5 ans (2020-2021, 2023-2024, 2024-2025)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>A</strong> - « La loi de Poiseuille est applicable si le régime d'écoulement est turbulent. »</p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 8px;">La loi de Poiseuille décrit l'écoulement d'un fluide visqueux dans un tube</li>
+                                <li style="margin-bottom: 8px;">Elle n'est valable que pour un <strong>régime LAMINAIRE</strong> (Re &lt; 2000)</li>
+                                <li style="margin-bottom: 8px;">En régime turbulent, les molécules tourbillonnent → profil de vitesse désorganisé</li>
+                                <li style="margin-bottom: 0;">→ La loi de Poiseuille <strong>n'est PLUS applicable</strong> en turbulent</li>
+                            </ul>
+                            
+                            <div style="background: #fef2f2; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="margin: 0; color: #991b1b;"><strong>→ L'item est donc FAUX.</strong> Retiens que : Poiseuille = régime LAMINAIRE uniquement</p>
+                            </div>
+                        </div>
+
+                        <!-- Item type 2 -->
+                        <div style="margin-bottom: 35px;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 2 : Viscosité diminue si vitesse augmente</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 2 fois en 5 ans (2020-2021, 2023-2024)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>B</strong> - « La viscosité du liquide diminue avec l'augmentation de la vitesse de l'écoulement. »</p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 8px;"><strong>⚠️ ATTENTION À L'ÉNONCÉ :</strong> il dit « fluide réel <strong>NEWTONIEN</strong> »</li>
+                                <li style="margin-bottom: 8px;">Pour un liquide <strong>newtonien</strong> (comme l'eau) : la viscosité est <strong>CONSTANTE</strong></li>
+                                <li style="margin-bottom: 8px;">C'est seulement pour un liquide <strong>non-newtonien</strong> (comme le sang) que la viscosité varie avec le gradient de vitesse</li>
+                                <li style="margin-bottom: 0;">→ L'énoncé dit newtonien, donc la viscosité ne varie PAS</li>
+                            </ul>
+                            
+                            <div style="background: #fef2f2; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="margin: 0; color: #991b1b;"><strong>→ L'item est donc FAUX.</strong> Retiens que : fluide NEWTONIEN = viscosité constante</p>
+                            </div>
+                            
+                            <div style="background: #fef3c7; border-radius: 8px; padding: 12px; margin-top: 10px;">
+                                <p style="margin: 0; color: #92400e;"><strong>⚠️ Piège :</strong> Si l'énoncé avait dit « sang » ou « liquide non-newtonien », la réponse serait VRAIE car pour le sang, quand le gradient de vitesse augmente, la viscosité diminue effectivement.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item type 3 -->
+                        <div style="margin-bottom: 35px;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 3 : Profil de vitesse hyperbolique/parabolique</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 3 fois en 5 ans (2020-2021, 2023-2024, 2024-2025)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>C (2020/2023)</strong> - « Si l'écoulement est laminaire, le profil des vitesses est <strong>hyperbolique</strong> dans le segment 1. »</p>
+                                <p style="margin: 8px 0 0 0; font-style: italic; color: #374151;"><strong>C (2024)</strong> - « Si l'écoulement est laminaire, le profil des vitesses est <strong>parabolique</strong> dans le segment 1. »</p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 8px;">En régime laminaire, la loi de Poiseuille s'applique</li>
+                                <li style="margin-bottom: 8px;">Cette loi prédit un profil de vitesse <strong>PARABOLIQUE</strong> :</li>
+                                <li style="margin-bottom: 8px; margin-left: 20px;">→ Vitesse maximale (Vmax) au <strong>centre</strong> du conduit</li>
+                                <li style="margin-bottom: 8px; margin-left: 20px;">→ Vitesse qui <strong>décroît vers les parois</strong> (frottements)</li>
+                                <li style="margin-bottom: 0;">→ Le profil n'est PAS hyperbolique, il est PARABOLIQUE</li>
+                            </ul>
+                            
+                            <div style="background: #fef2f2; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="margin: 0; color: #991b1b;"><strong>→ « hyperbolique » est donc FAUX.</strong> Retiens que : profil = PARABOLIQUE en laminaire</p>
+                            </div>
+                            <div style="background: #f0fdf4; border-radius: 8px; padding: 12px; margin-top: 10px;">
+                                <p style="margin: 0; color: #166534;"><strong>→ « parabolique » est donc VRAI.</strong></p>
+                            </div>
+                        </div>
+
+                        <!-- Item type 4 -->
+                        <div style="margin-bottom: 35px;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 4 : Résistance diminue en turbulent</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 3 fois en 5 ans (2020-2021, 2023-2024, 2024-2025)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>D</strong> - « La résistance à l'écoulement diminue dans le segment 2. »</p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 8px;">Le segment 2 est en régime <strong>turbulent</strong> (Re &gt; 10000)</li>
+                                <li style="margin-bottom: 8px;">En régime turbulent :</li>
+                                <li style="margin-bottom: 8px; margin-left: 20px;">→ Les effets de frottement sont <strong>PLUS importants</strong></li>
+                                <li style="margin-bottom: 8px; margin-left: 20px;">→ La perte de charge n'est plus proportionnelle au débit</li>
+                                <li style="margin-bottom: 8px; margin-left: 20px;">→ La perte d'énergie est plus importante</li>
+                                <li style="margin-bottom: 0;">→ Donc la <strong>résistance AUGMENTE</strong>, elle ne diminue pas !</li>
+                            </ul>
+                            
+                            <div style="background: #fef2f2; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="margin: 0; color: #991b1b;"><strong>→ L'item est donc FAUX.</strong> Retiens que : en turbulent, la résistance AUGMENTE</p>
+                            </div>
+                        </div>
+
+                        <!-- Item type 5 -->
+                        <div style="margin-bottom: 35px;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 5 : Couches fluides glissent sans se mélanger</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 1 fois en 5 ans (2024-2025)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>B (2024)</strong> - « En régime laminaire, les couches fluides glissent les unes sur les autres sans se mélanger. »</p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 8px;">C'est la <strong>définition même</strong> du régime laminaire</li>
+                                <li style="margin-bottom: 8px;">« Laminaire » vient de « lame » : les couches de fluide sont comme des lames parallèles</li>
+                                <li style="margin-bottom: 8px;">Elles glissent les unes sur les autres de façon ordonnée</li>
+                                <li style="margin-bottom: 0;">C'est l'inverse du turbulent où les molécules tourbillonnent et se mélangent</li>
+                            </ul>
+                            
+                            <div style="background: #f0fdf4; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="margin: 0; color: #166534;"><strong>→ L'item est donc VRAI.</strong> C'est la définition même du régime laminaire.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item type 6 -->
+                        <div style="margin-bottom: 35px;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 6 : Poiseuille applicable si laminaire</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 1 fois en 5 ans (2024-2025)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>E (2024)</strong> - « La loi de Poiseuille est applicable si le régime d'écoulement est laminaire. »</p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 8px;">C'est l'inverse de l'item A (« applicable si turbulent »)</li>
+                                <li style="margin-bottom: 8px;">La loi de Poiseuille s'applique en régime <strong>LAMINAIRE</strong></li>
+                                <li style="margin-bottom: 0;">Conditions : liquide newtonien, faible débit, Re &lt; 2000</li>
+                            </ul>
+                            
+                            <div style="background: #f0fdf4; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="margin: 0; color: #166534;"><strong>→ L'item est donc VRAI.</strong> Poiseuille = régime LAMINAIRE.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item de calcul -->
+                        <div style="margin-bottom: 0;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM DE CALCUL : Rayon du segment 2</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #8b5cf6 0%, #a78bfa 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 2 fois en 5 ans (2020-2021, 2023-2024)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>E</strong> - « Si le rayon du segment 1 est de 10 mm, le rayon du segment 2 sera inférieur à 2 mm pour vérifier les caractéristiques des écoulements données dans l'énoncé. »</p>
+                            </div>
+                            
+                            <!-- Explication de ce qu'on demande -->
+                            <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 0 8px 8px 0; margin-bottom: 15px;">
+                                <p style="margin: 0 0 10px 0; font-weight: 600; color: #92400e;">⚠️ Cette phrase est un peu difficile à comprendre. Prenons le temps de la décortiquer :</p>
+                                <p style="margin: 0 0 8px 0; color: #92400e;">L'énoncé du QCM dit que le segment 1 est en régime <strong>laminaire</strong> et le segment 2 est en régime <strong>turbulent</strong>.</p>
+                                <p style="margin: 0 0 8px 0; color: #92400e;">Le prof te donne le rayon du segment 1 (r₁ = 10 mm) et te demande : <strong>quel rayon faut-il pour le segment 2 pour que l'écoulement y soit turbulent ?</strong></p>
+                                <p style="margin: 0; color: #92400e;">En résumé : on cherche le rayon maximum du segment 2 pour garantir un régime turbulent.</p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Raisonnement rapide :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 10px;">Pour passer de <strong>laminaire</strong> (Re &lt; 2000) à <strong>turbulent</strong> (Re &gt; 10000), il faut que Re soit <strong>multiplié par au moins 5</strong> (car 10000 / 2000 = 5).</li>
+                                <li style="margin-bottom: 10px;">Pour augmenter Re, il faut <strong>diminuer le rayon</strong>. Pourquoi ? Parce que quand le tube se rétrécit, la vitesse augmente (le même débit passe dans un tuyau plus petit → ça accélère). Et comme Re dépend de la vitesse, Re augmente.</li>
+                                <li style="margin-bottom: 10px;"><strong>Pourquoi Re × 5 → r ÷ 5 ?</strong> Avec la conservation du débit, on peut montrer que Re = 2ρQ / (πηr). Donc <strong>Re est inversement proportionnel à r</strong> : si tu divises r par 5, Re est multiplié par 5. C'est inutile de détailler le calcul ici, l'important c'est de retenir cette relation inverse.</li>
+                                <li style="margin-bottom: 0;">Donc : r₂ &lt; r₁ / 5 = 10 / 5 = <strong>2 mm</strong></li>
+                            </ul>
+                            
+                            <div style="background: #f0fdf4; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="margin: 0; color: #166534;"><strong>→ L'item est donc VRAI.</strong></p>
+                            </div>
+                            
+                            <div style="background: #ede9fe; border-radius: 8px; padding: 12px; margin-top: 10px;">
+                                <p style="margin: 0 0 8px 0; color: #5b21b6;"><strong>💡 HACK Medibox :</strong> Retiens la règle → <strong>r₂ &lt; r₁ / 5</strong>. Si les chiffres changent, tu divises simplement le rayon initial par 5.</p>
+                                <p style="margin: 0; color: #5b21b6;"><em>Exemple :</em> Si on te donne r₁ = 15 mm, alors tu fais 15 / 5 = 3 mm → il faut que r₂ soit inférieur à 3 mm pour passer en régime turbulent.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- THÉMATIQUE 2 : MESURE PA -->
+                    <div class="qcm-analyse" style="margin-top: 25px;">
+                        <h4>📌 THÉMATIQUE 2 : Mesure de la PA - Bruits de Korotkoff</h4>
+                        <div class="qcm-badge" style="font-style: italic;">📋 <strong>2021-2022</strong> Q20 | <strong>2022-2023</strong> Q20 (quasi-identiques)</div>
+                        
+                        <!-- Item type 1 -->
+                        <div style="margin-bottom: 35px;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 1 : Silence auscultatoire = laminaire</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 2 fois en 5 ans (2021-2022, 2022-2023)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>A (2021)</strong> - « Un silence auscultatoire peut correspondre à un écoulement laminaire. »</p>
+                                <p style="margin: 8px 0 0 0; font-style: italic; color: #374151;"><strong>A (2022)</strong> - « Un silence auscultatoire peut correspondre à un écoulement laminaire <strong>ou une absence d'écoulement</strong>. »</p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 8px;">Le régime <strong>laminaire</strong> est <strong>SILENCIEUX</strong> (pas de turbulences = pas de bruits)</li>
+                                <li style="margin-bottom: 8px;">Le régime <strong>turbulent</strong> est <strong>BRUYANT</strong> (bruits de Korotkoff)</li>
+                                <li style="margin-bottom: 8px;">Pendant la mesure de PA, le silence peut correspondre à :</li>
+                                <li style="margin-bottom: 8px; margin-left: 20px;">1. Écoulement laminaire (quand P brassard &lt; PAD)</li>
+                                <li style="margin-bottom: 0; margin-left: 20px;">2. Absence d'écoulement (quand P brassard &gt; PAS, artère écrasée)</li>
+                            </ul>
+                            
+                            <div style="background: #f0fdf4; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="margin: 0; color: #166534;"><strong>→ Les deux versions sont donc VRAIES.</strong></p>
+                                <p style="margin: 5px 0 0 0; color: #166534; font-size: 0.9rem;">La version 2022 est plus complète (ajoute « ou absence d'écoulement »).</p>
+                            </div>
+                        </div>
+
+                        <!-- Item type 2 -->
+                        <div style="margin-bottom: 35px;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 2 : Apparition des bruits = PAS ou PAM ?</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 2 fois en 5 ans (2021-2022, 2022-2023)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>B (2021)</strong> - « L'apparition des bruits de Korotkov au dégonflage du brassard signale le <strong>pic de pression artérielle</strong>. »</p>
+                                <p style="margin: 8px 0 0 0; font-style: italic; color: #374151;"><strong>B (2022)</strong> - « L'apparition des bruits de Korotkov au dégonflage du brassard signale le niveau de <strong>pression artérielle moyenne</strong>. »</p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 8px;">Quand on dégonfle le brassard, les <strong>premiers bruits</strong> apparaissent au moment où la pression du brassard devient juste inférieure à la <strong>PAS</strong></li>
+                                <li style="margin-bottom: 8px;">Le <strong>« pic de pression »</strong> = la <strong>PAS</strong> (pression systolique)</li>
+                                <li style="margin-bottom: 8px;">Ce n'est PAS la pression artérielle moyenne (PAM)</li>
+                                <li style="margin-bottom: 0;">La PAM = (PAS + 2×PAD)/3, c'est une valeur calculée, pas mesurée directement</li>
+                            </ul>
+                            
+                            <div style="background: #f0fdf4; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="margin: 0; color: #166534;"><strong>→ « pic de PA » (2021) est donc VRAI.</strong> Le pic = PAS = pression systolique.</p>
+                            </div>
+                            <div style="background: #fef2f2; border-radius: 8px; padding: 12px; margin-top: 10px;">
+                                <p style="margin: 0; color: #991b1b;"><strong>→ « PA moyenne » (2022) est donc FAUX.</strong> Retiens que : apparition bruits = PAS (pas PAM).</p>
+                            </div>
+                        </div>
+
+                        <!-- Item type 3 -->
+                        <div style="margin-bottom: 35px;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 3 : Disparition des bruits = PAD</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 2 fois en 5 ans (2021-2022, 2022-2023)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>C</strong> - « La disparition des bruits auscultatoires au dégonflage du brassard permet de déterminer la pression artérielle diastolique. »</p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 8px;">Quand la pression du brassard devient inférieure à la <strong>PAD</strong></li>
+                                <li style="margin-bottom: 8px;">L'artère reste ouverte tout le temps du cycle cardiaque</li>
+                                <li style="margin-bottom: 8px;">Le régime redevient <strong>laminaire</strong> → <strong>silence</strong></li>
+                                <li style="margin-bottom: 0;">Donc disparition des bruits = PAD (phase V de Korotkoff)</li>
+                            </ul>
+                            
+                            <div style="background: #f0fdf4; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="margin: 0; color: #166534;"><strong>→ L'item est donc VRAI.</strong> Disparition des bruits = PAD.</p>
+                            </div>
+                        </div>
+
+                        <!-- Item type 4 -->
+                        <div style="margin-bottom: 35px;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 4 : Bruits liés à la rigidité artérielle</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 2 fois en 5 ans (2021-2022, 2022-2023)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>D</strong> - « Les bruits de Korotkov sont liés à des modifications de la rigidité artérielle. »</p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 8px;">Les bruits de Korotkoff sont liés aux <strong>TURBULENCES</strong></li>
+                                <li style="margin-bottom: 8px;">Ces turbulences apparaissent quand l'artère est partiellement comprimée</li>
+                                <li style="margin-bottom: 8px;">La compression crée un rétrécissement → vitesse augmente → Re augmente → turbulences</li>
+                                <li style="margin-bottom: 0;">Ce n'est PAS lié à la rigidité de la paroi artérielle</li>
+                            </ul>
+                            
+                            <div style="background: #fef2f2; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="margin: 0; color: #991b1b;"><strong>→ L'item est donc FAUX.</strong> Retiens que : bruits de Korotkoff = liés aux TURBULENCES (pas à la rigidité).</p>
+                            </div>
+                        </div>
+
+                        <!-- Item type 5 -->
+                        <div style="margin-bottom: 0;">
+                            <p style="margin: 0 0 5px 0; font-weight: 700; color: #1a365d; font-size: 1rem;">ITEM TYPE 5 : Valeurs normales de PA</p>
+                            <div style="height: 3px; background: linear-gradient(90deg, #f87171 0%, #fca5a5 100%); border-radius: 2px; margin-bottom: 15px;"></div>
+                            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6b7280;">Tombé 2 fois en 5 ans (2021-2022, 2022-2023)</p>
+                            
+                            <div style="background: #e5e7eb; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                                <p style="margin: 0; font-style: italic; color: #374151;"><strong>E (2021)</strong> - « La pression artérielle systolique / diastolique normale est de l'ordre de <strong>160/80 mmHg</strong>. »</p>
+                                <p style="margin: 8px 0 0 0; font-style: italic; color: #374151;"><strong>E (2022)</strong> - « La pression artérielle systolique / diastolique normale est de l'ordre de <strong>12/8 mmHg</strong>. »</p>
+                            </div>
+                            
+                            <p style="margin: 0 0 12px 0; font-weight: 600; color: #1a365d;">Clé de raisonnement :</p>
+                            <ul style="margin: 0 0 0 20px; color: #374151;">
+                                <li style="margin-bottom: 8px;">Les valeurs normales sont : <strong>PAS = 120-129 mmHg</strong> et <strong>PAD = 80-84 mmHg</strong></li>
+                                <li style="margin-bottom: 8px;">On retient : <strong>120/80 mmHg</strong></li>
+                                <li style="margin-bottom: 8px;"><strong>160/80 mmHg</strong> → PAS trop élevée (160 &gt; 140 = HTA systolique)</li>
+                                <li style="margin-bottom: 0;"><strong>12/8 mmHg</strong> → Piège d'unité ! C'est 120/80 mmHg, pas 12/8. Le prof confond avec cmHg (1 cmHg = 10 mmHg)</li>
+                            </ul>
+                            
+                            <div style="background: #fef2f2; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="margin: 0; color: #991b1b;"><strong>→ « 160/80 mmHg » est donc FAUX.</strong> Retiens que : 160 = HTA systolique.</p>
+                            </div>
+                            <div style="background: #fef2f2; border-radius: 8px; padding: 12px; margin-top: 10px;">
+                                <p style="margin: 0; color: #991b1b;"><strong>→ « 12/8 mmHg » est donc FAUX.</strong> Retiens que : c'est un piège d'unité (120/80 mmHg, pas 12/8).</p>
+                            </div>
+                            
+                            <div style="background: #fef3c7; border-radius: 8px; padding: 12px; margin-top: 10px;">
+                                <p style="margin: 0; color: #92400e;"><strong>⚠️ Retiens :</strong> PA normale = <strong>120/80 mmHg</strong>. Tout ce qui est différent est FAUX.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+                    
+                    <div class="vigilance-item">
+                        <h4>Le piège « newtonien vs non-newtonien »</h4>
+                        <p>Lis TOUJOURS l'énoncé attentivement. S'il dit « fluide newtonien » (eau), la viscosité est CONSTANTE. S'il dit « sang » ou « non-newtonien », la viscosité VARIE avec le gradient de vitesse. C'est le piège le plus fréquent de ce chapitre !</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le piège « hyperbolique vs parabolique »</h4>
+                        <p>En régime laminaire, le profil de vitesse est PARABOLIQUE (comme une parabole, Vmax au centre). L'item dit souvent « hyperbolique » pour piéger → FAUX.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le piège « résistance diminue en turbulent »</h4>
+                        <p>C'est contre-intuitif, mais en régime turbulent, la résistance AUGMENTE (plus de frottements, plus de perte d'énergie). L'item dit « diminue » → FAUX.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le piège « PA moyenne » vs « pic de PA »</h4>
+                        <p>L'apparition des bruits de Korotkoff signale la PA SYSTOLIQUE (= le pic de PA), PAS la PA moyenne. La PAM est calculée, pas mesurée directement.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le piège « rigidité artérielle »</h4>
+                        <p>Les bruits de Korotkoff sont liés aux TURBULENCES (créées par la compression du brassard), pas à la rigidité de la paroi artérielle.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le piège des valeurs de PA « 160/80 » et « 12/8 »</h4>
+                        <p>PA normale = 120/80 mmHg. 160/80 = HTA systolique (160 &gt; 140). 12/8 mmHg = piège d'unité (c'est 12/8 cmHg = 120/80 mmHg). Ces deux items sont FAUX.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre est idéal pour une stratégie 100% annales.</p>
+                        
+                        <p style="margin-bottom: 12px;">Les QCM sont très prévisibles : 2 thématiques qui alternent, des items qui reviennent quasi à l'identique d'une année sur l'autre. Le QCM 2020-2021 Q20 est revenu strictement identique en 2023-2024 Q20. Les items sur la mesure de PA (bruits de Korotkoff) sont également très stables entre 2021-2022 et 2022-2023.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Viabilité de la stratégie annales :</strong> Excellente. Avec l'encadré vert "Points du cours à connaître par cœur" et les items types analysés dans cette fiche, tu couvres la quasi-totalité de ce qui peut tomber. Les 22 points de cours + la compréhension des items récurrents suffisent largement pour obtenir ton point sur ce chapitre.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Temps estimé :</strong> 30-45 minutes pour mémoriser les points de cours et comprendre la logique des items. Pas besoin de lire le cours complet sauf si tu veux approfondir la physique des fluides réels (ce qui n'est pas nécessaire pour réussir les QCM).</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
