@@ -3,9 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timeline Embryologie UE6</title>
+    <title>Timeline Embryologie UE6 v8</title>
     <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
     <style>
+        /* Filigrane logo Medibox */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 900px;
+            max-height: 900px;
+            background-image: url('https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-clair.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        @media (max-width: 768px) {
+            body::after {
+                width: 90vw;
+                height: 90vw;
+                opacity: 0.06;
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -199,6 +226,122 @@
         .period-section {
             margin-bottom: 15px;
             scroll-margin-top: 80px;
+        }
+
+        /* ==================== SECTIONS CONCEPTUELLES (VERTES) ==================== */
+        .period-section.conceptual .period-title {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
+
+        .period-section.conceptual .period-title:hover {
+            box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
+        }
+
+        .period-section.conceptual .period-days {
+            background: #34d399;
+        }
+
+        .period-section.conceptual .period-title .duration {
+            color: #1a365d;
+        }
+
+        .period-section.conceptual .event-card {
+            border-left: 4px solid #22c55e;
+        }
+
+        .period-section.conceptual .event-card:hover {
+            border-left-color: #16a34a;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.15);
+        }
+
+        .period-section.conceptual .timeline-dot {
+            background: #22c55e;
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+        }
+
+        .period-section.conceptual .timeline-tag {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .period-section.conceptual .keyword.principal {
+            background: linear-gradient(135deg, #166534, #22863a);
+        }
+
+        .period-section.conceptual .keyword.secondaire {
+            background: linear-gradient(135deg, #4ade80, #86efac);
+            color: #166534;
+        }
+
+        .period-section.conceptual .event-source {
+            color: #16a34a;
+        }
+
+        /* Bouton navigation vert */
+        .period-btn.conceptual {
+            background: linear-gradient(135deg, #059669, #10b981) !important;
+        }
+
+        .period-btn.conceptual:hover {
+            background: linear-gradient(135deg, #047857, #059669) !important;
+        }
+
+        /* ==================== SECTIONS ANNEXE (ROSE FUSHIA) ==================== */
+        .period-section.annexe .period-title {
+            background: linear-gradient(135deg, #db2777 0%, #ec4899 100%);
+        }
+
+        .period-section.annexe .period-title:hover {
+            box-shadow: 0 6px 20px rgba(219, 39, 119, 0.4);
+        }
+
+        .period-section.annexe .period-days {
+            background: #f472b6;
+        }
+
+        .period-section.annexe .period-title .duration {
+            color: #1a365d;
+        }
+
+        .period-section.annexe .event-card {
+            border-left: 4px solid #ec4899;
+        }
+
+        .period-section.annexe .event-card:hover {
+            border-left-color: #db2777;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.15);
+        }
+
+        .period-section.annexe .timeline-dot {
+            background: #ec4899;
+            box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.2);
+        }
+
+        .period-section.annexe .timeline-tag {
+            background: #fce7f3;
+            color: #be185d;
+        }
+
+        .period-section.annexe .keyword.principal {
+            background: linear-gradient(135deg, #db2777, #ec4899);
+        }
+
+        .period-section.annexe .keyword.secondaire {
+            background: linear-gradient(135deg, #f9a8d4, #fbcfe8);
+            color: #9d174d;
+        }
+
+        .period-section.annexe .event-source {
+            color: #db2777;
+        }
+
+        /* Bouton navigation rose */
+        .period-btn.annexe {
+            background: linear-gradient(135deg, #db2777, #ec4899) !important;
+        }
+
+        .period-btn.annexe:hover {
+            background: linear-gradient(135deg, #be185d, #db2777) !important;
         }
 
         /* TITRE PLEINE LARGEUR */
@@ -749,11 +892,13 @@
                 <button class="period-btn highlight" onclick="scrollToSection('j0')">J0</button>
                 <button class="period-btn" onclick="scrollToSection('sd1')">SD1</button>
                 <button class="period-btn" onclick="scrollToSection('sd2')">SD2</button>
+                <button class="period-btn conceptual" onclick="scrollToSection('fc12')">🧬 FC12</button>
                 <button class="period-btn" onclick="scrollToSection('sd3')">SD3</button>
                 <button class="period-btn" onclick="scrollToSection('sd4')">SD4</button>
                 <button class="period-btn" onclick="scrollToSection('sd5-6')">SD5-8</button>
                 <button class="period-btn" onclick="scrollToSection('sd9-12')">SD9-12</button>
                 <button class="period-btn" onclick="scrollToSection('foetal')">Fœtal</button>
+                <button class="period-btn annexe" onclick="scrollToSection('annexe')">📋 Annexe</button>
             </nav>
 
             <!-- TIMELINE -->
@@ -2359,6 +2504,343 @@
                                         <strong>Mnémotechnique "Tout par 2" :</strong><br>
                                         • 2 feuillets (hypoblaste + épiblaste)<br>
                                         • 2 cavités (amniotique + vésicule vitelline secondaire)
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================== FC12 - MÉCANISMES MOLÉCULAIRES ==================== -->
+                <section class="period-section conceptual" id="fc12">
+                    <div class="period-title" onclick="toggleSection(this)">
+                        <div class="period-title-content">
+                            <div class="period-title-main">
+                                <span class="period-name">🧬 MÉCANISMES MOLÉCULAIRES</span>
+                                <span class="period-days">Concepts à connaître pour comprendre la suite</span>
+                            </div>
+                            <span class="duration">FC12 • Gènes de développement, facteurs de transcription, morphogènes</span>
+                        </div>
+                        <span class="period-toggle">▼</span>
+                    </div>
+
+                    <div class="period-content">
+                        <div class="events-container">
+
+                            <!-- CARTE 1 : Gènes de développement - Définition (★★★) -->
+                            <div class="event-wrapper high-yield neutral">
+                                <div class="timeline-tag">Concept clé</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">Gènes de développement <span class="event-subtitle">Définition et caractéristiques</span></h3>
+                                    <div class="event-summary">
+                                        Les gènes de développement exercent leurs effets de la FÉCONDATION jusqu'à la FIN de l'ORGANOGENÈSE. Leur activité est limitée dans le TEMPS et dans l'ESPACE (expression spatio-temporelle). Ils contrôlent la prolifération, la différenciation, la migration cellulaire et l'apoptose.
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">Gènes de développement</span>
+                                        <span class="keyword principal">Spatio-temporel</span>
+                                        <span class="keyword principal">Fécondation → Organogenèse</span>
+                                        <span class="keyword secondaire">Prolifération</span>
+                                        <span class="keyword secondaire">Différenciation</span>
+                                        <span class="keyword secondaire">Migration</span>
+                                        <span class="keyword secondaire">Apoptose</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC12 - Mécanismes moléculaires</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>🎯 Caractéristiques fondamentales :</strong><br>
+                                        • Exercent leurs effets de la FÉCONDATION jusqu'à la FIN de l'ORGANOGENÈSE<br>
+                                        • Expression SPATIO-TEMPORELLE limitée (dans le temps ET dans l'espace)<br>
+                                        • Chaque gène s'exprime dans un territoire PRÉCIS de l'embryon<br>
+                                        • Certains peuvent aussi s'exprimer à l'âge adulte (ex: facteurs de croissance, cancers)<br><br>
+                                        <strong>4 processus contrôlés :</strong><br>
+                                        • <strong>Prolifération</strong> cellulaire (mitoses)<br>
+                                        • <strong>Différenciation</strong> (spécialisation cellulaire)<br>
+                                        • <strong>Migration</strong> cellulaire (réarrangements tissulaires)<br>
+                                        • <strong>Apoptose</strong> (mort cellulaire programmée)<br><br>
+                                        <strong>2 grandes familles :</strong><br>
+                                        • Gènes codant pour des FACTEURS DE TRANSCRIPTION<br>
+                                        • Gènes codant pour des MORPHOGÈNES<br><br>
+                                        <strong>📌 Point exam :</strong> "Expression spatio-temporelle restreinte" est LA formule à retenir !
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARTE 2 : Facteurs de transcription (★★★) -->
+                            <div class="event-wrapper high-yield neutral">
+                                <div class="timeline-tag">★★★</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">Facteurs de transcription <span class="event-subtitle">Se fixent sur l'ADN</span></h3>
+                                    <div class="event-summary">
+                                        Les facteurs de transcription sont des protéines qui se fixent sur l'ADN au niveau des régions PROMOTRICES des gènes. Ils modulent l'expression d'AUTRES gènes (pas le leur). Action DIRECTE sur la transcription. Ils permettent l'identité de territoire et les phénomènes d'induction.
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">Facteur de transcription</span>
+                                        <span class="keyword principal">Fixation sur ADN</span>
+                                        <span class="keyword principal">Régions promotrices</span>
+                                        <span class="keyword secondaire">Action directe</span>
+                                        <span class="keyword secondaire">Identité de territoire</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC12 - Mécanismes moléculaires</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>🎯 Mode d'action :</strong><br>
+                                        • Se fixent sur l'<strong>ADN</strong> (régions promotrices des gènes)<br>
+                                        • Modulent l'expression d'<strong>AUTRES gènes</strong> (pas le leur)<br>
+                                        • Action DIRECTE sur la transcription<br>
+                                        • Restent DANS la cellule (ne sont pas sécrétés)<br><br>
+                                        <strong>Rôles principaux :</strong><br>
+                                        • Positionnement antéro-postérieur des segments du corps<br>
+                                        • Permettent à chaque segment de connaître son positionnement<br>
+                                        • IDENTITÉ DE TERRITOIRE (chaque cellule "sait" où elle est)<br>
+                                        • Phénomènes d'INDUCTION (différenciation de proche en proche)<br><br>
+                                        <strong>⚠️ PIÈGE CLASSIQUE D'EXAMEN :</strong><br>
+                                        "Un facteur de transcription se fixe sur le RÉCEPTEUR d'une cellule cible" = <strong>FAUX !</strong><br>
+                                        → Il se fixe sur l'<strong>ADN</strong>, pas sur un récepteur membranaire !<br>
+                                        → C'est le MORPHOGÈNE qui agit via un récepteur membranaire.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARTE 3 : Morphogènes (★★★) -->
+                            <div class="event-wrapper high-yield neutral">
+                                <div class="timeline-tag">★★★</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">Morphogènes <span class="event-subtitle">Agissent par diffusion</span></h3>
+                                    <div class="event-summary">
+                                        Les morphogènes sont des protéines SÉCRÉTÉES qui quittent la cellule productrice pour agir par DIFFUSION. Ils se fixent sur un RÉCEPTEUR MEMBRANAIRE de la cellule cible. Ils créent un GRADIENT DE CONCENTRATION et induisent des types cellulaires différents selon la concentration (réponse par PALIERS).
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">Morphogène</span>
+                                        <span class="keyword principal">Diffusion</span>
+                                        <span class="keyword principal">Gradient de concentration</span>
+                                        <span class="keyword principal">Récepteur membranaire</span>
+                                        <span class="keyword secondaire">Réponse par paliers</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC12 - Mécanismes moléculaires</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>🎯 Mode d'action :</strong><br>
+                                        • Protéines <strong>SÉCRÉTÉES</strong> (quittent la cellule productrice)<br>
+                                        • Agissent par <strong>DIFFUSION</strong> vers les cellules voisines<br>
+                                        • Se fixent sur <strong>RÉCEPTEUR MEMBRANAIRE</strong> de la cellule cible<br>
+                                        • Action INDIRECTE sur la transcription (via cascade de signalisation)<br><br>
+                                        <strong>🎯 Gradient de concentration :</strong><br>
+                                        • Plus on s'éloigne de la source, plus la concentration diminue<br>
+                                        • Crée un gradient depuis la zone de départ<br><br>
+                                        <strong>🎯 Réponse par PALIERS :</strong><br>
+                                        • Concentration ÉLEVÉE → Type cellulaire A<br>
+                                        • Concentration MOYENNE → Type cellulaire B<br>
+                                        • Concentration FAIBLE → Type cellulaire C<br>
+                                        • Quand la concentration atteint une valeur SEUIL, un autre type cellulaire est induit<br><br>
+                                        <strong>Information de position :</strong><br>
+                                        La cellule "mesure" la concentration locale pour déterminer sa position = information de position codée sous forme CHIMIQUE.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARTE 4 : Comparaison FT vs Morphogène (★★★) -->
+                            <div class="event-wrapper high-yield neutral">
+                                <div class="timeline-tag">Synthèse</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">Facteur de transcription vs Morphogène <span class="event-subtitle">Tableau comparatif</span></h3>
+                                    <div class="event-summary">
+                                        Le facteur de transcription RESTE dans la cellule et se fixe sur l'ADN (action directe). Le morphogène est SÉCRÉTÉ et se fixe sur un récepteur membranaire de la cellule cible (action indirecte). Dans les 2 cas, le résultat final est la modification de la transcription de gènes cibles.
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">FT = ADN</span>
+                                        <span class="keyword principal">Morphogène = Récepteur</span>
+                                        <span class="keyword principal">Direct vs Indirect</span>
+                                        <span class="keyword secondaire">Même résultat final</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC12 - Mécanismes moléculaires</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>Tableau comparatif :</strong><br><br>
+                                        <strong>FACTEUR DE TRANSCRIPTION :</strong><br>
+                                        • Localisation : RESTE dans la cellule<br>
+                                        • Cible : ADN (régions promotrices)<br>
+                                        • Mode d'action : DIRECT<br>
+                                        • Distance : Même cellule<br>
+                                        • Gradient : Non<br><br>
+                                        <strong>MORPHOGÈNE :</strong><br>
+                                        • Localisation : SÉCRÉTÉ à l'extérieur<br>
+                                        • Cible : RÉCEPTEUR MEMBRANAIRE<br>
+                                        • Mode d'action : INDIRECT (via récepteur)<br>
+                                        • Distance : Cellules VOISINES (diffusion)<br>
+                                        • Gradient : OUI (concentration variable)<br><br>
+                                        <strong>🎯 Résultat final IDENTIQUE :</strong><br>
+                                        Dans les 2 cas → Modification de la TRANSCRIPTION de gènes cibles<br>
+                                        Un facteur de transcription ou un morphogène conditionne l'expression de PLUSIEURS gènes cibles.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARTE 5 : Gènes par fonction (★★☆) -->
+                            <div class="event-wrapper medium-yield neutral">
+                                <div class="timeline-tag">Classification</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">Classification fonctionnelle <span class="event-subtitle">Gènes par étape du développement</span></h3>
+                                    <div class="event-summary">
+                                        L'établissement des polarités fait intervenir : axe antéro-postérieur (TGF-β), axe dorso-ventral (BMP4, FGF), axe droite-gauche (Nodal, Shh, Lefty). La somitogenèse dépend de FGF, Wnt, Notch, acide rétinoïque et HOX. Le pôle céphalique est sous la dépendance d'OTX2, le pôle caudal de Brachyury.
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">BMP4</span>
+                                        <span class="keyword principal">FGF</span>
+                                        <span class="keyword principal">Nodal</span>
+                                        <span class="keyword secondaire">Shh</span>
+                                        <span class="keyword secondaire">Wnt</span>
+                                        <span class="keyword secondaire">OTX2</span>
+                                        <span class="keyword secondaire">Brachyury</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC12 - Mécanismes moléculaires</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star dim">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>1. Établissement des POLARITÉS :</strong><br>
+                                        • Axe <strong>antéro-postérieur</strong> : TGF-β (ligne primitive)<br>
+                                        • Axe <strong>dorso-ventral</strong> : BMP4, FGF<br>
+                                        • Axe <strong>droite-gauche</strong> : Nodal, Shh, Lefty<br><br>
+                                        <strong>2. Spécification des FEUILLETS :</strong><br>
+                                        • Mésoblaste ventral + épiderme : BMP4, FGF<br>
+                                        • Neurectoblaste + méso dorsal : Noggin, Chordin, Follistatin (inhibent BMP4)<br>
+                                        • Méso dorsal régions moyenne/caudale : Brachyury<br><br>
+                                        <strong>3. SOMITOGENÈSE :</strong><br>
+                                        • FGF, Wnt, Notch, Acide rétinoïque, HOX<br>
+                                        • Ces gènes déterminent l'IDENTITÉ des somites<br><br>
+                                        <strong>4. Territoires spécifiques :</strong><br>
+                                        • Pôle CÉPHALIQUE : OTX2<br>
+                                        • Pôle CAUDAL : Brachyury<br>
+                                        • Muscle : MyoD<br>
+                                        • Œil : Pax6
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARTE 6 : Gènes HOX (★★★) -->
+                            <div class="event-wrapper high-yield neutral">
+                                <div class="timeline-tag">★★★</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">Gènes HOX (Homéotiques) <span class="event-subtitle">Identité des segments</span></h3>
+                                    <div class="event-summary">
+                                        Les gènes HOX déterminent l'IDENTITÉ de chaque segment du corps selon l'axe antéro-postérieur. Chez les mammifères, il existe 4 complexes HOX : A, B, C, D (issus de la duplication d'un complexe primordial). Ils s'expriment séquentiellement de la TÊTE vers la QUEUE. Ce sont des FACTEURS DE TRANSCRIPTION (protéines de liaison à l'ADN), PAS des morphogènes !
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">Gènes HOX</span>
+                                        <span class="keyword principal">4 complexes A B C D</span>
+                                        <span class="keyword principal">Tête → Queue</span>
+                                        <span class="keyword secondaire">Homéotique</span>
+                                        <span class="keyword secondaire">Drosophile</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC12 - Mécanismes moléculaires</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>Découverte chez la drosophile :</strong><br>
+                                        • Mutations "homéotiques" = structure bien formée mais au MAUVAIS endroit<br>
+                                        • Ex : pattes à la place des antennes<br>
+                                        • 2 complexes chez la drosophile : Bithorax + Antenapedia<br>
+                                        • Bithorax : différences segments abdominaux/thoraciques<br>
+                                        • Antenapedia : différences segments thoraciques/tête<br><br>
+                                        <strong>🎯 Chez les mammifères :</strong><br>
+                                        • <strong>4 complexes HOX</strong> : A, B, C, D<br>
+                                        • Issus de la DUPLICATION d'un complexe primordial<br>
+                                        • Organisation CONSERVÉE (même ordre que drosophile)<br><br>
+                                        <strong>🎯 Expression :</strong><br>
+                                        • Séquentielle de la TÊTE vers la QUEUE<br>
+                                        • Selon leur ordre dans le complexe HOX<br>
+                                        • Bien visible au niveau du tube neural<br><br>
+                                        <strong>⚠️ PIÈGE D'EXAMEN :</strong><br>
+                                        "Les gènes HOX sont des morphogènes" = <strong>FAUX !</strong><br>
+                                        → Les gènes HOX codent pour des protéines de liaison à l'ADN<br>
+                                        → Ce sont des FACTEURS DE TRANSCRIPTION !
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARTE 7 : Asymétrie droite-gauche (★★☆) -->
+                            <div class="event-wrapper medium-yield neutral">
+                                <div class="timeline-tag">Pathologie</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">Asymétrie droite-gauche <span class="event-subtitle">Nodal, Lefty, cils du centre nodal</span></h3>
+                                    <div class="event-summary">
+                                        L'asymétrie droite-gauche (cœur à gauche, foie à droite) dépend de l'expression asymétrique de Nodal au centre nodal. Le battement hélicoïdal des cils du centre nodal crée un courant de liquide vers la GAUCHE qui oriente l'axe. Une anomalie de la dynéine (protéine motrice des cils) peut provoquer un situs inversus (50% des cas) + stérilité + bronchites chroniques.
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">Nodal</span>
+                                        <span class="keyword principal">Lefty</span>
+                                        <span class="keyword principal">Cils du centre nodal</span>
+                                        <span class="keyword secondaire">PITX2</span>
+                                        <span class="keyword secondaire">Dynéine</span>
+                                        <span class="keyword secondaire">Situs inversus</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC12 - Mécanismes moléculaires</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star dim">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>Gènes impliqués :</strong><br>
+                                        • <strong>Nodal</strong> : exprimé de façon ASYMÉTRIQUE au centre nodal<br>
+                                        • <strong>Lefty</strong> : boucle de rétrocontrôle avec Nodal<br>
+                                        • <strong>PITX2</strong> : régulateur qui confère l'asymétrie aux organes internes<br>
+                                        • Nodal stimule PITX2 sur le côté GAUCHE du corps<br><br>
+                                        <strong>🎯 Rôle des CILS du centre nodal :</strong><br>
+                                        • Battent de façon HÉLICOÏDALE<br>
+                                        • Le centre nodal a la forme d'un creux<br>
+                                        • Créent un courant de liquide vers la GAUCHE<br>
+                                        • Les protéines de signalisation sont entraînées par ce courant<br>
+                                        • → Orientent l'axe droite-gauche<br><br>
+                                        <strong>Pathologie - Syndrome de Kartagener :</strong><br>
+                                        • Anomalie de la DYNÉINE (protéine motrice des cils/flagelles)<br>
+                                        • Spermatozoïdes IMMOBILES → stérilité masculine<br>
+                                        • Bronchites chroniques + sinusites (cils respiratoires déficients)<br>
+                                        • 50% ont une INVERSION des organes (situs inversus, cœur à droite)<br>
+                                        • L'asymétrie D-G est bien créée mais mal ORIENTÉE
                                     </div>
                                 </div>
                             </div>
@@ -5139,6 +5621,496 @@
                                         • Aboutit SD38 → NÉPHRONS FONCTIONNELS<br>
                                         • Dans le BLASTÈME MÉTANÉPHROGÈNE<br>
                                         • Sous action inductrice du BOURGEON URÉTÉRAL
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================== ANNEXE - PROCRÉATION MÉDICALISÉE ==================== -->
+                <section class="period-section annexe" id="annexe">
+                    <div class="period-title" onclick="toggleSection(this)">
+                        <div class="period-title-content">
+                            <div class="period-title-main">
+                                <span class="period-name">📋 ANNEXE : PROCRÉATION MÉDICALISÉE</span>
+                                <span class="period-days">Hors chronologie embryonnaire</span>
+                            </div>
+                            <span class="duration">FC6 Contraception • FC7 Assistance Médicale à la Procréation</span>
+                        </div>
+                        <span class="period-toggle">▼</span>
+                    </div>
+
+                    <div class="period-content">
+                        <div class="events-container">
+
+                            <!-- CARTE 1 : Contraception idéale (★★★) -->
+                            <div class="event-wrapper high-yield neutral">
+                                <div class="timeline-tag">FC6</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">Contraception idéale <span class="event-subtitle">5 critères à retenir</span></h3>
+                                    <div class="event-summary">
+                                        Une contraception idéale doit être : TRANSITOIRE et RÉVERSIBLE, EFFICACE (indice de Pearl bas), sans risque (INNOCUITÉ), ACCEPTABLE pour le couple, et de COÛT raisonnable. L'indice de Pearl mesure le nombre de grossesses pour 100 femmes après 12 mois d'utilisation parfaite.
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">Indice de Pearl</span>
+                                        <span class="keyword principal">Réversible</span>
+                                        <span class="keyword principal">Innocuité</span>
+                                        <span class="keyword secondaire">Efficacité</span>
+                                        <span class="keyword secondaire">Acceptabilité</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC6 - Contraception</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>5 critères de la contraception idéale :</strong><br>
+                                        • <strong>Transitoire et réversible</strong> : interruption temporaire de la fertilité<br>
+                                        • <strong>Efficace</strong> : échecs le plus réduits possible<br>
+                                        • <strong>Innocuité</strong> : sans risque à court et long terme<br>
+                                        • <strong>Acceptable</strong> : simple, bien tolérée, bonne observance<br>
+                                        • <strong>Coût raisonnable</strong> : pour l'individu et la collectivité<br><br>
+                                        <strong>🎯 Indice de Pearl :</strong><br>
+                                        Nombre de grossesses pour 100 femmes après 12 mois d'utilisation PARFAITE<br>
+                                        Plus l'indice est BAS, plus la méthode est EFFICACE<br><br>
+                                        <strong>Méthodes EXCLUES (non réversibles) :</strong><br>
+                                        • Vasectomie (ligature canaux déférents) : réversibilité aléatoire<br>
+                                        • Ligature des trompes : réversibilité aléatoire<br>
+                                        • Substances toxiques pour la gamétogenèse (chimiothérapie)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARTE 2 : Hiérarchie efficacité (★★★) -->
+                            <div class="event-wrapper high-yield neutral">
+                                <div class="timeline-tag">FC6</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">Efficacité des contraceptifs <span class="event-subtitle">Classement par indice de Pearl</span></h3>
+                                    <div class="event-summary">
+                                        Du PLUS efficace au MOINS efficace : Implant hormonal (0.05) > DIU hormonal (0.1) > Pilule/Anneau/Patch (0.3) > DIU cuivre (0.6) > Préservatif masculin (2) > Préservatif féminin (5) > Diaphragme (6-9) > Spermicides (18). L'implant est le plus efficace, les spermicides les moins efficaces.
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">Implant = 0.05</span>
+                                        <span class="keyword principal">DIU hormonal = 0.1</span>
+                                        <span class="keyword principal">Pilule = 0.3</span>
+                                        <span class="keyword secondaire">Préservatif = 2</span>
+                                        <span class="keyword secondaire">Spermicides = 18</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC6 - Contraception</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>Classement par efficacité (IP en utilisation parfaite) :</strong><br><br>
+                                        <strong>🥇 TRÈS EFFICACES (IP &lt; 1) :</strong><br>
+                                        • Implant hormonal : <strong>0.05</strong> (le plus efficace !)<br>
+                                        • DIU hormonal : 0.1<br>
+                                        • Pilule oestroprogestative : 0.3<br>
+                                        • Pilule progestative : 0.3<br>
+                                        • Anneau vaginal : 0.3<br>
+                                        • Patch hormonal : 0.3<br>
+                                        • Ligature trompes : 0.5<br>
+                                        • DIU cuivre : 0.6<br><br>
+                                        <strong>🥈 EFFICACES (IP 1-10) :</strong><br>
+                                        • Préservatif masculin : 2<br>
+                                        • Coït interrompu : 4 (parfait) / 19 (courant)<br>
+                                        • Préservatif féminin : 5<br>
+                                        • Diaphragme : 6<br>
+                                        • Cape cervicale : 9<br><br>
+                                        <strong>🥉 PEU EFFICACES (IP &gt; 10) :</strong><br>
+                                        • Spermicides seuls : <strong>18</strong> (le moins efficace)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARTE 3 : Méthodes naturelles (★★☆) -->
+                            <div class="event-wrapper medium-yield neutral">
+                                <div class="timeline-tag">FC6</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">Méthodes naturelles <span class="event-subtitle">Ogino, température, Billings, MAMA</span></h3>
+                                    <div class="event-summary">
+                                        Méthodes sans dispositif médical ni médicament, basées sur l'observation du cycle. La phase LUTÉALE est CONSTANTE (14 jours). La courbe de température montre une élévation de 0.2-0.5°C après l'ovulation (progestérone). La méthode Billings observe la glaire (claire, filante, abondante en période ovulatoire). La méthode MAMA nécessite 6 tétées/jour minimum.
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">Phase lutéale = 14 jours</span>
+                                        <span class="keyword principal">+0.2-0.5°C après ovulation</span>
+                                        <span class="keyword secondaire">Glaire filante</span>
+                                        <span class="keyword secondaire">MAMA 6 tétées/jour</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC6 - Contraception</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star dim">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>Caractéristiques communes :</strong><br>
+                                        • Aucun dispositif médical, aucun médicament<br>
+                                        • Basées sur l'observation du cycle<br>
+                                        • Pas de protection contre les IST<br>
+                                        • Efficacité souvent modérée<br><br>
+                                        <strong>🎯 Méthode Ogino :</strong><br>
+                                        • Phase LUTÉALE = CONSTANTE = <strong>14 jours</strong><br>
+                                        • Ovulation = Durée cycle - 14 jours<br>
+                                        • Cycle 35j → ovulation J21 / Cycle 21j → ovulation J7<br>
+                                        • Ovocyte viable 24h, spermatozoïdes vivent plusieurs jours<br><br>
+                                        <strong>🎯 Courbe de température :</strong><br>
+                                        • Élévation de <strong>0.2 à 0.5°C</strong> après l'ovulation<br>
+                                        • Due à l'augmentation de la PROGESTÉRONE<br>
+                                        • Plus utile pour CONCEVOIR que pour contraception<br><br>
+                                        <strong>🎯 Méthode Billings :</strong><br>
+                                        • Observation de la GLAIRE CERVICALE<br>
+                                        • En période ovulatoire : claire, abondante, FILANTE<br><br>
+                                        <strong>🎯 Méthode MAMA (allaitement) :</strong><br>
+                                        • Minimum <strong>6 tétées/jour</strong><br>
+                                        • Max 4h entre tétées le jour, 6h la nuit<br>
+                                        • Prolactine → aménorrhée
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARTE 4 : Pilule et DIU (★★★) -->
+                            <div class="event-wrapper high-yield neutral">
+                                <div class="timeline-tag">FC6</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">Pilule et DIU <span class="event-subtitle">Triple action hormonale</span></h3>
+                                    <div class="event-summary">
+                                        La pilule oestroprogestative a une TRIPLE ACTION : blocage de l'OVULATION, modification de l'ENDOMÈTRE (amincissement), épaississement de la GLAIRE cervicale. La pilule progestative se prend TOUS LES JOURS sans interruption. Le DIU cuivre provoque une inflammation empêchant la nidation + inactive les spermatozoïdes. Le DIU hormonal agit sur endomètre + glaire.
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">Triple action</span>
+                                        <span class="keyword principal">Ovulation</span>
+                                        <span class="keyword principal">Endomètre</span>
+                                        <span class="keyword principal">Glaire</span>
+                                        <span class="keyword secondaire">DIU cuivre</span>
+                                        <span class="keyword secondaire">DIU hormonal</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC6 - Contraception</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>🎯 Pilule oestroprogestative - TRIPLE ACTION :</strong><br>
+                                        • Blocage de l'<strong>OVULATION</strong><br>
+                                        • Modification de l'<strong>ENDOMÈTRE</strong> (amincissement) → pas de nidation<br>
+                                        • Épaississement de la <strong>GLAIRE</strong> cervicale → pas de passage des spz<br><br>
+                                        <strong>Types de pilules :</strong><br>
+                                        • Monophasique : doses fixes<br>
+                                        • Biphasique : 2 paliers<br>
+                                        • Triphasique : 3 paliers<br><br>
+                                        <strong>🎯 Pilule progestative microdosée :</strong><br>
+                                        • Prise TOUS LES JOURS, <strong>SANS INTERRUPTION</strong><br>
+                                        • Indiquée si contre-indications aux œstrogènes<br>
+                                        • Action sur endomètre + glaire (± ovulation)<br><br>
+                                        <strong>🎯 DIU cuivre :</strong><br>
+                                        • Provoque inflammation locale → empêche nidation<br>
+                                        • INACTIVE les spermatozoïdes<br>
+                                        • IP = 0.6<br><br>
+                                        <strong>🎯 DIU hormonal :</strong><br>
+                                        • Libère progestatif dans l'utérus<br>
+                                        • Action sur endomètre + glaire<br>
+                                        • IP = 0.1 (plus efficace que cuivre)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARTE 5 : Contraception d'urgence (★★☆) -->
+                            <div class="event-wrapper medium-yield neutral">
+                                <div class="timeline-tag">FC6</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">Contraception d'urgence <span class="event-subtitle">Pilule du lendemain</span></h3>
+                                    <div class="event-summary">
+                                        Le LÉVONORGESTREL réduit le risque de grossesse de 75% s'il est pris dans les 3 PREMIERS JOURS (72h). L'ACÉTATE D'ULIPRISTAL est efficace jusqu'à 5 JOURS (120h) avec seulement 2.1% de risque de grossesse. Le DIU cuivre peut être posé jusqu'à 5 jours après le rapport comme contraception d'urgence très efficace.
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">Lévonorgestrel = 3 jours</span>
+                                        <span class="keyword principal">Ulipristal = 5 jours</span>
+                                        <span class="keyword secondaire">DIU cuivre urgence</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC6 - Contraception</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star dim">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>Principe :</strong><br>
+                                        • Méthode de rattrapage après rapport à risque<br>
+                                        • Évite ovulation OU empêche implantation<br>
+                                        • Plus c'est pris TÔT, plus c'est EFFICACE<br><br>
+                                        <strong>🎯 Lévonorgestrel :</strong><br>
+                                        • Progestatif<br>
+                                        • Efficace dans les <strong>3 PREMIERS JOURS</strong> (72h)<br>
+                                        • Réduit le risque de grossesse de 75%<br>
+                                        • Disponible sans ordonnance<br>
+                                        • Gratuit et anonyme pour les mineurs<br><br>
+                                        <strong>🎯 Acétate d'ulipristal :</strong><br>
+                                        • Plus efficace que le lévonorgestrel<br>
+                                        • Efficace jusqu'à <strong>5 JOURS</strong> (120h)<br>
+                                        • Seulement 2.1% de risque de grossesse<br><br>
+                                        <strong>🎯 DIU cuivre en urgence :</strong><br>
+                                        • Peut être posé jusqu'à 5 jours après le rapport<br>
+                                        • Très efficace + fournit contraception durable
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARTE 6 : Contraception masculine (★★☆) -->
+                            <div class="event-wrapper medium-yield neutral">
+                                <div class="timeline-tag">FC6</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">Contraception masculine <span class="event-subtitle">Préservatif, chaleur, androgènes</span></h3>
+                                    <div class="event-summary">
+                                        Le préservatif masculin a un IP de 2 en utilisation parfaite et protège contre les IST. Les spermicides sont présents dans tous les préservatifs commercialisés. Une augmentation de température des testicules de seulement 1°C suffit à perturber la spermatogenèse (réversible). Les testicules sont normalement à 35-36°C (1.5-2°C sous la température corporelle).
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">Préservatif IP = 2</span>
+                                        <span class="keyword principal">+1°C = perturbation</span>
+                                        <span class="keyword secondaire">Testicules 35-36°C</span>
+                                        <span class="keyword secondaire">Spermicides</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC6 - Contraception</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star dim">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>🎯 Préservatif masculin :</strong><br>
+                                        • IP = 2 en utilisation parfaite<br>
+                                        • Protège contre les IST<br>
+                                        • Contient des SPERMICIDES (tue les spz au contact)<br><br>
+                                        <strong>🎯 Réchauffement des testicules :</strong><br>
+                                        • Testicules normalement à <strong>35-36°C</strong><br>
+                                        • = 1.5 à 2°C SOUS la température corporelle<br>
+                                        • Augmentation de <strong>seulement 1°C</strong> suffit à perturber la spermatogenèse<br>
+                                        • Doit être maintenu 15h/jour minimum<br>
+                                        • RÉVERSIBLE à l'arrêt<br>
+                                        • Professions à risque : chauffeurs routiers, ambiances chaudes<br><br>
+                                        <strong>Androgènes :</strong><br>
+                                        • Doses élevées → rétrocontrôle négatif → blocage spermatogenèse<br>
+                                        • Efficacité pas immédiate, pas toujours 100%
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARTE 7 : AMP définitions (★★★) -->
+                            <div class="event-wrapper high-yield neutral">
+                                <div class="timeline-tag">FC7</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">AMP - Définitions <span class="event-subtitle">Infertilité et fécondabilité</span></h3>
+                                    <div class="event-summary">
+                                        1 couple sur 6 (14%) consulte pour infertilité. On parle d'infertilité si le délai pour concevoir est supérieur à 1 AN. Causes : 30% féminin, 20% masculin, 40% MIXTE, 10% inexpliqué. L'homme est impliqué dans plus d'1 cas sur 2. La fécondabilité de la femme est de 1/4 à 20 ans, quasi nulle à 45 ans. Seuils critiques : 35 ans, 38 ans, 40 ans.
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">1 couple sur 6</span>
+                                        <span class="keyword principal">Délai > 1 an</span>
+                                        <span class="keyword principal">40% mixte</span>
+                                        <span class="keyword secondaire">Fécondabilité 1/4 à 20 ans</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC7 - AMP</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>Épidémiologie :</strong><br>
+                                        • <strong>1 couple sur 6</strong> (14%) consulte pour infertilité<br>
+                                        • Délai pathologique si &gt; <strong>1 AN</strong> pour concevoir<br><br>
+                                        <strong>🎯 Causes d'infertilité :</strong><br>
+                                        • 30% origine FÉMININE<br>
+                                        • 20% origine MASCULINE<br>
+                                        • <strong>40% MIXTE</strong> (les deux partenaires)<br>
+                                        • 10% inexpliquée<br>
+                                        • → L'homme impliqué dans <strong>plus d'1 cas sur 2</strong><br><br>
+                                        <strong>🎯 Fécondabilité de la femme :</strong><br>
+                                        • 20 ans : <strong>1 chance sur 4</strong> par cycle<br>
+                                        • 35 ans : baisse significative<br>
+                                        • 38 ans : nouveau cap<br>
+                                        • 40 ans : devient compliqué<br>
+                                        • 45 ans : <strong>quasi 0</strong><br><br>
+                                        <strong>Définitions :</strong><br>
+                                        • Fertilité : aptitude à procréer<br>
+                                        • Infertilité : pas de grossesse après 1 an<br>
+                                        • Stérilité : incapacité DÉFINITIVE<br>
+                                        • Fécondabilité : % de chance par cycle<br>
+                                        • Infertilité primaire : jamais de grossesse<br>
+                                        • Infertilité secondaire : déjà eu une grossesse
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARTE 8 : IIU et FIV (★★★) -->
+                            <div class="event-wrapper high-yield neutral">
+                                <div class="timeline-tag">FC7</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">IIU et FIV <span class="event-subtitle">Techniques d'AMP</span></h3>
+                                    <div class="event-summary">
+                                        L'Insémination Intra-Utérine (IIU) a un taux de succès de 10-12% par cycle, réalisée au moment de l'OVULATION, nécessite minimum 1 MILLION de spermatozoïdes mobiles. Après 6 échecs, on passe à la FIV. La Fécondation In Vitro (FIV) a 25% de grossesse par ponction et 20% d'accouchement. Ponction ovocytaire 36-40h après déclenchement.
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">IIU 10-12%</span>
+                                        <span class="keyword principal">1 million spz mobiles</span>
+                                        <span class="keyword principal">FIV 25%</span>
+                                        <span class="keyword secondaire">6 cycles max IIU</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC7 - AMP</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>🎯 Insémination Intra-Utérine (IIU) :</strong><br>
+                                        • Taux de succès : <strong>10-12%</strong> par insémination<br>
+                                        • Réalisée au moment de l'<strong>OVULATION</strong><br>
+                                        • Nécessite minimum <strong>1 MILLION</strong> de spermatozoïdes mobiles<br>
+                                        • Spermatozoïdes sélectionnés sur gradient de densité<br>
+                                        • 90% des grossesses obtenues en 6 cycles<br>
+                                        • Après <strong>6 échecs</strong> → passage à la FIV<br><br>
+                                        <strong>Indications IIU :</strong><br>
+                                        • Troubles sexuels / éjaculation<br>
+                                        • Anomalies de la glaire cervicale<br>
+                                        • Infertilités inexpliquées<br>
+                                        • OAT modérée (oligo-asthéno-tératozoospermie)<br><br>
+                                        <strong>🎯 Fécondation In Vitro (FIV) :</strong><br>
+                                        • Taux de grossesse : <strong>25%</strong> par ponction<br>
+                                        • Taux d'accouchement : <strong>20%</strong> par ponction<br>
+                                        • Indication initiale : obstruction tubaire<br>
+                                        • Stimulation → déclenchement → ponction 36-40h après<br>
+                                        • Culture jusqu'à J5-J6 (blastocyste) possible<br>
+                                        • Transfert par voies naturelles
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARTE 9 : ICSI (★★★) -->
+                            <div class="event-wrapper high-yield neutral">
+                                <div class="timeline-tag">FC7</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">ICSI <span class="event-subtitle">Micro-injection intracytoplasmique</span></h3>
+                                    <div class="event-summary">
+                                        L'ICSI (Intra-Cytoplasmic Sperm Injection) a révolutionné le traitement de la stérilité masculine depuis 1992. Mêmes taux de succès que la FIV classique. Indications : OAT SÉVÈRE, dyskinésie flagellaire (spz immobiles), anticorps anti-spermatozoïdes, azoospermie obstructive ou non obstructive, échec de FIV classique. 8000 naissances/an en France.
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">ICSI 1992</span>
+                                        <span class="keyword principal">OAT sévère</span>
+                                        <span class="keyword principal">Dyskinésie flagellaire</span>
+                                        <span class="keyword secondaire">Azoospermie</span>
+                                        <span class="keyword secondaire">Anticorps anti-spz</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC7 - AMP</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>Principe :</strong><br>
+                                        • Injection DIRECTE du spermatozoïde dans l'ovocyte<br>
+                                        • Technique depuis <strong>1992</strong><br>
+                                        • A révolutionné le pronostic de la stérilité masculine<br>
+                                        • Mêmes taux de succès que FIV classique<br>
+                                        • ~8000 naissances/an en France<br><br>
+                                        <strong>🎯 Indications :</strong><br>
+                                        • <strong>OAT SÉVÈRE</strong> (oligo-asthéno-tératozoospermie)<br>
+                                        • <strong>Dyskinésie flagellaire</strong> (spermatozoïdes immobiles)<br>
+                                        • <strong>Anticorps anti-spermatozoïdes</strong><br>
+                                        • Mauvaise survie après décongélation<br>
+                                        • Troubles de l'éjaculation<br>
+                                        • <strong>Azoospermie obstructive</strong> (agénésie, vasectomie, infection)<br>
+                                        • <strong>Azoospermie non obstructive</strong> (défaut de production)<br>
+                                        • Échec de FIV classique<br><br>
+                                        <strong>Impact historique :</strong><br>
+                                        • 1991 : 3500 naissances/an par don de sperme<br>
+                                        • 2016 : 500 naissances/an par don de sperme<br>
+                                        • → ICSI a réduit le recours au don
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CARTE 10 : Don de gamètes (★★☆) -->
+                            <div class="event-wrapper medium-yield neutral">
+                                <div class="timeline-tag">FC7</div>
+                                <div class="event-card" onclick="this.classList.toggle('expanded')">
+                                    <h3 class="event-title">Don de gamètes <span class="event-subtitle">Dernier recours</span></h3>
+                                    <div class="event-summary">
+                                        Le don intervient en DERNIER RECOURS quand les autres techniques ont échoué ou en cas de risque de transmission de maladie génétique. Don de sperme depuis 1972 (CECOS 1973), ~70 000 naissances depuis. Don d'ovocytes : plus contraignant (stimulation + ponction), 1 donneuse = 1-2 enfants (vs 10 pour le sperme), délai d'attente ~2 ans. La vitrification permet la congélation efficace des ovocytes.
+                                    </div>
+                                    <div class="event-keywords">
+                                        <span class="keyword principal">Dernier recours</span>
+                                        <span class="keyword principal">CECOS 1973</span>
+                                        <span class="keyword secondaire">Vitrification</span>
+                                        <span class="keyword secondaire">Don ovocytes 2 ans attente</span>
+                                    </div>
+                                    <div class="event-footer">
+                                        <span class="event-source">📖 FC7 - AMP</span>
+                                        <div class="event-footer-right">
+                                            <div class="stars">
+                                                <span class="star">★</span><span class="star">★</span><span class="star dim">★</span>
+                                            </div>
+                                            <span class="expand-hint">▼</span>
+                                        </div>
+                                    </div>
+                                    <div class="event-details">
+                                        <strong>Principe :</strong><br>
+                                        • Intervient en <strong>DERNIER RECOURS</strong><br>
+                                        • Quand autres techniques impossibles ou échouées<br>
+                                        • Ou risque de transmission de maladie génétique<br><br>
+                                        <strong>🎯 Don de sperme :</strong><br>
+                                        • Existe depuis 1972 en France<br>
+                                        • <strong>CECOS</strong> créés en 1973<br>
+                                        • ~70 000 naissances depuis la création<br>
+                                        • 1 don = jusqu'à 10 naissances possibles<br>
+                                        • 2016 : 590 naissances/an<br><br>
+                                        <strong>🎯 Don d'ovocytes :</strong><br>
+                                        • Plus contraignant : stimulation + ponction sous anesthésie<br>
+                                        • 1 donneuse = seulement 1-2 enfants<br>
+                                        • Besoin de 5-10x plus de donneuses que pour le sperme<br>
+                                        • Délai d'attente : ~<strong>2 ans</strong><br>
+                                        • 2016 : 345 naissances/an<br><br>
+                                        <strong>🎯 Vitrification :</strong><br>
+                                        • Technique de congélation rapide des ovocytes<br>
+                                        • Depuis ~2015 en France<br>
+                                        • A multiplié par 3 les naissances par transfert congelé<br><br>
+                                        <strong>Don d'embryon :</strong><br>
+                                        • Possible depuis loi 1994 (décrets 2004-2005)<br>
+                                        • Très peu utilisé : 25 naissances en 2016
                                     </div>
                                 </div>
                             </div>
