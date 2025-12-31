@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arbre Décisionnel - Tests d'Hypothèse v5</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1a365d;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        /* Ligne verticale */
+        .ligne-v {
+            width: 3px;
+            height: 25px;
+            background: #1a365d;
+            margin: 0 auto;
+        }
+        
+        /* Encadrés du haut */
+        .box-intro {
+            background: #1a365d;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+            font-weight: 600;
+        }
+        
+        .box-une-solution {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            margin: 0 auto;
+            font-weight: 600;
+            color: #856404;
+        }
+        
+        /* Hypothèses côte à côte */
+        .hypotheses-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 20px 0;
+        }
+        
+        .hypothese-box {
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 280px;
+        }
+        
+        .hypothese-box.h0 {
+            background: #e3f2fd;
+            border: 2px solid #3498db;
+        }
+        
+        .hypothese-box.h1 {
+            background: #f3e5f5;
+            border: 2px solid #9b59b6;
+        }
+        
+        .hypothese-box h3 {
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        
+        .hypothese-box.h0 h3 {
+            color: #3498db;
+        }
+        
+        .hypothese-box.h1 h3 {
+            color: #9b59b6;
+        }
+        
+        .hypothese-box p {
+            font-size: 0.9rem;
+            color: #333;
+            font-style: italic;
+        }
+        
+        /* Box compare */
+        .box-compare {
+            background: #1a365d;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 300px;
+            margin: 0 auto;
+            font-weight: 600;
+        }
+        
+        /* Fourche principale */
+        .fourche-principale {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .branches-principales {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .branche-principale {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .box-condition {
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+            color: white;
+        }
+        
+        .box-condition.pareil {
+            background: #e74c3c;
+        }
+        
+        .box-condition.different {
+            background: #27ae60;
+        }
+        
+        .box-signification {
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .box-signification.pareil {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #e74c3c;
+        }
+        
+        .box-signification.different {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #27ae60;
+        }
+        
+        /* Sous-branches H0 et H1 */
+        .sous-branches {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .sous-branche {
+            background: white;
+            border-radius: 10px;
+            padding: 12px;
+            width: 260px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .sous-branche.h0 {
+            border-top: 4px solid #3498db;
+        }
+        
+        .sous-branche.h1 {
+            border-top: 4px solid #9b59b6;
+        }
+        
+        .sous-branche-titre {
+            font-weight: bold;
+            padding: 6px 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        
+        .sous-branche.h0 .sous-branche-titre {
+            background: #3498db;
+            color: white;
+        }
+        
+        .sous-branche.h1 .sous-branche-titre {
+            background: #9b59b6;
+            color: white;
+        }
+        
+        .question-box {
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        
+        .question-box strong {
+            color: #1a365d;
+        }
+        
+        .reponse-box {
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+        }
+        
+        .reponse-box.vrai {
+            background: #d4edda;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .reponse-box.faux {
+            background: #f8d7da;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .formulation-box {
+            background: #e8e8e8;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            margin-bottom: 8px;
+        }
+        
+        .conclusion-box {
+            background: #d4edda;
+            border: 1px solid #27ae60;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            text-align: center;
+        }
+        
+        .conclusion-box.faux {
+            background: #f8d7da;
+            border: 1px solid #e74c3c;
+        }
+        
+        /* Section erreurs */
+        .erreurs-section {
+            margin-top: 30px;
+            background: #fff;
+            border: 2px solid #e74c3c;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .erreurs-titre {
+            background: #e74c3c;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        
+        .erreurs-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .erreur-groupe {
+            flex: 1;
+            min-width: 500px;
+        }
+        
+        .erreur-groupe-titre {
+            text-align: center;
+            font-weight: bold;
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .erreur-groupe.pareil .erreur-groupe-titre {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .erreur-groupe.different .erreur-groupe-titre {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .erreurs-boxes {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .erreur-box {
+            flex: 1;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 0.8rem;
+        }
+        
+        .erreur-box.alpha {
+            border-top: 4px solid #ffc107;
+        }
+        
+        .erreur-box.beta {
+            border-top: 4px solid #9b59b6;
+        }
+        
+        .erreur-box h4 {
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+        
+        .erreur-box.alpha h4 {
+            color: #856404;
+        }
+        
+        .erreur-box.beta h4 {
+            color: #9b59b6;
+        }
+        
+        .erreur-situation {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-size: 0.78rem;
+        }
+        
+        .erreur-formulation {
+            background: #e8e8e8;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-size: 0.78rem;
+        }
+        
+        .erreur-risque {
+            padding: 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .erreur-risque.alpha {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .erreur-risque.beta {
+            background: #f3e5f5;
+            color: #9b59b6;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 ARBRE DÉCISIONNEL - Tests d'Hypothèse</h1>
+        
+        <!-- Histoire du médicament -->
+        <div style="background: #e8f4fd; border: 2px solid #3498db; border-radius: 10px; padding: 20px; margin-bottom: 25px;">
+            <h2 style="color: #2980b9; margin-bottom: 15px; font-size: 1.1rem;">💊 L'HISTOIRE DU MÉDICAMENT (pour comprendre H0, H1, α et p)</h2>
+            
+            <p style="margin-bottom: 10px;">Le laboratoire <strong>NovaScience</strong> veut mettre sur le marché un nouveau médicament. Pour que l'<strong>Agence du Médicament</strong> accepte, il faut prouver que ce médicament est au minimum aussi efficace, voire plus efficace, que ceux qui existent déjà.</p>
+            
+            <p style="margin-bottom: 10px;">On va donc faire des études en comparant des groupes de patients.</p>
+            
+            <p style="margin-bottom: 10px;">Par prudence, l'Agence du Médicament part de l'hypothèse qu'il n'y a <strong>pas de différence</strong> entre le nouveau médicament et les anciens. C'est l'hypothèse de départ, qu'on appelle <strong style="color: #c0392b;">H0</strong>.</p>
+            
+            <p style="margin-bottom: 10px;">C'est maintenant au laboratoire de prouver le contraire : qu'il <strong>existe une différence</strong>. C'est l'hypothèse alternative, qu'on appelle <strong style="color: #c0392b;">H1</strong>.</p>
+            
+            <p style="margin-bottom: 10px;">Pour que l'Agence accepte cette différence, le laboratoire doit montrer que son résultat <strong style="color: #c0392b;">p</strong> est inférieur au seuil <strong style="color: #c0392b;">α = 0,05</strong> fixé par l'Agence.</p>
+            
+            <p style="margin-bottom: 10px;">Quand le laboratoire fait son étude, il obtient un résultat appelé <strong>p</strong>.</p>
+            
+            <div style="background: white; border-radius: 8px; padding: 15px; margin-top: 15px;">
+                <p style="margin-bottom: 8px;">• Si <strong style="color: #e74c3c;">p ≥ α</strong> : pas de différence prouvée → on <strong>accepte H0</strong> (l'Agence avait raison) et on <strong>rejette H1</strong> (le laboratoire n'a pas réussi à prouver)</p>
+                
+                <p>• Si <strong style="color: #27ae60;">p &lt; α</strong> : différence prouvée → on <strong>rejette H0</strong> (l'Agence avait tort) et on <strong>accepte H1</strong> (le laboratoire a réussi à prouver)</p>
+            </div>
+        </div>
+        
+        <!-- Encadré préliminaire -->
+        <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 10px; padding: 15px 20px; margin-bottom: 25px;">
+            <h2 style="color: #856404; margin-bottom: 10px; font-size: 1rem;">📝 AVANT DE COMMENCER</h2>
+            <p style="font-size: 0.95rem;">• Si <strong style="color: #c0392b;">α</strong> n'est pas donné dans l'énoncé → <strong style="color: #c0392b;">α = 0,05</strong></p>
+        </div>
+        
+        <!-- Encadré sur les différentes tournures -->
+        <div style="background: #f0fdf4; border: 2px solid #22c55e; border-radius: 10px; padding: 15px 20px; margin-bottom: 25px;">
+            <h2 style="color: #166534; margin-bottom: 10px; font-size: 1rem;">🔄 NE VOUS LAISSEZ PAS PIÉGER PAR LES TOURNURES</h2>
+            
+            <p style="font-size: 0.9rem; margin-bottom: 10px;">Les QCM peuvent présenter le même raisonnement sous différentes formes :</p>
+            
+            <ul style="font-size: 0.9rem; margin-left: 20px; margin-bottom: 15px;">
+                <li>"Tests d'hypothèse"</li>
+                <li>"Comparaison statistique entre 2 moyennes / 2 variables / 2 proportions"</li>
+                <li>Nom du test directement : Student, Khi², Mann-Whitney...</li>
+            </ul>
+            
+            <div style="background: white; border-radius: 8px; padding: 12px;">
+                <p style="font-size: 0.9rem;"><strong style="color: #166534;">→ C'est toujours la même chose !</strong></p>
+                <p style="font-size: 0.9rem; margin-top: 8px;">Isolez dans l'énoncé les <strong>2 groupes/situations comparés</strong>, puis appliquez le même raisonnement dès que les items parlent de <strong>H0, H1, α, β, p</strong>.</p>
+            </div>
+        </div>
+        
+        <!-- Encadré Si vs On peut -->
+        <div style="background: #e8f4fd; border: 2px solid #3498db; border-radius: 10px; padding: 15px 20px; margin-bottom: 25px;">
+            <h2 style="color: #2980b9; margin-bottom: 10px; font-size: 1rem;">🔑 ATTENTION AU DÉBUT DE L'ITEM</h2>
+            
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 250px; background: white; border-radius: 8px; padding: 12px;">
+                    <div style="font-weight: bold; color: #1a365d; margin-bottom: 8px;">L'item commence par "SI on..."</div>
+                    <div style="font-size: 0.9rem;">= hypothétique<br>→ On s'en fiche de savoir si on peut ou pas<br>→ <strong>On vérifie juste si le % est bon</strong> (X = p ?)</div>
+                </div>
+                
+                <div style="flex: 1; min-width: 250px; background: white; border-radius: 8px; padding: 12px;">
+                    <div style="font-weight: bold; color: #1a365d; margin-bottom: 8px;">L'item commence par :<br>"ON PEUT..." / "ON NE PEUT PAS..."<br>"ON REJETTE..." / "ON ACCEPTE..."</div>
+                    <div style="font-size: 0.9rem;">= on le fait vraiment<br>→ <strong>D'abord vérifier qu'on a le DROIT</strong><br>→ p < α pour dire différent<br>→ p ≥ α pour dire pas de différence</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ========== L'ARBRE ========== -->
+        
+        <!-- Niveau 1 : On teste 2 hypothèses -->
+        <div class="box-intro">On teste 2 hypothèses à partir de 2 groupes/situations...</div>
+        <div class="ligne-v"></div>
+        
+        <!-- Niveau 2 : Une seule solution -->
+        <div class="box-une-solution">⚠️ Il ne peut y avoir qu'une seule solution</div>
+        <div class="ligne-v"></div>
+        
+        <!-- Niveau 3 : H0 et H1 côte à côte -->
+        <div class="hypotheses-container">
+            <div class="hypothese-box h0">
+                <h3>H0 = Hypothèse de départ</h3>
+                <p>"Il n'y a pas de différence entre les groupes"</p>
+            </div>
+            <div class="hypothese-box h1">
+                <h3>H1 = Hypothèse alternative</h3>
+                <p>"Il y a une différence entre les groupes"</p>
+            </div>
+        </div>
+        <div class="ligne-v"></div>
+        
+        <!-- Niveau 4 : On compare p et α -->
+        <div class="box-compare">On compare p et α</div>
+        <div class="ligne-v"></div>
+        
+        <!-- Fourche principale -->
+        <div class="fourche-principale">
+            <div class="branches-principales">
+                
+                <!-- BRANCHE GAUCHE : p ≥ α -->
+                <div class="branche-principale">
+                    <div class="box-condition pareil">p ≥ α</div>
+                    <div style="font-size: 0.75rem; color: #721c24; text-align: center; margin-top: 5px;">(ou Khi² calculé ≤ Khi²(α))</div>
+                    <div class="box-signification pareil">Pas de différence significative<br>entre les groupes</div>
+                    
+                    <div class="sous-branches">
+                        <!-- H0 -->
+                        <div class="sous-branche h0">
+                            <div class="sous-branche-titre">H0</div>
+                            
+                            <div class="question-box">
+                                <strong>L'hypothèse de départ H0 est-elle juste ou fausse ?</strong>
+                            </div>
+                            
+                            <div class="reponse-box vrai">
+                                Comme il n'y a <strong>pas de différence</strong> entre les groupes, alors <strong>H0 est VRAIE</strong>
+                            </div>
+                            
+                            <div class="formulation-box">
+                                <strong>La formulation statistique sera :</strong><br>
+                                "Ne pas rejeter H0" ou "Accepter H0"
+                            </div>
+                            
+                            <div class="conclusion-box">
+                                → L'hypothèse de départ (qu'il n'y a pas de différence significative) <strong>est validée</strong>.
+                            </div>
+                        </div>
+                        
+                        <!-- H1 -->
+                        <div class="sous-branche h1">
+                            <div class="sous-branche-titre">H1</div>
+                            
+                            <div class="question-box">
+                                <strong>L'hypothèse alternative H1 est-elle juste ou fausse ?</strong>
+                            </div>
+                            
+                            <div class="reponse-box faux">
+                                Comme il n'y a <strong>pas de différence</strong> entre les groupes, alors <strong>H1 est FAUSSE</strong>
+                            </div>
+                            
+                            <div class="formulation-box">
+                                <strong>La formulation statistique sera :</strong><br>
+                                "Rejeter H1" ou "Ne pas accepter H1"
+                            </div>
+                            
+                            <div class="conclusion-box faux">
+                                → L'hypothèse alternative (qu'il y a une différence significative) <strong>est fausse</strong>.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- BRANCHE DROITE : p < α -->
+                <div class="branche-principale">
+                    <div class="box-condition different">p &lt; α</div>
+                    <div style="font-size: 0.75rem; color: #155724; text-align: center; margin-top: 5px;">(ou Khi² calculé > Khi²(α))</div>
+                    <div class="box-signification different">Différence significative<br>entre les groupes</div>
+                    
+                    <div class="sous-branches">
+                        <!-- H0 -->
+                        <div class="sous-branche h0">
+                            <div class="sous-branche-titre">H0</div>
+                            
+                            <div class="question-box">
+                                <strong>L'hypothèse de départ H0 est-elle juste ou fausse ?</strong>
+                            </div>
+                            
+                            <div class="reponse-box faux">
+                                Comme il y a une <strong>différence</strong> entre les groupes, alors <strong>H0 est FAUSSE</strong>
+                            </div>
+                            
+                            <div class="formulation-box">
+                                <strong>La formulation statistique sera :</strong><br>
+                                "Rejeter H0" ou "Ne pas accepter H0"
+                            </div>
+                            
+                            <div class="conclusion-box faux">
+                                → L'hypothèse de départ (qu'il n'y a pas de différence significative) <strong>est fausse</strong>.
+                            </div>
+                        </div>
+                        
+                        <!-- H1 -->
+                        <div class="sous-branche h1">
+                            <div class="sous-branche-titre">H1</div>
+                            
+                            <div class="question-box">
+                                <strong>L'hypothèse alternative H1 est-elle juste ou fausse ?</strong>
+                            </div>
+                            
+                            <div class="reponse-box vrai">
+                                Comme il y a une <strong>différence</strong> entre les groupes, alors <strong>H1 est VRAIE</strong>
+                            </div>
+                            
+                            <div class="formulation-box">
+                                <strong>La formulation statistique sera :</strong><br>
+                                "Accepter H1" ou "Ne pas rejeter H1"
+                            </div>
+                            
+                            <div class="conclusion-box">
+                                → L'hypothèse alternative (qu'il y a une différence significative) <strong>est validée</strong>.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- ========== SECTION ERREURS ========== -->
+        <div class="erreurs-section">
+            <div class="erreurs-titre">❌ QUELLES ERREURS PUIS-JE FAIRE ?</div>
+            
+            <div style="display: flex; gap: 40px; justify-content: center;">
+                
+                <!-- Erreur quand p ≥ α -->
+                <div style="flex: 1; max-width: 450px;">
+                    <div style="background: #f8d7da; color: #721c24; text-align: center; font-weight: bold; padding: 10px; border-radius: 8px; margin-bottom: 15px;">
+                        Quand p ≥ α (pas de différence)
+                    </div>
+                    
+                    <div style="background: #f3e5f5; border: 3px solid #9b59b6; border-radius: 10px; padding: 20px; text-align: center;">
+                        <h3 style="color: #9b59b6; margin-bottom: 15px; font-size: 1.1rem;">ERREUR DE TYPE β</h3>
+                        
+                        <div style="background: white; padding: 12px; border-radius: 6px; margin-bottom: 12px; font-size: 0.85rem; text-align: left;">
+                            <strong>Situation :</strong><br>
+                            On a conclu qu'il n'y avait pas de différence alors qu'en réalité il y en avait une.
+                        </div>
+                        
+                        <div style="background: #e8e8e8; padding: 12px; border-radius: 6px; margin-bottom: 12px; font-size: 0.85rem; text-align: left;">
+                            <strong>Autrement dit :</strong><br>
+                            On a accepté H0 à tort<br>
+                            ou<br>
+                            On a rejeté H1 à tort
+                        </div>
+                        
+                        <div style="background: #9b59b6; color: white; padding: 12px; border-radius: 6px; font-weight: bold; font-size: 1rem;">
+                            Mon risque de me tromper : X = β
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Erreur quand p < α -->
+                <div style="flex: 1; max-width: 450px;">
+                    <div style="background: #d4edda; color: #155724; text-align: center; font-weight: bold; padding: 10px; border-radius: 8px; margin-bottom: 15px;">
+                        Quand p &lt; α (différence)
+                    </div>
+                    
+                    <div style="background: #fff3cd; border: 3px solid #ffc107; border-radius: 10px; padding: 20px; text-align: center;">
+                        <h3 style="color: #856404; margin-bottom: 15px; font-size: 1.1rem;">ERREUR DE TYPE α</h3>
+                        
+                        <div style="background: white; padding: 12px; border-radius: 6px; margin-bottom: 12px; font-size: 0.85rem; text-align: left;">
+                            <strong>Situation :</strong><br>
+                            On a conclu qu'il y avait une différence alors qu'en réalité il n'y en avait pas.
+                        </div>
+                        
+                        <div style="background: #e8e8e8; padding: 12px; border-radius: 6px; margin-bottom: 12px; font-size: 0.85rem; text-align: left;">
+                            <strong>Autrement dit :</strong><br>
+                            On a rejeté H0 à tort<br>
+                            ou<br>
+                            On a accepté H1 à tort
+                        </div>
+                        
+                        <div style="background: #ffc107; color: #856404; padding: 12px; border-radius: 6px; font-weight: bold; font-size: 1rem;">
+                            Mon risque de me tromper : X = p
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Encadré récapitulatif α vs β -->
+        <div style="background: white; border: 2px solid #1a365d; border-radius: 10px; padding: 20px; margin-top: 30px;">
+            <h2 style="color: #1a365d; margin-bottom: 15px; font-size: 1rem; text-align: center;">📊 RÉCAPITULATIF : RISQUE α vs RISQUE β</h2>
+            
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                <thead>
+                    <tr style="background: #1a365d; color: white;">
+                        <th style="padding: 10px; text-align: left;">Risque</th>
+                        <th style="padding: 10px; text-align: left;">Je me trompe quand je dis...</th>
+                        <th style="padding: 10px; text-align: left;">Autres formulations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: #fff3cd;">
+                        <td style="padding: 10px; font-weight: bold;">α (ou p)</td>
+                        <td style="padding: 10px;"><strong>DIFFÉRENT</strong> (alors qu'il n'y a pas de différence)</td>
+                        <td style="padding: 10px;">Rejeter H0 à tort / Accepter H1 à tort</td>
+                    </tr>
+                    <tr style="background: #f8d7da;">
+                        <td style="padding: 10px; font-weight: bold;">β</td>
+                        <td style="padding: 10px;"><strong>PAS DE DIFFÉRENCE</strong> (alors qu'il y en a une)</td>
+                        <td style="padding: 10px;">Accepter H0 à tort / Rejeter H1 à tort / Manque de puissance</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div style="margin-top: 15px; text-align: center; font-size: 0.9rem;">
+                <strong>Puissance = 1 - β</strong> (capacité à détecter une vraie différence)
+            </div>
+        </div>
+        
+        <div class="footer">
+            📚 Création originale de E. Schaeffer • MEDIBOX Antilles-Guyane • 2025-2026<br>
+            © Tous droits réservés - Reproduction interdite
+        </div>
+    </div>
+</body>
+</html>
