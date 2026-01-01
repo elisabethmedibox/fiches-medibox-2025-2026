@@ -308,25 +308,18 @@
             color: #92400e;
         }
 
-        /* FILIGRANE IMPRESSION */
-        .watermark { display: none; }
-
-        @media print {
-            .watermark {
-                display: block !important;
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) rotate(-45deg);
-                font-size: 80pt;
-                font-weight: 700;
-                color: rgba(0, 0, 0, 0.06);
-                white-space: nowrap;
-                z-index: 9999;
-                pointer-events: none;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
+        /* FILIGRANE FIXE */
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 120pt;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.04);
+            white-space: nowrap;
+            z-index: 0;
+            pointer-events: none;
         }
 
         /* Header personnalisé */
