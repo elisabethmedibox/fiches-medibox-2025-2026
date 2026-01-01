@@ -308,18 +308,33 @@
             color: #92400e;
         }
 
-        /* FILIGRANE FIXE */
-        .watermark {
+        /* Filigrane logo Medibox - fixe pendant scroll, responsive */
+        body::after {
+            content: "";
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            font-size: 120pt;
-            font-weight: 700;
-            color: rgba(0, 0, 0, 0.04);
-            white-space: nowrap;
-            z-index: 0;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 900px;
+            max-height: 900px;
+            background-image: url('https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-clair.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
             pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Responsive : ajustement mobile */
+        @media (max-width: 768px) {
+            body::after {
+                width: 90vw;
+                height: 90vw;
+                opacity: 0.06;
+            }
         }
 
         /* Header personnalisé */
@@ -374,7 +389,6 @@
     </style>
 </head>
 <body>
-    <div class="watermark">UP TO MED</div>
     <div class="container">
         <div class="header">
             <h1>UE2 - Statistiques et Probabilités</h1>
