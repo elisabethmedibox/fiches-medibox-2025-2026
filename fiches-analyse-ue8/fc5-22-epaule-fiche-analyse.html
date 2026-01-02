@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC5/22 - L'épaule - Fiche d'Analyse</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Accordéons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+        
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+        
+        .accordion-content h3 {
+            color: #1a365d;
+            border-bottom: 2px solid #ff6b7a;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .accordion-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        /* Tableaux QCM */
+        .qcm-thematique {
+            margin-bottom: 30px;
+        }
+        
+        .qcm-thematique h4 {
+            color: #1a365d;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+        }
+        
+        .qcm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .qcm-table thead {
+            background: #1a365d;
+            color: white;
+        }
+        
+        .qcm-table th {
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .qcm-table th:first-child {
+            width: 120px;
+        }
+        
+        .qcm-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .qcm-table td:first-child {
+            font-weight: 600;
+            color: #ff6b7a;
+            background: #f8fafc;
+        }
+        
+        .qcm-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .qcm-identique {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .qcm-identique td:first-child::before {
+            content: "🔄 ";
+        }
+        
+        .qcm-enonce {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+        
+        .qcm-items {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+        
+        .qcm-item {
+            margin-bottom: 4px;
+        }
+        
+        /* Wrapper pour scroll des tableaux */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
+        }
+        
+        /* Tableau diagnostic compact */
+        .diagnostic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .diagnostic-table th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .diagnostic-table td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
+        
+        /* Vue d'ensemble */
+        .vue-ensemble {
+            margin-top: 25px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .vue-ensemble h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+            font-size: 1.1rem;
+        }
+        
+        .vue-ensemble-intro {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .vue-tableau {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .vue-tableau th {
+            background: #1a365d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .vue-tableau th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+        
+        .vue-tableau td {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            background: white;
+        }
+        
+        .vue-tableau td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #1a365d;
+            background: #f8fafc;
+        }
+        
+        .vue-tableau .qcm-cell {
+            color: #ff6b7a;
+            font-weight: 600;
+        }
+        
+        .vue-tableau .empty-cell {
+            color: #cbd5e1;
+        }
+        
+        /* Recommandations Niveau 2 */
+        .reco-item {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .reco-item h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+        
+        .reco-item p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .reco-item .frequence {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+        
+        /* QCM Analyse */
+        .qcm-analyse {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .qcm-analyse h4 {
+            margin: 0 0 5px 0;
+            color: #1e40af;
+            font-size: 1.1rem;
+        }
+        
+        .qcm-badge {
+            background: #1e3a5f;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .qcm-badge strong {
+            color: #ff6b7a;
+        }
+        
+        .qcm-section {
+            margin-bottom: 12px;
+        }
+        
+        .qcm-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .qcm-section-title {
+            font-weight: 600;
+            color: #1a365d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .qcm-section-content {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .cle-raisonnement {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left: 3px solid #10b981;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        
+        .cle-raisonnement p {
+            margin: 0 0 8px 0;
+            color: #166534;
+        }
+        
+        .cle-raisonnement p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .cle-raisonnement ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        
+        .cle-raisonnement li {
+            margin-bottom: 5px;
+            color: #166534;
+        }
+        
+        .connaissance-pure {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 3px solid #f59e0b;
+            padding: 12px 15px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            color: #92400e;
+        }
+        
+        /* Points de vigilance */
+        .vigilance-item {
+            background: white;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .vigilance-item h4 {
+            margin: 0 0 8px 0;
+            color: #b45309;
+        }
+        
+        .vigilance-item p {
+            margin: 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Zone tuteur */
+        .tuteur-zone {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px dashed #8b5cf6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .tuteur-zone p {
+            margin: 0;
+            color: #6b21a8;
+        }
+        
+        /* Alertes stratégiques */
+        .alert-box {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .alert-warning {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+            color: #92400e;
+        }
+        
+        .alert-success {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+            color: #065f46;
+        }
+        
+        .alert-danger {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border-left: 4px solid #ef4444;
+            color: #991b1b;
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .main-accordion summary {
+                padding: 15px;
+                font-size: 1rem;
+            }
+            
+            .accordion-content {
+                padding: 15px;
+            }
+            
+            .qcm-table {
+                font-size: 0.75rem;
+            }
+            
+            .qcm-table th, .qcm-table td {
+                padding: 8px;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .avertissement strong {
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>FC5/22 - L'épaule (Membre thoracique)</h1>
+            <div class="meta">
+                <span>📚 UE8 - Anatomie Générale</span>
+                <span>🎯 Fiche d'Analyse</span>
+            </div>
+        </div>
+        
+        <div class="content">
+
+            <!-- ACCORDÉON 1 : QCM TOMBÉS AUX SESSIONS 1 -->
+            <details class="main-accordion">
+                <summary>📋 QCM tombés aux sessions 1</summary>
+                <div class="accordion-content">
+                    
+                    <!-- LA SCAPULA -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 La scapula (4 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2020-2021<br>Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur le membre thoracique, l'épaule :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: La cavité glénoïde regarde en haut, en avant et en dehors.</div>
+                                            <div class="qcm-item">B: L'Incisure scapulaire est fermée par le ligament transverse supérieur.</div>
+                                            <div class="qcm-item">C: Au niveau de l'incisure scapulaire chemine le nerf supra-scapulaire.</div>
+                                            <div class="qcm-item">D: L'artère circonflexe de la scapula sépare les 2 insertions du muscle petit rond sur la scapula.</div>
+                                            <div class="qcm-item">E: L'acromion forme une voute au-dessus de l'articulation gléno-humérale.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2021-2022<br>Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur le membre thoracique, la scapula :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Le tubercule infra-glénoïdal donne insertion au triceps.</div>
+                                            <div class="qcm-item">B : La scapula est un os long.</div>
+                                            <div class="qcm-item">C : L'incisure scapulaire se situe entre le processus coracoïde et le tubercule supra-glénoïdal.</div>
+                                            <div class="qcm-item">D : Le muscle subscapulaire prend insertion à la face costale de la scapula dans une fosse qui porte son nom.</div>
+                                            <div class="qcm-item">E : La scapula présente un tubercule mineur.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q2</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur la scapula :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Le tubercule supra-glénoïdal est le site d'insertion du tendon du muscle long biceps.</div>
+                                            <div class="qcm-item">B : Le tubercule infra-glénoïdal est le site d'insertion du muscle sub-scapulaire.</div>
+                                            <div class="qcm-item">C : L'acromion est situé en avant du processus coracoïde en position anatomique de référence.</div>
+                                            <div class="qcm-item">D : Le muscle élévateur de la scapula s'insère sur le bord axillaire de la scapula.</div>
+                                            <div class="qcm-item">E : Le muscle deltoïde s'insère sur le bord médial de la scapula.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- LE MUSCLE SUBSCAPULAIRE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Le muscle sub-scapulaire (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur le membre thoracique, le muscle subscapulaire :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Est rotateur médial de l'épaule.</div>
+                                            <div class="qcm-item">B : Est innervé par le nerf supra-scapulaire.</div>
+                                            <div class="qcm-item">C : Il se termine sur le tubercule mineur.</div>
+                                            <div class="qcm-item">D : Est triangulaire à base médiale.</div>
+                                            <div class="qcm-item">E : Fait partie de la coiffe des rotateurs.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- L'ESPACE AXILLAIRE LATÉRAL -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 L'espace axillaire latéral (1 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2021-2022<br>Q4</td>
+                                    <td>
+                                        <div class="qcm-enonce">Question portant sur le membre thoracique, l'espace axillaire latéral :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Il est huméro-tricipital dans le plan frontal.</div>
+                                            <div class="qcm-item">B : Sa berge supérieure est le petit-rond.</div>
+                                            <div class="qcm-item">C : Il est traversé par le nerf radial.</div>
+                                            <div class="qcm-item">D : Sa berge inférieur est le biceps.</div>
+                                            <div class="qcm-item">E : Il est traversé par le nerf axillaire.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- LE MUSCLE DELTOÏDE -->
+                    <div class="qcm-thematique">
+                        <h4>🎯 Le muscle deltoïde (2 QCM)</h4>
+                        <table class="qcm-table">
+                            <thead>
+                                <tr>
+                                    <th>Année - QCM</th>
+                                    <th>Énoncé et items</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2022-2023<br>Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le muscle deltoïde:</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A: Est adducteur de l'épaule.</div>
+                                            <div class="qcm-item">B: Est innervé par le nerf supra-scapulaire.</div>
+                                            <div class="qcm-item">C: Il se termine sur le V deltoïdien.</div>
+                                            <div class="qcm-item">D: C'est un muscle grêle.</div>
+                                            <div class="qcm-item">E: Fait partie de la coiffe des rotateurs.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2024-2025<br>Q3</td>
+                                    <td>
+                                        <div class="qcm-enonce">Sur le muscle deltoïde :</div>
+                                        <div class="qcm-items">
+                                            <div class="qcm-item">A : Il est composé de 3 chefs.</div>
+                                            <div class="qcm-item">B : Il est adducteur du bras.</div>
+                                            <div class="qcm-item">C : Il est innervé par le nerf supra-scapulaire.</div>
+                                            <div class="qcm-item">D : Il présente une insertion crâniale sur la scapula.</div>
+                                            <div class="qcm-item">E : C'est le muscle du galbe de l'épaule.</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 2 : DIAGNOSTIC -->
+            <details class="main-accordion">
+                <summary>🔍 Diagnostic stratégique</summary>
+                <div class="accordion-content">
+                    
+                    <div class="table-wrapper">
+                        <table class="diagnostic-table">
+                            <tr>
+                                <th style="width: 40%;">Critère</th>
+                                <th>Évaluation</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Volume de QCM</strong></td>
+                                <td>7 QCM sur 5 ans = <strong>1.4 QCM/an</strong> ⚠️ Faible à modéré</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tendance récente</strong></td>
+                                <td>📈 Retour après absence : 0 QCM en 2023-2024, puis 2 QCM en 2024-2025</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Recyclage d'items</strong></td>
+                                <td>🟡 Modéré : thématiques récurrentes mais items reformulés</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dépendance cours</strong></td>
+                                <td>😺 Indépendant : chapitre autonome, pas de prérequis</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rentabilité Niveau 1</strong></td>
+                                <td>🟡 Modérée : thématiques prévisibles mais items variables</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="alert-box alert-warning">
+                        <strong>⚠️ ATTENTION :</strong> Ce chapitre a été absent en 2023-2024 mais est revenu en force en 2024-2025 avec 2 QCM. Le prof semble faire tourner les chapitres du membre thoracique. Les thématiques sont stables (scapula, deltoïde) mais les items sont reformulés à chaque fois.
+                    </div>
+
+                    <div class="vue-ensemble">
+                        <h4>📊 Vue d'ensemble : Distribution des QCM par thème</h4>
+                        <div class="table-wrapper">
+                            <table class="vue-tableau">
+                                <thead>
+                                    <tr>
+                                        <th>Thème</th>
+                                        <th>20-21</th>
+                                        <th>21-22</th>
+                                        <th>22-23</th>
+                                        <th>23-24</th>
+                                        <th>24-25</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Scapula (ostéologie)</td>
+                                        <td class="qcm-cell">Q2</td>
+                                        <td class="qcm-cell">Q2</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="qcm-cell">Q2</td>
+                                        <td><strong>3</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Muscle deltoïde</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="qcm-cell">Q3</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="qcm-cell">Q3</td>
+                                        <td><strong>2</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Muscle sub-scapulaire</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="qcm-cell">Q3</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td><strong>1</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Espace axillaire latéral</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="qcm-cell">Q4</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td class="empty-cell">-</td>
+                                        <td><strong>1</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <h3>📈 Analyse des patterns</h3>
+                    <ul>
+                        <li><strong>Thème dominant :</strong> La scapula (3 QCM sur 7) = 43% des questions</li>
+                        <li><strong>Thème en hausse :</strong> Le deltoïde (2 QCM, dont 1 très récent en 2024-2025)</li>
+                        <li><strong>Thèmes ponctuels :</strong> Sub-scapulaire et espaces axillaires (1 seule apparition chacun)</li>
+                        <li><strong>Pattern temporel :</strong> 2021-2022 a été l'année la plus chargée (3 QCM)</li>
+                    </ul>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 3 : RECOMMANDATIONS CIBLÉES -->
+            <details class="main-accordion">
+                <summary>🎯 Recommandations ciblées (Niveau 2)</summary>
+                <div class="accordion-content">
+                    
+                    <p style="color: #4a5568; margin-bottom: 20px;">Ces recommandations sont destinées aux étudiants visant un travail ciblé sur les parties les plus rentables du cours.</p>
+
+                    <div class="reco-item">
+                        <h4>🦴 1. La scapula - PRIORITÉ HAUTE</h4>
+                        <p>Thème le plus récurrent (3/7 QCM). Focus sur :</p>
+                        <ul>
+                            <li>La <strong>cavité glénoïde</strong> : orientation (haut, avant, dehors), forme piriforme</li>
+                            <li>L'<strong>incisure scapulaire</strong> : fermée par ligament transverse supérieur, passage du nerf supra-scapulaire</li>
+                            <li>Les <strong>tubercules supra et infra-glénoïdaux</strong> : insertions (biceps chef long / triceps chef long)</li>
+                            <li>L'<strong>acromion</strong> : position (en arrière du processus coracoïde), voûte sous-acromiale</li>
+                            <li>Nature de l'os : os PLAT (pas os long !)</li>
+                        </ul>
+                        <span class="frequence">🟢 Fréquence : 3/5 années</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>💪 2. Le muscle deltoïde - PRIORITÉ HAUTE</h4>
+                        <p>Thème récent et en hausse (2 QCM dont 2024-2025). Focus sur :</p>
+                        <ul>
+                            <li><strong>3 chefs</strong> : claviculaire (antérieur), acromial (moyen), spinal (postérieur)</li>
+                            <li><strong>Terminaison</strong> : V deltoïdien (1/3 moyen face latérale humérus)</li>
+                            <li><strong>Action</strong> : ABDUCTEUR (pas adducteur !)</li>
+                            <li><strong>Innervation</strong> : nerf AXILLAIRE (pas supra-scapulaire !)</li>
+                            <li><strong>Fonction</strong> : muscle du galbe de l'épaule</li>
+                            <li><strong>Ne fait PAS partie de la coiffe des rotateurs</strong></li>
+                        </ul>
+                        <span class="frequence">🟢 Fréquence : 2/5 années (récent)</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>🔄 3. Le muscle sub-scapulaire - PRIORITÉ MODÉRÉE</h4>
+                        <p>Un seul QCM mais fait partie de la coiffe des rotateurs (thème transversal). Focus sur :</p>
+                        <ul>
+                            <li><strong>Origine</strong> : fosse sub-scapulaire (face costale/ventrale)</li>
+                            <li><strong>Terminaison</strong> : tubercule MINEUR</li>
+                            <li><strong>Action</strong> : rotateur MÉDIAL et adducteur</li>
+                            <li><strong>Forme</strong> : triangulaire à base médiale</li>
+                            <li><strong>Innervation</strong> : nerfs supérieur et inférieur du sub-scapulaire (PAS le nerf supra-scapulaire !)</li>
+                            <li><strong>Fait partie de la coiffe des rotateurs</strong></li>
+                        </ul>
+                        <span class="frequence">🟡 Fréquence : 1/5 années</span>
+                    </div>
+
+                    <div class="reco-item">
+                        <h4>🔺 4. Les espaces axillaires - PRIORITÉ MODÉRÉE</h4>
+                        <p>Un seul QCM mais thème classique d'anatomie. Focus sur l'espace axillaire LATÉRAL :</p>
+                        <ul>
+                            <li><strong>Limites</strong> : humérus (latéral), longue portion du triceps (médial), petit rond (supérieur), grand rond (inférieur)</li>
+                            <li><strong>Contenu</strong> : nerf AXILLAIRE + artère circonflexe postérieure</li>
+                            <li><strong>Piège</strong> : le nerf RADIAL passe dans l'espace axillaire INFÉRIEUR (pas latéral)</li>
+                        </ul>
+                        <span class="frequence">🟡 Fréquence : 1/5 années</span>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 4 : ANALYSE STRATÉGIQUE -->
+            <details class="main-accordion">
+                <summary>📊 Analyse stratégique par QCM</summary>
+                <div class="accordion-content">
+
+                    <!-- QCM 1 : Scapula généralités -->
+                    <div class="qcm-analyse">
+                        <h4>La scapula - Généralités anatomiques</h4>
+                        <div class="qcm-badge">📋 <strong>2020-2021</strong> Q2 | <strong>2021-2022</strong> Q2 | <strong>2024-2025</strong> Q2</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ces QCM testent les connaissances fondamentales sur l'ostéologie de la scapula : nature de l'os, orientation de la glène, structures remarquables (tubercules, incisure), insertions musculaires.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Maîtriser parfaitement la description de la scapula : c'est un os PLAT, la cavité glénoïde regarde en haut/avant/dehors, l'incisure scapulaire est fermée par le ligament transverse supérieur et livre passage au nerf supra-scapulaire.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Pièges récurrents :</strong></p>
+                                <ul>
+                                    <li>"Os long" → FAUX, c'est un os PLAT</li>
+                                    <li>"Tubercule mineur sur la scapula" → FAUX, le tubercule mineur est sur l'HUMÉRUS</li>
+                                    <li>"Acromion en avant du processus coracoïde" → FAUX, l'acromion est en ARRIÈRE et LATÉRAL</li>
+                                    <li>Tubercule infra-glénoïdal → insertion du TRICEPS (chef long)</li>
+                                    <li>Tubercule supra-glénoïdal → insertion du BICEPS (chef long)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 2 : Le deltoïde -->
+                    <div class="qcm-analyse">
+                        <h4>Le muscle deltoïde</h4>
+                        <div class="qcm-badge">📋 <strong>2022-2023</strong> Q3 | <strong>2024-2025</strong> Q3</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ces QCM testent les caractéristiques du deltoïde : nombre de chefs, action, innervation, terminaison, et surtout son appartenance (ou non) à la coiffe des rotateurs.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprendre par cœur : 3 chefs, abducteur (pas adducteur), innervé par le nerf axillaire, se termine sur le V deltoïdien, muscle du galbe de l'épaule, NE FAIT PAS partie de la coiffe.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Pièges systématiques :</strong></p>
+                                <ul>
+                                    <li>"Adducteur" → FAUX, c'est un ABDUCTEUR</li>
+                                    <li>"Innervé par le nerf supra-scapulaire" → FAUX, c'est le nerf AXILLAIRE</li>
+                                    <li>"Fait partie de la coiffe des rotateurs" → FAUX</li>
+                                    <li>"Muscle grêle" → FAUX, c'est un muscle volumineux</li>
+                                </ul>
+                                <p>La coiffe = sub-scapulaire + supra-épineux + infra-épineux + petit rond (pas le deltoïde !)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 3 : Le sub-scapulaire -->
+                    <div class="qcm-analyse">
+                        <h4>Le muscle sub-scapulaire</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q3</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste les caractéristiques spécifiques du sub-scapulaire : action, innervation, terminaison, forme et appartenance à la coiffe.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Retenir : rotateur médial, triangulaire à base médiale, se termine sur le tubercule mineur, fait partie de la coiffe, innervé par les nerfs du sub-scapulaire (pas le nerf supra-scapulaire !).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="connaissance-pure">
+                                Attention à la confusion fréquente : le nerf SUPRA-scapulaire innerve le supra-épineux et l'infra-épineux. Le sub-scapulaire est innervé par les nerfs du sub-scapulaire (supérieur et inférieur). Les noms se ressemblent mais ce n'est PAS le même nerf !
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QCM 4 : L'espace axillaire latéral -->
+                    <div class="qcm-analyse">
+                        <h4>L'espace axillaire latéral</h4>
+                        <div class="qcm-badge">📋 <strong>2021-2022</strong> Q4</div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Constat :</div>
+                            <div class="qcm-section-content">Ce QCM teste la connaissance des limites et du contenu de l'espace axillaire latéral.</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Ce que tu dois faire :</div>
+                            <div class="qcm-section-content">Apprendre les 3 espaces axillaires et leur contenu. L'espace latéral est traversé par le nerf AXILLAIRE (pas le nerf radial).</div>
+                        </div>
+                        
+                        <div class="qcm-section">
+                            <div class="qcm-section-title">Clé de raisonnement :</div>
+                            <div class="cle-raisonnement">
+                                <p><strong>Les 3 espaces et leur contenu :</strong></p>
+                                <ul>
+                                    <li><strong>Espace latéral</strong> (huméro-tricipital) : nerf AXILLAIRE + artère circonflexe postérieure</li>
+                                    <li><strong>Espace médial</strong> (omo-tricipital) : artère circonflexe de la scapula</li>
+                                    <li><strong>Espace inférieur</strong> : nerf RADIAL + artère profonde du bras</li>
+                                </ul>
+                                <p>Moyen mnémotechnique : "AXillaire dans l'espace Latéral, RADial dans l'Inférieur"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 5 : POINTS DE VIGILANCE -->
+            <details class="main-accordion">
+                <summary>⚠️ Points de vigilance</summary>
+                <div class="accordion-content">
+
+                    <div class="vigilance-item">
+                        <h4>Confusion tubercule majeur / tubercule mineur</h4>
+                        <p>Le tubercule MINEUR est sur l'humérus (insertion du sub-scapulaire), pas sur la scapula. La scapula possède des tubercules SUPRA-glénoïdal et INFRA-glénoïdal. Si un item mentionne "tubercule mineur de la scapula", c'est FAUX.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Confusion nerf supra-scapulaire / nerfs du sub-scapulaire</h4>
+                        <p>Le nerf SUPRA-scapulaire innerve le supra-épineux et l'infra-épineux. Le muscle SUB-scapulaire est innervé par les nerfs du sub-scapulaire (supérieur et inférieur). Ce n'est PAS le même nerf malgré les noms similaires !</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Le deltoïde n'est PAS dans la coiffe</h4>
+                        <p>Piège récurrent : le deltoïde est un abducteur mais il ne fait PAS partie de la coiffe des rotateurs. La coiffe = sub-scapulaire + supra-épineux + infra-épineux + petit rond (4 muscles seulement).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Deltoïde = ABducteur, pas ADducteur</h4>
+                        <p>Le deltoïde est le principal ABducteur du bras. L'item "adducteur" revient dans 2 QCM différents comme piège. Attention à bien lire : ABduction (écarter du corps) ≠ ADduction (rapprocher du corps).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Nerf axillaire dans l'espace latéral, nerf radial dans l'espace inférieur</h4>
+                        <p>Ne pas confondre les espaces axillaires. Le nerf AXILLAIRE passe dans l'espace LATÉRAL. Le nerf RADIAL passe dans l'espace INFÉRIEUR (sous le grand rond).</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>Position de l'acromion par rapport au processus coracoïde</h4>
+                        <p>En position anatomique de référence, l'acromion est situé en ARRIÈRE et en DEHORS (latéral) du processus coracoïde, pas en avant. C'est le processus coracoïde qui est en avant.</p>
+                    </div>
+
+                    <div class="vigilance-item">
+                        <h4>La scapula est un os PLAT</h4>
+                        <p>La scapula n'est PAS un os long. C'est un os PLAT de forme triangulaire. Ne pas se laisser piéger par sa grande taille.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDÉON 6 : AVIS DU TUTEUR -->
+            <details class="main-accordion">
+                <summary>💬 Avis du tuteur</summary>
+                <div class="accordion-content">
+                    <div class="tuteur-zone">
+                        <p style="margin-bottom: 15px; font-weight: 600; color: #1a365d;">Ce chapitre sur l'épaule présente un volume modéré de QCM (7 sur 5 ans) mais avec des thématiques très ciblées et prévisibles. La scapula et le deltoïde concentrent plus de 70% des questions.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 3 (maîtrise complète) :</strong><br>
+                        Maîtrisez l'ensemble du chapitre : ostéologie (clavicule + scapula), les 4 articulations, et surtout la myologie complète avec les groupes musculaires, la coiffe des rotateurs, et les espaces axillaires. Attention aux innervations qui sont un piège classique.</p>
+                        
+                        <p style="margin-bottom: 12px;"><strong>Pour les étudiants de Niveau 2 (ciblage de parties du cours) :</strong><br>
+                        Concentrez-vous sur : 1) la scapula (structures, tubercules, incisure), 2) le deltoïde (3 chefs, action, innervation, V deltoïdien), 3) le sub-scapulaire et la coiffe des rotateurs, 4) l'espace axillaire latéral. Ces 4 thèmes couvrent 100% des QCM tombés.</p>
+                        
+                        <p style="margin-bottom: 0;"><strong>Pour les étudiants de Niveau 1 (travail quasi exclusif sur annales) :</strong><br>
+                        ⚠️ ATTENTION : La stratégie Niveau 1 est RISQUÉE sur ce chapitre. Les items sont reformulés à chaque session, il n'y a pas de recyclage à l'identique. Cependant, les thématiques sont stables. Apprenez les pièges récurrents : deltoïde ≠ coiffe, nerf axillaire ≠ nerf supra-scapulaire, abducteur ≠ adducteur, os plat ≠ os long. Ces pièges reviennent systématiquement sous différentes formes.</p>
+                    </div>
+                </div>
+            </details>
+
+        </div>
+        
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+        
+        <div class="avertissement">
+            <strong>⚠️ AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme. Cette ressource est destinée uniquement aux étudiants en retard quelques semaines avant l'examen, en dernier recours. Cette fiche ne doit pas être utilisée sans avoir au préalable regardé le contenu de la formation "Gérer son retard" et avoir compris comment cette fiche s'insère dans celle-ci. Medibox décline toute responsabilité en cas de résultats inférieurs aux attentes.
+        </div>
+    </div>
+</body>
+</html>
