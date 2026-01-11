@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correction d'annales tutorée - Parcours Tuteurs</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* ============================================
+           CSS INLINE OBLIGATOIRE - NE PAS MODIFIER
+           ============================================ */
+
+        /* Filigrane logo Medibox - fixe pendant scroll, responsive */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 900px;
+            max-height: 900px;
+            background-image: url('https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-clair.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Responsive : ajustement mobile */
+        @media (max-width: 768px) {
+            body::after {
+                width: 90vw;
+                height: 90vw;
+                opacity: 0.06;
+            }
+        }
+
+        /* Accordeons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        /* Blocs d'action */
+        .action-block {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .action-block.warning {
+            border-left-color: #f59e0b;
+        }
+
+        .action-block.critical {
+            border-left-color: #dc2626;
+        }
+
+        .action-block.info {
+            border-left-color: #3b82f6;
+        }
+
+        .action-block h4 {
+            margin: 0 0 12px 0;
+            color: #1a365d;
+            font-size: 1rem;
+        }
+
+        .action-block p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .action-block ul {
+            margin: 10px 0 0 20px;
+            padding: 0;
+            color: #4a5568;
+        }
+
+        .action-block li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        /* Tableau de répartition */
+        .repartition-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        .repartition-table th {
+            background: #1a365d;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .repartition-table td {
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            vertical-align: top;
+        }
+
+        .repartition-table td:first-child {
+            background: #f0fdf4;
+            font-weight: 600;
+            color: #166534;
+            width: 50%;
+        }
+
+        .repartition-table td:last-child {
+            background: #eff6ff;
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        .repartition-table ul {
+            margin: 5px 0 0 15px;
+            padding: 0;
+        }
+
+        .repartition-table li {
+            margin-bottom: 6px;
+            font-weight: normal;
+        }
+
+        /* Checklist */
+        .checklist {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .checklist h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: #f8fafc;
+            border-radius: 6px;
+        }
+
+        .checklist-item::before {
+            content: "☐";
+            margin-right: 12px;
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+
+        .checklist-item.done::before {
+            content: "☑";
+            color: #10b981;
+        }
+
+        /* Encadré important */
+        .important-box {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border: 2px solid #dc2626;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+
+        .important-box p {
+            margin: 0;
+            color: #991b1b;
+            font-weight: 500;
+        }
+
+        .important-box strong {
+            color: #7f1d1d;
+        }
+
+        /* Encadré info */
+        .info-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-box p {
+            margin: 0;
+            color: #1e40af;
+        }
+
+        /* Encadré attention */
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+
+        .warning-box p {
+            margin: 0;
+            color: #92400e;
+        }
+
+        /* Étapes numérotées */
+        .step {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+
+        .step-content p {
+            margin: 0;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+            .repartition-table { font-size: 0.8rem; }
+            .repartition-table th, .repartition-table td { padding: 10px; }
+        }
+
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📘 Correction d'annales tutorée</h1>
+            <div class="meta">
+                <span>📚 Module : les annales</span>
+                <span>🎯 Parcours Tuteurs</span>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- ACCORDEON 1 : OBJECTIF -->
+            <details class="main-accordion">
+                <summary>🎯 Objectif de la séance</summary>
+                <div class="accordion-content">
+
+                    <div class="info-box">
+                        <p><strong>Double travail simultané :</strong> les étudiants corrigent les QCM sur ExoTeach pendant que le tuteur met à jour les fiches de cours sur Google Docs (étoiles, références QCM).</p>
+                    </div>
+
+                    <p style="color: #4a5568; line-height: 1.7;">
+                        <strong>Résultat attendu :</strong> clôture complète du semestre - annales corrigées + cours mis à jour, prêts pour l'impression.
+                    </p>
+
+                    <div class="action-block" style="margin-top: 20px;">
+                        <h4>Pourquoi cette méthode ?</h4>
+                        <ul>
+                            <li>Les étudiants ont des <strong>souvenirs ultra-frais</strong> du cours → mieux placés pour identifier où se trouve l'info</li>
+                            <li>Corrections de <strong>meilleure qualité</strong> grâce au regard croisé (2-3 personnes au lieu d'une)</li>
+                            <li>Permet de <strong>repérer de futurs tuteurs</strong> pour l'année prochaine</li>
+                            <li>Mise à jour des cours faite <strong>dans la foulée</strong> → timing d'impression respecté</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 2 : AVANT LA SÉANCE -->
+            <details class="main-accordion">
+                <summary>📋 Avant la séance</summary>
+                <div class="accordion-content">
+
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Communiquer les noms et créneaux à Elisabeth</h4>
+                            <p>Envoyer les noms des étudiants participants et les horaires prévus. <strong>Le passage de "Étudiant" à "Professeur" se fera à l'heure pile de la séance</strong> (pas avant).</p>
+                        </div>
+                    </div>
+
+                    <div class="important-box">
+                        <p><strong>⚠️ Pourquoi à l'heure pile ?</strong> L'accès "Professeur" donne accès aux corrections → risque que l'étudiant voie des infos destinées aux autres élèves de la promo. C'est aussi pourquoi le <strong>stream est obligatoire</strong> : tu dois pouvoir vérifier en permanence que l'étudiant reste là où il doit être.</p>
+                    </div>
+
+                    <div class="warning-box">
+                        <p><strong>🕖 Si le créneau horaire de correction est après 19h</strong> (donc minuit en métropole) : vous devrez faire vous-même cette manipulation en allant dans la fiche de l'étudiant et en modifiant son statut tout en haut (n'oubliez pas de valider la modification). Dans ce cas, faites-le en début de séance puis <strong>n'oubliez pas de remettre en "Utilisateur standard" à la fin</strong>.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Ouvrir le drive avec les fiches de cours de ton UE</h4>
+                            <p>Accéder au drive centralisé où toutes les fiches sont regroupées (plus besoin d'aller chercher dans les drives de matière).</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Vérifier les annales sur ExoTeach</h4>
+                            <p>Vérifier que les annales ont bien été importées (questions non corrigées, marquées "tout vrai" ou "tout faux" par défaut). Si besoin : ajouter une question manquante et/ou remettre dans le bon ordre. <em>Peut aussi être fait pendant la séance si pas eu le temps.</em></p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 3 : DÉROULÉ DE LA SÉANCE -->
+            <details class="main-accordion">
+                <summary>🚀 Déroulé de la séance</summary>
+                <div class="accordion-content">
+
+                    <div class="action-block info">
+                        <h4>1. Lancement (5 min)</h4>
+                        <ul>
+                            <li>Rejoindre le <strong>Discord en visio</strong> avec les 2 étudiants</li>
+                            <li><strong>Streamer ton écran</strong> (Google Docs)</li>
+                            <li><strong>Demander aux DEUX étudiants de streamer leur écran ExoTeach</strong> même celui qui n'écrit pas. Tu dois avoir les deux écrans sous les yeux en permanence.</li>
+                        </ul>
+                    </div>
+
+                    <div class="action-block">
+                        <h4>2. Attribution des rôles</h4>
+                        <p>Attribuer les rôles aux étudiants :</p>
+                        <ul>
+                            <li><strong>Étudiant 1</strong> : corrections des questions 1 à 10</li>
+                            <li><strong>Étudiant 2</strong> : corrections des questions 11 à 20</li>
+                            <li><em>Ou alternance : une question sur deux</em></li>
+                        </ul>
+                        <p style="margin-top: 10px;">Toi pendant ce temps → tu es sur le drive Google Docs.</p>
+                    </div>
+
+                    <h4 style="color: #1a365d; margin: 30px 0 20px 0;">3. Répartition des tâches</h4>
+
+                    <table class="repartition-table">
+                        <thead>
+                            <tr>
+                                <th>👨‍🎓 Étudiants (sur ExoTeach)</th>
+                                <th>👨‍🏫 Tuteur (sur Google Docs)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Vérifient que les questions/items sont bien recopiés
+                                    <ul>
+                                        <li>Corrigent les chapeaux si besoin</li>
+                                        <li>Corrigent chaque item (vrai/faux + explication)</li>
+                                        <li>Associent chaque QCM aux 2 cours : <strong>cours normal + cours QCM+</strong></li>
+                                        <li>Réorganisent l'ordre des QCM si nécessaire</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    Ouvre la fiche de cours correspondante
+                                    <ul>
+                                        <li>Met les étoiles aux bons endroits</li>
+                                        <li>Ajoute les numéros de QCM dans le tableau</li>
+                                        <li>Upload les captures si besoin d'images</li>
+                                        <li>Note les remarques d'amélioration</li>
+                                        <li>Copier-coller le tableau de suivi des mises à jour sur la 2e page du sommaire</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="info-box">
+                        <p><strong>💡 Note :</strong> Contrairement à ce qui est dit dans la vidéo étudiants, ils auront <strong>exceptionnellement accès aux cours QCM+</strong> pour cette séance de correction. Il faut donc bien associer les deux cours.</p>
+                        <p style="margin-top: 10px;"><strong>Si c'est le tuteur qui donne les droits à l'étudiant :</strong> aller dans sa fiche → onglet <em>Permissions individuelles</em> → <em>Cours accessibles</em> → Ouvrir l'onglet du semestre → Ouvrir l'onglet de l'UE → Cocher <strong>"Programme QCM+"</strong>. Ne pas oublier à la fin de la séance de <strong>supprimer cet accès en décochant tout</strong>.</p>
+                    </div>
+
+                    <h4 style="color: #1a365d; margin: 30px 0 20px 0;">4. Travail question par question</h4>
+
+                    <div class="action-block">
+                        <h4>Côté étudiants (tu supervises)</h4>
+                        <ul>
+                            <li>Vérifier la <strong>transcription</strong> (l'IA peut avoir fait des erreurs)</li>
+                            <li>Corriger les <strong>chapeaux</strong> si besoin</li>
+                            <li>Rédiger une <strong>explication pour chaque item</strong></li>
+                            <li>Associer aux <strong>2 cours</strong> (normal + QCM+)</li>
+                            <li>Si un item ne correspond pas au cours associé → le noter dans la correction : <em>"Attention, réponse dans FC2 Acides aminés partie 2"</em></li>
+                        </ul>
+                    </div>
+
+                    <div class="action-block info">
+                        <h4>Côté tuteur (ton travail principal)</h4>
+                        <ul>
+                            <li>Passer l'année en <strong>2026-2027</strong> sur la première fiche</li>
+                            <li><strong>Étoiles :</strong> garder les étoiles 2025-2026 telles quelles (ne PAS les passer en noir)</li>
+                            <li>Ajouter les <strong>nouvelles étoiles en VERT</strong> (dans le texte et à côté du titre)</li>
+                            <li>Inutile de reformater les titres → juste mettre l'étoile verte (Elisabeth repassera derrière)</li>
+                            <li>Ajouter une colonne <strong>"Numéro QCM"</strong> dans le tableau + ligne "2025-2026"</li>
+                            <li>Mettre <strong>entre parenthèses les items</strong> si tout le QCM ne correspond pas au chapitre. Ex : Q3(BCE)</li>
+                            <li>Si besoin d'image/schéma dans la correction → <strong>c'est toi qui fais la capture et l'upload</strong></li>
+                            <li>Demander aux étudiants : <em>"Vous avez vu quelque chose d'étonnant dans ce cours ? Une note de tuteur à ajouter ?"</em></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 4 : POINTS TECHNIQUES EXOTEACH -->
+            <details class="main-accordion">
+                <summary>⚙️ Points techniques ExoTeach</summary>
+                <div class="accordion-content">
+
+                    <div class="action-block">
+                        <h4>Accès admin</h4>
+                        <p>Onglet <strong>"Admin"</strong> → <strong>"Exercices"</strong> → <strong>"Séries d'exercices"</strong> → Filtrer par matière</p>
+                    </div>
+
+                    <div class="action-block">
+                        <h4>Édition</h4>
+                        <ul>
+                            <li>Crayon <strong>"Éditer les exercices"</strong> pour entrer dans l'annale</li>
+                            <li><strong>"Éditer la série"</strong> pour ajouter : <em>"Corrigé par : Prénom N. sous la supervision de [tuteur]"</em></li>
+                            <li><strong>"Enregistrer les modifications"</strong> après chaque groupe de questions</li>
+                        </ul>
+                    </div>
+
+                    <div class="action-block">
+                        <h4>Réorganiser les QCM</h4>
+                        <p>Glisser-déposer si l'ordre n'est pas bon</p>
+                    </div>
+
+                    <div class="action-block">
+                        <h4>Créer un QCM manquant</h4>
+                        <p><strong>"Créer un nouvel exercice"</strong> → QCM → remplir manuellement</p>
+                    </div>
+
+                    <div class="action-block warning">
+                        <h4>LaTeX (formules/exposants)</h4>
+                        <ul>
+                            <li>Double-clic sur la zone d'équation → éditeur LaTeX</li>
+                            <li>Ou : demander à ChatGPT de convertir en LaTeX (L-A-T-E-X)</li>
+                            <li>Dans les corrections texte : encadrer la formule avec le <strong>symbole $</strong> avant et après</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 5 : FIN DE SÉANCE -->
+            <details class="main-accordion">
+                <summary>✅ Fin de séance — Vérifications</summary>
+                <div class="accordion-content">
+
+                    <div class="checklist">
+                        <h4>Vérifications ExoTeach</h4>
+                        <div class="checklist-item">Toutes les questions ont 5 items (chiffre "5" affiché)</div>
+                        <div class="checklist-item">Format = QCM partout</div>
+                        <div class="checklist-item">Type = ACC Antilles partout</div>
+                        <div class="checklist-item">Cours associé = correct (fiche de cours + QCM+)</div>
+                    </div>
+
+                    <div class="checklist">
+                        <h4>Vérifications Google Docs</h4>
+                        <div class="checklist-item">Année mise à jour (2026-2027)</div>
+                        <div class="checklist-item">Nouvelles étoiles en VERT ajoutées</div>
+                        <div class="checklist-item">Numéros de QCM ajoutés dans le tableau (avec items entre parenthèses si besoin)</div>
+                    </div>
+
+                    <div class="warning-box">
+                        <p><strong>⚠️ Ne PAS rafraîchir la table des matières</strong> - Elisabeth s'en occupera.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 6 : À FAIRE APRÈS LA SÉANCE -->
+            <details class="main-accordion">
+                <summary>📅 À faire après la séance</summary>
+                <div class="accordion-content">
+
+                    <div class="action-block">
+                        <h4>Mise à jour des tableaux de numéros de QCM</h4>
+                        <p>Recopier les numéros de QCM 2020-2025 dans le tableau (depuis les fiches Medibox qui sont dans "Comment gérer son retard" du Module 40).</p>
+                    </div>
+
+                    <div class="important-box">
+                        <p><strong>📆 Date limite pour la mise à jour des tableaux des FC : 31 janvier 2026</strong></p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 7 : RAPPELS IMPORTANTS -->
+            <details class="main-accordion">
+                <summary>💡 Rappels importants</summary>
+                <div class="accordion-content">
+
+                    <div class="important-box">
+                        <p><strong>C'est une séance de CORRECTION, pas de cours.</strong> On est efficaces. Le tuteur ne refait pas un cours ou un ED — c'est trop tard.</p>
+                    </div>
+
+                    <div class="action-block">
+                        <h4>Posture du tuteur</h4>
+                        <ul>
+                            <li>Les étudiants sont les mieux placés pour expliquer (souvenirs frais) → <strong>les laisser formuler</strong></li>
+                            <li>En cas de doute/ambiguïté sur un item → <strong>le noter honnêtement</strong> dans la correction</li>
+                            <li>Observer les étudiants motivés → <strong>potentiels futurs tuteurs</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="action-block info">
+                        <h4>Le stream est OBLIGATOIRE</h4>
+                        <p>Tu dois avoir les deux écrans des étudiants sous les yeux en permanence pour vérifier qu'ils ne naviguent pas ailleurs sur la plateforme.</p>
+                    </div>
+
+                    <div class="info-box" style="margin-top: 20px;">
+                        <p><strong>Bénéfice :</strong> Cette séance prend un peu de temps maintenant, mais l'année prochaine, semestre 1, tout sera prêt - plus besoin de s'en occuper en début d'année !</p>
+                    </div>
+
+                </div>
+            </details>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <strong>Medibox Antilles Guyane</strong><br>
+            Parcours Tuteurs — Correction d'annales tutorée
+        </div>
+    </div>
+</body>
+</html>
