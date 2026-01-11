@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correction d'annales tutorée - Parcours Étudiants</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* ============================================
+           CSS INLINE OBLIGATOIRE - NE PAS MODIFIER
+           ============================================ */
+
+        /* Filigrane logo Medibox - fixe pendant scroll, responsive */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 900px;
+            max-height: 900px;
+            background-image: url('https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-clair.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Responsive : ajustement mobile */
+        @media (max-width: 768px) {
+            body::after {
+                width: 90vw;
+                height: 90vw;
+                opacity: 0.06;
+            }
+        }
+
+        /* Accordeons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        /* Blocs d'action */
+        .action-block {
+            background: white;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .action-block.warning {
+            border-left-color: #f59e0b;
+        }
+
+        .action-block.critical {
+            border-left-color: #dc2626;
+        }
+
+        .action-block.info {
+            border-left-color: #3b82f6;
+        }
+
+        .action-block h4 {
+            margin: 0 0 12px 0;
+            color: #1a365d;
+            font-size: 1rem;
+        }
+
+        .action-block p {
+            margin: 0 0 8px 0;
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .action-block ul {
+            margin: 10px 0 0 20px;
+            padding: 0;
+            color: #4a5568;
+        }
+
+        .action-block li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        /* Tableau de répartition */
+        .repartition-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        .repartition-table th {
+            background: #1a365d;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        .repartition-table td {
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            vertical-align: top;
+        }
+
+        .repartition-table td:first-child {
+            background: #f0fdf4;
+            font-weight: 600;
+            color: #166534;
+            width: 50%;
+        }
+
+        .repartition-table td:last-child {
+            background: #eff6ff;
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        .repartition-table ul {
+            margin: 5px 0 0 15px;
+            padding: 0;
+        }
+
+        .repartition-table li {
+            margin-bottom: 6px;
+            font-weight: normal;
+        }
+
+        /* Checklist */
+        .checklist {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .checklist h4 {
+            margin: 0 0 15px 0;
+            color: #1a365d;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: #f8fafc;
+            border-radius: 6px;
+        }
+
+        .checklist-item::before {
+            content: "☐";
+            margin-right: 12px;
+            font-size: 1.2rem;
+            color: #64748b;
+        }
+
+        .checklist-item.done::before {
+            content: "☑";
+            color: #10b981;
+        }
+
+        /* Encadré important */
+        .important-box {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border: 2px solid #dc2626;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+
+        .important-box p {
+            margin: 0;
+            color: #991b1b;
+            font-weight: 500;
+        }
+
+        .important-box strong {
+            color: #7f1d1d;
+        }
+
+        /* Encadré info */
+        .info-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+
+        .info-box p {
+            margin: 0;
+            color: #1e40af;
+        }
+
+        /* Encadré attention */
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+
+        .warning-box p {
+            margin: 0;
+            color: #92400e;
+        }
+
+        /* Encadré succès */
+        .success-box {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+
+        .success-box p {
+            margin: 0;
+            color: #166534;
+        }
+
+        /* Étapes numérotées */
+        .step {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h4 {
+            margin: 0 0 8px 0;
+            color: #1a365d;
+        }
+
+        .step-content p {
+            margin: 0;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+            .repartition-table { font-size: 0.8rem; }
+            .repartition-table th, .repartition-table td { padding: 10px; }
+        }
+
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📘 Correction d'annales tutorée</h1>
+            <div class="meta">
+                <span>📚 Module : les annales</span>
+                <span>🎯 Parcours Étudiants</span>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- ACCORDEON 1 : OBJECTIF -->
+            <details class="main-accordion">
+                <summary>🎯 Objectif de la séance</summary>
+                <div class="accordion-content">
+
+                    <div class="info-box">
+                        <p><strong>Merci de participer à ce projet !</strong> Vous contribuez à la transmission d'une promo à une autre et à l'amélioration continue de la qualité des corrections d'annales.</p>
+                    </div>
+
+                    <div class="action-block">
+                        <h4>Pourquoi cette séance est importante ?</h4>
+                        <ul>
+                            <li>Vous venez d'ingurgiter le cours → vous êtes les <strong>mieux placés</strong> pour savoir où retrouver l'info et comment l'expliquer</li>
+                            <li>Vous savez comment <strong>vous auriez aimé</strong> qu'on vous explique les choses → c'est exactement ce qu'on recherche dans ces corrections</li>
+                            <li>Les corrections deviennent <strong>plus qualitatives</strong> car elles correspondent aux réels besoins des étudiants</li>
+                            <li>C'est un projet de <strong>transmission</strong> : vous aidez la promo 2026-2027 comme vous auriez aimé être aidés</li>
+                        </ul>
+                    </div>
+
+                    <div class="action-block info">
+                        <h4>Et pour vous ?</h4>
+                        <ul>
+                            <li>Vous découvrez <strong>l'envers du décor</strong> d'une prépa</li>
+                            <li>Si vous envisagez d'être <strong>tuteur l'année prochaine</strong>, c'est une première expérience concrète</li>
+                            <li>Vous participez activement à l'amélioration de Medibox</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 2 : AVANT LA SÉANCE -->
+            <details class="main-accordion">
+                <summary>📋 Avant la séance</summary>
+                <div class="accordion-content">
+
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Préparer votre correction en amont</h4>
+                            <p>Avant la séance, prenez le temps de parcourir l'annale et d'avoir déjà <strong>une idée de ce qui est vrai ou faux</strong> pour chaque item. Plus vous êtes préparés, plus la séance sera efficace.</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Identifier les chapitres correspondants</h4>
+                            <p>Essayez de repérer <strong>de quel chapitre de cours</strong> chaque item est issu. Vous en débattrez avec le tuteur pendant la séance pour qu'il puisse annoter les cours.</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Repérer les questions récurrentes</h4>
+                            <p>Si vous avez identifié une <strong>question ou un item déjà tombé</strong> dans des annales précédentes et que vous n'étiez pas d'accord avec la correction → c'est le moment de l'évoquer !</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <p><strong>💡 Accès "Professeur" :</strong> Il vous sera donné au démarrage de la séance. Si vous ne voyez pas l'accès tout de suite, <strong>rafraîchissez votre page ExoTeach</strong>.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 3 : DÉROULÉ DE LA SÉANCE -->
+            <details class="main-accordion">
+                <summary>🚀 Déroulé de la séance</summary>
+                <div class="accordion-content">
+
+                    <div class="action-block info">
+                        <h4>1. Lancement</h4>
+                        <ul>
+                            <li>Rejoindre le <strong>Discord en visio</strong> avec le tuteur et l'autre étudiant</li>
+                            <li><strong>Streamer votre écran ExoTeach</strong></li>
+                            <li>Les deux étudiants doivent streamer leur écran ExoTeach en même temps pour que le tuteur puisse voir vos deux écrans de façon simultanée</li>
+                        </ul>
+                    </div>
+
+                    <div class="action-block">
+                        <h4>2. Attribution des rôles</h4>
+                        <p>Le tuteur vous attribue les rôles :</p>
+                        <ul>
+                            <li><strong>Étudiant 1</strong> : corrections des questions 1 à 10</li>
+                            <li><strong>Étudiant 2</strong> : corrections des questions 11 à 20</li>
+                            <li><em>Ou alternance : une question sur deux</em></li>
+                        </ul>
+                        <p style="margin-top: 10px;">Pendant ce temps, le tuteur s'occupe de la notation des cours sur les Google Docs.</p>
+                    </div>
+
+                    <h4 style="color: #1a365d; margin: 30px 0 20px 0;">3. Répartition des tâches</h4>
+
+                    <table class="repartition-table">
+                        <thead>
+                            <tr>
+                                <th>👨‍🎓 Vous (sur ExoTeach)</th>
+                                <th>👨‍🏫 Tuteur (sur Google Docs)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Vous faites la correction
+                                    <ul>
+                                        <li>Vérifiez que les questions/items sont bien recopiés</li>
+                                        <li>Corrigez les chapeaux si besoin</li>
+                                        <li>Rédigez une explication pour chaque item</li>
+                                        <li>Associez chaque QCM aux 2 cours</li>
+                                        <li>Réorganisez l'ordre des QCM si nécessaire</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    Met à jour les fiches de cours
+                                    <ul>
+                                        <li>Ajoute les étoiles aux bons endroits</li>
+                                        <li>Note les numéros de QCM</li>
+                                        <li>Upload les images si vous le demandez</li>
+                                        <li>Prend en compte vos remarques</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="info-box">
+                        <p><strong>💡 Note :</strong> Contrairement à ce qui est dit dans la vidéo, vous aurez <strong>exceptionnellement accès aux cours QCM+</strong> pour cette séance. Il faut donc bien associer les deux cours.</p>
+                    </div>
+
+                    <h4 style="color: #1a365d; margin: 30px 0 20px 0;">4. Travail question par question</h4>
+
+                    <div class="action-block">
+                        <h4>Côté étudiants - Vous faites la correction item par item</h4>
+                        <ul>
+                            <li>Vérifier la <strong>transcription</strong> (l'IA peut avoir fait des erreurs)</li>
+                            <li>Corriger les <strong>chapeaux</strong> si besoin</li>
+                            <li>Rédiger une <strong>explication pour chaque item</strong> : expliquer pourquoi c'est vrai ET expliquer pourquoi c'est faux</li>
+                            <li>Associer aux <strong>2 cours</strong> (normal + QCM+)</li>
+                            <li>Si un item ne correspond pas au cours associé → le noter dans la correction : <em>"Attention, réponse dans FC2 Acides aminés partie 2"</em></li>
+                        </ul>
+                    </div>
+
+                    <div class="action-block info">
+                        <h4>Côté tuteur</h4>
+                        <p>Le tuteur met à jour le Google Docs en même temps que vous corrigez les QCM. Il fera la capture et l'upload des images ou schémas si vous lui demandez de les rajouter à la correction. Il vous demandera aussi si vous avez vu quelque chose d'étonnant dans le cours ou une note de tuteur à ajouter.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 4 : POINTS TECHNIQUES EXOTEACH -->
+            <details class="main-accordion">
+                <summary>⚙️ Points techniques ExoTeach</summary>
+                <div class="accordion-content">
+
+                    <div class="action-block">
+                        <h4>Accès professeur</h4>
+                        <p>Onglet <strong>"Admin"</strong> → <strong>"Exercices"</strong> → <strong>"Séries d'exercices"</strong> → Filtrer par matière</p>
+                    </div>
+
+                    <div class="action-block">
+                        <h4>Édition</h4>
+                        <ul>
+                            <li>Crayon <strong>"Éditer les exercices"</strong> pour entrer dans l'annale</li>
+                            <li><strong>"Éditer la série"</strong> pour ajouter : <em>"Corrigé par : Prénom N. sous la supervision de [tuteur]"</em></li>
+                            <li><strong>"Enregistrer les modifications"</strong> après chaque groupe de questions</li>
+                        </ul>
+                    </div>
+
+                    <div class="action-block">
+                        <h4>Réorganiser les QCM</h4>
+                        <p>Glisser-déposer si l'ordre n'est pas bon</p>
+                    </div>
+
+                    <div class="action-block">
+                        <h4>Créer un QCM manquant</h4>
+                        <p><strong>"Créer un nouvel exercice"</strong> → QCM → remplir manuellement</p>
+                    </div>
+
+                    <div class="action-block warning">
+                        <h4>LaTeX (formules/exposants)</h4>
+                        <ul>
+                            <li>Double-clic sur la zone d'équation → éditeur LaTeX</li>
+                            <li>Ou : demander à ChatGPT de convertir en LaTeX (L-A-T-E-X)</li>
+                            <li>Dans les corrections texte : encadrer la formule avec le <strong>symbole $</strong> avant et après</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 5 : FIN DE SÉANCE -->
+            <details class="main-accordion">
+                <summary>✅ Fin de séance - Vérifications</summary>
+                <div class="accordion-content">
+
+                    <div class="checklist">
+                        <h4>Vérifications ExoTeach</h4>
+                        <div class="checklist-item">Toutes les questions ont 5 items (chiffre "5" affiché)</div>
+                        <div class="checklist-item">Format = QCM partout</div>
+                        <div class="checklist-item">Type = ACC Antilles partout</div>
+                        <div class="checklist-item">Cours associé = correct (fiche de cours + QCM+)</div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 6 : À FAIRE APRÈS LA SÉANCE -->
+            <details class="main-accordion">
+                <summary>📅 À faire après la séance</summary>
+                <div class="accordion-content">
+
+                    <div class="action-block">
+                        <h4>Donnez-nous votre avis !</h4>
+                        <p>Envoyez-nous un message sur Discord pour nous dire si ça vous a plu, si vous trouvez intéressant de faire les corrections d'annales comme ça... Bref, donnez-nous votre avis ! Comme vous le savez, on veut s'améliorer à chaque fois. 💬</p>
+                    </div>
+
+                    <div class="success-box">
+                        <p><strong>🎁 Et ensuite...</strong> Attendez tranquillement le petit cadeau que nous allons vous envoyer pour vous remercier du temps que vous avez pris pour corriger cette épreuve avec nous !</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ACCORDEON 7 : RAPPELS IMPORTANTS -->
+            <details class="main-accordion">
+                <summary>💡 Rappels importants</summary>
+                <div class="accordion-content">
+
+                    <div class="important-box">
+                        <p><strong>C'est une séance de CORRECTION, pas de cours.</strong> On est efficaces !</p>
+                    </div>
+
+                    <div class="action-block">
+                        <h4>Votre posture</h4>
+                        <ul>
+                            <li>Vous êtes les mieux placés pour expliquer (souvenirs frais) → <strong>formulez comme vous auriez aimé qu'on vous explique</strong></li>
+                            <li>En cas de doute ou d'ambiguïté sur un item → <strong>signalez-le honnêtement</strong> dans la correction</li>
+                        </ul>
+                    </div>
+
+                    <div class="action-block info">
+                        <h4>Le stream est obligatoire</h4>
+                        <p>Le tuteur doit avoir vos deux écrans sous les yeux en même temps.</p>
+                    </div>
+
+                    <div class="success-box" style="margin-top: 20px; text-align: center;">
+                        <p><strong>🙏 Un grand MERCI pour votre participation !</strong><br>Vous contribuez à rendre Medibox meilleur pour les prochaines promos. C'est grâce à vous que les corrections s'améliorent d'année en année ! 🎉</p>
+                    </div>
+
+                </div>
+            </details>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <strong>Medibox Antilles Guyane</strong><br>
+            Parcours Étudiants - Correction d'annales tutorée
+        </div>
+    </div>
+</body>
+</html>
