@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC6 - Techniques d'études - Microscopie Électronique</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* ============================================
+           CSS INLINE OBLIGATOIRE - NE PAS MODIFIER
+           ============================================ */
+
+        /* Filigrane logo Medibox - fixe pendant scroll, responsive */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 900px;
+            max-height: 900px;
+            background-image: url('https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-clair.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Responsive : ajustement mobile */
+        @media (max-width: 768px) {
+            body::after {
+                width: 90vw;
+                height: 90vw;
+                opacity: 0.06;
+            }
+        }
+
+        /* Accordeons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        /* Badges numérotés pour les accordéons */
+        .accordion-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-right: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        /* ============================================
+           ACCORDEONS COLORÉS - MÊME CHARTE QUE MO
+           ============================================ */
+        
+        /* Intro/Principe - Bleu Medibox (base) */
+        .accordion-intro summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+        }
+        .accordion-intro[open] summary {
+            background: linear-gradient(135deg, #1e40af 0%, #1a365d 100%);
+        }
+        .accordion-intro {
+            border-color: #1a365d;
+        }
+
+        /* Prélèvement - Violet/Indigo */
+        .accordion-prelevement summary {
+            background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
+        }
+        .accordion-prelevement[open] summary {
+            background: linear-gradient(135deg, #3730a3 0%, #4338ca 100%);
+        }
+        .accordion-prelevement {
+            border-color: #4f46e5;
+        }
+
+        /* Fixation - Bleu */
+        .accordion-fixation summary {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+        }
+        .accordion-fixation[open] summary {
+            background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+        }
+        .accordion-fixation {
+            border-color: #3b82f6;
+        }
+
+        /* Macroscopie + Décalcification - Teal/Cyan */
+        .accordion-macroscopie summary {
+            background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+        }
+        .accordion-macroscopie[open] summary {
+            background: linear-gradient(135deg, #0e7490 0%, #0891b2 100%);
+        }
+        .accordion-macroscopie {
+            border-color: #06b6d4;
+        }
+
+        /* Inclusion - Vert/Teal */
+        .accordion-inclusion summary {
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+        }
+        .accordion-inclusion[open] summary {
+            background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);
+        }
+        .accordion-inclusion {
+            border-color: #14b8a6;
+        }
+
+        /* Coupe - Vert/Lime */
+        .accordion-coupe summary {
+            background: linear-gradient(135deg, #65a30d 0%, #84cc16 100%);
+        }
+        .accordion-coupe[open] summary {
+            background: linear-gradient(135deg, #4d7c0f 0%, #65a30d 100%);
+        }
+        .accordion-coupe {
+            border-color: #84cc16;
+        }
+
+        /* Contraste (équivalent Coloration) - Orange */
+        .accordion-contraste summary {
+            background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+        }
+        .accordion-contraste[open] summary {
+            background: linear-gradient(135deg, #c2410c 0%, #ea580c 100%);
+        }
+        .accordion-contraste {
+            border-color: #f97316;
+        }
+
+        /* Évaporation carbone - Rouge/Corail */
+        .accordion-evaporation summary {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+        }
+        .accordion-evaporation[open] summary {
+            background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
+        }
+        .accordion-evaporation {
+            border-color: #ef4444;
+        }
+
+        /* Observation (équivalent Montage) - Rouge/Rose Medibox */
+        .accordion-observation summary {
+            background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);
+        }
+        .accordion-observation[open] summary {
+            background: linear-gradient(135deg, #be123c 0%, #e11d48 100%);
+        }
+        .accordion-observation {
+            border-color: #f43f5e;
+        }
+
+        /* Comparaison - Violet/Magenta */
+        .accordion-comparaison summary {
+            background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%);
+        }
+        .accordion-comparaison[open] summary {
+            background: linear-gradient(135deg, #6b21a8 0%, #7e22ce 100%);
+        }
+        .accordion-comparaison {
+            border-color: #a855f7;
+        }
+
+        /* ============================================
+           STEP CARDS (étapes)
+           ============================================ */
+        .step-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 18px;
+            margin-bottom: 12px;
+            border-left: 4px solid #10b981;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 15px;
+            align-items: start;
+        }
+
+        .step-card:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Couleurs bordures par section */
+        .step-prelevement { border-left-color: #4f46e5; }
+        .step-fixation { border-left-color: #3b82f6; }
+        .step-macroscopie { border-left-color: #06b6d4; }
+        .step-inclusion { border-left-color: #14b8a6; }
+        .step-coupe { border-left-color: #84cc16; }
+        .step-contraste { border-left-color: #f97316; }
+        .step-evaporation { border-left-color: #ef4444; }
+        .step-observation { border-left-color: #f43f5e; }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* Couleurs numéros par section */
+        .step-prelevement .step-number { background: #4f46e5; }
+        .step-fixation .step-number { background: #3b82f6; }
+        .step-macroscopie .step-number { background: #06b6d4; }
+        .step-inclusion .step-number { background: #14b8a6; }
+        .step-coupe .step-number { background: #84cc16; }
+        .step-contraste .step-number { background: #f97316; }
+        .step-evaporation .step-number { background: #ef4444; }
+        .step-observation .step-number { background: #f43f5e; }
+
+        .step-content h4 {
+            margin: 0 0 6px 0;
+            color: #1a365d;
+            font-size: 1.05rem;
+        }
+
+        .step-agent {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 8px;
+        }
+
+        .step-objective {
+            font-size: 0.95rem;
+            color: #1a365d;
+            margin: 0 0 6px 0;
+            line-height: 1.5;
+        }
+
+        .step-reason {
+            font-size: 0.88rem;
+            color: #64748b;
+            font-style: italic;
+            padding-left: 12px;
+            border-left: 2px solid #e2e8f0;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 18px;
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .info-box h5 {
+            color: #1a365d;
+            margin: 0 0 10px 0;
+            font-size: 0.95rem;
+        }
+
+        .info-box p {
+            color: #475569;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .info-box ul {
+            margin: 8px 0 0 0;
+            padding-left: 20px;
+            color: #475569;
+        }
+
+        .info-box li {
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+
+        /* Warning box */
+        .warning-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border-left: 4px solid #dc2626;
+            border-radius: 0 8px 8px 0;
+            padding: 15px 18px;
+            margin: 15px 0;
+        }
+
+        .warning-box h5 {
+            color: #991b1b;
+            margin: 0 0 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .warning-box p {
+            color: #7f1d1d;
+            margin: 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Highlight box */
+        .highlight-box {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            padding: 15px 18px;
+            margin: 15px 0;
+        }
+
+        .highlight-box p {
+            color: #1e40af;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Type cards */
+        .type-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .type-card h5 {
+            color: #1a365d;
+            margin: 0 0 8px 0;
+            font-size: 0.95rem;
+        }
+
+        .type-card p {
+            color: #475569;
+            margin: 0;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .type-card.main {
+            border-color: #3b82f6;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        }
+
+        /* Encadré agents ME */
+        .agents-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 8px;
+            padding: 15px 18px;
+            margin-top: 15px;
+            border: 2px solid #f59e0b;
+        }
+
+        .agents-box h5 {
+            font-size: 0.9rem;
+            color: #92400e;
+            margin: 0 0 12px 0;
+            font-weight: 600;
+        }
+
+        .agents-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .agent-tag {
+            background: white;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #78350f;
+            border: 1px solid #d97706;
+        }
+
+        .agent-tag.main {
+            background: #f59e0b;
+            color: white;
+            border-color: #d97706;
+        }
+
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔬 FC6 - Microscopie Électronique</h1>
+            <div class="meta">
+                <span>📚 UE14 - Histologie</span>
+                <span>⚡ Technique ME — De la fixation à l'observation — Ultrastructure cellulaire — 13 étapes</span>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- ============================================
+                 ACCORDÉON INTRO : OBJECTIF + PRINCIPE
+                 ============================================ -->
+            <details class="main-accordion accordion-intro">
+                <summary><span class="accordion-badge">?</span> Objectif et principe de la ME</summary>
+                <div class="accordion-content">
+                    
+                    <div class="info-box">
+                        <h5>🎯 Que permet d'observer la ME ?</h5>
+                        <p>La microscopie électronique permet l'observation de l'<strong>ultrastructure cellulaire</strong> :</p>
+                        <ul>
+                            <li><strong>Membranes</strong> (plasmique, nucléaire, organites)</li>
+                            <li><strong>Organites</strong> (mitochondries, REG, REL, appareil de Golgi, lysosomes...)</li>
+                            <li><strong>Jonctions intercellulaires</strong> (desmosomes, jonctions serrées...)</li>
+                            <li><strong>Cytosquelette</strong> (microfilaments, microtubules, filaments intermédiaires)</li>
+                            <li><strong>Virus</strong> (particules virales)</li>
+                        </ul>
+                    </div>
+
+                    <div class="highlight-box">
+                        <p>⚡ <strong>Principe :</strong> La ME utilise un <strong>faisceau d'électrons</strong> (et non de lumière).<br>
+                        Les électrons ont une très faible longueur d'onde → <strong>résolution beaucoup plus élevée</strong> que le MO.</p>
+                    </div>
+
+                    <div class="warning-box">
+                        <h5>⚠️ Contraintes de la ME — Les échantillons doivent être :</h5>
+                        <p>
+                            • <strong>Très fins</strong> (coupes de 50-90 nm)<br>
+                            • <strong>Stables</strong> (fixation très forte)<br>
+                            • <strong>Contrastés</strong> par des métaux lourds (pas de colorants classiques)<br>
+                            • <strong>Observés sous vide</strong> (incompatible avec l'eau)
+                        </p>
+                    </div>
+
+                    <!-- Types de ME -->
+                    <h4 style="color: #1a365d; margin: 20px 0 15px 0; font-size: 1rem;">📊 Types de microscopie électronique</h4>
+                    
+                    <div class="type-card main">
+                        <h5>🔬 MET — Microscopie Électronique en Transmission</h5>
+                        <p>
+                            • Observation de <strong>coupes ultrafines</strong> — Les électrons <strong>traversent</strong> l'échantillon<br>
+                            • Donne une image <strong>2D de l'intérieur</strong> des cellules<br>
+                            <span style="background: #3b82f6; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-top: 8px; display: inline-block;">👉 Type principalement enseigné dans le cours</span>
+                        </p>
+                    </div>
+
+                    <div class="type-card">
+                        <h5>🔍 MEB — Microscopie Électronique à Balayage</h5>
+                        <p>
+                            • Observation de la <strong>surface</strong> — Image en <strong>relief (3D)</strong><br>
+                            <span style="color: #94a3b8; font-style: italic;">Peu abordée dans ce cadre</span>
+                        </p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 1 : PRÉLÈVEMENT
+                 ============================================ -->
+            <details class="main-accordion accordion-prelevement">
+                <summary><span class="accordion-badge">1</span> PRÉLÈVEMENT</summary>
+                <div class="accordion-content">
+                    <div class="step-card step-prelevement">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <h4>Prélèvement</h4>
+                            <span class="step-agent">Biopsie, pièce opératoire</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Obtenir l'échantillon tissulaire</p>
+                            <p class="step-reason">Point de départ de toute analyse — Manipulation rapide indispensable</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 2 : FIXATION
+                 ============================================ -->
+            <details class="main-accordion accordion-fixation">
+                <summary><span class="accordion-badge">2</span> FIXATION</summary>
+                <div class="accordion-content">
+                    
+                    <!-- FIXATION PRIMAIRE -->
+                    <div class="step-card step-fixation">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <h4>Fixation primaire</h4>
+                            <span class="step-agent">Glutaraldéhyde</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Créer une réticulation forte et dense (quasi irréversible)</p>
+                            <p class="step-reason">Fixe préférentiellement : protéines, membranes, cytosquelette — Bien plus fort que le formol</p>
+                        </div>
+                    </div>
+
+                    <!-- POST-FIXATION -->
+                    <div class="step-card step-fixation">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <h4>Post-fixation</h4>
+                            <span class="step-agent">Tétroxyde d'osmium (OsO₄)</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Fixer les lipides membranaires + apporter un contraste électronique</p>
+                            <p class="step-reason">Stabilise les membranes — Étape indispensable en ME — ⚠️ Très toxique</p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 3 : MACROSCOPIE + DÉCALCIFICATION
+                 ============================================ -->
+            <details class="main-accordion accordion-macroscopie">
+                <summary><span class="accordion-badge">3</span> MACROSCOPIE + DÉCALCIFICATION</summary>
+                <div class="accordion-content">
+                    
+                    <!-- MACROSCOPIE -->
+                    <div class="step-card step-macroscopie">
+                        <span class="step-number">4</span>
+                        <div class="step-content">
+                            <h4>Examen macroscopique</h4>
+                            <span class="step-agent">Observation à l'œil nu + Sélection</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Observer le prélèvement fixé et sélectionner la zone d'intérêt (≈ 1 mm³)</p>
+                            <p class="step-reason">L'échantillon de 1 mm³ est choisi après fixation — Taille réduite indispensable car le glutaraldéhyde pénètre lentement</p>
+                        </div>
+                    </div>
+
+                    <!-- DÉCALCIFICATION -->
+                    <div class="step-card step-macroscopie" style="position: relative; border-left-color: #f59e0b;">
+                        <span style="position: absolute; top: -10px; right: 10px; background: #dc2626; color: white; font-size: 0.65rem; padding: 3px 8px; border-radius: 10px; font-weight: 600;">⚠️ INUTILE ET NUISIBLE SI NON NÉCESSAIRE</span>
+                        <span class="step-number" style="background: #f59e0b; font-size: 0.8rem;">4bis</span>
+                        <div class="step-content">
+                            <h4>Décalcification + Rinçage</h4>
+                            <span class="step-agent">EDTA (chélateur doux) — préféré aux acides en ME</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Éliminer les sels de calcium pour rendre le tissu coupable</p>
+                            <p class="step-reason">Évite la casse de la lame diamant et permet les coupes ultrafines</p>
+                            <p style="font-size: 0.8rem; color: #991b1b; margin-top: 6px; background: #fee2e2; padding: 6px 8px; border-radius: 4px;">
+                                ⚠️ <strong>Attention :</strong> Altère l'ultrastructure, les éléments antigéniques, épitopes, acides nucléiques
+                            </p>
+                            <p style="font-size: 0.8rem; color: #b45309; margin-top: 6px; background: #fef3c7; padding: 6px 8px; border-radius: 4px;">
+                                👉 <strong>Concerne :</strong> os, cartilage calcifié, dents, tissus pathologiques calcifiés
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box">
+                        <p>👉 <strong>Pourquoi l'EDTA plutôt que les acides ?</strong><br>
+                        En ME, on préfère l'EDTA (chélateur doux) aux acides forts (acide formique/acétique) car il <strong>préserve mieux l'ultrastructure</strong>, qui est l'objectif principal de la ME.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 4 : INCLUSION
+                 ============================================ -->
+            <details class="main-accordion accordion-inclusion">
+                <summary><span class="accordion-badge">4</span> INCLUSION</summary>
+                <div class="accordion-content">
+
+                    <!-- DÉSHYDRATATION -->
+                    <div class="step-card step-inclusion">
+                        <span class="step-number">5</span>
+                        <div class="step-content">
+                            <h4>Déshydratation</h4>
+                            <span class="step-agent">Alcools gradués (éthanol 70% → 100%) puis Acétone</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Éliminer totalement l'eau du tissu</p>
+                            <p class="step-reason">L'eau est incompatible avec : le vide, la résine, les électrons</p>
+                        </div>
+                    </div>
+
+                    <!-- IMPRÉGNATION -->
+                    <div class="step-card step-inclusion">
+                        <span class="step-number">6</span>
+                        <div class="step-content">
+                            <h4>Imprégnation (infiltration)</h4>
+                            <span class="step-agent">Résine + solvant (concentration croissante)</span>
+                            <p class="step-objective"><strong>Objectif :</strong> La résine remplace progressivement le solvant</p>
+                            <p class="step-reason">Pénètre toutes les structures cellulaires — Bains successifs</p>
+                        </div>
+                    </div>
+
+                    <!-- Encadré résines -->
+                    <div class="agents-box">
+                        <h5>🧪 Résines utilisées en ME</h5>
+                        <div class="agents-list">
+                            <span class="agent-tag main">Résines époxy (Epon, Araldite)</span>
+                            <span class="agent-tag">Méthacrylates</span>
+                        </div>
+                    </div>
+
+                    <!-- INCLUSION -->
+                    <div class="step-card step-inclusion" style="margin-top: 15px;">
+                        <span class="step-number">7</span>
+                        <div class="step-content">
+                            <h4>Mise en bloc (inclusion)</h4>
+                            <span class="step-agent">Résine pure dans un moule</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Mise du prélèvement dans de la résine pure + orientation</p>
+                            <p class="step-reason">Prépare la polymérisation — Permet l'orientation du tissu</p>
+                        </div>
+                    </div>
+
+                    <!-- POLYMÉRISATION -->
+                    <div class="step-card step-inclusion">
+                        <span class="step-number">8</span>
+                        <div class="step-content">
+                            <h4>Polymérisation</h4>
+                            <span class="step-agent">Chaleur ou UV (selon résine)</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Durcissement de la résine → bloc très dur</p>
+                            <p class="step-reason">Beaucoup plus dur que la paraffine — Indispensable pour les coupes ultrafines</p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 5 : COUPES
+                 ============================================ -->
+            <details class="main-accordion accordion-coupe">
+                <summary style="position: relative;">
+                    <span class="accordion-badge">5</span> COUPES (+ observation au MO)
+                    <span style="position: absolute; right: 40px; top: 50%; transform: translateY(-50%); background: #dc2626; color: white; font-size: 0.55rem; padding: 2px 6px; border-radius: 8px; font-weight: 600; text-align: center; line-height: 1.3;">⭐ POINT<br>CLEF N°1</span>
+                </summary>
+                <div class="accordion-content">
+
+                    <!-- COUPES SEMI-FINES -->
+                    <div class="step-card step-coupe">
+                        <span class="step-number">9</span>
+                        <div class="step-content">
+                            <h4>Coupes semi-fines</h4>
+                            <span class="step-agent">Ultramicrotome — Épaisseur : 0,5-1 µm — Lame de verre</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Vérifier la qualité de la fixation, repérer la morphologie générale, sélectionner les zones d'intérêt</p>
+                            <p class="step-reason">Étape indispensable de repérage en MO avant l'observation en ME</p>
+                        </div>
+                    </div>
+
+                    <div style="background: white; border: 2px solid #84cc16; border-radius: 10px; padding: 15px; margin-bottom: 15px;">
+                        <h5 style="color: #4d7c0f; margin: 0 0 10px 0; font-size: 0.9rem;">🔬 Coloration des coupes semi-fines</h5>
+                        <p style="color: #365314; margin: 0; font-size: 0.88rem; line-height: 1.6;">
+                            • <strong>Bleu de toluidine</strong> — Colorant compatible avec la résine<br>
+                            • <strong>Sans déparaffinage ni dérésinage</strong> (pas de paraffine en ME !)<br>
+                            • Observation au <strong>microscope optique</strong> pour sélectionner les zones
+                        </p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <p>👉 <strong>Coupes semi-fines = étape de repérage</strong><br>
+                        On observe d'abord au MO (coupes semi-fines) pour choisir les zones intéressantes, puis on réalise les coupes ultrafines pour la ME.</p>
+                    </div>
+
+                    <!-- COUPES ULTRAFINES -->
+                    <div class="step-card step-coupe">
+                        <span class="step-number">10</span>
+                        <div class="step-content">
+                            <h4>Coupes ultrafines</h4>
+                            <span class="step-agent">Ultramicrotome — Épaisseur : 50-90 nm — Grille métallique</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Obtenir des coupes extrêmement fines (nanométriques) pour la ME</p>
+                            <p class="step-reason">Coupes recueillies sur grilles métalliques (pas sur lame de verre !)</p>
+                        </div>
+                    </div>
+
+                    <div style="overflow-x: auto; margin-top: 15px;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; background: white; border-radius: 8px; overflow: hidden;">
+                            <thead>
+                                <tr style="background: linear-gradient(135deg, #65a30d 0%, #84cc16 100%); color: white;">
+                                    <th style="padding: 10px; text-align: left;">Critère</th>
+                                    <th style="padding: 10px; text-align: center;">Coupes semi-fines</th>
+                                    <th style="padding: 10px; text-align: center;">Coupes ultrafines</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 8px; font-weight: 600;">Épaisseur</td>
+                                    <td style="padding: 8px; text-align: center;">0,5-1 µm</td>
+                                    <td style="padding: 8px; text-align: center;">50-90 nm</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                                    <td style="padding: 8px; font-weight: 600;">Support</td>
+                                    <td style="padding: 8px; text-align: center;">Lame de verre</td>
+                                    <td style="padding: 8px; text-align: center;">Grille métallique</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 8px; font-weight: 600;">Coloration</td>
+                                    <td style="padding: 8px; text-align: center;">Bleu de toluidine</td>
+                                    <td style="padding: 8px; text-align: center;">Métaux lourds</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; font-weight: 600;">Observation</td>
+                                    <td style="padding: 8px; text-align: center;">MO (repérage)</td>
+                                    <td style="padding: 8px; text-align: center;">ME (ultrastructure)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 6 : CONTRASTE
+                 ============================================ -->
+            <details class="main-accordion accordion-contraste">
+                <summary><span class="accordion-badge">6</span> CONTRASTE</summary>
+                <div class="accordion-content">
+                    
+                    <div class="step-card step-contraste">
+                        <span class="step-number">11</span>
+                        <div class="step-content">
+                            <h4>Contraste aux métaux lourds</h4>
+                            <span class="step-agent">Acétate d'uranyle + Citrate de plomb</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Créer le contraste pour visualiser les structures</p>
+                            <p class="step-reason">Les métaux lourds diffusent les électrons → créent l'image</p>
+                        </div>
+                    </div>
+
+                    <div style="background: white; border: 2px solid #f97316; border-radius: 10px; padding: 15px; margin-bottom: 15px;">
+                        <h5 style="color: #c2410c; margin: 0 0 10px 0; font-size: 0.9rem;">🎯 Affinité des métaux lourds</h5>
+                        <p style="color: #7c2d12; margin: 0; font-size: 0.88rem; line-height: 1.6;">
+                            Les métaux lourds ont une affinité pour :<br>
+                            • <strong>Membranes</strong> (lipides)<br>
+                            • <strong>Protéines</strong><br>
+                            • <strong>Acides nucléiques</strong><br><br>
+                            👉 Ils se lient aux <strong>structures biologiques</strong> → ce sont ces structures qui apparaissent contrastées en ME
+                        </p>
+                    </div>
+
+                    <!-- Encadré agents de contraste -->
+                    <div class="agents-box">
+                        <h5>⚡ Agents de contraste en ME</h5>
+                        <div class="agents-list">
+                            <span class="agent-tag main">Acétate d'uranyle</span>
+                            <span class="agent-tag main">Citrate de plomb</span>
+                            <span class="agent-tag">Tétroxyde d'osmium (aussi fixateur)</span>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        <h5>⚠️ Pas de colorants classiques en ME !</h5>
+                        <p>Les colorants de la MO (HES, PAS, etc.) ne fonctionnent pas en ME.<br>
+                        → On utilise des <strong>sels de métaux lourds</strong> qui interagissent avec les électrons.</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 7 : ÉVAPORATION CARBONE
+                 ============================================ -->
+            <details class="main-accordion accordion-evaporation">
+                <summary><span class="accordion-badge">7</span> ÉVAPORATION CARBONE</summary>
+                <div class="accordion-content">
+                    
+                    <p style="color: #64748b; font-style: italic; margin: 0 0 15px 0; font-size: 0.95rem;">On dépose une fine couche de carbone sur la coupe</p>
+
+                    <div class="step-card step-evaporation">
+                        <span class="step-number">12</span>
+                        <div class="step-content">
+                            <h4>Évaporation carbone</h4>
+                            <span class="step-agent">Fine couche de carbone</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Stabiliser la coupe + améliorer la conduction électronique</p>
+                            <p class="step-reason">Limite les charges sous le faisceau d'électrons</p>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 8 : OBSERVATION
+                 ============================================ -->
+            <details class="main-accordion accordion-observation">
+                <summary style="position: relative;">
+                    <span class="accordion-badge">8</span> OBSERVATION
+                    <span style="position: absolute; right: 40px; top: 50%; transform: translateY(-50%); background: #dc2626; color: white; font-size: 0.55rem; padding: 2px 6px; border-radius: 8px; font-weight: 600; text-align: center; line-height: 1.3;">⭐ POINT<br>CLEF N°2</span>
+                </summary>
+                <div class="accordion-content">
+                    <div class="step-card step-observation">
+                        <span class="step-number">13</span>
+                        <div class="step-content">
+                            <h4>Observation en ME</h4>
+                            <span class="step-agent">Microscope électronique sous vide</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Analyser l'ultrastructure cellulaire</p>
+                            <p class="step-reason">Faisceau d'électrons — Image en noir et blanc — Très haute résolution</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h5>🖼️ Caractéristiques de l'image ME</h5>
+                        <p>
+                            • Observation <strong>sous vide</strong><br>
+                            • <strong>Faisceau d'électrons</strong> (pas de lumière)<br>
+                            • Image en <strong>noir et blanc</strong> (niveaux de gris)<br>
+                            • <strong>Très haute résolution</strong> (nanométrique)
+                        </p>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON : COMPARAISON MO vs ME
+                 ============================================ -->
+            <details class="main-accordion accordion-comparaison">
+                <summary><span class="accordion-badge">⚖️</span> Comparaison MO vs ME</summary>
+                <div class="accordion-content">
+                    
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; background: white; border-radius: 8px; overflow: hidden;">
+                            <thead>
+                                <tr style="background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%); color: white;">
+                                    <th style="padding: 12px; text-align: left;">Critère</th>
+                                    <th style="padding: 12px; text-align: center;">Microscopie Optique</th>
+                                    <th style="padding: 12px; text-align: center;">Microscopie Électronique</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 10px; font-weight: 600;">Source</td>
+                                    <td style="padding: 10px; text-align: center;">Lumière</td>
+                                    <td style="padding: 10px; text-align: center;">Électrons</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                                    <td style="padding: 10px; font-weight: 600;">Contraste</td>
+                                    <td style="padding: 10px; text-align: center;">Colorants (HES...)</td>
+                                    <td style="padding: 10px; text-align: center;">Métaux lourds</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 10px; font-weight: 600;">Épaisseur coupe</td>
+                                    <td style="padding: 10px; text-align: center;">3-5 µm</td>
+                                    <td style="padding: 10px; text-align: center;">50-90 nm</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                                    <td style="padding: 10px; font-weight: 600;">Support</td>
+                                    <td style="padding: 10px; text-align: center;">Lame + lamelle</td>
+                                    <td style="padding: 10px; text-align: center;">Grille métallique</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 10px; font-weight: 600;">Inclusion</td>
+                                    <td style="padding: 10px; text-align: center;">Paraffine possible</td>
+                                    <td style="padding: 10px; text-align: center;">Résine obligatoire</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                                    <td style="padding: 10px; font-weight: 600;">Fixateur principal</td>
+                                    <td style="padding: 10px; text-align: center;">Formol</td>
+                                    <td style="padding: 10px; text-align: center;">Glutaraldéhyde</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 10px; font-weight: 600;">Instrument de coupe</td>
+                                    <td style="padding: 10px; text-align: center;">Microtome</td>
+                                    <td style="padding: 10px; text-align: center;">Ultramicrotome</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                                    <td style="padding: 10px; font-weight: 600;">Milieu d'observation</td>
+                                    <td style="padding: 10px; text-align: center;">Air ambiant</td>
+                                    <td style="padding: 10px; text-align: center;">Vide</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; font-weight: 600;">Image</td>
+                                    <td style="padding: 10px; text-align: center;">Couleur</td>
+                                    <td style="padding: 10px; text-align: center;">Noir et blanc</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Points clés -->
+                    <div style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border-radius: 8px; border: 2px solid #a855f7;">
+                        <h5 style="color: #6b21a8; margin: 0 0 10px 0; font-size: 0.95rem;">💡 Points clés à retenir (très importants pour les QCM)</h5>
+                        <p style="color: #581c87; margin: 0; font-size: 0.88rem; line-height: 1.7;">
+                            ❌ La ME <strong>n'utilise pas</strong> : paraffine, colorants classiques, montage sur lame<br>
+                            ✅ Elle <strong>nécessite</strong> : fixation très forte (glutaraldéhyde), déshydratation complète, inclusion en résine<br>
+                            ⚠️ Le <strong>formol est insuffisant seul</strong> pour la ME<br>
+                            👉 Le <strong>glutaraldéhyde</strong> est le fixateur de référence en ME
+                        </p>
+                    </div>
+
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ============================================
+             FOOTER OBLIGATOIRE - NE PAS MODIFIER
+             ============================================ -->
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>SOURCES</strong><br>
+            FC6 — UE14 Histologie 2025-2026 • Technique : Microscopie Électronique en Transmission (MET)
+        </div>
+    </div>
+</body>
+</html>
