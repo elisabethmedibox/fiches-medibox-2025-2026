@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC5 - Les Colorations Histologiques - Fiche de Cours</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* Filigrane logo Medibox - fixe pendant scroll, responsive */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 900px;
+            max-height: 900px;
+            background-image: url('https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-clair.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Responsive : ajustement mobile */
+        @media (max-width: 768px) {
+            body::after {
+                width: 90vw;
+                height: 90vw;
+                opacity: 0.06;
+            }
+        }
+
+        /* Tag Histochimie pour les accordéons */
+        .tag-histochimie {
+            display: inline-block;
+            color: white;
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            /* Position fixe à droite (avant le triangle) */
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            /* Bleu MediBox */
+            background: linear-gradient(135deg, #1e3a5f, #2d5a87);
+        }
+
+        /* ============================================
+           ACCORDEONS
+           ============================================ */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-accordion summary {
+            color: white;
+            padding: 18px 120px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            /* Centrer le titre */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+            /* Position fixe à droite */
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .main-accordion[open] summary::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        /* Badges numérotés */
+        .accordion-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            /* Position fixe à gauche */
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* ============================================
+           COULEURS ACCORDEONS PAR COLORATION
+           ============================================ */
+        /* HES - Violet/Rose/Orange (tricolore) */
+        .accordion-hes summary {
+            background: linear-gradient(135deg, #7c3aed 0%, #ec4899 50%, #f97316 100%);
+        }
+        .accordion-hes[open] summary {
+            background: linear-gradient(135deg, #6d28d9 0%, #db2777 50%, #ea580c 100%);
+        }
+        .accordion-hes { border-color: #7c3aed; }
+
+        /* Hématéine seule - Bleu violet */
+        .accordion-hemateine summary {
+            background: linear-gradient(135deg, #5e35b1 0%, #7e57c2 100%);
+        }
+        .accordion-hemateine[open] summary {
+            background: linear-gradient(135deg, #4527a0 0%, #5e35b1 100%);
+        }
+        .accordion-hemateine { border-color: #7e57c2; }
+
+        /* MGG - Violet/Bleu */
+        .accordion-mgg summary {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+        .accordion-mgg[open] summary {
+            background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+        }
+        .accordion-mgg { border-color: #4f46e5; }
+
+        /* Papanicolaou - Bleu (immature) → Rouge (mature) */
+        .accordion-papanicolaou summary {
+            background: linear-gradient(90deg, #3b82f6 0%, #e11d48 100%);
+        }
+        .accordion-papanicolaou[open] summary {
+            background: linear-gradient(90deg, #2563eb 0%, #be123c 100%);
+        }
+        .accordion-papanicolaou { border-color: #8b5cf6; }
+
+        /* PAS - Rouge fuchsia */
+        .accordion-pas summary {
+            background: linear-gradient(135deg, #c026d3 0%, #e879f9 100%);
+        }
+        .accordion-pas[open] summary {
+            background: linear-gradient(135deg, #a21caf 0%, #c026d3 100%);
+        }
+        .accordion-pas { border-color: #c026d3; }
+
+        /* Bleu Alcian - Cyan */
+        .accordion-alcian summary {
+            background: linear-gradient(135deg, #0891b2 0%, #22d3ee 100%);
+        }
+        .accordion-alcian[open] summary {
+            background: linear-gradient(135deg, #0e7490 0%, #0891b2 100%);
+        }
+        .accordion-alcian { border-color: #22d3ee; }
+
+        /* Trichrome - Vert/Rouge/Violet */
+        .accordion-trichrome summary {
+            background: linear-gradient(135deg, #059669 0%, #dc2626 50%, #7c3aed 100%);
+        }
+        .accordion-trichrome[open] summary {
+            background: linear-gradient(135deg, #047857 0%, #b91c1c 50%, #6d28d9 100%);
+        }
+        .accordion-trichrome { border-color: #059669; }
+
+        /* Orcéine - Marron/Noir */
+        .accordion-orceine summary {
+            background: linear-gradient(135deg, #78350f 0%, #a16207 100%);
+        }
+        .accordion-orceine[open] summary {
+            background: linear-gradient(135deg, #451a03 0%, #78350f 100%);
+        }
+        .accordion-orceine { border-color: #a16207; }
+
+        /* Noir Soudan - Noir/Gris foncé */
+        .accordion-soudan summary {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+        }
+        .accordion-soudan[open] summary {
+            background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+        }
+        .accordion-soudan { border-color: #374151; }
+
+        /* ============================================
+           DÉFINITION - Encadré vert
+           ============================================ */
+        .definition-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #10b981;
+        }
+
+        .definition-box h4 {
+            margin: 0 0 10px 0;
+            color: #065f46;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .definition-box p {
+            color: #047857;
+            line-height: 1.6;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* ============================================
+           GRILLE DE CARTES - Style Fiche Techniques
+           ============================================ */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .info-card .card-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-card .card-content {
+            flex-grow: 1;
+        }
+
+        .info-card .card-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .info-card .card-value {
+            font-size: 0.85rem;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        .info-card .card-value strong {
+            color: #1a365d;
+        }
+
+        /* Couleurs par catégorie */
+        .card-couleur .card-number { background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%); }
+        .card-couleur .card-label { color: #1a365d; }
+        .card-couleur { border-color: #1a365d; }
+
+        .card-nature .card-number { background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%); }
+        .card-nature .card-label { color: #7c3aed; }
+        .card-nature { border-color: #c4b5fd; }
+
+        .card-role .card-number { background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); }
+        .card-role .card-label { color: #d97706; }
+        .card-role { border-color: #fcd34d; }
+
+        .card-cible .card-number { background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%); }
+        .card-cible .card-label { color: #db2777; }
+        .card-cible { border-color: #f9a8d4; }
+
+        .card-visualisation .card-number { background: linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%); }
+        .card-visualisation .card-label { color: #0d9488; }
+        .card-visualisation { border-color: #5eead4; }
+
+        .card-techniques .card-number { background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%); }
+        .card-techniques .card-label { color: #4f46e5; }
+        .card-techniques { border-color: #a5b4fc; }
+
+        .card-observation .card-number { background: linear-gradient(135deg, #ef4444 0%, #f87171 100%); }
+        .card-observation .card-label { color: #dc2626; }
+        .card-observation { border-color: #fca5a5; }
+
+        /* ============================================
+           TAGS COLORÉS
+           ============================================ */
+        .color-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 2px;
+        }
+        .color-tag-bleu { background: #1d4ed8; color: white; }
+        .color-tag-bleu-fonce { background: #1e3a8a; color: white; }
+        .color-tag-bleu-clair { background: #60a5fa; color: #1e3a8a; }
+        .color-tag-violet { background: #7c3aed; color: white; }
+        .color-tag-rose { background: #ec4899; color: white; }
+        .color-tag-orange { background: #f97316; color: white; }
+        .color-tag-rouge { background: #dc2626; color: white; }
+        .color-tag-rouge-rose { background: #e11d48; color: white; }
+        .color-tag-fuchsia { background: #c026d3; color: white; }
+        .color-tag-cyan { background: #0891b2; color: white; }
+        .color-tag-vert { background: #059669; color: white; }
+        .color-tag-vert-bleu { background: #0d9488; color: white; }
+        .color-tag-noir { background: #1f2937; color: white; }
+        .color-tag-marron { background: #78350f; color: white; }
+
+        /* ============================================
+           EXEMPLES D'APPLICATION
+           ============================================ */
+        .examples-box {
+            background: white;
+            border-radius: 10px;
+            padding: 15px 18px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .examples-box h5 {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .example-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0;
+            font-size: 0.85rem;
+            color: #475569;
+            border-bottom: 1px dashed #e2e8f0;
+            flex-wrap: wrap;
+        }
+
+        .example-item:last-child {
+            border-bottom: none;
+        }
+
+        .example-item .arrow {
+            color: #7c3aed;
+            font-weight: 600;
+        }
+
+        .example-item .target {
+            color: #1a365d;
+            font-weight: 600;
+        }
+
+        /* ============================================
+           TABLEAU HES
+           ============================================ */
+        .hes-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        .hes-table thead tr {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+        }
+
+        .hes-table th {
+            padding: 12px 10px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .hes-table th.hemateine {
+            background: linear-gradient(135deg, #5e35b1 0%, #7e57c2 100%);
+        }
+
+        .hes-table th.eosine {
+            background: linear-gradient(135deg, #e91e63 0%, #f06292 100%);
+        }
+
+        .hes-table th.safran {
+            background: linear-gradient(135deg, #ff9800 0%, #ffb74d 100%);
+        }
+
+        .hes-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .hes-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .hes-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .hes-table .row-header {
+            background: #f1f5f9 !important;
+            font-weight: 600;
+            color: #475569;
+            text-align: left;
+            width: 120px;
+        }
+
+        .structures-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        /* Wrapper scroll */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 5px;
+        }
+
+        .scroll-hint {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-style: italic;
+            text-align: right;
+            margin-bottom: 15px;
+        }
+
+        /* ============================================
+           NOTES ET ALERTES
+           ============================================ */
+        .note-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 3px solid #f59e0b;
+        }
+
+        .note-box h5 {
+            color: #92400e;
+            margin: 0 0 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .note-box p {
+            color: #78350f;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .alert-box {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 3px solid #dc2626;
+        }
+
+        .alert-box h5 {
+            color: #991b1b;
+            margin: 0 0 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .alert-box p {
+            color: #7f1d1d;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Key point */
+        .key-point {
+            background: #fef3c7;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 3px solid #f59e0b;
+        }
+
+        .key-point p {
+            color: #92400e;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            margin-top: 30px;
+            padding: 15px;
+            background: #1a365d;
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        .avertissement {
+            margin-top: 15px;
+            padding: 12px;
+            background: #fef3c7;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- En-tête style Fiche Techniques -->
+        <div class="header" style="background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); padding: 30px 20px; text-align: center; border-bottom: 4px solid #e53e3e;">
+            <h1 style="color: white; font-size: 2rem; margin: 0 0 10px 0;">📄 Colorations</h1>
+            <p style="color: #bee3f8; font-size: 1rem; margin: 5px 0;">📚 UE14 - Histologie</p>
+            <p style="color: #e2e8f0; font-size: 0.9rem; margin: 10px 0 0 0;">🔬 Colorations en routine et en histochimie</p>
+        </div>
+
+        <div class="content">
+
+            <!-- ============================================
+                 ACCORDÉON INTRODUCTION
+                 ============================================ -->
+            <details class="main-accordion" style="border-color: #1a365d;">
+                <summary style="background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);">
+                    🎨 Introduction aux colorations histologiques
+                </summary>
+                <div class="accordion-content">
+                    <p style="color: #475569; line-height: 1.6; margin-bottom: 15px;">Il existe quantité de colorations permettant de mettre en évidence certaines particularités des cellules ou de la matrice extracellulaire en faisant appel aux <strong>caractéristiques chimiques des composants des tissus</strong> une fois que ceux-ci sont fixés.</p>
+                    <p style="color: #475569; line-height: 1.6;">Alors que certaines colorations sont d'usage quotidien, d'autres sont complètement tombées dans l'oubli car supplantées par d'autres approches, notamment les approches d'<strong>immunohistochimie</strong>.</p>
+                    
+                    <div class="key-point">
+                        <p>💡 <strong>À retenir :</strong> Les colorations peuvent être réalisées indifféremment à partir de tout type de préparation : coupes histologiques classiques, cryosections ou lames de cytologie.</p>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 1 : HES
+                 ============================================ -->
+            <details class="main-accordion accordion-hes">
+                <summary><span class="accordion-badge">1</span> HES - Hématéine-Éosine-Safran</summary>
+                <div class="accordion-content">
+                    
+                    <!-- Définition -->
+                    <div class="definition-box">
+                        <h4>📖 Définition</h4>
+                        <p>La coloration HES pour <strong>Hématéine-Éosine-Safran</strong> est la <strong>coloration standard de l'histologie</strong>, la plus utilisée en France pour l'analyse des tissus. Elle associe <strong>3 colorants</strong> donnant <strong>3 couleurs différentes</strong>.</p>
+                    </div>
+
+                    <!-- Tableau détaillé HES -->
+                    <div class="table-wrapper">
+                        <table class="hes-table">
+                            <thead>
+                                <tr>
+                                    <th style="background: #37474f; width: 120px;"></th>
+                                    <th class="hemateine">🟣 Hématéine</th>
+                                    <th class="eosine">🔴 Éosine</th>
+                                    <th class="safran">🟠 Safran</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="row-header">Couleur</td>
+                                    <td><span class="color-tag color-tag-violet">Bleu foncé / Violet</span></td>
+                                    <td><span class="color-tag color-tag-rose">Rose / Rougeâtre</span></td>
+                                    <td><span class="color-tag color-tag-orange">Jaune / Orange</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="row-header">Nature</td>
+                                    <td><strong>Basique</strong></td>
+                                    <td><strong>Acide</strong></td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td class="row-header">Cible</td>
+                                    <td>Structures <strong>acides</strong><br>(= basophiles)</td>
+                                    <td>Structures <strong>basiques</strong><br>(= acidophiles / éosinophiles)</td>
+                                    <td>Grosses fibres de <strong>collagène type I</strong></td>
+                                </tr>
+                                <tr>
+                                    <td class="row-header">Visualisation</td>
+                                    <td style="text-align: center;">
+                                        <div class="structures-list" style="justify-content: center;">
+                                            <span class="color-tag color-tag-violet">Acides nucléiques</span>
+                                            <span class="color-tag color-tag-violet">Noyaux +++</span>
+                                            <span class="color-tag color-tag-violet">Ribosomes</span>
+                                            <span class="color-tag color-tag-violet">Polyribosomes</span>
+                                        </div>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <div class="structures-list" style="justify-content: center;">
+                                            <span class="color-tag color-tag-rose">Protéines +++</span>
+                                            <span class="color-tag color-tag-rose">Cytoplasme</span>
+                                        </div>
+                                    </td>
+                                    <td style="text-align: center;">
+                                        <div class="structures-list" style="justify-content: center;">
+                                            <span class="color-tag color-tag-orange">Fibres collagène I</span>
+                                            <span class="color-tag color-tag-orange">MEC</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="scroll-hint">👉 Faire défiler horizontalement sur mobile</p>
+
+                    <!-- Cartes complémentaires -->
+                    <div class="info-grid">
+                        <div class="info-card card-role">
+                            <span class="card-number">1</span>
+                            <div class="card-content">
+                                <div class="card-label">Nature / Rôle</div>
+                                <div class="card-value"><strong>Polychromatique</strong> (3 colorants)<br>→ Coloration de <strong>routine +++</strong> en histologie</div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-techniques">
+                            <span class="card-number">2</span>
+                            <div class="card-content">
+                                <div class="card-label">Techniques</div>
+                                <div class="card-value"><strong>Standard (FFPE)</strong></div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-observation">
+                            <span class="card-number">3</span>
+                            <div class="card-content">
+                                <div class="card-label">Observation</div>
+                                <div class="card-value"><strong>MO</strong> (Microscopie Optique)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="note-box">
+                        <h5>📝 À retenir</h5>
+                        <p>• <strong>Pays anglo-saxons</strong> : souvent HE seule (sans safran, car coûteux)<br>
+                        • <strong>Hématéine seule</strong> : utilisée comme contre-coloration en IHC</p>
+                    </div>
+
+                    <div class="alert-box">
+                        <h5>⚠️ Non visible en HES</h5>
+                        <p>• Mitochondries<br>
+                        • Fibres élastiques (sauf si très abondantes - translucides et réfringentes)<br>
+                        • Lame basale fine (besoin du PAS ou trichrome)</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 2 : HÉMATÉINE SEULE
+                 ============================================ -->
+            <details class="main-accordion accordion-hemateine">
+                <summary><span class="accordion-badge">2</span> HÉMATÉINE SEULE - Contre-coloration</summary>
+                <div class="accordion-content">
+                    
+                    <!-- Définition -->
+                    <div class="definition-box">
+                        <h4>📖 Définition</h4>
+                        <p>L'hématéine seule représente la <strong>contre-coloration la plus utilisée</strong>, fréquemment employée en complément des techniques d'<strong>immunohistochimie</strong> (IHC) lorsqu'on utilise des traceurs observables en microscopie optique.</p>
+                    </div>
+
+                    <!-- Grille d'informations -->
+                    <div class="info-grid">
+                        <div class="info-card card-couleur">
+                            <span class="card-number">1</span>
+                            <div class="card-content">
+                                <div class="card-label">Couleur</div>
+                                <div class="card-value"><span class="color-tag color-tag-bleu">Bleu</span> (± foncé selon basophilie)</div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-nature">
+                            <span class="card-number">2</span>
+                            <div class="card-content">
+                                <div class="card-label">Nature / Rôle</div>
+                                <div class="card-value">Colorant <strong>basique</strong><br>→ <strong>Contre-coloration +++</strong> (IHC, HIS, FISH)</div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-cible">
+                            <span class="card-number">3</span>
+                            <div class="card-content">
+                                <div class="card-label">Cible</div>
+                                <div class="card-value">
+                                    • Structures <strong>acides</strong> (basophiles)<br>
+                                    • Noyaux → <span class="color-tag color-tag-bleu-fonce">Bleu foncé</span><br>
+                                    • Cytoplasmes → <span class="color-tag color-tag-bleu-clair">Bleu clair</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-techniques">
+                            <span class="card-number">4</span>
+                            <div class="card-content">
+                                <div class="card-label">Technique</div>
+                                <div class="card-value">Utilisée en : <strong>IHC</strong>, HIS, FISH</div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-observation">
+                            <span class="card-number">5</span>
+                            <div class="card-content">
+                                <div class="card-label">Observation</div>
+                                <div class="card-value"><strong>MO</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exemples d'application -->
+                    <div class="examples-box">
+                        <h5>📍 Exemples d'application</h5>
+                        <div class="example-item">
+                            <span>IHC sur coupe FFPE</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Contexte tissulaire autour du marquage</span>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 3 : MGG
+                 ============================================ -->
+            <details class="main-accordion accordion-mgg">
+                <summary><span class="accordion-badge">3</span> MGG - May-Grünwald-Giemsa</summary>
+                <div class="accordion-content">
+                    
+                    <!-- Définition -->
+                    <div class="definition-box">
+                        <h4>📖 Définition</h4>
+                        <p>La coloration de <strong>May-Grünwald-Giemsa (MGG)</strong> est la <strong>coloration de routine en hématologie</strong>, utilisée pour l'étude des <strong>cellules sanguines</strong> et des <strong>tissus hématopoïétiques</strong>.</p>
+                    </div>
+
+                    <!-- Grille d'informations -->
+                    <div class="info-grid">
+                        <div class="info-card card-couleur">
+                            <span class="card-number">1</span>
+                            <div class="card-content">
+                                <div class="card-label">Couleur</div>
+                                <div class="card-value"><span class="color-tag color-tag-violet">Violet / Bleu</span></div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-nature">
+                            <span class="card-number">2</span>
+                            <div class="card-content">
+                                <div class="card-label">Nature / Rôle</div>
+                                <div class="card-value"><strong>Polychromatique</strong><br>→ Coloration de <strong>routine en hématologie</strong></div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-cible">
+                            <span class="card-number">3</span>
+                            <div class="card-content">
+                                <div class="card-label">Cible</div>
+                                <div class="card-value">
+                                    • <strong>Cellules sanguines</strong> et précurseurs<br>
+                                    • <strong>Cellules lymphoïdes</strong><br>
+                                    • Précurseurs hématopoïétiques
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-techniques">
+                            <span class="card-number">4</span>
+                            <div class="card-content">
+                                <div class="card-label">Technique</div>
+                                <div class="card-value">
+                                    • <strong>Frottis sanguins</strong><br>
+                                    • Appositions moelle osseuse<br>
+                                    • Coupes tissus lymphoïdes
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-observation">
+                            <span class="card-number">5</span>
+                            <div class="card-content">
+                                <div class="card-label">Observation</div>
+                                <div class="card-value"><strong>MO</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exemples d'application -->
+                    <div class="examples-box">
+                        <h5>📍 Exemples d'application</h5>
+                        <div class="example-item">
+                            <span>Biopsie ostéo-médullaire</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Cellules hématopoïétiques</span>
+                        </div>
+                        <div class="example-item">
+                            <span>Ganglions lymphatiques</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Cellules lymphoïdes</span>
+                        </div>
+                        <div class="example-item">
+                            <span>Frottis sanguin</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Identification cellules sanguines</span>
+                        </div>
+                        <div class="example-item">
+                            <span>Ponction liquide inflammatoire</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Analyse cellulaire</span>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 4 : PAPANICOLAOU
+                 ============================================ -->
+            <details class="main-accordion accordion-papanicolaou">
+                <summary><span class="accordion-badge">4</span> PAPANICOLAOU - Cytologie gynécologique</summary>
+                <div class="accordion-content">
+                    
+                    <!-- Définition -->
+                    <div class="definition-box">
+                        <h4>📖 Définition</h4>
+                        <p>La coloration de <strong>Papanicolaou</strong> est la <strong>coloration de routine en cytologie gynécologique</strong>, décrite il y a environ une centaine d'années. Elle est utilisée pour l'analyse des prélèvements de cytologie (frottis) au niveau du <strong>col utérin</strong> et du <strong>vagin</strong>.</p>
+                    </div>
+
+                    <!-- Grille d'informations -->
+                    <div class="info-grid">
+                        <div class="info-card card-couleur">
+                            <span class="card-number">1</span>
+                            <div class="card-content">
+                                <div class="card-label">Couleur</div>
+                                <div class="card-value"><span class="color-tag color-tag-rouge">Rouge</span> (mature)<br><span class="color-tag color-tag-bleu">Bleu</span> (immature)</div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-nature">
+                            <span class="card-number">2</span>
+                            <div class="card-content">
+                                <div class="card-label">Nature / Rôle</div>
+                                <div class="card-value"><strong>Polychromatique</strong><br>→ Coloration de <strong>routine</strong> (cytologie gynécologique)</div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-cible">
+                            <span class="card-number">3</span>
+                            <div class="card-content">
+                                <div class="card-label">Cible</div>
+                                <div class="card-value">
+                                    • <strong>Cellules épithéliales</strong> cervico-vaginales<br>
+                                    • Cellules matures → <span class="color-tag color-tag-rouge">éosinophiles</span><br>
+                                    • Cellules immatures → <span class="color-tag color-tag-bleu">cytoplasme bleu</span> + gros noyau<br>
+                                    • Flore microbienne
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-techniques">
+                            <span class="card-number">4</span>
+                            <div class="card-content">
+                                <div class="card-label">Technique</div>
+                                <div class="card-value"><strong>Frottis cervico-vaginal</strong> (apposition)</div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-observation">
+                            <span class="card-number">5</span>
+                            <div class="card-content">
+                                <div class="card-label">Observation</div>
+                                <div class="card-value"><strong>MO</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exemples d'application -->
+                    <div class="examples-box">
+                        <h5>📍 Exemples d'application</h5>
+                        <div class="example-item">
+                            <span>Dépistage cancer col utérus</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Lésions précancéreuses</span>
+                        </div>
+                        <div class="example-item">
+                            <span>Frottis vaginal</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Maturité cellulaire + flore</span>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 5 : PAS
+                 ============================================ -->
+            <details class="main-accordion accordion-pas">
+                <summary><span class="accordion-badge">5</span> PAS - Acide Périodique Schiff <span class="tag-histochimie">Histochimie</span></summary>
+                <div class="accordion-content">
+                    
+                    <!-- Définition -->
+                    <div class="definition-box">
+                        <h4>📖 Définition</h4>
+                        <p>Le <strong>PAS (Acide Périodique Schiff)</strong> est une coloration histochimique qui met en évidence les <strong>polysaccharides</strong> et les <strong>glycoprotéines</strong>.</p>
+                    </div>
+
+                    <!-- Grille d'informations -->
+                    <div class="info-grid">
+                        <div class="info-card card-couleur">
+                            <span class="card-number">1</span>
+                            <div class="card-content">
+                                <div class="card-label">Couleur</div>
+                                <div class="card-value"><span class="color-tag color-tag-fuchsia">Rouge / Fuchsia</span></div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-nature">
+                            <span class="card-number">2</span>
+                            <div class="card-content">
+                                <div class="card-label">Nature / Rôle</div>
+                                <div class="card-value">Coloration <strong>histochimique</strong><br>→ Détection spécifique des polysaccharides et glycoprotéines</div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-cible">
+                            <span class="card-number">3</span>
+                            <div class="card-content">
+                                <div class="card-label">Cible</div>
+                                <div class="card-value">
+                                    • <strong>Polysaccharides</strong> (glycogène → sarcoplasme rhabdomyocytes) → <span class="color-tag color-tag-fuchsia">Rouge</span><br>
+                                    • <strong>Glycoprotéines</strong> (lames basales) → <span class="color-tag color-tag-fuchsia">Rouge</span><br>
+                                    • <strong>Mucus</strong> (cellules caliciformes) → <span class="color-tag color-tag-fuchsia">Rouge</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-techniques">
+                            <span class="card-number">4</span>
+                            <div class="card-content">
+                                <div class="card-label">Technique</div>
+                                <div class="card-value"><strong>FFPE</strong> (standard)</div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-observation">
+                            <span class="card-number">5</span>
+                            <div class="card-content">
+                                <div class="card-label">Observation</div>
+                                <div class="card-value"><strong>MO</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exemples d'application -->
+                    <div class="examples-box">
+                        <h5>📍 Exemples d'application</h5>
+                        <div class="example-item">
+                            <span>Jonction dermo-épidermique</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Lame basale</span>
+                        </div>
+                        <div class="example-item">
+                            <span>Glomérule rénal</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Lame basale glomérulaire</span>
+                        </div>
+                    </div>
+
+                    <div class="note-box">
+                        <h5>📝 À retenir</h5>
+                        <p>• Si la lame basale est <strong>épaisse</strong> → visible en HES<br>
+                        • Si la lame basale est <strong>fine</strong> → besoin du <strong>PAS</strong> ou trichrome</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 6 : BLEU ALCIAN
+                 ============================================ -->
+            <details class="main-accordion accordion-alcian">
+                <summary><span class="accordion-badge">6</span> BLEU ALCIAN - Mucines <span class="tag-histochimie">Histochimie</span></summary>
+                <div class="accordion-content">
+                    
+                    <!-- Définition -->
+                    <div class="definition-box">
+                        <h4>📖 Définition</h4>
+                        <p>Le <strong>Bleu Alcian</strong> est une coloration histochimique utilisée pour mettre en évidence les <strong>mucines</strong> et les <strong>glycosaminoglycanes acides</strong>.</p>
+                    </div>
+
+                    <!-- Grille d'informations -->
+                    <div class="info-grid">
+                        <div class="info-card card-couleur">
+                            <span class="card-number">1</span>
+                            <div class="card-content">
+                                <div class="card-label">Couleur</div>
+                                <div class="card-value"><span class="color-tag color-tag-cyan">Bleu turquoise</span></div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-nature">
+                            <span class="card-number">2</span>
+                            <div class="card-content">
+                                <div class="card-label">Nature / Rôle</div>
+                                <div class="card-value">Coloration <strong>histochimique</strong><br>→ Détection spécifique des mucines et GAG acides</div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-cible">
+                            <span class="card-number">3</span>
+                            <div class="card-content">
+                                <div class="card-label">Cible</div>
+                                <div class="card-value">
+                                    • <strong>Mucines</strong> (cellules caliciformes → épith. respiratoire, intestinal) → <span class="color-tag color-tag-cyan">Bleu</span><br>
+                                    • <strong>GAG acides</strong> → <span class="color-tag color-tag-cyan">Bleu</span><br>
+                                    • ⚠️ Glycogène = Bleu Alcian <strong>négatif</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-techniques">
+                            <span class="card-number">4</span>
+                            <div class="card-content">
+                                <div class="card-label">Technique</div>
+                                <div class="card-value"><strong>FFPE</strong> (standard)</div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-observation">
+                            <span class="card-number">5</span>
+                            <div class="card-content">
+                                <div class="card-label">Observation</div>
+                                <div class="card-value"><strong>MO</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exemples d'application -->
+                    <div class="examples-box">
+                        <h5>📍 Exemples d'application</h5>
+                        <div class="example-item">
+                            <span>Épithélium respiratoire</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Cellules caliciformes (mucines)</span>
+                        </div>
+                        <div class="example-item">
+                            <span>Épithélium intestinal</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Cellules caliciformes (mucines)</span>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 7 : TRICHROME
+                 ============================================ -->
+            <details class="main-accordion accordion-trichrome">
+                <summary><span class="accordion-badge">7</span> TRICHROME - Fibres de collagène <span class="tag-histochimie">Histochimie</span></summary>
+                <div class="accordion-content">
+                    
+                    <!-- Définition -->
+                    <div class="definition-box">
+                        <h4>📖 Définition</h4>
+                        <p>Les colorations <strong>trichromes</strong> (Masson, Gomori...) permettent de distinguer différents composants tissulaires en utilisant <strong>trois colorants</strong>. Elles sont particulièrement utiles pour visualiser les <strong>fibres de collagène</strong>.</p>
+                    </div>
+
+                    <!-- Grille d'informations -->
+                    <div class="info-grid">
+                        <div class="info-card card-couleur">
+                            <span class="card-number">1</span>
+                            <div class="card-content">
+                                <div class="card-label">Couleur</div>
+                                <div class="card-value">
+                                    • <span class="color-tag color-tag-vert">Vert / Bleu</span> (collagène)<br>
+                                    • <span class="color-tag color-tag-rouge">Rouge</span> (muscle)<br>
+                                    • <span class="color-tag color-tag-violet">Violet / Noir</span> (noyaux)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-nature">
+                            <span class="card-number">2</span>
+                            <div class="card-content">
+                                <div class="card-label">Nature / Rôle</div>
+                                <div class="card-value"><strong>Polychromatique</strong> (3 colorants)<br>→ Étude des fibres de collagène et fibroses</div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-cible">
+                            <span class="card-number">3</span>
+                            <div class="card-content">
+                                <div class="card-label">Cible</div>
+                                <div class="card-value">
+                                    • <strong>Collagène</strong> (derme, tendons, ligaments) → <span class="color-tag color-tag-vert">Vert</span><br>
+                                    • <strong>Muscle / Cytoplasme</strong> → <span class="color-tag color-tag-rouge">Rouge</span><br>
+                                    • <strong>Noyaux</strong> → <span class="color-tag color-tag-violet">Violet</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-techniques">
+                            <span class="card-number">4</span>
+                            <div class="card-content">
+                                <div class="card-label">Technique</div>
+                                <div class="card-value"><strong>FFPE</strong> (standard)</div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-observation">
+                            <span class="card-number">5</span>
+                            <div class="card-content">
+                                <div class="card-label">Observation</div>
+                                <div class="card-value"><strong>MO</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exemples d'application -->
+                    <div class="examples-box">
+                        <h5>📍 Exemples d'application</h5>
+                        <div class="example-item">
+                            <span>Biopsie rénale</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Fibres de collagène</span>
+                        </div>
+                        <div class="example-item">
+                            <span>Lame basale fine</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Alternative au PAS</span>
+                        </div>
+                        <div class="example-item">
+                            <span>Étude des fibroses</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Dépôts de collagène</span>
+                        </div>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 8 : ORCÉINE
+                 ============================================ -->
+            <details class="main-accordion accordion-orceine">
+                <summary><span class="accordion-badge">8</span> ORCÉINE - Fibres élastiques <span class="tag-histochimie">Histochimie</span></summary>
+                <div class="accordion-content">
+                    
+                    <!-- Définition -->
+                    <div class="definition-box">
+                        <h4>📖 Définition</h4>
+                        <p>L'<strong>orcéine</strong> est la coloration généralement utilisée pour mettre en évidence les <strong>fibres élastiques</strong>, qui sont peu ou pas colorées par l'HES (translucides et réfringentes).</p>
+                    </div>
+
+                    <!-- Grille d'informations -->
+                    <div class="info-grid">
+                        <div class="info-card card-couleur">
+                            <span class="card-number">1</span>
+                            <div class="card-content">
+                                <div class="card-label">Couleur</div>
+                                <div class="card-value">
+                                    • <span class="color-tag color-tag-noir">Noir / Brun foncé</span> (fibres élastiques)<br>
+                                    • <span class="color-tag color-tag-vert">Vert</span> (contre-coloration collagène)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-nature">
+                            <span class="card-number">2</span>
+                            <div class="card-content">
+                                <div class="card-label">Nature / Rôle</div>
+                                <div class="card-value">Coloration <strong>histochimique</strong><br>→ Détection spécifique des fibres élastiques</div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-cible">
+                            <span class="card-number">3</span>
+                            <div class="card-content">
+                                <div class="card-label">Cible</div>
+                                <div class="card-value">
+                                    • <strong>Fibres élastiques matures</strong> (rectilignes, anastomosées) → <span class="color-tag color-tag-noir">Noir</span><br>
+                                    • <strong>Fibres oxytalanes</strong> (immatures, avec oxydation préalable) → <span class="color-tag color-tag-noir">Noir</span><br>
+                                    • Localisations : derme papillaire, média artères élastiques, ligament jaune
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-techniques">
+                            <span class="card-number">4</span>
+                            <div class="card-content">
+                                <div class="card-label">Technique</div>
+                                <div class="card-value">
+                                    • <strong>Orcéine standard</strong> → fibres matures<br>
+                                    • <strong>Oxydation + orcéine</strong> → fibres oxytalanes (immatures)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-observation">
+                            <span class="card-number">5</span>
+                            <div class="card-content">
+                                <div class="card-label">Observation</div>
+                                <div class="card-value"><strong>MO</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exemples d'application -->
+                    <div class="examples-box">
+                        <h5>📍 Exemples d'application</h5>
+                        <div class="example-item">
+                            <span>Derme (derme papillaire)</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Fibres élastiques matures et immatures</span>
+                        </div>
+                        <div class="example-item">
+                            <span>Artères élastiques (aorte, artère pulmonaire)</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Média riche en fibres élastiques</span>
+                        </div>
+                        <div class="example-item">
+                            <span>Ligament jaune (nuque)</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Fibres élastiques</span>
+                        </div>
+                    </div>
+
+                    <div class="alert-box">
+                        <h5>⚠️ Pourquoi l'HES ne suffit pas ?</h5>
+                        <p>Avec l'HES, les fibres élastiques sont généralement peu colorées, <strong>translucides et réfringentes</strong> (comme un pare-brise) : on ne les voit que si la lumière les traverse obliquement.</p>
+                    </div>
+
+                    <div class="note-box">
+                        <h5>📝 Technique en deux temps</h5>
+                        <p>• <strong>Orcéine standard</strong> → fibres élastiques matures (rectilignes, anastomosées)<br>
+                        • <strong>Oxydation préalable + orcéine</strong> → fibres oxytalanes immatures (dépourvues d'élastine)</p>
+                    </div>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 9 : NOIR SOUDAN
+                 ============================================ -->
+            <details class="main-accordion accordion-soudan">
+                <summary><span class="accordion-badge">9</span> NOIR SOUDAN - Lipides <span class="tag-histochimie">Histochimie</span></summary>
+                <div class="accordion-content">
+                    
+                    <!-- Définition -->
+                    <div class="definition-box">
+                        <h4>📖 Définition</h4>
+                        <p>Le <strong>Noir Soudan</strong> est une coloration histochimique utilisée pour mettre en évidence les <strong>lipides</strong> (graisses) dans les cellules et les tissus. C'est un colorant <strong>lipophile</strong> qui se dissout directement dans les lipides, sans réaction chimique complexe.</p>
+                    </div>
+
+                    <!-- Grille d'informations -->
+                    <div class="info-grid">
+                        <div class="info-card card-couleur">
+                            <span class="card-number">1</span>
+                            <div class="card-content">
+                                <div class="card-label">Couleur</div>
+                                <div class="card-value"><span class="color-tag color-tag-noir">Noir / Noir bleuté</span></div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-nature">
+                            <span class="card-number">2</span>
+                            <div class="card-content">
+                                <div class="card-label">Nature / Rôle</div>
+                                <div class="card-value">Coloration <strong>histochimique</strong><br>→ Colorant lipophile (se dissout dans les lipides)</div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-cible">
+                            <span class="card-number">3</span>
+                            <div class="card-content">
+                                <div class="card-label">Cible</div>
+                                <div class="card-value">
+                                    • <strong>Lipides neutres</strong> (triglycérides) → <span class="color-tag color-tag-noir">Noir</span><br>
+                                    • <strong>Phospholipides</strong> → <span class="color-tag color-tag-noir">Noir</span><br>
+                                    • <strong>Esters de cholestérol</strong> → <span class="color-tag color-tag-noir">Noir</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-techniques">
+                            <span class="card-number">4</span>
+                            <div class="card-content">
+                                <div class="card-label">Technique</div>
+                                <div class="card-value">
+                                    • <strong>Congélation</strong> (cryosections)<br>
+                                    • Appositions cytologiques<br>
+                                    • ⚠️ Jamais sur FFPE
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-card card-observation">
+                            <span class="card-number">5</span>
+                            <div class="card-content">
+                                <div class="card-label">Observation</div>
+                                <div class="card-value"><strong>MO</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exemples d'application -->
+                    <div class="examples-box">
+                        <h5>📍 Exemples d'application</h5>
+                        <div class="example-item">
+                            <span>Tissu adipeux</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Gouttelettes lipidiques</span>
+                        </div>
+                        <div class="example-item">
+                            <span>Foie (stéatose)</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Accumulation lipidique hépatocytes</span>
+                        </div>
+                        <div class="example-item">
+                            <span>Surrénale</span>
+                            <span class="arrow">→</span>
+                            <span class="target">Cellules riches en lipides</span>
+                        </div>
+                    </div>
+
+                    <div class="alert-box">
+                        <h5>⚠️ Incompatible avec la paraffine (FFPE)</h5>
+                        <p>Le Noir Soudan ne peut <strong>PAS</strong> être utilisé sur tissus inclus en paraffine car :<br>
+                        • La paraffine nécessite une <strong>déshydratation</strong><br>
+                        • Les solvants organiques <strong>extraient les lipides</strong><br>
+                        • → Il n'y a plus rien à colorer !</p>
+                    </div>
+
+                    <div class="note-box">
+                        <h5>📝 À retenir</h5>
+                        <p>Le Noir Soudan est <strong>typique des préparations congelées</strong>. C'est bien de l'histochimie (pas une réaction enzymatique ni immunologique).</p>
+                    </div>
+
+                </div>
+            </details>
+
+        </div>
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>SOURCES</strong><br>
+            FC5, FC9, FC13 - UE14 Histologie 2025-2026 - Coloration et techniques histo-enzymatiques
+        </div>
+    </div>
+</body>
+</html>
