@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC1-FC8 - Techniques d'études - Technique de Routine</title>
+    <link rel="stylesheet" href="https://elisabethmedibox.github.io/fiches-medibox-2025-2026/medibox-styles.css">
+    <style>
+        /* ============================================
+           CSS INLINE OBLIGATOIRE - NE PAS MODIFIER
+           ============================================ */
+
+        /* Filigrane logo Medibox - fixe pendant scroll, responsive */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 900px;
+            max-height: 900px;
+            background-image: url('https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-clair.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Responsive : ajustement mobile */
+        @media (max-width: 768px) {
+            body::after {
+                width: 90vw;
+                height: 90vw;
+                opacity: 0.06;
+            }
+        }
+
+        /* Accordeons principaux */
+        .main-accordion {
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-accordion summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 18px 25px;
+            padding-left: 70px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .main-accordion summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .main-accordion summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+            position: absolute;
+            right: 25px;
+        }
+
+        .main-accordion[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .main-accordion[open] summary {
+            background: linear-gradient(135deg, #ff6b7a 0%, #ff8a94 100%);
+        }
+
+        .accordion-content {
+            padding: 25px;
+            background: #f8fafc;
+        }
+
+        /* Badges numérotés pour les accordéons */
+        .accordion-badge {
+            position: absolute;
+            left: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .accordion-option .accordion-badge {
+            border-radius: 8px;
+            width: auto;
+            padding: 0 8px;
+            font-size: 0.9rem;
+        }
+
+        .accordion-badge-option {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            padding: 2px 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Tag Point clef */
+        .point-clef-tag {
+            position: absolute;
+            right: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #1e40af;
+            border-radius: 6px;
+            padding: 3px 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ============================================
+           ACCORDEONS COLORÉS - ARC-EN-CIEL depuis bleu Medibox
+           ============================================ */
+        
+        /* Miscibilité - Bleu Medibox (base) */
+        .accordion-miscibilite summary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+        }
+        .accordion-miscibilite[open] summary {
+            background: linear-gradient(135deg, #1e40af 0%, #1a365d 100%);
+        }
+        .accordion-miscibilite {
+            border-color: #1a365d;
+        }
+
+        /* Prélèvement - Indigo */
+        .accordion-prelevement summary {
+            background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
+        }
+        .accordion-prelevement[open] summary {
+            background: linear-gradient(135deg, #3730a3 0%, #4338ca 100%);
+        }
+        .accordion-prelevement {
+            border-color: #4f46e5;
+        }
+
+        /* Fixation - Bleu */
+        .accordion-fixation summary {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+        }
+        .accordion-fixation[open] summary {
+            background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+        }
+        .accordion-fixation {
+            border-color: #3b82f6;
+        }
+
+        /* Macroscopie - Cyan/Sky */
+        .accordion-macroscopie summary {
+            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+        }
+        .accordion-macroscopie[open] summary {
+            background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+        }
+        .accordion-macroscopie {
+            border-color: #0ea5e9;
+        }
+
+        /* Inclusion - Vert/Teal */
+        .accordion-inclusion summary {
+            background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+        }
+        .accordion-inclusion[open] summary {
+            background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);
+        }
+        .accordion-inclusion {
+            border-color: #14b8a6;
+        }
+
+        /* Coupe - Vert/Lime */
+        .accordion-coupe summary {
+            background: linear-gradient(135deg, #65a30d 0%, #84cc16 100%);
+        }
+        .accordion-coupe[open] summary {
+            background: linear-gradient(135deg, #4d7c0f 0%, #65a30d 100%);
+        }
+        .accordion-coupe {
+            border-color: #84cc16;
+        }
+
+        /* Coloration - Orange */
+        .accordion-coloration summary {
+            background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+        }
+        .accordion-coloration[open] summary {
+            background: linear-gradient(135deg, #c2410c 0%, #ea580c 100%);
+        }
+        .accordion-coloration {
+            border-color: #f97316;
+        }
+
+        /* Montage - Rouge/Rose Medibox */
+        .accordion-montage summary {
+            background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);
+        }
+        .accordion-montage[open] summary {
+            background: linear-gradient(135deg, #be123c 0%, #e11d48 100%);
+        }
+        .accordion-montage {
+            border-color: #f43f5e;
+        }
+
+        /* Option - Violet/Magenta (pour les alternatives) */
+        .accordion-option summary {
+            background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%);
+        }
+        .accordion-option[open] summary {
+            background: linear-gradient(135deg, #6b21a8 0%, #7e22ce 100%);
+        }
+        .accordion-option {
+            border-color: #a855f7;
+        }
+
+        /* Styles spécifiques pour les options */
+        .option-intro {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border: 2px solid #a855f7;
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .option-intro h4 {
+            color: #6b21a8;
+            margin: 0 0 10px 0;
+            font-size: 1.05rem;
+        }
+
+        .option-intro p {
+            color: #581c87;
+            margin: 0 0 8px 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .option-intro ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+            color: #581c87;
+        }
+
+        .option-intro li {
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+
+        .option-warning {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border-left: 4px solid #dc2626;
+            border-radius: 0 8px 8px 0;
+            padding: 15px 18px;
+            margin-bottom: 20px;
+        }
+
+        .option-warning h5 {
+            color: #991b1b;
+            margin: 0 0 10px 0;
+            font-size: 0.95rem;
+        }
+
+        .option-warning p {
+            color: #7f1d1d;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .option-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        .option-step {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            border: 2px solid #e9d5ff;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .option-step:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(168, 85, 247, 0.15);
+        }
+
+        .option-step-number {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .option-step-content h5 {
+            color: #6b21a8;
+            margin: 0 0 4px 0;
+            font-size: 0.95rem;
+        }
+
+        .option-step-content p {
+            color: #7c3aed;
+            margin: 0;
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+
+        /* Variantes de couleurs pour les étapes (correspondance avec accordéons) */
+        
+        /* Prélèvement - Indigo (accordéon 1) */
+        .option-step-prelevement {
+            border-color: #4f46e5;
+        }
+        .option-step-prelevement .option-step-number {
+            background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+        }
+        .option-step-prelevement h5 { color: #4338ca; }
+        .option-step-prelevement p { color: #6366f1; }
+
+        /* Spécifique - Violet (étapes propres aux options) */
+        .option-step-specific {
+            border-color: #a855f7;
+        }
+        .option-step-specific .option-step-number {
+            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+        }
+        .option-step-specific h5 { color: #7e22ce; }
+        .option-step-specific p { color: #a855f7; }
+
+        /* Inclusion/Fixation - Teal (accordéon 2) */
+        .option-step-inclusion {
+            border-color: #14b8a6;
+        }
+        .option-step-inclusion .option-step-number {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+        }
+        .option-step-inclusion h5 { color: #0f766e; }
+        .option-step-inclusion p { color: #14b8a6; }
+
+        /* Coupe - Lime (accordéon 3) */
+        .option-step-coupe {
+            border-color: #84cc16;
+        }
+        .option-step-coupe .option-step-number {
+            background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%);
+        }
+        .option-step-coupe h5 { color: #4d7c0f; }
+        .option-step-coupe p { color: #65a30d; }
+
+        /* Coloration - Orange (accordéon 4) */
+        .option-step-coloration {
+            border-color: #f97316;
+        }
+        .option-step-coloration .option-step-number {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+        }
+        .option-step-coloration h5 { color: #c2410c; }
+        .option-step-coloration p { color: #f97316; }
+
+        /* Montage/Observation - Rouge/Rose (accordéon 5) */
+        .option-step-montage {
+            border-color: #f43f5e;
+        }
+        .option-step-montage .option-step-number {
+            background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+        }
+        .option-step-montage h5 { color: #be123c; }
+        .option-step-montage p { color: #f43f5e; }
+
+        /* ============================================
+           STEP CARDS (étapes)
+           ============================================ */
+        .step-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 18px;
+            margin-bottom: 12px;
+            border-left: 4px solid #10b981;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 15px;
+            align-items: start;
+        }
+
+        .step-card:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Couleurs bordures par section */
+        .step-prelevement { border-left-color: #4f46e5; }
+        .step-fixation { border-left-color: #3b82f6; }
+        .step-macroscopie { border-left-color: #0ea5e9; }
+        .step-inclusion { border-left-color: #14b8a6; }
+        .step-coupe { border-left-color: #84cc16; }
+        .step-coloration { border-left-color: #f97316; }
+        .step-montage { border-left-color: #f43f5e; }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* Couleurs numéros par section */
+        .step-prelevement .step-number { background: #4f46e5; }
+        .step-fixation .step-number { background: #3b82f6; }
+        .step-macroscopie .step-number { background: #0ea5e9; }
+        .step-inclusion .step-number { background: #14b8a6; }
+        .step-coupe .step-number { background: #84cc16; }
+        .step-coloration .step-number { background: #f97316; }
+        .step-montage .step-number { background: #f43f5e; }
+
+        .step-content h4 {
+            margin: 0 0 6px 0;
+            color: #1a365d;
+            font-size: 1.05rem;
+        }
+
+        .step-agent {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 8px;
+        }
+
+        .step-objective {
+            font-size: 0.95rem;
+            color: #1a365d;
+            margin: 0 0 6px 0;
+            line-height: 1.5;
+        }
+
+        .step-reason {
+            font-size: 0.88rem;
+            color: #64748b;
+            font-style: italic;
+            padding-left: 12px;
+            border-left: 2px solid #e2e8f0;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* ============================================
+           LÉGENDE MISCIBILITÉ
+           ============================================ */
+        .miscibility-legend {
+            background: white;
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin-bottom: 20px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .miscibility-legend h3 {
+            font-size: 0.95rem;
+            color: #1a365d;
+            margin: 0 0 12px 0;
+            font-weight: 600;
+        }
+
+        .miscibility-chain {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .misc-item {
+            background: #f8fafc;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 2px solid #e2e8f0;
+            color: #1a365d;
+        }
+
+        .misc-arrow {
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .misc-note {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            color: #92400e;
+            background: #fef3c7;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #f59e0b;
+        }
+
+        @media (max-width: 768px) {
+            .miscibility-chain {
+                flex-direction: column;
+            }
+            .misc-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+        /* ============================================
+           ENCADRÉ COLORATIONS
+           ============================================ */
+        .colorations-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 8px;
+            padding: 15px 18px;
+            margin-top: 15px;
+            border: 2px solid #f59e0b;
+        }
+
+        .colorations-box h5 {
+            font-size: 0.9rem;
+            color: #92400e;
+            margin: 0 0 12px 0;
+            font-weight: 600;
+        }
+
+        .colorations-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .coloration-tag {
+            background: white;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #78350f;
+            border: 1px solid #d97706;
+        }
+
+        .coloration-tag.main {
+            background: #f59e0b;
+            color: white;
+            border-color: #d97706;
+        }
+
+        /* Footer */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Avertissement */
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5rem; }
+            .main-accordion summary { padding: 15px 20px; font-size: 1rem; }
+            .accordion-content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📘 FC1 à FC8 - Techniques d'études</h1>
+            <div class="meta">
+                <span>📚 UE14 - Histologie</span>
+                <span>🔬 Technique de Routine en Histologie — De la fixation au montage — Microscopie Optique — 15 étapes</span>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <!-- ============================================
+                 ACCORDÉON : LOGIQUE PHYSICO-CHIMIQUE
+                 ============================================ -->
+            <details class="main-accordion accordion-miscibilite">
+                <summary><span class="accordion-badge">?</span> Pourquoi toutes ces étapes ? (logique physico-chimique)</summary>
+                <div class="accordion-content">
+                    <p style="margin: 0 0 12px 0; color: #1a365d; font-size: 0.95rem; line-height: 1.6;">
+                        <strong>❌ Problème :</strong> L'EAU et la PARAFFINE ne sont pas miscibles (paraffine = hydrophobe)
+                    </p>
+                    
+                    <p style="margin: 0 0 12px 0; color: #1a365d; font-size: 0.95rem; line-height: 1.6;">
+                        <strong>➡️ Solution 1 :</strong> Déshydrater avec l'ALCOOL (miscible avec l'eau) → on élimine l'eau
+                    </p>
+                    
+                    <p style="margin: 0 0 12px 0; color: #1a365d; font-size: 0.95rem; line-height: 1.6;">
+                        <strong>❌ Nouveau problème :</strong> L'ALCOOL et la PARAFFINE ne sont pas miscibles non plus !
+                    </p>
+                    
+                    <p style="margin: 0 0 15px 0; color: #1a365d; font-size: 0.95rem; line-height: 1.6;">
+                        <strong>➡️ Solution 2 :</strong> Utiliser le TOLUÈNE comme solvant intermédiaire (miscible avec l'alcool ET avec la paraffine)
+                    </p>
+
+                    <div class="miscibility-chain">
+                        <span class="misc-item">💧 EAU</span>
+                        <span class="misc-arrow">⟷</span>
+                        <span class="misc-item">🧪 ALCOOL</span>
+                        <span class="misc-arrow">⟷</span>
+                        <span class="misc-item">⚗️ TOLUÈNE</span>
+                        <span class="misc-arrow">⟷</span>
+                        <span class="misc-item">🧱 PARAFFINE</span>
+                    </div>
+                    <p class="misc-note">✅ Le toluène fait le "pont" entre l'alcool et la paraffine</p>
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 1 : PRÉLÈVEMENT
+                 ============================================ -->
+            <details class="main-accordion accordion-prelevement">
+                <summary><span class="accordion-badge">1</span> PRÉLÈVEMENT</summary>
+                <div class="accordion-content">
+                    <div class="step-card step-prelevement">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <h4>Prélèvement</h4>
+                            <span class="step-agent">Scalpel, Biopsie</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Obtenir l'échantillon tissulaire</p>
+                            <p class="step-reason">Point de départ de toute analyse histologique</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 2 : FIXATION
+                 ============================================ -->
+            <details class="main-accordion accordion-fixation">
+                <summary><span class="accordion-badge">2</span> FIXATION</summary>
+                <div class="accordion-content">
+                    <div class="step-card step-fixation">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <h4>Fixation</h4>
+                            <span class="step-agent">Formol neutre tamponné (formaldéhyde 4%)</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Stabiliser le tissu, stopper l'autolyse</p>
+                            <p class="step-reason">Pontage des protéines → conservation de l'architecture tissulaire</p>
+                            <p style="font-size: 0.8rem; margin-top: 6px;">• Par immersion ou insufflation (organes creux)<br>• Durée : quelques heures à plusieurs jours selon la taille</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 3 : MACROSCOPIE + DÉCALCIFICATION
+                 ============================================ -->
+            <details class="main-accordion accordion-macroscopie">
+                <summary><span class="accordion-badge">3</span> MACROSCOPIE + DÉCALCIFICATION</summary>
+                <div class="accordion-content">
+                    <div class="step-card step-macroscopie">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <h4>Macroscopie</h4>
+                            <span class="step-agent">Examen à l'œil nu de la pièce fixée</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Description anatomique et sélection des zones d'intérêt</p>
+                            <p class="step-reason">Mesures, photos, identification des fragments à analyser</p>
+                            <div style="font-size: 0.8rem; margin-top: 8px; background: #e0f2fe; padding: 8px; border-radius: 6px; border-left: 3px solid #0ea5e9;">
+                                <strong style="color: #0369a1;">Mise en cassettes :</strong><br>
+                                • Cassettes standard : 20×30×4 mm<br>
+                                • Grandes cassettes : 75×50×15 mm<br>
+                                • Chaque fragment est identifié et numéroté
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-card step-macroscopie" style="position: relative;">
+                        <span style="position: absolute; top: -10px; right: 10px; background: #dc2626; color: white; font-size: 0.65rem; padding: 3px 8px; border-radius: 10px; font-weight: 600;">⚠️ INUTILE ET NUISIBLE SI NON NÉCESSAIRE</span>
+                        <span class="step-number" style="font-size: 0.8rem;">3bis</span>
+                        <div class="step-content">
+                            <h4>Décalcification + Rinçage</h4>
+                            <span class="step-agent">Acide formique (le plus courant), Acide acétique</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Éliminer les sels de calcium pour rendre le tissu coupable</p>
+                            <p class="step-reason">Évite la casse de la lame, l'arrachement du tissu et les coupes impossibles</p>
+                            <p style="font-size: 0.8rem; color: #991b1b; margin-top: 6px; background: #fee2e2; padding: 6px 8px; border-radius: 4px;">
+                                ⚠️ <strong>Attention :</strong> Altère les éléments antigéniques, épitopes, acides nucléiques
+                            </p>
+                            <p style="font-size: 0.8rem; color: #b45309; margin-top: 6px; background: #fef3c7; padding: 6px 8px; border-radius: 4px;">
+                                👉 <strong>Concerne :</strong> os, cartilage calcifié, dents, tissus pathologiques calcifiés
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 4 : INCLUSION
+                 ============================================ -->
+            <details class="main-accordion accordion-inclusion">
+                <summary><span class="accordion-badge">4</span> INCLUSION</summary>
+                <div class="accordion-content">
+                    <div class="step-card step-inclusion">
+                        <span class="step-number">4</span>
+                        <div class="step-content">
+                            <h4>Déshydratation</h4>
+                            <span class="step-agent">Alcools croissants (70% → 90% → 100%)</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Éliminer toute l'eau du tissu</p>
+                            <p class="step-reason">L'eau est incompatible avec la paraffine (hydrophobe)</p>
+                        </div>
+                    </div>
+
+                    <div class="step-card step-inclusion">
+                        <span class="step-number">5</span>
+                        <div class="step-content">
+                            <h4>Clarification (Éclaircissement)</h4>
+                            <span class="step-agent">Toluène ou Xylène</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Éliminer l'alcool résiduel</p>
+                            <p class="step-reason">L'alcool n'est pas miscible avec la paraffine → solvant intermédiaire indispensable</p>
+                        </div>
+                    </div>
+
+                    <div class="step-card step-inclusion">
+                        <span class="step-number">6</span>
+                        <div class="step-content">
+                            <h4>Imprégnation</h4>
+                            <span class="step-agent">Paraffine liquide (56°C)</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Soutien mécanique interne du tissu</p>
+                            <p class="step-reason">La paraffine pénètre entre les cellules → permet des coupes fines sans écrasement</p>
+                        </div>
+                    </div>
+
+                    <div class="step-card step-inclusion">
+                        <span class="step-number">7</span>
+                        <div class="step-content">
+                            <h4>Mise en bloc</h4>
+                            <span class="step-agent">Paraffine solide (moule)</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Former un bloc solide et manipulable</p>
+                            <p class="step-reason">Permet l'orientation du tissu + maintien pour la coupe au microtome</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 5 : COUPE
+                 ============================================ -->
+            <details class="main-accordion accordion-coupe">
+                <summary><span class="accordion-badge">5</span> COUPE <span class="point-clef-tag">⭐ Point clef n°1</span></summary>
+                <div class="accordion-content">
+                    <div class="step-card step-coupe">
+                        <span class="step-number">8</span>
+                        <div class="step-content">
+                            <h4>Coupe au microtome</h4>
+                            <span class="step-agent">Microtome (3-5 µm)</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Obtenir des coupes très fines</p>
+                            <p class="step-reason">Épaisseur compatible avec la traversée de la lumière en microscopie optique</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 6 : COLORATION
+                 ============================================ -->
+            <details class="main-accordion accordion-coloration">
+                <summary><span class="accordion-badge">6</span> COLORATION</summary>
+                <div class="accordion-content">
+                    <div class="step-card step-coloration">
+                        <span class="step-number">9</span>
+                        <div class="step-content">
+                            <h4>Déparaffinage</h4>
+                            <span class="step-agent">Toluène ou Xylène</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Dissoudre et éliminer la paraffine</p>
+                            <p class="step-reason">La paraffine (hydrophobe) bloque l'accès des colorants (aqueux)</p>
+                        </div>
+                    </div>
+
+                    <div class="step-card step-coloration">
+                        <span class="step-number">10</span>
+                        <div class="step-content">
+                            <h4>Réhydratation</h4>
+                            <span class="step-agent">Alcools décroissants (100% → 70%) + Eau</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Rendre le tissu aqueux</p>
+                            <p class="step-reason">Les colorants sont des solutions aqueuses → tissu doit être hydraté</p>
+                        </div>
+                    </div>
+
+                    <div class="step-card step-coloration">
+                        <span class="step-number">11</span>
+                        <div class="step-content">
+                            <h4>Coloration</h4>
+                            <span class="step-agent">HES (Hématéine-Éosine-Safran) — en standard</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Visualiser les structures cellulaires et tissulaires</p>
+                            <p class="step-reason">Les tissus sont naturellement incolores (sauf pigments)</p>
+                        </div>
+                    </div>
+
+                    <div class="step-card step-coloration">
+                        <span class="step-number">12</span>
+                        <div class="step-content">
+                            <h4>Déshydratation post-coloration</h4>
+                            <span class="step-agent">Alcools croissants (70% → 95% → 100%)</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Éliminer l'eau résiduelle</p>
+                            <p class="step-reason">L'eau est incompatible avec les milieux de montage (hydrophobes)</p>
+                        </div>
+                    </div>
+
+                    <div class="step-card step-coloration">
+                        <span class="step-number">13</span>
+                        <div class="step-content">
+                            <h4>Clarification post-coloration</h4>
+                            <span class="step-agent">Toluène ou Xylène</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Éliminer l'alcool résiduel</p>
+                            <p class="step-reason">L'alcool n'est pas miscible avec les résines de montage → solvant intermédiaire</p>
+                        </div>
+                    </div>
+
+                    <!-- Encadré colorations -->
+                    <div class="colorations-box">
+                        <h5>🎨 Colorations citées dans le cours (FC5)</h5>
+                        <div class="colorations-list">
+                            <span class="coloration-tag main">HES — Routine histologie</span>
+                            <span class="coloration-tag">Hématéine seule — Contre-coloration (IHC)</span>
+                            <span class="coloration-tag">MGG — Cytologie hématologique</span>
+                            <span class="coloration-tag">Papanicolaou — Cytologie</span>
+                            <span class="coloration-tag">PAS — Lames basales</span>
+                            <span class="coloration-tag">Bleu Alcian — Mucines</span>
+                            <span class="coloration-tag">Trichrome — Fibres collagéniques</span>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON 7 : MONTAGE ET OBSERVATION
+                 ============================================ -->
+            <details class="main-accordion accordion-montage">
+                <summary><span class="accordion-badge">7</span> MONTAGE ET OBSERVATION <span class="point-clef-tag">⭐ Point clef n°2</span></summary>
+                <div class="accordion-content">
+                    <div class="step-card step-montage">
+                        <span class="step-number">14</span>
+                        <div class="step-content">
+                            <h4>Montage</h4>
+                            <span class="step-agent">Lamelle de verre + Résine synthétique</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Protéger et fixer la coupe sur la lame</p>
+                            <p class="step-reason">Conservation de la préparation + qualité optique optimale</p>
+                        </div>
+                    </div>
+
+                    <div class="step-card step-montage">
+                        <span class="step-number">15</span>
+                        <div class="step-content">
+                            <h4>Observation au Microscope Optique</h4>
+                            <span class="step-agent">MO (objectifs ×10, ×20, ×40, ×100)</span>
+                            <p class="step-objective"><strong>Objectif :</strong> Analyser les structures tissulaires et cellulaires</p>
+                            <p class="step-reason">Objectif final de la technique de routine</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON OPTION 1 : L'APPOSITION
+                 ============================================ -->
+            <details class="main-accordion accordion-option">
+                <summary><span class="accordion-badge">+</span> Option n°1 : L'APPOSITION (Empreinte)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- Introduction -->
+                    <div class="option-intro">
+                        <h4>📋 Qu'est-ce qu'une apposition ?</h4>
+                        <p>Une apposition consiste à :</p>
+                        <ul>
+                            <li>Appliquer directement un <strong>fragment de tissu frais</strong> sur une lame</li>
+                            <li>Transférer des <strong>cellules</strong> (ou petits amas cellulaires) par contact</li>
+                        </ul>
+                        <p style="margin-top: 12px; padding: 10px; background: white; border-radius: 6px; border-left: 3px solid #a855f7;">
+                            👉 On n'est plus en <strong>histologie architecturale</strong>, mais en <strong>cytologie</strong>.<br>
+                            <span style="color: #7c3aed;">Pas de bloc • Pas de coupe • Pas de soutien mécanique nécessaire</span>
+                        </p>
+                    </div>
+
+                    <!-- Warning : pas de paraffine -->
+                    <div class="option-warning">
+                        <h5>⚠️ Conséquence directe : pas de paraffine → pas de déparaffinage</h5>
+                        <p>
+                            Puisqu'il n'y a ❌ ni imprégnation, ❌ ni inclusion, ❌ ni paraffine...<br>
+                            👉 Il est <strong>inutile et impossible</strong> de déparaffiner ou réhydrater après xylène.<br>
+                            Le circuit histologique classique ne s'applique pas !
+                        </p>
+                    </div>
+
+                    <!-- Les 8 étapes -->
+                    <h4 style="color: #6b21a8; margin-bottom: 15px; font-size: 1rem;">🔬 Apposition en routine (8 étapes)</h4>
+                    
+                    <div class="option-steps">
+                        <div class="option-step option-step-prelevement">
+                            <span class="option-step-number">1</span>
+                            <div class="option-step-content">
+                                <h5>Réalisation de l'apposition</h5>
+                                <p>Tissu frais appliqué sur lame</p>
+                                <p style="font-style: normal; font-size: 0.8rem; margin-top: 4px;">• Transfert de cellules par contact<br>• Pas de coupe, pas de bloc</p>
+                            </div>
+                        </div>
+
+                        <div class="option-step option-step-specific">
+                            <span class="option-step-number">2</span>
+                            <div class="option-step-content">
+                                <h5>Séchage à l'air</h5>
+                                <p>Souvent spontané et rapide</p>
+                                <p style="font-style: normal; font-size: 0.8rem; margin-top: 4px;">• Permet l'adhésion des cellules à la lame<br>• Prépare à la fixation</p>
+                            </div>
+                        </div>
+
+                        <div class="option-step option-step-inclusion" style="position: relative;">
+                            <span style="position: absolute; top: -8px; right: 10px; background: #f59e0b; color: white; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600;">À ADAPTER</span>
+                            <span class="option-step-number">3</span>
+                            <div class="option-step-content">
+                                <h5>Fixation</h5>
+                                <p>Alcool (méthanol/éthanol) ou spray</p>
+                                <p style="font-style: normal; font-size: 0.8rem; margin-top: 4px;">• Fixation rapide des cellules<br>• Préserve la morphologie cellulaire</p>
+                                <p style="font-style: italic; font-size: 0.75rem; color: #6b7280; margin-top: 4px;">→ À adapter en fonction de la technique choisie et du colorant</p>
+                            </div>
+                        </div>
+
+                        <div class="option-step option-step-coloration" style="position: relative;">
+                            <span style="position: absolute; top: -8px; right: 10px; background: #f59e0b; color: white; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600;">À ADAPTER</span>
+                            <span class="option-step-number">4</span>
+                            <div class="option-step-content">
+                                <h5>Coloration</h5>
+                                <p>MGG, Hématéine, Papanicolaou — colorations cytologiques</p>
+                                <p style="font-style: italic; font-size: 0.75rem; color: #6b7280; margin-top: 4px;">→ À adapter en fonction de la technique choisie</p>
+                            </div>
+                        </div>
+
+                        <div class="option-step option-step-coloration" style="position: relative;">
+                            <span style="position: absolute; top: -8px; right: 10px; background: #6b7280; color: white; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600;">CONDITIONNEL</span>
+                            <span class="option-step-number">5</span>
+                            <div class="option-step-content">
+                                <h5>Déshydratation post-coloration</h5>
+                                <p>Alcools croissants (70% → 100%)</p>
+                                <p style="font-style: normal; font-size: 0.8rem; margin-top: 4px;">• Uniquement si montage résineux<br>• Élimine l'eau avant le montage</p>
+                            </div>
+                        </div>
+
+                        <div class="option-step option-step-coloration" style="position: relative;">
+                            <span style="position: absolute; top: -8px; right: 10px; background: #6b7280; color: white; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600;">CONDITIONNEL</span>
+                            <span class="option-step-number">6</span>
+                            <div class="option-step-content">
+                                <h5>Clarification post-coloration</h5>
+                                <p>Toluène/Xylène</p>
+                                <p style="font-style: normal; font-size: 0.8rem; margin-top: 4px;">• Uniquement si montage résineux<br>• Transition vers milieu hydrophobe</p>
+                            </div>
+                        </div>
+
+                        <div class="option-step option-step-montage">
+                            <span class="option-step-number">7</span>
+                            <div class="option-step-content">
+                                <h5>Montage</h5>
+                                <p>Lamelle + milieu de montage</p>
+                                <div style="font-size: 0.8rem; margin-top: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                    <div style="background: #dbeafe; padding: 6px 8px; border-radius: 6px;">
+                                        <strong style="color: #1e40af;">Montage aqueux :</strong><br>
+                                        <span style="color: #1e3a8a;">• Courant en cytologie<br>• MGG, certaines HIS</span>
+                                    </div>
+                                    <div style="background: #fef3c7; padding: 6px 8px; border-radius: 6px;">
+                                        <strong style="color: #b45309;">Montage résineux :</strong><br>
+                                        <span style="color: #92400e;">• Papanicolaou<br>• Archivage</span>
+                                    </div>
+                                </div>
+                                <p style="font-style: normal; font-size: 0.75rem; color: #6b21a8; margin-top: 8px; background: #f3e8ff; padding: 4px 8px; border-radius: 4px;">👉 C'est le type de montage qui décide : déshydratation oui/non • clarification oui/non</p>
+                            </div>
+                        </div>
+
+                        <div class="option-step option-step-montage">
+                            <span class="option-step-number">8</span>
+                            <div class="option-step-content">
+                                <h5>Observation au MO</h5>
+                                <p>Analyse cytologique</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 20px; padding: 12px; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 8px; color: #166534; font-size: 0.9rem; text-align: center;">
+                        ✅ Tout se fait sur du matériel <strong>déjà accessible</strong>, sans obstacle hydrophobe !
+                    </p>
+
+                </div>
+            </details>
+
+            <!-- ============================================
+                 ACCORDÉON OPTION 2 : LA CONGÉLATION
+                 ============================================ -->
+            <details class="main-accordion accordion-option">
+                <summary><span class="accordion-badge">+</span> Option n°2 : LA CONGÉLATION (Cryohistologie)</summary>
+                <div class="accordion-content">
+                    
+                    <!-- Introduction -->
+                    <div class="option-intro">
+                        <h4>❄️ Qu'est-ce que la congélation ?</h4>
+                        <p>La congélation est un mode de préparation histologique dans lequel le tissu est :</p>
+                        <ul>
+                            <li><strong>Figé rapidement</strong> par le froid</li>
+                            <li><strong>Coupé au cryostat</strong></li>
+                            <li><strong>Observé sans inclusion en paraffine</strong></li>
+                        </ul>
+                        <p style="margin-top: 12px; padding: 10px; background: white; border-radius: 6px; border-left: 3px solid #a855f7;">
+                            👉 On privilégie la <strong>rapidité</strong> et la <strong>préservation des constituants biologiques</strong>, au détriment partiel de la finesse morphologique.
+                        </p>
+                    </div>
+
+                    <!-- Warning : pas de paraffine -->
+                    <div class="option-warning">
+                        <h5>⚠️ Court-circuite tout le circuit paraffine</h5>
+                        <p>
+                            ❌ Pas de fixation longue au formol • ❌ Pas de déshydratation lourde • ❌ Pas de clarification<br>
+                            ❌ Pas d'imprégnation paraffine • ❌ Pas d'inclusion • ❌ Pas de déparaffinage
+                        </p>
+                    </div>
+
+                    <!-- Les 9 étapes -->
+                    <h4 style="color: #6b21a8; margin-bottom: 15px; font-size: 1rem;">🔬 Congélation en routine (9 étapes)</h4>
+                    
+                    <div class="option-steps">
+                        <div class="option-step option-step-prelevement">
+                            <span class="option-step-number">1</span>
+                            <div class="option-step-content">
+                                <h5>Prélèvement</h5>
+                                <p>Biopsie ou pièce opératoire</p>
+                            </div>
+                        </div>
+
+                        <div class="option-step option-step-specific">
+                            <span class="option-step-number">2</span>
+                            <div class="option-step-content">
+                                <h5>Congélation rapide</h5>
+                                <p>Azote liquide ou isopentane refroidi</p>
+                                <p style="font-style: normal; font-size: 0.8rem; margin-top: 4px;">• Arrêt brutal des réactions enzymatiques<br>• Préservation rapide des constituants<br>• Pas de fixation chimique</p>
+                            </div>
+                        </div>
+
+                        <div class="option-step option-step-coupe">
+                            <span class="option-step-number">3</span>
+                            <div class="option-step-content">
+                                <h5>Cryosection</h5>
+                                <p>Coupe au cryostat</p>
+                                <p style="font-style: normal; font-size: 0.8rem; color: #b45309; margin-top: 4px; background: #fef3c7; padding: 4px 8px; border-radius: 4px;">⚠️ À ce stade : tissu encore hydraté, fragile, non fixé chimiquement</p>
+                            </div>
+                        </div>
+
+                        <div class="option-step option-step-inclusion" style="position: relative;">
+                            <span style="position: absolute; top: -8px; right: 10px; background: #f59e0b; color: white; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600;">À ADAPTER</span>
+                            <span class="option-step-number">4</span>
+                            <div class="option-step-content">
+                                <h5>Fixation courte (post-coupe)</h5>
+                                <p>Alcool ou acétone froide</p>
+                                <p style="font-style: normal; font-size: 0.8rem; margin-top: 4px;">• Fixation rapide des protéines<br>• Stabilise la coupe<br>• Préserve mieux les antigènes que le formol</p>
+                                <p style="font-style: italic; font-size: 0.75rem; color: #6b7280; margin-top: 4px;">→ À adapter en fonction de la technique choisie et du colorant</p>
+                            </div>
+                        </div>
+
+                        <div class="option-step option-step-coloration" style="position: relative;">
+                            <span style="position: absolute; top: -8px; right: 10px; background: #f59e0b; color: white; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600;">À ADAPTER</span>
+                            <span class="option-step-number">5</span>
+                            <div class="option-step-content">
+                                <h5>Coloration</h5>
+                                <p>Hématéine, H&E rapide — description morphologique du tissu</p>
+                                <p style="font-style: italic; font-size: 0.75rem; color: #6b7280; margin-top: 4px;">→ À adapter en fonction de la technique choisie</p>
+                            </div>
+                        </div>
+
+                        <div class="option-step option-step-coloration" style="position: relative;">
+                            <span style="position: absolute; top: -8px; right: 10px; background: #6b7280; color: white; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600;">CONDITIONNEL</span>
+                            <span class="option-step-number">6</span>
+                            <div class="option-step-content">
+                                <h5>Déshydratation post-coloration</h5>
+                                <p>Alcools croissants (70% → 100%)</p>
+                                <p style="font-style: normal; font-size: 0.8rem; margin-top: 4px;">• Uniquement si montage résineux<br>• Élimine l'eau avant le montage</p>
+                            </div>
+                        </div>
+
+                        <div class="option-step option-step-coloration" style="position: relative;">
+                            <span style="position: absolute; top: -8px; right: 10px; background: #6b7280; color: white; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600;">CONDITIONNEL</span>
+                            <span class="option-step-number">7</span>
+                            <div class="option-step-content">
+                                <h5>Clarification post-coloration</h5>
+                                <p>Toluène/Xylène</p>
+                                <p style="font-style: normal; font-size: 0.8rem; margin-top: 4px;">• Uniquement si montage résineux<br>• Transition vers milieu hydrophobe</p>
+                            </div>
+                        </div>
+
+                        <div class="option-step option-step-montage">
+                            <span class="option-step-number">8</span>
+                            <div class="option-step-content">
+                                <h5>Montage</h5>
+                                <p>Lamelle + milieu de montage</p>
+                                <div style="font-size: 0.8rem; margin-top: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                                    <div style="background: #dbeafe; padding: 6px 8px; border-radius: 6px;">
+                                        <strong style="color: #1e40af;">Montage aqueux :</strong><br>
+                                        <span style="color: #1e3a8a;">• EHC<br>• Certaines HIS</span>
+                                    </div>
+                                    <div style="background: #fef3c7; padding: 6px 8px; border-radius: 6px;">
+                                        <strong style="color: #b45309;">Montage résineux :</strong><br>
+                                        <span style="color: #92400e;">• H&E rapide<br>• IHC • FISH<br>• Archivage</span>
+                                    </div>
+                                </div>
+                                <p style="font-style: normal; font-size: 0.75rem; color: #6b21a8; margin-top: 8px; background: #f3e8ff; padding: 4px 8px; border-radius: 4px;">👉 C'est le type de montage qui décide : déshydratation oui/non • clarification oui/non</p>
+                            </div>
+                        </div>
+
+                        <div class="option-step option-step-montage">
+                            <span class="option-step-number">9</span>
+                            <div class="option-step-content">
+                                <h5>Observation au MO</h5>
+                                <p>Analyse histologique rapide</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cas de figure -->
+                    <h4 style="color: #6b21a8; margin: 25px 0 15px 0; font-size: 1rem;">📋 Quand utiliser la congélation ?</h4>
+                    
+                    <div style="display: grid; gap: 12px;">
+                        <!-- Cas 1 : Extemporané -->
+                        <div style="background: white; border: 2px solid #fbbf24; border-radius: 10px; padding: 15px;">
+                            <h5 style="color: #b45309; margin: 0 0 8px 0; font-size: 0.95rem;">🔹 Cas 1 : Examen extemporané (peropératoire) — <span style="background: #fef3c7; padding: 2px 8px; border-radius: 4px;">RAPIDITÉ</span></h5>
+                            <p style="color: #78350f; margin: 0; font-size: 0.9rem; line-height: 1.5;">
+                                <strong>Objectif :</strong> Diagnostic rapide pendant une chirurgie → orientation thérapeutique immédiate<br>
+                                <strong>Circuit :</strong> Biopsie → Congélation → Cryosection → Coloration rapide → Lecture<br>
+                                <em>⚠️ Qualité morphologique suffisante mais inférieure à la paraffine</em>
+                            </p>
+                        </div>
+
+                        <!-- Cas 2 : Lipides -->
+                        <div style="background: white; border: 2px solid #a3e635; border-radius: 10px; padding: 15px;">
+                            <h5 style="color: #4d7c0f; margin: 0 0 8px 0; font-size: 0.95rem;">🔹 Cas 2 : Étude des lipides — <span style="background: #dcfce7; padding: 2px 8px; border-radius: 4px;">INDISPENSABLE</span></h5>
+                            <p style="color: #365314; margin: 0; font-size: 0.9rem; line-height: 1.5;">
+                                <strong>Objectif :</strong> Les lipides sont <strong>dissous par les solvants</strong> de la paraffine (alcool, xylène)<br>
+                                <strong>Circuit :</strong> Congélation → Cryosection → Coloration lipidique → Lecture<br>
+                                <em>👉 La congélation est la seule solution pour étudier les lipides</em>
+                            </p>
+                        </div>
+
+                        <!-- Cas 3 : EHC -->
+                        <div style="background: white; border: 2px solid #f472b6; border-radius: 10px; padding: 15px;">
+                            <h5 style="color: #be185d; margin: 0 0 8px 0; font-size: 0.95rem;">🔹 Cas 3 : EHC (Enzymo-Histo-Chimie) — <span style="background: #fce7f3; padding: 2px 8px; border-radius: 4px;">INDISPENSABLE</span></h5>
+                            <p style="color: #831843; margin: 0; font-size: 0.9rem; line-height: 1.5;">
+                                <strong>Objectif :</strong> Préserver les <strong>activités enzymatiques</strong> (détruites par le formol et la chaleur)<br>
+                                <strong>Circuit :</strong> Congélation → Cryosection → Révélation enzymatique → Observation<br>
+                                <em>⚠️ Préparation très fragile, conservation courte</em>
+                            </p>
+                        </div>
+
+                        <!-- Cas 4 : Immunofluorescence préférable -->
+                        <div style="background: white; border: 2px solid #22d3ee; border-radius: 10px; padding: 15px;">
+                            <h5 style="color: #0e7490; margin: 0 0 8px 0; font-size: 0.95rem;">🔹 Cas 4 : Immunofluorescence — <span style="background: #cffafe; padding: 2px 8px; border-radius: 4px;">PRÉFÉRABLE</span></h5>
+                            <p style="color: #164e63; margin: 0; font-size: 0.9rem; line-height: 1.5;">
+                                <strong>Objectif :</strong> Obtenir un meilleur signal fluorescent et préserver les épitopes<br>
+                                <strong>Remarque :</strong> L'Immunofluorescence est <strong>possible sur FFPE</strong> mais le signal est souvent meilleur sur congélation<br>
+                                <em>👉 Congélation préférée quand c'est possible (moins d'autofluorescence, épitopes mieux conservés)</em>
+                            </p>
+                        </div>
+
+                        <!-- Cas 5 : Cryoconservation -->
+                        <div style="background: white; border: 2px solid #c084fc; border-radius: 10px; padding: 15px;">
+                            <h5 style="color: #7e22ce; margin: 0 0 8px 0; font-size: 0.95rem;">🔹 Cas 5 : Cryoconservation (cellules reproductrices) — <span style="background: #f3e8ff; padding: 2px 8px; border-radius: 4px;">INDISPENSABLE</span></h5>
+                            <p style="color: #581c87; margin: 0; font-size: 0.9rem; line-height: 1.5;">
+                                <strong>Objectif :</strong> Conservation longue durée de <strong>cellules vivantes</strong> (ovocytes, spermatozoïdes, embryons)<br>
+                                <strong>Technique :</strong> Vitrification ou congélation lente avec cryoprotecteurs<br>
+                                <em>✅ Permet la préservation de la fertilité</em>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Tableau comparatif -->
+                    <h4 style="color: #6b21a8; margin: 25px 0 15px 0; font-size: 1rem;">⚖️ Comparaison : Paraffine vs Congélation</h4>
+                    
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; background: white; border-radius: 8px; overflow: hidden;">
+                            <thead>
+                                <tr style="background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%); color: white;">
+                                    <th style="padding: 10px; text-align: left;">Critère</th>
+                                    <th style="padding: 10px; text-align: center;">Paraffine (FFPE)</th>
+                                    <th style="padding: 10px; text-align: center;">Congélation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 10px; font-weight: 600;">Fixation</td>
+                                    <td style="padding: 10px; text-align: center;">Longue (formol)</td>
+                                    <td style="padding: 10px; text-align: center;">Absente ou secondaire</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                                    <td style="padding: 10px; font-weight: 600;">Déshydratation</td>
+                                    <td style="padding: 10px; text-align: center;">Oui</td>
+                                    <td style="padding: 10px; text-align: center;">Non</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 10px; font-weight: 600;">Inclusion</td>
+                                    <td style="padding: 10px; text-align: center;">Paraffine</td>
+                                    <td style="padding: 10px; text-align: center;">Non</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                                    <td style="padding: 10px; font-weight: 600;">Coupe</td>
+                                    <td style="padding: 10px; text-align: center;">Microtome</td>
+                                    <td style="padding: 10px; text-align: center;">Cryostat</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 10px; font-weight: 600;">Architecture</td>
+                                    <td style="padding: 10px; text-align: center; color: #16a34a;">✅ Excellente</td>
+                                    <td style="padding: 10px; text-align: center; color: #ea580c;">⚠️ Plus fragile</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
+                                    <td style="padding: 10px; font-weight: 600;">Rapidité</td>
+                                    <td style="padding: 10px; text-align: center; color: #ea580c;">⚠️ Lente (heures/jours)</td>
+                                    <td style="padding: 10px; text-align: center; color: #16a34a;">✅ Rapide (minutes)</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #e2e8f0;">
+                                    <td style="padding: 10px; font-weight: 600;">Conservation antigènes</td>
+                                    <td style="padding: 10px; text-align: center; color: #ea580c;">⚠️ Masquage possible</td>
+                                    <td style="padding: 10px; text-align: center; color: #16a34a;">✅ Meilleure</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; font-weight: 600;">Conservation lipides</td>
+                                    <td style="padding: 10px; text-align: center; color: #dc2626;">❌ Dissous</td>
+                                    <td style="padding: 10px; text-align: center; color: #16a34a;">✅ Préservés</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Limites -->
+                    <div style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-radius: 8px; border: 1px solid #fca5a5;">
+                        <h5 style="color: #991b1b; margin: 0 0 8px 0; font-size: 0.9rem;">❌ Ce que la congélation ne permet pas (ou moins bien)</h5>
+                        <p style="color: #7f1d1d; margin: 0; font-size: 0.85rem; line-height: 1.6;">
+                            • Coupes très fines et régulières comme la paraffine<br>
+                            • Archivage long terme optimal<br>
+                            • Analyse architecturale très détaillée
+                        </p>
+                    </div>
+
+                    <!-- Conclusion -->
+                    <p style="margin-top: 20px; padding: 12px; background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border-radius: 8px; color: #6b21a8; font-size: 0.9rem; text-align: center;">
+                        💡 <strong>À retenir :</strong> La congélation est une alternative rapide qui évite toute inclusion en paraffine. Elle est <strong>indispensable</strong> pour les lipides et l'EHC, <strong>préférable</strong> pour l'Immunofluorescence, et <strong>nécessaire</strong> pour l'examen extemporané.
+                    </p>
+
+                </div>
+            </details>
+
+        </div>
+
+        <!-- ============================================
+             FOOTER OBLIGATOIRE - NE PAS MODIFIER
+             ============================================ -->
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>SOURCES</strong><br>
+            FC1 à FC8 — UE14 Histologie 2025-2026 • Technique : Inclusion paraffine → Microscopie Optique
+        </div>
+    </div>
+</body>
+</html>
