@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Méthodes d'études en Histologie - Vue d'ensemble</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #FFFFFF;
+            min-height: 100vh;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            color: #374151;
+        }
+        
+        /* Filigrane logo Medibox */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 900px;
+            max-height: 900px;
+            background-image: url('https://elisabethmedibox.github.io/fiches-medibox-2025-2026/images/medibox/logo/logo-fond-clair.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @media (max-width: 768px) {
+            body::after {
+                width: 90vw;
+                height: 90vw;
+                opacity: 0.06;
+            }
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header MediBox */
+        .header {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .header .meta {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            flex-wrap: wrap;
+        }
+        
+        /* Contenu */
+        .content {
+            padding: 24px;
+        }
+        
+        /* Titre infographie */
+        .infographie-titre {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .infographie-titre h2 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #1a365d;
+        }
+        
+        .infographie-titre p {
+            font-size: 13px;
+            font-weight: 400;
+            color: #6B7280;
+        }
+        
+        /* Légendes */
+        .legendes {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            background-color: #FAFAFA;
+            flex-wrap: wrap;
+        }
+        
+        .legende-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .legende-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: #6B7280;
+        }
+        
+        .legende-visu {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .legende-visu-box {
+            width: 16px;
+            height: 10px;
+            border-radius: 2px;
+        }
+        
+        .legende-visu span {
+            font-size: 9px;
+        }
+        
+        /* Contenu principal */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* Point de départ */
+        .start-boxes {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        
+        .start-box {
+            padding: 10px 16px;
+            border: 2px solid #1E293B;
+            border-radius: 5px;
+            background-color: #FFFFFF;
+            text-align: center;
+        }
+        
+        .start-box-label {
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .start-box-examples {
+            font-size: 8px;
+            color: #6B7280;
+            margin-top: 2px;
+        }
+        
+        /* Flèches */
+        .small-arrow {
+            text-align: center;
+            color: #D1D5DB;
+            font-size: 10px;
+            line-height: 1;
+            margin: 3px 0;
+        }
+        
+        /* Question box */
+        .question-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border: 2px solid;
+            border-radius: 6px;
+            background-color: #FFFFFF;
+        }
+        
+        .question-numero {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .question-text {
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .question-1 {
+            border-color: #1E40AF;
+        }
+        
+        .question-1 .question-numero {
+            background-color: #1E40AF;
+        }
+        
+        .question-1 .question-text {
+            color: #1E40AF;
+        }
+        
+        .question-2 {
+            border-color: #7C3AED;
+        }
+        
+        .question-2 .question-numero {
+            background-color: #7C3AED;
+        }
+        
+        .question-2 .question-text {
+            color: #7C3AED;
+        }
+        
+        .spacer {
+            height: 16px;
+        }
+        
+        /* Grille des objectifs */
+        .objectifs-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 28px;
+        }
+        
+        /* Flowchart card */
+        .flowchart-card {
+            border: 1px solid #D1D5DB;
+            border-radius: 6px;
+            background-color: #FFFFFF;
+            overflow: hidden;
+        }
+        
+        .flowchart-header {
+            padding: 10px;
+            background-color: #F8FAFC;
+            border-bottom: 1px solid #E5E7EB;
+            text-align: center;
+        }
+        
+        .flowchart-title {
+            font-size: 10px;
+            font-weight: 700;
+        }
+        
+        .flowchart-subtitle {
+            font-size: 8px;
+            color: #6B7280;
+            margin-top: 2px;
+        }
+        
+        .flowchart-content {
+            padding: 10px;
+        }
+        
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border: 1.5px solid;
+            border-radius: 4px;
+            font-size: 9px;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .tag-small {
+            padding: 3px 6px;
+            font-size: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .tag-centered {
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .tag-routine {
+            background-color: #DBEAFE;
+            border-color: #2563EB;
+            color: #2563EB;
+        }
+        
+        .tag-congelation {
+            background-color: #FEF3C7;
+            border-color: #D97706;
+            color: #D97706;
+        }
+        
+        .tag-fixation-me {
+            background-color: #D1FAE5;
+            border-color: #059669;
+            color: #059669;
+        }
+        
+        /* Step box */
+        .step-box {
+            padding: 6px 12px;
+            border: 1px solid #D1D5DB;
+            border-radius: 4px;
+            background-color: #FFFFFF;
+            font-size: 10px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .step-box-small {
+            padding: 4px 8px;
+            font-size: 9px;
+        }
+        
+        /* Compact steps */
+        .compact-steps {
+            padding: 6px 8px;
+            border: 1px solid #E5E7EB;
+            border-radius: 4px;
+            background-color: #FAFAFA;
+            font-size: 8px;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        .compact-steps .arrow {
+            color: #D1D5DB;
+        }
+        
+        /* Warning box */
+        .warning-box {
+            font-size: 8px;
+            color: #B91C1C;
+            background-color: #FEF2F2;
+            padding: 3px 6px;
+            border-radius: 3px;
+            text-align: center;
+            margin: 4px auto;
+            border: 1px solid #FECACA;
+        }
+        
+        /* Visu box */
+        .visu-box {
+            margin-top: 10px;
+            padding: 8px;
+            border: 2px solid;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .visu-box-label {
+            font-size: 11px;
+            font-weight: 700;
+        }
+        
+        .visu-mo {
+            background-color: #E0E7FF;
+            border-color: #6366F1;
+        }
+        
+        .visu-mo .visu-box-label {
+            color: #6366F1;
+        }
+        
+        .visu-me {
+            background-color: #D1FAE5;
+            border-color: #059669;
+        }
+        
+        .visu-me .visu-box-label {
+            color: #059669;
+        }
+        
+        .visu-fluo {
+            background-color: #FEF3C7;
+            border-color: #D97706;
+        }
+        
+        .visu-fluo .visu-box-label {
+            color: #D97706;
+        }
+        
+        .visu-box-small {
+            display: inline-block;
+            padding: 4px 12px;
+            border: 2px solid;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .visu-box-small .visu-box-label {
+            font-size: 10px;
+            font-weight: 700;
+        }
+        
+        /* Branches */
+        .branches {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .branch {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .detail-text {
+            font-size: 8px;
+            color: #6B7280;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+        
+        /* Contextes grid */
+        .contextes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 28px;
+        }
+        
+        /* Contexte card */
+        .contexte-card {
+            border: 2px solid;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #FFFFFF;
+        }
+        
+        .contexte-card-urgence {
+            border-color: #DC2626;
+        }
+        
+        .contexte-card-standard {
+            border-color: #16A34A;
+        }
+        
+        .contexte-card-conservation {
+            border-color: #7C3AED;
+        }
+        
+        .contexte-header {
+            padding: 10px 12px;
+            border-bottom: 1px solid;
+            text-align: center;
+        }
+        
+        .contexte-header-urgence {
+            background-color: #FEF2F2;
+            border-color: #DC2626;
+        }
+        
+        .contexte-header-standard {
+            background-color: #F0FDF4;
+            border-color: #16A34A;
+        }
+        
+        .contexte-header-conservation {
+            background-color: #F5F3FF;
+            border-color: #7C3AED;
+        }
+        
+        .contexte-titre {
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .contexte-alias {
+            font-size: 9px;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+        
+        .contexte-alias-urgence {
+            color: #DC2626;
+        }
+        
+        .contexte-alias-standard {
+            color: #16A34A;
+        }
+        
+        .contexte-alias-conservation {
+            color: #7C3AED;
+        }
+        
+        .contexte-content {
+            padding: 12px;
+        }
+        
+        .contexte-content-center {
+            text-align: center;
+        }
+        
+        .contexte-footer {
+            padding: 8px;
+            border-top: 1px solid;
+            text-align: center;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        
+        .contexte-footer-urgence {
+            background-color: #FEF2F2;
+            border-color: #DC2626;
+            color: #DC2626;
+        }
+        
+        .contexte-footer-standard {
+            background-color: #F0FDF4;
+            border-color: #16A34A;
+            color: #16A34A;
+        }
+        
+        .contexte-footer-conservation {
+            background-color: #F5F3FF;
+            border-color: #7C3AED;
+            color: #7C3AED;
+        }
+        
+        /* Extemporané layout */
+        .extemporane-row {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+        
+        .extemporane-col {
+            flex: 1;
+        }
+        
+        .extemporane-detail {
+            font-size: 9px;
+            color: #6B7280;
+            margin-top: 4px;
+        }
+        
+        .extemporane-separator {
+            display: flex;
+            align-items: center;
+            font-size: 10px;
+            color: #6B7280;
+        }
+        
+        /* Sans urgence sub-boxes */
+        .sub-box {
+            border-radius: 6px;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        .sub-box-routine {
+            border: 1px solid #2563EB;
+            background-color: #DBEAFE;
+            margin-bottom: 10px;
+        }
+        
+        .sub-box-moins-courant {
+            border: 1px solid #6B7280;
+            background-color: #F9FAFB;
+        }
+        
+        .sub-box-label {
+            font-size: 9px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .sub-box-label-routine {
+            color: #2563EB;
+        }
+        
+        .sub-box-label-moins-courant {
+            color: #6B7280;
+            margin-bottom: 8px;
+        }
+        
+        .sub-box-detail {
+            font-size: 9px;
+            margin-top: 6px;
+        }
+        
+        /* Mini cards grid */
+        .mini-cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+        
+        .mini-card {
+            padding: 6px;
+            border: 1px solid;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .mini-card-label {
+            font-size: 10px;
+            font-weight: 700;
+        }
+        
+        .mini-card-detail {
+            font-size: 7px;
+            color: #6B7280;
+            margin-top: 2px;
+        }
+        
+        .mini-card-me {
+            background-color: #D1FAE5;
+            border-color: #059669;
+        }
+        
+        .mini-card-me .mini-card-label {
+            color: #059669;
+        }
+        
+        .mini-card-ehc {
+            background-color: #FEF3C7;
+            border-color: #D97706;
+        }
+        
+        .mini-card-ehc .mini-card-label {
+            color: #D97706;
+        }
+        
+        .mini-card-ihc {
+            background-color: #DBEAFE;
+            border-color: #2563EB;
+        }
+        
+        .mini-card-ihc .mini-card-label {
+            color: #2563EB;
+        }
+        
+        .mini-card-his {
+            background-color: #FEF3C7;
+            border-color: #D97706;
+        }
+        
+        .mini-card-his .mini-card-label {
+            color: #D97706;
+        }
+        
+        /* Conservation */
+        .conservation-detail {
+            font-size: 10px;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+        
+        .conservation-sub {
+            font-size: 9px;
+            color: #6B7280;
+            margin-top: 4px;
+        }
+        
+        /* Exemples row */
+        .exemples-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .exemple-tag {
+            font-size: 8px;
+            padding: 2px 6px;
+            background-color: #F3F4F6;
+            border-radius: 3px;
+        }
+        
+        /* Footer MediBox */
+        .footer {
+            background: #e2e8f0;
+            color: #1a365d;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        .avertissement {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            color: #92400e;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        /* Planche footer */
+        .planche-footer {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 9px;
+            color: #6B7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header MediBox -->
+        <div class="header">
+            <h1>📘 Méthodes d'études en Histologie</h1>
+            <div class="meta">
+                <span>📚 UE14 - Histologie</span>
+                <span>🎯 Infographie - Workbook Méthodes d'études</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Titre infographie -->
+            <div class="infographie-titre">
+                <h2>Vue d'ensemble — Du prélèvement à l'observation</h2>
+                <p>Raisonnement orienté objectif pour répondre aux QCM</p>
+            </div>
+
+            <!-- Légendes -->
+            <div class="legendes">
+                <div class="legende-group">
+                    <span class="legende-label">TECHNIQUES :</span>
+                    <span class="tag tag-routine">ROUTINE</span>
+                    <span class="tag tag-congelation">CONGÉLATION</span>
+                    <span class="tag tag-fixation-me">FIXATION ME</span>
+                </div>
+                <div class="legende-group">
+                    <span class="legende-label">VISUALISATION :</span>
+                    <div class="legende-visu">
+                        <div class="legende-visu-box" style="background-color: #E0E7FF; border: 2px solid #6366F1;"></div>
+                        <span>MO</span>
+                    </div>
+                    <div class="legende-visu">
+                        <div class="legende-visu-box" style="background-color: #D1FAE5; border: 2px solid #059669;"></div>
+                        <span>ME</span>
+                    </div>
+                    <div class="legende-visu">
+                        <div class="legende-visu-box" style="background-color: #FEF3C7; border: 2px solid #D97706;"></div>
+                        <span>MO fluo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenu principal -->
+            <div class="main-content">
+                
+                <!-- Point de départ -->
+                <div class="start-boxes">
+                    <div class="start-box">
+                        <div class="start-box-label">PRÉLÈVEMENT TISSULAIRE</div>
+                        <div class="start-box-examples">Biopsie, exérèse, pièce opératoire</div>
+                    </div>
+                    <div class="start-box">
+                        <div class="start-box-label">PRÉLÈVEMENT CELLULAIRE</div>
+                        <div class="start-box-examples">Ponction, frottis, brossage, liquides</div>
+                    </div>
+                </div>
+                
+                <div class="small-arrow">▼</div>
+
+                <!-- Question 1 -->
+                <div class="question-box question-1">
+                    <div class="question-numero">1</div>
+                    <div class="question-text">Qu'est-ce que je veux observer ?</div>
+                </div>
+                
+                <div class="spacer"></div>
+
+                <!-- Grille des 5 objectifs -->
+                <div class="objectifs-grid">
+                    
+                    <!-- MORPHOLOGIE -->
+                    <div class="flowchart-card">
+                        <div class="flowchart-header">
+                            <div class="flowchart-title">MORPHOLOGIE</div>
+                            <div class="flowchart-subtitle">Architecture, structure cellulaire</div>
+                        </div>
+                        <div class="flowchart-content">
+                            <div class="step-box">Prélèvement</div>
+                            <div class="small-arrow">▼</div>
+                            <div class="branches">
+                                <div class="branch">
+                                    <span class="tag tag-small tag-routine">ROUTINE</span>
+                                    <div class="small-arrow">▼</div>
+                                    <div class="compact-steps">
+                                        Fixation <span class="arrow">→</span><br>
+                                        Inclusion <span class="arrow">→</span><br>
+                                        Coupe <span class="arrow">→</span><br>
+                                        Coloration
+                                    </div>
+                                </div>
+                                <div class="branch">
+                                    <span class="tag tag-small tag-congelation">CONGÉLATION</span>
+                                    <div class="small-arrow">▼</div>
+                                    <div class="compact-steps">
+                                        Coupe <span class="arrow">→</span><br>
+                                        Coloration rapide
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="visu-box visu-mo">
+                                <div class="visu-box-label">MO</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ULTRASTRUCTURE -->
+                    <div class="flowchart-card">
+                        <div class="flowchart-header">
+                            <div class="flowchart-title">ULTRASTRUCTURE</div>
+                            <div class="flowchart-subtitle">Organites, jonctions, cils, mb basale</div>
+                        </div>
+                        <div class="flowchart-content">
+                            <div class="step-box">Prélèvement</div>
+                            <div class="small-arrow">▼</div>
+                            <span class="tag tag-small tag-centered tag-fixation-me">FIXATION ME</span>
+                            <div class="small-arrow">▼</div>
+                            <div class="compact-steps">
+                                Fixation (glutaraldéhyde + osmium) <span class="arrow">→</span><br>
+                                Inclusion résine <span class="arrow">→</span><br>
+                                Coupe ultrafine <span class="arrow">→</span><br>
+                                Contraste
+                            </div>
+                            <div class="visu-box visu-me">
+                                <div class="visu-box-label">ME</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ACTIVITÉ ENZYMATIQUE -->
+                    <div class="flowchart-card">
+                        <div class="flowchart-header">
+                            <div class="flowchart-title">ACTIVITÉ ENZYMATIQUE</div>
+                            <div class="flowchart-subtitle">ATPases, phosphatases...</div>
+                        </div>
+                        <div class="flowchart-content">
+                            <div class="step-box">Prélèvement</div>
+                            <div class="small-arrow">▼</div>
+                            <span class="tag tag-small tag-centered tag-congelation">CONGÉLATION</span>
+                            <div class="warning-box">⚠️ Formol interdit</div>
+                            <div class="small-arrow">▼</div>
+                            <div class="compact-steps">
+                                Coupe <span class="arrow">→</span><br>
+                                EHC
+                            </div>
+                            <div class="detail-text">(Enzymo-Histo-Chimie)</div>
+                            <div class="visu-box visu-mo">
+                                <div class="visu-box-label">MO</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROTÉINE / ANTIGÈNE -->
+                    <div class="flowchart-card">
+                        <div class="flowchart-header">
+                            <div class="flowchart-title">PROTÉINE / ANTIGÈNE</div>
+                            <div class="flowchart-subtitle">Localisation protéique</div>
+                        </div>
+                        <div class="flowchart-content">
+                            <div class="step-box">Prélèvement</div>
+                            <div class="small-arrow">▼</div>
+                            <div class="branches">
+                                <div class="branch">
+                                    <span class="tag tag-small tag-routine">ROUTINE</span>
+                                </div>
+                                <div class="branch">
+                                    <span class="tag tag-small tag-congelation">CONGÉLATION</span>
+                                </div>
+                            </div>
+                            <div class="small-arrow">▼</div>
+                            <div class="compact-steps">
+                                Coupe <span class="arrow">→</span><br>
+                                IHC
+                            </div>
+                            <div class="detail-text">(Anticorps + révélation)</div>
+                            <div class="visu-box visu-mo">
+                                <div class="visu-box-label">MO</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GÈNE / ADN -->
+                    <div class="flowchart-card">
+                        <div class="flowchart-header">
+                            <div class="flowchart-title">GÈNE / ADN / ARN</div>
+                            <div class="flowchart-subtitle">Séquence nucléique, anomalie chromosomique</div>
+                        </div>
+                        <div class="flowchart-content">
+                            <div class="step-box">Prélèvement</div>
+                            <div class="small-arrow">▼</div>
+                            <div class="branches">
+                                <div class="branch">
+                                    <span class="tag tag-small tag-routine">ROUTINE</span>
+                                </div>
+                                <div class="branch">
+                                    <span class="tag tag-small tag-congelation">CONGÉLATION</span>
+                                </div>
+                            </div>
+                            <div class="small-arrow">▼</div>
+                            <div class="compact-steps">
+                                Coupe <span class="arrow">→</span><br>
+                                HIS / FISH
+                            </div>
+                            <div class="detail-text">(Sonde + fluorochrome)</div>
+                            <div class="visu-box visu-fluo">
+                                <div class="visu-box-label">MO fluo</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question-box question-2">
+                    <div class="question-numero">2</div>
+                    <div class="question-text">Dans quel contexte ? (contraintes de temps)</div>
+                </div>
+                
+                <div class="spacer"></div>
+
+                <!-- Les 3 contextes -->
+                <div class="contextes-grid">
+                    
+                    <!-- RÉPONSE RAPIDE -->
+                    <div class="contexte-card contexte-card-urgence">
+                        <div class="contexte-header contexte-header-urgence">
+                            <div class="contexte-titre">⚡ RÉPONSE RAPIDE</div>
+                            <div class="contexte-alias contexte-alias-urgence">= Extemporané</div>
+                        </div>
+                        <div class="contexte-content contexte-content-center">
+                            <div class="extemporane-row">
+                                <div class="extemporane-col">
+                                    <span class="tag tag-small tag-congelation">CONGÉLATION</span>
+                                    <div class="extemporane-detail">Cryo-coupe</div>
+                                </div>
+                                <div class="extemporane-separator">et/ou</div>
+                                <div class="extemporane-col">
+                                    <div class="step-box step-box-small">APPOSITION</div>
+                                    <div class="extemporane-detail">Directement sur lame</div>
+                                </div>
+                            </div>
+                            <div class="small-arrow">▼</div>
+                            <div class="visu-box-small visu-mo">
+                                <div class="visu-box-label">MO</div>
+                            </div>
+                            <div class="exemples-row">
+                                <span class="exemple-tag">Nature tumeur ?</span>
+                                <span class="exemple-tag">Limites exérèse ?</span>
+                                <span class="exemple-tag">Ganglion envahi ?</span>
+                            </div>
+                        </div>
+                        <div class="contexte-footer contexte-footer-urgence">⏱ 15-30 min</div>
+                    </div>
+                    
+                    <!-- SANS URGENCE -->
+                    <div class="contexte-card contexte-card-standard">
+                        <div class="contexte-header contexte-header-standard">
+                            <div class="contexte-titre">⏱ SANS URGENCE</div>
+                        </div>
+                        <div class="contexte-content">
+                            <!-- STANDARD = ROUTINE -->
+                            <div class="sub-box sub-box-routine">
+                                <div class="sub-box-label sub-box-label-routine">STANDARD</div>
+                                <span class="tag tag-small tag-routine" style="background-color: #FFFFFF;">ROUTINE</span>
+                                <div class="sub-box-detail">Fixation formol → Paraffine</div>
+                                <div class="small-arrow">▼</div>
+                                <div class="visu-box-small visu-mo">
+                                    <div class="visu-box-label">MO</div>
+                                </div>
+                            </div>
+                            
+                            <!-- MOINS COURANT -->
+                            <div class="sub-box sub-box-moins-courant">
+                                <div class="sub-box-label sub-box-label-moins-courant">MOINS COURANT</div>
+                                <div class="mini-cards-grid">
+                                    <div class="mini-card mini-card-me">
+                                        <div class="mini-card-label">ME</div>
+                                        <div class="mini-card-detail">Ultrastructure</div>
+                                    </div>
+                                    <div class="mini-card mini-card-ehc">
+                                        <div class="mini-card-label">EHC</div>
+                                        <div class="mini-card-detail">Enzymes</div>
+                                    </div>
+                                    <div class="mini-card mini-card-ihc">
+                                        <div class="mini-card-label">IHC</div>
+                                        <div class="mini-card-detail">Antigènes</div>
+                                    </div>
+                                    <div class="mini-card mini-card-his">
+                                        <div class="mini-card-label">HIS</div>
+                                        <div class="mini-card-detail">ADN/ARN</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contexte-footer contexte-footer-standard">⏱ 24h à plusieurs jours</div>
+                    </div>
+                    
+                    <!-- CONSERVATION / VIABILITÉ -->
+                    <div class="contexte-card contexte-card-conservation">
+                        <div class="contexte-header contexte-header-conservation">
+                            <div class="contexte-titre">❄️ CONSERVATION / VIABILITÉ</div>
+                            <div class="contexte-alias contexte-alias-conservation">= Banque de tissus</div>
+                        </div>
+                        <div class="contexte-content contexte-content-center">
+                            <span class="tag tag-small tag-congelation">CONGÉLATION</span>
+                            <div class="conservation-detail">+ Cryoprotecteur</div>
+                            <div class="conservation-sub">Stockage -80°C ou azote liquide</div>
+                            <div class="exemples-row">
+                                <span class="exemple-tag">Spermatozoïdes</span>
+                                <span class="exemple-tag">Ovocytes</span>
+                                <span class="exemple-tag">Greffes</span>
+                                <span class="exemple-tag">Recherche</span>
+                            </div>
+                        </div>
+                        <div class="contexte-footer contexte-footer-conservation">⏱ Stockage long terme</div>
+                    </div>
+                    
+                </div>
+
+                <!-- Planche footer -->
+                <div class="planche-footer">
+                    Workbook Histologie — Méthodes d'études • Planche 1 : Vue d'ensemble
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer MediBox -->
+        <div class="footer">
+            <strong>Création originale de E. Schaeffer</strong><br>
+            Soumis à droits d'auteur - Reproduction interdite
+        </div>
+
+        <div class="avertissement">
+            <strong>AVERTISSEMENT</strong><br>
+            Cette fiche d'analyse ne se substitue pas au cours officiel. La prépa encourage chaque étudiant à maîtriser l'intégralité de son programme.
+        </div>
+    </div>
+</body>
+</html>
